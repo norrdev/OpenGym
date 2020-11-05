@@ -7,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:npng/config.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/home_screen.dart';
+import 'package:npng/screens/timer_screen.dart';
 
 void main() {
   if (!kIsWeb && (Platform.isMacOS || Platform.isIOS)) {

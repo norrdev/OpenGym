@@ -17,6 +17,10 @@ dependencies:
   cupertino_icons: ^1.0.0
   provider: ^4.3.2+2
   table_calendar: ^2.3.0
+  multiplatform_widgets:
+    git: 
+      url: git://github.com/filonov/multiplatform_widgets.git
+
 
 dev_dependencies:
   flutter_test:
