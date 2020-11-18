@@ -21,6 +21,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "rest" : MessageLookupByLibrary.simpleMessage("Время отдыха в секундах"),
+    "sets" : MessageLookupByLibrary.simpleMessage("Количество подходов"),
+    "start" : MessageLookupByLibrary.simpleMessage("Начать"),
     "title" : MessageLookupByLibrary.simpleMessage("НбНп")
   };
 }
