@@ -1,5 +1,7 @@
 {
-    "title":"NpNg"
-
+    "title":"NpNg",
+    "sets":"Sets",
+    "rest":"Rest (seconds)",
+    "start":"Start"
     
 }

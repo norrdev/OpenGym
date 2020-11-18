@@ -44,6 +44,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Sets`
+  String get sets {
+    return Intl.message(
+      'Sets',
+      name: 'sets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rest (seconds)`
+  String get rest {
+    return Intl.message(
+      'Rest (seconds)',
+      name: 'rest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start`
+  String get start {
+    return Intl.message(
+      'Start',
+      name: 'start',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

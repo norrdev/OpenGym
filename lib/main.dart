@@ -7,20 +7,25 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:npng/config.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/home_screen.dart';
-import 'package:npng/screens/timer_screen.dart';
+import 'package:npng/screens/timer/set_screen.dart';
+import 'package:npng/screens/timer/timer_screen.dart';
+import 'package:npng/screens/timer/train_screen.dart';
+import 'package:provider/provider.dart';
+
+import 'models/set_rest.dart';
 
 void main() {
-  if (!kIsWeb && (Platform.isMacOS || Platform.isIOS)) {
-    runApp(AppCupertino());
-  } else {
-    runApp(AppMaterial());
-  }
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => SetRestData()),
+      ],
+      child: (!kIsWeb && (Platform.isMacOS || Platform.isIOS))
+          ? AppCupertino()
+          : AppMaterial(),
+    ),
+  );
 }
-
-Map<String, Widget Function(BuildContext)> appRoutes = {
-  HomeScreen.id: (context) => HomeScreen(),
-  TimerScreen.id: (context) => TimerScreen(),
-};
 
 class AppMaterial extends StatelessWidget {
   @override
@@ -44,7 +49,7 @@ class AppMaterial extends StatelessWidget {
         brightness: Brightness.dark,
         primarySwatch: Colors.teal,
       ),
-      initialRoute: TimerScreen.id,
+      initialRoute: HomeScreen.id,
       routes: appRoutes,
     );
   }
@@ -63,8 +68,15 @@ class AppCupertino extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
       onGenerateTitle: (BuildContext context) => S.of(context).title,
       theme: cupertinoTheme(),
-      initialRoute: TimerScreen.id,
+      initialRoute: HomeScreen.id,
       routes: appRoutes,
     );
   }
 }
+
+Map<String, Widget Function(BuildContext)> appRoutes = {
+  HomeScreen.id: (context) => HomeScreen(),
+  TrainScreen.id: (context) => TrainScreen(),
+  SetScreen.id: (context) => SetScreen(),
+  TimerScreen.id: (context) => TimerScreen(),
+};

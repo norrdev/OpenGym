@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:multiplatform_widgets/multiplatform_widgets.dart';
-import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/timer/timer_screen.dart';
-import 'package:npng/screens/timer/train_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:npng/models/set_rest.dart';
+import 'package:npng/generated/l10n.dart';
 
-class HomeScreen extends StatelessWidget {
-  static String id = '/';
+class SetScreen extends StatelessWidget {
+  static const String id = '/set';
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +19,14 @@ class HomeScreen extends StatelessWidget {
           child: SafeArea(
             child: Column(
               children: <Widget>[
+                Text(
+                    'Подход ${Provider.of<SetRestData>(context).currentSet} из ${Provider.of<SetRestData>(context).sets}'),
                 MpButton(
-                  label: 'Таймер',
+                  label: 'Отдых',
                   onPressed: () {
-                    Navigator.pushNamed(context, TrainScreen.id);
+                    Navigator.pushNamed(context, TimerScreen.id);
                   },
-                )
+                ),
               ],
             ),
           ),
