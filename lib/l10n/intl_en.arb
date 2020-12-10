@@ -1,7 +1,10 @@
 {
     "title":"NpNg",
     "sets":"Sets",
-    "rest":"Rest (seconds)",
-    "start":"Start"
-    
+    "rest":"Rest time (seconds)",
+    "start":"Start",
+    "from": " from ",
+    "restButton":"Rest",
+    "setsText": "Perfom the set, and when you're done, press the button.",
+    "about":"About"
 }

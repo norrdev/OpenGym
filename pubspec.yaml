@@ -5,29 +5,29 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 0.1.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.10.4 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_markdown: ^0.4.3
-  url_launcher: ^5.5.2
   cupertino_icons: ^1.0.0
   provider: ^4.3.2+2
-  table_calendar: ^2.3.0
   circular_countdown_timer: ^0.0.7
   multiplatform_widgets:
     path: ../multiplatform_widgets/
     # git: 
     #   url: git://github.com/filonov/multiplatform_widgets.git
-
+  flutter_markdown: ^0.4.4
+  url_launcher: ^5.5.2
+  package_info_plus: ^0.5.0
+  audioplayers: ^0.17.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  intl_translation: ^0.17.10
+  intl_translation: ^0.17.10+1
 
 flutter:
   uses-material-design: true
@@ -36,6 +36,8 @@ flutter:
     - assets/images/ 
     - assets/texts/en/
     - assets/texts/ru_RU/
+    - assets/sounds/
+    - CHANGELOG.md
 
 flutter_intl:
   enabled: true

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:multiplatform_widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/screens/timer/timer_screen.dart';
 import 'package:npng/screens/timer/train_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,22 +9,20 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: MpScaffold(
-        appBar: MpAppBar(title: Text(S.of(context).title)),
-        body: Container(
-          constraints: BoxConstraints.expand(),
-          child: SafeArea(
-            child: Column(
-              children: <Widget>[
-                MpButton(
-                  label: 'Таймер',
-                  onPressed: () {
-                    Navigator.pushNamed(context, TrainScreen.id);
-                  },
-                )
-              ],
-            ),
+    return MpScaffold(
+      appBar: MpAppBar(title: Text(S.of(context).title)),
+      body: Container(
+        constraints: BoxConstraints.expand(),
+        child: SafeArea(
+          child: Column(
+            children: <Widget>[
+              MpButton(
+                label: 'Таймер',
+                onPressed: () {
+                  Navigator.pushNamed(context, TrainScreen.id);
+                },
+              )
+            ],
           ),
         ),
       ),

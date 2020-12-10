@@ -21,9 +21,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "about" : MessageLookupByLibrary.simpleMessage("О приложении"),
+    "from" : MessageLookupByLibrary.simpleMessage(" из "),
     "rest" : MessageLookupByLibrary.simpleMessage("Время отдыха в секундах"),
+    "restButton" : MessageLookupByLibrary.simpleMessage("Отдых"),
     "sets" : MessageLookupByLibrary.simpleMessage("Количество подходов"),
-    "start" : MessageLookupByLibrary.simpleMessage("Начать"),
+    "setsText" : MessageLookupByLibrary.simpleMessage("Выполните подход, и когда закончите, нажмите кнопку."),
+    "start" : MessageLookupByLibrary.simpleMessage("Старт"),
     "title" : MessageLookupByLibrary.simpleMessage("НбНп")
   };
 }

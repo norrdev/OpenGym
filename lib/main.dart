@@ -6,10 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:npng/config.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/screens/home_screen.dart';
-import 'package:npng/screens/timer/set_screen.dart';
-import 'package:npng/screens/timer/timer_screen.dart';
-import 'package:npng/screens/timer/train_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'models/set_rest.dart';
@@ -39,18 +35,10 @@ class AppMaterial extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       onGenerateTitle: (BuildContext context) => S.of(context).title,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        buttonColor: Colors.blue,
-        brightness: Brightness.light,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.teal,
-      ),
-      initialRoute: HomeScreen.id,
-      routes: appRoutes,
+      theme: kMaterialLight,
+      darkTheme: kMaterialDark,
+      initialRoute: kInitialRoute,
+      routes: kAppRoutes,
     );
   }
 }
@@ -67,16 +55,9 @@ class AppCupertino extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       onGenerateTitle: (BuildContext context) => S.of(context).title,
-      theme: cupertinoTheme(),
-      initialRoute: HomeScreen.id,
-      routes: appRoutes,
+      theme: kCupertinoTheme,
+      initialRoute: kInitialRoute,
+      routes: kAppRoutes,
     );
   }
 }
-
-Map<String, Widget Function(BuildContext)> appRoutes = {
-  HomeScreen.id: (context) => HomeScreen(),
-  TrainScreen.id: (context) => TrainScreen(),
-  SetScreen.id: (context) => SetScreen(),
-  TimerScreen.id: (context) => TimerScreen(),
-};

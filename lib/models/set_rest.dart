@@ -19,17 +19,17 @@ class SetRestData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void increseRest() {
-    _rest++;
+  void increaseRest() {
+    _rest = _rest + 10;
     notifyListeners();
   }
 
   void decreaseRest() {
-    if (_rest >= 0) _rest--;
+    if (_rest >= 20) _rest = _rest - 10;
     notifyListeners();
   }
 
-  void increseSets() {
+  void increaseSets() {
     _sets++;
     notifyListeners();
   }
@@ -39,7 +39,7 @@ class SetRestData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void increseCurrentSet() {
+  void increaseCurrentSet() {
     _currentSet++;
     notifyListeners();
   }

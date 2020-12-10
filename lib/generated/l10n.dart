@@ -55,10 +55,10 @@ class S {
     );
   }
 
-  /// `Rest (seconds)`
+  /// `Rest time (seconds)`
   String get rest {
     return Intl.message(
-      'Rest (seconds)',
+      'Rest time (seconds)',
       name: 'rest',
       desc: '',
       args: [],
@@ -70,6 +70,46 @@ class S {
     return Intl.message(
       'Start',
       name: 'start',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` from `
+  String get from {
+    return Intl.message(
+      ' from ',
+      name: 'from',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rest`
+  String get restButton {
+    return Intl.message(
+      'Rest',
+      name: 'restButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Perfom the set, and when you're done, press the button.`
+  String get setsText {
+    return Intl.message(
+      'Perfom the set, and when you\'re done, press the button.',
+      name: 'setsText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About`
+  String get about {
+    return Intl.message(
+      'About',
+      name: 'about',
       desc: '',
       args: [],
     );

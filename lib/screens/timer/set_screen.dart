@@ -11,24 +11,34 @@ class SetScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: MpScaffold(
-        appBar: MpAppBar(title: Text(S.of(context).title)),
-        body: Container(
-          constraints: BoxConstraints.expand(),
-          child: SafeArea(
-            child: Column(
-              children: <Widget>[
-                Text(
-                    'Подход ${Provider.of<SetRestData>(context).currentSet} из ${Provider.of<SetRestData>(context).sets}'),
-                MpButton(
-                  label: 'Отдых',
-                  onPressed: () {
-                    Navigator.pushNamed(context, TimerScreen.id);
-                  },
+    return MpScaffold(
+      appBar: MpAppBar(title: Text(S.of(context).title)),
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  S.of(context).setsText,
+                  textAlign: TextAlign.center,
                 ),
-              ],
-            ),
+              ),
+              SizedBox(height: 50),
+              Text(
+                '${Provider.of<SetRestData>(context).currentSet} ${S.of(context).from} ${Provider.of<SetRestData>(context).sets}',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 50),
+              MpButton(
+                label: S.of(context).restButton,
+                onPressed: () {
+                  Navigator.pushNamed(context, TimerScreen.id);
+                },
+              ),
+            ],
           ),
         ),
       ),
