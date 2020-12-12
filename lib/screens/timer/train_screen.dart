@@ -12,7 +12,7 @@ import 'package:npng/generated/l10n.dart';
 import 'dart:io' show Platform;
 
 class TrainScreen extends StatelessWidget {
-  static String id = '/'; //'/train';
+  static String id = '/train';
 
   const TrainScreen({Key key}) : super(key: key);
 

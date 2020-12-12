@@ -16,12 +16,14 @@ class HomeScreen extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: <Widget>[
-              MpButton(
-                label: 'Таймер',
-                onPressed: () {
-                  Navigator.pushNamed(context, TrainScreen.id);
-                },
-              )
+              Expanded(
+                child: MpButton(
+                  label: 'Таймер',
+                  onPressed: () {
+                    Navigator.pushNamed(context, TrainScreen.id);
+                  },
+                ),
+              ),
             ],
           ),
         ),
