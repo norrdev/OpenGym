@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-class SetRestData extends ChangeNotifier {
+class SetRestProvider extends ChangeNotifier {
   int _sets = 5;
   int _rest = 90;
   int _currentSet = 1;

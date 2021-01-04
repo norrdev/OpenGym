@@ -114,6 +114,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Timer`
+  String get timer {
+    return Intl.message(
+      'Timer',
+      name: 'timer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Routines`
+  String get pageRoutinesTitle {
+    return Intl.message(
+      'Routines',
+      name: 'pageRoutinesTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

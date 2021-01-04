@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:multiplatform_widgets/multiplatform_widgets.dart';
-import 'package:npng/screens/timer/timer_screen.dart';
+import 'package:npng/pages/timer/timer_page.dart';
 import 'package:provider/provider.dart';
-import 'package:npng/models/set_rest.dart';
+import 'package:npng/providers/set_rest.dart';
 import 'package:npng/generated/l10n.dart';
 
-class SetScreen extends StatelessWidget {
+class SetPage extends StatelessWidget {
   static const String id = '/set';
 
   @override
@@ -27,7 +27,7 @@ class SetScreen extends StatelessWidget {
               ),
               SizedBox(height: 50),
               Text(
-                '${Provider.of<SetRestData>(context).currentSet} ${S.of(context).from} ${Provider.of<SetRestData>(context).sets}',
+                '${Provider.of<SetRestProvider>(context).currentSet} ${S.of(context).from} ${Provider.of<SetRestProvider>(context).sets}',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                 textAlign: TextAlign.center,
               ),
@@ -35,7 +35,7 @@ class SetScreen extends StatelessWidget {
               MpButton(
                 label: S.of(context).restButton,
                 onPressed: () {
-                  Navigator.pushNamed(context, TimerScreen.id);
+                  Navigator.pushNamed(context, TimerPage.id);
                 },
               ),
             ],

@@ -4,13 +4,13 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:multiplatform_widgets/multiplatform_widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AboutScreen extends StatelessWidget {
+class AboutPage extends StatelessWidget {
   static String id = '/about';
   final String about;
   final String history;
   final String version;
 
-  AboutScreen({this.about, this.history, this.version});
+  AboutPage({this.about, this.history, this.version});
 
   final controller = ScrollController();
 

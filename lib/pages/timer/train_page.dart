@@ -1,24 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:npng/screens/timer/set_screen.dart';
+import 'package:npng/pages/timer/set_page.dart';
 import 'package:provider/provider.dart';
 import 'package:multiplatform_widgets/multiplatform_widgets.dart';
-import 'package:npng/models/set_rest.dart';
+import 'package:npng/providers/set_rest.dart';
 import 'package:npng/generated/l10n.dart';
 import 'dart:io' show Platform;
 
-class TrainScreen extends StatelessWidget {
+class TrainPage extends StatelessWidget {
   static String id = '/train';
 
-  const TrainScreen({Key key}) : super(key: key);
+  const TrainPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     TextEditingController tcSets = TextEditingController(
-        text: '${Provider.of<SetRestData>(context).sets}');
+        text: '${Provider.of<SetRestProvider>(context).sets}');
     TextEditingController tcRest = TextEditingController(
-        text: '${Provider.of<SetRestData>(context).rest}');
+        text: '${Provider.of<SetRestProvider>(context).rest}');
 
     return MpScaffold(
       appBar: MpAppBar(
@@ -30,22 +30,26 @@ class TrainScreen extends StatelessWidget {
           children: <Widget>[
             Text(S.of(context).sets),
             ChangeIntField(
-              value: Provider.of<SetRestData>(context).sets,
+              value: Provider.of<SetRestProvider>(context).sets,
               decreaseCallback:
-                  Provider.of<SetRestData>(context, listen: false).decreaseSets,
+                  Provider.of<SetRestProvider>(context, listen: false)
+                      .decreaseSets,
               increaseCallback:
-                  Provider.of<SetRestData>(context, listen: false).increaseSets,
+                  Provider.of<SetRestProvider>(context, listen: false)
+                      .increaseSets,
             ),
             SizedBox(
               height: 40,
             ),
             Text(S.of(context).rest),
             ChangeIntField(
-              value: Provider.of<SetRestData>(context).rest,
+              value: Provider.of<SetRestProvider>(context).rest,
               decreaseCallback:
-                  Provider.of<SetRestData>(context, listen: false).decreaseRest,
+                  Provider.of<SetRestProvider>(context, listen: false)
+                      .decreaseRest,
               increaseCallback:
-                  Provider.of<SetRestData>(context, listen: false).increaseRest,
+                  Provider.of<SetRestProvider>(context, listen: false)
+                      .increaseRest,
             ),
             SizedBox(
               height: 40,
@@ -67,13 +71,13 @@ class TrainScreen extends StatelessWidget {
                   } catch (e) {
                     rst = 90;
                   }
-                  Provider.of<SetRestData>(context, listen: false)
+                  Provider.of<SetRestProvider>(context, listen: false)
                       .changeSets(sts);
-                  Provider.of<SetRestData>(context, listen: false)
+                  Provider.of<SetRestProvider>(context, listen: false)
                       .changeRest(rst);
-                  Provider.of<SetRestData>(context, listen: false)
+                  Provider.of<SetRestProvider>(context, listen: false)
                       .resetCurrentSet();
-                  Navigator.pushNamed(context, SetScreen.id);
+                  Navigator.pushNamed(context, SetPage.id);
                 },
               ),
             ),

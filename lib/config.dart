@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:npng/screens/about_screen.dart';
-import 'package:npng/screens/home_screen.dart';
-import 'package:npng/screens/timer/set_screen.dart';
-import 'package:npng/screens/timer/timer_screen.dart';
-import 'package:npng/screens/timer/train_screen.dart';
+import 'package:npng/pages/exersises_page.dart';
+import 'package:npng/pages/routines_page.dart';
+import 'package:npng/pages/timer/set_page.dart';
+import 'package:npng/pages/about_page.dart';
+import 'package:npng/pages/timer/timer_page.dart';
+import 'package:npng/pages/timer/train_page.dart';
 
 /// Place for themes, configuration constants, etc.
 
@@ -32,13 +33,14 @@ final CupertinoThemeData kCupertinoTheme = CupertinoThemeData(
 );
 
 /// Initial route
-final kInitialRoute = HomeScreen.id;
+final kInitialRoute = RoutinesPage.id;
 
 /// Route map
 final Map<String, Widget Function(BuildContext)> kAppRoutes = {
-  HomeScreen.id: (context) => HomeScreen(),
-  TrainScreen.id: (context) => TrainScreen(),
-  SetScreen.id: (context) => SetScreen(),
-  TimerScreen.id: (context) => TimerScreen(),
-  AboutScreen.id: (context) => AboutScreen(),
+  RoutinesPage.id: (context) => RoutinesPage(),
+  TrainPage.id: (context) => TrainPage(),
+  SetPage.id: (context) => SetPage(),
+  TimerPage.id: (context) => TimerPage(),
+  AboutPage.id: (context) => AboutPage(),
+  ExersisesPage.id: (context) => ExersisesPage(),
 };

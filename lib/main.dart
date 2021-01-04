@@ -1,5 +1,6 @@
 import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // Localization
@@ -7,14 +8,13 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:npng/config.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:provider/provider.dart';
-
-import 'models/set_rest.dart';
+import 'providers/set_rest.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => SetRestData()),
+        ChangeNotifierProvider(create: (context) => SetRestProvider()),
       ],
       child: (!kIsWeb && (Platform.isMacOS || Platform.isIOS))
           ? AppCupertino()

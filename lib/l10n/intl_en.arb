@@ -6,5 +6,8 @@
     "from": " from ",
     "restButton":"Rest",
     "setsText": "Perfom the set, and when you're done, press the button.",
-    "about":"About"
+    "about":"About",
+    "timer":"Timer",
+
+    "pageRoutinesTitle":"Routines"
 }

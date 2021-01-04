@@ -1,16 +1,14 @@
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:multiplatform_widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/screens/about_screen.dart';
-import 'package:npng/screens/timer/train_screen.dart';
+import 'package:npng/pages/about_page.dart';
+import 'package:npng/pages/timer/train_page.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'dart:io' show Platform;
+import 'package:npng/widgets/bottom_bar.dart';
 
-class HomeScreen extends StatelessWidget {
+class RoutinesPage extends StatelessWidget {
   static String id = '/';
 
   Future<String> _loadAsset(String path) async {
@@ -35,7 +33,7 @@ class HomeScreen extends StatelessWidget {
       context,
       mpPageRoute(
         builder: (context) {
-          return AboutScreen(
+          return AboutPage(
             about: about,
             history: history,
             version: version,
@@ -49,7 +47,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MpScaffold(
       appBar: MpAppBar(
-        title: Text(S.of(context).title),
+        title: Text(S.of(context).pageRoutinesTitle),
         button: MpLinkButton(
           label: S.of(context).about,
           onPressed: () {
@@ -64,29 +62,16 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               MpButton(
-                label: 'Таймер',
+                label: S.of(context).timer,
                 onPressed: () {
-                  Navigator.pushNamed(context, TrainScreen.id);
+                  Navigator.pushNamed(context, TrainPage.id);
                 },
               ),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: ConvexAppBar(
-        style: TabStyle.react,
-        items: [
-          TabItem(icon: Icons.list),
-          TabItem(icon: Icons.calendar_today),
-          TabItem(icon: Icons.assessment),
-        ],
-        initialActiveIndex: 1 /*optional*/,
-        //TODO: Make settings provider.
-        backgroundColor: (!kIsWeb && (Platform.isMacOS || Platform.isIOS))
-            ? CupertinoTheme.of(context).barBackgroundColor
-            : Theme.of(context).bottomAppBarColor,
-        onTap: (int i) => print('click index=$i'),
-      ),
+      bottomNavigationBar: BottomBar(initialActiveIndex: 0),
     );
   }
 }
