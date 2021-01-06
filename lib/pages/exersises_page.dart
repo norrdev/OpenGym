@@ -4,10 +4,21 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:multiplatform_widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
+import 'package:npng/models/musles_model.dart';
 import 'dart:io' show Platform;
 
-class ExersisesPage extends StatelessWidget {
+class ExersisesPage extends StatefulWidget {
   static String id = 'exersises';
+
+  @override
+  _ExersisesPageState createState() => _ExersisesPageState();
+}
+
+class _ExersisesPageState extends State<ExersisesPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

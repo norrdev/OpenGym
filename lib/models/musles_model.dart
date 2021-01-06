@@ -1,71 +1,28 @@
-import 'package:sqflite/sqflite.dart';
+import 'package:npng/models/model.dart';
 
-final String tableMusles = 'musles';
-final String columnId = 'id';
-final String columnName = 'name';
+class TodoItem extends Model {
+  static String table = 'musles';
 
-class Musles {
   int id;
-  String title;
-  bool done;
+  String name;
+
+  TodoItem({this.id, this.name});
 
   Map<String, dynamic> toMap() {
-    var map = <String, dynamic>{
-      columnName: title,
+    Map<String, dynamic> map = {
+      'name': name,
     };
+
     if (id != null) {
-      map[columnId] = id;
+      map['id'] = id;
     }
     return map;
   }
 
-  Musles();
-
-  Musles.fromMap(Map<String, dynamic> map) {
-    id = map[columnId];
-    title = map[columnName];
+  static TodoItem fromMap(Map<String, dynamic> map) {
+    return TodoItem(
+      id: map['id'],
+      name: map['name'],
+    );
   }
-}
-
-class MuslesModel {
-  Database db;
-
-  Future open(String path) async {
-    db = await openDatabase(path, version: 1,
-        onCreate: (Database db, int version) async {
-      await db.execute('''
-create table $tableMusles ( 
-  $columnId integer primary key autoincrement, 
-  $columnName text not null)
-''');
-    });
-  }
-
-  Future<Musles> insert(Musles todo) async {
-    todo.id = await db.insert(tableMusles, todo.toMap());
-    return todo;
-  }
-
-  Future<Musles> getTodo(int id) async {
-    List<Map> maps = await db.query(tableMusles,
-        columns: [columnId, columnName],
-        where: '$columnId = ?',
-        whereArgs: [id]);
-    if (maps.length > 0) {
-      return Musles.fromMap(maps.first);
-    }
-    return null;
-  }
-
-  Future<int> delete(int id) async {
-    return await db
-        .delete(tableMusles, where: '$columnId = ?', whereArgs: [id]);
-  }
-
-  Future<int> update(Musles todo) async {
-    return await db.update(tableMusles, todo.toMap(),
-        where: '$columnId = ?', whereArgs: [todo.id]);
-  }
-
-  Future close() async => db.close();
 }
