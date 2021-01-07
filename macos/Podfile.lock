@@ -1,6 +1,4 @@
 PODS:
-  - audioplayers (0.0.1):
-    - FlutterMacOS
   - FlutterMacOS (1.0.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -8,9 +6,6 @@ PODS:
   - package_info_plus (0.4.5):
     - FlutterMacOS
   - package_info_plus_macos (0.0.1):
-    - FlutterMacOS
-  - path_provider (0.0.1)
-  - path_provider_macos (0.0.1):
     - FlutterMacOS
   - sqflite (0.0.2):
     - FlutterMacOS
@@ -20,12 +15,9 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
-  - audioplayers (from `Flutter/ephemeral/.symlinks/plugins/audioplayers/macos`)
   - FlutterMacOS (from `Flutter/ephemeral/.symlinks/flutter/darwin-x64`)
   - package_info_plus (from `Flutter/ephemeral/.symlinks/plugins/package_info_plus/macos`)
   - package_info_plus_macos (from `Flutter/ephemeral/.symlinks/plugins/package_info_plus_macos/macos`)
-  - path_provider (from `Flutter/ephemeral/.symlinks/plugins/path_provider/macos`)
-  - path_provider_macos (from `Flutter/ephemeral/.symlinks/plugins/path_provider_macos/macos`)
   - sqflite (from `Flutter/ephemeral/.symlinks/plugins/sqflite/macos`)
   - url_launcher (from `Flutter/ephemeral/.symlinks/plugins/url_launcher/macos`)
   - url_launcher_macos (from `Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos`)
@@ -35,18 +27,12 @@ SPEC REPOS:
     - FMDB
 
 EXTERNAL SOURCES:
-  audioplayers:
-    :path: Flutter/ephemeral/.symlinks/plugins/audioplayers/macos
   FlutterMacOS:
     :path: Flutter/ephemeral/.symlinks/flutter/darwin-x64
   package_info_plus:
     :path: Flutter/ephemeral/.symlinks/plugins/package_info_plus/macos
   package_info_plus_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/package_info_plus_macos/macos
-  path_provider:
-    :path: Flutter/ephemeral/.symlinks/plugins/path_provider/macos
-  path_provider_macos:
-    :path: Flutter/ephemeral/.symlinks/plugins/path_provider_macos/macos
   sqflite:
     :path: Flutter/ephemeral/.symlinks/plugins/sqflite/macos
   url_launcher:
@@ -55,13 +41,10 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos
 
 SPEC CHECKSUMS:
-  audioplayers: 8b48e22684b6e0d9df143b2d1bbd61dca9dab6b4
   FlutterMacOS: 15bea8a44d2fa024068daa0140371c020b4b6ff9
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   package_info_plus: 6f669407bbeed2ee9da0a1730fd13e0259ce96e2
   package_info_plus_macos: f010621b07802a241d96d01876d6705f15e77c1c
-  path_provider: e0848572d1d38b9a7dd099e79cf83f5b7e2cde9f
-  path_provider_macos: a0a3fd666cb7cd0448e936fb4abad4052961002b
   sqflite: a5789cceda41d54d23f31d6de539d65bb14100ea
   url_launcher: af78307ef9bafff91273b34f1c6c0c86a0004fd7
   url_launcher_macos: 45af3d61de06997666568a7149c1be98b41c95d4
