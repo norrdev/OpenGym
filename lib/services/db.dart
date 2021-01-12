@@ -13,15 +13,23 @@ abstract class DB {
     }
 
     try {
-      String _path = await getDatabasesPath() + 'npng.db';
+      String _path = await getDatabasesPath() + '/npng.db';
       _db = await openDatabase(_path, version: _version, onCreate: onCreate);
+      print(_path);
     } catch (ex) {
       print(ex);
     }
   }
 
-  static void onCreate(Database db, int version) async => await db.execute(
-      'CREATE TABLE musles (id INTEGER PRIMARY KEY NOT NULL, name STRING)');
+  static void onCreate(Database db, int version) async {
+    await db.transaction((txn) async {
+      await db.execute(
+          'CREATE TABLE musles (id INTEGER PRIMARY KEY NOT NULL, name STRING)');
+      await db.execute(
+          'CREATE TABLE exersises (id INTEGER PRIMARY KEY NOT NULL, musles_id INTEGER, name STRING, description STRING)');
+      await db.execute("INSERT INTO musles (name) VALUES ('ABS for test')");
+    });
+  }
 
   static Future<List<Map<String, dynamic>>> query(String table) async =>
       _db.query(table);

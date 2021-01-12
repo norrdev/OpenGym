@@ -6,6 +6,7 @@ import 'package:multiplatform_widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/models/musles_model.dart';
 import 'dart:io' show Platform;
+import 'package:npng/services/db.dart';
 
 class ExersisesPage extends StatefulWidget {
   static String id = 'exersises';
@@ -15,9 +16,21 @@ class ExersisesPage extends StatefulWidget {
 }
 
 class _ExersisesPageState extends State<ExersisesPage> {
+  List<MuslesItem> _musles = [];
+
   @override
   void initState() {
+    refresh();
     super.initState();
+  }
+
+  void refresh() async {
+    List<Map<String, dynamic>> _results = await DB.query(MuslesItem.table);
+
+    _musles = _results.map((item) => MuslesItem.fromMap(item)).toList();
+    print(_musles.first.name);
+
+    setState(() {});
   }
 
   @override
@@ -29,10 +42,15 @@ class _ExersisesPageState extends State<ExersisesPage> {
       body: Container(
         constraints: BoxConstraints.expand(),
         child: SafeArea(
-          child: ListView(
-            children: [
-              MpListTile(title: Text('Abs')),
-            ],
+          child: ListView.builder(
+            itemCount: _musles.length,
+            itemBuilder: (context, index) {
+              final item = _musles[index];
+              return MpListTile(
+                title: Text(item.name),
+                onTap: () {},
+              );
+            },
           ),
         ),
       ),

@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "/Users/filonov/Library/Containers/pro.filonov.npng/Data/Documents/npng.sqlite",
+            "name": "NpNg",
+            "group": "flutter"
+        }
+    ]
+}
