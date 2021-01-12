@@ -22,13 +22,13 @@ abstract class DB {
   }
 
   static void onCreate(Database db, int version) async {
-    await db.transaction((txn) async {
-      await db.execute(
-          'CREATE TABLE musles (id INTEGER PRIMARY KEY NOT NULL, name STRING)');
-      await db.execute(
-          'CREATE TABLE exersises (id INTEGER PRIMARY KEY NOT NULL, musles_id INTEGER, name STRING, description STRING)');
-      await db.execute("INSERT INTO musles (name) VALUES ('ABS for test')");
-    });
+    // await db.transaction((txn) async {
+    //   await db.execute(
+    //       'CREATE TABLE musles (id INTEGER PRIMARY KEY NOT NULL, name STRING)');
+    //   await db.execute(
+    //       'CREATE TABLE exersises (id INTEGER PRIMARY KEY NOT NULL, musles_id INTEGER, name STRING, description STRING)');
+    //   await db.execute("INSERT INTO musles (name) VALUES ('ABS for test')");
+    // });
   }
 
   static Future<List<Map<String, dynamic>>> query(String table) async =>
@@ -42,4 +42,7 @@ abstract class DB {
 
   static Future<int> delete(String table, Model model) async =>
       await _db.delete(table, where: 'id = ?', whereArgs: [model.id]);
+
+  static Future<List<Map<String, dynamic>>> rawQuery(String sql) async =>
+      _db.rawQuery(sql);
 }

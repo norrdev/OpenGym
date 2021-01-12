@@ -1,12 +1,12 @@
 import 'package:npng/models/model.dart';
 
-class MuslesItem extends Model {
-  static String table = 'musles';
+class MusclesItem extends Model {
+  static String table = 'musсles';
 
   int id;
   String name;
 
-  MuslesItem({this.id, this.name});
+  MusclesItem({this.id, this.name});
 
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {
@@ -19,8 +19,8 @@ class MuslesItem extends Model {
     return map;
   }
 
-  static MuslesItem fromMap(Map<String, dynamic> map) {
-    return MuslesItem(
+  static MusclesItem fromMap(Map<String, dynamic> map) {
+    return MusclesItem(
       id: map['id'],
       name: map['name'],
     );

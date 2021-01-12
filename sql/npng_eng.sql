@@ -1,13 +1,26 @@
 --
--- File generated with SQLiteStudio v3.2.1 on Tue Jan 12 17:49:39 2021
+-- File generated with SQLiteStudio v3.2.1 on Tue Jan 12 19:20:16 2021
 --
 -- Text encoding used: UTF-8
 --
 PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
 
+-- Table: equipment
+CREATE TABLE equipment (id INTEGER PRIMARY KEY, name STRING);
+INSERT INTO equipment (id, name) VALUES (1, 'Bodyweight');
+INSERT INTO equipment (id, name) VALUES (2, 'Rubber band');
+INSERT INTO equipment (id, name) VALUES (3, 'Barbell');
+INSERT INTO equipment (id, name) VALUES (4, 'Dumbbels');
+INSERT INTO equipment (id, name) VALUES (5, 'Kettlebells');
+
 -- Table: exercises
-CREATE TABLE exercises (id INTEGER PRIMARY KEY NOT NULL, musles_id INTEGER, name STRING, description STRING);
+CREATE TABLE exercises (id INTEGER PRIMARY KEY NOT NULL, name STRING, description STRING, equipment_id INTEGER);
+INSERT INTO exercises (id, name, description, equipment_id) VALUES (1, 'Push Up', NULL, 1);
+
+-- Table: load
+CREATE TABLE load (exercises_id INTEGER, muscles_id INTEGER);
+INSERT INTO load (exercises_id, muscles_id) VALUES (1, 3);
 
 -- Table: musсles
 CREATE TABLE musсles (id INTEGER PRIMARY KEY NOT NULL, name STRING);
