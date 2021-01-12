@@ -8,14 +8,14 @@ import 'package:npng/models/musles_model.dart';
 import 'dart:io' show Platform;
 import 'package:npng/services/db.dart';
 
-class ExersisesPage extends StatefulWidget {
+class ExercisesPage extends StatefulWidget {
   static String id = 'exersises';
 
   @override
-  _ExersisesPageState createState() => _ExersisesPageState();
+  _ExercisesPageState createState() => _ExercisesPageState();
 }
 
-class _ExersisesPageState extends State<ExersisesPage> {
+class _ExercisesPageState extends State<ExercisesPage> {
   List<MuslesItem> _musles = [];
 
   @override
