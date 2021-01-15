@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // Localization
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
 import 'package:npng/config.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/services/db.dart';
@@ -30,7 +31,7 @@ void main() async {
 class AppMaterial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       localizationsDelegates: [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -50,7 +51,7 @@ class AppMaterial extends StatelessWidget {
 class AppCupertino extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
+    return GetCupertinoApp(
       localizationsDelegates: [
         S.delegate,
         GlobalMaterialLocalizations.delegate,

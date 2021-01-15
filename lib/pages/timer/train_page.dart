@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 import 'package:npng/pages/timer/set_page.dart';
 import 'package:provider/provider.dart';
 import 'package:multiplatform_widgets/multiplatform_widgets.dart';
@@ -77,7 +78,8 @@ class TrainPage extends StatelessWidget {
                       .changeRest(rst);
                   Provider.of<SetRestProvider>(context, listen: false)
                       .resetCurrentSet();
-                  Navigator.pushNamed(context, SetPage.id);
+                  //Navigator.pushNamed(context, SetPage.id);
+                  Get.toNamed(SetPage.id);
                 },
               ),
             ),

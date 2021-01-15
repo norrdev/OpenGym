@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 import 'package:npng/pages/exer%D1%81ises_page.dart';
 import 'dart:io' show Platform;
 import 'package:npng/generated/l10n.dart';
@@ -33,10 +34,14 @@ class BottomBar extends StatelessWidget {
       onTap: (int i) {
         switch (i) {
           case 0:
-            Navigator.pushNamed(context, RoutinesPage.id);
+            Get.offNamed(RoutinesPage.id);
+            //Navigator.pushNamed(context, RoutinesPage.id);
             break;
+          case 1:
+          case 2:
           case 3:
-            Navigator.pushNamed(context, ExercisesPage.id);
+            //Navigator.pushNamed(context, ExercisesPage.id);
+            Get.offNamed(ExercisesPage.id);
             break;
           default:
         }

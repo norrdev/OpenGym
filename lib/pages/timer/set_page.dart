@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:multiplatform_widgets/multiplatform_widgets.dart';
 import 'package:npng/pages/timer/timer_page.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,8 @@ class SetPage extends StatelessWidget {
               MpButton(
                 label: S.of(context).restButton,
                 onPressed: () {
-                  Navigator.pushNamed(context, TimerPage.id);
+                  //Navigator.pushNamed(context, TimerPage.id);
+                  Get.toNamed(TimerPage.id);
                 },
               ),
             ],

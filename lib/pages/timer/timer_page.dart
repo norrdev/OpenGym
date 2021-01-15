@@ -1,6 +1,7 @@
 // import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:multiplatform_widgets/multiplatform_widgets.dart';
 import 'package:npng/pages/timer/train_page.dart';
 import 'package:provider/provider.dart';
@@ -89,7 +90,8 @@ class TimerPage extends StatelessWidget {
                 } else {
                   Provider.of<SetRestProvider>(context, listen: false)
                       .increaseCurrentSet();
-                  Navigator.pop(context);
+                  //Navigator.pop(context);
+                  Get.back();
                 }
               },
             ),
