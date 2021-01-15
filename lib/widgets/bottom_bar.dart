@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:npng/pages/exer%D1%81ises_page.dart';
 import 'dart:io' show Platform;
 import 'package:npng/generated/l10n.dart';
+import 'package:npng/pages/routines_page.dart';
 
 class BottomBar extends StatelessWidget {
   BottomBar({this.initialActiveIndex});
@@ -31,8 +32,10 @@ class BottomBar extends StatelessWidget {
           : Theme.of(context).backgroundColor, //appBarTheme.backgroundColor,
       onTap: (int i) {
         switch (i) {
+          case 0:
+            Navigator.pushNamed(context, RoutinesPage.id);
+            break;
           case 3:
-            print(i);
             Navigator.pushNamed(context, ExercisesPage.id);
             break;
           default:

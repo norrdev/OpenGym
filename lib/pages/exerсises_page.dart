@@ -8,6 +8,7 @@ import 'package:npng/models/musles_model.dart';
 import 'package:npng/pages/exercises_by_muscle_page.dart';
 import 'dart:io' show Platform;
 import 'package:npng/services/db.dart';
+import 'package:npng/widgets/bottom_bar.dart';
 
 class ExercisesPage extends StatefulWidget {
   static String id = 'exersises';
@@ -55,6 +56,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                       builder: (context) {
                         return ExercisesByMusclePage(
                           musclesId: item.id,
+                          pageTitle: item.name,
                         );
                       },
                     ),
@@ -65,22 +67,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
           ),
         ),
       ),
-      bottomNavigationBar: ConvexAppBar(
-        style: TabStyle.react,
-        items: [
-          TabItem(icon: Icons.list, title: "Train"),
-          TabItem(icon: Icons.calendar_today, title: "Measure"),
-          TabItem(icon: Icons.assessment, title: "Stats"),
-          TabItem(icon: Icons.assessment, title: "Exercises"),
-        ],
-        initialActiveIndex: 3,
-        // ignore: todo
-        //TODO: Make settings provider.
-        backgroundColor: (!kIsWeb && (Platform.isMacOS || Platform.isIOS))
-            ? CupertinoTheme.of(context).barBackgroundColor
-            : Theme.of(context).backgroundColor,
-        onTap: (int i) => print('click index=$i'),
-      ),
+      bottomNavigationBar: BottomBar(initialActiveIndex: 3),
     );
   }
 }
