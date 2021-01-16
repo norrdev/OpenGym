@@ -9,22 +9,22 @@ import 'package:get/get.dart';
 import 'package:npng/config.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/services/db.dart';
-import 'package:provider/provider.dart';
-import 'providers/set_rest.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DB.init();
-
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => SetRestProvider()),
-      ],
-      child: (!kIsWeb && (Platform.isMacOS || Platform.isIOS))
-          ? AppCupertino()
-          : AppMaterial(),
-    ),
+    (!kIsWeb && (Platform.isMacOS || Platform.isIOS))
+        ? AppCupertino()
+        : AppMaterial(),
+    // MultiProvider(
+    //   providers: [
+    //     ChangeNotifierProvider(create: (context) => SetRestProvider()),
+    //   ],
+    //   child: (!kIsWeb && (Platform.isMacOS || Platform.isIOS))
+    //       ? AppCupertino()
+    //       : AppMaterial(),
+    // ),
   );
 }
 
