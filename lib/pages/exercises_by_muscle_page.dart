@@ -1,11 +1,7 @@
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:multiplatform_widgets/multiplatform_widgets.dart';
 import 'package:npng/models/exersises_model.dart';
-import 'dart:io' show Platform;
 import 'package:npng/services/db.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 
@@ -63,37 +59,40 @@ WHERE muscles_id = ${widget.musclesId}''');
         button: MpLinkButton(
           label: 'Add',
           onPressed: () {
-            return Get.bottomSheet(Container(
-              padding: EdgeInsets.all(8.0),
-              color: CupertinoTheme.of(context).scaffoldBackgroundColor,
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 2.0,
-              child: Column(
-                children: [
-                  MpTextField(
-                    controller: tcName,
-                    labelText: 'Exersise name',
-                  ),
-                  SizedBox(
-                    height: 16.0,
-                  ),
-                  MpTextField(
-                    controller: tcDesc,
-                    labelText: 'Exersise desctiption',
-                  ),
-                  SizedBox(
-                    height: 16.0,
-                  ),
-                  MpButton(
-                    label: 'Save',
-                    onPressed: () {
-                      update(name: tcName.text, description: tcDesc.text);
-                      Get.back();
-                    },
-                  ),
-                ],
+            return mpModalPopup(
+              context: context,
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                //color: CupertinoTheme.of(context).scaffoldBackgroundColor,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 2.0,
+                child: Column(
+                  children: [
+                    MpTextField(
+                      controller: tcName,
+                      labelText: 'Exersise name',
+                    ),
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                    MpTextField(
+                      controller: tcDesc,
+                      labelText: 'Exersise desctiption',
+                    ),
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                    MpButton(
+                      label: 'Save',
+                      onPressed: () {
+                        update(name: tcName.text, description: tcDesc.text);
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
+                ),
               ),
-            ));
+            );
           },
         ),
       ),

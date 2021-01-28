@@ -29,6 +29,11 @@ class RoutinesPage extends StatelessWidget {
     String about = await _loadAsset("assets/texts/$myLocale/about.md");
     about = about.replaceAll('%version%', version);
     String history = await _loadAsset("CHANGELOG.md");
+    // Get.to(AboutPage(
+    //   about: about,
+    //   history: history,
+    //   version: version,
+    // ));
     Navigator.push(
       context,
       mpPageRoute(
@@ -51,7 +56,6 @@ class RoutinesPage extends StatelessWidget {
         button: MpLinkButton(
           label: S.of(context).about,
           onPressed: () {
-            // Navigator.pushNamed(context, AboutPage.id);
             getAboutPage(context);
           },
         ),

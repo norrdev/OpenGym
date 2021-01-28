@@ -1,19 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
-import 'package:npng/controllers/set_rest_controller.dart';
 import 'package:npng/pages/timer/set_page.dart';
+import 'package:provider/provider.dart';
 import 'package:multiplatform_widgets/multiplatform_widgets.dart';
+import 'package:npng/providers/set_rest.dart';
 import 'package:npng/generated/l10n.dart';
 import 'dart:io' show Platform;
 
 class TrainPage extends StatelessWidget {
   static String id = '/train';
 
+  const TrainPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    Get.put(SetRestController());
+    TextEditingController tcSets = TextEditingController(
+        text: '${Provider.of<SetRestProvider>(context).sets}');
+    TextEditingController tcRest = TextEditingController(
+        text: '${Provider.of<SetRestProvider>(context).rest}');
+
     return MpScaffold(
       appBar: MpAppBar(
         title: Text(S.of(context).title),
@@ -23,23 +29,27 @@ class TrainPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(S.of(context).sets),
-            GetBuilder<SetRestController>(
-              builder: (_) => ChangeIntField(
-                value: _.sets,
-                decreaseCallback: _.decreaseSets,
-                increaseCallback: _.increaseSets,
-              ),
+            ChangeIntField(
+              value: Provider.of<SetRestProvider>(context).sets,
+              decreaseCallback:
+                  Provider.of<SetRestProvider>(context, listen: false)
+                      .decreaseSets,
+              increaseCallback:
+                  Provider.of<SetRestProvider>(context, listen: false)
+                      .increaseSets,
             ),
             SizedBox(
               height: 40,
             ),
             Text(S.of(context).rest),
-            GetBuilder<SetRestController>(
-              builder: (_) => ChangeIntField(
-                value: _.rest,
-                decreaseCallback: _.decreaseRest,
-                increaseCallback: _.increaseRest,
-              ),
+            ChangeIntField(
+              value: Provider.of<SetRestProvider>(context).rest,
+              decreaseCallback:
+                  Provider.of<SetRestProvider>(context, listen: false)
+                      .decreaseRest,
+              increaseCallback:
+                  Provider.of<SetRestProvider>(context, listen: false)
+                      .increaseRest,
             ),
             SizedBox(
               height: 40,
@@ -52,20 +62,22 @@ class TrainPage extends StatelessWidget {
                   int sts = 5;
                   int rst = 90;
                   try {
-                    sts = SetRestController.to.sets;
+                    sts = int.parse(tcSets.text);
                   } catch (e) {
                     sts = 0;
                   }
                   try {
-                    rst = SetRestController.to.rest;
+                    rst = int.parse(tcRest.text);
                   } catch (e) {
                     rst = 90;
                   }
-                  SetRestController.to.changeSets(sts);
-                  SetRestController.to.changeRest(rst);
-                  SetRestController.to.resetCurrentSet();
-                  //Navigator.pushNamed(context, SetPage.id);
-                  Get.toNamed(SetPage.id);
+                  Provider.of<SetRestProvider>(context, listen: false)
+                      .changeSets(sts);
+                  Provider.of<SetRestProvider>(context, listen: false)
+                      .changeRest(rst);
+                  Provider.of<SetRestProvider>(context, listen: false)
+                      .resetCurrentSet();
+                  Navigator.pushNamed(context, SetPage.id);
                 },
               ),
             ),

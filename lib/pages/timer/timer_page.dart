@@ -1,10 +1,10 @@
 // import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:multiplatform_widgets/multiplatform_widgets.dart';
-import 'package:npng/controllers/set_rest_controller.dart';
 import 'package:npng/pages/timer/train_page.dart';
+import 'package:provider/provider.dart';
+import 'package:npng/providers/set_rest.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 class TimerPage extends StatelessWidget {
@@ -21,8 +21,7 @@ class TimerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(SetRestController());
-    int duration = SetRestController.to.rest;
+    int duration = Provider.of<SetRestProvider>(context).rest;
     CountDownController _controller = CountDownController();
 
     return MpScaffold(
@@ -78,15 +77,19 @@ class TimerPage extends StatelessWidget {
                 //print('Countdown Ended');
                 playSound();
 
-                int curSet = SetRestController.to.currentSet;
-                int sets = SetRestController.to.sets;
+                int curSet =
+                    Provider.of<SetRestProvider>(context, listen: false)
+                        .currentSet;
+                int sets =
+                    Provider.of<SetRestProvider>(context, listen: false).sets;
 
                 if (curSet >= sets) {
-                  navigator.popUntil(ModalRoute.withName(TrainPage.id));
+                  Navigator.popUntil(
+                      context, ModalRoute.withName(TrainPage.id));
                 } else {
-                  SetRestController.to.increaseCurrentSet();
-                  //Navigator.pop(context);
-                  Get.back();
+                  Provider.of<SetRestProvider>(context, listen: false)
+                      .increaseCurrentSet();
+                  Navigator.pop(context);
                 }
               },
             ),

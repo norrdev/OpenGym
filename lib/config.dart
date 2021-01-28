@@ -12,9 +12,7 @@ import 'package:npng/pages/timer/train_page.dart';
 
 /// Place for themes, configuration constants, etc.
 
-bool isApple = true;
-// for debug
-//final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
+final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
 
 /// Material light theme
 final ThemeData kMaterialLight = ThemeData(
@@ -35,9 +33,7 @@ var brightness = SchedulerBinding.instance.window.platformBrightness;
 bool darkModeOn = brightness == Brightness.dark;
 
 final CupertinoThemeData kCupertinoTheme = CupertinoThemeData(
-  //TODO: uncomment on release
-  //brightness: darkModeOn ? Brightness.dark : Brightness.light,
-  brightness: Brightness.light,
+  brightness: darkModeOn ? Brightness.dark : Brightness.light,
 );
 
 /// Initial route
