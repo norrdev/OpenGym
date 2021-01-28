@@ -2,12 +2,14 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:multiplatform_widgets/multiplatform_widgets.dart';
 import 'package:npng/models/exersises_model.dart';
 import 'dart:io' show Platform;
 import 'package:npng/services/db.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 
+//TODO: make stateless
 class ExercisesByMusclePage extends StatefulWidget {
   static String id = 'exersises_by_muscle';
   final int musclesId;
@@ -40,14 +42,59 @@ WHERE muscles_id = ${widget.musclesId}''');
     setState(() {});
   }
 
+  void update({String name, String description}) async {
+    int id = 0;
+    await DB.db.transaction((txn) async {
+      id = await DB.db
+          .insert('exercises', {'name': name, 'desctiption': description});
+      print(DB.db.insert(
+          'load', {'exercises_id': id, 'muscles_id': widget.musclesId}));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    TextEditingController tcName = TextEditingController(text: 'Test name');
+    TextEditingController tcDesc = TextEditingController(text: 'Test desc');
+
     return MpScaffold(
       appBar: MpAppBar(
         title: Text(widget.pageTitle),
         button: MpLinkButton(
           label: 'Add',
-          onPressed: () {},
+          onPressed: () {
+            return Get.bottomSheet(Container(
+              padding: EdgeInsets.all(8.0),
+              color: CupertinoTheme.of(context).scaffoldBackgroundColor,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height / 2.0,
+              child: Column(
+                children: [
+                  MpTextField(
+                    controller: tcName,
+                    labelText: 'Exersise name',
+                  ),
+                  SizedBox(
+                    height: 16.0,
+                  ),
+                  MpTextField(
+                    controller: tcDesc,
+                    labelText: 'Exersise desctiption',
+                  ),
+                  SizedBox(
+                    height: 16.0,
+                  ),
+                  MpButton(
+                    label: 'Save',
+                    onPressed: () {
+                      update(name: tcName.text, description: tcDesc.text);
+                      Get.back();
+                    },
+                  ),
+                ],
+              ),
+            ));
+          },
         ),
       ),
       body: Container(

@@ -14,17 +14,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DB.init();
   runApp(
-    (!kIsWeb && (Platform.isMacOS || Platform.isIOS))
-        ? AppCupertino()
-        : AppMaterial(),
-    // MultiProvider(
-    //   providers: [
-    //     ChangeNotifierProvider(create: (context) => SetRestProvider()),
-    //   ],
-    //   child: (!kIsWeb && (Platform.isMacOS || Platform.isIOS))
-    //       ? AppCupertino()
-    //       : AppMaterial(),
-    // ),
+    (isApple) ? AppCupertino() : AppMaterial(),
   );
 }
 

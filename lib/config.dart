@@ -1,7 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:npng/pages/exer%D1%81ises_page.dart';
+import 'package:npng/pages/exercises_page.dart';
 import 'package:npng/pages/routines_page.dart';
 import 'package:npng/pages/timer/set_page.dart';
 import 'package:npng/pages/about_page.dart';
@@ -9,6 +11,10 @@ import 'package:npng/pages/timer/timer_page.dart';
 import 'package:npng/pages/timer/train_page.dart';
 
 /// Place for themes, configuration constants, etc.
+
+bool isApple = true;
+// for debug
+//final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
 
 /// Material light theme
 final ThemeData kMaterialLight = ThemeData(
@@ -29,7 +35,9 @@ var brightness = SchedulerBinding.instance.window.platformBrightness;
 bool darkModeOn = brightness == Brightness.dark;
 
 final CupertinoThemeData kCupertinoTheme = CupertinoThemeData(
-  brightness: darkModeOn ? Brightness.dark : Brightness.light,
+  //TODO: uncomment on release
+  //brightness: darkModeOn ? Brightness.dark : Brightness.light,
+  brightness: Brightness.light,
 );
 
 /// Initial route
