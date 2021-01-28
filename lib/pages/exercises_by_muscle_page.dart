@@ -41,10 +41,10 @@ WHERE muscles_id = ${widget.musclesId}''');
   void update({String name, String description}) async {
     int id = 0;
     await DB.db.transaction((txn) async {
-      id = await DB.db
+      id = await txn
           .insert('exercises', {'name': name, 'desctiption': description});
-      print(DB.db.insert(
-          'load', {'exercises_id': id, 'muscles_id': widget.musclesId}));
+      await txn
+          .insert('load', {'exercises_id': id, 'muscles_id': widget.musclesId});
     });
   }
 
