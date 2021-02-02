@@ -51,6 +51,8 @@ WHERE muscles_id = ${widget.musclesId}''');
   @override
   Widget build(BuildContext context) {
     //TODO: Create validation
+    //TODO: Edit excersizes
+    //TODO: Delete excersizes
     TextEditingController tcName = TextEditingController(text: '');
     TextEditingController tcDesc = TextEditingController(text: '');
     //int _selected = 0;
@@ -58,14 +60,13 @@ WHERE muscles_id = ${widget.musclesId}''');
     return MpScaffold(
       appBar: MpAppBar(
         title: Text(widget.pageTitle),
-        button: MpLinkButton(
-          label: 'Add',
+        button: MpFlatButton(
+          child: Icon(CupertinoIcons.add),
           onPressed: () {
             return mpModalPopup(
               context: context,
               child: Container(
                 padding: EdgeInsets.all(8.0),
-                //color: CupertinoTheme.of(context).scaffoldBackgroundColor,
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 2.0,
                 child: Column(
@@ -133,24 +134,13 @@ WHERE muscles_id = ${widget.musclesId}''');
       body: Container(
         constraints: BoxConstraints.expand(),
         child: SafeArea(
-          // child: ListView.builder(
-          //   itemCount: _exercises.length,
-          //   itemBuilder: (context, index) {
-          //     final item = _exercises[index];
-          //     return MpListTile(
-          //       title: Text(item.name),
-          //       onTap: () {},
-          //     );
-          //   },
-          // ),
           child: ListView.builder(
             itemCount: _results.length,
             itemBuilder: (context, index) {
               final item = _results[index];
               return MpListTile(
                 title: Text(item['name']),
-                //subtitle: Text(item['equipment']),
-                //onTap: () {},
+                onTap: () {},
               );
             },
           ),

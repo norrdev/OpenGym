@@ -1,5 +1,3 @@
-import 'dart:io' show Platform;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +18,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => SetRestProvider()),
       ],
-      child: (!kIsWeb && (Platform.isMacOS || Platform.isIOS))
-          ? AppCupertino()
-          : AppMaterial(),
+      child: (isApple) ? AppCupertino() : AppMaterial(),
     ),
   );
 }

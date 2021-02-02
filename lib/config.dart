@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:npng/pages/exercises_page.dart';
+import 'package:npng/pages/exercises/exercises_page.dart';
 import 'package:npng/pages/routines_page.dart';
 import 'package:npng/pages/timer/set_page.dart';
 import 'package:npng/pages/about_page.dart';
