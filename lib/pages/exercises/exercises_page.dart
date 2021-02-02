@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:multiplatform_widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/models/musles_model.dart';
-import 'package:npng/pages/exercises_by_muscle_page.dart';
+import 'package:npng/pages/exercises/exercises_by_muscle_page.dart';
 import 'dart:io' show Platform;
 import 'package:npng/services/db.dart';
 import 'package:npng/widgets/bottom_bar.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/foundation.dart';
-import 'package:npng/pages/exercises_page.dart';
+import 'package:npng/pages/exercises/exercises_page.dart';
 import 'dart:io' show Platform;
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/pages/routines_page.dart';
