@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:multiplatform_widgets/multiplatform_widgets.dart';
+import 'package:npng/pages/exercises/exercise.dart';
 import 'package:npng/services/db.dart';
 import 'package:npng/widgets/bottom_bar.dart';
+
+enum Actions { view, edit, delete }
 
 class ExercisesByMusclePage extends StatefulWidget {
   static String id = 'exersises_by_muscle';
@@ -56,7 +59,7 @@ WHERE muscles_id = ${widget.musclesId}''');
     TextEditingController tcName = TextEditingController(text: '');
     TextEditingController tcDesc = TextEditingController(text: '');
     //int _selected = 0;
-
+    Actions _action_selection = Actions.view;
     return MpScaffold(
       appBar: MpAppBar(
         title: Text(widget.pageTitle),
@@ -140,7 +143,9 @@ WHERE muscles_id = ${widget.musclesId}''');
               final item = _results[index];
               return MpListTile(
                 title: Text(item['name']),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, ExercisePage.id);
+                },
               );
             },
           ),

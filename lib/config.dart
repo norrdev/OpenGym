@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:npng/pages/exercises/exercise.dart';
+import 'package:npng/pages/exercises/exercises_by_muscle_page.dart';
 import 'package:npng/pages/exercises/exercises_page.dart';
 import 'package:npng/pages/routines_page.dart';
 import 'package:npng/pages/timer/set_page.dart';
@@ -47,4 +49,6 @@ final Map<String, Widget Function(BuildContext)> kAppRoutes = {
   TimerPage.id: (context) => TimerPage(),
   AboutPage.id: (context) => AboutPage(),
   ExercisesPage.id: (context) => ExercisesPage(),
+  ExercisesByMusclePage.id: (context) => ExercisesByMusclePage(),
+  ExercisePage.id: (context) => ExercisePage(),
 };
