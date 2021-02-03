@@ -1,12 +1,11 @@
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:npng/config.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/models/musles_model.dart';
 import 'package:npng/pages/exercises/exercises_by_muscle_page.dart';
-import 'dart:io' show Platform;
 import 'package:npng/services/db.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 
@@ -36,8 +35,8 @@ class _ExercisesPageState extends State<ExercisesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return MpScaffold(
+      appBar: MpAppBar(
         title: Text('Exersises'),
       ),
       body: Container(
@@ -47,23 +46,30 @@ class _ExercisesPageState extends State<ExercisesPage> {
             itemCount: _musles.length,
             itemBuilder: (context, index) {
               final item = _musles[index];
-              return ListTile(
-                title: Text(item.name),
-                leading: Text('l'),
-                trailing: Text('edit'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    mpPageRoute(
-                      builder: (context) {
-                        return ExercisesByMusclePage(
-                          musclesId: item.id,
-                          pageTitle: item.name,
-                        );
-                      },
-                    ),
-                  );
-                },
+              return Material(
+                child: ListTile(
+                  tileColor: (isApple)
+                      ? CupertinoTheme.of(context).scaffoldBackgroundColor
+                      : Theme.of(context).backgroundColor,
+                  focusColor: (isApple)
+                      ? CupertinoTheme.of(context).primaryColor
+                      : Theme.of(context).accentColor,
+                  title: Text(item.name),
+                  trailing: Text('edit'),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      mpPageRoute(
+                        builder: (context) {
+                          return ExercisesByMusclePage(
+                            musclesId: item.id,
+                            pageTitle: item.name,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
               );
             },
           ),

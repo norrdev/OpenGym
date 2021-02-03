@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:npng/config.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/pages/exercises/exercise.dart';
 import 'package:npng/services/db.dart';
@@ -60,15 +61,15 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
     TextEditingController tcDesc = TextEditingController(text: '');
     //int _selected = 0;
     Actions _action_selection = Actions.view;
-    return Scaffold(
-      appBar: AppBar(
+    return MpScaffold(
+      appBar: MpAppBar(
         title: Text(widget.pageTitle),
-        leading: MpFlatButton(
+        trailing: MpFlatButton(
           child: Icon(CupertinoIcons.add),
           onPressed: () {
-            return showModalBottomSheet(
+            return mpModalPopup(
               context: context,
-              builder: (BuildContext context) => Container(
+              child: Container(
                 padding: EdgeInsets.all(8.0),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 2.0,
@@ -88,38 +89,8 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
                     SizedBox(
                       height: 16.0,
                     ),
-                    // MpGroupSelect<int>(
-                    //   groupValue: _selected,
-                    //   children: <int, Widget>{
-                    //     0: Text('Midnight'),
-                    //     1: Text('Viridian'),
-                    //     2: Text('Cerulean'),
-                    //     3: Text('Cerulean'),
-                    //     4: Text('Cerulean'),
-                    //     5: Text('Cerulean'),
-                    //     6: Text('Cerulean'),
-                    //     7: Text('Cerulean'),
-                    //     8: Text('Cerulean'),
-                    //     9: Text('Cerulean'),
-                    //     10: Text('Cerulean'),
-                    //     11: Text('Cerulean'),
-                    //     12: Text('Cerulean'),
-                    //     13: Text('Cerulean'),
-                    //     14: Text('Cerulean'),
-                    //     15: Text('Cerulean'),
-                    //     16: Text('Cerulean'),
-                    //     17: Text('Cerulean'),
-                    //     18: Text('Cerulean'),
-                    //     19: Text('Cerulean'),
-                    //   },
-                    //   onValueChanged: (int value) {
-                    //     setState(() {
-                    //       _selected = value;
-                    //     });
-                    //   },
-                    // ),
-                    RaisedButton(
-                      child: Text('Save'),
+                    MpButton(
+                      label: 'Save',
                       onPressed: () {
                         update(name: tcName.text, description: tcDesc.text);
                         refresh();
@@ -141,11 +112,19 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
             itemCount: _results.length,
             itemBuilder: (context, index) {
               final item = _results[index];
-              return ListTile(
-                title: Text(item['name']),
-                onTap: () {
-                  Navigator.pushNamed(context, ExercisePage.id);
-                },
+              return Material(
+                child: ListTile(
+                  tileColor: (isApple)
+                      ? CupertinoTheme.of(context).scaffoldBackgroundColor
+                      : Theme.of(context).backgroundColor,
+                  focusColor: (isApple)
+                      ? CupertinoTheme.of(context).primaryColor
+                      : Theme.of(context).accentColor,
+                  title: Text(item['name']),
+                  onTap: () {
+                    Navigator.pushNamed(context, ExercisePage.id);
+                  },
+                ),
               );
             },
           ),
