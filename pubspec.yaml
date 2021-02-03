@@ -16,10 +16,6 @@ dependencies:
   cupertino_icons: ^1.0.0
   provider: ^4.3.2+4
   circular_countdown_timer: ^0.0.7
-  # multiplatform_widgets:
-  #   path: ../multiplatform_widgets/
-    # git: 
-    #   url: git://github.com/filonov/multiplatform_widgets.git
   flutter_markdown: ^0.4.4
   url_launcher: ^5.5.2
   package_info_plus: ^0.6.3
