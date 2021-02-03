@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
-import 'package:flutter/foundation.dart';
+import 'package:npng/config.dart';
 import 'package:npng/pages/exercises/exercises_page.dart';
-import 'dart:io' show Platform;
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/pages/routines_page.dart';
 
@@ -23,13 +22,6 @@ class BottomBar extends StatelessWidget {
         TabItem(icon: Icons.ac_unit, title: "Exercises"),
       ],
       initialActiveIndex: this.initialActiveIndex,
-      color: CupertinoTheme.of(context).primaryColor,
-      activeColor: CupertinoTheme.of(context).primaryColor,
-      // ignore: todo
-      //TODO: Make settings provider.
-      backgroundColor: (!kIsWeb && (Platform.isMacOS || Platform.isIOS))
-          ? CupertinoTheme.of(context).barBackgroundColor
-          : Theme.of(context).backgroundColor, //appBarTheme.backgroundColor,
       onTap: (int i) {
         switch (i) {
           case 0:
@@ -43,6 +35,15 @@ class BottomBar extends StatelessWidget {
           default:
         }
       },
+      color: (isApple)
+          ? CupertinoTheme.of(context).primaryColor
+          : Theme.of(context).primaryColor,
+      activeColor: (isApple)
+          ? CupertinoTheme.of(context).primaryColor
+          : Theme.of(context).primaryColor,
+      backgroundColor: (isApple)
+          ? CupertinoTheme.of(context).barBackgroundColor
+          : Theme.of(context).backgroundColor,
     );
   }
 }

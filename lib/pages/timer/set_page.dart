@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:multiplatform_widgets/multiplatform_widgets.dart';
+import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/pages/timer/timer_page.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/providers/set_rest.dart';
@@ -11,8 +11,8 @@ class SetPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MpScaffold(
-      appBar: MpAppBar(title: Text(S.of(context).title)),
+    return Scaffold(
+      appBar: AppBar(title: Text(S.of(context).title)),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -32,8 +32,8 @@ class SetPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 50),
-              MpButton(
-                label: S.of(context).restButton,
+              RaisedButton(
+                child: Text(S.of(context).restButton),
                 onPressed: () {
                   Navigator.pushNamed(context, TimerPage.id);
                 },

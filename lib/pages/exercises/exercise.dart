@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:multiplatform_widgets/multiplatform_widgets.dart';
+import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/services/db.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 
@@ -57,15 +57,15 @@ WHERE muscles_id = ${widget.musclesId}''');
     TextEditingController tcDesc = TextEditingController(text: '');
     //int _selected = 0;
 
-    return MpScaffold(
-      appBar: MpAppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: Text(widget.pageTitle),
-        button: MpFlatButton(
+        leading: MpFlatButton(
           child: Icon(CupertinoIcons.add),
           onPressed: () {
-            return mpModalPopup(
+            return showModalBottomSheet(
               context: context,
-              child: Container(
+              builder: (BuildContext context) => Container(
                 padding: EdgeInsets.all(8.0),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 2.0,
@@ -115,8 +115,8 @@ WHERE muscles_id = ${widget.musclesId}''');
                     //     });
                     //   },
                     // ),
-                    MpButton(
-                      label: 'Save',
+                    RaisedButton(
+                      child: Text('Save'),
                       onPressed: () {
                         update(name: tcName.text, description: tcDesc.text);
                         refresh();
@@ -138,8 +138,9 @@ WHERE muscles_id = ${widget.musclesId}''');
             itemCount: _results.length,
             itemBuilder: (context, index) {
               final item = _results[index];
-              return MpListTile(
+              return ListTile(
                 title: Text(item['name']),
+                leading: Text('l'),
                 onTap: () {},
               );
             },

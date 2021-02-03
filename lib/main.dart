@@ -12,12 +12,12 @@ import 'providers/set_rest.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DB.init();
-
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => SetRestProvider()),
       ],
+      //child: AppMaterial(),
       child: (isApple) ? AppCupertino() : AppMaterial(),
     ),
   );

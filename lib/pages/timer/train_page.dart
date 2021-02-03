@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:npng/pages/timer/set_page.dart';
 import 'package:provider/provider.dart';
-import 'package:multiplatform_widgets/multiplatform_widgets.dart';
+import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/providers/set_rest.dart';
 import 'package:npng/generated/l10n.dart';
 import 'dart:io' show Platform;
@@ -20,8 +20,8 @@ class TrainPage extends StatelessWidget {
     TextEditingController tcRest = TextEditingController(
         text: '${Provider.of<SetRestProvider>(context).rest}');
 
-    return MpScaffold(
-      appBar: MpAppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: Text(S.of(context).title),
       ),
       body: SafeArea(
@@ -56,8 +56,8 @@ class TrainPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: MpButton(
-                label: S.of(context).start,
+              child: RaisedButton(
+                child: Text(S.of(context).start),
                 onPressed: () {
                   int sts = 5;
                   int rst = 90;

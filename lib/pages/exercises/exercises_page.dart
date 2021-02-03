@@ -2,7 +2,7 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:multiplatform_widgets/multiplatform_widgets.dart';
+import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/models/musles_model.dart';
 import 'package:npng/pages/exercises/exercises_by_muscle_page.dart';
@@ -36,8 +36,8 @@ class _ExercisesPageState extends State<ExercisesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MpScaffold(
-      appBar: MpAppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: Text('Exersises'),
       ),
       body: Container(
@@ -47,8 +47,10 @@ class _ExercisesPageState extends State<ExercisesPage> {
             itemCount: _musles.length,
             itemBuilder: (context, index) {
               final item = _musles[index];
-              return MpListTile(
+              return ListTile(
                 title: Text(item.name),
+                leading: Text('l'),
+                trailing: Text('edit'),
                 onTap: () {
                   Navigator.push(
                     context,

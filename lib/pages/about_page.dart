@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:multiplatform_widgets/multiplatform_widgets.dart';
+import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatelessWidget {
@@ -16,12 +16,10 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // String about;
-
     return MpScaffold(
       appBar: MpAppBar(
           title: Text('About'),
-          button: MpLinkButton(
+          trailing: MpLinkButton(
             label: 'Licenses',
             onPressed: () => showLicensePage(
                 context: context,

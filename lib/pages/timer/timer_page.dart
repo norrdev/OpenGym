@@ -1,7 +1,7 @@
 // import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:multiplatform_widgets/multiplatform_widgets.dart';
+import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/pages/timer/train_page.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/providers/set_rest.dart';
@@ -24,7 +24,7 @@ class TimerPage extends StatelessWidget {
     int duration = Provider.of<SetRestProvider>(context).rest;
     CountDownController _controller = CountDownController();
 
-    return MpScaffold(
+    return Scaffold(
       //appBar: MpAppBar(title: Text(S.of(context).title)),
       body: SafeArea(
         child: Center(

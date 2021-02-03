@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:multiplatform_widgets/multiplatform_widgets.dart';
+import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/pages/about_page.dart';
 import 'package:npng/pages/timer/train_page.dart';
@@ -48,7 +48,7 @@ class RoutinesPage extends StatelessWidget {
     return MpScaffold(
       appBar: MpAppBar(
         title: Text(S.of(context).pageRoutinesTitle),
-        button: MpLinkButton(
+        trailing: MpLinkButton(
           label: S.of(context).about,
           onPressed: () {
             getAboutPage(context);

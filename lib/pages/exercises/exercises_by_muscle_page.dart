@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:multiplatform_widgets/multiplatform_widgets.dart';
+import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/pages/exercises/exercise.dart';
 import 'package:npng/services/db.dart';
 import 'package:npng/widgets/bottom_bar.dart';
@@ -29,15 +29,15 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
   }
 
   void refresh() async {
-//     _results = await DB.rawQuery('''
-// SELECT exercises.id AS id, exercises.name AS name, description, equipment.name AS equipment FROM load
-// JOIN exercises ON exercises_id = exercises.id
-// JOIN equipment ON equipment_id = equipment.id
-// WHERE muscles_id = ${widget.musclesId}''');
+    //     _results = await DB.rawQuery('''
+    // SELECT exercises.id AS id, exercises.name AS name, description, equipment.name AS equipment FROM load
+    // JOIN exercises ON exercises_id = exercises.id
+    // JOIN equipment ON equipment_id = equipment.id
+    // WHERE muscles_id = ${widget.musclesId}''');
     _results = await DB.rawQuery('''
-SELECT exercises.id AS id, exercises.name AS name, description FROM load  
-JOIN exercises ON exercises_id = exercises.id 
-WHERE muscles_id = ${widget.musclesId}''');
+      SELECT exercises.id AS id, exercises.name AS name, description FROM load  
+      JOIN exercises ON exercises_id = exercises.id 
+      WHERE muscles_id = ${widget.musclesId}''');
     setState(() {});
   }
 
@@ -60,30 +60,30 @@ WHERE muscles_id = ${widget.musclesId}''');
     TextEditingController tcDesc = TextEditingController(text: '');
     //int _selected = 0;
     Actions _action_selection = Actions.view;
-    return MpScaffold(
-      appBar: MpAppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: Text(widget.pageTitle),
-        button: MpFlatButton(
+        leading: MpFlatButton(
           child: Icon(CupertinoIcons.add),
           onPressed: () {
-            return mpModalPopup(
+            return showModalBottomSheet(
               context: context,
-              child: Container(
+              builder: (BuildContext context) => Container(
                 padding: EdgeInsets.all(8.0),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 2.0,
                 child: Column(
                   children: [
-                    MpTextField(
+                    TextField(
                       controller: tcName,
-                      labelText: 'Exersise name',
+                      //labelText: 'Exersise name',
                     ),
                     SizedBox(
                       height: 16.0,
                     ),
-                    MpTextField(
+                    TextField(
                       controller: tcDesc,
-                      labelText: 'Exersise desctiption',
+                      //labelText: 'Exersise desctiption',
                     ),
                     SizedBox(
                       height: 16.0,
@@ -118,8 +118,8 @@ WHERE muscles_id = ${widget.musclesId}''');
                     //     });
                     //   },
                     // ),
-                    MpButton(
-                      label: 'Save',
+                    RaisedButton(
+                      child: Text('Save'),
                       onPressed: () {
                         update(name: tcName.text, description: tcDesc.text);
                         refresh();
@@ -141,7 +141,7 @@ WHERE muscles_id = ${widget.musclesId}''');
             itemCount: _results.length,
             itemBuilder: (context, index) {
               final item = _results[index];
-              return MpListTile(
+              return ListTile(
                 title: Text(item['name']),
                 onTap: () {
                   Navigator.pushNamed(context, ExercisePage.id);

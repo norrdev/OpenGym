@@ -23,9 +23,9 @@ abstract class DB {
 
   static void onCreate(Database db, int version) async {
     // await db.transaction((txn) async {
-    //   await db.execute(
+    //   await txn.execute(
     //       'CREATE TABLE musles (id INTEGER PRIMARY KEY NOT NULL, name STRING)');
-    //   await db.execute(
+    //   await txn.execute(
     //       'CREATE TABLE exersises (id INTEGER PRIMARY KEY NOT NULL, musles_id INTEGER, name STRING, description STRING)');
     //   await db.execute("INSERT INTO musles (name) VALUES ('ABS for test')");
     // });
