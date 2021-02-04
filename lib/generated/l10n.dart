@@ -125,11 +125,81 @@ class S {
     );
   }
 
+  /// `Edit`
+  String get edit {
+    return Intl.message(
+      'Edit',
+      name: 'edit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message(
+      'Delete',
+      name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter some text`
+  String get enterText {
+    return Intl.message(
+      'Please enter some text',
+      name: 'enterText',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Routines`
   String get pageRoutinesTitle {
     return Intl.message(
       'Routines',
       name: 'pageRoutinesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exercises`
+  String get pageExerciseTitle {
+    return Intl.message(
+      'Exercises',
+      name: 'pageExerciseTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exercise name`
+  String get exName {
+    return Intl.message(
+      'Exercise name',
+      name: 'exName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exercise description`
+  String get exDesc {
+    return Intl.message(
+      'Exercise description',
+      name: 'exDesc',
       desc: '',
       args: [],
     );
@@ -142,6 +212,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'ru'),
       Locale.fromSubtags(languageCode: 'ru', countryCode: 'RU'),
     ];
   }

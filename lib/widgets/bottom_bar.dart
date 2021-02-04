@@ -19,7 +19,7 @@ class BottomBar extends StatelessWidget {
         TabItem(icon: Icons.list, title: S.of(context).pageRoutinesTitle),
         TabItem(icon: Icons.calendar_today, title: "Measure"),
         TabItem(icon: Icons.assessment, title: "Stats"),
-        TabItem(icon: Icons.ac_unit, title: "Exercises"),
+        TabItem(icon: Icons.ac_unit, title: S.of(context).pageExerciseTitle),
       ],
       initialActiveIndex: this.initialActiveIndex,
       onTap: (int i) {

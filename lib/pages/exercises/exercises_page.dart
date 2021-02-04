@@ -47,28 +47,25 @@ class _ExercisesPageState extends State<ExercisesPage> {
             itemBuilder: (context, index) {
               final item = _musles[index];
               return Material(
-                child: ListTile(
-                  tileColor: (isApple)
-                      ? CupertinoTheme.of(context).scaffoldBackgroundColor
-                      : Theme.of(context).backgroundColor,
-                  focusColor: (isApple)
-                      ? CupertinoTheme.of(context).primaryColor
-                      : Theme.of(context).accentColor,
-                  title: Text(item.name),
-                  trailing: Text('edit'),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      mpPageRoute(
-                        builder: (context) {
-                          return ExercisesByMusclePage(
-                            musclesId: item.id,
-                            pageTitle: item.name,
-                          );
-                        },
-                      ),
-                    );
-                  },
+                type: MaterialType.transparency,
+                child: Theme(
+                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
+                  child: ListTile(
+                    title: Text(item.name),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        mpPageRoute(
+                          builder: (context) {
+                            return ExercisesByMusclePage(
+                              musclesId: item.id,
+                              pageTitle: item.name,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
                 ),
               );
             },

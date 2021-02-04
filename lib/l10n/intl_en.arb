@@ -1,5 +1,6 @@
 {
     "title":"NpNg",
+
     "sets":"Sets",
     "rest":"Rest time (seconds)",
     "start":"Start",
@@ -8,6 +9,14 @@
     "setsText": "Perfom the set, and when you're done, press the button.",
     "about":"About",
     "timer":"Timer",
+    "edit":"Edit",
+    "save":"Save",
+    "delete":"Delete",
+    "enterText":"Please enter some text",
 
-    "pageRoutinesTitle":"Routines"
+    "pageRoutinesTitle":"Routines",
+
+    "pageExerciseTitle":"Exercises",
+    "exName":"Exercise name",
+    "exDesc":"Exercise description"
 }

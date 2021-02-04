@@ -308,43 +308,6 @@ class MpValidationMessage extends StatelessWidget {
   }
 }
 
-/// Radio selector
-// ignore: todo
-//TODO: Delete it.
-// Widget mpSelectFromTwo({
-//   BuildContext context,
-//   @required dynamic value1,
-//   @required dynamic value2,
-//   @required dynamic groupValue,
-//   @required void Function(dynamic) onChanged,
-//   @required String itemText1,
-//   @required String itemText2,
-// }) {
-//   if (isApple) {
-//     return CupertinoRadioChoice(
-//         choices: {value1: itemText1, value2: itemText2},
-//         onChange: onChanged,
-//         initialKeyValue: groupValue);
-//   } else {
-//     return Row(
-//       children: [
-//         Radio(
-//           value: value1,
-//           groupValue: groupValue,
-//           onChanged: onChanged,
-//         ),
-//         Text(itemText1),
-//         Radio(
-//           value: value2,
-//           groupValue: groupValue,
-//           onChanged: onChanged,
-//         ),
-//         Text(itemText2),
-//       ],
-//     );
-//   }
-// }
-
 /// GroupSelect(Radio)
 /// class NativeGroupSelect<T> from native_widgets
 class MpGroupSelect<T> extends StatelessWidget {
@@ -381,48 +344,7 @@ class MpGroupSelect<T> extends StatelessWidget {
   }
 }
 
-// ListTile
-// class MpListTile extends StatelessWidget {
-//   final Widget leading;
-//   final Widget title;
-//   final Widget subtitle;
-//   final Widget trailing;
-//   final Function onTap;
-//   final Function onLongPress;
-
-//   MpListTile({
-//     this.leading,
-//     this.title,
-//     this.subtitle,
-//     this.trailing,
-//     this.onTap,
-//     this.onLongPress,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     if (isApple) {
-//       return CupertinoListTile(
-//         leading: this.leading,
-//         title: this.title,
-//         subtitle: this.subtitle,
-//         trailing: this.trailing,
-//         onTap: this.onTap,
-//         onLongPress: this.onLongPress,
-//       );
-//     } else {
-//       return ListTile(
-//         leading: this.leading,
-//         title: this.title,
-//         subtitle: this.subtitle,
-//         trailing: this.trailing,
-//         onTap: this.onTap,
-//         onLongPress: this.onLongPress,
-//       );
-//     }
-//   }
-// }
-
+/// Modal popup window.
 Future<T> mpModalPopup<T>({
   BuildContext context,
   Widget child,

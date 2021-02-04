@@ -2,7 +2,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/scheduler.dart';
+//import 'package:flutter/scheduler.dart';
 import 'package:npng/pages/exercises/exercise.dart';
 import 'package:npng/pages/exercises/exercises_by_muscle_page.dart';
 import 'package:npng/pages/exercises/exercises_page.dart';
@@ -27,15 +27,18 @@ final ThemeData kMaterialLight = ThemeData(
 /// Material dark theme
 final ThemeData kMaterialDark = ThemeData(
   brightness: Brightness.dark,
-  primarySwatch: Colors.teal,
+  primarySwatch: Colors.blue,
+  buttonColor: Colors.blue,
 );
 
 /// Cupertino light & dark theme
-var brightness = SchedulerBinding.instance.window.platformBrightness;
-bool darkModeOn = brightness == Brightness.dark;
+//final Brightness brightness = MediaQuery.platformBrightnessOf(context);
+final Brightness brightness = WidgetsBinding.instance.window.platformBrightness;
+//var brightness = SchedulerBinding.instance.window.platformBrightness;
+final bool darkModeOn = brightness == Brightness.dark;
 
 final CupertinoThemeData kCupertinoTheme = CupertinoThemeData(
-  brightness: darkModeOn ? Brightness.dark : Brightness.light,
+  brightness: brightness, //darkModeOn ? Brightness.dark : Brightness.light,
 );
 
 /// Initial route

@@ -22,10 +22,17 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "about" : MessageLookupByLibrary.simpleMessage("О приложении"),
+    "delete" : MessageLookupByLibrary.simpleMessage("Удалить"),
+    "edit" : MessageLookupByLibrary.simpleMessage("Правка"),
+    "enterText" : MessageLookupByLibrary.simpleMessage("Введите текст"),
+    "exDesc" : MessageLookupByLibrary.simpleMessage("Описание упражнения"),
+    "exName" : MessageLookupByLibrary.simpleMessage("Название упражнения"),
     "from" : MessageLookupByLibrary.simpleMessage(" из "),
+    "pageExerciseTitle" : MessageLookupByLibrary.simpleMessage("Упражнения"),
     "pageRoutinesTitle" : MessageLookupByLibrary.simpleMessage("Тренировки"),
     "rest" : MessageLookupByLibrary.simpleMessage("Время отдыха в секундах"),
     "restButton" : MessageLookupByLibrary.simpleMessage("Отдых"),
+    "save" : MessageLookupByLibrary.simpleMessage("Сохранить"),
     "sets" : MessageLookupByLibrary.simpleMessage("Количество подходов"),
     "setsText" : MessageLookupByLibrary.simpleMessage("Выполните подход, и когда закончите, нажмите кнопку."),
     "start" : MessageLookupByLibrary.simpleMessage("Старт"),

@@ -22,10 +22,17 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "about" : MessageLookupByLibrary.simpleMessage("About"),
+    "delete" : MessageLookupByLibrary.simpleMessage("Delete"),
+    "edit" : MessageLookupByLibrary.simpleMessage("Edit"),
+    "enterText" : MessageLookupByLibrary.simpleMessage("Please enter some text"),
+    "exDesc" : MessageLookupByLibrary.simpleMessage("Exercise description"),
+    "exName" : MessageLookupByLibrary.simpleMessage("Exercise name"),
     "from" : MessageLookupByLibrary.simpleMessage(" from "),
+    "pageExerciseTitle" : MessageLookupByLibrary.simpleMessage("Exercises"),
     "pageRoutinesTitle" : MessageLookupByLibrary.simpleMessage("Routines"),
     "rest" : MessageLookupByLibrary.simpleMessage("Rest time (seconds)"),
     "restButton" : MessageLookupByLibrary.simpleMessage("Rest"),
+    "save" : MessageLookupByLibrary.simpleMessage("Save"),
     "sets" : MessageLookupByLibrary.simpleMessage("Sets"),
     "setsText" : MessageLookupByLibrary.simpleMessage("Perfom the set, and when you\'re done, press the button."),
     "start" : MessageLookupByLibrary.simpleMessage("Start"),
