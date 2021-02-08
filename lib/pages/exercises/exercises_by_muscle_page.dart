@@ -72,7 +72,6 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: Delete excersizes
     TextEditingController tcName = TextEditingController(text: '');
     TextEditingController tcDesc = TextEditingController(text: '');
 
@@ -180,9 +179,9 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
                       ),
                     ),
                     validator: (value) {
-                      if (value.isEmpty) {
-                        return S.of(context).enterText;
-                      }
+                      // if (value.isEmpty) {
+                      //   return S.of(context).enterText;
+                      // }
                       return null;
                     },
                   ),
@@ -264,9 +263,9 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
                       ),
                     ),
                     validator: (value) {
-                      if (value.isEmpty) {
-                        return S.of(context).enterText;
-                      }
+                      // if (value.isEmpty) {
+                      //   return S.of(context).enterText;
+                      // }
                       return null;
                     },
                   ),
