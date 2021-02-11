@@ -31,18 +31,15 @@ class BottomBar extends StatelessWidget {
     String about = await _loadAsset("assets/texts/$myLocale/about.md");
     about = about.replaceAll('%version%', version);
     String history = await _loadAsset("CHANGELOG.md");
-    Navigator.push(
-      context,
-      mpPageRoute(
-        builder: (context) {
-          return AboutPage(
-            about: about,
-            history: history,
-            version: version,
-          );
-        },
-      ),
-    );
+    Navigator.pushAndRemoveUntil(context, mpPageRoute(
+      builder: (context) {
+        return AboutPage(
+          about: about,
+          history: history,
+          version: version,
+        );
+      },
+    ), (route) => false);
   }
 
   @override
@@ -58,19 +55,24 @@ class BottomBar extends StatelessWidget {
       ],
       initialActiveIndex: this.initialActiveIndex,
       onTap: (int i) {
-        switch (i) {
-          case 0:
-            Navigator.pushNamed(context, RoutinesPage.id);
-            break;
-          case 1:
-          case 2:
-          case 3:
-            Navigator.pushNamed(context, ExercisesPage.id);
-            break;
-          case 4:
-            _getAboutPage(context);
-            break;
-          default:
+        if (i != this.initialActiveIndex) {
+          switch (i) {
+            case 0:
+              Navigator.pushNamedAndRemoveUntil(
+                  context, RoutinesPage.id, (route) => false);
+              break;
+            case 1:
+            case 2:
+            case 3:
+              //Navigator.pushNamed(context, ExercisesPage.id);
+              Navigator.pushNamedAndRemoveUntil(
+                  context, ExercisesPage.id, (route) => false);
+              break;
+            case 4:
+              _getAboutPage(context);
+              break;
+            default:
+          }
         }
       },
       color: (isApple)

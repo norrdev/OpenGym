@@ -94,17 +94,7 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
                 child: Theme(
                   data: (darkModeOn) ? kMaterialDark : kMaterialLight,
                   child: ListTile(
-                    title: Text(
-                      item['name'],
-                      style: TextStyle(
-                        color: (isApple)
-                            ? CupertinoTheme.of(context)
-                                .textTheme
-                                .textStyle
-                                .color
-                            : Theme.of(context).textTheme.caption.color,
-                      ),
-                    ),
+                    title: Text(item['name']),
                     trailing: MpLinkButton(
                       label: S.of(context).edit,
                       onPressed: () => editModalPopup(
