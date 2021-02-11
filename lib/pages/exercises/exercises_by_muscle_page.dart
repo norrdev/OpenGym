@@ -6,8 +6,6 @@ import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/services/db.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 
-enum Actions { view, edit, delete }
-
 class ExercisesByMusclePage extends StatefulWidget {
   static String id = 'exersises_by_muscle';
   final int musclesId;
@@ -96,17 +94,7 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
                 child: Theme(
                   data: (darkModeOn) ? kMaterialDark : kMaterialLight,
                   child: ListTile(
-                    title: Text(
-                      item['name'],
-                      style: TextStyle(
-                        color: (isApple)
-                            ? CupertinoTheme.of(context)
-                                .textTheme
-                                .textStyle
-                                .color
-                            : Theme.of(context).textTheme.caption.color,
-                      ),
-                    ),
+                    title: Text(item['name']),
                     trailing: MpLinkButton(
                       label: S.of(context).edit,
                       onPressed: () => editModalPopup(

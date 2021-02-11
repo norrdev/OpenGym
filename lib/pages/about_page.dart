@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:npng/widgets/bottom_bar.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -35,6 +36,7 @@ class AboutPage extends StatelessWidget {
           onTapLink: (href) => launch(href),
         ),
       ),
+      bottomNavigationBar: BottomBar(initialActiveIndex: 4),
     );
   }
 }
