@@ -1,10 +1,13 @@
 --
--- File generated with SQLiteStudio v3.2.1 on Mon Feb 8 16:32:17 2021
+-- File generated with SQLiteStudio v3.2.1 on Thu Feb 11 19:31:02 2021
 --
 -- Text encoding used: UTF-8
 --
 PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
+
+-- Table: days
+CREATE TABLE days (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ord INTEGER, name STRING, routines_id INT REFERENCES routines (id));
 
 -- Table: equipment
 CREATE TABLE equipment (id INTEGER PRIMARY KEY, name STRING);
@@ -21,7 +24,7 @@ INSERT INTO exercises (id, name, description, equipment_id) VALUES (2, 'Shrugs',
 INSERT INTO exercises (id, name, description, equipment_id) VALUES (3, 'Push up with Rubber band', 'Take rubber band in hands.', 1);
 
 -- Table: load
-CREATE TABLE load (exercises_id INTEGER, muscles_id INTEGER);
+CREATE TABLE load (exercises_id INTEGER REFERENCES exercises (id), muscles_id INTEGER REFERENCES musсles (id));
 INSERT INTO load (exercises_id, muscles_id) VALUES (1, 3);
 INSERT INTO load (exercises_id, muscles_id) VALUES (2, 1);
 INSERT INTO load (exercises_id, muscles_id) VALUES (3, 3);
@@ -44,7 +47,10 @@ INSERT INTO musсles (id, name) VALUES (13, 'Hamstrings');
 INSERT INTO musсles (id, name) VALUES (14, 'Calves');
 
 -- Table: routines
-CREATE TABLE routines (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL);
+CREATE TABLE routines (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name STRING, description STRING);
+INSERT INTO routines (id, name, description) VALUES (1, 'Rubber Band', '3 days a week');
+INSERT INTO routines (id, name, description) VALUES (2, 'Bodyweight', '2 days a week');
+INSERT INTO routines (id, name, description) VALUES (3, '5x5', 'Powerlifting program.');
 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;
