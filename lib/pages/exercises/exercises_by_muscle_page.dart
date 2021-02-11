@@ -6,8 +6,6 @@ import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/services/db.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 
-enum Actions { view, edit, delete }
-
 class ExercisesByMusclePage extends StatefulWidget {
   static String id = 'exersises_by_muscle';
   final int musclesId;

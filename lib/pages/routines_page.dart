@@ -1,24 +1,41 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:npng/config.dart';
+import 'package:npng/services/db.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/pages/about_page.dart';
-import 'package:npng/pages/timer/train_page.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 
-class RoutinesPage extends StatelessWidget {
+class RoutinesPage extends StatefulWidget {
   static String id = '/';
+
+  @override
+  _RoutinesPageState createState() => _RoutinesPageState();
+}
+
+class _RoutinesPageState extends State<RoutinesPage> {
+  List<Map<String, dynamic>> _results = [];
+
+  @override
+  void initState() {
+    _refresh();
+    super.initState();
+  }
+
+  void _refresh() async {
+    _results = await DB.rawQuery('SELECT * FROM routines');
+    setState(() {});
+  }
 
   Future<String> _loadAsset(String path) async {
     return await rootBundle.loadString(path);
   }
 
   /// Preparing data for "About" page
-  // ignore: todo
-  /// TODO: Change to FutureBuilder
-  void getAboutPage(BuildContext context) async {
+  void _getAboutPage(BuildContext context) async {
     Locale myLocale = Localizations.localeOf(context);
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     //String appName = packageInfo.appName;
@@ -51,22 +68,28 @@ class RoutinesPage extends StatelessWidget {
         trailing: MpLinkButton(
           label: S.of(context).about,
           onPressed: () {
-            getAboutPage(context);
+            _getAboutPage(context);
           },
         ),
       ),
       body: Container(
         constraints: BoxConstraints.expand(),
         child: SafeArea(
-          child: Column(
-            children: [
-              MpButton(
-                label: S.of(context).timer,
-                onPressed: () {
-                  Navigator.pushNamed(context, TrainPage.id);
-                },
-              ),
-            ],
+          child: ListView.builder(
+            itemCount: _results.length,
+            itemBuilder: (context, index) {
+              final item = _results[index];
+              return Material(
+                type: MaterialType.transparency,
+                child: Theme(
+                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
+                  child: ListTile(
+                    title: Text(item['name']),
+                    subtitle: Text(item['description']),
+                  ),
+                ),
+              );
+            },
           ),
         ),
       ),
