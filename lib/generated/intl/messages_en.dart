@@ -28,6 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "exDesc" : MessageLookupByLibrary.simpleMessage("Exercise description"),
     "exName" : MessageLookupByLibrary.simpleMessage("Exercise name"),
     "from" : MessageLookupByLibrary.simpleMessage(" from "),
+    "pageDaysTitle" : MessageLookupByLibrary.simpleMessage("Days"),
     "pageExerciseTitle" : MessageLookupByLibrary.simpleMessage("Exercises"),
     "pageRoutinesTitle" : MessageLookupByLibrary.simpleMessage("Routines"),
     "rest" : MessageLookupByLibrary.simpleMessage("Rest time (seconds)"),

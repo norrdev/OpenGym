@@ -6,7 +6,7 @@ import 'package:npng/config.dart';
 import 'package:npng/pages/about_page.dart';
 import 'package:npng/pages/exercises/exercises_page.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/pages/routines_page.dart';
+import 'package:npng/pages/routines/routines_page.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 

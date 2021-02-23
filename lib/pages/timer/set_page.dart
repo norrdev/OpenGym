@@ -34,9 +34,7 @@ class SetPage extends StatelessWidget {
               SizedBox(height: 50),
               RaisedButton(
                 child: Text(S.of(context).restButton),
-                onPressed: () {
-                  Navigator.pushNamed(context, TimerPage.id);
-                },
+                onPressed: () => Navigator.pushNamed(context, TimerPage.id),
               ),
             ],
           ),

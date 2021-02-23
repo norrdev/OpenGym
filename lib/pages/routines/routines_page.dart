@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
+import 'package:npng/pages/routines/days_page.dart';
 import 'package:npng/services/db.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
@@ -86,6 +87,7 @@ class _RoutinesPageState extends State<RoutinesPage> {
                           name: item['name'],
                           description: item['description']),
                     ),
+                    onTap: () => Navigator.pushNamed(context, DaysPage.id),
                   ),
                 ),
               );

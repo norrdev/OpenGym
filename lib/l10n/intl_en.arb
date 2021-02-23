@@ -16,6 +16,8 @@
 
     "pageRoutinesTitle":"Routines",
 
+    "pageDaysTitle":"Days",
+
     "pageExerciseTitle":"Exercises",
     "exName":"Exercise name",
     "exDesc":"Exercise description"

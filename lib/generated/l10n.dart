@@ -175,6 +175,16 @@ class S {
     );
   }
 
+  /// `Days`
+  String get pageDaysTitle {
+    return Intl.message(
+      'Days',
+      name: 'pageDaysTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Exercises`
   String get pageExerciseTitle {
     return Intl.message(
