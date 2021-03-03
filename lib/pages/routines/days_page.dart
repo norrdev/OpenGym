@@ -18,6 +18,7 @@ class _DaysPageState extends State<DaysPage> {
     return MpScaffold(
       appBar: MpAppBar(title: Text(S.of(context).pageDaysTitle)),
       body: Container(),
+      bottomNavigationBar: BottomBar(initialActiveIndex: 0),
     );
   }
 }

@@ -44,7 +44,7 @@ class TimerPage extends StatelessWidget {
               height: MediaQuery.of(context).size.height / 2,
 
               // Default Color for Countdown Timer
-              color: Colors.white,
+              ringColor: Colors.white,
 
               // Filling Color for Countdown Timer
               fillColor: Colors.blueAccent,

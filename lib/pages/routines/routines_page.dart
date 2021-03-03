@@ -17,7 +17,6 @@ class RoutinesPage extends StatefulWidget {
 
 class _RoutinesPageState extends State<RoutinesPage> {
   List<Map<String, dynamic>> _results = [];
-  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
