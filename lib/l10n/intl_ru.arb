@@ -12,6 +12,8 @@
     "save":"Сохранить",
     "delete":"Удалить",
     "enterText":"Введите текст",
+    "name":"Название",
+    "desc":"Описание",
 
     "pageRoutinesTitle":"Тренировки",
     "pageDaysTitle":"Дни",

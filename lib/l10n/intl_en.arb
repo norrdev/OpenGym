@@ -13,6 +13,8 @@
     "save":"Save",
     "delete":"Delete",
     "enterText":"Please enter some text",
+    "name":"Name",
+    "desc":"Description",
 
     "pageRoutinesTitle":"Routines",
 

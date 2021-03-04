@@ -23,11 +23,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "about" : MessageLookupByLibrary.simpleMessage("О приложении"),
     "delete" : MessageLookupByLibrary.simpleMessage("Удалить"),
+    "desc" : MessageLookupByLibrary.simpleMessage("Описание"),
     "edit" : MessageLookupByLibrary.simpleMessage("Правка"),
     "enterText" : MessageLookupByLibrary.simpleMessage("Введите текст"),
     "exDesc" : MessageLookupByLibrary.simpleMessage("Описание упражнения"),
     "exName" : MessageLookupByLibrary.simpleMessage("Название упражнения"),
     "from" : MessageLookupByLibrary.simpleMessage(" из "),
+    "name" : MessageLookupByLibrary.simpleMessage("Название"),
     "pageDaysTitle" : MessageLookupByLibrary.simpleMessage("Дни"),
     "pageExerciseTitle" : MessageLookupByLibrary.simpleMessage("Упражнения"),
     "pageRoutinesTitle" : MessageLookupByLibrary.simpleMessage("Тренировки"),

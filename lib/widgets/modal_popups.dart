@@ -19,59 +19,87 @@ Future insertModalPopup(BuildContext context,
       color: (isApple)
           ? CupertinoTheme.of(context).barBackgroundColor
           : Theme.of(context).appBarTheme.color,
-      padding: EdgeInsets.all(16.0),
+      padding: (isApple) ? EdgeInsets.only(top: 16.0) : EdgeInsets.all(16.0),
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 2.0,
+      height: MediaQuery.of(context).size.height / 3.0,
       child: Form(
         key: _formKey,
         child: Column(
           children: [
-            Material(
-              type: MaterialType.transparency,
-              child: Theme(
-                data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                child: TextFormField(
-                  controller: name,
-                  decoration: InputDecoration(
-                    labelText: S.of(context).exName,
-                    border: OutlineInputBorder(
-                      //borderRadius: new BorderRadius.circular(25.0),
-                      borderSide: BorderSide(),
-                    ),
+            if (isApple)
+              CupertinoFormSection.insetGrouped(
+                children: [
+                  CupertinoTextFormFieldRow(
+                    controller: name,
+                    prefix: Text(S.of(context).name),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return S.of(context).enterText;
+                      }
+                      return null;
+                    },
                   ),
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return S.of(context).enterText;
-                    }
-                    return null;
-                  },
+                  CupertinoTextFormFieldRow(
+                    controller: description,
+                    prefix: Text(S.of(context).desc),
+                    validator: (value) {
+                      // if (value.isEmpty) {
+                      //   return S.of(context).enterText;
+                      // }
+                      return null;
+                    },
+                  ),
+                ],
+              ),
+            if (!isApple)
+              Material(
+                type: MaterialType.transparency,
+                child: Theme(
+                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
+                  child: TextFormField(
+                    controller: name,
+                    decoration: InputDecoration(
+                      labelText: S.of(context).exName,
+                      border: OutlineInputBorder(
+                        //borderRadius: new BorderRadius.circular(25.0),
+                        borderSide: BorderSide(),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return S.of(context).enterText;
+                      }
+                      return null;
+                    },
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 16.0,
-            ),
-            Material(
-              type: MaterialType.transparency,
-              child: Theme(
-                data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                child: TextFormField(
-                  controller: description,
-                  decoration: InputDecoration(
-                    labelText: S.of(context).exDesc,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(),
+            if (!isApple)
+              SizedBox(
+                height: 16.0,
+              ),
+            if (!isApple)
+              Material(
+                type: MaterialType.transparency,
+                child: Theme(
+                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
+                  child: TextFormField(
+                    controller: description,
+                    decoration: InputDecoration(
+                      labelText: S.of(context).exDesc,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(),
+                      ),
                     ),
+                    validator: (value) {
+                      // if (value.isEmpty) {
+                      //   return S.of(context).enterText;
+                      // }
+                      return null;
+                    },
                   ),
-                  validator: (value) {
-                    // if (value.isEmpty) {
-                    //   return S.of(context).enterText;
-                    // }
-                    return null;
-                  },
                 ),
               ),
-            ),
             SizedBox(
               height: 16.0,
             ),

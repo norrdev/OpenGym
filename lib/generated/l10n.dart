@@ -165,6 +165,26 @@ class S {
     );
   }
 
+  /// `Name`
+  String get name {
+    return Intl.message(
+      'Name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get desc {
+    return Intl.message(
+      'Description',
+      name: 'desc',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Routines`
   String get pageRoutinesTitle {
     return Intl.message(

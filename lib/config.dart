@@ -16,6 +16,7 @@ import 'package:npng/pages/timer/train_page.dart';
 /// Place for themes, configuration constants, etc.
 
 final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
+//final bool isApple = false;
 
 /// Material light theme
 final ThemeData kMaterialLight = ThemeData(

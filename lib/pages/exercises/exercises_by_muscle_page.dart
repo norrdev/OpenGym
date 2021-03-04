@@ -5,6 +5,7 @@ import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/services/db.dart';
 import 'package:npng/widgets/bottom_bar.dart';
+import 'package:npng/widgets/modal_popups.dart';
 
 class ExercisesByMusclePage extends StatefulWidget {
   static String id = 'exersises_by_muscle';
@@ -79,7 +80,11 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
         trailing: MpFlatButton(
           padding: EdgeInsets.all(8),
           child: Icon(CupertinoIcons.add),
-          onPressed: () => insertModalPopup(context, tcName, tcDesc),
+          onPressed: () => insertModalPopup(context,
+              name: tcName,
+              description: tcDesc,
+              insert: _insert,
+              refresh: _refresh),
         ),
       ),
       body: Container(
@@ -97,11 +102,13 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
                     title: Text(item['name']),
                     trailing: MpLinkButton(
                       label: S.of(context).edit,
-                      onPressed: () => editModalPopup(
-                          context: context,
+                      onPressed: () => editModalPopup(context,
                           id: item['id'],
                           name: item['name'],
-                          description: item['description']),
+                          description: item['description'],
+                          update: _update,
+                          refresh: _refresh,
+                          delete: _delete),
                     ),
                   ),
                 ),
@@ -111,192 +118,6 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
         ),
       ),
       bottomNavigationBar: BottomBar(initialActiveIndex: 3),
-    );
-  }
-
-  //TODO: Refactor — ext widgets
-
-  Future insertModalPopup(BuildContext context, TextEditingController tcName,
-      TextEditingController tcDesc) {
-    return mpModalPopup(
-      context: context,
-      child: Container(
-        color: (isApple)
-            ? CupertinoTheme.of(context).barBackgroundColor
-            : Theme.of(context).appBarTheme.color,
-        padding: EdgeInsets.all(16.0),
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height / 2.0,
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              Material(
-                type: MaterialType.transparency,
-                child: Theme(
-                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                  child: TextFormField(
-                    controller: tcName,
-                    decoration: InputDecoration(
-                      labelText: S.of(context).exName,
-                      border: OutlineInputBorder(
-                        //borderRadius: new BorderRadius.circular(25.0),
-                        borderSide: BorderSide(),
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return S.of(context).enterText;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 16.0,
-              ),
-              Material(
-                type: MaterialType.transparency,
-                child: Theme(
-                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                  child: TextFormField(
-                    controller: tcDesc,
-                    decoration: InputDecoration(
-                      labelText: S.of(context).exDesc,
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(),
-                      ),
-                    ),
-                    validator: (value) {
-                      // if (value.isEmpty) {
-                      //   return S.of(context).enterText;
-                      // }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 16.0,
-              ),
-              MpButton(
-                label: S.of(context).save,
-                onPressed: () {
-                  if (_formKey.currentState.validate()) {
-                    _insert(name: tcName.text, description: tcDesc.text);
-                    _refresh();
-                    setState(() {});
-                    Navigator.pop(context);
-                  }
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Future editModalPopup(
-      {BuildContext context, int id, String name, String description}) {
-    TextEditingController _tcName = TextEditingController(text: name);
-    TextEditingController _tcDesc = TextEditingController(text: description);
-    return mpModalPopup(
-      context: context,
-      child: Container(
-        color: (isApple)
-            ? CupertinoTheme.of(context).barBackgroundColor
-            : Theme.of(context).appBarTheme.color,
-        padding: EdgeInsets.all(16.0),
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height / 2.0,
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              Text(S.of(context).edit),
-              SizedBox(height: 16.0),
-              Material(
-                type: MaterialType.transparency,
-                child: Theme(
-                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                  child: TextFormField(
-                    controller: _tcName,
-                    decoration: InputDecoration(
-                      labelText: S.of(context).exName,
-                      border: OutlineInputBorder(
-                        //borderRadius: new BorderRadius.circular(25.0),
-                        borderSide: BorderSide(),
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return S.of(context).enterText;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              SizedBox(height: 16.0),
-              Material(
-                type: MaterialType.transparency,
-                child: Theme(
-                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                  child: TextFormField(
-                    controller: _tcDesc,
-                    decoration: InputDecoration(
-                      labelText: S.of(context).exDesc,
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(),
-                      ),
-                    ),
-                    validator: (value) {
-                      // if (value.isEmpty) {
-                      //   return S.of(context).enterText;
-                      // }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 16.0,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  MpButton(
-                    label: S.of(context).save,
-                    onPressed: () {
-                      if (_formKey.currentState.validate()) {
-                        _update(
-                            id: id,
-                            name: _tcName.text,
-                            description: _tcDesc.text);
-                        _refresh();
-                        setState(() {});
-                        Navigator.pop(context);
-                      }
-                    },
-                  ),
-                  SizedBox(width: 16.0),
-                  MpButton(
-                    label: S.of(context).delete,
-                    onPressed: () {
-                      _delete(id: id);
-                      _refresh();
-                      setState(() {});
-                      Navigator.pop(context);
-                    },
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
