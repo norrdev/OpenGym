@@ -1,4 +1,7 @@
-import 'dart:async';
+import 'dart:io';
+import 'package:path/path.dart';
+import 'dart:typed_data';
+import 'package:flutter/services.dart';
 import 'package:npng/models/model.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -12,8 +15,29 @@ abstract class DB {
       return;
     }
 
+    String _path = await getDatabasesPath() + '/npng.db';
+    // Check if the database exists
+    bool exists = await databaseExists(_path);
+
+    if (!exists) {
+      // Should happen only the first time you launch your application
+      print("Creating new copy from asset");
+
+      // Make sure the parent directory exists
+      try {
+        await Directory(dirname(_path)).create(recursive: true);
+      } catch (_) {}
+
+      // Copy from asset
+      ByteData data = await rootBundle.load(join("assets/db/en", "npng.db"));
+      List<int> bytes =
+          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+
+      // Write and flush the bytes written
+      await File(_path).writeAsBytes(bytes, flush: true);
+    }
+
     try {
-      String _path = await getDatabasesPath() + '/npng.db';
       db = await openDatabase(_path, version: _version, onCreate: onCreate);
       print(_path);
     } catch (ex) {
