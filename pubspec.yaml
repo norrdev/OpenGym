@@ -42,7 +42,7 @@ flutter:
     - assets/texts/ru_RU/
     - assets/sounds/
     - CHANGELOG.md
-    - sql/en/npng.db
+    - assets/db/en/npng.db
 
 flutter_intl:
   enabled: true
