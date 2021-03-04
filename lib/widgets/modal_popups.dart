@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
-import 'package:npng/pages/routines/days_page.dart';
-import 'package:npng/services/db.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/widgets/bottom_bar.dart';
 
 Future insertModalPopup(BuildContext context,
     {@required TextEditingController name,
@@ -52,53 +49,41 @@ Future insertModalPopup(BuildContext context,
                 ],
               ),
             if (!isApple)
-              Material(
-                type: MaterialType.transparency,
-                child: Theme(
-                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                  child: TextFormField(
-                    controller: name,
-                    decoration: InputDecoration(
-                      labelText: S.of(context).exName,
-                      border: OutlineInputBorder(
-                        //borderRadius: new BorderRadius.circular(25.0),
-                        borderSide: BorderSide(),
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return S.of(context).enterText;
-                      }
-                      return null;
-                    },
+              TextFormField(
+                controller: name,
+                decoration: InputDecoration(
+                  labelText: S.of(context).exName,
+                  border: OutlineInputBorder(
+                    //borderRadius: new BorderRadius.circular(25.0),
+                    borderSide: BorderSide(),
                   ),
                 ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return S.of(context).enterText;
+                  }
+                  return null;
+                },
               ),
             if (!isApple)
               SizedBox(
                 height: 16.0,
               ),
             if (!isApple)
-              Material(
-                type: MaterialType.transparency,
-                child: Theme(
-                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                  child: TextFormField(
-                    controller: description,
-                    decoration: InputDecoration(
-                      labelText: S.of(context).exDesc,
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(),
-                      ),
-                    ),
-                    validator: (value) {
-                      // if (value.isEmpty) {
-                      //   return S.of(context).enterText;
-                      // }
-                      return null;
-                    },
+              TextFormField(
+                controller: description,
+                decoration: InputDecoration(
+                  labelText: S.of(context).exDesc,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(),
                   ),
                 ),
+                validator: (value) {
+                  // if (value.isEmpty) {
+                  //   return S.of(context).enterText;
+                  // }
+                  return null;
+                },
               ),
             SizedBox(
               height: 16.0,
@@ -137,59 +122,74 @@ Future editModalPopup(BuildContext context,
       color: (isApple)
           ? CupertinoTheme.of(context).barBackgroundColor
           : Theme.of(context).appBarTheme.color,
-      padding: EdgeInsets.all(16.0),
+      padding: (isApple) ? EdgeInsets.only(top: 16.0) : EdgeInsets.all(16.0),
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 2.0,
+      height: MediaQuery.of(context).size.height / 3.0,
       child: Form(
         key: _formKey,
         child: Column(
           children: [
             Text(S.of(context).edit),
             SizedBox(height: 16.0),
-            Material(
-              type: MaterialType.transparency,
-              child: Theme(
-                data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                child: TextFormField(
-                  controller: _tcName,
-                  decoration: InputDecoration(
-                    labelText: S.of(context).exName,
-                    border: OutlineInputBorder(
-                      //borderRadius: new BorderRadius.circular(25.0),
-                      borderSide: BorderSide(),
-                    ),
+            if (isApple)
+              CupertinoFormSection.insetGrouped(
+                children: [
+                  CupertinoTextFormFieldRow(
+                    controller: _tcName,
+                    prefix: Text(S.of(context).name),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return S.of(context).enterText;
+                      }
+                      return null;
+                    },
                   ),
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return S.of(context).enterText;
-                    }
-                    return null;
-                  },
-                ),
-              ),
-            ),
-            SizedBox(height: 16.0),
-            Material(
-              type: MaterialType.transparency,
-              child: Theme(
-                data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                child: TextFormField(
-                  controller: _tcDesc,
-                  decoration: InputDecoration(
-                    labelText: S.of(context).exDesc,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(),
-                    ),
+                  CupertinoTextFormFieldRow(
+                    controller: _tcDesc,
+                    prefix: Text(S.of(context).desc),
+                    validator: (value) {
+                      // if (value.isEmpty) {
+                      //   return S.of(context).enterText;
+                      // }
+                      return null;
+                    },
                   ),
-                  validator: (value) {
-                    // if (value.isEmpty) {
-                    //   return S.of(context).enterText;
-                    // }
-                    return null;
-                  },
-                ),
+                ],
               ),
-            ),
+            if (!isApple)
+              TextFormField(
+                controller: _tcName,
+                decoration: InputDecoration(
+                  labelText: S.of(context).name,
+                  border: OutlineInputBorder(
+                    //borderRadius: new BorderRadius.circular(25.0),
+                    borderSide: BorderSide(),
+                  ),
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return S.of(context).enterText;
+                  }
+                  return null;
+                },
+              ),
+            if (!isApple) SizedBox(height: 16.0),
+            if (!isApple)
+              TextFormField(
+                controller: _tcDesc,
+                decoration: InputDecoration(
+                  labelText: S.of(context).desc,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(),
+                  ),
+                ),
+                validator: (value) {
+                  // if (value.isEmpty) {
+                  //   return S.of(context).enterText;
+                  // }
+                  return null;
+                },
+              ),
             SizedBox(
               height: 16.0,
             ),
@@ -228,3 +228,29 @@ Future editModalPopup(BuildContext context,
     ),
   );
 }
+
+/*
+  if (!isApple)
+              Material(
+                type: MaterialType.transparency,
+                child: Theme(
+                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
+                  child: TextFormField(
+                    controller: name,
+                    decoration: InputDecoration(
+                      labelText: S.of(context).exName,
+                      border: OutlineInputBorder(
+                        //borderRadius: new BorderRadius.circular(25.0),
+                        borderSide: BorderSide(),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return S.of(context).enterText;
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
+ */
