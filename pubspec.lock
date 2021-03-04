@@ -63,7 +63,7 @@ packages:
       name: convex_bottom_bar
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.7.1+2"
+    version: "3.0.0-nullsafety.0"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -237,7 +237,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.3"
+    version: "5.0.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -256,7 +256,7 @@ packages:
       name: sqflite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0+1"
+    version: "2.0.0+2"
   sqflite_common:
     dependency: transitive
     description:
