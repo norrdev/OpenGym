@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
-import 'package:npng/services/db.dart';
+import 'package:npng/db.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 
 class ExercisePage extends StatefulWidget {

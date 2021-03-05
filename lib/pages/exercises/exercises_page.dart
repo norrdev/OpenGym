@@ -4,7 +4,7 @@ import 'package:npng/config.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/pages/exercises/exercises_by_muscle_page.dart';
-import 'package:npng/services/db.dart';
+import 'package:npng/db.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 
 class ExercisesPage extends StatefulWidget {
@@ -24,8 +24,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
   }
 
   void _refresh() async {
-    _results = await SQLite.db.query('muscles');
-    //_musles = _results.map((item) => MusclesItem.fromMap(item)).toList();
+    _results = await SQLite.db.query('musсles');
     setState(() {});
   }
 
