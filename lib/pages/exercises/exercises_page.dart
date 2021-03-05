@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
@@ -10,7 +9,7 @@ import 'package:npng/services/db.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 
 class ExercisesPage extends StatefulWidget {
-  static String id = 'exersises';
+  static String id = 'exercises';
 
   @override
   _ExercisesPageState createState() => _ExercisesPageState();
@@ -21,15 +20,13 @@ class _ExercisesPageState extends State<ExercisesPage> {
 
   @override
   void initState() {
-    refresh();
+    _refresh();
     super.initState();
   }
 
-  void refresh() async {
+  void _refresh() async {
     List<Map<String, dynamic>> _results = await DB.query(MusclesItem.table);
-
     _musles = _results.map((item) => MusclesItem.fromMap(item)).toList();
-
     setState(() {});
   }
 
@@ -37,7 +34,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
   Widget build(BuildContext context) {
     return MpScaffold(
       appBar: MpAppBar(
-        title: Text('Exersises'),
+        title: Text(S.of(context).pageExerciseTitle),
       ),
       body: Container(
         constraints: BoxConstraints.expand(),

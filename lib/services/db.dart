@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:path/path.dart';
 import 'dart:typed_data';
+import 'package:path/path.dart';
 import 'package:flutter/services.dart';
 import 'package:npng/models/model.dart';
 import 'package:sqflite/sqflite.dart';
@@ -15,9 +15,9 @@ abstract class DB {
       return;
     }
 
-    String _path = await getDatabasesPath() + '/npng.db';
+    String path = await getDatabasesPath() + '/npng.db';
     // Check if the database exists
-    bool exists = await databaseExists(_path);
+    bool exists = await databaseExists(path);
 
     if (!exists) {
       // Should happen only the first time you launch your application
@@ -25,7 +25,7 @@ abstract class DB {
 
       // Make sure the parent directory exists
       try {
-        await Directory(dirname(_path)).create(recursive: true);
+        await Directory(dirname(path)).create(recursive: true);
       } catch (_) {}
 
       // Copy from asset
@@ -34,26 +34,18 @@ abstract class DB {
           data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
       // Write and flush the bytes written
-      await File(_path).writeAsBytes(bytes, flush: true);
+      await File(path).writeAsBytes(bytes, flush: true);
     }
 
     try {
-      db = await openDatabase(_path, version: _version, onCreate: onCreate);
-      print(_path);
+      db = await openDatabase(path, version: _version, onCreate: onCreate);
+      print(path);
     } catch (ex) {
       print(ex);
     }
   }
 
-  static void onCreate(Database db, int version) async {
-    // await db.transaction((txn) async {
-    //   await txn.execute(
-    //       'CREATE TABLE musles (id INTEGER PRIMARY KEY NOT NULL, name STRING)');
-    //   await txn.execute(
-    //       'CREATE TABLE exersises (id INTEGER PRIMARY KEY NOT NULL, musles_id INTEGER, name STRING, description STRING)');
-    //   await db.execute("INSERT INTO musles (name) VALUES ('ABS for test')");
-    // });
-  }
+  static void onCreate(Database db, int version) async {}
 
   static Future<List<Map<String, dynamic>>> query(String table) async =>
       db.query(table);

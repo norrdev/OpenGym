@@ -7,7 +7,7 @@ import 'package:npng/config.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/services/db.dart';
 import 'package:provider/provider.dart';
-import 'providers/set_rest.dart';
+import 'state/set_rest.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

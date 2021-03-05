@@ -18,7 +18,7 @@ Future insertModalPopup(BuildContext context,
           : Theme.of(context).appBarTheme.color,
       padding: (isApple) ? EdgeInsets.only(top: 16.0) : EdgeInsets.all(16.0),
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 3.0,
+      height: MediaQuery.of(context).size.height / 2.0,
       child: Form(
         key: _formKey,
         child: Column(
@@ -124,7 +124,7 @@ Future editModalPopup(BuildContext context,
           : Theme.of(context).appBarTheme.color,
       padding: (isApple) ? EdgeInsets.only(top: 16.0) : EdgeInsets.all(16.0),
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 3.0,
+      height: MediaQuery.of(context).size.height / 2.0,
       child: Form(
         key: _formKey,
         child: Column(

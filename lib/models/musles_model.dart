@@ -12,7 +12,6 @@ class MusclesItem extends Model {
     Map<String, dynamic> map = {
       'name': name,
     };
-
     if (id != null) {
       map['id'] = id;
     }

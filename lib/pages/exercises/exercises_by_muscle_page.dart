@@ -20,7 +20,6 @@ class ExercisesByMusclePage extends StatefulWidget {
 
 class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
   List<Map<String, dynamic>> _results = [];
-  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -29,13 +28,14 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
   }
 
   void _refresh() async {
-    //     _results = await DB.rawQuery('''
+    // _results = await DB.rawQuery('''
     // SELECT exercises.id AS id, exercises.name AS name, description, equipment.name AS equipment FROM load
     // JOIN exercises ON exercises_id = exercises.id
     // JOIN equipment ON equipment_id = equipment.id
     // WHERE muscles_id = ${widget.musclesId}''');
+
     _results = await DB.rawQuery('''
-      SELECT exercises.id AS id, exercises.name AS name, description FROM load  
+      SELECT exercises.id AS id, exercises.name AS name, description, equipment_id FROM load  
       JOIN exercises ON exercises_id = exercises.id 
       WHERE muscles_id = ${widget.musclesId}''');
     setState(() {});

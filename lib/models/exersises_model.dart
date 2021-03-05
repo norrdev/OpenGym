@@ -1,21 +1,19 @@
 import 'package:npng/models/model.dart';
 
 class ExercisesItem extends Model {
-  static String tableExercises = 'exercises';
-  static String tableLoad = 'load';
-  static String tableEquipment = 'equipment';
-
+  static String table = 'exercises';
   int id;
   String name;
   String description;
-  //int equipment_id;
+  int equipmentId;
 
-  ExercisesItem({this.id, this.name, this.description});
+  ExercisesItem({this.id, this.name, this.description, this.equipmentId});
 
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {
       'name': name,
       'description': description,
+      'equipment_id': equipmentId,
     };
 
     if (id != null) {
@@ -29,6 +27,7 @@ class ExercisesItem extends Model {
       id: map['id'],
       name: map['name'],
       description: map['description'],
+      equipmentId: map['equipment_id'],
     );
   }
 }

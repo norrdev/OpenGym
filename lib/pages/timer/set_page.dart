@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/pages/timer/timer_page.dart';
 import 'package:provider/provider.dart';
-import 'package:npng/providers/set_rest.dart';
+import 'package:npng/state/set_rest.dart';
 import 'package:npng/generated/l10n.dart';
 
 class SetPage extends StatelessWidget {
