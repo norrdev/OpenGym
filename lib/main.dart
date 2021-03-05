@@ -11,7 +11,7 @@ import 'state/set_rest.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await DB.init();
+  await SQLite.init();
   runApp(
     MultiProvider(
       providers: [

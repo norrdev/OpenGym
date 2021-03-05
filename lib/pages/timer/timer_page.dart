@@ -1,7 +1,6 @@
 // import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/pages/timer/train_page.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/state/set_rest.dart';

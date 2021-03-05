@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/models/musles_model.dart';
 import 'package:npng/pages/exercises/exercises_by_muscle_page.dart';
 import 'package:npng/services/db.dart';
 import 'package:npng/widgets/bottom_bar.dart';
@@ -16,7 +15,7 @@ class ExercisesPage extends StatefulWidget {
 }
 
 class _ExercisesPageState extends State<ExercisesPage> {
-  List<MusclesItem> _musles = [];
+  List<Map<String, dynamic>> _results = [];
 
   @override
   void initState() {
@@ -25,8 +24,8 @@ class _ExercisesPageState extends State<ExercisesPage> {
   }
 
   void _refresh() async {
-    List<Map<String, dynamic>> _results = await DB.query(MusclesItem.table);
-    _musles = _results.map((item) => MusclesItem.fromMap(item)).toList();
+    _results = await SQLite.db.query('muscles');
+    //_musles = _results.map((item) => MusclesItem.fromMap(item)).toList();
     setState(() {});
   }
 
@@ -40,23 +39,23 @@ class _ExercisesPageState extends State<ExercisesPage> {
         constraints: BoxConstraints.expand(),
         child: SafeArea(
           child: ListView.builder(
-            itemCount: _musles.length,
+            itemCount: _results.length,
             itemBuilder: (context, index) {
-              final item = _musles[index];
+              final item = _results[index];
               return Material(
                 type: MaterialType.transparency,
                 child: Theme(
                   data: (darkModeOn) ? kMaterialDark : kMaterialLight,
                   child: ListTile(
-                    title: Text(item.name),
+                    title: Text(item['name']),
                     onTap: () {
                       Navigator.push(
                         context,
                         mpPageRoute(
                           builder: (context) {
                             return ExercisesByMusclePage(
-                              musclesId: item.id,
-                              pageTitle: item.name,
+                              musclesId: item['id'],
+                              pageTitle: item['name'],
                             );
                           },
                         ),

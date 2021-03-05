@@ -34,7 +34,7 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
     // JOIN equipment ON equipment_id = equipment.id
     // WHERE muscles_id = ${widget.musclesId}''');
 
-    _results = await DB.rawQuery('''
+    _results = await SQLite.db.rawQuery('''
       SELECT exercises.id AS id, exercises.name AS name, description, equipment_id FROM load  
       JOIN exercises ON exercises_id = exercises.id 
       WHERE muscles_id = ${widget.musclesId}''');
@@ -43,7 +43,7 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
 
   void _insert({String name, String description}) async {
     int id = 0;
-    await DB.db.transaction((txn) async {
+    await SQLite.db.transaction((txn) async {
       id = await txn
           .insert('exercises', {'name': name, 'description': description});
       await txn
@@ -52,7 +52,7 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
   }
 
   void _update({int id, String name, String description}) async {
-    await DB.db.transaction((txn) async {
+    await SQLite.db.transaction((txn) async {
       await txn.update(
         'exercises',
         {'name': name, 'description': description},
@@ -63,7 +63,7 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
   }
 
   void _delete({int id}) async {
-    await DB.db.transaction((txn) async {
+    await SQLite.db.transaction((txn) async {
       await txn.delete('exercises', where: 'id = ?', whereArgs: [id]);
       await txn.delete('load', where: 'exercises_id = ?', whereArgs: [id]);
     });

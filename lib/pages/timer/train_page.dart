@@ -56,7 +56,7 @@ class TrainPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: RaisedButton(
+              child: ElevatedButton(
                 child: Text(S.of(context).start),
                 onPressed: () {
                   int sts = 5;

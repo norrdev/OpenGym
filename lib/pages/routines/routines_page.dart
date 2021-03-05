@@ -25,18 +25,18 @@ class _RoutinesPageState extends State<RoutinesPage> {
   }
 
   void _refresh() async {
-    _results = await DB.rawQuery('SELECT * FROM routines');
+    _results = await SQLite.db.query('routines');
     setState(() {});
   }
 
   void _insert({String name, String description}) async {
-    await DB.db.transaction((txn) async {
+    await SQLite.db.transaction((txn) async {
       await txn.insert('routines', {'name': name, 'description': description});
     });
   }
 
   void _update({int id, String name, String description}) async {
-    await DB.db.transaction((txn) async {
+    await SQLite.db.transaction((txn) async {
       await txn.update(
         'routines',
         {'name': name, 'description': description},
@@ -47,7 +47,7 @@ class _RoutinesPageState extends State<RoutinesPage> {
   }
 
   void _delete({int id}) async {
-    await DB.db.transaction((txn) async {
+    await SQLite.db.transaction((txn) async {
       await txn.delete('routines', where: 'id = ?', whereArgs: [id]);
     });
   }

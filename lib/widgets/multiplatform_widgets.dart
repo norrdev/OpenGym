@@ -102,7 +102,7 @@ class MpButton extends StatelessWidget {
         onPressed: onPressed,
       );
     } else {
-      return RaisedButton(
+      return ElevatedButton(
         child: Text(
           label,
           style: TextStyle(color: Colors.white),
@@ -128,7 +128,7 @@ class MpLinkButton extends StatelessWidget {
         onPressed: onPressed,
       );
     } else {
-      return FlatButton(
+      return TextButton(
         child: Text(label),
         onPressed: onPressed,
       );
@@ -187,8 +187,7 @@ class MpFlatButton extends StatelessWidget {
         child: child,
       );
     } else {
-      return FlatButton(
-        padding: padding,
+      return TextButton(
         onPressed: onPressed,
         child: child,
       );

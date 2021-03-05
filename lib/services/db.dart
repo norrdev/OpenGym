@@ -2,10 +2,9 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:path/path.dart';
 import 'package:flutter/services.dart';
-import 'package:npng/models/model.dart';
 import 'package:sqflite/sqflite.dart';
 
-abstract class DB {
+abstract class SQLite {
   static Database db;
 
   static int get _version => 1;
@@ -46,21 +45,4 @@ abstract class DB {
   }
 
   static void onCreate(Database db, int version) async {}
-
-  static Future<List<Map<String, dynamic>>> query(String table) async =>
-      db.query(table);
-
-  static Future<int> insert(String table, Model model) async =>
-      await db.insert(table, model.toMap());
-
-  static Future<int> update(String table, Model model) async => await db
-      .update(table, model.toMap(), where: 'id = ?', whereArgs: [model.id]);
-
-  static Future<int> delete(String table, Model model) async =>
-      await db.delete(table, where: 'id = ?', whereArgs: [model.id]);
-
-  static Future<List<Map<String, dynamic>>> rawQuery(String sql) async =>
-      db.rawQuery(sql);
-
-  static Future rawExecute(String sql) async => db.execute(sql);
 }

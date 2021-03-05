@@ -31,7 +31,7 @@ class _ExercisePageState extends State<ExercisePage> {
 // JOIN exercises ON exercises_id = exercises.id
 // JOIN equipment ON equipment_id = equipment.id
 // WHERE muscles_id = ${widget.musclesId}''');
-    _results = await DB.rawQuery('''
+    _results = await SQLite.db.rawQuery('''
 SELECT exercises.id AS id, exercises.name AS name, description FROM load  
 JOIN exercises ON exercises_id = exercises.id 
 WHERE muscles_id = ${widget.musclesId}''');
@@ -40,7 +40,7 @@ WHERE muscles_id = ${widget.musclesId}''');
 
   void update({String name, String description}) async {
     int id = 0;
-    await DB.db.transaction((txn) async {
+    await SQLite.db.transaction((txn) async {
       id = await txn
           .insert('exercises', {'name': name, 'description': description});
       await txn
@@ -50,9 +50,6 @@ WHERE muscles_id = ${widget.musclesId}''');
 
   @override
   Widget build(BuildContext context) {
-    //TODO: Create validation
-    //TODO: Edit excersizes
-    //TODO: Delete excersizes
     TextEditingController tcName = TextEditingController(text: '');
     TextEditingController tcDesc = TextEditingController(text: '');
     //int _selected = 0;
@@ -115,7 +112,7 @@ WHERE muscles_id = ${widget.musclesId}''');
                     //     });
                     //   },
                     // ),
-                    RaisedButton(
+                    ElevatedButton(
                       child: Text('Save'),
                       onPressed: () {
                         update(name: tcName.text, description: tcDesc.text);
