@@ -35,200 +35,200 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `NpNg`
+  /// `НбНп`
   String get title {
     return Intl.message(
-      'NpNg',
+      'НбНп',
       name: 'title',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sets`
+  /// `Количество подходов`
   String get sets {
     return Intl.message(
-      'Sets',
+      'Количество подходов',
       name: 'sets',
       desc: '',
       args: [],
     );
   }
 
-  /// `Rest time (seconds)`
+  /// `Время отдыха в секундах`
   String get rest {
     return Intl.message(
-      'Rest time (seconds)',
+      'Время отдыха в секундах',
       name: 'rest',
       desc: '',
       args: [],
     );
   }
 
-  /// `Start`
+  /// `Старт`
   String get start {
     return Intl.message(
-      'Start',
+      'Старт',
       name: 'start',
       desc: '',
       args: [],
     );
   }
 
-  /// ` from `
+  /// ` из `
   String get from {
     return Intl.message(
-      ' from ',
+      ' из ',
       name: 'from',
       desc: '',
       args: [],
     );
   }
 
-  /// `Rest`
+  /// `Отдых`
   String get restButton {
     return Intl.message(
-      'Rest',
+      'Отдых',
       name: 'restButton',
       desc: '',
       args: [],
     );
   }
 
-  /// `Perfom the set, and when you're done, press the button.`
+  /// `Выполните подход, и когда закончите, нажмите кнопку.`
   String get setsText {
     return Intl.message(
-      'Perfom the set, and when you\'re done, press the button.',
+      'Выполните подход, и когда закончите, нажмите кнопку.',
       name: 'setsText',
       desc: '',
       args: [],
     );
   }
 
-  /// `About`
+  /// `О приложении`
   String get about {
     return Intl.message(
-      'About',
+      'О приложении',
       name: 'about',
       desc: '',
       args: [],
     );
   }
 
-  /// `Timer`
+  /// `Таймер`
   String get timer {
     return Intl.message(
-      'Timer',
+      'Таймер',
       name: 'timer',
       desc: '',
       args: [],
     );
   }
 
-  /// `Edit`
+  /// `Правка`
   String get edit {
     return Intl.message(
-      'Edit',
+      'Правка',
       name: 'edit',
       desc: '',
       args: [],
     );
   }
 
-  /// `Save`
+  /// `Сохранить`
   String get save {
     return Intl.message(
-      'Save',
+      'Сохранить',
       name: 'save',
       desc: '',
       args: [],
     );
   }
 
-  /// `Delete`
+  /// `Удалить`
   String get delete {
     return Intl.message(
-      'Delete',
+      'Удалить',
       name: 'delete',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please enter some text`
+  /// `Введите текст`
   String get enterText {
     return Intl.message(
-      'Please enter some text',
+      'Введите текст',
       name: 'enterText',
       desc: '',
       args: [],
     );
   }
 
-  /// `Name`
+  /// `Название`
   String get name {
     return Intl.message(
-      'Name',
+      'Название',
       name: 'name',
       desc: '',
       args: [],
     );
   }
 
-  /// `Description`
+  /// `Описание`
   String get desc {
     return Intl.message(
-      'Description',
+      'Описание',
       name: 'desc',
       desc: '',
       args: [],
     );
   }
 
-  /// `Routines`
+  /// `Тренировки`
   String get pageRoutinesTitle {
     return Intl.message(
-      'Routines',
+      'Тренировки',
       name: 'pageRoutinesTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Days`
+  /// `Дни`
   String get pageDaysTitle {
     return Intl.message(
-      'Days',
+      'Дни',
       name: 'pageDaysTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exercises`
+  /// `Упражнения`
   String get pageExerciseTitle {
     return Intl.message(
-      'Exercises',
+      'Упражнения',
       name: 'pageExerciseTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exercise name`
+  /// `Название упражнения`
   String get exName {
     return Intl.message(
-      'Exercise name',
+      'Название упражнения',
       name: 'exName',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exercise description`
+  /// `Описание упражнения`
   String get exDesc {
     return Intl.message(
-      'Exercise description',
+      'Описание упражнения',
       name: 'exDesc',
       desc: '',
       args: [],
@@ -241,8 +241,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   List<Locale> get supportedLocales {
     return const <Locale>[
-      Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'ru'),
+      Locale.fromSubtags(languageCode: 'en'),
     ];
   }
 
