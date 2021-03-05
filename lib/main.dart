@@ -17,7 +17,6 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => SetRestProvider()),
       ],
-      //child: AppMaterial(),
       child: (isApple) ? AppCupertino() : AppMaterial(),
     ),
   );

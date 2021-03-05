@@ -28,6 +28,7 @@ abstract class SQLite {
       } catch (_) {}
 
       // Copy from asset
+      // TODO: Multilingval databases.
       ByteData data = await rootBundle.load(join("assets/db/en", "npng.db"));
       List<int> bytes =
           data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
@@ -37,12 +38,11 @@ abstract class SQLite {
     }
 
     try {
-      db = await openDatabase(path, version: _version, onCreate: onCreate);
-      print(path);
+      db = await openDatabase(path, version: _version, onCreate: onCreateDb);
     } catch (ex) {
       print(ex);
     }
   }
 
-  static void onCreate(Database db, int version) async {}
+  static void onCreateDb(Database db, int version) async {}
 }
