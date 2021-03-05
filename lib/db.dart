@@ -4,45 +4,39 @@ import 'package:path/path.dart';
 import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
 
-abstract class SQLite {
-  static Database db;
+Database db;
 
-  static int get _version => 1;
-
-  static Future<void> init() async {
-    if (db != null) {
-      return;
-    }
-
-    String path = await getDatabasesPath() + '/npng.db';
-    // Check if the database exists
-    bool exists = await databaseExists(path);
-
-    if (!exists) {
-      // Should happen only the first time you launch your application
-      print("Creating new copy from asset");
-
-      // Make sure the parent directory exists
-      try {
-        await Directory(dirname(path)).create(recursive: true);
-      } catch (_) {}
-
-      // Copy from asset
-      // TODO: Multilingval databases.
-      ByteData data = await rootBundle.load(join("assets/db/en", "npng.db"));
-      List<int> bytes =
-          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-
-      // Write and flush the bytes written
-      await File(path).writeAsBytes(bytes, flush: true);
-    }
-
-    try {
-      db = await openDatabase(path, version: _version, onCreate: onCreateDb);
-    } catch (ex) {
-      print(ex);
-    }
+Future<void> initDataBase() async {
+  if (db != null) {
+    return;
   }
 
-  static void onCreateDb(Database db, int version) async {}
+  String path = await getDatabasesPath() + '/npng.db';
+  // Check if the database exists
+  bool exists = await databaseExists(path);
+
+  if (!exists) {
+    // Should happen only the first time you launch your application
+    print("Creating new copy from asset");
+
+    // Make sure the parent directory exists
+    try {
+      await Directory(dirname(path)).create(recursive: true);
+    } catch (_) {}
+
+    // Copy from asset
+    // TODO: Multilingval databases.
+    ByteData data = await rootBundle.load(join("assets/db/en", "npng.db"));
+    List<int> bytes =
+        data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+
+    // Write and flush the bytes written
+    await File(path).writeAsBytes(bytes, flush: true);
+  }
+
+  try {
+    db = await openDatabase(path, version: 1);
+  } catch (ex) {
+    print(ex);
+  }
 }

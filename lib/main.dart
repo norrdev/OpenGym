@@ -5,13 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:npng/config.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/db.dart';
 import 'package:provider/provider.dart';
+import 'db.dart';
 import 'state/set_rest.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SQLite.init();
+  //await SQLite.init();
+  await initDataBase();
   runApp(
     MultiProvider(
       providers: [

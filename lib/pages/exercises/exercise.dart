@@ -31,7 +31,7 @@ class _ExercisePageState extends State<ExercisePage> {
 // JOIN exercises ON exercises_id = exercises.id
 // JOIN equipment ON equipment_id = equipment.id
 // WHERE muscles_id = ${widget.musclesId}''');
-    _results = await SQLite.db.rawQuery('''
+    _results = await db.rawQuery('''
 SELECT exercises.id AS id, exercises.name AS name, description FROM load  
 JOIN exercises ON exercises_id = exercises.id 
 WHERE muscles_id = ${widget.musclesId}''');
@@ -40,7 +40,7 @@ WHERE muscles_id = ${widget.musclesId}''');
 
   void _insert({String name, String description}) async {
     int id = 0;
-    await SQLite.db.transaction((txn) async {
+    await db.transaction((txn) async {
       id = await txn
           .insert('exercises', {'name': name, 'description': description});
       await txn

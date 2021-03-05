@@ -12,6 +12,9 @@ class DaysPage extends StatefulWidget {
 }
 
 class _DaysPageState extends State<DaysPage> {
+  void _insert() {}
+  void _refresh() {}
+
   @override
   Widget build(BuildContext context) {
     TextEditingController tcName = TextEditingController(text: '');
@@ -26,6 +29,8 @@ class _DaysPageState extends State<DaysPage> {
             context,
             name: tcName,
             description: tcDesc,
+            insert: _insert,
+            refresh: _refresh,
           ),
         ),
       ),
