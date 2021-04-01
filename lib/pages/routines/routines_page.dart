@@ -93,7 +93,20 @@ class _RoutinesPageState extends State<RoutinesPage> {
                           refresh: _refresh,
                           delete: _delete),
                     ),
-                    onTap: () => Navigator.pushNamed(context, DaysPage.id),
+                    //onTap: () => Navigator.pushNamed(context, DaysPage.id),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        mpPageRoute(
+                          builder: (context) {
+                            return DaysPage(
+                              routinesId: item['id'],
+                              pageTitle: item['name'],
+                            );
+                          },
+                        ),
+                      );
+                    },
                   ),
                 ),
               );
