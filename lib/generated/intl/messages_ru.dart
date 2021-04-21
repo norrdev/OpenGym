@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "exName" : MessageLookupByLibrary.simpleMessage("Название упражнения"),
     "from" : MessageLookupByLibrary.simpleMessage(" из "),
     "name" : MessageLookupByLibrary.simpleMessage("Название"),
+    "pageAddEx" : MessageLookupByLibrary.simpleMessage("Добавить упражнение"),
     "pageDaysTitle" : MessageLookupByLibrary.simpleMessage("Дни"),
     "pageExerciseTitle" : MessageLookupByLibrary.simpleMessage("Упражнения"),
     "pageRoutinesTitle" : MessageLookupByLibrary.simpleMessage("Тренировки"),

@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "exName" : MessageLookupByLibrary.simpleMessage("Exercise name"),
     "from" : MessageLookupByLibrary.simpleMessage(" from "),
     "name" : MessageLookupByLibrary.simpleMessage("Name"),
+    "pageAddEx" : MessageLookupByLibrary.simpleMessage("Add exercise"),
     "pageDaysTitle" : MessageLookupByLibrary.simpleMessage("Days"),
     "pageExerciseTitle" : MessageLookupByLibrary.simpleMessage("Exercises"),
     "pageRoutinesTitle" : MessageLookupByLibrary.simpleMessage("Routines"),

@@ -1,0 +1,158 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:npng/config.dart';
+import 'package:npng/db.dart';
+import 'package:npng/pages/routines/routines_by_day.dart';
+import 'package:npng/widgets/modal_popups.dart';
+import 'package:npng/widgets/multiplatform_widgets.dart';
+import 'package:npng/generated/l10n.dart';
+
+class AddExcersisePage extends StatefulWidget {
+  static String id = 'AddExcersisePage';
+  final int dayId;
+
+  AddExcersisePage({@required this.dayId});
+
+  @override
+  _AddExcersisePageState createState() => _AddExcersisePageState();
+}
+
+class _AddExcersisePageState extends State<AddExcersisePage> {
+  List<Map<String, dynamic>> _dynamicChips = [];
+  List<Map<String, dynamic>> _exersises = [];
+  int selectedMuscle = 0;
+  List<bool> selectedEx = [];
+
+  void _refreshChips() async {
+    _dynamicChips = await db.query('musсles', orderBy: 'id');
+    setState(() {});
+  }
+
+  void _refreshEx() async {
+    _exersises = await db.rawQuery('''
+      SELECT exercises.id AS id, exercises.name AS name, description, equipment_id FROM load  
+      JOIN exercises ON exercises_id = exercises.id 
+      WHERE muscles_id = ${_dynamicChips[selectedMuscle]['id']}''');
+    selectedEx = List<bool>.filled(_exersises.length, false);
+    setState(() {});
+  }
+
+  void _insert(List<int> exIds) async {
+    //int id = 0;
+    await db.transaction((txn) async {
+      for (var i = 0; i < exIds.length; i++) {
+        await txn.insert(
+            'workouts', {'days_id': widget.dayId, 'exerscises_id': exIds[i]});
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    _refreshChips();
+    _refreshEx();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MpScaffold(
+      appBar: MpAppBar(
+        title: Text(S.of(context).pageAddEx),
+      ),
+      body: Column(
+        //mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          if (isApple) SizedBox(height: 56.0),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              'Muscles',
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(4),
+            child: Material(
+              type: MaterialType.transparency,
+              child: Theme(
+                data: (darkModeOn) ? kMaterialDark : kMaterialLight,
+                child: Wrap(
+                  spacing: 4.0, // gap between adjacent chips
+                  runSpacing: 4.0, // gap between lines
+                  children:
+                      List<Widget>.generate(_dynamicChips.length, (int index) {
+                    final item = _dynamicChips[index];
+                    return ChoiceChip(
+                      selected: (index == selectedMuscle) ? true : false,
+                      label: Text(
+                        item['name'],
+                      ),
+                      onSelected: (bool selected) {
+                        setState(() {
+                          selectedMuscle = index;
+                          _refreshEx();
+                        });
+                      },
+                    );
+                  }),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Exerscises',
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(4.0),
+            child: Material(
+              type: MaterialType.transparency,
+              child: Theme(
+                data: (darkModeOn) ? kMaterialDark : kMaterialLight,
+                child: Wrap(
+                  spacing: 4.0, // gap between adjacent chips
+                  runSpacing: 4.0, // gap between lines
+                  children:
+                      List<Widget>.generate(_exersises.length, (int index) {
+                    final item = _exersises[index];
+                    return FilterChip(
+                      selected: selectedEx[index],
+                      //labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                      label: Text(
+                        item['name'],
+                        textScaleFactor: 1.2,
+                      ),
+                      tooltip: item['description'],
+                      onSelected: (bool selected) {
+                        setState(() {
+                          selectedEx[index] = !selectedEx[index];
+                        });
+                      },
+                    );
+                  }),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: MpButton(
+                label: 'Add',
+                onPressed: () {
+                  List<int> buffer = [];
+                  for (var i = 0; i < selectedEx.length; i++) {
+                    if (selectedEx[i] == true) {
+                      buffer.add(_exersises[i]['id']);
+                    }
+                  }
+                  _insert(buffer);
+                }),
+          ),
+        ],
+      ),
+    );
+  }
+}
