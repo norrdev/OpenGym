@@ -149,6 +149,7 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
                     }
                   }
                   _insert(buffer);
+                  //setState(() {});
                 }),
           ),
         ],

@@ -55,7 +55,7 @@ WHERE days_id = ${widget.dayId};
                   return AddExcersisePage(dayId: widget.dayId);
                 },
               ),
-            ),
+            ).whenComplete(() => _refresh()),
           ),
         ),
         body: Container(
