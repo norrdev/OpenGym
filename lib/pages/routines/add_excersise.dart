@@ -20,7 +20,7 @@ class AddExcersisePage extends StatefulWidget {
 class _AddExcersisePageState extends State<AddExcersisePage> {
   List<Map<String, dynamic>> _dynamicChips = [];
   List<Map<String, dynamic>> _exersises = [];
-  int selectedMuscle = 0;
+  int selectedMuscle = -1;
   List<bool> selectedEx = [];
 
   void _refreshChips() async {
@@ -38,11 +38,18 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
   }
 
   void _insert(List<int> exIds) async {
-    //int id = 0;
     await db.transaction((txn) async {
       for (var i = 0; i < exIds.length; i++) {
-        await txn.insert(
-            'workouts', {'days_id': widget.dayId, 'exerscises_id': exIds[i]});
+        List<Map> itemForMax =
+            await txn.rawQuery('SELECT MAX(ord) AS maxOrd FROM workouts');
+        int maxOrd = (itemForMax.first['maxOrd'] == null)
+            ? -1
+            : itemForMax.first['maxOrd'];
+        await txn.insert('workouts', {
+          'days_id': widget.dayId,
+          'exerscises_id': exIds[i],
+          'ord': maxOrd + 1,
+        });
       }
     });
   }
@@ -103,7 +110,7 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              'Exerscises',
+              S.of(context).pageExerciseTitle,
             ),
           ),
           Padding(
