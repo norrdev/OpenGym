@@ -38,15 +38,15 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
   }
 
   void _updateOrder({int id, int ord}) async {
-    //BUG: must reorder all items on UPDATE
-    // https://stackoverflow.com/questions/812630/how-can-i-reorder-rows-in-sql-database
     await db.transaction((txn) async {
-      await txn.update(
-        'workouts',
-        {'ord': ord},
-        where: 'id = ?',
-        whereArgs: [id],
-      );
+      for (int i = 0; i <= _resultsMutable.length - 1; i++) {
+        await txn.update(
+          'workouts',
+          {'ord': i},
+          where: 'id = ?',
+          whereArgs: [_resultsMutable[i]['id']],
+        );
+      }
     });
   }
 
