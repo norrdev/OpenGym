@@ -1,9 +1,7 @@
-//import 'package:cupertino_list_tile/cupertino_list_tile.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-//import 'package:cupertino_radio_choice/cupertino_radio_choice.dart';
 import 'package:npng/config.dart';
 
 /// Scaffold.
@@ -357,6 +355,53 @@ Future<T> mpModalPopup<T>({
     return showModalBottomSheet(
       context: context,
       builder: (BuildContext context) => child,
+    );
+  }
+}
+
+class MpChangeIntField extends StatelessWidget {
+  final int value;
+  final Function increaseCallback;
+  final Function decreaseCallback;
+
+  const MpChangeIntField({
+    Key key,
+    this.value,
+    this.decreaseCallback,
+    this.increaseCallback,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: RoundIconButton(
+            icon: Icons.arrow_back_ios_rounded,
+            fillColor: (isApple)
+                ? CupertinoTheme.of(context).barBackgroundColor
+                : Theme.of(context).bottomAppBarColor,
+            onPressed: decreaseCallback,
+          ),
+        ),
+        SizedBox(
+          width: 60.0,
+          child: Text(
+            value.toString(),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        Expanded(
+          child: RoundIconButton(
+            icon: Icons.arrow_forward_ios_rounded,
+            fillColor: (isApple)
+                ? CupertinoTheme.of(context).barBackgroundColor
+                : Theme.of(context).bottomAppBarColor,
+            onPressed: increaseCallback,
+          ),
+        ),
+      ],
     );
   }
 }

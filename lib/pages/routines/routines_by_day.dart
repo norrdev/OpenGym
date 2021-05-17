@@ -80,22 +80,36 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                 final item = _resultsMutable[index];
                 return Card(
                   key: ValueKey(item),
-                  child: Row(
+                  child: Column(
                     children: [
-                      Container(
-                        child: Text(item['name']),
-                        width: MediaQuery.of(context).size.width / 2.0 - 8.0,
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        //TODO: Sets and reps editor
-                        child: Text(item['sets'].toString()),
-                        width: MediaQuery.of(context).size.width / 4,
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        child: Text(item['repeats'].toString()),
-                        width: MediaQuery.of(context).size.width / 4,
+                      ListTile(
+                          title: Text(item['name']),
+                          subtitle: Text(item['description'] ?? '')
+                          // (item['description'] != null)
+                          //     ? Text(item['description'])
+                          //     : null,
+                          ),
+                      Row(
+                        children: [
+                          Container(
+                            child: Column(
+                              children: [
+                                Text(S.of(context).sets),
+                                MpChangeIntField(value: item['sets']),
+                              ],
+                            ),
+                            width: MediaQuery.of(context).size.width / 2 - 8,
+                          ),
+                          Container(
+                            child: Column(
+                              children: [
+                                Text(S.of(context).rest),
+                                MpChangeIntField(value: item['repeats']),
+                              ],
+                            ),
+                            width: MediaQuery.of(context).size.width / 2 - 8,
+                          ),
+                        ],
                       ),
                     ],
                   ),

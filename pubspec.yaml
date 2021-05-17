@@ -16,18 +16,19 @@ dependencies:
     sdk: flutter
   intl: ^0.17.0
   cupertino_icons: ^1.0.2
-  provider: ^5.0.0-nullsafety.5 #^4.3.3
+  provider: ^5.0.0-nullsafety.5
   #TODO: Find nullsafety analogue. `dart pub outdated --mode=null-safety` 
   # `dart migrate --apply-changes`
   circular_countdown_timer: ^0.2.0
-  flutter_markdown: ^0.6.1
-  url_launcher: ^6.0.3 # ^5.7.10 #- Error on building macOS
-  package_info_plus: ^1.0.1 #^0.6.4 #- Error on building macOS
+  flutter_markdown: ^0.6.2
+  url_launcher: ^6.0.3
+  package_info_plus: ^1.0.1
   # TODO: find package for MacOS
   # audioplayers: ^0.17.1
   convex_bottom_bar: ^3.0.0
   sqflite: ^2.0.0+3
   path: ^1.8.0
+  wakelock: ^0.5.2
 
 dev_dependencies:
   flutter_test:

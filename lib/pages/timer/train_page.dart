@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/state/set_rest.dart';
 import 'package:npng/generated/l10n.dart';
-import 'dart:io' show Platform;
 
 class TrainPage extends StatelessWidget {
   static String id = '/train';
@@ -29,7 +28,7 @@ class TrainPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(S.of(context).sets),
-            ChangeIntField(
+            MpChangeIntField(
               value: Provider.of<SetRestProvider>(context).sets,
               decreaseCallback:
                   Provider.of<SetRestProvider>(context, listen: false)
@@ -42,7 +41,7 @@ class TrainPage extends StatelessWidget {
               height: 40,
             ),
             Text(S.of(context).rest),
-            ChangeIntField(
+            MpChangeIntField(
               value: Provider.of<SetRestProvider>(context).rest,
               decreaseCallback:
                   Provider.of<SetRestProvider>(context, listen: false)
@@ -86,53 +85,6 @@ class TrainPage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class ChangeIntField extends StatelessWidget {
-  final int value;
-  final Function increaseCallback;
-  final Function decreaseCallback;
-
-  const ChangeIntField({
-    Key key,
-    this.value,
-    this.decreaseCallback,
-    this.increaseCallback,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Expanded(
-          child: RoundIconButton(
-            icon: Icons.arrow_back_ios_rounded,
-            fillColor: (!kIsWeb && (Platform.isMacOS || Platform.isIOS))
-                ? CupertinoTheme.of(context).barBackgroundColor
-                : Theme.of(context).bottomAppBarColor,
-            onPressed: decreaseCallback,
-          ),
-        ),
-        SizedBox(
-          width: 60.0,
-          child: Text(
-            value.toString(),
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-            textAlign: TextAlign.center,
-          ),
-        ),
-        Expanded(
-          child: RoundIconButton(
-            icon: Icons.arrow_forward_ios_rounded,
-            fillColor: (!kIsWeb && (Platform.isMacOS || Platform.isIOS))
-                ? CupertinoTheme.of(context).barBackgroundColor
-                : Theme.of(context).bottomAppBarColor,
-            onPressed: increaseCallback,
-          ),
-        ),
-      ],
     );
   }
 }

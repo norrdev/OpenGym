@@ -42,9 +42,10 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
       for (var i = 0; i < exIds.length; i++) {
         List<Map> itemForMax =
             await txn.rawQuery('SELECT MAX(ord) AS maxOrd FROM workouts');
-        int maxOrd = (itemForMax.first['maxOrd'] == null)
-            ? -1
-            : itemForMax.first['maxOrd'];
+        int maxOrd = itemForMax.first['maxOrd'] ?? -1;
+        // (itemForMax.first['maxOrd'] == null)
+        //     ? -1
+        //     : itemForMax.first['maxOrd'];
         await txn.insert('workouts', {
           'days_id': widget.dayId,
           'exerscises_id': exIds[i],
