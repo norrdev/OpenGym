@@ -101,7 +101,7 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
                   child: ListTile(
                     title: Text(item['name']),
                     trailing: MpLinkButton(
-                      label: S.of(context)!.edit,
+                      label: S.of(context).edit,
                       onPressed: () => editModalPopup(context,
                           id: item['id'],
                           name: item['name'],

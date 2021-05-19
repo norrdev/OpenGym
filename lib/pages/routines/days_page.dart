@@ -66,7 +66,7 @@ class _DaysPageState extends State<DaysPage> {
     TextEditingController tcDesc = TextEditingController(text: '');
     return MpScaffold(
       appBar: MpAppBar(
-        title: Text(S.of(context)!.pageDaysTitle),
+        title: Text(S.of(context).pageDaysTitle),
         trailing: MpFlatButton(
           padding: EdgeInsets.all(8),
           child: Icon(CupertinoIcons.add),
@@ -108,7 +108,7 @@ class _DaysPageState extends State<DaysPage> {
                       );
                     },
                     trailing: MpLinkButton(
-                      label: S.of(context)!.edit,
+                      label: S.of(context).edit,
                       onPressed: () => editModalPopup(context,
                           id: item['id'],
                           name: item['name'],

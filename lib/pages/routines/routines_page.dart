@@ -58,7 +58,7 @@ class _RoutinesPageState extends State<RoutinesPage> {
     TextEditingController tcDesc = TextEditingController(text: '');
     return MpScaffold(
       appBar: MpAppBar(
-        title: Text(S.of(context)!.pageRoutinesTitle),
+        title: Text(S.of(context).pageRoutinesTitle),
         trailing: MpFlatButton(
           padding: EdgeInsets.all(8),
           child: Icon(CupertinoIcons.add),
@@ -84,7 +84,7 @@ class _RoutinesPageState extends State<RoutinesPage> {
                     title: Text(item['name']),
                     subtitle: Text(item['description']),
                     trailing: MpLinkButton(
-                      label: S.of(context)!.edit,
+                      label: S.of(context).edit,
                       onPressed: () => editModalPopup(context,
                           id: item['id'],
                           name: item['name'],

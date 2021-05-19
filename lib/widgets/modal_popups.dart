@@ -28,17 +28,17 @@ Future insertModalPopup(BuildContext context,
                 children: [
                   CupertinoTextFormFieldRow(
                     controller: name,
-                    prefix: Text(S.of(context)!.name),
+                    prefix: Text(S.of(context).name),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return S.of(context)!.enterText;
+                        return S.of(context).enterText;
                       }
                       return null;
                     },
                   ),
                   CupertinoTextFormFieldRow(
                     controller: description,
-                    prefix: Text(S.of(context)!.desc),
+                    prefix: Text(S.of(context).desc),
                     validator: (value) {
                       // if (value.isEmpty) {
                       //   return S.of(context).enterText;
@@ -52,7 +52,7 @@ Future insertModalPopup(BuildContext context,
               TextFormField(
                 controller: name,
                 decoration: InputDecoration(
-                  labelText: S.of(context)!.exName,
+                  labelText: S.of(context).exName,
                   border: OutlineInputBorder(
                     //borderRadius: new BorderRadius.circular(25.0),
                     borderSide: BorderSide(),
@@ -60,7 +60,7 @@ Future insertModalPopup(BuildContext context,
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return S.of(context)!.enterText;
+                    return S.of(context).enterText;
                   }
                   return null;
                 },
@@ -73,7 +73,7 @@ Future insertModalPopup(BuildContext context,
               TextFormField(
                 controller: description,
                 decoration: InputDecoration(
-                  labelText: S.of(context)!.exDesc,
+                  labelText: S.of(context).exDesc,
                   border: OutlineInputBorder(
                     borderSide: BorderSide(),
                   ),
@@ -89,7 +89,7 @@ Future insertModalPopup(BuildContext context,
               height: 16.0,
             ),
             MpButton(
-              label: S.of(context)!.save,
+              label: S.of(context).save,
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   insert(name: name.text, description: description.text);
@@ -129,24 +129,24 @@ Future editModalPopup(BuildContext context,
         key: _formKey,
         child: Column(
           children: [
-            Text(S.of(context)!.edit),
+            Text(S.of(context).edit),
             SizedBox(height: 16.0),
             if (isApple)
               CupertinoFormSection.insetGrouped(
                 children: [
                   CupertinoTextFormFieldRow(
                     controller: _tcName,
-                    prefix: Text(S.of(context)!.name),
+                    prefix: Text(S.of(context).name),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return S.of(context)!.enterText;
+                        return S.of(context).enterText;
                       }
                       return null;
                     },
                   ),
                   CupertinoTextFormFieldRow(
                     controller: _tcDesc,
-                    prefix: Text(S.of(context)!.desc),
+                    prefix: Text(S.of(context).desc),
                     validator: (value) {
                       // if (value.isEmpty) {
                       //   return S.of(context).enterText;
@@ -160,7 +160,7 @@ Future editModalPopup(BuildContext context,
               TextFormField(
                 controller: _tcName,
                 decoration: InputDecoration(
-                  labelText: S.of(context)!.name,
+                  labelText: S.of(context).name,
                   border: OutlineInputBorder(
                     //borderRadius: new BorderRadius.circular(25.0),
                     borderSide: BorderSide(),
@@ -168,7 +168,7 @@ Future editModalPopup(BuildContext context,
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return S.of(context)!.enterText;
+                    return S.of(context).enterText;
                   }
                   return null;
                 },
@@ -178,7 +178,7 @@ Future editModalPopup(BuildContext context,
               TextFormField(
                 controller: _tcDesc,
                 decoration: InputDecoration(
-                  labelText: S.of(context)!.desc,
+                  labelText: S.of(context).desc,
                   border: OutlineInputBorder(
                     borderSide: BorderSide(),
                   ),
@@ -197,7 +197,7 @@ Future editModalPopup(BuildContext context,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 MpButton(
-                  label: S.of(context)!.save,
+                  label: S.of(context).save,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       update(
@@ -212,7 +212,7 @@ Future editModalPopup(BuildContext context,
                 ),
                 SizedBox(width: 16.0),
                 MpButton(
-                  label: S.of(context)!.delete,
+                  label: S.of(context).delete,
                   onPressed: () {
                     delete(id: id);
                     refresh();
@@ -246,7 +246,7 @@ Future deleteModalPopup(BuildContext context,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               MpButton(
-                label: S.of(context)!.delete,
+                label: S.of(context).delete,
                 onPressed: () {
                   delete(id: id);
                   refresh();

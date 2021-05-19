@@ -32,7 +32,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
   Widget build(BuildContext context) {
     return MpScaffold(
       appBar: MpAppBar(
-        title: Text(S.of(context)!.pageExerciseTitle),
+        title: Text(S.of(context).pageExerciseTitle),
       ),
       body: Container(
         constraints: BoxConstraints.expand(),

@@ -136,7 +136,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                             padding: EdgeInsets.all(4),
                             child: Column(
                               children: [
-                                Text(S.of(context)!.sets),
+                                Text(S.of(context).sets),
                                 MpChangeIntField(
                                     value: item['sets'],
                                     decreaseCallback: () =>
@@ -151,7 +151,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                             padding: EdgeInsets.all(4),
                             child: Column(
                               children: [
-                                Text(S.of(context)!.repeats),
+                                Text(S.of(context).repeats),
                                 MpChangeIntField(
                                   value: item['repeats'],
                                   decreaseCallback: () =>
@@ -172,7 +172,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                             padding: EdgeInsets.all(4),
                             child: Column(
                               children: [
-                                Text(S.of(context)!.rest),
+                                Text(S.of(context).rest),
                                 MpChangeIntField(
                                   value: item['rest'],
                                   decreaseCallback: () => _decreaseRest(index),

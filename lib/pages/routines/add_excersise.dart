@@ -66,7 +66,7 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
   Widget build(BuildContext context) {
     return MpScaffold(
       appBar: MpAppBar(
-        title: Text(S.of(context)!.pageAddEx),
+        title: Text(S.of(context).pageAddEx),
       ),
       body: Column(
         //mainAxisAlignment: MainAxisAlignment.center,
@@ -111,7 +111,7 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              S.of(context)!.pageExerciseTitle,
+              S.of(context).pageExerciseTitle,
             ),
           ),
           Padding(
