@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.2.1 on Wed Apr 21 23:05:42 2021
+-- File generated with SQLiteStudio v3.2.1 on Tue May 18 16:43:34 2021
 --
 -- Text encoding used: UTF-8
 --
@@ -56,19 +56,11 @@ INSERT INTO routines (id, name, description) VALUES (2, 'Bodyweight', '2 days a 
 INSERT INTO routines (id, name, description) VALUES (3, '5x5', 'Powerlifting program.');
 
 -- Table: workouts
-CREATE TABLE workouts (id INTEGER PRIMARY KEY, ord INTEGER, days_id INTEGER REFERENCES days (id), exerscises_id INTEGER REFERENCES exercises (id), sets INTEGER NOT NULL DEFAULT (3), repeats INTEGER NOT NULL DEFAULT (8), rest INTEGER NOT NULL DEFAULT (90));
-INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (1, NULL, 1, 1, 3, 8, 90);
-INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (2, NULL, 1, 1, 3, 8, 90);
-INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (3, NULL, 1, 3, 3, 8, 90);
-INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (4, NULL, 3, 2, 3, 8, 90);
-INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (5, NULL, 3, 2, 3, 8, 90);
-INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (6, NULL, 3, 2, 3, 8, 90);
-INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (7, NULL, 3, 2, 3, 8, 90);
-INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (8, NULL, 3, 2, 3, 8, 90);
-INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (9, NULL, 3, 2, 3, 8, 90);
-INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (10, NULL, 4, 1, 3, 8, 90);
-INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (11, NULL, 4, 1, 3, 8, 90);
-INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (12, NULL, 4, 1, 3, 8, 90);
+CREATE TABLE workouts (id INTEGER PRIMARY KEY, ord INTEGER DEFAULT (0) NOT NULL, days_id INTEGER REFERENCES days (id), exerscises_id INTEGER REFERENCES exercises (id), sets INTEGER DEFAULT (3) NOT NULL, repeats INTEGER DEFAULT (8) NOT NULL, rest INTEGER DEFAULT (90) NOT NULL);
+INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (1, 8, 1, 2, 5, 8, 60);
+INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (2, 10, 1, 1, 4, 12, 90);
+INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (3, 9, 1, 3, 4, 8, 90);
+INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (4, 11, 1, 1, 4, 8, 90);
 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;

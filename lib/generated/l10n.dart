@@ -55,10 +55,20 @@ class S {
     );
   }
 
-  /// `Rest time (seconds)`
+  /// `Repeats`
+  String get repeats {
+    return Intl.message(
+      'Repeats',
+      name: 'repeats',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rest time (sec)`
   String get rest {
     return Intl.message(
-      'Rest time (seconds)',
+      'Rest time (sec)',
       name: 'rest',
       desc: '',
       args: [],
