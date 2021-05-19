@@ -40,7 +40,7 @@ final ThemeData kMaterialDark = ThemeData(
 
 /// Cupertino light & dark theme
 //final Brightness brightness = MediaQuery.platformBrightnessOf(context);
-final Brightness brightness = WidgetsBinding.instance.window.platformBrightness;
+final Brightness brightness = WidgetsBinding.instance!.window.platformBrightness;
 //var brightness = SchedulerBinding.instance.window.platformBrightness;
 final bool darkModeOn = brightness == Brightness.dark;
 

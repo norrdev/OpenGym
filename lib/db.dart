@@ -4,7 +4,7 @@ import 'package:path/path.dart';
 import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
 
-Database db;
+Database? db;
 
 Future<void> initDataBase() async {
   if (db != null) {

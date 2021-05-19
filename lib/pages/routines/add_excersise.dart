@@ -9,9 +9,9 @@ import 'package:npng/generated/l10n.dart';
 
 class AddExcersisePage extends StatefulWidget {
   static String id = 'AddExcersisePage';
-  final int dayId;
+  final int? dayId;
 
-  AddExcersisePage({@required this.dayId});
+  AddExcersisePage({required this.dayId});
 
   @override
   _AddExcersisePageState createState() => _AddExcersisePageState();
@@ -24,12 +24,12 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
   List<bool> selectedEx = [];
 
   void _refreshChips() async {
-    _dynamicChips = await db.query('musсles', orderBy: 'id');
+    _dynamicChips = await db!.query('musсles', orderBy: 'id');
     setState(() {});
   }
 
   void _refreshEx() async {
-    _exersises = await db.rawQuery('''
+    _exersises = await db!.rawQuery('''
       SELECT exercises.id AS id, exercises.name AS name, description, equipment_id FROM load  
       JOIN exercises ON exercises_id = exercises.id 
       WHERE muscles_id = ${_dynamicChips[selectedMuscle]['id']}''');
@@ -37,8 +37,8 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
     setState(() {});
   }
 
-  void _insert(List<int> exIds) async {
-    await db.transaction((txn) async {
+  void _insert(List<int?> exIds) async {
+    await db!.transaction((txn) async {
       for (var i = 0; i < exIds.length; i++) {
         List<Map> itemForMax =
             await txn.rawQuery('SELECT MAX(ord) AS maxOrd FROM workouts');
@@ -66,7 +66,7 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
   Widget build(BuildContext context) {
     return MpScaffold(
       appBar: MpAppBar(
-        title: Text(S.of(context).pageAddEx),
+        title: Text(S.of(context)!.pageAddEx),
       ),
       body: Column(
         //mainAxisAlignment: MainAxisAlignment.center,
@@ -111,7 +111,7 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              S.of(context).pageExerciseTitle,
+              S.of(context)!.pageExerciseTitle,
             ),
           ),
           Padding(
@@ -150,7 +150,7 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
             child: MpButton(
                 label: 'Add',
                 onPressed: () {
-                  List<int> buffer = [];
+                  List<int?> buffer = [];
                   for (var i = 0; i < selectedEx.length; i++) {
                     if (selectedEx[i] == true) {
                       buffer.add(_exersises[i]['id']);

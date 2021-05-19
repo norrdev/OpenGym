@@ -9,10 +9,10 @@ import 'package:npng/generated/l10n.dart';
 
 class RoutinesByDayPage extends StatefulWidget {
   static String id = 'routines_by_day';
-  final String pageTitle;
-  final int dayId;
+  final String? pageTitle;
+  final int? dayId;
 
-  RoutinesByDayPage({@required this.pageTitle, @required this.dayId});
+  RoutinesByDayPage({required this.pageTitle, required this.dayId});
 
   @override
   _RoutinesByDayPageState createState() => _RoutinesByDayPageState();
@@ -29,7 +29,7 @@ class _RoutinesByDayPageState extends State<RoutinesByDayPage> {
   }
 
   void _refresh() async {
-    _results = await db.rawQuery('''
+    _results = await db!.rawQuery('''
 SELECT workouts.id AS id, exercises.name AS name, exercises.description as description, sets, ord, repeats, rest FROM workouts 
 JOIN exercises on workouts.exerscises_id = exercises.id 
 WHERE days_id = ${widget.dayId} ORDER BY ord;
@@ -39,8 +39,8 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
     setState(() {});
   }
 
-  void _updateOrder({int id, int ord}) async {
-    await db.transaction((txn) async {
+  void _updateOrder({int? id, int? ord}) async {
+    await db!.transaction((txn) async {
       for (int i = 0; i <= _resultsMutable.length - 1; i++) {
         await txn.update(
           'workouts',
@@ -52,8 +52,8 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
     });
   }
 
-  void _updateSets({int id, int sets}) async {
-    await db.update(
+  void _updateSets({int? id, int? sets}) async {
+    await db!.update(
       'workouts',
       {'sets': sets},
       where: 'id = ?',
@@ -61,8 +61,8 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
     );
   }
 
-  void _updateRepeats({int id, int repeats}) async {
-    await db.update(
+  void _updateRepeats({int? id, int? repeats}) async {
+    await db!.update(
       'workouts',
       {'repeats': repeats},
       where: 'id = ?',
@@ -70,8 +70,8 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
     );
   }
 
-  void _updateRest({int id, int rest}) async {
-    await db.update(
+  void _updateRest({int? id, int? rest}) async {
+    await db!.update(
       'workouts',
       {'rest': rest},
       where: 'id = ?',
@@ -79,8 +79,8 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
     );
   }
 
-  void _deleteRow({int id}) async {
-    await db.delete(
+  void _deleteRow({int? id}) async {
+    await db!.delete(
       'workouts',
       where: 'id = ?',
       whereArgs: [id],
@@ -91,7 +91,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
   Widget build(BuildContext context) {
     return MpScaffold(
       appBar: MpAppBar(
-        title: Text(widget.pageTitle),
+        title: Text(widget.pageTitle!),
         trailing: MpFlatButton(
           padding: EdgeInsets.all(8),
           child: Icon(CupertinoIcons.add),
@@ -136,7 +136,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                             padding: EdgeInsets.all(4),
                             child: Column(
                               children: [
-                                Text(S.of(context).sets),
+                                Text(S.of(context)!.sets),
                                 MpChangeIntField(
                                     value: item['sets'],
                                     decreaseCallback: () =>
@@ -151,7 +151,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                             padding: EdgeInsets.all(4),
                             child: Column(
                               children: [
-                                Text(S.of(context).repeats),
+                                Text(S.of(context)!.repeats),
                                 MpChangeIntField(
                                   value: item['repeats'],
                                   decreaseCallback: () =>
@@ -172,7 +172,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                             padding: EdgeInsets.all(4),
                             child: Column(
                               children: [
-                                Text(S.of(context).rest),
+                                Text(S.of(context)!.rest),
                                 MpChangeIntField(
                                   value: item['rest'],
                                   decreaseCallback: () => _decreaseRest(index),

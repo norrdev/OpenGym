@@ -24,7 +24,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
   }
 
   void _refresh() async {
-    _results = await db.query('musсles');
+    _results = await db!.query('musсles');
     setState(() {});
   }
 
@@ -32,7 +32,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
   Widget build(BuildContext context) {
     return MpScaffold(
       appBar: MpAppBar(
-        title: Text(S.of(context).pageExerciseTitle),
+        title: Text(S.of(context)!.pageExerciseTitle),
       ),
       body: Container(
         constraints: BoxConstraints.expand(),

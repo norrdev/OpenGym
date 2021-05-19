@@ -10,7 +10,7 @@ import 'package:npng/generated/l10n.dart';
 class TrainPage extends StatelessWidget {
   static String id = '/train';
 
-  const TrainPage({Key key}) : super(key: key);
+  const TrainPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +21,13 @@ class TrainPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).title),
+        title: Text(S.of(context)!.title),
       ),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(S.of(context).sets),
+            Text(S.of(context)!.sets),
             MpChangeIntField(
               value: Provider.of<SetRestProvider>(context).sets,
               decreaseCallback:
@@ -40,7 +40,7 @@ class TrainPage extends StatelessWidget {
             SizedBox(
               height: 40,
             ),
-            Text(S.of(context).rest),
+            Text(S.of(context)!.rest),
             MpChangeIntField(
               value: Provider.of<SetRestProvider>(context).rest,
               decreaseCallback:
@@ -56,7 +56,7 @@ class TrainPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
-                child: Text(S.of(context).start),
+                child: Text(S.of(context)!.start),
                 onPressed: () {
                   int sts = 5;
                   int rst = 90;

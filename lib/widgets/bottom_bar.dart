@@ -13,7 +13,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 class BottomBar extends StatelessWidget {
   BottomBar({this.initialActiveIndex});
 
-  final int initialActiveIndex;
+  final int? initialActiveIndex;
 
   Future<String> _loadAsset(String path) async {
     return await rootBundle.loadString(path);
@@ -47,11 +47,11 @@ class BottomBar extends StatelessWidget {
     return ConvexAppBar(
       style: TabStyle.react,
       items: [
-        TabItem(icon: Icons.list, title: S.of(context).pageRoutinesTitle),
+        TabItem(icon: Icons.list, title: S.of(context)!.pageRoutinesTitle),
         TabItem(icon: Icons.calendar_today, title: "Measure"),
         TabItem(icon: Icons.assessment, title: "Stats"),
-        TabItem(icon: Icons.ac_unit, title: S.of(context).pageExerciseTitle),
-        TabItem(icon: Icons.help, title: S.of(context).about),
+        TabItem(icon: Icons.ac_unit, title: S.of(context)!.pageExerciseTitle),
+        TabItem(icon: Icons.help, title: S.of(context)!.about),
       ],
       initialActiveIndex: this.initialActiveIndex,
       onTap: (int i) {

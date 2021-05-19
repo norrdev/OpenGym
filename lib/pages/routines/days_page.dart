@@ -10,8 +10,8 @@ import 'package:npng/widgets/bottom_bar.dart';
 
 class DaysPage extends StatefulWidget {
   static String id = 'days';
-  final int routinesId;
-  final String pageTitle;
+  final int? routinesId;
+  final String? pageTitle;
 
   DaysPage({this.routinesId, this.pageTitle});
 
@@ -28,8 +28,8 @@ class _DaysPageState extends State<DaysPage> {
     super.initState();
   }
 
-  Future<int> _insert({String name, String description, int ord}) async {
-    return await db.insert('days', {
+  Future<int> _insert({String? name, String? description, int? ord}) async {
+    return await db!.insert('days', {
       'name': name,
       'ord': ord,
       'description': description,
@@ -37,15 +37,15 @@ class _DaysPageState extends State<DaysPage> {
     });
   }
 
-  void _delete({int id}) async {
-    await db.transaction((txn) async {
+  void _delete({int? id}) async {
+    await db!.transaction((txn) async {
       await txn.delete('days', where: 'id = ?', whereArgs: [id]);
       await txn.delete('workouts', where: 'days_id = ?', whereArgs: [id]);
     });
   }
 
-  void _update({int id, String name, String description}) async {
-    await db.transaction((txn) async {
+  void _update({int? id, String? name, String? description}) async {
+    await db!.transaction((txn) async {
       await txn.update(
         'days',
         {'name': name, 'description': description},
@@ -56,7 +56,7 @@ class _DaysPageState extends State<DaysPage> {
   }
 
   void _refresh() async {
-    _days = await db.query('days', orderBy: 'ord');
+    _days = await db!.query('days', orderBy: 'ord');
     setState(() {});
   }
 
@@ -66,7 +66,7 @@ class _DaysPageState extends State<DaysPage> {
     TextEditingController tcDesc = TextEditingController(text: '');
     return MpScaffold(
       appBar: MpAppBar(
-        title: Text(S.of(context).pageDaysTitle),
+        title: Text(S.of(context)!.pageDaysTitle),
         trailing: MpFlatButton(
           padding: EdgeInsets.all(8),
           child: Icon(CupertinoIcons.add),
@@ -108,7 +108,7 @@ class _DaysPageState extends State<DaysPage> {
                       );
                     },
                     trailing: MpLinkButton(
-                      label: S.of(context).edit,
+                      label: S.of(context)!.edit,
                       onPressed: () => editModalPopup(context,
                           id: item['id'],
                           name: item['name'],
