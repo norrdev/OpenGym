@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.2.1 on Thu Apr 1 11:36:59 2021
+-- File generated with SQLiteStudio v3.2.1 on Tue May 18 16:43:34 2021
 --
 -- Text encoding used: UTF-8
 --
@@ -8,7 +8,9 @@ BEGIN TRANSACTION;
 
 -- Table: days
 CREATE TABLE days (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ord INTEGER, name STRING, description STRING, routines_id INT REFERENCES routines (id));
-INSERT INTO days (id, ord, name, description, routines_id) VALUES (1, NULL, 'Chiest', 'Monday', 1);
+INSERT INTO days (id, ord, name, description, routines_id) VALUES (1, NULL, 'Chiest Train', 'Monday', 1);
+INSERT INTO days (id, ord, name, description, routines_id) VALUES (3, NULL, 'Biceps Train', 'Tuesday', 1);
+INSERT INTO days (id, ord, name, description, routines_id) VALUES (4, NULL, 'Back Train', '', 1);
 
 -- Table: equipment
 CREATE TABLE equipment (id INTEGER PRIMARY KEY, name STRING);
@@ -49,12 +51,16 @@ INSERT INTO musсles (id, name) VALUES (14, 'Calves');
 
 -- Table: routines
 CREATE TABLE routines (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name STRING, description STRING);
-INSERT INTO routines (id, name, description) VALUES (1, 'Rubber Band', '3 days a week');
+INSERT INTO routines (id, name, description) VALUES (1, 'Rubber Band', '7 days a week');
 INSERT INTO routines (id, name, description) VALUES (2, 'Bodyweight', '2 days a week');
 INSERT INTO routines (id, name, description) VALUES (3, '5x5', 'Powerlifting program.');
 
 -- Table: workouts
-CREATE TABLE workouts (id INTEGER PRIMARY KEY, ord INTEGER, days_id INTEGER REFERENCES days (id), exerscises_id INTEGER REFERENCES exercises (id));
+CREATE TABLE workouts (id INTEGER PRIMARY KEY, ord INTEGER DEFAULT (0) NOT NULL, days_id INTEGER REFERENCES days (id), exerscises_id INTEGER REFERENCES exercises (id), sets INTEGER DEFAULT (3) NOT NULL, repeats INTEGER DEFAULT (8) NOT NULL, rest INTEGER DEFAULT (90) NOT NULL);
+INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (1, 8, 1, 2, 5, 8, 60);
+INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (2, 10, 1, 1, 4, 12, 90);
+INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (3, 9, 1, 3, 4, 8, 90);
+INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (4, 11, 1, 1, 4, 8, 90);
 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;

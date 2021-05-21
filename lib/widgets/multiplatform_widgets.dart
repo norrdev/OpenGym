@@ -1,34 +1,32 @@
-//import 'package:cupertino_list_tile/cupertino_list_tile.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-//import 'package:cupertino_radio_choice/cupertino_radio_choice.dart';
 import 'package:npng/config.dart';
 
 /// Scaffold.
 class MpScaffold extends StatelessWidget {
-  final Widget appBar;
+  final Widget? appBar;
   final Widget body;
-  final Widget bottomNavigationBar;
+  final Widget? bottomNavigationBar;
 
-  MpScaffold({this.appBar, @required this.body, this.bottomNavigationBar});
+  MpScaffold({this.appBar, required this.body, this.bottomNavigationBar});
 
   @override
   Widget build(BuildContext context) {
     if (isApple) {
       return CupertinoPageScaffold(
-        navigationBar: this.appBar,
+        navigationBar: this.appBar as ObstructingPreferredSizeWidget?,
         child: Column(
           children: [
             Expanded(child: this.body),
-            if (this.bottomNavigationBar != null) this.bottomNavigationBar
+            if (this.bottomNavigationBar != null) this.bottomNavigationBar!
           ],
         ),
       );
     } else {
       return Scaffold(
-        appBar: this.appBar,
+        appBar: this.appBar as PreferredSizeWidget?,
         body: this.body,
         bottomNavigationBar: this.bottomNavigationBar,
       );
@@ -37,14 +35,14 @@ class MpScaffold extends StatelessWidget {
 }
 
 /// Page router.
-PageRoute mpPageRoute({Widget Function(BuildContext) builder}) {
+PageRoute mpPageRoute({Widget Function(BuildContext)? builder}) {
   if (isApple) {
     return CupertinoPageRoute(
-      builder: builder,
+      builder: builder!,
     );
   } else {
     return MaterialPageRoute(
-      builder: builder,
+      builder: builder!,
     );
   }
 }
@@ -52,8 +50,8 @@ PageRoute mpPageRoute({Widget Function(BuildContext) builder}) {
 /// Cross-platform AppBar.
 class MpAppBar extends StatelessWidget
     implements PreferredSizeWidget, ObstructingPreferredSizeWidget {
-  final Widget title;
-  final Widget trailing;
+  final Widget? title;
+  final Widget? trailing;
 
   @override
   final Size preferredSize;
@@ -81,7 +79,7 @@ class MpAppBar extends StatelessWidget
       return AppBar(
         title: title,
         actions: [
-          (trailing != null) ? trailing : SizedBox(),
+          (trailing != null) ? trailing! : SizedBox(),
         ],
       );
     }
@@ -91,23 +89,23 @@ class MpAppBar extends StatelessWidget
 /// Button.
 class MpButton extends StatelessWidget {
   MpButton({this.label, this.onPressed});
-  final String label;
-  final Function onPressed;
+  final String? label;
+  final Function? onPressed;
 
   @override
   Widget build(BuildContext context) {
     if (isApple) {
       return CupertinoButton.filled(
-        child: Text(label),
-        onPressed: onPressed,
+        child: Text(label!),
+        onPressed: onPressed as void Function()?,
       );
     } else {
       return ElevatedButton(
         child: Text(
-          label,
+          label!,
           style: TextStyle(color: Colors.white),
         ),
-        onPressed: onPressed,
+        onPressed: onPressed as void Function()?,
       );
     }
   }
@@ -116,21 +114,21 @@ class MpButton extends StatelessWidget {
 /// Link button.
 class MpLinkButton extends StatelessWidget {
   MpLinkButton({this.label, this.onPressed});
-  final String label;
-  final Function onPressed;
+  final String? label;
+  final Function? onPressed;
 
   @override
   Widget build(BuildContext context) {
     if (isApple) {
       return CupertinoButton(
         padding: EdgeInsetsDirectional.zero,
-        child: Text(label),
-        onPressed: onPressed,
+        child: Text(label!),
+        onPressed: onPressed as void Function()?,
       );
     } else {
       return TextButton(
-        child: Text(label),
-        onPressed: onPressed,
+        child: Text(label!),
+        onPressed: onPressed as void Function()?,
       );
     }
   }
@@ -141,18 +139,18 @@ class RoundIconButton extends StatelessWidget {
   RoundIconButton({
     this.icon,
     this.fillColor,
-    @required this.onPressed,
+    required this.onPressed,
   });
 
-  final IconData icon;
-  final Function onPressed;
-  final Color fillColor;
+  final IconData? icon;
+  final Function? onPressed;
+  final Color? fillColor;
 
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
       child: Icon(icon),
-      onPressed: onPressed,
+      onPressed: onPressed as void Function()?,
       elevation: 0.0,
       constraints: BoxConstraints.tightFor(
         width: 56.0,
@@ -166,10 +164,10 @@ class RoundIconButton extends StatelessWidget {
 
 /// FlatButton.
 class MpFlatButton extends StatelessWidget {
-  final String label;
-  final Function onPressed;
-  final EdgeInsetsGeometry padding;
-  final Widget child;
+  final String? label;
+  final Function? onPressed;
+  final EdgeInsetsGeometry? padding;
+  final Widget? child;
 
   MpFlatButton({
     this.label,
@@ -183,13 +181,13 @@ class MpFlatButton extends StatelessWidget {
     if (isApple) {
       return CupertinoButton(
         padding: padding,
-        onPressed: onPressed,
-        child: child,
+        onPressed: onPressed as void Function()?,
+        child: child!,
       );
     } else {
       return TextButton(
-        onPressed: onPressed,
-        child: child,
+        onPressed: onPressed as void Function()?,
+        child: child!,
       );
     }
   }
@@ -198,12 +196,12 @@ class MpFlatButton extends StatelessWidget {
 /// Text field.
 class MpTextField extends StatelessWidget {
   final TextEditingController controller;
-  final String labelText;
-  final List<TextInputFormatter> inputFormatters;
+  final String? labelText;
+  final List<TextInputFormatter>? inputFormatters;
   final bool readOnly;
 
   MpTextField({
-    @required this.controller,
+    required this.controller,
     this.labelText,
     this.inputFormatters,
     this.readOnly = false,
@@ -215,7 +213,7 @@ class MpTextField extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(labelText),
+          Text(labelText!),
           SizedBox(
             height: 8.0,
           ),
@@ -245,12 +243,12 @@ class MpSwitch extends StatelessWidget {
   final String title;
   final bool value;
   final ValueChanged<bool> onChanged;
-  final Function onTap;
+  final Function? onTap;
 
   MpSwitch(
-      {@required this.title,
-      @required this.value,
-      @required this.onChanged,
+      {required this.title,
+      required this.value,
+      required this.onChanged,
       this.onTap});
 
   @override
@@ -278,7 +276,7 @@ class MpSwitch extends StatelessWidget {
           value: value,
           onChanged: onChanged,
         ),
-        onTap: onTap,
+        onTap: onTap as void Function()?,
       );
     }
   }
@@ -288,7 +286,7 @@ class MpSwitch extends StatelessWidget {
 class MpValidationMessage extends StatelessWidget {
   final String message;
 
-  MpValidationMessage({@required this.message});
+  MpValidationMessage({required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -309,54 +307,101 @@ class MpValidationMessage extends StatelessWidget {
 
 /// GroupSelect(Radio)
 /// class NativeGroupSelect<T> from native_widgets
-class MpGroupSelect<T> extends StatelessWidget {
-  final ValueChanged<T> onValueChanged;
-  final Map<T, Widget> children;
-  final T groupValue;
+// class MpGroupSelect<T> extends StatelessWidget {
+//   final ValueChanged<T?>? onValueChanged;
+//   final Map<T, Widget> children;
+//   final T groupValue;
 
-  MpGroupSelect({
-    Key key,
-    this.onValueChanged,
-    @required this.groupValue,
-    @required this.children,
-  });
+//   MpGroupSelect({
+//     Key? key,
+//     this.onValueChanged,
+//     required this.groupValue,
+//     required this.children,
+//   });
 
-  @override
-  Widget build(BuildContext context) {
-    if (isApple) {
-      return CupertinoSegmentedControl<T>(
-        children: children,
-        onValueChanged: onValueChanged,
-        groupValue: groupValue,
-      );
-    } else {
-      return Column(
-          children: children.entries
-              .map((MapEntry<T, Widget> item) => RadioListTile<T>(
-                    title: item?.value,
-                    value: item?.key,
-                    groupValue: groupValue,
-                    onChanged: onValueChanged,
-                  ))
-              .toList());
-    }
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     if (isApple) {
+//       return CupertinoSegmentedControl(
+//         children: children,
+//         onValueChanged: onValueChanged!,
+//         groupValue: groupValue,
+//       );
+//     } else {
+//       return Column(
+//           children: children.entries
+//               .map((MapEntry<T, Widget> item) => RadioListTile<T>(
+//                     title: item.value,
+//                     value: item.key,
+//                     groupValue: groupValue,
+//                     onChanged: onValueChanged,
+//                   ))
+//               .toList());
+//     }
+//   }
+// }
 
 /// Modal popup window.
-Future<T> mpModalPopup<T>({
-  BuildContext context,
-  Widget child,
+Future<T?> mpModalPopup<T>({
+  BuildContext? context,
+  Widget? child,
 }) {
   if (isApple) {
     return showCupertinoModalPopup(
-      context: context,
-      builder: (BuildContext context) => child,
+      context: context!,
+      builder: (BuildContext context) => child!,
     );
   } else {
     return showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) => child,
+      context: context!,
+      builder: (BuildContext context) => child!,
+    );
+  }
+}
+
+class MpChangeIntField extends StatelessWidget {
+  final int? value;
+  final Function? increaseCallback;
+  final Function? decreaseCallback;
+
+  const MpChangeIntField({
+    Key? key,
+    this.value,
+    this.decreaseCallback,
+    this.increaseCallback,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: RoundIconButton(
+            icon: Icons.arrow_back_ios_rounded,
+            fillColor: (isApple)
+                ? CupertinoTheme.of(context).barBackgroundColor
+                : Theme.of(context).bottomAppBarColor,
+            onPressed: decreaseCallback,
+          ),
+        ),
+        SizedBox(
+          width: 60.0,
+          child: Text(
+            value.toString(),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        Expanded(
+          child: RoundIconButton(
+            icon: Icons.arrow_forward_ios_rounded,
+            fillColor: (isApple)
+                ? CupertinoTheme.of(context).barBackgroundColor
+                : Theme.of(context).bottomAppBarColor,
+            onPressed: increaseCallback,
+          ),
+        ),
+      ],
     );
   }
 }

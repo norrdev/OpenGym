@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.npng">
+    package="pro.filonov.npng">
    <application
         android:label="npng"
         android:icon="@mipmap/ic_launcher">

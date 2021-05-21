@@ -25,18 +25,18 @@ class _RoutinesPageState extends State<RoutinesPage> {
   }
 
   void _refresh() async {
-    _results = await db.query('routines');
+    _results = await db!.query('routines');
     setState(() {});
   }
 
-  void _insert({String name, String description}) async {
-    await db.transaction((txn) async {
+  void _insert({String? name, String? description}) async {
+    await db!.transaction((txn) async {
       await txn.insert('routines', {'name': name, 'description': description});
     });
   }
 
-  void _update({int id, String name, String description}) async {
-    await db.transaction((txn) async {
+  void _update({int? id, String? name, String? description}) async {
+    await db!.transaction((txn) async {
       await txn.update(
         'routines',
         {'name': name, 'description': description},
@@ -46,8 +46,8 @@ class _RoutinesPageState extends State<RoutinesPage> {
     });
   }
 
-  void _delete({int id}) async {
-    await db.transaction((txn) async {
+  void _delete({int? id}) async {
+    await db!.transaction((txn) async {
       await txn.delete('routines', where: 'id = ?', whereArgs: [id]);
     });
   }

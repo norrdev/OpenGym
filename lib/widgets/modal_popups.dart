@@ -5,10 +5,10 @@ import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 
 Future insertModalPopup(BuildContext context,
-    {@required TextEditingController name,
-    @required TextEditingController description,
-    @required Function insert,
-    @required Function refresh}) {
+    {required TextEditingController name,
+    required TextEditingController description,
+    required Function insert,
+    required Function refresh}) {
   final _formKey = GlobalKey<FormState>();
   return mpModalPopup(
     context: context,
@@ -30,7 +30,7 @@ Future insertModalPopup(BuildContext context,
                     controller: name,
                     prefix: Text(S.of(context).name),
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value!.isEmpty) {
                         return S.of(context).enterText;
                       }
                       return null;
@@ -59,7 +59,7 @@ Future insertModalPopup(BuildContext context,
                   ),
                 ),
                 validator: (value) {
-                  if (value.isEmpty) {
+                  if (value!.isEmpty) {
                     return S.of(context).enterText;
                   }
                   return null;
@@ -91,7 +91,7 @@ Future insertModalPopup(BuildContext context,
             MpButton(
               label: S.of(context).save,
               onPressed: () {
-                if (_formKey.currentState.validate()) {
+                if (_formKey.currentState!.validate()) {
                   insert(name: name.text, description: description.text);
                   refresh();
                   //setState(() {});
@@ -107,12 +107,12 @@ Future insertModalPopup(BuildContext context,
 }
 
 Future editModalPopup(BuildContext context,
-    {@required int id,
-    @required String name,
-    @required String description,
-    @required Function update,
-    @required Function refresh,
-    @required Function delete}) {
+    {required int? id,
+    required String? name,
+    required String? description,
+    required Function update,
+    required Function refresh,
+    required Function delete}) {
   TextEditingController _tcName = TextEditingController(text: name);
   TextEditingController _tcDesc = TextEditingController(text: description);
   final _formKey = GlobalKey<FormState>();
@@ -138,7 +138,7 @@ Future editModalPopup(BuildContext context,
                     controller: _tcName,
                     prefix: Text(S.of(context).name),
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value!.isEmpty) {
                         return S.of(context).enterText;
                       }
                       return null;
@@ -167,7 +167,7 @@ Future editModalPopup(BuildContext context,
                   ),
                 ),
                 validator: (value) {
-                  if (value.isEmpty) {
+                  if (value!.isEmpty) {
                     return S.of(context).enterText;
                   }
                   return null;
@@ -199,7 +199,7 @@ Future editModalPopup(BuildContext context,
                 MpButton(
                   label: S.of(context).save,
                   onPressed: () {
-                    if (_formKey.currentState.validate()) {
+                    if (_formKey.currentState!.validate()) {
                       update(
                           id: id,
                           name: _tcName.text,
@@ -216,7 +216,6 @@ Future editModalPopup(BuildContext context,
                   onPressed: () {
                     delete(id: id);
                     refresh();
-                    //setState(() {});
                     Navigator.pop(context);
                   },
                 ),

@@ -7,9 +7,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatelessWidget {
   static String id = '/about';
-  final String about;
-  final String history;
-  final String version;
+  final String? about;
+  final String? history;
+  final String? version;
 
   AboutPage({this.about, this.history, this.version});
 
@@ -29,12 +29,12 @@ class AboutPage extends StatelessWidget {
           )),
       body: SafeArea(
         child: Markdown(
-          data: about + '\n' + history,
+          data: about! + '\n' + history!,
           controller: controller,
           selectable: false,
           styleSheetTheme: MarkdownStyleSheetBaseTheme.platform,
           //onTapLink: (href) => launch(href),
-          onTapLink: (text, href, title) => launch(href),
+          onTapLink: (text, href, title) => launch(href!),
         ),
       ),
       bottomNavigationBar: BottomBar(initialActiveIndex: 4),

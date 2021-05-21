@@ -1,4 +1,4 @@
-// import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/pages/timer/train_page.dart';
@@ -10,12 +10,13 @@ class TimerPage extends StatelessWidget {
   static const String id = '/timer';
 
   void playSound() {
-    // final player = AudioCache();
-    // try {
-    //   player.play('sounds/444672__tissman__cool-tone.wav');
-    // } catch (e) {
-    //   print(e);
-    // }
+    final player = AudioCache();
+    try {
+      player.play('sounds/444672__tissman__cool-tone.wav',
+          mode: PlayerMode.LOW_LATENCY);
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override

@@ -7,8 +7,8 @@ import 'package:npng/widgets/bottom_bar.dart';
 
 class ExercisePage extends StatefulWidget {
   static String id = 'exersise';
-  final int musclesId;
-  final String pageTitle;
+  final int? musclesId;
+  final String? pageTitle;
 
   ExercisePage({this.musclesId, this.pageTitle});
 
@@ -31,16 +31,16 @@ class _ExercisePageState extends State<ExercisePage> {
 // JOIN exercises ON exercises_id = exercises.id
 // JOIN equipment ON equipment_id = equipment.id
 // WHERE muscles_id = ${widget.musclesId}''');
-    _results = await db.rawQuery('''
+    _results = await db!.rawQuery('''
 SELECT exercises.id AS id, exercises.name AS name, description FROM load  
 JOIN exercises ON exercises_id = exercises.id 
 WHERE muscles_id = ${widget.musclesId}''');
     setState(() {});
   }
 
-  void _insert({String name, String description}) async {
+  void _insert({String? name, String? description}) async {
     int id = 0;
-    await db.transaction((txn) async {
+    await db!.transaction((txn) async {
       id = await txn
           .insert('exercises', {'name': name, 'description': description});
       await txn
@@ -56,7 +56,7 @@ WHERE muscles_id = ${widget.musclesId}''');
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.pageTitle),
+        title: Text(widget.pageTitle!),
         leading: MpFlatButton(
           child: Icon(CupertinoIcons.add),
           onPressed: () {

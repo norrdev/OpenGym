@@ -1,4 +1,6 @@
+// ignore: unused_import
 import 'dart:io' show Platform;
+// ignore: unused_import
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,7 +8,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:npng/pages/exercises/exercise.dart';
 import 'package:npng/pages/exercises/exercises_by_muscle_page.dart';
 import 'package:npng/pages/exercises/exercises_page.dart';
+import 'package:npng/pages/routines/add_excersise.dart';
 import 'package:npng/pages/routines/days_page.dart';
+import 'package:npng/pages/routines/routines_by_day.dart';
 import 'package:npng/pages/routines/routines_page.dart';
 import 'package:npng/pages/timer/set_page.dart';
 import 'package:npng/pages/about_page.dart';
@@ -27,6 +31,7 @@ final ThemeData kMaterialLight = ThemeData(
 );
 
 /// Material dark theme
+//TODO: Make blue primary color
 final ThemeData kMaterialDark = ThemeData(
   brightness: Brightness.dark,
   primarySwatch: Colors.blue,
@@ -35,7 +40,7 @@ final ThemeData kMaterialDark = ThemeData(
 
 /// Cupertino light & dark theme
 //final Brightness brightness = MediaQuery.platformBrightnessOf(context);
-final Brightness brightness = WidgetsBinding.instance.window.platformBrightness;
+final Brightness brightness = WidgetsBinding.instance!.window.platformBrightness;
 //var brightness = SchedulerBinding.instance.window.platformBrightness;
 final bool darkModeOn = brightness == Brightness.dark;
 
@@ -57,4 +62,6 @@ final Map<String, Widget Function(BuildContext)> kAppRoutes = {
   ExercisesByMusclePage.id: (context) => ExercisesByMusclePage(),
   ExercisePage.id: (context) => ExercisePage(),
   DaysPage.id: (context) => DaysPage(),
+  // RoutinesByDayPage.id: (context) => RoutinesByDayPage(),
+  // AddExcersisePage.id: (context) => AddExcersisePage(),
 };

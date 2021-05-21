@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
 import 'package:npng/db.dart';
+import 'package:npng/pages/routines/routines_by_day.dart';
 import 'package:npng/widgets/modal_popups.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
@@ -9,8 +10,8 @@ import 'package:npng/widgets/bottom_bar.dart';
 
 class DaysPage extends StatefulWidget {
   static String id = 'days';
-  final int routinesId;
-  final String pageTitle;
+  final int? routinesId;
+  final String? pageTitle;
 
   DaysPage({this.routinesId, this.pageTitle});
 
@@ -19,7 +20,7 @@ class DaysPage extends StatefulWidget {
 }
 
 class _DaysPageState extends State<DaysPage> {
-  List<Map<String, dynamic>> _results = [];
+  List<Map<String, dynamic>> _days = [];
 
   @override
   void initState() {
@@ -27,8 +28,8 @@ class _DaysPageState extends State<DaysPage> {
     super.initState();
   }
 
-  Future<int> _insert({String name, String description, int ord}) async {
-    return await db.insert('days', {
+  Future<int> _insert({String? name, String? description, int? ord}) async {
+    return await db!.insert('days', {
       'name': name,
       'ord': ord,
       'description': description,
@@ -36,15 +37,15 @@ class _DaysPageState extends State<DaysPage> {
     });
   }
 
-  void _delete({int id}) async {
-    await db.transaction((txn) async {
+  void _delete({int? id}) async {
+    await db!.transaction((txn) async {
       await txn.delete('days', where: 'id = ?', whereArgs: [id]);
       await txn.delete('workouts', where: 'days_id = ?', whereArgs: [id]);
     });
   }
 
-  void _update({int id, String name, String description}) async {
-    await db.transaction((txn) async {
+  void _update({int? id, String? name, String? description}) async {
+    await db!.transaction((txn) async {
       await txn.update(
         'days',
         {'name': name, 'description': description},
@@ -55,7 +56,7 @@ class _DaysPageState extends State<DaysPage> {
   }
 
   void _refresh() async {
-    _results = await db.query('days', orderBy: 'ord');
+    _days = await db!.query('days', orderBy: 'ord');
     setState(() {});
   }
 
@@ -83,9 +84,9 @@ class _DaysPageState extends State<DaysPage> {
         child: SafeArea(
           //TODO: SortedList from Flutter 2.0
           child: ListView.builder(
-            itemCount: _results.length,
+            itemCount: _days.length,
             itemBuilder: (context, index) {
-              final item = _results[index];
+              final item = _days[index];
               return Material(
                 type: MaterialType.transparency,
                 child: Theme(
@@ -93,6 +94,19 @@ class _DaysPageState extends State<DaysPage> {
                   child: ListTile(
                     title: Text(item['name']),
                     subtitle: Text(item['description']),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        mpPageRoute(
+                          builder: (context) {
+                            return RoutinesByDayPage(
+                              dayId: item['id'],
+                              pageTitle: item['name'],
+                            );
+                          },
+                        ),
+                      );
+                    },
                     trailing: MpLinkButton(
                       label: S.of(context).edit,
                       onPressed: () => editModalPopup(context,
@@ -110,7 +124,7 @@ class _DaysPageState extends State<DaysPage> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomBar(initialActiveIndex: 0),
+      //bottomNavigationBar: BottomBar(initialActiveIndex: 0),
     );
   }
 }

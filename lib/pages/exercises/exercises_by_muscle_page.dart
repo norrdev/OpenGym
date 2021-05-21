@@ -9,8 +9,8 @@ import 'package:npng/widgets/modal_popups.dart';
 
 class ExercisesByMusclePage extends StatefulWidget {
   static String id = 'exersises_by_muscle';
-  final int musclesId;
-  final String pageTitle;
+  final int? musclesId;
+  final String? pageTitle;
 
   ExercisesByMusclePage({this.musclesId, this.pageTitle});
 
@@ -34,16 +34,16 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
     // JOIN equipment ON equipment_id = equipment.id
     // WHERE muscles_id = ${widget.musclesId}''');
 
-    _results = await db.rawQuery('''
+    _results = await db!.rawQuery('''
       SELECT exercises.id AS id, exercises.name AS name, description, equipment_id FROM load  
       JOIN exercises ON exercises_id = exercises.id 
       WHERE muscles_id = ${widget.musclesId}''');
     setState(() {});
   }
 
-  void _insert({String name, String description}) async {
+  void _insert({String? name, String? description}) async {
     int id = 0;
-    await db.transaction((txn) async {
+    await db!.transaction((txn) async {
       id = await txn
           .insert('exercises', {'name': name, 'description': description});
       await txn
@@ -51,8 +51,8 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
     });
   }
 
-  void _update({int id, String name, String description}) async {
-    await db.transaction((txn) async {
+  void _update({int? id, String? name, String? description}) async {
+    await db!.transaction((txn) async {
       await txn.update(
         'exercises',
         {'name': name, 'description': description},
@@ -62,8 +62,8 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
     });
   }
 
-  void _delete({int id}) async {
-    await db.transaction((txn) async {
+  void _delete({int? id}) async {
+    await db!.transaction((txn) async {
       await txn.delete('exercises', where: 'id = ?', whereArgs: [id]);
       await txn.delete('load', where: 'exercises_id = ?', whereArgs: [id]);
     });
@@ -76,7 +76,7 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
 
     return MpScaffold(
       appBar: MpAppBar(
-        title: Text(widget.pageTitle),
+        title: Text(widget.pageTitle!),
         trailing: MpFlatButton(
           padding: EdgeInsets.all(8),
           child: Icon(CupertinoIcons.add),

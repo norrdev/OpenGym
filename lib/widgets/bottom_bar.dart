@@ -13,7 +13,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 class BottomBar extends StatelessWidget {
   BottomBar({this.initialActiveIndex});
 
-  final int initialActiveIndex;
+  final int? initialActiveIndex;
 
   Future<String> _loadAsset(String path) async {
     return await rootBundle.loadString(path);
