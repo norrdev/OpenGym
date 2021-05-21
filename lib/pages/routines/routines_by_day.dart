@@ -124,10 +124,55 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                         subtitle: Text(item['description'] ?? ''),
                         trailing: MpLinkButton(
                           label: 'Delete',
-                          onPressed: () => deleteModalPopup(context,
-                              id: item['id'],
-                              delete: () => _deleteRow(id: item['id']),
-                              refresh: _refresh),
+                          onPressed: () {
+                            if (!isApple)
+                              return showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Delete something'),
+                                  content: const Text('Are you shure?'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, 'Cancel'),
+                                      child: const Text('Cancel'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        _deleteRow(id: item['id']);
+                                        _refresh();
+                                        Navigator.pop(context, 'OK');
+                                      },
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            else
+                              return showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) =>
+                                    CupertinoAlertDialog(
+                                  title: const Text('Delete something'),
+                                  content: const Text('Are you shure?'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, 'Cancel'),
+                                      child: Text('Cancel'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        _deleteRow(id: item['id']);
+                                        _refresh();
+                                        Navigator.pop(context, 'OK');
+                                      },
+                                      child: Text('OK'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                          },
                         ),
                       ),
                       Row(

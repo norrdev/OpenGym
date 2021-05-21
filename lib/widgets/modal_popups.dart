@@ -216,7 +216,6 @@ Future editModalPopup(BuildContext context,
                   onPressed: () {
                     delete(id: id);
                     refresh();
-                    //setState(() {});
                     Navigator.pop(context);
                   },
                 ),
@@ -224,38 +223,6 @@ Future editModalPopup(BuildContext context,
             ),
           ],
         ),
-      ),
-    ),
-  );
-}
-
-Future deleteModalPopup(BuildContext context,
-    {required int? id, required Function delete, required Function refresh}) {
-  return mpModalPopup(
-    context: context,
-    child: Container(
-      color: (isApple)
-          ? CupertinoTheme.of(context).barBackgroundColor
-          : Theme.of(context).appBarTheme.color,
-      padding: (isApple) ? EdgeInsets.only(top: 16.0) : EdgeInsets.all(16.0),
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 4,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              MpButton(
-                label: S.of(context).delete,
-                onPressed: () {
-                  delete(id: id);
-                  refresh();
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          ),
-        ],
       ),
     ),
   );
