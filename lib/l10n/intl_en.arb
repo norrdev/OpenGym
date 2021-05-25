@@ -25,5 +25,7 @@
     "exName":"Exercise name",
     "exDesc":"Exercise description",
 
-    "pageAddEx":"Add exercise"
+    "pageAddEx":"Add exercise",
+
+    "pageWorkout":"Workout"
 }

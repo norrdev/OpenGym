@@ -269,6 +269,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Workout`
+  String get pageWorkout {
+    return Intl.message(
+      'Workout',
+      name: 'pageWorkout',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

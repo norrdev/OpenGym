@@ -7,6 +7,7 @@ import 'package:npng/pages/about_page.dart';
 import 'package:npng/pages/exercises/exercises_page.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/pages/routines/routines_page.dart';
+import 'package:npng/pages/timer/train_page.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -47,6 +48,7 @@ class BottomBar extends StatelessWidget {
     return ConvexAppBar(
       style: TabStyle.react,
       items: [
+        TabItem(icon: Icons.play_arrow, title: S.of(context).pageWorkout),
         TabItem(icon: Icons.list, title: S.of(context).pageRoutinesTitle),
         TabItem(icon: Icons.calendar_today, title: "Measure"),
         TabItem(icon: Icons.assessment, title: "Stats"),
@@ -57,6 +59,9 @@ class BottomBar extends StatelessWidget {
       onTap: (int i) {
         if (i != this.initialActiveIndex) {
           switch (i) {
+            case 0:
+              Navigator.pushNamed(context, TrainPage.id);
+              break;
             case 0:
               Navigator.pushNamedAndRemoveUntil(
                   context, RoutinesPage.id, (route) => false);

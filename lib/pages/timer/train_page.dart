@@ -20,7 +20,7 @@ class TrainPage extends StatelessWidget {
         text: '${Provider.of<SetRestProvider>(context).rest}');
 
     return Scaffold(
-      appBar: AppBar(
+      appBar: MpAppBar(
         title: Text(S.of(context).title),
       ),
       body: SafeArea(
@@ -55,8 +55,8 @@ class TrainPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                child: Text(S.of(context).start),
+              child: MpButton(
+                label: S.of(context).start,
                 onPressed: () {
                   int sts = 5;
                   int rst = 90;
