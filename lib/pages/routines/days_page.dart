@@ -6,7 +6,6 @@ import 'package:npng/pages/routines/routines_by_day.dart';
 import 'package:npng/widgets/modal_popups.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/widgets/bottom_bar.dart';
 
 class DaysPage extends StatefulWidget {
   static String id = 'days';
@@ -21,6 +20,7 @@ class DaysPage extends StatefulWidget {
 
 class _DaysPageState extends State<DaysPage> {
   List<Map<String, dynamic>> _days = [];
+  List<Map<String, dynamic>> _mutableDays = [];
 
   @override
   void initState() {
@@ -57,7 +57,32 @@ class _DaysPageState extends State<DaysPage> {
 
   void _refresh() async {
     _days = await db!.query('days', orderBy: 'ord');
+    _mutableDays.clear();
+    _mutableDays.addAll(_days);
     setState(() {});
+  }
+
+  void _updateOrder({int? id, int? ord}) async {
+    await db!.transaction((txn) async {
+      for (int i = 0; i <= _mutableDays.length - 1; i++) {
+        await txn.update(
+          'days',
+          {'ord': i},
+          where: 'id = ?',
+          whereArgs: [_mutableDays[i]['id']],
+        );
+      }
+    });
+  }
+
+  void _onReorder(int oldIndex, int newIndex) {
+    setState(() {
+      if (newIndex > oldIndex) newIndex -= 1;
+      final Map<String, dynamic> item = _mutableDays.removeAt(oldIndex);
+      _mutableDays.insert(newIndex, item);
+      _updateOrder(id: item['id'], ord: newIndex);
+      _refresh();
+    });
   }
 
   @override
@@ -83,14 +108,15 @@ class _DaysPageState extends State<DaysPage> {
         constraints: BoxConstraints.expand(),
         child: SafeArea(
           //TODO: SortedList from Flutter 2.0
-          child: ListView.builder(
-            itemCount: _days.length,
-            itemBuilder: (context, index) {
-              final item = _days[index];
-              return Material(
-                type: MaterialType.transparency,
-                child: Theme(
-                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
+          child: Theme(
+            data: (darkModeOn) ? kMaterialDark : kMaterialLight,
+            child: ReorderableListView.builder(
+              onReorder: _onReorder,
+              itemCount: _mutableDays.length,
+              itemBuilder: (context, index) {
+                final item = _mutableDays[index];
+                return Card(
+                  key: ValueKey(item),
                   child: ListTile(
                     title: Text(item['name']),
                     subtitle: Text(item['description']),
@@ -118,9 +144,9 @@ class _DaysPageState extends State<DaysPage> {
                           delete: _delete),
                     ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),

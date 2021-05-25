@@ -125,7 +125,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                         trailing: MpLinkButton(
                           label: 'Delete',
                           onPressed: () {
-                            if (!isApple)
+                            if (!isApple) {
                               return showDialog<String>(
                                 context: context,
                                 builder: (BuildContext context) => AlertDialog(
@@ -148,7 +148,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                                   ],
                                 ),
                               );
-                            else
+                            } else {
                               return showDialog<String>(
                                 context: context,
                                 builder: (BuildContext context) =>
@@ -172,6 +172,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                                   ],
                                 ),
                               );
+                            }
                           },
                         ),
                       ),
