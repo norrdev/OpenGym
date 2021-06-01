@@ -77,13 +77,13 @@ class BottomBar extends StatelessWidget {
       },
       color: (isApple)
           ? CupertinoTheme.of(context).primaryColor
-          : Theme.of(context).primaryColor,
+          : Theme.of(context).appBarTheme.color,
       activeColor: (isApple)
           ? CupertinoTheme.of(context).primaryColor
-          : Theme.of(context).primaryColor,
+          : Theme.of(context).bottomAppBarColor,
       backgroundColor: (isApple)
           ? CupertinoTheme.of(context).barBackgroundColor
-          : Theme.of(context).backgroundColor,
+          : Theme.of(context).accentColor,
     );
   }
 }

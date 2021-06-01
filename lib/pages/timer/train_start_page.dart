@@ -14,6 +14,7 @@ class TrainStartPage extends StatelessWidget {
       ),
       body: Container(
         constraints: BoxConstraints.expand(),
+        child: Text('Calendar here'),
       ),
       bottomNavigationBar: BottomBar(initialActiveIndex: 0),
     );

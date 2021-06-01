@@ -117,96 +117,92 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                 final item = _resultsMutable[index];
                 return Card(
                   key: ValueKey(item),
-                  child: Column(
+                  child: ExpansionTile(
+                    tilePadding: EdgeInsets.only(right: 30.0, left: 16.0),
+                    title: Text(item['name']),
+                    subtitle: Text(item['description'] ?? ''),
                     children: [
-                      ExpansionTile(
-                        title: Text(item['name']),
-                        subtitle: Text(item['description'] ?? ''),
-                        trailing: IconButton(
-                            onPressed: () {
-                              if (!isApple) {
-                                showDialog<String>(
-                                  context: context,
-                                  builder: (BuildContext context) =>
-                                      AlertDialog(
-                                    title: const Text('Delete something'),
-                                    content: const Text('Are you shure?'),
-                                    actions: <Widget>[
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(context, 'Cancel'),
-                                        child: const Text('Cancel'),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {
-                                          _deleteRow(id: item['id']);
-                                          _refresh();
-                                          Navigator.pop(context, 'OK');
-                                        },
-                                        child: const Text('OK'),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              } else {
-                                showDialog<String>(
-                                  context: context,
-                                  builder: (BuildContext context) =>
-                                      CupertinoAlertDialog(
-                                    title: const Text('Delete something'),
-                                    content: const Text('Are you shure?'),
-                                    actions: <Widget>[
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(context, 'Cancel'),
-                                        child: Text('Cancel'),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {
-                                          _deleteRow(id: item['id']);
-                                          _refresh();
-                                          Navigator.pop(context, 'OK');
-                                        },
-                                        child: Text('OK'),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              }
-                            },
-                            icon: Icon(Icons.delete)),
+                      Column(
                         children: [
-                          Column(
-                            children: [
-                              Text(S.of(context).sets),
-                              MpChangeIntField(
-                                  value: item['sets'],
-                                  decreaseCallback: () => _decreaseSets(index),
-                                  increaseCallback: () => _increaseSets(index)),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(S.of(context).repeats),
-                              MpChangeIntField(
-                                value: item['repeats'],
-                                decreaseCallback: () => _decreaseRepeats(index),
-                                increaseCallback: () => _increseRepeats(index),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(S.of(context).rest),
-                              MpChangeIntField(
-                                value: item['rest'],
-                                decreaseCallback: () => _decreaseRest(index),
-                                increaseCallback: () => _increaseRest(index),
-                              ),
-                            ],
+                          Text(S.of(context).sets),
+                          MpChangeIntField(
+                              value: item['sets'],
+                              decreaseCallback: () => _decreaseSets(index),
+                              increaseCallback: () => _increaseSets(index)),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text(S.of(context).repeats),
+                          MpChangeIntField(
+                            value: item['repeats'],
+                            decreaseCallback: () => _decreaseRepeats(index),
+                            increaseCallback: () => _increseRepeats(index),
                           ),
                         ],
                       ),
+                      Column(
+                        children: [
+                          Text(S.of(context).rest),
+                          MpChangeIntField(
+                            value: item['rest'],
+                            decreaseCallback: () => _decreaseRest(index),
+                            increaseCallback: () => _increaseRest(index),
+                          ),
+                        ],
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            if (!isApple) {
+                              showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Delete something'),
+                                  content: const Text('Are you shure?'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, 'Cancel'),
+                                      child: const Text('Cancel'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        _deleteRow(id: item['id']);
+                                        _refresh();
+                                        Navigator.pop(context, 'OK');
+                                      },
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            } else {
+                              showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) =>
+                                    CupertinoAlertDialog(
+                                  title: const Text('Delete something'),
+                                  content: const Text('Are you shure?'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, 'Cancel'),
+                                      child: Text('Cancel'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        _deleteRow(id: item['id']);
+                                        _refresh();
+                                        Navigator.pop(context, 'OK');
+                                      },
+                                      child: Text('OK'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
+                          },
+                          icon: Icon(Icons.delete)),
                     ],
                   ),
                 );

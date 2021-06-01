@@ -107,7 +107,6 @@ class _DaysPageState extends State<DaysPage> {
       body: Container(
         constraints: BoxConstraints.expand(),
         child: SafeArea(
-          //TODO: SortedList from Flutter 2.0
           child: Theme(
             data: (darkModeOn) ? kMaterialDark : kMaterialLight,
             child: ReorderableListView.builder(
@@ -115,7 +114,8 @@ class _DaysPageState extends State<DaysPage> {
               itemCount: _mutableDays.length,
               itemBuilder: (context, index) {
                 final item = _mutableDays[index];
-                return Card(
+                return Material(
+                  type: MaterialType.transparency,
                   key: ValueKey(item),
                   child: ListTile(
                     title: Text(item['name']),
