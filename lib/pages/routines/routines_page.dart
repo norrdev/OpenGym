@@ -9,7 +9,7 @@ import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 
 class RoutinesPage extends StatefulWidget {
-  static String id = '/';
+  static String id = '/routines';
 
   @override
   _RoutinesPageState createState() => _RoutinesPageState();
@@ -114,7 +114,7 @@ class _RoutinesPageState extends State<RoutinesPage> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomBar(initialActiveIndex: 0),
+      bottomNavigationBar: BottomBar(initialActiveIndex: 1),
     );
   }
 }

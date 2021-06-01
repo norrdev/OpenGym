@@ -67,7 +67,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomBar(initialActiveIndex: 3),
+      bottomNavigationBar: BottomBar(initialActiveIndex: 2),
     );
   }
 }

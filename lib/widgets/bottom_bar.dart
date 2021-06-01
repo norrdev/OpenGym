@@ -7,7 +7,7 @@ import 'package:npng/pages/about_page.dart';
 import 'package:npng/pages/exercises/exercises_page.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/pages/routines/routines_page.dart';
-import 'package:npng/pages/timer/train_page.dart';
+import 'package:npng/pages/timer/train_start_page.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -50,8 +50,6 @@ class BottomBar extends StatelessWidget {
       items: [
         TabItem(icon: Icons.play_arrow, title: S.of(context).pageWorkout),
         TabItem(icon: Icons.list, title: S.of(context).pageRoutinesTitle),
-        TabItem(icon: Icons.calendar_today, title: "Measure"),
-        TabItem(icon: Icons.assessment, title: "Stats"),
         TabItem(icon: Icons.ac_unit, title: S.of(context).pageExerciseTitle),
         TabItem(icon: Icons.help, title: S.of(context).about),
       ],
@@ -60,20 +58,17 @@ class BottomBar extends StatelessWidget {
         if (i != this.initialActiveIndex) {
           switch (i) {
             case 0:
-              Navigator.pushNamed(context, TrainPage.id);
+              Navigator.pushNamed(context, TrainStartPage.id);
               break;
-            case 0:
+            case 1:
               Navigator.pushNamedAndRemoveUntil(
                   context, RoutinesPage.id, (route) => false);
               break;
-            case 1:
             case 2:
-            case 3:
-              //Navigator.pushNamed(context, ExercisesPage.id);
               Navigator.pushNamedAndRemoveUntil(
                   context, ExercisesPage.id, (route) => false);
               break;
-            case 4:
+            case 3:
               _getAboutPage(context);
               break;
             default:

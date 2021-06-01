@@ -4,12 +4,16 @@ import 'package:npng/config.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 
-Future insertModalPopup(BuildContext context,
-    {required TextEditingController name,
-    required TextEditingController description,
-    required Function insert,
-    required Function refresh}) {
+Future insertModalPopup(
+  BuildContext context, {
+  required TextEditingController name,
+  required TextEditingController description,
+  required Function insert,
+  required Function refresh,
+  bool? def,
+}) {
   final _formKey = GlobalKey<FormState>();
+  bool def = false;
   return mpModalPopup(
     context: context,
     child: Container(
@@ -45,6 +49,10 @@ Future insertModalPopup(BuildContext context,
                       // }
                       return null;
                     },
+                  ),
+                  CupertinoFormRow(
+                    child: MpSwitch(
+                        title: 'Default', value: def, onChanged: (bool a) {}),
                   ),
                 ],
               ),
@@ -85,6 +93,8 @@ Future insertModalPopup(BuildContext context,
                   return null;
                 },
               ),
+            if (!isApple)
+              MpSwitch(title: 'Default', value: def, onChanged: (bool a) {}),
             SizedBox(
               height: 16.0,
             ),
