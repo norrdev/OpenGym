@@ -89,6 +89,9 @@
 			</column>
 			<column name="name" type="string" jt="12" />
 			<column name="description" type="string" jt="12" />
+			<column name="current" type="boolean" jt="-7" >
+				<defo><![CDATA[FALSE]]></defo>
+			</column>
 			<index name="pk_routines" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
@@ -97,7 +100,7 @@
 			<column name="id" type="integer" jt="4" mandatory="y" />
 			<column name="birthday" type="date" jt="91" />
 			<column name="sex" prior="gender" type="integer" jt="4" />
-			<index name="Pk_user_id" unique="PRIMARY_KEY" >
+			<index name="pk_user" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
 		</table>
@@ -107,7 +110,7 @@
 				<defo><![CDATA[0]]></defo>
 			</column>
 			<column name="days_id" type="integer" jt="4" />
-			<column name="exerscises_id" type="integer" jt="4" />
+			<column name="exercises_id" prior="exerscises_id" type="integer" jt="4" />
 			<column name="sets" type="integer" jt="4" mandatory="y" >
 				<defo><![CDATA[3]]></defo>
 			</column>
@@ -124,22 +127,22 @@
 				<fk_column name="days_id" pk="id" />
 			</fk>
 			<fk name="Fk_workouts" to_schema="Default" to_table="exercises" >
-				<fk_column name="exerscises_id" pk="id" />
+				<fk_column name="exercises_id" pk="id" />
 			</fk>
 		</table>
 	</schema>
 	<connector name="Sqlite" database="Sqlite" driver_class="org.sqlite.JDBC" driver_jar="sqlite-jdbc-3.34.0.jar" driver_desc="Standard" host="localhost" port="7210" instance="/Users/filonov/Library/Containers/pro.filonov.npng/Data/Documents/npng.db" />
 	<layout name="Layout with Tools" id="Layout_c6d" show_column_type="y" show_relation="columns" >
-		<entity schema="Default" name="days" color="BED3F4" x="832" y="64" />
+		<entity schema="Default" name="days" color="BED3F4" x="832" y="48" />
 		<entity schema="Default" name="equipment" color="BED3F4" x="48" y="256" />
 		<entity schema="Default" name="exercises" color="BED3F4" x="256" y="48" />
 		<entity schema="Default" name="load" color="BED3F4" x="256" y="256" />
-		<entity schema="Default" name="log_days" color="BED3F4" x="768" y="224" />
-		<entity schema="Default" name="log_exercises" color="BED3F4" x="1248" y="400" />
-		<entity schema="Default" name="musсles" color="BED3F4" x="496" y="432" />
-		<entity schema="Default" name="routines" color="BED3F4" x="1088" y="64" />
-		<entity schema="Default" name="user" color="C1D8EE" x="800" y="448" />
-		<entity schema="Default" name="workouts" color="BED3F4" x="544" y="64" />
+		<entity schema="Default" name="log_days" color="BED3F4" x="640" y="272" />
+		<entity schema="Default" name="log_exercises" color="BED3F4" x="1408" y="64" />
+		<entity schema="Default" name="musсles" color="BED3F4" x="240" y="432" />
+		<entity schema="Default" name="routines" color="BED3F4" x="1088" y="48" />
+		<entity schema="Default" name="user" color="C1D8EE" x="688" y="464" />
+		<entity schema="Default" name="workouts" color="BED3F4" x="544" y="48" />
 		<script name="Sample SQL Editor" id="Editor_1305" language="SQL" >
 			<string><![CDATA[SELECT id, name, description, equipment_id
 FROM
@@ -148,7 +151,7 @@ FROM
 		<browser id="Browse_1862" name="Sample Relational Data Explorer" confirm_updates="y" >
 			<browse_table schema="Default" entity="exercises" x="20" y="20" width="400" height="300" >
 				<browse_table schema="Default" entity="load" fk="Fk_load" x="440" y="20" width="500" height="350" >
-					<browse_table schema="Default" entity="musсles" fk="Fk_load" x="960" y="20" width="500" height="350" record_view="y" />
+					<browse_table schema="Default" entity="exercises" fk="Fk_load" x="960" y="20" width="500" height="350" record_view="y" />
 				</browse_table>
 			</browse_table>
 		</browser>
@@ -164,7 +167,7 @@ FROM
 				<query_table schema="Default" name="load" alias="l" x="240" y="48" fk="Fk_load" type="Inner Join" >
 					<column name="exercises_id" />
 					<column name="muscles_id" />
-					<query_table schema="Default" name="musсles" alias="m" x="416" y="48" fk="Fk_load" type="Inner Join" >
+					<query_table schema="Default" name="exercises" alias="m" x="416" y="48" fk="Fk_load" type="Inner Join" >
 						<column name="id" />
 						<column name="name" />
 					</query_table>
@@ -179,8 +182,8 @@ FROM
 				<tableview name="sample" template="Table" css="table table-striped table-bordered table-sm table-hover" pos="0,1,4,1,f,f" layout="{{-2,-2,-2,-2},{-2,-2}}" scroll="n" html="n" header_rows="1" >
 					<form_script type="DataSource" language="SQL" >
 						<var name="id" type="4" />
-						<var name="name" />
-						<var name="description" />
+						<var name="name" type="-1" />
+						<var name="description" type="-1" />
 						<var name="equipment_id" type="4" />
 						<script ><![CDATA[SELECT * FROM exercises]]></script>
 					</form_script>

@@ -10,10 +10,8 @@ Future insertModalPopup(
   required TextEditingController description,
   required Function insert,
   required Function refresh,
-  bool? def,
 }) {
   final _formKey = GlobalKey<FormState>();
-  bool def = false;
   return mpModalPopup(
     context: context,
     child: Container(
@@ -49,10 +47,6 @@ Future insertModalPopup(
                       // }
                       return null;
                     },
-                  ),
-                  CupertinoFormRow(
-                    child: MpSwitch(
-                        title: 'Default', value: def, onChanged: (bool a) {}),
                   ),
                 ],
               ),
@@ -93,8 +87,6 @@ Future insertModalPopup(
                   return null;
                 },
               ),
-            if (!isApple)
-              MpSwitch(title: 'Default', value: def, onChanged: (bool a) {}),
             SizedBox(
               height: 16.0,
             ),
@@ -116,13 +108,15 @@ Future insertModalPopup(
   );
 }
 
-Future editModalPopup(BuildContext context,
-    {required int? id,
-    required String? name,
-    required String? description,
-    required Function update,
-    required Function refresh,
-    required Function delete}) {
+Future editModalPopup(
+  BuildContext context, {
+  required int? id,
+  required String? name,
+  required String? description,
+  required Function update,
+  required Function refresh,
+  required Function delete,
+}) {
   TextEditingController _tcName = TextEditingController(text: name);
   TextEditingController _tcDesc = TextEditingController(text: description);
   final _formKey = GlobalKey<FormState>();
