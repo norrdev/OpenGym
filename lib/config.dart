@@ -15,8 +15,8 @@ import 'package:npng/pages/timer/train_start_page.dart';
 
 /// Place for themes, configuration constants, etc.
 
-//final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
-final bool isApple = false;
+final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
+//final bool isApple = false;
 
 /// Material light theme
 final ThemeData kMaterialLight = ThemeData(
@@ -30,6 +30,7 @@ final ThemeData kMaterialLight = ThemeData(
 //TODO: Make blue primary color
 final ThemeData kMaterialDark = ThemeData(
   brightness: Brightness.dark,
+  accentColor: Colors.blue,
   primarySwatch: Colors.blue,
   buttonColor: Colors.blue,
 );

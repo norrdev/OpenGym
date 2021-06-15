@@ -7,6 +7,7 @@ import 'package:npng/widgets/modal_popups.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/bottom_bar.dart';
+import 'package:path/path.dart';
 
 class RoutinesPage extends StatefulWidget {
   static String id = '/routines';
@@ -17,6 +18,8 @@ class RoutinesPage extends StatefulWidget {
 
 class _RoutinesPageState extends State<RoutinesPage> {
   List<Map<String, dynamic>> _results = [];
+  List<Map<String, dynamic>> _user = [];
+  int _current = 0;
 
   @override
   void initState() {
@@ -26,6 +29,8 @@ class _RoutinesPageState extends State<RoutinesPage> {
 
   void _refresh() async {
     _results = await db!.query('routines');
+    _user = await db!.query('user', where: 'id = ?', whereArgs: [1]);
+    _current = _user.first['routines_id'] ?? 0;
     setState(() {});
   }
 
@@ -50,6 +55,16 @@ class _RoutinesPageState extends State<RoutinesPage> {
     await db!.transaction((txn) async {
       await txn.delete('routines', where: 'id = ?', whereArgs: [id]);
     });
+  }
+
+  void _changeCurrent(int current) {
+    db!.update(
+      'user',
+      {'routines_id': current},
+      where: 'id = ?',
+      whereArgs: [1],
+    );
+    _refresh();
   }
 
   @override
@@ -81,6 +96,10 @@ class _RoutinesPageState extends State<RoutinesPage> {
                 child: Theme(
                   data: (darkModeOn) ? kMaterialDark : kMaterialLight,
                   child: ListTile(
+                    leading: Radio<int>(
+                        value: item['id'],
+                        groupValue: _current,
+                        onChanged: (value) => _changeCurrent(item['id'])),
                     title: Text(item['name']),
                     subtitle: Text(item['description']),
                     trailing: MpLinkButton(

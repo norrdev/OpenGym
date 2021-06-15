@@ -30,7 +30,7 @@ Future insertModalPopup(
                 children: [
                   CupertinoTextFormFieldRow(
                     controller: name,
-                    prefix: Text(S.of(context).name),
+                    placeholder: S.of(context).name,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return S.of(context).enterText;
@@ -40,7 +40,7 @@ Future insertModalPopup(
                   ),
                   CupertinoTextFormFieldRow(
                     controller: description,
-                    prefix: Text(S.of(context).desc),
+                    placeholder: S.of(context).desc,
                     validator: (value) {
                       // if (value.isEmpty) {
                       //   return S.of(context).enterText;
@@ -140,7 +140,7 @@ Future editModalPopup(
                 children: [
                   CupertinoTextFormFieldRow(
                     controller: _tcName,
-                    prefix: Text(S.of(context).name),
+                    placeholder: S.of(context).name,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return S.of(context).enterText;
@@ -150,7 +150,7 @@ Future editModalPopup(
                   ),
                   CupertinoTextFormFieldRow(
                     controller: _tcDesc,
-                    prefix: Text(S.of(context).desc),
+                    placeholder: S.of(context).desc,
                     validator: (value) {
                       // if (value.isEmpty) {
                       //   return S.of(context).enterText;
