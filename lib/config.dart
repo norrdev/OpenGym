@@ -47,7 +47,7 @@ final CupertinoThemeData kCupertinoTheme = CupertinoThemeData(
 );
 
 /// Initial route
-final kInitialRoute = RoutinesPage.id;
+final kInitialRoute = TrainStartPage.id;
 
 /// Route map
 final Map<String, Widget Function(BuildContext)> kAppRoutes = {

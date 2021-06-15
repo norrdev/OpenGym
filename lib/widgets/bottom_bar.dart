@@ -58,7 +58,8 @@ class BottomBar extends StatelessWidget {
         if (i != this.initialActiveIndex) {
           switch (i) {
             case 0:
-              Navigator.pushNamed(context, TrainStartPage.id);
+              Navigator.pushNamedAndRemoveUntil(
+                  context, TrainStartPage.id, (route) => false);
               break;
             case 1:
               Navigator.pushNamedAndRemoveUntil(
