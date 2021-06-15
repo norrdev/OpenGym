@@ -56,7 +56,12 @@ class _DaysPageState extends State<DaysPage> {
   }
 
   void _refresh() async {
-    _days = await db!.query('days', orderBy: 'ord');
+    _days = await db!.query(
+      'days',
+      orderBy: 'ord',
+      where: 'routines_id = ?',
+      whereArgs: [widget.routinesId],
+    );
     _mutableDays.clear();
     _mutableDays.addAll(_days);
     setState(() {});
