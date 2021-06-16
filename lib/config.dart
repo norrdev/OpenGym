@@ -11,7 +11,9 @@ import 'package:npng/pages/timer/set_page.dart';
 import 'package:npng/pages/about_page.dart';
 import 'package:npng/pages/timer/timer_page.dart';
 import 'package:npng/pages/timer/train_page.dart';
+import 'package:npng/pages/timer/train_process_page.dart';
 import 'package:npng/pages/timer/train_start_page.dart';
+import 'package:path/path.dart';
 
 /// Place for themes, configuration constants, etc.
 
@@ -52,6 +54,7 @@ final kInitialRoute = TrainStartPage.id;
 /// Route map
 final Map<String, Widget Function(BuildContext)> kAppRoutes = {
   TrainStartPage.id: (context) => TrainStartPage(),
+  TrainProcessPage.id: (context) => TrainProcessPage(),
   RoutinesPage.id: (context) => RoutinesPage(),
   TrainPage.id: (context) => TrainPage(),
   SetPage.id: (context) => SetPage(),

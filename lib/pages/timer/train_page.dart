@@ -8,7 +8,7 @@ import 'package:npng/state/set_rest.dart';
 import 'package:npng/generated/l10n.dart';
 
 class TrainPage extends StatelessWidget {
-  static String id = '/train';
+  static const String id = '/train';
 
   const TrainPage({Key? key}) : super(key: key);
 

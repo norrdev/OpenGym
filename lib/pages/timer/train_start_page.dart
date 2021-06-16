@@ -1,16 +1,15 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
 import 'package:npng/pages/routines/routines_page.dart';
+import 'package:npng/pages/timer/train_process_page.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/db.dart';
 
 class TrainStartPage extends StatefulWidget {
-  static String id = '/';
+  static const String id = '/';
 
   @override
   _TrainStartPageState createState() => _TrainStartPageState();
@@ -81,12 +80,22 @@ class _TrainStartPageState extends State<TrainStartPage> {
                     itemCount: _days.length,
                     itemBuilder: (context, index) {
                       final item = _days[index];
+                      print(item['id']);
                       return Material(
                         type: MaterialType.transparency,
                         child: ListTile(
                           title: Text(item['name']),
                           subtitle: Text(item['description']),
-                          onTap: () {},
+                          onTap: () => Navigator.push(
+                            context,
+                            mpPageRoute(
+                              builder: (context) {
+                                return TrainProcessPage(
+                                  dayId: item['id'],
+                                );
+                              },
+                            ),
+                          ),
                           trailing: Icon((isApple)
                               ? CupertinoIcons.play_circle
                               : Icons.play_circle),
