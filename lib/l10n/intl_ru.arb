@@ -26,5 +26,6 @@
 
     "pageAddEx":"Добавить упражнение",
 
-    "pageWorkout":"Тренировка"
+    "pageWorkout":"Тренировка",
+    "currentWorkout": "Текущая тренировка"
 }

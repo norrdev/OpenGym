@@ -27,5 +27,6 @@
 
     "pageAddEx":"Add exercise",
 
-    "pageWorkout":"Workout"
+    "pageWorkout":"Workout",
+    "currentWorkout": "Current workout"
 }

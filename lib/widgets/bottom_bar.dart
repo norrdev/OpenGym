@@ -10,6 +10,7 @@ import 'package:npng/pages/routines/routines_page.dart';
 import 'package:npng/pages/workout/train_start_page.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:page_transition/page_transition.dart';
 
 class BottomBar extends StatelessWidget {
   BottomBar({this.initialActiveIndex});
@@ -32,15 +33,39 @@ class BottomBar extends StatelessWidget {
     String about = await _loadAsset("assets/texts/$myLocale/about.md");
     about = about.replaceAll('%version%', version);
     String history = await _loadAsset("CHANGELOG.md");
-    Navigator.pushAndRemoveUntil(context, mpPageRoute(
-      builder: (context) {
-        return AboutPage(
-          about: about,
-          history: history,
-          version: version,
-        );
-      },
-    ), (route) => false);
+
+    // Navigator.push(
+    //   context,
+    //   PageTransition(
+    //     type: PageTransitionType.fade,
+    //     child: AboutPage(
+    //       about: about,
+    //       history: history,
+    //       version: version,
+    //     ),
+    //   ),
+    // );
+
+    Navigator.pushAndRemoveUntil(
+        context,
+        PageTransition(
+            child: AboutPage(
+              about: about,
+              history: history,
+              version: version,
+            ),
+            type: PageTransitionType.fade),
+        (route) => false);
+
+    // Navigator.pushAndRemoveUntil(context, mpPageRoute(
+    //   builder: (context) {
+    //     return AboutPage(
+    //       about: about,
+    //       history: history,
+    //       version: version,
+    //     );
+    //   },
+    // ), (route) => false);
   }
 
   @override
@@ -58,16 +83,31 @@ class BottomBar extends StatelessWidget {
         if (i != this.initialActiveIndex) {
           switch (i) {
             case 0:
-              Navigator.pushNamedAndRemoveUntil(
-                  context, TrainStartPage.id, (route) => false);
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  PageTransition(
+                    child: TrainStartPage(),
+                    type: PageTransitionType.fade,
+                  ),
+                  (route) => false);
               break;
             case 1:
-              Navigator.pushNamedAndRemoveUntil(
-                  context, RoutinesPage.id, (route) => false);
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  PageTransition(
+                    child: RoutinesPage(),
+                    type: PageTransitionType.fade,
+                  ),
+                  (route) => false);
               break;
             case 2:
-              Navigator.pushNamedAndRemoveUntil(
-                  context, ExercisesPage.id, (route) => false);
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  PageTransition(
+                    child: ExercisesPage(),
+                    type: PageTransitionType.fade,
+                  ),
+                  (route) => false);
               break;
             case 3:
               _getAboutPage(context);

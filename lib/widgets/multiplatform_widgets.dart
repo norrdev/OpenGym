@@ -72,6 +72,7 @@ class MpAppBar extends StatelessWidget
   Widget build(BuildContext context) {
     if (isApple) {
       return CupertinoNavigationBar(
+        transitionBetweenRoutes: false,
         middle: title,
         trailing: (trailing != null) ? trailing : SizedBox(),
       );

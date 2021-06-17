@@ -44,7 +44,7 @@ class _TrainStartPageState extends State<TrainStartPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MpScaffold(
       appBar: MpAppBar(
         title: Text(S.of(context).pageWorkout),
       ),
@@ -96,9 +96,12 @@ class _TrainStartPageState extends State<TrainStartPage> {
                               },
                             ),
                           ),
-                          trailing: Icon((isApple)
-                              ? CupertinoIcons.play_circle
-                              : Icons.play_circle),
+                          trailing: Icon(
+                            (isApple)
+                                ? CupertinoIcons.play_circle
+                                : Icons.play_circle,
+                            color: Theme.of(context).accentColor,
+                          ),
                         ),
                       );
                     },

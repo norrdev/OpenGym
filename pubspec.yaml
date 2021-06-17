@@ -26,6 +26,7 @@ dependencies:
   sqflite: ^2.0.0+3
   path: ^1.8.0
   wakelock: ^0.5.2
+  page_transition: ^2.0.2
 
 dev_dependencies:
   flutter_test:

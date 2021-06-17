@@ -279,6 +279,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Current workout`
+  String get currentWorkout {
+    return Intl.message(
+      'Current workout',
+      name: 'currentWorkout',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
