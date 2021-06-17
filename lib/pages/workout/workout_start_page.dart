@@ -2,20 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
 import 'package:npng/pages/routines/routines_page.dart';
-import 'package:npng/pages/workout/train_process_page.dart';
+import 'package:npng/pages/workout/workout_process_page.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/db.dart';
 
-class TrainStartPage extends StatefulWidget {
+class WorkoutStartPage extends StatefulWidget {
   static const String id = '/';
 
   @override
-  _TrainStartPageState createState() => _TrainStartPageState();
+  _WorkoutStartPageState createState() => _WorkoutStartPageState();
 }
 
-class _TrainStartPageState extends State<TrainStartPage> {
+class _WorkoutStartPageState extends State<WorkoutStartPage> {
   int defRoutine = 0;
   List<Map<String, dynamic>> _days = [];
 
@@ -90,7 +90,7 @@ class _TrainStartPageState extends State<TrainStartPage> {
                             context,
                             mpPageRoute(
                               builder: (context) {
-                                return TrainProcessPage(
+                                return WorkoutProcessPage(
                                   dayId: item['id'],
                                 );
                               },

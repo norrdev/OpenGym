@@ -6,17 +6,17 @@ import 'package:npng/db.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 
-class TrainProcessPage extends StatefulWidget {
+class WorkoutProcessPage extends StatefulWidget {
   static const String id = 'TrainProcessPage';
   final int? dayId;
 
-  TrainProcessPage({Key? key, this.dayId}) : super(key: key);
+  WorkoutProcessPage({Key? key, this.dayId}) : super(key: key);
 
   @override
-  _TrainProcessPageState createState() => _TrainProcessPageState();
+  _WorkoutProcessPageState createState() => _WorkoutProcessPageState();
 }
 
-class _TrainProcessPageState extends State<TrainProcessPage> {
+class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
   List<Map<String, dynamic>> _results = [];
   int _currentStep = 0;
   List<Step> _ex = [];

@@ -11,8 +11,8 @@ import 'package:npng/pages/workout/set_page.dart';
 import 'package:npng/pages/about_page.dart';
 import 'package:npng/pages/workout/timer_page.dart';
 import 'package:npng/pages/workout/train_page.dart';
-import 'package:npng/pages/workout/train_process_page.dart';
-import 'package:npng/pages/workout/train_start_page.dart';
+import 'package:npng/pages/workout/workout_process_page.dart';
+import 'package:npng/pages/workout/workout_start_page.dart';
 import 'package:path/path.dart';
 
 /// Place for themes, configuration constants, etc.
@@ -49,12 +49,12 @@ final CupertinoThemeData kCupertinoTheme = CupertinoThemeData(
 );
 
 /// Initial route
-final kInitialRoute = TrainStartPage.id;
+final kInitialRoute = WorkoutStartPage.id;
 
 /// Route map
 final Map<String, Widget Function(BuildContext)> kAppRoutes = {
-  TrainStartPage.id: (context) => TrainStartPage(),
-  TrainProcessPage.id: (context) => TrainProcessPage(),
+  WorkoutStartPage.id: (context) => WorkoutStartPage(),
+  WorkoutProcessPage.id: (context) => WorkoutProcessPage(),
   RoutinesPage.id: (context) => RoutinesPage(),
   TrainPage.id: (context) => TrainPage(),
   SetPage.id: (context) => SetPage(),
