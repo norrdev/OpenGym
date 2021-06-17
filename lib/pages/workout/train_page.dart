@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:npng/pages/timer/set_page.dart';
+import 'package:npng/pages/workout/set_page.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/state/set_rest.dart';

@@ -1,7 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:npng/pages/timer/train_page.dart';
+import 'package:npng/pages/workout/train_page.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/state/set_rest.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';

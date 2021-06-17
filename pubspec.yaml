@@ -16,6 +16,7 @@ dependencies:
   intl: ^0.17.0
   cupertino_icons: ^1.0.2
   provider: ^5.0.0
+  # flutter_bloc: ^7.0.0
   circular_countdown_timer: ^0.2.0
   flutter_markdown: ^0.6.2
   url_launcher: ^6.0.3

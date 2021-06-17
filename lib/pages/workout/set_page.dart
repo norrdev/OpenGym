@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:npng/pages/timer/timer_page.dart';
+import 'package:npng/pages/workout/timer_page.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/state/set_rest.dart';
 import 'package:npng/generated/l10n.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
 import 'package:npng/pages/routines/routines_page.dart';
-import 'package:npng/pages/timer/train_process_page.dart';
+import 'package:npng/pages/workout/train_process_page.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';

@@ -7,12 +7,12 @@ import 'package:npng/pages/exercises/exercises_by_muscle_page.dart';
 import 'package:npng/pages/exercises/exercises_page.dart';
 import 'package:npng/pages/routines/days_page.dart';
 import 'package:npng/pages/routines/routines_page.dart';
-import 'package:npng/pages/timer/set_page.dart';
+import 'package:npng/pages/workout/set_page.dart';
 import 'package:npng/pages/about_page.dart';
-import 'package:npng/pages/timer/timer_page.dart';
-import 'package:npng/pages/timer/train_page.dart';
-import 'package:npng/pages/timer/train_process_page.dart';
-import 'package:npng/pages/timer/train_start_page.dart';
+import 'package:npng/pages/workout/timer_page.dart';
+import 'package:npng/pages/workout/train_page.dart';
+import 'package:npng/pages/workout/train_process_page.dart';
+import 'package:npng/pages/workout/train_start_page.dart';
 import 'package:path/path.dart';
 
 /// Place for themes, configuration constants, etc.
