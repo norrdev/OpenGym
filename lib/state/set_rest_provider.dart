@@ -1,16 +1,16 @@
 import 'package:flutter/foundation.dart';
 
 class SetRestProvider extends ChangeNotifier {
-  int _sets = 5;
-  int _rest = 90;
-  int _currentSet = 1;
+  int _repeats = 5;
+  int _rest = 3;
+  int _currentRepeat = 1;
 
-  int get sets => _sets;
+  int get sets => _repeats;
   int get rest => _rest;
-  int get currentSet => _currentSet;
+  int get currentSet => _currentRepeat;
 
-  void changeSets(int sets) {
-    _sets = sets;
+  void changeRepeats(int sets) {
+    _repeats = sets;
     notifyListeners();
   }
 
@@ -29,23 +29,23 @@ class SetRestProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void increaseSets() {
-    _sets++;
+  void increaseRepeats() {
+    _repeats++;
     notifyListeners();
   }
 
-  void decreaseSets() {
-    if (_sets >= 2) _sets--;
+  void decreaseRepeats() {
+    if (_repeats >= 2) _repeats--;
     notifyListeners();
   }
 
-  void increaseCurrentSet() {
-    _currentSet++;
+  void increaseCurrentRepeat() {
+    _currentRepeat++;
     notifyListeners();
   }
 
-  void resetCurrentSet() {
-    _currentSet = 1;
+  void resetCurrentRepeat() {
+    _currentRepeat = 1;
     notifyListeners();
   }
 }

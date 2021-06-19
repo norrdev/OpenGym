@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterText": MessageLookupByLibrary.simpleMessage("Введите текст"),
         "exDesc": MessageLookupByLibrary.simpleMessage("Описание упражнения"),
         "exName": MessageLookupByLibrary.simpleMessage("Название упражнения"),
+        "finish": MessageLookupByLibrary.simpleMessage("Закончить"),
         "from": MessageLookupByLibrary.simpleMessage(" из "),
         "name": MessageLookupByLibrary.simpleMessage("Название"),
         "pageAddEx":
@@ -47,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Выполните подход, и когда закончите, нажмите кнопку."),
         "start": MessageLookupByLibrary.simpleMessage("Старт"),
         "timer": MessageLookupByLibrary.simpleMessage("Таймер"),
-        "title": MessageLookupByLibrary.simpleMessage("НбНп")
+        "title": MessageLookupByLibrary.simpleMessage("НбНп"),
+        "weight": MessageLookupByLibrary.simpleMessage("Вес")
       };
 }

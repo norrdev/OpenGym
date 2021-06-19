@@ -100,6 +100,16 @@ class S {
     );
   }
 
+  /// `Finish`
+  String get finish {
+    return Intl.message(
+      'Finish',
+      name: 'finish',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// ` from `
   String get from {
     return Intl.message(
@@ -205,6 +215,16 @@ class S {
     return Intl.message(
       'Description',
       name: 'desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Weight`
+  String get weight {
+    return Intl.message(
+      'Weight',
+      name: 'weight',
       desc: '',
       args: [],
     );

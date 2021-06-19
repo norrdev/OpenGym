@@ -88,7 +88,7 @@ class TimerPage extends StatelessWidget {
                       context, ModalRoute.withName(TrainPage.id));
                 } else {
                   Provider.of<SetRestProvider>(context, listen: false)
-                      .increaseCurrentSet();
+                      .increaseCurrentRepeat();
                   Navigator.pop(context);
                 }
               },

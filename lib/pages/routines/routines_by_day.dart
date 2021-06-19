@@ -116,6 +116,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                 final item = _resultsMutable[index];
                 return Card(
                   key: ValueKey(item),
+                  //TODO: Do not close on button click
                   child: ExpansionTile(
                     tilePadding: EdgeInsets.only(right: 30.0, left: 16.0),
                     title: Text(item['name']),

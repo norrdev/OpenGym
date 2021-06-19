@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:npng/pages/workout/set_page.dart';
+import 'package:npng/pages/workout/workout_set_page.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/state/set_rest_provider.dart';
@@ -32,10 +32,10 @@ class TrainPage extends StatelessWidget {
               value: Provider.of<SetRestProvider>(context).sets,
               decreaseCallback:
                   Provider.of<SetRestProvider>(context, listen: false)
-                      .decreaseSets,
+                      .decreaseRepeats,
               increaseCallback:
                   Provider.of<SetRestProvider>(context, listen: false)
-                      .increaseSets,
+                      .increaseRepeats,
             ),
             SizedBox(
               height: 40,
@@ -71,12 +71,12 @@ class TrainPage extends StatelessWidget {
                     rst = 90;
                   }
                   Provider.of<SetRestProvider>(context, listen: false)
-                      .changeSets(sts);
+                      .changeRepeats(sts);
                   Provider.of<SetRestProvider>(context, listen: false)
                       .changeRest(rst);
                   Provider.of<SetRestProvider>(context, listen: false)
-                      .resetCurrentSet();
-                  Navigator.pushNamed(context, SetPage.id);
+                      .resetCurrentRepeat();
+                  Navigator.pushNamed(context, WorkoutSetPage.id);
                 },
               ),
             ),

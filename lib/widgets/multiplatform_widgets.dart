@@ -367,7 +367,54 @@ class MpChangeIntField extends StatelessWidget {
 
   const MpChangeIntField({
     Key? key,
-    this.value,
+    @required this.value,
+    this.decreaseCallback,
+    this.increaseCallback,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: RoundIconButton(
+            icon: Icons.arrow_back_ios_rounded,
+            fillColor: (isApple)
+                ? CupertinoTheme.of(context).barBackgroundColor
+                : Theme.of(context).bottomAppBarColor,
+            onPressed: decreaseCallback,
+          ),
+        ),
+        SizedBox(
+          width: 60.0,
+          child: Text(
+            value.toString(),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        Expanded(
+          child: RoundIconButton(
+            icon: Icons.arrow_forward_ios_rounded,
+            fillColor: (isApple)
+                ? CupertinoTheme.of(context).barBackgroundColor
+                : Theme.of(context).bottomAppBarColor,
+            onPressed: increaseCallback,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class MpChangeDoubleField extends StatelessWidget {
+  final double? value;
+  final Function? increaseCallback;
+  final Function? decreaseCallback;
+
+  const MpChangeDoubleField({
+    Key? key,
+    @required this.value,
     this.decreaseCallback,
     this.increaseCallback,
   }) : super(key: key);

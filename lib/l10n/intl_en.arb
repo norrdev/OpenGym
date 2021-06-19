@@ -5,6 +5,7 @@
     "repeats":"Repeats",
     "rest":"Rest time (sec)",
     "start":"Start",
+    "finish":"Finish",
     "from": " from ",
     "restButton":"Rest",
     "setsText": "Perfom the set, and when you're done, press the button.",
@@ -16,6 +17,7 @@
     "enterText":"Please enter some text",
     "name":"Name",
     "desc":"Description",
+    "weight":"Weight",
 
     "pageRoutinesTitle":"Routines",
 

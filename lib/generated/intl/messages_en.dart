@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter some text"),
         "exDesc": MessageLookupByLibrary.simpleMessage("Exercise description"),
         "exName": MessageLookupByLibrary.simpleMessage("Exercise name"),
+        "finish": MessageLookupByLibrary.simpleMessage("Finish"),
         "from": MessageLookupByLibrary.simpleMessage(" from "),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "pageAddEx": MessageLookupByLibrary.simpleMessage("Add exercise"),
@@ -47,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Perfom the set, and when you\'re done, press the button."),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
         "timer": MessageLookupByLibrary.simpleMessage("Timer"),
-        "title": MessageLookupByLibrary.simpleMessage("NpNg")
+        "title": MessageLookupByLibrary.simpleMessage("NpNg"),
+        "weight": MessageLookupByLibrary.simpleMessage("Weight")
       };
 }

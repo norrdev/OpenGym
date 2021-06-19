@@ -7,7 +7,7 @@ import 'package:npng/pages/exercises/exercises_by_muscle_page.dart';
 import 'package:npng/pages/exercises/exercises_page.dart';
 import 'package:npng/pages/routines/days_page.dart';
 import 'package:npng/pages/routines/routines_page.dart';
-import 'package:npng/pages/workout/set_page.dart';
+import 'package:npng/pages/workout/workout_set_page.dart';
 import 'package:npng/pages/about_page.dart';
 import 'package:npng/pages/workout/timer_page.dart';
 import 'package:npng/pages/workout/train_page.dart';
@@ -57,7 +57,7 @@ final Map<String, Widget Function(BuildContext)> kAppRoutes = {
   WorkoutProcessPage.id: (context) => WorkoutProcessPage(),
   RoutinesPage.id: (context) => RoutinesPage(),
   TrainPage.id: (context) => TrainPage(),
-  SetPage.id: (context) => SetPage(),
+  WorkoutSetPage.id: (context) => WorkoutSetPage(),
   TimerPage.id: (context) => TimerPage(),
   AboutPage.id: (context) => AboutPage(),
   ExercisesPage.id: (context) => ExercisesPage(),
