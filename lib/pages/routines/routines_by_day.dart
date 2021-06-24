@@ -94,6 +94,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
         trailing: MpFlatButton(
           padding: EdgeInsets.all(8),
           child: Icon(CupertinoIcons.add),
+          //TODO: Same thing in Workout!
           onPressed: () => Navigator.push(
             context,
             mpPageRoute(

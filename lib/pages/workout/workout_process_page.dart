@@ -5,7 +5,11 @@ import 'package:npng/config.dart';
 import 'package:npng/db.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/pages/workout/workout_set_page.dart';
+import 'package:npng/pages/workout/workout_start_page.dart';
+import 'package:npng/state/workout_provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class WorkoutProcessPage extends StatefulWidget {
   static const String id = 'TrainProcessPage';
@@ -29,7 +33,7 @@ class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
 
   void _init() async {
     _results = await db!.rawQuery('''
-SELECT workouts.id AS id, exercises.name AS name, exercises.description as description, sets, ord, repeats, rest FROM workouts 
+SELECT workouts.id AS id, exercises.name AS name, exercises.description as description, sets, ord, repeats, rest, weight FROM workouts 
 JOIN exercises on workouts.exerscises_id = exercises.id 
 WHERE days_id = ${widget.dayId} ORDER BY ord;
     ''');
@@ -52,13 +56,48 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
   }
 
   void _onReorder(int oldIndex, int newIndex) {
-    setState(() {
-      if (newIndex > oldIndex) newIndex -= 1;
-      final Map<String, dynamic> item = _resultsMutable.removeAt(oldIndex);
-      _resultsMutable.insert(newIndex, item);
-      _updateOrder(id: item['id'], ord: newIndex);
-      _init();
-    });
+    if (!Provider.of<WorkoutProvider>(context, listen: false).active) {
+      setState(() {
+        if (newIndex > oldIndex) newIndex -= 1;
+        final Map<String, dynamic> item = _resultsMutable.removeAt(oldIndex);
+        _resultsMutable.insert(newIndex, item);
+        _updateOrder(id: item['id'], ord: newIndex);
+        _init();
+      });
+    } else {
+      //TODO: Make ordered list during workout.
+      if (!isApple) {
+        showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: const Text('Warning'),
+            content:
+                const Text('You cannot reorder excersises during workout.'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'Cancel'),
+                child: const Text('Cancel'),
+              ),
+            ],
+          ),
+        );
+      } else {
+        showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => CupertinoAlertDialog(
+            title: const Text('Warning'),
+            content:
+                const Text('You cannot reorder excersises during workout.'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'Cancel'),
+                child: Text('Cancel'),
+              ),
+            ],
+          ),
+        );
+      }
+    }
   }
 
   @override
@@ -73,21 +112,10 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
           child: (_resultsMutable.length > 0)
               ? Theme(
                   data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                  child: ReorderableListView.builder(
-                    onReorder: _onReorder,
-                    itemCount: _resultsMutable.length,
-                    itemBuilder: (context, index) {
-                      final item = _resultsMutable[index];
-                      return Material(
-                        type: MaterialType.transparency,
-                        key: ValueKey(item),
-                        child: ListTile(
-                          title: Text(item['name']),
-                          subtitle: Text(item['description'] ?? ''),
-                        ),
-                      );
-                    },
-                  ),
+                  child: (!Provider.of<WorkoutProvider>(context, listen: false)
+                          .active)
+                      ? buildReorderableListView()
+                      : buildListView(),
                 )
               //TODO: Сделать заглушку
               : Container(child: Text('No ex in this day')),
@@ -106,51 +134,93 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            MpButton(
-              label: S.of(context).start,
-              onPressed: () {
-                Navigator.pushNamed(context, WorkoutSetPage.id);
-              },
-            ),
-            // MpButton(
-            //   label: S.of(context).finish,
-            //   onPressed: () {},
-            // ),
+            (!Provider.of<WorkoutProvider>(context, listen: false).active)
+                ? MpButton(
+                    label: S.of(context).start,
+                    onPressed: () {
+                      Provider.of<WorkoutProvider>(context, listen: false)
+                          .active = true;
+                      Provider.of<WorkoutProvider>(context, listen: false)
+                          .dayID = widget.dayId!;
+                      Provider.of<WorkoutProvider>(context, listen: false)
+                          .currentExcersise = 0;
+                      Provider.of<WorkoutProvider>(context, listen: false)
+                          .excersises = _resultsMutable;
+                      Provider.of<WorkoutProvider>(context, listen: false)
+                          .startTime = DateTime.now();
+                      Navigator.pushNamed(context, WorkoutSetPage.id)
+                          .whenComplete(() => _init());
+                    },
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      MpButton(
+                        label: 'Continue',
+                        onPressed: () =>
+                            Navigator.pushNamed(context, WorkoutSetPage.id)
+                                .whenComplete(() => _init()),
+                      ),
+                      SizedBox(width: 16.0),
+                      MpButton(
+                        label: S.of(context).finish,
+                        onPressed: () {
+                          Provider.of<WorkoutProvider>(context, listen: false)
+                              .resetAllData();
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              PageTransition(
+                                child: WorkoutStartPage(),
+                                type: PageTransitionType.fade,
+                              ),
+                              (route) => false);
+                        },
+                      ),
+                    ],
+                  ),
           ],
         ),
       ),
-      // ConvexAppBar(
-      //   style: TabStyle.react,
-      //   items: [
-      //     TabItem(
-      //         icon: (isApple) ? CupertinoIcons.play : Icons.play_arrow,
-      //         title: S.of(context).start),
-      //     TabItem(
-      //         icon: (isApple) ? CupertinoIcons.stop : Icons.stop,
-      //         title: S.of(context).finish),
-      //   ],
-      //   initialActiveIndex: 0,
-      //   onTap: (int index) {
-      //     switch (index) {
-      //       case 0:
-      //         Navigator.pushNamed(context, WorkoutSetPage.id);
-      //         break;
-      //       case 1:
-      //         //Navigator.pushNamed(context, SetPage.id);
-      //         break;
-      //       default:
-      //     }
-      //   },
-      //   color: (isApple)
-      //       ? CupertinoTheme.of(context).primaryColor
-      //       : Theme.of(context).appBarTheme.color,
-      //   activeColor: (isApple)
-      //       ? CupertinoTheme.of(context).primaryColor
-      //       : Theme.of(context).bottomAppBarColor,
-      //   backgroundColor: (isApple)
-      //       ? CupertinoTheme.of(context).barBackgroundColor
-      //       : Theme.of(context).accentColor,
-      // ),
+    );
+  }
+
+  ReorderableListView buildReorderableListView() {
+    return ReorderableListView.builder(
+      onReorder: _onReorder,
+      itemCount: _resultsMutable.length,
+      itemBuilder: (context, index) {
+        final item = _resultsMutable[index];
+        return Material(
+          type: MaterialType.transparency,
+          key: ValueKey(item),
+          child: ListTile(
+            title: Text(item['name']),
+            subtitle: Text(item['description'] ?? ''),
+          ),
+        );
+      },
+    );
+  }
+
+  ListView buildListView() {
+    return ListView.builder(
+      itemCount: _resultsMutable.length,
+      itemBuilder: (context, index) {
+        final item = _resultsMutable[index];
+        return Material(
+          type: MaterialType.transparency,
+          key: ValueKey(item),
+          child: ListTile(
+            //TODO: Show status of excersises
+            leading: Icon(
+              Icons.done,
+              color: Theme.of(context).accentColor,
+            ),
+            title: Text(item['name']),
+            subtitle: Text(item['description'] ?? ''),
+          ),
+        );
+      },
     );
   }
 }

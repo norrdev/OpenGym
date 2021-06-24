@@ -1,43 +1,60 @@
 import 'package:flutter/foundation.dart';
 
 class WorkoutProvider extends ChangeNotifier {
-  int workoutId = 0;
+  /// Active workout flag.
+  bool active = false;
 
-  List<Map<String, dynamic>>? excersises;
+  /// Workout day from DB.days.
+  int dayID = 0;
 
-  int currentExcersise = 0;
-  int maxExcersise = 0;
+  /// Workout time
+  DateTime? startTime;
+  DateTime? finishTime;
 
-  int currentSet = 0;
-  int maxSet = 4;
+  ///Exerscises from DB
+  List<Map<String, dynamic>> excersises = [];
 
-  int currentRest = 3;
+  ///Current excersise counter
+  int _currentExcersise = 0;
+  int get currentExcersise => _currentExcersise;
+  int get maxExcersise => excersises.length - 1;
+  set currentExcersise(int currentExcersise) {
+    _currentExcersise = currentExcersise;
+    notifyListeners();
+  }
 
-  int currentRepeat = 0;
-  int maxRepeat = 4;
+  /// Current set counter
+  int _currentSet = 0;
+  int get currentSet => _currentSet;
+  int get maxSet => excersises[currentExcersise]['sets'] - 1;
+  set currentSet(int currentSet) {
+    _currentSet = currentSet;
+    notifyListeners();
+  }
 
-  double currentWeight = 0.0;
+  /// Clear object.
+  void resetAllData() {
+    active = false;
+    dayID = 0;
+    startTime = finishTime = null;
+    excersises.clear();
+    _currentExcersise = 0;
+    _currentSet = 0;
+  }
 
-  List<Map<int, List<Map<String, double>>>> workoutLog = [
-    // # 0 ord
-    {
-      //id exc
-      45: [
-        // # 1 set
-        {
-          'repeat': 4.0,
-          'rest': 90.0,
-          'weight': 100.0,
-        },
-        // # 2 set
-        {
-          'repeat': 4.0,
-          'rest': 90.0,
-          'weight': 110.0,
-        },
-      ],
-    },
-  ];
+  /// Increment current set.
+  void incCurrentSet() {
+    if (_currentSet < maxSet) {
+      _currentSet++;
+      notifyListeners();
+    }
+  }
 
-  void _saveLog() {}
+  /// Increment current excersise.
+  void incCurrentExcersise() {
+    if (_currentExcersise < maxExcersise) {
+      _currentExcersise++;
+      notifyListeners();
+    }
+  }
 }

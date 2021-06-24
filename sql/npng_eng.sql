@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.2.1 on Tue May 18 16:43:34 2021
+-- File generated with SQLiteStudio v3.2.1 on Thu Jun 24 17:56:47 2021
 --
 -- Text encoding used: UTF-8
 --
@@ -7,13 +7,14 @@ PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
 
 -- Table: days
-CREATE TABLE days (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ord INTEGER, name STRING, description STRING, routines_id INT REFERENCES routines (id));
-INSERT INTO days (id, ord, name, description, routines_id) VALUES (1, NULL, 'Chiest Train', 'Monday', 1);
-INSERT INTO days (id, ord, name, description, routines_id) VALUES (3, NULL, 'Biceps Train', 'Tuesday', 1);
-INSERT INTO days (id, ord, name, description, routines_id) VALUES (4, NULL, 'Back Train', '', 1);
+CREATE TABLE days (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, ord INTEGER, name STRING, description STRING, routines_id INT REFERENCES routines (id));
+INSERT INTO days (id, ord, name, description, routines_id) VALUES (1, 0, 'Chiest Train', 'Monday', 1);
+INSERT INTO days (id, ord, name, description, routines_id) VALUES (3, 1, 'Biceps Train', 'Tuesday', 1);
+INSERT INTO days (id, ord, name, description, routines_id) VALUES (4, 2, 'Back Train', '', 1);
+INSERT INTO days (id, ord, name, description, routines_id) VALUES (5, NULL, 'Monday', '', 3);
 
 -- Table: equipment
-CREATE TABLE equipment (id INTEGER PRIMARY KEY, name STRING);
+CREATE TABLE equipment (id INTEGER PRIMARY KEY UNIQUE, name STRING);
 INSERT INTO equipment (id, name) VALUES (1, 'Bodyweight');
 INSERT INTO equipment (id, name) VALUES (2, 'Rubber band');
 INSERT INTO equipment (id, name) VALUES (3, 'Barbell');
@@ -21,7 +22,7 @@ INSERT INTO equipment (id, name) VALUES (4, 'Dumbbels');
 INSERT INTO equipment (id, name) VALUES (5, 'Kettlebells');
 
 -- Table: exercises
-CREATE TABLE exercises (id INTEGER PRIMARY KEY NOT NULL, name STRING, description STRING, equipment_id INTEGER REFERENCES equipment (id));
+CREATE TABLE exercises (id INTEGER PRIMARY KEY NOT NULL UNIQUE, name STRING, description STRING, equipment_id INTEGER REFERENCES equipment (id));
 INSERT INTO exercises (id, name, description, equipment_id) VALUES (1, 'Push Up', NULL, 1);
 INSERT INTO exercises (id, name, description, equipment_id) VALUES (2, 'Shrugs', 'DB', 1);
 INSERT INTO exercises (id, name, description, equipment_id) VALUES (3, 'Push up with Rubber band', 'Take rubber band in hands.', 1);
@@ -32,8 +33,15 @@ INSERT INTO load (exercises_id, muscles_id) VALUES (1, 3);
 INSERT INTO load (exercises_id, muscles_id) VALUES (2, 1);
 INSERT INTO load (exercises_id, muscles_id) VALUES (3, 3);
 
+-- Table: log_days
+CREATE TABLE log_days (id BIGINT PRIMARY KEY UNIQUE NOT NULL, start DATETIME NOT NULL DEFAULT (datetime('now')), finish DATETIME, workouts_id INTEGER REFERENCES workouts (id));
+INSERT INTO log_days (id, start, finish, workouts_id) VALUES (1, '2021-05-25 12:37:31', NULL, NULL);
+
+-- Table: log_exercises
+CREATE TABLE log_exercises (id bigint NOT NULL PRIMARY KEY, log_days_id bigint, exercises_id integer, repeat integer, weight integer, note string, FOREIGN KEY (log_days_id) REFERENCES log_days (id), FOREIGN KEY (exercises_id) REFERENCES exercises (id));
+
 -- Table: musсles
-CREATE TABLE musсles (id INTEGER PRIMARY KEY NOT NULL, name STRING);
+CREATE TABLE musсles (id INTEGER PRIMARY KEY NOT NULL UNIQUE, name STRING);
 INSERT INTO musсles (id, name) VALUES (1, 'Traps');
 INSERT INTO musсles (id, name) VALUES (2, 'Shoulders');
 INSERT INTO musсles (id, name) VALUES (3, 'Chest');
@@ -50,17 +58,24 @@ INSERT INTO musсles (id, name) VALUES (13, 'Hamstrings');
 INSERT INTO musсles (id, name) VALUES (14, 'Calves');
 
 -- Table: routines
-CREATE TABLE routines (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name STRING, description STRING);
+CREATE TABLE routines (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, name STRING, description STRING);
 INSERT INTO routines (id, name, description) VALUES (1, 'Rubber Band', '7 days a week');
 INSERT INTO routines (id, name, description) VALUES (2, 'Bodyweight', '2 days a week');
-INSERT INTO routines (id, name, description) VALUES (3, '5x5', 'Powerlifting program.');
+INSERT INTO routines (id, name, description) VALUES (3, '5x5', 'Base powerlifting program.');
+
+-- Table: user
+CREATE TABLE user (id integer NOT NULL PRIMARY KEY, birthday date, sex integer, routines_id INTEGER);
+INSERT INTO user (id, birthday, sex, routines_id) VALUES (1, NULL, NULL, 1);
 
 -- Table: workouts
-CREATE TABLE workouts (id INTEGER PRIMARY KEY, ord INTEGER DEFAULT (0) NOT NULL, days_id INTEGER REFERENCES days (id), exerscises_id INTEGER REFERENCES exercises (id), sets INTEGER DEFAULT (3) NOT NULL, repeats INTEGER DEFAULT (8) NOT NULL, rest INTEGER DEFAULT (90) NOT NULL);
-INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (1, 8, 1, 2, 5, 8, 60);
-INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (2, 10, 1, 1, 4, 12, 90);
-INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (3, 9, 1, 3, 4, 8, 90);
-INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest) VALUES (4, 11, 1, 1, 4, 8, 90);
+CREATE TABLE workouts (id INTEGER PRIMARY KEY UNIQUE, ord INTEGER DEFAULT (0) NOT NULL, days_id INTEGER REFERENCES days (id), exerscises_id INTEGER REFERENCES exercises (id), sets INTEGER DEFAULT (3) NOT NULL, repeats INTEGER DEFAULT (8) NOT NULL, rest INTEGER DEFAULT (90) NOT NULL, weight DOUBLE NOT NULL DEFAULT (10));
+INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest, weight) VALUES (3, 0, 1, 3, 5, 6, 70, 10.0);
+INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest, weight) VALUES (4, 1, 1, 1, 3, 8, 90, 10.0);
+INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest, weight) VALUES (5, 2, 1, 2, 3, 8, 90, 10.0);
+INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest, weight) VALUES (6, 3, 1, 3, 3, 9, 90, 10.0);
+INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest, weight) VALUES (7, 4, 1, 1, 3, 8, 90, 10.0);
+INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest, weight) VALUES (8, 5, 1, 3, 3, 8, 90, 10.0);
+INSERT INTO workouts (id, ord, days_id, exerscises_id, sets, repeats, rest, weight) VALUES (9, 6, 5, 1, 3, 8, 90, 10.0);
 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;

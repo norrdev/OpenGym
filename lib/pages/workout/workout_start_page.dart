@@ -72,6 +72,7 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
                   ),
                 ])
           : Container(
+              //TODO: Make here button or special screen, if workout in process.
               constraints: BoxConstraints.expand(),
               child: SafeArea(
                 child: Theme(
