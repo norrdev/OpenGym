@@ -125,12 +125,18 @@ class _WorkoutSetPageState extends State<WorkoutSetPage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 MpButton(
-                  label: '+',
+                  label: 'Add set',
                   onPressed: () {},
                 ),
                 MpButton(
-                  label: '-',
+                  label: 'Remove set',
                   onPressed: () {},
+                ),
+                MpButton(
+                  label: 'Finish',
+                  onPressed: () {
+                    //TODO: Dialog with promise to add all data and
+                  },
                 ),
                 // MpButton(
                 //   label: S.of(context).finish,

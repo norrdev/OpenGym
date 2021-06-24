@@ -19,10 +19,7 @@ class WorkoutProcessPage extends StatefulWidget {
 
 class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
   List<Map<String, dynamic>> _results = [];
-  int _currentStep = 0;
-  List<Step> _ex = [];
-  List<int> _exId = [];
-  List<bool> _exDone = [];
+  List<Map<String, dynamic>> _resultsMutable = [];
 
   @override
   void initState() {
@@ -36,32 +33,32 @@ SELECT workouts.id AS id, exercises.name AS name, exercises.description as descr
 JOIN exercises on workouts.exerscises_id = exercises.id 
 WHERE days_id = ${widget.dayId} ORDER BY ord;
     ''');
-    _ex.clear();
-    _exId.clear();
-    for (var item in _results) {
-      _ex.add(
-        Step(
-          isActive: (_exDone.length == 0) ? true : false,
-          title: Text(item['name']),
-          content: Container(
-              alignment: Alignment.centerLeft,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(item['description'] ?? ''),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: Text('Sets: ' + item['sets'].toString()),
-                  ),
-                  Text('Rest: ' + item['rest'].toString()),
-                ],
-              )),
-        ),
-      );
-      _exId.add(item['id']);
-      (_exDone.length == 0) ? _exDone.add(true) : _exDone.add(false);
-    }
+    _resultsMutable.clear();
+    _resultsMutable.addAll(_results);
     setState(() {});
+  }
+
+  void _updateOrder({int? id, int? ord}) async {
+    await db!.transaction((txn) async {
+      for (int i = 0; i <= _resultsMutable.length - 1; i++) {
+        await txn.update(
+          'workouts',
+          {'ord': i},
+          where: 'id = ?',
+          whereArgs: [_resultsMutable[i]['id']],
+        );
+      }
+    });
+  }
+
+  void _onReorder(int oldIndex, int newIndex) {
+    setState(() {
+      if (newIndex > oldIndex) newIndex -= 1;
+      final Map<String, dynamic> item = _resultsMutable.removeAt(oldIndex);
+      _resultsMutable.insert(newIndex, item);
+      _updateOrder(id: item['id'], ord: newIndex);
+      _init();
+    });
   }
 
   @override
@@ -73,42 +70,23 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
       body: Container(
         constraints: BoxConstraints.expand(),
         child: SafeArea(
-          child: (_ex.length > 0)
+          child: (_resultsMutable.length > 0)
               ? Theme(
                   data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                  child: ListView(
-                    children: [
-                      Material(
+                  child: ReorderableListView.builder(
+                    onReorder: _onReorder,
+                    itemCount: _resultsMutable.length,
+                    itemBuilder: (context, index) {
+                      final item = _resultsMutable[index];
+                      return Material(
                         type: MaterialType.transparency,
-                        child: Stepper(
-                          currentStep: _currentStep,
-                          // onStepCancel: () {
-                          //   if (_currentStep > 0) {
-                          //     setState(() {
-                          //       _currentStep -= 1;
-                          //     });
-                          //   }
-                          // },
-                          // onStepContinue: () {
-                          //   if (_currentStep <= 0) {
-                          //     setState(() {
-                          //       _currentStep += 1;
-                          //     });
-                          //   }
-                          // },
-                          onStepTapped: (int index) {
-                            setState(() {
-                              _currentStep = index;
-                            });
-                          },
-                          steps: _ex,
-                          controlsBuilder: (context,
-                              {onStepCancel, onStepContinue}) {
-                            return Container();
-                          },
+                        key: ValueKey(item),
+                        child: ListTile(
+                          title: Text(item['name']),
+                          subtitle: Text(item['description'] ?? ''),
                         ),
-                      ),
-                    ],
+                      );
+                    },
                   ),
                 )
               //TODO: Сделать заглушку

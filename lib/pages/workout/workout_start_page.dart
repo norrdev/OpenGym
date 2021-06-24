@@ -80,7 +80,6 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
                     itemCount: _days.length,
                     itemBuilder: (context, index) {
                       final item = _days[index];
-                      print(item['id']);
                       return Material(
                         type: MaterialType.transparency,
                         child: ListTile(
