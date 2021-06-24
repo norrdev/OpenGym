@@ -13,12 +13,17 @@ import 'package:npng/pages/workout/timer_page.dart';
 import 'package:npng/pages/workout/train_page.dart';
 import 'package:npng/pages/workout/workout_process_page.dart';
 import 'package:npng/pages/workout/workout_start_page.dart';
-import 'package:path/path.dart';
 
 /// Place for themes, configuration constants, etc.
 
 final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
 //final bool isApple = false;
+
+// bool get isMobileDevice => !kIsWeb && (Platform.isIOS || Platform.isAndroid);
+// bool get isDesktopDevice =>
+//     !kIsWeb && (Platform.isMacOS || Platform.isWindows || Platform.isLinux);
+// bool get isMobileDeviceOrWeb => kIsWeb || isMobileDevice;
+// bool get isDesktopDeviceOrWeb => kIsWeb || isDesktopDevice;
 
 /// Material light theme
 final ThemeData kMaterialLight = ThemeData(
@@ -39,10 +44,13 @@ final ThemeData kMaterialDark = ThemeData(
 
 /// Cupertino light & dark theme
 //final Brightness brightness = MediaQuery.platformBrightnessOf(context);
+
 final Brightness brightness =
     WidgetsBinding.instance!.window.platformBrightness;
+
+//get brightness => WidgetsBinding.instance!.window.platformBrightness;
 //var brightness = SchedulerBinding.instance.window.platformBrightness;
-final bool darkModeOn = brightness == Brightness.dark;
+bool darkModeOn = brightness == Brightness.dark;
 
 final CupertinoThemeData kCupertinoTheme = CupertinoThemeData(
   brightness: brightness, //darkModeOn ? Brightness.dark : Brightness.light,
