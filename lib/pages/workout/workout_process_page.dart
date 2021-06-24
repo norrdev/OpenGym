@@ -117,7 +117,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                       ? buildReorderableListView()
                       : buildListView(),
                 )
-              //TODO: Сделать заглушку
+              //TODO: Create warning screen with i18n text.
               : Container(child: Text('No ex in this day')),
         ),
       ),
