@@ -6,9 +6,8 @@ import 'package:npng/config.dart';
 import 'package:npng/pages/about_page.dart';
 import 'package:npng/pages/exercises/exercises_page.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/pages/routines/routines_page.dart';
+import 'package:npng/pages/programs/programs_page.dart';
 import 'package:npng/pages/workout/workout_start_page.dart';
-import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -95,7 +94,7 @@ class BottomBar extends StatelessWidget {
               Navigator.pushAndRemoveUntil(
                   context,
                   PageTransition(
-                    child: RoutinesPage(),
+                    child: ProgramsPage(),
                     type: PageTransitionType.fade,
                   ),
                   (route) => false);
