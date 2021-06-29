@@ -8,6 +8,9 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 class TimerPage extends StatelessWidget {
   static const String id = '/timer';
+  final int interval;
+
+  TimerPage({this.interval = 60000});
 
   void playSound() {
     final player = AudioCache();

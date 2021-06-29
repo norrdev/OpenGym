@@ -1,4 +1,3 @@
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
@@ -64,39 +63,6 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
         _updateOrder(id: item['id'], ord: newIndex);
         _init();
       });
-    } else {
-      //TODO: Make ordered list during workout.
-      if (!isApple) {
-        showDialog<String>(
-          context: context,
-          builder: (BuildContext context) => AlertDialog(
-            title: const Text('Warning'),
-            content:
-                const Text('You cannot reorder excersises during workout.'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'Cancel'),
-                child: const Text('Cancel'),
-              ),
-            ],
-          ),
-        );
-      } else {
-        showDialog<String>(
-          context: context,
-          builder: (BuildContext context) => CupertinoAlertDialog(
-            title: const Text('Warning'),
-            content:
-                const Text('You cannot reorder excersises during workout.'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'Cancel'),
-                child: Text('Cancel'),
-              ),
-            ],
-          ),
-        );
-      }
     }
   }
 
@@ -156,6 +122,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       MpButton(
+                        //TODO: Localisation
                         label: 'Continue',
                         onPressed: () =>
                             Navigator.pushNamed(context, WorkoutSetPage.id)

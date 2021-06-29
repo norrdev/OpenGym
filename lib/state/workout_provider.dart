@@ -23,13 +23,30 @@ class WorkoutProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void incCurrentExcersise() {
+    if (_currentExcersise < maxExcersise) {
+      _currentSet = 0;
+      _currentExcersise++;
+      notifyListeners();
+    }
+  }
+
   /// Current set counter
   int _currentSet = 0;
   int get currentSet => _currentSet;
-  int get maxSet => excersises[currentExcersise]['sets'] - 1;
+  int get maxSet => excersises[_currentExcersise]['sets'] - 1;
   set currentSet(int currentSet) {
     _currentSet = currentSet;
     notifyListeners();
+  }
+
+  void incCurrentSet() {
+    if (_currentSet < maxSet) {
+      _currentSet++;
+      notifyListeners();
+    } else {
+      incCurrentExcersise();
+    }
   }
 
   /// Clear object.
@@ -40,21 +57,5 @@ class WorkoutProvider extends ChangeNotifier {
     excersises.clear();
     _currentExcersise = 0;
     _currentSet = 0;
-  }
-
-  /// Increment current set.
-  void incCurrentSet() {
-    if (_currentSet < maxSet) {
-      _currentSet++;
-      notifyListeners();
-    }
-  }
-
-  /// Increment current excersise.
-  void incCurrentExcersise() {
-    if (_currentExcersise < maxExcersise) {
-      _currentExcersise++;
-      notifyListeners();
-    }
   }
 }

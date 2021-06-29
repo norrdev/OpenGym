@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/pages/workout/timer_page.dart';
@@ -27,28 +29,28 @@ class WorkoutSetPage extends StatelessWidget {
                 Consumer<WorkoutProvider>(builder: (context, workout, child) {
               List<Step> steps = [];
 
-              for (int i = 0;
-                  i < workout.excersises[workout.currentExcersise]['sets'];
-                  i++) {
-                steps.add(Step(
-                  isActive: (workout.currentSet == i) ? true : false,
-                  title: Text(
-                    //TODO: Get weight from previous log!
-                    workout.excersises[workout.currentExcersise]['weight']
-                            .toString() +
-                        ' kg x ' +
-                        workout.excersises[workout.currentExcersise]['repeats']
-                            .toString(),
-                    style: TextStyle(
-                        fontSize: 20.0,
-                        color: (isApple)
-                            ? CupertinoTheme.of(context)
-                                .textTheme
-                                .tabLabelTextStyle
-                                .color
-                            : Theme.of(context).textTheme.caption!.color),
-                  ),
-                  content: Container(
+              for (int i = 0; i <= workout.maxSet; i++) {
+                steps.add(
+                  Step(
+                    isActive: (workout.currentSet == i) ? true : false,
+                    title: Text(
+                      //TODO: Get weight from previous log!
+                      workout.excersises[workout.currentExcersise]['weight']
+                              .toString() +
+                          ' kg x ' +
+                          workout.excersises[workout.currentExcersise]
+                                  ['repeats']
+                              .toString(),
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          color: (isApple)
+                              ? CupertinoTheme.of(context)
+                                  .textTheme
+                                  .tabLabelTextStyle
+                                  .color
+                              : Theme.of(context).textTheme.caption!.color),
+                    ),
+                    content: Container(
                       alignment: Alignment.centerLeft,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,25 +78,30 @@ class WorkoutSetPage extends StatelessWidget {
                             child: MpButton(
                               label: S.of(context).restButton,
                               onPressed: () {
-                                workout.incCurrentSet();
-                                Navigator.pushNamed(context, TimerPage.id);
+                                Navigator.pushNamed(context, TimerPage.id)
+                                    .whenComplete(
+                                        () => workout.incCurrentSet());
                               },
                             ),
                           ),
                         ],
-                      )),
-                ));
-              }
+                      ),
+                    ),
+                  ),
+                );
+              } // for
 
               return Stepper(
+                // https://github.com/flutter/flutter/issues/27187
+                key: Key(Random.secure().nextDouble().toString()),
+                steps: steps,
                 currentStep: workout.currentSet,
-                controlsBuilder: (context, {onStepCancel, onStepContinue}) {
-                  return Container();
-                },
                 onStepTapped: (int index) {
                   workout.currentSet = index;
                 },
-                steps: steps,
+                controlsBuilder: (context, {onStepCancel, onStepContinue}) {
+                  return Container();
+                },
               );
             }),
           ),

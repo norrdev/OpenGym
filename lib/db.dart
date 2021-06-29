@@ -17,7 +17,7 @@ Future<void> initDataBase() async {
 
   if (!exists) {
     // Should happen only the first time you launch your application
-    print("Creating new copy from asset");
+    print("Creating new DB copy from asset...");
 
     // Make sure the parent directory exists
     try {
