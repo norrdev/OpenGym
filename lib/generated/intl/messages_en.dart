@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("About"),
+        "ccontinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "currentWorkout":
             MessageLookupByLibrary.simpleMessage("Current workout"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
@@ -34,6 +35,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "finish": MessageLookupByLibrary.simpleMessage("Finish"),
         "from": MessageLookupByLibrary.simpleMessage(" from "),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "noex":
+            MessageLookupByLibrary.simpleMessage("No excersises on this day."),
         "pageAddEx": MessageLookupByLibrary.simpleMessage("Add exercise"),
         "pageDaysTitle": MessageLookupByLibrary.simpleMessage("Days"),
         "pageExerciseTitle": MessageLookupByLibrary.simpleMessage("Exercises"),

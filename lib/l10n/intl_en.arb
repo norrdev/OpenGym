@@ -18,6 +18,8 @@
     "name":"Name",
     "desc":"Description",
     "weight":"Weight",
+    "ccontinue":"Continue",
+    "noex":"No excersises on this day.",
 
     "pageRoutinesTitle":"Routines",
 

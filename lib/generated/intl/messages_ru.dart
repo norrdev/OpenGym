@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("О приложении"),
+        "ccontinue": MessageLookupByLibrary.simpleMessage("Продолжить"),
         "currentWorkout":
             MessageLookupByLibrary.simpleMessage("Текущая тренировка"),
         "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
@@ -33,6 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "finish": MessageLookupByLibrary.simpleMessage("Закончить"),
         "from": MessageLookupByLibrary.simpleMessage(" из "),
         "name": MessageLookupByLibrary.simpleMessage("Название"),
+        "noex":
+            MessageLookupByLibrary.simpleMessage("В этом дне нет упражнений."),
         "pageAddEx":
             MessageLookupByLibrary.simpleMessage("Добавить упражнение"),
         "pageDaysTitle": MessageLookupByLibrary.simpleMessage("Дни"),

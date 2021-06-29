@@ -18,6 +18,8 @@
     "name":"Название",
     "desc":"Описание",
     "weight":"Вес",
+    "ccontinue":"Продолжить",
+    "noex":"В этом дне нет упражнений.",
 
     "pageRoutinesTitle":"Тренировки",
     "pageDaysTitle":"Дни",

@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 class WorkoutProvider extends ChangeNotifier {
   /// Active workout flag.
   bool active = false;
+  bool finished = false;
 
   /// Workout day from DB.days.
   int dayID = 0;
@@ -28,6 +29,8 @@ class WorkoutProvider extends ChangeNotifier {
       _currentSet = 0;
       _currentExcersise++;
       notifyListeners();
+    } else {
+      finishTime = DateTime.now();
     }
   }
 
@@ -51,11 +54,9 @@ class WorkoutProvider extends ChangeNotifier {
 
   /// Clear object.
   void resetAllData() {
-    active = false;
-    dayID = 0;
+    active = finished = false;
+    dayID = _currentExcersise = _currentSet = 0;
     startTime = finishTime = null;
     excersises.clear();
-    _currentExcersise = 0;
-    _currentSet = 0;
   }
 }

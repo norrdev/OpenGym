@@ -230,6 +230,26 @@ class S {
     );
   }
 
+  /// `Continue`
+  String get ccontinue {
+    return Intl.message(
+      'Continue',
+      name: 'ccontinue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No excersises on this day.`
+  String get noex {
+    return Intl.message(
+      'No excersises on this day.',
+      name: 'noex',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Routines`
   String get pageRoutinesTitle {
     return Intl.message(

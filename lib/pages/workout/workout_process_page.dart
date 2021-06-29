@@ -83,8 +83,8 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                       ? buildReorderableListView()
                       : buildListView(),
                 )
-              //TODO: Create warning screen with i18n text.
-              : Container(child: Text('No ex in this day')),
+              //TODO: Create warning screen.
+              : Container(child: Text(S.of(context).noex)),
         ),
       ),
       bottomNavigationBar: Container(
@@ -105,11 +105,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                     label: S.of(context).start,
                     onPressed: () {
                       Provider.of<WorkoutProvider>(context, listen: false)
-                          .active = true;
-                      Provider.of<WorkoutProvider>(context, listen: false)
-                          .dayID = widget.dayId!;
-                      Provider.of<WorkoutProvider>(context, listen: false)
-                          .currentExcersise = 0;
+                          .resetAllData();
                       Provider.of<WorkoutProvider>(context, listen: false)
                           .excersises = _resultsMutable;
                       Provider.of<WorkoutProvider>(context, listen: false)
@@ -122,8 +118,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       MpButton(
-                        //TODO: Localisation
-                        label: 'Continue',
+                        label: S.of(context).ccontinue,
                         onPressed: () =>
                             Navigator.pushNamed(context, WorkoutSetPage.id)
                                 .whenComplete(() => _init()),
