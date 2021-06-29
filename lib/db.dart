@@ -25,8 +25,7 @@ Future<void> initDataBase() async {
     } catch (_) {}
 
     // Copy from asset
-    // TODO: Multilingval databases.
-    ByteData data = await rootBundle.load(join("assets/db/en", "npng.db"));
+    ByteData data = await rootBundle.load(join("assets/db", "npng.db"));
     List<int> bytes =
         data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
