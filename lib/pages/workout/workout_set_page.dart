@@ -14,6 +14,10 @@ class WorkoutSetPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (Provider.of<WorkoutProvider>(context, listen: false).finished == true) {
+      Navigator.pop(context);
+    }
+
     return MpScaffold(
       appBar: MpAppBar(title: Consumer<WorkoutProvider>(
         builder: (context, wk, child) {

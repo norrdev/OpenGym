@@ -120,10 +120,10 @@ class S {
     );
   }
 
-  /// `Rest`
+  /// `Save & rest`
   String get restButton {
     return Intl.message(
-      'Rest',
+      'Save & rest',
       name: 'restButton',
       desc: '',
       args: [],
@@ -250,11 +250,11 @@ class S {
     );
   }
 
-  /// `Routines`
-  String get pageRoutinesTitle {
+  /// `Programs`
+  String get pageProgramsTitle {
     return Intl.message(
-      'Routines',
-      name: 'pageRoutinesTitle',
+      'Programs',
+      name: 'pageProgramsTitle',
       desc: '',
       args: [],
     );

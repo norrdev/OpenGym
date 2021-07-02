@@ -40,11 +40,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "pageAddEx": MessageLookupByLibrary.simpleMessage("Add exercise"),
         "pageDaysTitle": MessageLookupByLibrary.simpleMessage("Days"),
         "pageExerciseTitle": MessageLookupByLibrary.simpleMessage("Exercises"),
-        "pageRoutinesTitle": MessageLookupByLibrary.simpleMessage("Routines"),
+        "pageProgramsTitle": MessageLookupByLibrary.simpleMessage("Programs"),
         "pageWorkout": MessageLookupByLibrary.simpleMessage("Workout"),
         "repeats": MessageLookupByLibrary.simpleMessage("Repeats"),
         "rest": MessageLookupByLibrary.simpleMessage("Rest time (sec)"),
-        "restButton": MessageLookupByLibrary.simpleMessage("Rest"),
+        "restButton": MessageLookupByLibrary.simpleMessage("Save & rest"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "sets": MessageLookupByLibrary.simpleMessage("Sets"),
         "setsText": MessageLookupByLibrary.simpleMessage(

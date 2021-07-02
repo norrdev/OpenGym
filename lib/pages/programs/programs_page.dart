@@ -72,7 +72,7 @@ class _ProgramsPageState extends State<ProgramsPage> {
     TextEditingController tcDesc = TextEditingController(text: '');
     return MpScaffold(
       appBar: MpAppBar(
-        title: Text(S.of(context).pageRoutinesTitle),
+        title: Text(S.of(context).pageProgramsTitle),
         trailing: MpFlatButton(
           padding: EdgeInsets.all(8),
           child: Icon(CupertinoIcons.add),

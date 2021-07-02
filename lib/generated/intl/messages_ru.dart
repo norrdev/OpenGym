@@ -40,11 +40,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Добавить упражнение"),
         "pageDaysTitle": MessageLookupByLibrary.simpleMessage("Дни"),
         "pageExerciseTitle": MessageLookupByLibrary.simpleMessage("Упражнения"),
-        "pageRoutinesTitle": MessageLookupByLibrary.simpleMessage("Тренировки"),
+        "pageProgramsTitle": MessageLookupByLibrary.simpleMessage("Программы"),
         "pageWorkout": MessageLookupByLibrary.simpleMessage("Тренировка"),
         "repeats": MessageLookupByLibrary.simpleMessage("Повторы"),
         "rest": MessageLookupByLibrary.simpleMessage("Отдых (сек)"),
-        "restButton": MessageLookupByLibrary.simpleMessage("Отдых"),
+        "restButton":
+            MessageLookupByLibrary.simpleMessage("Сохранить и отдохнуть"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
         "sets": MessageLookupByLibrary.simpleMessage("Подходы"),
         "setsText": MessageLookupByLibrary.simpleMessage(

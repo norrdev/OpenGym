@@ -73,7 +73,7 @@ class BottomBar extends StatelessWidget {
       style: TabStyle.react,
       items: [
         TabItem(icon: Icons.play_arrow, title: S.of(context).pageWorkout),
-        TabItem(icon: Icons.list, title: S.of(context).pageRoutinesTitle),
+        TabItem(icon: Icons.list, title: S.of(context).pageProgramsTitle),
         TabItem(icon: Icons.ac_unit, title: S.of(context).pageExerciseTitle),
         TabItem(icon: Icons.help, title: S.of(context).about),
       ],

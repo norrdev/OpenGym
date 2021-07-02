@@ -1,8 +1,37 @@
 import 'package:flutter/foundation.dart';
 
+class Set {
+  int repeats = 0;
+  double weight = 0;
+  int rest = 0;
+  bool completed = false;
+}
+
+class Exerscise {
+  int id = 0;
+  String name = '';
+  int maxSets = 0;
+  int restTime = 0;
+  int weight = 0;
+
+  List<Set> sets = [];
+
+  bool get completed {
+    bool flag = true;
+    // May be usual circle.
+    sets.forEach((element) {
+      if (!element.completed) flag = false;
+      return;
+    });
+    return flag;
+  }
+}
+
 class WorkoutProvider extends ChangeNotifier {
   /// Active workout flag.
   bool active = false;
+
+  /// Finished workout flag. Active != filished.
   bool finished = false;
 
   /// Workout day from DB.days.
@@ -14,6 +43,9 @@ class WorkoutProvider extends ChangeNotifier {
 
   ///Exerscises from DB
   List<Map<String, dynamic>> excersises = [];
+  List<Exerscise> excersises2 = [];
+
+  /// Completion Log
 
   ///Current excersise counter
   int _currentExcersise = 0;
@@ -26,6 +58,15 @@ class WorkoutProvider extends ChangeNotifier {
 
   void incCurrentExcersise() {
     if (_currentExcersise < maxExcersise) {
+      // Flag previous excersise as 'completed'
+      try {
+        print(excersises[_currentExcersise]);
+        //excersises[_currentExcersise].putIfAbsent('completed', () => true);
+        //excersises[_currentExcersise]['completed'] = true;
+      } catch (e) {
+        print(e);
+      }
+
       _currentSet = 0;
       _currentExcersise++;
       notifyListeners();
@@ -48,8 +89,20 @@ class WorkoutProvider extends ChangeNotifier {
       _currentSet++;
       notifyListeners();
     } else {
+      print("Switch excersise");
       incCurrentExcersise();
     }
+  }
+
+  /// Current rest
+  int get currentRest => excersises[_currentExcersise]['rest'];
+
+  /// Check if excersise is completed
+  bool excersiseCompleted(int index) {
+    if (excersises[index]['completed'] == true)
+      return true;
+    else
+      return false;
   }
 
   /// Clear object.

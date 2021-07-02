@@ -9,6 +9,7 @@ import 'package:npng/state/workout_provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:wakelock/wakelock.dart';
 
 class WorkoutProcessPage extends StatefulWidget {
   static const String id = 'TrainProcessPage';
@@ -32,7 +33,7 @@ class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
 
   void _init() async {
     _results = await db!.rawQuery('''
-SELECT workouts.id AS id, exercises.name AS name, exercises.description as description, sets, ord, repeats, rest, weight FROM workouts 
+SELECT workouts.id AS id, exercises.name AS name, exercises.description as description, sets, ord, repeats, rest, weight, completed = 0  FROM workouts 
 JOIN exercises on workouts.exerscises_id = exercises.id 
 WHERE days_id = ${widget.dayId} ORDER BY ord;
     ''');
@@ -101,34 +102,44 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             (!Provider.of<WorkoutProvider>(context, listen: false).active)
+                // Start workout
                 ? MpButton(
                     label: S.of(context).start,
                     onPressed: () {
                       Provider.of<WorkoutProvider>(context, listen: false)
                           .resetAllData();
                       Provider.of<WorkoutProvider>(context, listen: false)
+                          .dayID = widget.dayId!;
+                      Provider.of<WorkoutProvider>(context, listen: false)
                           .excersises = _resultsMutable;
                       Provider.of<WorkoutProvider>(context, listen: false)
                           .startTime = DateTime.now();
+                      Provider.of<WorkoutProvider>(context, listen: false)
+                          .active = true;
+                      Wakelock.enable();
                       Navigator.pushNamed(context, WorkoutSetPage.id)
                           .whenComplete(() => _init());
                     },
                   )
+                // Continue or finish workout
                 : Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      MpButton(
-                        label: S.of(context).ccontinue,
-                        onPressed: () =>
-                            Navigator.pushNamed(context, WorkoutSetPage.id)
-                                .whenComplete(() => _init()),
-                      ),
+                      if (!Provider.of<WorkoutProvider>(context, listen: false)
+                          .finished)
+                        MpButton(
+                          label: S.of(context).ccontinue,
+                          onPressed: () =>
+                              Navigator.pushNamed(context, WorkoutSetPage.id)
+                                  .whenComplete(() => _init()),
+                        ),
                       SizedBox(width: 16.0),
                       MpButton(
                         label: S.of(context).finish,
                         onPressed: () {
-                          Provider.of<WorkoutProvider>(context, listen: false)
-                              .resetAllData();
+                          // Provider.of<WorkoutProvider>(context, listen: false)
+                          //     .resetAllData();
+                          Wakelock.disable();
                           Navigator.pushAndRemoveUntil(
                               context,
                               PageTransition(
@@ -146,6 +157,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
     );
   }
 
+  /// This shows before start. Can reorder items.
   ReorderableListView buildReorderableListView() {
     return ReorderableListView.builder(
       onReorder: _onReorder,
@@ -164,6 +176,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
     );
   }
 
+  /// This shows after start. Do not allows to reorder items.
   ListView buildListView() {
     return ListView.builder(
       itemCount: _resultsMutable.length,
@@ -173,11 +186,18 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
           type: MaterialType.transparency,
           key: ValueKey(item),
           child: ListTile(
-            //TODO: Show status of excersises
-            leading: Icon(
-              Icons.done,
-              color: Theme.of(context).accentColor,
-            ),
+            //TODO: Show status of excersises, check completed.
+            leading: (Provider.of<WorkoutProvider>(context, listen: false)
+                    .excersiseCompleted(index))
+                ? Icon(
+                    Icons.done,
+                    color: Theme.of(context).accentColor,
+                  )
+                : Icon(
+                    Icons.fitness_center,
+                    //color: Theme.of(context).accentColor,
+                  ),
+
             title: Text(item['name']),
             subtitle: Text(item['description'] ?? ''),
           ),

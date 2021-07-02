@@ -7,7 +7,7 @@
     "start":"Старт",
     "finish":"Закончить",
     "from": " из ",
-    "restButton":"Отдых",
+    "restButton":"Сохранить и отдохнуть",
     "setsText": "Выполните подход, и когда закончите, нажмите кнопку.",
     "about":"О приложении",
     "timer":"Таймер",
@@ -21,7 +21,7 @@
     "ccontinue":"Продолжить",
     "noex":"В этом дне нет упражнений.",
 
-    "pageRoutinesTitle":"Тренировки",
+    "pageProgramsTitle":"Программы",
     "pageDaysTitle":"Дни",
 
     "pageExerciseTitle":"Упражнения",
