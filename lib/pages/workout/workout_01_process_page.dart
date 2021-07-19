@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
 import 'package:npng/db.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/pages/workout/workout_set_page.dart';
-import 'package:npng/pages/workout/workout_start_page.dart';
+import 'package:npng/pages/workout/workout_02_set_page.dart';
+import 'package:npng/pages/workout/workout_00_start_page.dart';
 import 'package:npng/state/workout_provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:page_transition/page_transition.dart';
@@ -33,7 +33,7 @@ class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
 
   void _init() async {
     _results = await db!.rawQuery('''
-SELECT workouts.id AS id, exercises.name AS name, exercises.description as description, sets, ord, repeats, rest, weight, completed = 0  FROM workouts 
+SELECT workouts.id AS id, exercises.name AS name, exercises.description as description, sets, ord, repeats, rest, weight FROM workouts 
 JOIN exercises on workouts.exerscises_id = exercises.id 
 WHERE days_id = ${widget.dayId} ORDER BY ord;
     ''');

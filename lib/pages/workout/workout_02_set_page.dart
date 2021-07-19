@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:npng/pages/workout/timer_page.dart';
+import 'package:npng/pages/workout/workout_03_timer_page.dart';
 import 'package:npng/state/workout_provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
@@ -82,6 +82,7 @@ class WorkoutSetPage extends StatelessWidget {
                             child: MpButton(
                               label: S.of(context).restButton,
                               onPressed: () {
+                                //FIXME Move to timer page
                                 Navigator.pushNamed(context, TimerPage.id)
                                     .whenComplete(
                                         () => workout.incCurrentSet());

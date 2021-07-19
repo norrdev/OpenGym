@@ -45,6 +45,8 @@ class WorkoutProvider extends ChangeNotifier {
   List<Map<String, dynamic>> excersises = [];
   List<Exerscise> excersises2 = [];
 
+  void loadEx(List<Map<String, dynamic>> excersises) {}
+
   /// Completion Log
 
   ///Current excersise counter

@@ -20,6 +20,7 @@ class TimerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //FIXME: Make real data
     int duration = 1; //Provider.of<WorkoutProvider>(context).currentRest;
     CountDownController _controller = CountDownController();
 

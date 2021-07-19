@@ -7,12 +7,11 @@ import 'package:npng/pages/exercises/exercises_by_muscle_page.dart';
 import 'package:npng/pages/exercises/exercises_page.dart';
 import 'package:npng/pages/programs/days_page.dart';
 import 'package:npng/pages/programs/programs_page.dart';
-import 'package:npng/pages/workout/workout_set_page.dart';
+import 'package:npng/pages/workout/workout_02_set_page.dart';
 import 'package:npng/pages/about_page.dart';
-import 'package:npng/pages/workout/timer_page.dart';
-import 'package:npng/pages/workout/train_page.dart';
-import 'package:npng/pages/workout/workout_process_page.dart';
-import 'package:npng/pages/workout/workout_start_page.dart';
+import 'package:npng/pages/workout/workout_03_timer_page.dart';
+import 'package:npng/pages/workout/workout_01_process_page.dart';
+import 'package:npng/pages/workout/workout_00_start_page.dart';
 
 /// Place for themes, configuration constants, etc.
 
@@ -64,7 +63,6 @@ final Map<String, Widget Function(BuildContext)> kAppRoutes = {
   WorkoutStartPage.id: (context) => WorkoutStartPage(),
   WorkoutProcessPage.id: (context) => WorkoutProcessPage(),
   ProgramsPage.id: (context) => ProgramsPage(),
-  TrainPage.id: (context) => TrainPage(),
   WorkoutSetPage.id: (context) => WorkoutSetPage(),
   TimerPage.id: (context) => TimerPage(),
   AboutPage.id: (context) => AboutPage(),

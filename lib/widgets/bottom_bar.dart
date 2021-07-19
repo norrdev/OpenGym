@@ -7,7 +7,7 @@ import 'package:npng/pages/about_page.dart';
 import 'package:npng/pages/exercises/exercises_page.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/pages/programs/programs_page.dart';
-import 'package:npng/pages/workout/workout_start_page.dart';
+import 'package:npng/pages/workout/workout_00_start_page.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:page_transition/page_transition.dart';
 
