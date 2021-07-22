@@ -74,6 +74,7 @@ class WorkoutProvider extends ChangeNotifier {
       notifyListeners();
     } else {
       finishTime = DateTime.now();
+      finished = true;
     }
   }
 

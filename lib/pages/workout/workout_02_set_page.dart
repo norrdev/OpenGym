@@ -82,10 +82,9 @@ class WorkoutSetPage extends StatelessWidget {
                             child: MpButton(
                               label: S.of(context).restButton,
                               onPressed: () {
-                                //FIXME Move to timer page
-                                Navigator.pushNamed(context, TimerPage.id)
-                                    .whenComplete(
-                                        () => workout.incCurrentSet());
+                                Navigator.pushNamed(context, TimerPage.id);
+                                // .whenComplete(
+                                //     () => workout.incCurrentSet());
                               },
                             ),
                           ),

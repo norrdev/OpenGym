@@ -76,7 +76,14 @@ class TimerPage extends StatelessWidget {
                 // Here, do whatever you want
                 //print('Countdown Ended');
                 playSound();
-                Navigator.pop(context);
+                Provider.of<WorkoutProvider>(context, listen: false)
+                    .incCurrentSet();
+                if (!Provider.of<WorkoutProvider>(context, listen: false)
+                    .finished) {
+                  Navigator.pop(context);
+                } else {
+                  print("Workout completed");
+                }
               },
             ),
           ),
