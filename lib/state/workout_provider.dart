@@ -12,7 +12,6 @@ class Exerscise {
   String name = '';
   int maxSets = 0;
   int restTime = 0;
-  int weight = 0;
 
   List<Set> sets = [];
 
@@ -45,7 +44,24 @@ class WorkoutProvider extends ChangeNotifier {
   List<Map<String, dynamic>> excersises = [];
   List<Exerscise> excersises2 = [];
 
-  void loadEx(List<Map<String, dynamic>> excersises) {}
+  void loadEx(List<Map<String, dynamic>> excersises) {
+    for (Map<String, dynamic> item in excersises) {
+      Exerscise ex = Exerscise();
+      ex.id = item['id'];
+      ex.name = item['name'];
+      ex.maxSets = item['sets'];
+      ex.restTime = item['rest'];
+      for (int i = 0; i < item['sets']; i++) {
+        Set oneset = Set();
+        oneset.repeats = item['repeats'];
+        oneset.weight = item['weight'];
+        oneset.rest = item['rest'];
+        oneset.completed = false;
+        ex.sets.add(oneset);
+      }
+      excersises2.add(ex);
+    }
+  }
 
   /// Completion Log
 
