@@ -1,7 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:npng/pages/workout/workout_04_finish_page.dart';
 import 'package:npng/state/workout_provider.dart';
+import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
@@ -82,6 +84,13 @@ class TimerPage extends StatelessWidget {
                     .finished) {
                   Navigator.pop(context);
                 } else {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      mpPageRoute(
+                          builder: (BuildContext context) =>
+                              WorkoutFinishPage()),
+                      (route) => false);
+
                   print("Workout completed");
                 }
               },
