@@ -386,10 +386,10 @@ class MpChangeIntField extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: 60.0,
+          width: 70.0,
           child: Text(
             value.toString(),
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
             textAlign: TextAlign.center,
           ),
         ),
@@ -433,10 +433,10 @@ class MpChangeDoubleField extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: 60.0,
+          width: 70.0,
           child: Text(
             value.toString(),
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
             textAlign: TextAlign.center,
           ),
         ),
@@ -447,6 +447,84 @@ class MpChangeDoubleField extends StatelessWidget {
                 ? CupertinoTheme.of(context).barBackgroundColor
                 : Theme.of(context).bottomAppBarColor,
             onPressed: increaseCallback,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class MpChangeDoubleFieldExtended extends StatelessWidget {
+  final double? value;
+  final Function? increaseCallback;
+  final Function? decreaseCallback;
+  final Function? increaseCallbackFast;
+  final Function? decreaseCallbackFast;
+
+  const MpChangeDoubleFieldExtended({
+    Key? key,
+    @required this.value,
+    this.decreaseCallback,
+    this.increaseCallback,
+    this.decreaseCallbackFast,
+    this.increaseCallbackFast,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RoundIconButton(
+                icon: Icons.fast_rewind_rounded,
+                fillColor: (isApple)
+                    ? CupertinoTheme.of(context).barBackgroundColor
+                    : Theme.of(context).bottomAppBarColor,
+                onPressed: decreaseCallbackFast,
+              ),
+              SizedBox(width: 8.0),
+              RoundIconButton(
+                icon: Icons.arrow_back_ios_rounded,
+                fillColor: (isApple)
+                    ? CupertinoTheme.of(context).barBackgroundColor
+                    : Theme.of(context).bottomAppBarColor,
+                onPressed: decreaseCallback,
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: 70.0,
+          child: Text(
+            value.toString(),
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RoundIconButton(
+                icon: Icons.arrow_forward_ios_rounded,
+                fillColor: (isApple)
+                    ? CupertinoTheme.of(context).barBackgroundColor
+                    : Theme.of(context).bottomAppBarColor,
+                onPressed: increaseCallback,
+              ),
+              SizedBox(width: 8.0),
+              RoundIconButton(
+                icon: Icons.fast_forward_rounded,
+                fillColor: (isApple)
+                    ? CupertinoTheme.of(context).barBackgroundColor
+                    : Theme.of(context).bottomAppBarColor,
+                onPressed: increaseCallbackFast,
+              ),
+            ],
           ),
         ),
       ],

@@ -113,7 +113,7 @@ class WorkoutProvider extends ChangeNotifier {
   }
 
   /// Current rest
-  //FIXME Cange from excersise to set level
+  //FIXME Cange from excersise to set level (not critical now)
   int get currentRest => excersises[_currentExcersise].restTime;
 
   /// Check if excersise is completed
@@ -122,6 +122,50 @@ class WorkoutProvider extends ChangeNotifier {
       return true;
     else
       return false;
+  }
+
+  /// Increase repeats in set
+  void incRepeats({int? excersiseNumber, int? setNumber}) {
+    excersises[excersiseNumber!].sets[setNumber!].repeats++;
+    notifyListeners();
+  }
+
+  /// Decrease repeats in set
+  void decRepeats({int? excersiseNumber, int? setNumber}) {
+    if (excersises[excersiseNumber!].sets[setNumber!].repeats > 1) {
+      excersises[excersiseNumber].sets[setNumber].repeats--;
+      notifyListeners();
+    }
+  }
+
+  /// Increase weight in set
+  void incWeight025({int? excersiseNumber, int? setNumber}) {
+    excersises[excersiseNumber!].sets[setNumber!].weight =
+        excersises[excersiseNumber].sets[setNumber].weight + 0.25;
+    notifyListeners();
+  }
+
+  void incWeight5({int? excersiseNumber, int? setNumber}) {
+    excersises[excersiseNumber!].sets[setNumber!].weight =
+        excersises[excersiseNumber].sets[setNumber].weight + 5;
+    notifyListeners();
+  }
+
+  /// Decrease weight in set
+  void decWeight025({int? excersiseNumber, int? setNumber}) {
+    if (excersises[excersiseNumber!].sets[setNumber!].weight > 0) {
+      excersises[excersiseNumber].sets[setNumber].weight =
+          excersises[excersiseNumber].sets[setNumber].weight - 0.25;
+      notifyListeners();
+    }
+  }
+
+  void decWeight5({int? excersiseNumber, int? setNumber}) {
+    if (excersises[excersiseNumber!].sets[setNumber!].weight > 5) {
+      excersises[excersiseNumber].sets[setNumber].weight =
+          excersises[excersiseNumber].sets[setNumber].weight - 5;
+      notifyListeners();
+    }
   }
 
   /// Clear object.
