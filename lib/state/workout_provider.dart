@@ -41,11 +41,10 @@ class WorkoutProvider extends ChangeNotifier {
   DateTime? finishTime;
 
   ///Exerscises from DB
-  List<Map<String, dynamic>> excersises = [];
-  List<Exerscise> excersises2 = [];
+  List<Exerscise> excersises = [];
 
-  void loadEx(List<Map<String, dynamic>> excersises) {
-    for (Map<String, dynamic> item in excersises) {
+  void loadEx(List<Map<String, dynamic>> excersisesInput) {
+    for (Map<String, dynamic> item in excersisesInput) {
       Exerscise ex = Exerscise();
       ex.id = item['id'];
       ex.name = item['name'];
@@ -59,7 +58,7 @@ class WorkoutProvider extends ChangeNotifier {
         oneset.completed = false;
         ex.sets.add(oneset);
       }
-      excersises2.add(ex);
+      excersises.add(ex);
     }
   }
 
@@ -97,7 +96,7 @@ class WorkoutProvider extends ChangeNotifier {
   /// Current set counter
   int _currentSet = 0;
   int get currentSet => _currentSet;
-  int get maxSet => excersises[_currentExcersise]['sets'] - 1;
+  int get maxSet => excersises[_currentExcersise].maxSets - 1;
   set currentSet(int currentSet) {
     _currentSet = currentSet;
     notifyListeners();
@@ -114,11 +113,12 @@ class WorkoutProvider extends ChangeNotifier {
   }
 
   /// Current rest
-  int get currentRest => excersises[_currentExcersise]['rest'];
+  //FIXME Cange from excersise to set level
+  int get currentRest => excersises[_currentExcersise].restTime;
 
   /// Check if excersise is completed
   bool excersiseCompleted(int index) {
-    if (excersises[index]['completed'] == true)
+    if (excersises[index].completed == true)
       return true;
     else
       return false;

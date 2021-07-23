@@ -21,7 +21,7 @@ class WorkoutSetPage extends StatelessWidget {
     return MpScaffold(
       appBar: MpAppBar(title: Consumer<WorkoutProvider>(
         builder: (context, wk, child) {
-          return Text(wk.excersises[wk.currentExcersise]['name']);
+          return Text(wk.excersises[wk.currentExcersise].name);
         },
       )),
       body: SafeArea(
@@ -39,11 +39,12 @@ class WorkoutSetPage extends StatelessWidget {
                     isActive: (workout.currentSet == i) ? true : false,
                     title: Text(
                       //TODO: Get weight from previous log!
-                      workout.excersises[workout.currentExcersise]['weight']
+                      workout.excersises[workout.currentExcersise].sets[i]
+                              .weight
                               .toString() +
                           ' kg x ' +
-                          workout.excersises[workout.currentExcersise]
-                                  ['repeats']
+                          workout.excersises[workout.currentExcersise].sets[i]
+                              .repeats
                               .toString(),
                       style: TextStyle(
                           fontSize: 20.0,
@@ -69,13 +70,13 @@ class WorkoutSetPage extends StatelessWidget {
                           Text(S.of(context).repeats),
                           MpChangeIntField(
                             value: workout.excersises[workout.currentExcersise]
-                                ['repeats'],
+                                .sets[i].repeats,
                           ),
                           Text(S.of(context).weight),
                           MpChangeDoubleField(
                             //TODO: Get from previous log!
                             value: workout.excersises[workout.currentExcersise]
-                                ['weight'],
+                                .sets[i].weight,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 16.0),

@@ -111,8 +111,6 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                       Provider.of<WorkoutProvider>(context, listen: false)
                           .dayID = widget.dayId!;
                       Provider.of<WorkoutProvider>(context, listen: false)
-                          .excersises = _resultsMutable;
-                      Provider.of<WorkoutProvider>(context, listen: false)
                           .loadEx(_resultsMutable);
 
                       Provider.of<WorkoutProvider>(context, listen: false)
