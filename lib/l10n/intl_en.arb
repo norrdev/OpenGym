@@ -32,5 +32,6 @@
     "pageAddEx":"Add exercise",
 
     "pageWorkout":"Workout",
-    "currentWorkout": "Current workout"
+    "currentWorkout": "Current workout",
+    "workoutFinished":"Workout finished"
 }

@@ -52,6 +52,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "start": MessageLookupByLibrary.simpleMessage("Start"),
         "timer": MessageLookupByLibrary.simpleMessage("Timer"),
         "title": MessageLookupByLibrary.simpleMessage("NpNg"),
-        "weight": MessageLookupByLibrary.simpleMessage("Weight")
+        "weight": MessageLookupByLibrary.simpleMessage("Weight"),
+        "workoutFinished":
+            MessageLookupByLibrary.simpleMessage("Workout finished")
       };
 }

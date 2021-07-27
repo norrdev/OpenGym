@@ -31,5 +31,6 @@
     "pageAddEx":"Добавить упражнение",
 
     "pageWorkout":"Тренировка",
-    "currentWorkout": "Текущая тренировка"
+    "currentWorkout": "Текущая тренировка",
+    "workoutFinished":"Тренировка завершена"
 }
