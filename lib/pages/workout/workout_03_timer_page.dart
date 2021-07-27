@@ -76,7 +76,6 @@ class TimerPage extends StatelessWidget {
               // Function which will execute when the Countdown Ends
               onComplete: () {
                 // Here, do whatever you want
-                //print('Countdown Ended');
                 playSound();
                 Provider.of<WorkoutProvider>(context, listen: false)
                     .incCurrentSet();
@@ -90,8 +89,6 @@ class TimerPage extends StatelessWidget {
                           builder: (BuildContext context) =>
                               WorkoutFinishPage()),
                       (route) => false);
-
-                  print("Workout completed");
                 }
               },
             ),

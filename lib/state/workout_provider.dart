@@ -76,14 +76,6 @@ class WorkoutProvider extends ChangeNotifier {
   void incCurrentExcersise() {
     if (_currentExcersise < maxExcersise) {
       // Flag previous excersise as 'completed'
-      try {
-        print(excersises[_currentExcersise]);
-        //excersises[_currentExcersise].putIfAbsent('completed', () => true);
-        //excersises[_currentExcersise]['completed'] = true;
-      } catch (e) {
-        print(e);
-      }
-
       _currentSet = 0;
       _currentExcersise++;
       notifyListeners();
