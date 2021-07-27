@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.2.1 on Tue Jul 27 15:50:46 2021
+-- File generated with SQLiteStudio v3.2.1 on Tue Jul 27 16:01:29 2021
 --
 -- Text encoding used: UTF-8
 --
@@ -35,9 +35,25 @@ INSERT INTO load (exercises_id, muscles_id) VALUES (3, 3);
 
 -- Table: log_days
 CREATE TABLE log_days (id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL, start STRING NOT NULL, finish STRING, days_id INTEGER REFERENCES days (id));
+INSERT INTO log_days (id, start, finish, days_id) VALUES (1, '2021-07-27 15:54:53.116898', '2021-07-27 15:55:04.455392', 1);
+INSERT INTO log_days (id, start, finish, days_id) VALUES (2, '2021-07-27 15:59:18.963580', '2021-07-27 15:59:29.824631', 3);
+INSERT INTO log_days (id, start, finish, days_id) VALUES (3, '2021-07-27 16:00:34.968918', '2021-07-27 16:00:40.504243', 3);
 
 -- Table: log_ex
-CREATE TABLE log_ex (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, log_days_id INT, exercises_id integer, repeat integer, weight integer, FOREIGN KEY (log_days_id) REFERENCES log_days (id), FOREIGN KEY (exercises_id) REFERENCES exercises (id));
+CREATE TABLE log_ex (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, log_days_id INT, exercises_id integer, repeat integer, weight REAL, FOREIGN KEY (log_days_id) REFERENCES log_days (id), FOREIGN KEY (exercises_id) REFERENCES exercises (id));
+INSERT INTO log_ex (id, log_days_id, exercises_id, repeat, weight) VALUES (1, 1, 3, 6, 10.0);
+INSERT INTO log_ex (id, log_days_id, exercises_id, repeat, weight) VALUES (2, 1, 3, 6, 10.0);
+INSERT INTO log_ex (id, log_days_id, exercises_id, repeat, weight) VALUES (3, 1, 3, 6, 10.0);
+INSERT INTO log_ex (id, log_days_id, exercises_id, repeat, weight) VALUES (4, 1, 3, 6, 10.0);
+INSERT INTO log_ex (id, log_days_id, exercises_id, repeat, weight) VALUES (5, 1, 3, 6, 10.0);
+INSERT INTO log_ex (id, log_days_id, exercises_id, repeat, weight) VALUES (6, 1, 4, 8, 10.0);
+INSERT INTO log_ex (id, log_days_id, exercises_id, repeat, weight) VALUES (7, 1, 4, 8, 10.0);
+INSERT INTO log_ex (id, log_days_id, exercises_id, repeat, weight) VALUES (8, 1, 4, 8, 10.0);
+INSERT INTO log_ex (id, log_days_id, exercises_id, repeat, weight) VALUES (9, 1, 5, 8, 10.0);
+INSERT INTO log_ex (id, log_days_id, exercises_id, repeat, weight) VALUES (10, 1, 5, 8, 10.0);
+INSERT INTO log_ex (id, log_days_id, exercises_id, repeat, weight) VALUES (11, 1, 5, 8, 10.0);
+INSERT INTO log_ex (id, log_days_id, exercises_id, repeat, weight) VALUES (12, 2, 10, 11, 22.0);
+INSERT INTO log_ex (id, log_days_id, exercises_id, repeat, weight) VALUES (13, 3, 10, 9, 10.25);
 
 -- Table: musсles
 CREATE TABLE musсles (id INTEGER PRIMARY KEY NOT NULL UNIQUE, name STRING);
