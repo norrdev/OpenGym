@@ -99,7 +99,6 @@ class WorkoutProvider extends ChangeNotifier {
       _currentSet++;
       notifyListeners();
     } else {
-      print("Switch excersise");
       incCurrentExcersise();
     }
   }
