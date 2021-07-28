@@ -32,5 +32,6 @@
 
     "pageWorkout":"Тренировка",
     "currentWorkout": "Текущая тренировка",
-    "workoutFinished":"Тренировка завершена"
+    "workoutFinished":"Тренировка завершена",
+    "saveToLog": "Сохранить в дневник"
 }

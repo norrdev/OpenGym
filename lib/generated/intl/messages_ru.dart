@@ -47,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "restButton":
             MessageLookupByLibrary.simpleMessage("Сохранить и отдохнуть"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
+        "saveToLog":
+            MessageLookupByLibrary.simpleMessage("Сохранить в дневник"),
         "sets": MessageLookupByLibrary.simpleMessage("Подходы"),
         "setsText": MessageLookupByLibrary.simpleMessage(
             "Выполните подход, и когда закончите, нажмите кнопку."),

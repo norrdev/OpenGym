@@ -339,6 +339,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Save to Log`
+  String get saveToLog {
+    return Intl.message(
+      'Save to Log',
+      name: 'saveToLog',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

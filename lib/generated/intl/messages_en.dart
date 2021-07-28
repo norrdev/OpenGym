@@ -46,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "rest": MessageLookupByLibrary.simpleMessage("Rest time (sec)"),
         "restButton": MessageLookupByLibrary.simpleMessage("Save & rest"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "saveToLog": MessageLookupByLibrary.simpleMessage("Save to Log"),
         "sets": MessageLookupByLibrary.simpleMessage("Sets"),
         "setsText": MessageLookupByLibrary.simpleMessage(
             "Perfom the set, and when you\'re done, press the button."),

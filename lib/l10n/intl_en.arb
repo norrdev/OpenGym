@@ -33,5 +33,6 @@
 
     "pageWorkout":"Workout",
     "currentWorkout": "Current workout",
-    "workoutFinished":"Workout finished"
+    "workoutFinished":"Workout finished",
+    "saveToLog": "Save to Log"
 }

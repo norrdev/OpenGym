@@ -4,8 +4,10 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:npng/config.dart';
 import 'package:npng/db.dart';
 import 'package:npng/generated/l10n.dart';
+import 'package:npng/pages/workout/workout_00_start_page.dart';
 import 'package:npng/state/workout_provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -55,12 +57,12 @@ class WorkoutFinishPage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           MpButton(
-            label: 'Save to Log',
+            label: S.of(context).saveToLog,
             onPressed: () async {
-              int log_days_id = 0;
+              int logDaysId = 0;
               // Save to table log_days
               final wp = context.read<WorkoutProvider>();
-              log_days_id = await db!.insert('log_days', {
+              logDaysId = await db!.insert('log_days', {
                 'start': start.toLocal().toString(),
                 'finish': finish.toLocal().toString(),
                 'days_id': wp.dayID,
@@ -69,7 +71,7 @@ class WorkoutFinishPage extends StatelessWidget {
                 for (Exerscise item in wp.excersises) {
                   for (int i = 0; i < item.sets.length; i++) {
                     await txn.insert('log_ex', {
-                      'log_days_id': log_days_id,
+                      'log_days_id': logDaysId,
                       'exercises_id': item.id,
                       'repeat': item.sets[i].repeats,
                       'weight': item.sets[i].weight,
@@ -77,6 +79,13 @@ class WorkoutFinishPage extends StatelessWidget {
                   }
                 }
               });
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  PageTransition(
+                    child: WorkoutStartPage(),
+                    type: PageTransitionType.fade,
+                  ),
+                  (route) => false);
             },
           )
         ]),
