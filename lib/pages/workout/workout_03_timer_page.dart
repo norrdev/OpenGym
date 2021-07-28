@@ -1,9 +1,10 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:npng/pages/timer/train_page.dart';
+import 'package:npng/pages/workout/workout_04_finish_page.dart';
+import 'package:npng/state/workout_provider.dart';
+import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:npng/state/set_rest.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 class TimerPage extends StatelessWidget {
@@ -21,7 +22,8 @@ class TimerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int duration = Provider.of<SetRestProvider>(context).rest;
+    //FIXME: Make real data
+    int duration = 1; //Provider.of<WorkoutProvider>(context).currentRest;
     CountDownController _controller = CountDownController();
 
     return Scaffold(
@@ -74,22 +76,19 @@ class TimerPage extends StatelessWidget {
               // Function which will execute when the Countdown Ends
               onComplete: () {
                 // Here, do whatever you want
-                //print('Countdown Ended');
                 playSound();
-
-                int curSet =
-                    Provider.of<SetRestProvider>(context, listen: false)
-                        .currentSet;
-                int sets =
-                    Provider.of<SetRestProvider>(context, listen: false).sets;
-
-                if (curSet >= sets) {
-                  Navigator.popUntil(
-                      context, ModalRoute.withName(TrainPage.id));
-                } else {
-                  Provider.of<SetRestProvider>(context, listen: false)
-                      .increaseCurrentSet();
+                Provider.of<WorkoutProvider>(context, listen: false)
+                    .incCurrentSet();
+                if (!Provider.of<WorkoutProvider>(context, listen: false)
+                    .finished) {
                   Navigator.pop(context);
+                } else {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      mpPageRoute(
+                          builder: (BuildContext context) =>
+                              WorkoutFinishPage()),
+                      (route) => false);
                 }
               },
             ),

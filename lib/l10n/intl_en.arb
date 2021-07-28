@@ -5,8 +5,9 @@
     "repeats":"Repeats",
     "rest":"Rest time (sec)",
     "start":"Start",
+    "finish":"Finish",
     "from": " from ",
-    "restButton":"Rest",
+    "restButton":"Save & rest",
     "setsText": "Perfom the set, and when you're done, press the button.",
     "about":"About",
     "timer":"Timer",
@@ -16,8 +17,11 @@
     "enterText":"Please enter some text",
     "name":"Name",
     "desc":"Description",
+    "weight":"Weight",
+    "ccontinue":"Continue",
+    "noex":"No excersises on this day.",
 
-    "pageRoutinesTitle":"Routines",
+    "pageProgramsTitle":"Programs",
 
     "pageDaysTitle":"Days",
 
@@ -27,5 +31,8 @@
 
     "pageAddEx":"Add exercise",
 
-    "pageWorkout":"Workout"
+    "pageWorkout":"Workout",
+    "currentWorkout": "Current workout",
+    "workoutFinished":"Workout finished",
+    "saveToLog": "Save to Log"
 }

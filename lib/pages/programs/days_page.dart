@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
 import 'package:npng/db.dart';
-import 'package:npng/pages/routines/routines_by_day.dart';
+import 'package:npng/pages/programs/programs_by_day.dart';
 import 'package:npng/widgets/modal_popups.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
@@ -56,7 +56,12 @@ class _DaysPageState extends State<DaysPage> {
   }
 
   void _refresh() async {
-    _days = await db!.query('days', orderBy: 'ord');
+    _days = await db!.query(
+      'days',
+      orderBy: 'ord',
+      where: 'routines_id = ?',
+      whereArgs: [widget.routinesId],
+    );
     _mutableDays.clear();
     _mutableDays.addAll(_days);
     setState(() {});
@@ -107,7 +112,6 @@ class _DaysPageState extends State<DaysPage> {
       body: Container(
         constraints: BoxConstraints.expand(),
         child: SafeArea(
-          //TODO: SortedList from Flutter 2.0
           child: Theme(
             data: (darkModeOn) ? kMaterialDark : kMaterialLight,
             child: ReorderableListView.builder(
@@ -115,7 +119,8 @@ class _DaysPageState extends State<DaysPage> {
               itemCount: _mutableDays.length,
               itemBuilder: (context, index) {
                 final item = _mutableDays[index];
-                return Card(
+                return Material(
+                  type: MaterialType.transparency,
                   key: ValueKey(item),
                   child: ListTile(
                     title: Text(item['name']),
@@ -125,7 +130,7 @@ class _DaysPageState extends State<DaysPage> {
                         context,
                         mpPageRoute(
                           builder: (context) {
-                            return RoutinesByDayPage(
+                            return ProgramsByDayPage(
                               dayId: item['id'],
                               pageTitle: item['name'],
                             );

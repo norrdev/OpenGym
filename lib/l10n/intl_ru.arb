@@ -5,8 +5,9 @@
     "repeats":"Повторы",
     "rest":"Отдых (сек)",
     "start":"Старт",
+    "finish":"Закончить",
     "from": " из ",
-    "restButton":"Отдых",
+    "restButton":"Сохранить и отдохнуть",
     "setsText": "Выполните подход, и когда закончите, нажмите кнопку.",
     "about":"О приложении",
     "timer":"Таймер",
@@ -16,8 +17,11 @@
     "enterText":"Введите текст",
     "name":"Название",
     "desc":"Описание",
+    "weight":"Вес",
+    "ccontinue":"Продолжить",
+    "noex":"В этом дне нет упражнений.",
 
-    "pageRoutinesTitle":"Тренировки",
+    "pageProgramsTitle":"Программы",
     "pageDaysTitle":"Дни",
 
     "pageExerciseTitle":"Упражнения",
@@ -26,5 +30,8 @@
 
     "pageAddEx":"Добавить упражнение",
 
-    "pageWorkout":"Тренировка"
+    "pageWorkout":"Тренировка",
+    "currentWorkout": "Текущая тренировка",
+    "workoutFinished":"Тренировка завершена",
+    "saveToLog": "Сохранить в дневник"
 }

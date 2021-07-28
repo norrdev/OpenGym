@@ -17,7 +17,7 @@ Future<void> initDataBase() async {
 
   if (!exists) {
     // Should happen only the first time you launch your application
-    print("Creating new copy from asset");
+    print("Creating new DB copy from asset...");
 
     // Make sure the parent directory exists
     try {
@@ -25,8 +25,7 @@ Future<void> initDataBase() async {
     } catch (_) {}
 
     // Copy from asset
-    // TODO: Multilingval databases.
-    ByteData data = await rootBundle.load(join("assets/db/en", "npng.db"));
+    ByteData data = await rootBundle.load(join("assets/db", "npng.db"));
     List<int> bytes =
         data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 

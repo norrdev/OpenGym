@@ -6,10 +6,10 @@ import 'package:npng/config.dart';
 import 'package:npng/pages/about_page.dart';
 import 'package:npng/pages/exercises/exercises_page.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/pages/routines/routines_page.dart';
-import 'package:npng/pages/timer/train_page.dart';
-import 'package:npng/widgets/multiplatform_widgets.dart';
+import 'package:npng/pages/programs/programs_page.dart';
+import 'package:npng/pages/workout/workout_00_start_page.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:page_transition/page_transition.dart';
 
 class BottomBar extends StatelessWidget {
   BottomBar({this.initialActiveIndex});
@@ -32,15 +32,39 @@ class BottomBar extends StatelessWidget {
     String about = await _loadAsset("assets/texts/$myLocale/about.md");
     about = about.replaceAll('%version%', version);
     String history = await _loadAsset("CHANGELOG.md");
-    Navigator.pushAndRemoveUntil(context, mpPageRoute(
-      builder: (context) {
-        return AboutPage(
-          about: about,
-          history: history,
-          version: version,
-        );
-      },
-    ), (route) => false);
+
+    // Navigator.push(
+    //   context,
+    //   PageTransition(
+    //     type: PageTransitionType.fade,
+    //     child: AboutPage(
+    //       about: about,
+    //       history: history,
+    //       version: version,
+    //     ),
+    //   ),
+    // );
+
+    Navigator.pushAndRemoveUntil(
+        context,
+        PageTransition(
+            child: AboutPage(
+              about: about,
+              history: history,
+              version: version,
+            ),
+            type: PageTransitionType.fade),
+        (route) => false);
+
+    // Navigator.pushAndRemoveUntil(context, mpPageRoute(
+    //   builder: (context) {
+    //     return AboutPage(
+    //       about: about,
+    //       history: history,
+    //       version: version,
+    //     );
+    //   },
+    // ), (route) => false);
   }
 
   @override
@@ -49,9 +73,7 @@ class BottomBar extends StatelessWidget {
       style: TabStyle.react,
       items: [
         TabItem(icon: Icons.play_arrow, title: S.of(context).pageWorkout),
-        TabItem(icon: Icons.list, title: S.of(context).pageRoutinesTitle),
-        TabItem(icon: Icons.calendar_today, title: "Measure"),
-        TabItem(icon: Icons.assessment, title: "Stats"),
+        TabItem(icon: Icons.list, title: S.of(context).pageProgramsTitle),
         TabItem(icon: Icons.ac_unit, title: S.of(context).pageExerciseTitle),
         TabItem(icon: Icons.help, title: S.of(context).about),
       ],
@@ -60,20 +82,33 @@ class BottomBar extends StatelessWidget {
         if (i != this.initialActiveIndex) {
           switch (i) {
             case 0:
-              Navigator.pushNamed(context, TrainPage.id);
-              break;
-            case 0:
-              Navigator.pushNamedAndRemoveUntil(
-                  context, RoutinesPage.id, (route) => false);
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  PageTransition(
+                    child: WorkoutStartPage(),
+                    type: PageTransitionType.fade,
+                  ),
+                  (route) => false);
               break;
             case 1:
-            case 2:
-            case 3:
-              //Navigator.pushNamed(context, ExercisesPage.id);
-              Navigator.pushNamedAndRemoveUntil(
-                  context, ExercisesPage.id, (route) => false);
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  PageTransition(
+                    child: ProgramsPage(),
+                    type: PageTransitionType.fade,
+                  ),
+                  (route) => false);
               break;
-            case 4:
+            case 2:
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  PageTransition(
+                    child: ExercisesPage(),
+                    type: PageTransitionType.fade,
+                  ),
+                  (route) => false);
+              break;
+            case 3:
               _getAboutPage(context);
               break;
             default:
@@ -82,13 +117,13 @@ class BottomBar extends StatelessWidget {
       },
       color: (isApple)
           ? CupertinoTheme.of(context).primaryColor
-          : Theme.of(context).primaryColor,
+          : Theme.of(context).appBarTheme.color,
       activeColor: (isApple)
           ? CupertinoTheme.of(context).primaryColor
-          : Theme.of(context).primaryColor,
+          : Theme.of(context).bottomAppBarColor,
       backgroundColor: (isApple)
           ? CupertinoTheme.of(context).barBackgroundColor
-          : Theme.of(context).backgroundColor,
+          : Theme.of(context).accentColor,
     );
   }
 }

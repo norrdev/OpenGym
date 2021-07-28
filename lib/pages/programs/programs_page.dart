@@ -1,22 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
-import 'package:npng/pages/routines/days_page.dart';
+import 'package:npng/pages/programs/days_page.dart';
 import 'package:npng/db.dart';
 import 'package:npng/widgets/modal_popups.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 
-class RoutinesPage extends StatefulWidget {
-  static String id = '/';
+class ProgramsPage extends StatefulWidget {
+  static String id = '/routines';
 
   @override
-  _RoutinesPageState createState() => _RoutinesPageState();
+  _ProgramsPageState createState() => _ProgramsPageState();
 }
 
-class _RoutinesPageState extends State<RoutinesPage> {
+class _ProgramsPageState extends State<ProgramsPage> {
   List<Map<String, dynamic>> _results = [];
+  List<Map<String, dynamic>> _user = [];
+  int _current = 0;
 
   @override
   void initState() {
@@ -26,6 +28,8 @@ class _RoutinesPageState extends State<RoutinesPage> {
 
   void _refresh() async {
     _results = await db!.query('routines');
+    _user = await db!.query('user', where: 'id = ?', whereArgs: [1]);
+    _current = _user.first['routines_id'] ?? 0;
     setState(() {});
   }
 
@@ -52,13 +56,23 @@ class _RoutinesPageState extends State<RoutinesPage> {
     });
   }
 
+  void _changeCurrent(int current) {
+    db!.update(
+      'user',
+      {'routines_id': current},
+      where: 'id = ?',
+      whereArgs: [1],
+    );
+    _refresh();
+  }
+
   @override
   Widget build(BuildContext context) {
     TextEditingController tcName = TextEditingController(text: '');
     TextEditingController tcDesc = TextEditingController(text: '');
     return MpScaffold(
       appBar: MpAppBar(
-        title: Text(S.of(context).pageRoutinesTitle),
+        title: Text(S.of(context).pageProgramsTitle),
         trailing: MpFlatButton(
           padding: EdgeInsets.all(8),
           child: Icon(CupertinoIcons.add),
@@ -81,6 +95,10 @@ class _RoutinesPageState extends State<RoutinesPage> {
                 child: Theme(
                   data: (darkModeOn) ? kMaterialDark : kMaterialLight,
                   child: ListTile(
+                    leading: Radio<int>(
+                        value: item['id'],
+                        groupValue: _current,
+                        onChanged: (value) => _changeCurrent(item['id'])),
                     title: Text(item['name']),
                     subtitle: Text(item['description']),
                     trailing: MpLinkButton(
@@ -114,7 +132,7 @@ class _RoutinesPageState extends State<RoutinesPage> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomBar(initialActiveIndex: 0),
+      bottomNavigationBar: BottomBar(initialActiveIndex: 1),
     );
   }
 }

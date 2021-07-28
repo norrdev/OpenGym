@@ -22,29 +22,41 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("О приложении"),
+        "ccontinue": MessageLookupByLibrary.simpleMessage("Продолжить"),
+        "currentWorkout":
+            MessageLookupByLibrary.simpleMessage("Текущая тренировка"),
         "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
         "desc": MessageLookupByLibrary.simpleMessage("Описание"),
         "edit": MessageLookupByLibrary.simpleMessage("Правка"),
         "enterText": MessageLookupByLibrary.simpleMessage("Введите текст"),
         "exDesc": MessageLookupByLibrary.simpleMessage("Описание упражнения"),
         "exName": MessageLookupByLibrary.simpleMessage("Название упражнения"),
+        "finish": MessageLookupByLibrary.simpleMessage("Закончить"),
         "from": MessageLookupByLibrary.simpleMessage(" из "),
         "name": MessageLookupByLibrary.simpleMessage("Название"),
+        "noex":
+            MessageLookupByLibrary.simpleMessage("В этом дне нет упражнений."),
         "pageAddEx":
             MessageLookupByLibrary.simpleMessage("Добавить упражнение"),
         "pageDaysTitle": MessageLookupByLibrary.simpleMessage("Дни"),
         "pageExerciseTitle": MessageLookupByLibrary.simpleMessage("Упражнения"),
-        "pageRoutinesTitle": MessageLookupByLibrary.simpleMessage("Тренировки"),
+        "pageProgramsTitle": MessageLookupByLibrary.simpleMessage("Программы"),
         "pageWorkout": MessageLookupByLibrary.simpleMessage("Тренировка"),
         "repeats": MessageLookupByLibrary.simpleMessage("Повторы"),
         "rest": MessageLookupByLibrary.simpleMessage("Отдых (сек)"),
-        "restButton": MessageLookupByLibrary.simpleMessage("Отдых"),
+        "restButton":
+            MessageLookupByLibrary.simpleMessage("Сохранить и отдохнуть"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
+        "saveToLog":
+            MessageLookupByLibrary.simpleMessage("Сохранить в дневник"),
         "sets": MessageLookupByLibrary.simpleMessage("Подходы"),
         "setsText": MessageLookupByLibrary.simpleMessage(
             "Выполните подход, и когда закончите, нажмите кнопку."),
         "start": MessageLookupByLibrary.simpleMessage("Старт"),
         "timer": MessageLookupByLibrary.simpleMessage("Таймер"),
-        "title": MessageLookupByLibrary.simpleMessage("НбНп")
+        "title": MessageLookupByLibrary.simpleMessage("НбНп"),
+        "weight": MessageLookupByLibrary.simpleMessage("Вес"),
+        "workoutFinished":
+            MessageLookupByLibrary.simpleMessage("Тренировка завершена")
       };
 }

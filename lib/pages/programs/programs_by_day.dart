@@ -2,23 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
 import 'package:npng/db.dart';
-import 'package:npng/pages/routines/add_excersise.dart';
-import 'package:npng/widgets/modal_popups.dart';
+import 'package:npng/pages/programs/add_excersise.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 
-class RoutinesByDayPage extends StatefulWidget {
+class ProgramsByDayPage extends StatefulWidget {
   static String id = 'routines_by_day';
   final String? pageTitle;
   final int? dayId;
 
-  RoutinesByDayPage({required this.pageTitle, required this.dayId});
+  ProgramsByDayPage({required this.pageTitle, required this.dayId});
 
   @override
-  _RoutinesByDayPageState createState() => _RoutinesByDayPageState();
+  _ProgramsByDayPageState createState() => _ProgramsByDayPageState();
 }
 
-class _RoutinesByDayPageState extends State<RoutinesByDayPage> {
+class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
   List<Map<String, dynamic>> _results = [];
   List<Map<String, dynamic>> _resultsMutable = [];
 
@@ -117,16 +116,45 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                 final item = _resultsMutable[index];
                 return Card(
                   key: ValueKey(item),
-                  child: Column(
+                  //TODO: Do not close on button click
+                  child: ExpansionTile(
+                    tilePadding: EdgeInsets.only(right: 30.0, left: 16.0),
+                    title: Text(item['name']),
+                    subtitle: Text(item['description'] ?? ''),
                     children: [
-                      ListTile(
-                        title: Text(item['name']),
-                        subtitle: Text(item['description'] ?? ''),
-                        trailing: MpLinkButton(
-                          label: 'Delete',
+                      Column(
+                        children: [
+                          Text(S.of(context).sets),
+                          MpChangeIntField(
+                              value: item['sets'],
+                              decreaseCallback: () => _decreaseSets(index),
+                              increaseCallback: () => _increaseSets(index)),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text(S.of(context).repeats),
+                          MpChangeIntField(
+                            value: item['repeats'],
+                            decreaseCallback: () => _decreaseRepeats(index),
+                            increaseCallback: () => _increseRepeats(index),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text(S.of(context).rest),
+                          MpChangeIntField(
+                            value: item['rest'],
+                            decreaseCallback: () => _decreaseRest(index),
+                            increaseCallback: () => _increaseRest(index),
+                          ),
+                        ],
+                      ),
+                      IconButton(
                           onPressed: () {
                             if (!isApple) {
-                              return showDialog<String>(
+                              showDialog<String>(
                                 context: context,
                                 builder: (BuildContext context) => AlertDialog(
                                   title: const Text('Delete something'),
@@ -149,7 +177,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                                 ),
                               );
                             } else {
-                              return showDialog<String>(
+                              showDialog<String>(
                                 context: context,
                                 builder: (BuildContext context) =>
                                     CupertinoAlertDialog(
@@ -174,62 +202,7 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                               );
                             }
                           },
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(4),
-                            child: Column(
-                              children: [
-                                Text(S.of(context).sets),
-                                MpChangeIntField(
-                                    value: item['sets'],
-                                    decreaseCallback: () =>
-                                        _decreaseSets(index),
-                                    increaseCallback: () =>
-                                        _increaseSets(index)),
-                              ],
-                            ),
-                            width: MediaQuery.of(context).size.width / 2 - 16,
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(4),
-                            child: Column(
-                              children: [
-                                Text(S.of(context).repeats),
-                                MpChangeIntField(
-                                  value: item['repeats'],
-                                  decreaseCallback: () =>
-                                      _decreaseRepeats(index),
-                                  increaseCallback: () =>
-                                      _increseRepeats(index),
-                                ),
-                              ],
-                            ),
-                            width: MediaQuery.of(context).size.width / 2 - 16,
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(4),
-                            child: Column(
-                              children: [
-                                Text(S.of(context).rest),
-                                MpChangeIntField(
-                                  value: item['rest'],
-                                  decreaseCallback: () => _decreaseRest(index),
-                                  increaseCallback: () => _increaseRest(index),
-                                ),
-                              ],
-                            ),
-                            width: MediaQuery.of(context).size.width / 2 - 16,
-                          ),
-                        ],
-                      ),
+                          icon: Icon(Icons.delete)),
                     ],
                   ),
                 );

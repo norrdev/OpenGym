@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("About"),
+        "ccontinue": MessageLookupByLibrary.simpleMessage("Continue"),
+        "currentWorkout":
+            MessageLookupByLibrary.simpleMessage("Current workout"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "desc": MessageLookupByLibrary.simpleMessage("Description"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
@@ -29,22 +32,29 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter some text"),
         "exDesc": MessageLookupByLibrary.simpleMessage("Exercise description"),
         "exName": MessageLookupByLibrary.simpleMessage("Exercise name"),
+        "finish": MessageLookupByLibrary.simpleMessage("Finish"),
         "from": MessageLookupByLibrary.simpleMessage(" from "),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "noex":
+            MessageLookupByLibrary.simpleMessage("No excersises on this day."),
         "pageAddEx": MessageLookupByLibrary.simpleMessage("Add exercise"),
         "pageDaysTitle": MessageLookupByLibrary.simpleMessage("Days"),
         "pageExerciseTitle": MessageLookupByLibrary.simpleMessage("Exercises"),
-        "pageRoutinesTitle": MessageLookupByLibrary.simpleMessage("Routines"),
+        "pageProgramsTitle": MessageLookupByLibrary.simpleMessage("Programs"),
         "pageWorkout": MessageLookupByLibrary.simpleMessage("Workout"),
         "repeats": MessageLookupByLibrary.simpleMessage("Repeats"),
         "rest": MessageLookupByLibrary.simpleMessage("Rest time (sec)"),
-        "restButton": MessageLookupByLibrary.simpleMessage("Rest"),
+        "restButton": MessageLookupByLibrary.simpleMessage("Save & rest"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "saveToLog": MessageLookupByLibrary.simpleMessage("Save to Log"),
         "sets": MessageLookupByLibrary.simpleMessage("Sets"),
         "setsText": MessageLookupByLibrary.simpleMessage(
             "Perfom the set, and when you\'re done, press the button."),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
         "timer": MessageLookupByLibrary.simpleMessage("Timer"),
-        "title": MessageLookupByLibrary.simpleMessage("NpNg")
+        "title": MessageLookupByLibrary.simpleMessage("NpNg"),
+        "weight": MessageLookupByLibrary.simpleMessage("Weight"),
+        "workoutFinished":
+            MessageLookupByLibrary.simpleMessage("Workout finished")
       };
 }

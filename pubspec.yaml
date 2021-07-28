@@ -16,6 +16,7 @@ dependencies:
   intl: ^0.17.0
   cupertino_icons: ^1.0.2
   provider: ^5.0.0
+  # flutter_bloc: ^7.0.0
   circular_countdown_timer: ^0.2.0
   flutter_markdown: ^0.6.2
   url_launcher: ^6.0.3
@@ -25,6 +26,7 @@ dependencies:
   sqflite: ^2.0.0+3
   path: ^1.8.0
   wakelock: ^0.5.2
+  page_transition: ^2.0.2
 
 dev_dependencies:
   flutter_test:
@@ -39,7 +41,7 @@ flutter:
     - assets/texts/ru_RU/
     - assets/sounds/
     - CHANGELOG.md
-    - assets/db/en/npng.db
+    - assets/db/npng.db
 
 flutter_intl:
   enabled: true

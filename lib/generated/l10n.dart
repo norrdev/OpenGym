@@ -100,6 +100,16 @@ class S {
     );
   }
 
+  /// `Finish`
+  String get finish {
+    return Intl.message(
+      'Finish',
+      name: 'finish',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// ` from `
   String get from {
     return Intl.message(
@@ -110,10 +120,10 @@ class S {
     );
   }
 
-  /// `Rest`
+  /// `Save & rest`
   String get restButton {
     return Intl.message(
-      'Rest',
+      'Save & rest',
       name: 'restButton',
       desc: '',
       args: [],
@@ -210,11 +220,41 @@ class S {
     );
   }
 
-  /// `Routines`
-  String get pageRoutinesTitle {
+  /// `Weight`
+  String get weight {
     return Intl.message(
-      'Routines',
-      name: 'pageRoutinesTitle',
+      'Weight',
+      name: 'weight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get ccontinue {
+    return Intl.message(
+      'Continue',
+      name: 'ccontinue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No excersises on this day.`
+  String get noex {
+    return Intl.message(
+      'No excersises on this day.',
+      name: 'noex',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Programs`
+  String get pageProgramsTitle {
+    return Intl.message(
+      'Programs',
+      name: 'pageProgramsTitle',
       desc: '',
       args: [],
     );
@@ -275,6 +315,36 @@ class S {
     return Intl.message(
       'Workout',
       name: 'pageWorkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current workout`
+  String get currentWorkout {
+    return Intl.message(
+      'Current workout',
+      name: 'currentWorkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Workout finished`
+  String get workoutFinished {
+    return Intl.message(
+      'Workout finished',
+      name: 'workoutFinished',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save to Log`
+  String get saveToLog {
+    return Intl.message(
+      'Save to Log',
+      name: 'saveToLog',
       desc: '',
       args: [],
     );
