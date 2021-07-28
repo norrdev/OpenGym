@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:npng/config.dart';
 import 'package:npng/widgets/modal_popups.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/db.dart';
@@ -27,12 +28,12 @@ class _ExercisePageState extends State<ExercisePage> {
 
   void _refresh() async {
 //     _results = await DB.rawQuery('''
-// SELECT exercises.id AS id, exercises.name AS name, description, equipment.name AS equipment FROM load
+// SELECT exercises.id AS id, exercises.${kLocale}_name AS name, description, equipment.name AS equipment FROM load
 // JOIN exercises ON exercises_id = exercises.id
 // JOIN equipment ON equipment_id = equipment.id
 // WHERE muscles_id = ${widget.musclesId}''');
     _results = await db!.rawQuery('''
-SELECT exercises.id AS id, exercises.name AS name, description FROM load  
+SELECT exercises.id AS id, exercises.${kLocale}_name AS name, ${kLocale}_description FROM load  
 JOIN exercises ON exercises_id = exercises.id 
 WHERE muscles_id = ${widget.musclesId}''');
     setState(() {});
@@ -41,8 +42,8 @@ WHERE muscles_id = ${widget.musclesId}''');
   void _insert({String? name, String? description}) async {
     int id = 0;
     await db!.transaction((txn) async {
-      id = await txn
-          .insert('exercises', {'name': name, 'description': description});
+      id = await txn.insert('exercises',
+          {'${kLocale}_name': name, '${kLocale}_description': description});
       await txn
           .insert('load', {'exercises_id': id, 'muscles_id': widget.musclesId});
     });
@@ -78,7 +79,7 @@ WHERE muscles_id = ${widget.musclesId}''');
             itemBuilder: (context, index) {
               final item = _results[index];
               return ListTile(
-                title: Text(item['name']),
+                title: Text(item['${kLocale}_name']),
                 leading: Text('l'),
                 onTap: () {},
               );

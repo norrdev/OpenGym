@@ -29,7 +29,7 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
 
   void _refresh() async {
     _results = await db!.rawQuery('''
-SELECT workouts.id AS id, exercises.name AS name, exercises.description as description, sets, ord, repeats, rest FROM workouts 
+SELECT workouts.id AS id, exercises.${kLocale}_name AS name, exercises.description as description, sets, ord, repeats, rest FROM workouts 
 JOIN exercises on workouts.exerscises_id = exercises.id 
 WHERE days_id = ${widget.dayId} ORDER BY ord;
     ''');
@@ -119,8 +119,8 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                   //TODO: Do not close on button click
                   child: ExpansionTile(
                     tilePadding: EdgeInsets.only(right: 30.0, left: 16.0),
-                    title: Text(item['name']),
-                    subtitle: Text(item['description'] ?? ''),
+                    title: Text(item['${kLocale}_name']),
+                    subtitle: Text(item['${kLocale}_description'] ?? ''),
                     children: [
                       Column(
                         children: [

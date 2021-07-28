@@ -30,9 +30,9 @@ class _DaysPageState extends State<DaysPage> {
 
   Future<int> _insert({String? name, String? description, int? ord}) async {
     return await db!.insert('days', {
-      'name': name,
+      '${kLocale}_name': name,
       'ord': ord,
-      'description': description,
+      '${kLocale}_description': description,
       'routines_id': widget.routinesId
     });
   }
@@ -48,7 +48,7 @@ class _DaysPageState extends State<DaysPage> {
     await db!.transaction((txn) async {
       await txn.update(
         'days',
-        {'name': name, 'description': description},
+        {'${kLocale}_name': name, '${kLocale}_description': description},
         where: 'id = ?',
         whereArgs: [id],
       );
@@ -123,8 +123,8 @@ class _DaysPageState extends State<DaysPage> {
                   type: MaterialType.transparency,
                   key: ValueKey(item),
                   child: ListTile(
-                    title: Text(item['name']),
-                    subtitle: Text(item['description']),
+                    title: Text(item['${kLocale}_name']),
+                    subtitle: Text(item['${kLocale}_description']),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -132,7 +132,7 @@ class _DaysPageState extends State<DaysPage> {
                           builder: (context) {
                             return ProgramsByDayPage(
                               dayId: item['id'],
-                              pageTitle: item['name'],
+                              pageTitle: item['${kLocale}_name'],
                             );
                           },
                         ),
@@ -142,8 +142,8 @@ class _DaysPageState extends State<DaysPage> {
                       label: S.of(context).edit,
                       onPressed: () => editModalPopup(context,
                           id: item['id'],
-                          name: item['name'],
-                          description: item['description'],
+                          name: item['${kLocale}_name'],
+                          description: item['${kLocale}_description'],
                           update: _update,
                           refresh: _refresh,
                           delete: _delete),

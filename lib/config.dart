@@ -24,6 +24,9 @@ final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
 // bool get isMobileDeviceOrWeb => kIsWeb || isMobileDevice;
 // bool get isDesktopDeviceOrWeb => kIsWeb || isDesktopDevice;
 
+/// Current locale
+late Locale kLocale;
+
 /// Material light theme
 final ThemeData kMaterialLight = ThemeData(
   primarySwatch: Colors.blue,
