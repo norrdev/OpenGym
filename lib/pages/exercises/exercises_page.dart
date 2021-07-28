@@ -46,7 +46,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                 child: Theme(
                   data: (darkModeOn) ? kMaterialDark : kMaterialLight,
                   child: ListTile(
-                    title: Text(item['name']),
+                    title: Text(item['${kLocale}_name']),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -54,7 +54,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                           builder: (context) {
                             return ExercisesByMusclePage(
                               musclesId: item['id'],
-                              pageTitle: item['name'],
+                              pageTitle: item['${kLocale}_name'],
                             );
                           },
                         ),

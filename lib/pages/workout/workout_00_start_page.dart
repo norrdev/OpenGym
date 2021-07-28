@@ -44,6 +44,8 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Getting locale. Must be on main screen!
+    kLocale = Localizations.localeOf(context);
     return MpScaffold(
       appBar: MpAppBar(
         title: Text(S.of(context).pageWorkout),
@@ -84,8 +86,8 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
                       return Material(
                         type: MaterialType.transparency,
                         child: ListTile(
-                          title: Text(item['name']),
-                          subtitle: Text(item['description']),
+                          title: Text(item['${kLocale}_name']),
+                          subtitle: Text(item['${kLocale}_description']),
                           onTap: () => Navigator.push(
                             context,
                             mpPageRoute(

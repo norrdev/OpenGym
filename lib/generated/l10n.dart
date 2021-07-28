@@ -203,7 +203,7 @@ class S {
   /// `Name`
   String get name {
     return Intl.message(
-      'Name',
+      'name',
       name: 'name',
       desc: '',
       args: [],
@@ -213,7 +213,7 @@ class S {
   /// `Description`
   String get desc {
     return Intl.message(
-      'Description',
+      'description',
       name: 'desc',
       desc: '',
       args: [],
@@ -356,7 +356,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   List<Locale> get supportedLocales {
     return const <Locale>[
-      Locale.fromSubtags(languageCode: 'en'),
+      //Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'ru'),
     ];
   }
