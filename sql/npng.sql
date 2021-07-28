@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.2.1 on Wed Jul 28 16:40:38 2021
+-- File generated with SQLiteStudio v3.2.1 on Wed Jul 28 16:47:53 2021
 --
 -- Text encoding used: UTF-8
 --
@@ -146,10 +146,10 @@ INSERT INTO musсles (id, en_name, ru_name) VALUES (13, 'Hamstrings', 'Бице�
 INSERT INTO musсles (id, en_name, ru_name) VALUES (14, 'Calves', 'Икры');
 
 -- Table: routines
-CREATE TABLE routines (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, en_name STRING, ru_name STRING, en_description STRING, ru_descriprion STRING);
-INSERT INTO routines (id, en_name, ru_name, en_description, ru_descriprion) VALUES (1, 'Rubber Band', 'Резиновая лента', '7 days a week', '7 дней в неделю');
-INSERT INTO routines (id, en_name, ru_name, en_description, ru_descriprion) VALUES (2, 'Bodyweight', 'Собственный вес', '2 days a week', '2 дня в неделю');
-INSERT INTO routines (id, en_name, ru_name, en_description, ru_descriprion) VALUES (3, '5x5', '5 на 5', 'Base powerlifting program.', 'Базовая программа пауэрлифтинга.');
+CREATE TABLE routines (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, en_name STRING, ru_name STRING, en_description STRING, ru_description STRING);
+INSERT INTO routines (id, en_name, ru_name, en_description, ru_description) VALUES (1, 'Rubber Band', 'Резиновая лента', '7 days a week', '7 дней в неделю');
+INSERT INTO routines (id, en_name, ru_name, en_description, ru_description) VALUES (2, 'Bodyweight', 'Собственный вес', '2 days a week', '2 дня в неделю');
+INSERT INTO routines (id, en_name, ru_name, en_description, ru_description) VALUES (3, '5x5', '5 на 5', 'Base powerlifting program.', 'Базовая программа пауэрлифтинга.');
 
 -- Table: user
 CREATE TABLE user (id integer NOT NULL PRIMARY KEY, birthday date, sex integer, routines_id INTEGER);
