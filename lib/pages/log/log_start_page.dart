@@ -9,18 +9,48 @@ import 'package:npng/generated/l10n.dart';
 import 'package:npng/db.dart';
 import 'package:cell_calendar/cell_calendar.dart';
 
-class LogStart extends StatefulWidget {
+class LogStartPage extends StatefulWidget {
   static String id = '/log';
-  const LogStart({Key? key}) : super(key: key);
+  const LogStartPage({Key? key}) : super(key: key);
 
   @override
-  _LogStartState createState() => _LogStartState();
+  _LogStartPageState createState() => _LogStartPageState();
 }
 
-class _LogStartState extends State<LogStart> {
+class _LogStartPageState extends State<LogStartPage> {
+  List<Map<String, dynamic>> _results = [];
+  final today = DateTime.now();
+  List<CalendarEvent> days = [];
+
+  @override
+  void initState() {
+    _refresh();
+    super.initState();
+  }
+
+  void _refresh() async {
+    //TODO: Pagination by mounth
+    _results = await db!.rawQuery('''
+    select log_days.id AS logDaysId, log_days.days_id AS daysId, start, days.${kLocale}_name AS daysName,
+    routines.${kLocale}_name as routinesName
+    from log_days
+    join days on log_days.days_id = days.id 
+    join routines on days.routines_id = routines.id
+    ORDER BY logDaysId''');
+    for (Map<String, dynamic> item in _results) {
+      CalendarEvent event = CalendarEvent(
+        eventName: '${item['routinesName']}: ${item['daysName']}',
+        eventDate: DateTime.parse(item['start']),
+        eventBackgroundColor: Colors.indigoAccent,
+        eventID: item['id'],
+      );
+      days.add(event);
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
-    final _sampleEvents = sampleEvents();
     final cellCalendarPageController = CellCalendarPageController();
     return MpScaffold(
       appBar: MpAppBar(
@@ -35,17 +65,9 @@ class _LogStartState extends State<LogStart> {
               data: (darkModeOn) ? kMaterialDark : kMaterialLight,
               child: CellCalendar(
                 cellCalendarPageController: cellCalendarPageController,
-                events: _sampleEvents,
+                events: days,
                 daysOfTheWeekBuilder: (dayIndex) {
-                  final labels = [
-                    "T",
-                    "W",
-                    "T",
-                    "F",
-                    "S",
-                    "S",
-                    "M",
-                  ];
+                  final labels = ["Su", "Mo", "T", "W", "T", "F", "S"];
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 4.0),
                     child: Text(
@@ -89,7 +111,7 @@ class _LogStartState extends State<LogStart> {
                   );
                 },
                 onCellTapped: (date) {
-                  final eventsOnTheDate = _sampleEvents.where((event) {
+                  final eventsOnTheDate = days.where((event) {
                     final eventDate = event.eventDate;
                     return eventDate.year == date.year &&
                         eventDate.month == date.month &&
@@ -97,7 +119,9 @@ class _LogStartState extends State<LogStart> {
                   }).toList();
                   showDialog(
                       context: context,
-                      builder: (_) => AlertDialog(
+                      builder: (_) {
+                        if (!isApple) {
+                          return AlertDialog(
                             title: Text(date.month.monthName +
                                 " " +
                                 date.day.toString()),
@@ -105,21 +129,57 @@ class _LogStartState extends State<LogStart> {
                               mainAxisSize: MainAxisSize.min,
                               children: eventsOnTheDate
                                   .map(
-                                    (event) => Container(
-                                      width: double.infinity,
-                                      padding: EdgeInsets.all(4),
-                                      margin: EdgeInsets.only(bottom: 12),
-                                      color: event.eventBackgroundColor,
-                                      child: Text(
-                                        event.eventName,
-                                        style: TextStyle(
-                                            color: event.eventTextColor),
+                                    (event) => GestureDetector(
+                                      onTap: () {
+                                        print('tapped');
+                                      },
+                                      child: Container(
+                                        width: double.infinity,
+                                        padding: EdgeInsets.all(4),
+                                        margin: EdgeInsets.only(bottom: 12),
+                                        color: event.eventBackgroundColor,
+                                        child: Text(
+                                          event.eventName,
+                                          style: TextStyle(
+                                              color: event.eventTextColor),
+                                        ),
                                       ),
                                     ),
                                   )
                                   .toList(),
                             ),
-                          ));
+                          );
+                        } else {
+                          return CupertinoAlertDialog(
+                            title: Text(date.month.monthName +
+                                " " +
+                                date.day.toString()),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: eventsOnTheDate
+                                  .map(
+                                    (event) => GestureDetector(
+                                      onTap: () {
+                                        print('tapped');
+                                      },
+                                      child: Container(
+                                        width: double.infinity,
+                                        padding: EdgeInsets.all(4),
+                                        margin: EdgeInsets.only(bottom: 12),
+                                        color: event.eventBackgroundColor,
+                                        child: Text(
+                                          event.eventName,
+                                          style: TextStyle(
+                                              color: event.eventTextColor),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          );
+                        }
+                      });
                 },
                 onPageChanged: (firstDate, lastDate) {
                   /// Called when the page was changed
@@ -132,74 +192,5 @@ class _LogStartState extends State<LogStart> {
       ),
       bottomNavigationBar: BottomBar(initialActiveIndex: 4),
     );
-  }
-
-  List<CalendarEvent> sampleEvents() {
-    final today = DateTime.now();
-    final sampleEvents = [
-      CalendarEvent(
-          eventName: "New iPhone",
-          eventDate: today.add(Duration(days: -42)),
-          eventBackgroundColor: Colors.black),
-      CalendarEvent(
-          eventName: "Writing test",
-          eventDate: today.add(Duration(days: -30)),
-          eventBackgroundColor: Colors.deepOrange),
-      CalendarEvent(
-          eventName: "Play soccer",
-          eventDate: today.add(Duration(days: -7)),
-          eventBackgroundColor: Colors.greenAccent),
-      CalendarEvent(
-          eventName: "Learn about history",
-          eventDate: today.add(Duration(days: -7))),
-      CalendarEvent(
-          eventName: "Buy new keyboard",
-          eventDate: today.add(Duration(days: -7))),
-      CalendarEvent(
-          eventName: "Walk around the park",
-          eventDate: today.add(Duration(days: -7)),
-          eventBackgroundColor: Colors.deepOrange),
-      CalendarEvent(
-          eventName: "Buy a present for Rebecca",
-          eventDate: today.add(Duration(days: -7)),
-          eventBackgroundColor: Colors.pink),
-      CalendarEvent(
-          eventName: "Firebase", eventDate: today.add(Duration(days: -7))),
-      CalendarEvent(eventName: "Task Deadline", eventDate: today),
-      CalendarEvent(
-          eventName: "Jon's Birthday",
-          eventDate: today.add(Duration(days: 3)),
-          eventBackgroundColor: Colors.green),
-      CalendarEvent(
-          eventName: "Date with Rebecca",
-          eventDate: today.add(Duration(days: 7)),
-          eventBackgroundColor: Colors.pink),
-      CalendarEvent(
-          eventName: "Start to study Spanish",
-          eventDate: today.add(Duration(days: 13))),
-      CalendarEvent(
-          eventName: "Have lunch with Mike",
-          eventDate: today.add(Duration(days: 13)),
-          eventBackgroundColor: Colors.green),
-      CalendarEvent(
-          eventName: "Buy new Play Station software",
-          eventDate: today.add(Duration(days: 13)),
-          eventBackgroundColor: Colors.indigoAccent),
-      CalendarEvent(
-          eventName: "Update my flutter package",
-          eventDate: today.add(Duration(days: 13))),
-      CalendarEvent(
-          eventName: "Watch movies in my house",
-          eventDate: today.add(Duration(days: 21))),
-      CalendarEvent(
-          eventName: "Medical Checkup",
-          eventDate: today.add(Duration(days: 30)),
-          eventBackgroundColor: Colors.red),
-      CalendarEvent(
-          eventName: "Gym",
-          eventDate: today.add(Duration(days: 42)),
-          eventBackgroundColor: Colors.indigoAccent),
-    ];
-    return sampleEvents;
   }
 }

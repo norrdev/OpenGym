@@ -77,7 +77,7 @@ class BottomBar extends StatelessWidget {
         TabItem(icon: Icons.list, title: S.of(context).pageProgramsTitle),
         TabItem(icon: Icons.ac_unit, title: S.of(context).pageExerciseTitle),
         TabItem(icon: Icons.help, title: S.of(context).about),
-        TabItem(icon: Icons.local_gas_station, title: S.of(context).log),
+        TabItem(icon: Icons.calendar_view_month, title: S.of(context).log),
       ],
       initialActiveIndex: this.initialActiveIndex,
       onTap: (int i) {
@@ -117,7 +117,7 @@ class BottomBar extends StatelessWidget {
               Navigator.pushAndRemoveUntil(
                   context,
                   PageTransition(
-                    child: LogStart(),
+                    child: LogStartPage(),
                     type: PageTransitionType.fade,
                   ),
                   (route) => false);
