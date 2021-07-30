@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "exName": MessageLookupByLibrary.simpleMessage("Название упражнения"),
         "finish": MessageLookupByLibrary.simpleMessage("Закончить"),
         "from": MessageLookupByLibrary.simpleMessage(" из "),
+        "log": MessageLookupByLibrary.simpleMessage("Дневник"),
         "name": MessageLookupByLibrary.simpleMessage("Название"),
         "noex":
             MessageLookupByLibrary.simpleMessage("В этом дне нет упражнений."),

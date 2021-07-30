@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "exName": MessageLookupByLibrary.simpleMessage("Exercise name"),
         "finish": MessageLookupByLibrary.simpleMessage("Finish"),
         "from": MessageLookupByLibrary.simpleMessage(" from "),
+        "log": MessageLookupByLibrary.simpleMessage("Log"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "noex":
             MessageLookupByLibrary.simpleMessage("No excersises on this day."),
