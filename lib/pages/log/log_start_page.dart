@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
+import 'package:npng/pages/log/log_show_workout.dart';
 import 'package:npng/pages/programs/programs_page.dart';
 import 'package:npng/pages/workout/workout_01_process_page.dart';
 import 'package:npng/widgets/bottom_bar.dart';
@@ -120,65 +121,44 @@ class _LogStartPageState extends State<LogStartPage> {
                   showDialog(
                       context: context,
                       builder: (_) {
-                        if (!isApple) {
-                          return AlertDialog(
-                            title: Text(date.month.monthName +
-                                " " +
-                                date.day.toString()),
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: eventsOnTheDate
-                                  .map(
-                                    (event) => GestureDetector(
-                                      onTap: () {
-                                        print('tapped');
-                                      },
-                                      child: Container(
-                                        width: double.infinity,
-                                        padding: EdgeInsets.all(4),
-                                        margin: EdgeInsets.only(bottom: 12),
-                                        color: event.eventBackgroundColor,
-                                        child: Text(
-                                          event.eventName,
-                                          style: TextStyle(
-                                              color: event.eventTextColor),
+                        return MpAlertDialog(
+                          title: Text(
+                              date.month.monthName + " " + date.day.toString()),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: eventsOnTheDate
+                                .map(
+                                  (event) => GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        mpPageRoute(
+                                          builder: (context) {
+                                            return LogShowWorkoutPage(
+                                              logDayId: int.parse(
+                                                  event.eventID ?? '-1'),
+                                              name: event.eventName,
+                                            );
+                                          },
                                         ),
+                                      );
+                                    },
+                                    child: Container(
+                                      width: double.infinity,
+                                      padding: EdgeInsets.all(4),
+                                      margin: EdgeInsets.only(bottom: 12),
+                                      color: event.eventBackgroundColor,
+                                      child: Text(
+                                        event.eventName,
+                                        style: TextStyle(
+                                            color: event.eventTextColor),
                                       ),
                                     ),
-                                  )
-                                  .toList(),
-                            ),
-                          );
-                        } else {
-                          return CupertinoAlertDialog(
-                            title: Text(date.month.monthName +
-                                " " +
-                                date.day.toString()),
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: eventsOnTheDate
-                                  .map(
-                                    (event) => GestureDetector(
-                                      onTap: () {
-                                        print('tapped');
-                                      },
-                                      child: Container(
-                                        width: double.infinity,
-                                        padding: EdgeInsets.all(4),
-                                        margin: EdgeInsets.only(bottom: 12),
-                                        color: event.eventBackgroundColor,
-                                        child: Text(
-                                          event.eventName,
-                                          style: TextStyle(
-                                              color: event.eventTextColor),
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                  .toList(),
-                            ),
-                          );
-                        }
+                                  ),
+                                )
+                                .toList(),
+                          ),
+                        );
                       });
                 },
                 onPageChanged: (firstDate, lastDate) {

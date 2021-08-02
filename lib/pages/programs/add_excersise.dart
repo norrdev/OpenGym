@@ -28,7 +28,7 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
 
   void _refreshEx() async {
     _exersises = await db!.rawQuery('''
-      SELECT exercises.id AS id, exercises.${kLocale}_name AS name, description, equipment_id FROM load  
+      SELECT exercises.id AS id, exercises.${kLocale}_name AS name, ${kLocale}_description, equipment_id FROM load  
       JOIN exercises ON exercises_id = exercises.id 
       WHERE muscles_id = ${_dynamicChips[selectedMuscle]['id']}''');
     selectedEx = List<bool>.filled(_exersises.length, false);
@@ -92,7 +92,7 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
                     return ChoiceChip(
                       selected: (index == selectedMuscle) ? true : false,
                       label: Text(
-                        item['${kLocale}_name'],
+                        item['name'],
                       ),
                       onSelected: (bool selected) {
                         setState(() {
@@ -128,10 +128,10 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
                       selected: selectedEx[index],
                       //labelStyle: TextStyle(fontWeight: FontWeight.bold),
                       label: Text(
-                        item['${kLocale}_name'],
+                        item['name'],
                         textScaleFactor: 1.2,
                       ),
-                      tooltip: item['${kLocale}_description'],
+                      tooltip: item['description'],
                       onSelected: (bool selected) {
                         setState(() {
                           selectedEx[index] = !selectedEx[index];

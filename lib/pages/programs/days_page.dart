@@ -123,8 +123,8 @@ class _DaysPageState extends State<DaysPage> {
                   type: MaterialType.transparency,
                   key: ValueKey(item),
                   child: ListTile(
-                    title: Text(item['${kLocale}_name']),
-                    subtitle: Text(item['${kLocale}_description']),
+                    title: Text(item['name']),
+                    subtitle: Text(item['description']),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -132,7 +132,7 @@ class _DaysPageState extends State<DaysPage> {
                           builder: (context) {
                             return ProgramsByDayPage(
                               dayId: item['id'],
-                              pageTitle: item['${kLocale}_name'],
+                              pageTitle: item['name'],
                             );
                           },
                         ),
@@ -142,8 +142,8 @@ class _DaysPageState extends State<DaysPage> {
                       label: S.of(context).edit,
                       onPressed: () => editModalPopup(context,
                           id: item['id'],
-                          name: item['${kLocale}_name'],
-                          description: item['${kLocale}_description'],
+                          name: item['name'],
+                          description: item['description'],
                           update: _update,
                           refresh: _refresh,
                           delete: _delete),
