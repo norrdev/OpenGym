@@ -33,7 +33,7 @@ class _ExercisePageState extends State<ExercisePage> {
 // JOIN equipment ON equipment_id = equipment.id
 // WHERE muscles_id = ${widget.musclesId}''');
     _results = await db!.rawQuery('''
-SELECT exercises.id AS id, exercises.${kLocale}_name AS name, ${kLocale}_description FROM load  
+SELECT exercises.id AS id, exercises.${kLocale}_name AS name, ${kLocale}_description, icon FROM load  
 JOIN exercises ON exercises_id = exercises.id 
 WHERE muscles_id = ${widget.musclesId}''');
     setState(() {});
