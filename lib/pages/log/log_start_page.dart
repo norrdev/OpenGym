@@ -33,17 +33,17 @@ class _LogStartPageState extends State<LogStartPage> {
     //TODO: Pagination by mounth
     _results = await db!.rawQuery('''
     select log_days.id AS logDaysId, log_days.days_id AS daysId, start, days.${kLocale}_name AS daysName,
-    routines.${kLocale}_name as routinesName
+    programs.${kLocale}_name as programsName
     from log_days
     join days on log_days.days_id = days.id 
-    join routines on days.routines_id = routines.id
+    join programs on days.programs_id = programs.id
     ORDER BY logDaysId''');
     for (Map<String, dynamic> item in _results) {
       CalendarEvent event = CalendarEvent(
-        eventName: '${item['routinesName']}: ${item['daysName']}',
+        eventName: '${item['programsName']}: ${item['daysName']}',
         eventDate: DateTime.parse(item['start']),
         eventBackgroundColor: Colors.indigoAccent,
-        eventID: item['id'],
+        eventID: item['logDaysId'].toString(),
       );
       days.add(event);
     }
@@ -137,7 +137,6 @@ class _LogStartPageState extends State<LogStartPage> {
                                             return LogShowWorkoutPage(
                                               logDayId: int.parse(
                                                   event.eventID ?? '-1'),
-                                              name: event.eventName,
                                             );
                                           },
                                         ),

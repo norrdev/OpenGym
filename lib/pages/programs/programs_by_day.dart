@@ -7,7 +7,7 @@ import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 
 class ProgramsByDayPage extends StatefulWidget {
-  static String id = 'routines_by_day';
+  static String id = 'programs_by_day';
   final String? pageTitle;
   final int? dayId;
 

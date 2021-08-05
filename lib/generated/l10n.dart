@@ -250,6 +250,16 @@ class S {
     );
   }
 
+  /// `min.`
+  String get min {
+    return Intl.message(
+      'min.',
+      name: 'min',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Programs`
   String get pageProgramsTitle {
     return Intl.message(
@@ -355,6 +365,36 @@ class S {
     return Intl.message(
       'Log',
       name: 'log',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Workout begin`
+  String get wrkBegin {
+    return Intl.message(
+      'Workout begin',
+      name: 'wrkBegin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Workout end`
+  String get wrkEnd {
+    return Intl.message(
+      'Workout end',
+      name: 'wrkEnd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Workout duration`
+  String get wrkDuration {
+    return Intl.message(
+      'Workout duration',
+      name: 'wrkDuration',
       desc: '',
       args: [],
     );

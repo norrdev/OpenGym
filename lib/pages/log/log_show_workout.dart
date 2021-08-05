@@ -11,9 +11,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class LogShowWorkoutPage extends StatefulWidget {
   final int? logDayId;
-  final String? name;
-  const LogShowWorkoutPage({Key? key, this.logDayId, this.name})
-      : super(key: key);
+  const LogShowWorkoutPage({Key? key, this.logDayId}) : super(key: key);
 
   @override
   _LogShowWorkoutPageState createState() => _LogShowWorkoutPageState();
@@ -31,15 +29,22 @@ class _LogShowWorkoutPageState extends State<LogShowWorkoutPage> {
   }
 
   void _refreshDay() async {
-    _resultsEx = await db!.rawQuery('''
-    select log_days.id AS logDaysId, log_days.days_id AS daysId, start, days.${kLocale}_name AS daysName,
-    routines.${kLocale}_name as routinesName
-    from log_days
-    join days on log_days.days_id = days.id 
-    join routines on days.routines_id = routines.id
+    _resultsDay = await db!.rawQuery('''
+    SELECT log_days.id AS logDaysId,
+          log_days.days_id AS daysId,
+          start,
+          finish,
+          days.${kLocale}_name AS daysName,
+          programs.${kLocale}_name AS programsName
+      FROM log_days
+          JOIN
+          days ON log_days.days_id = days.id
+          JOIN
+          programs ON days.programs_id = programs.id
     WHERE log_days.id = ${widget.logDayId}
     ORDER BY logDaysId
-   ''');
+    LIMIT 1;
+    ''');
     setState(() {});
   }
 
@@ -61,15 +66,45 @@ class _LogShowWorkoutPageState extends State<LogShowWorkoutPage> {
   @override
   Widget build(BuildContext context) {
     final controller = ScrollController();
-    String output = 'Продолжительность тренировки:  минут. \n\r';
+
+    DateTime start = DateTime.parse(_resultsDay.first['start']);
+    DateTime finish = DateTime.parse(_resultsDay.first['finish']);
+    String duration = finish.difference(start).inMinutes.toString();
+    String output = S.of(context).wrkDuration +
+        ": $duration " +
+        S.of(context).min +
+        "\n\r \n\r";
+
+    String flagName = '';
+    int count = 0;
 
     for (Map<String, dynamic> item in _resultsEx) {
-      output += '';
+      if (flagName != item['name']) {
+        output += "**${item['name']}** \n\r";
+        flagName = item['name'];
+        count = 0;
+      }
+      output += '${count + 1}. ${item['weight']} kg X ${item['repeat']}\n\r';
     }
+
+    // DateTime? start = wp.startTime;
+    // DateTime? finish = wp.finishTime;
+    // String duration = finish!.difference(start!).inMinutes.toString();
+    // String output = 'Продолжительность тренировки: $duration минут. \n\r';
+
+    // for (Exerscise item in wp.excersises) {
+    //   output += '**${item.name}**\n\r';
+    //   for (int i = 0; i < item.sets.length; i++) {
+    //     output +=
+    //         '${i + 1}. ${item.sets[i].weight} kg X ${item.sets[i].repeats}\n\r';
+    //   }
+    // }
 
     return MpScaffold(
       appBar: MpAppBar(
-        title: Text(S.of(context).workoutFinished),
+        title: Text(_resultsDay.first['programsName'] +
+            ": " +
+            _resultsDay.first['daysName']),
       ),
       body: SafeArea(
         child: Markdown(

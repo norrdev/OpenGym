@@ -24,7 +24,8 @@ class _ExercisesPageState extends State<ExercisesPage> {
   }
 
   void _refresh() async {
-    _results = await db!.query('musсles');
+    _results =
+        await db!.query('musсles', columns: ['id', '${kLocale}_name AS name']);
     setState(() {});
   }
 

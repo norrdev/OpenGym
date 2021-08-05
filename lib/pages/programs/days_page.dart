@@ -9,10 +9,10 @@ import 'package:npng/generated/l10n.dart';
 
 class DaysPage extends StatefulWidget {
   static String id = 'days';
-  final int? routinesId;
+  final int? programsId;
   final String? pageTitle;
 
-  DaysPage({this.routinesId, this.pageTitle});
+  DaysPage({this.programsId, this.pageTitle});
 
   @override
   _DaysPageState createState() => _DaysPageState();
@@ -33,7 +33,7 @@ class _DaysPageState extends State<DaysPage> {
       '${kLocale}_name': name,
       'ord': ord,
       '${kLocale}_description': description,
-      'routines_id': widget.routinesId
+      'programs_id': widget.programsId
     });
   }
 
@@ -59,8 +59,8 @@ class _DaysPageState extends State<DaysPage> {
     _days = await db!.query(
       'days',
       orderBy: 'ord',
-      where: 'routines_id = ?',
-      whereArgs: [widget.routinesId],
+      where: 'programs_id = ?',
+      whereArgs: [widget.programsId],
     );
     _mutableDays.clear();
     _mutableDays.addAll(_days);

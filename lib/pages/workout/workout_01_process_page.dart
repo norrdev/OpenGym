@@ -33,11 +33,20 @@ class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
 
   void _init() async {
     _results = await db!.rawQuery('''
-    SELECT workouts.id AS id, exercises.${kLocale}_name AS name, 
-    exercises.${kLocale}_description as description, sets, ord, repeats, rest, weight 
-    FROM workouts 
-    JOIN exercises ON workouts.exerscises_id = exercises.id 
-    WHERE days_id = ${widget.dayId} ORDER BY ord;
+    SELECT workouts.id AS id,
+          exercises.${kLocale}_name AS name,
+          workouts.exercises_id AS exercises_id,
+          exercises.${kLocale}_description AS description,
+          sets,
+          ord,
+          repeats,
+          rest,
+          weight
+      FROM workouts
+          JOIN
+          exercises ON workouts.exercises_id = exercises.id
+    WHERE days_id = ${widget.dayId}
+    ORDER BY ord;
     ''');
     _resultsMutable.clear();
     _resultsMutable.addAll(_results);

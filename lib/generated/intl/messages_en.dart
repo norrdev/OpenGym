@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "finish": MessageLookupByLibrary.simpleMessage("Finish"),
         "from": MessageLookupByLibrary.simpleMessage(" from "),
         "log": MessageLookupByLibrary.simpleMessage("Log"),
+        "min": MessageLookupByLibrary.simpleMessage("min."),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "noex":
             MessageLookupByLibrary.simpleMessage("No excersises on this day."),
@@ -56,6 +57,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "title": MessageLookupByLibrary.simpleMessage("NpNg"),
         "weight": MessageLookupByLibrary.simpleMessage("Weight"),
         "workoutFinished":
-            MessageLookupByLibrary.simpleMessage("Workout finished")
+            MessageLookupByLibrary.simpleMessage("Workout finished"),
+        "wrkBegin": MessageLookupByLibrary.simpleMessage("Workout begin"),
+        "wrkDuration": MessageLookupByLibrary.simpleMessage("Workout duration"),
+        "wrkEnd": MessageLookupByLibrary.simpleMessage("Workout end")
       };
 }
