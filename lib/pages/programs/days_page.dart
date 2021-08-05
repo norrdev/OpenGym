@@ -58,6 +58,12 @@ class _DaysPageState extends State<DaysPage> {
   void _refresh() async {
     _days = await db!.query(
       'days',
+      columns: [
+        'id',
+        '${kLocale}_name AS name',
+        '${kLocale}_description AS description',
+        'programs_id'
+      ],
       orderBy: 'ord',
       where: 'programs_id = ?',
       whereArgs: [widget.programsId],

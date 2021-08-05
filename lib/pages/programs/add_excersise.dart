@@ -22,7 +22,8 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
   List<bool> selectedEx = [];
 
   void _refreshChips() async {
-    _dynamicChips = await db!.query('musсles', orderBy: 'id');
+    _dynamicChips = await db!.query('musсles',
+        orderBy: 'id', columns: ['id', '${kLocale}_name AS name']);
     setState(() {});
   }
 
