@@ -9,10 +9,10 @@ import 'package:npng/generated/l10n.dart';
 
 class DaysPage extends StatefulWidget {
   static String id = 'days';
-  final int? routinesId;
+  final int? programsId;
   final String? pageTitle;
 
-  DaysPage({this.routinesId, this.pageTitle});
+  DaysPage({this.programsId, this.pageTitle});
 
   @override
   _DaysPageState createState() => _DaysPageState();
@@ -33,7 +33,7 @@ class _DaysPageState extends State<DaysPage> {
       '${kLocale}_name': name,
       'ord': ord,
       '${kLocale}_description': description,
-      'routines_id': widget.routinesId
+      'programs_id': widget.programsId
     });
   }
 
@@ -58,9 +58,15 @@ class _DaysPageState extends State<DaysPage> {
   void _refresh() async {
     _days = await db!.query(
       'days',
+      columns: [
+        'id',
+        '${kLocale}_name AS name',
+        '${kLocale}_description AS description',
+        'programs_id'
+      ],
       orderBy: 'ord',
-      where: 'routines_id = ?',
-      whereArgs: [widget.routinesId],
+      where: 'programs_id = ?',
+      whereArgs: [widget.programsId],
     );
     _mutableDays.clear();
     _mutableDays.addAll(_days);
@@ -123,8 +129,8 @@ class _DaysPageState extends State<DaysPage> {
                   type: MaterialType.transparency,
                   key: ValueKey(item),
                   child: ListTile(
-                    title: Text(item['${kLocale}_name']),
-                    subtitle: Text(item['${kLocale}_description']),
+                    title: Text(item['name']),
+                    subtitle: Text(item['description']),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -132,7 +138,7 @@ class _DaysPageState extends State<DaysPage> {
                           builder: (context) {
                             return ProgramsByDayPage(
                               dayId: item['id'],
-                              pageTitle: item['${kLocale}_name'],
+                              pageTitle: item['name'],
                             );
                           },
                         ),
@@ -142,8 +148,8 @@ class _DaysPageState extends State<DaysPage> {
                       label: S.of(context).edit,
                       onPressed: () => editModalPopup(context,
                           id: item['id'],
-                          name: item['${kLocale}_name'],
-                          description: item['${kLocale}_description'],
+                          name: item['name'],
+                          description: item['description'],
                           update: _update,
                           refresh: _refresh,
                           delete: _delete),

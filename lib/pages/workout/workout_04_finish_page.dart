@@ -21,7 +21,10 @@ class WorkoutFinishPage extends StatelessWidget {
     DateTime? start = wp.startTime;
     DateTime? finish = wp.finishTime;
     String duration = finish!.difference(start!).inMinutes.toString();
-    String output = 'Продолжительность тренировки: $duration минут. \n\r';
+    String output = S.of(context).wrkDuration +
+        ": $duration " +
+        S.of(context).min +
+        "\n\r \n\r";
 
     for (Exerscise item in wp.excersises) {
       output += '**${item.name}**\n\r';

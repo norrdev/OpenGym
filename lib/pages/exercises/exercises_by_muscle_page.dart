@@ -29,13 +29,13 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
 
   void _refresh() async {
     // _results = await DB.rawQuery('''
-    // SELECT exercises.id AS id, exercises.${kLocale}_name AS name, description, equipment.name AS equipment FROM load
+    // SELECT exercises.id AS id, exercises.${kLocale}_name AS name, ${kLocale}_description, equipment.name AS equipment FROM load
     // JOIN exercises ON exercises_id = exercises.id
     // JOIN equipment ON equipment_id = equipment.id
     // WHERE muscles_id = ${widget.musclesId}''');
 
     _results = await db!.rawQuery('''
-      SELECT exercises.id AS id, exercises.${kLocale}_name AS name, description, equipment_id FROM load  
+      SELECT exercises.id AS id, exercises.${kLocale}_name AS name, ${kLocale}_description AS description, equipment_id FROM load  
       JOIN exercises ON exercises_id = exercises.id 
       WHERE muscles_id = ${widget.musclesId}''');
     setState(() {});
@@ -99,13 +99,13 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
                 child: Theme(
                   data: (darkModeOn) ? kMaterialDark : kMaterialLight,
                   child: ListTile(
-                    title: Text(item['${kLocale}_name']),
+                    title: Text(item['name']),
                     trailing: MpLinkButton(
                       label: S.of(context).edit,
                       onPressed: () => editModalPopup(context,
                           id: item['id'],
-                          name: item['${kLocale}_name'],
-                          description: item['${kLocale}_description'],
+                          name: item['name'],
+                          description: item['description'],
                           update: _update,
                           refresh: _refresh,
                           delete: _delete),

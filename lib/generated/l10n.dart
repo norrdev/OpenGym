@@ -203,7 +203,7 @@ class S {
   /// `Name`
   String get name {
     return Intl.message(
-      'name',
+      'Name',
       name: 'name',
       desc: '',
       args: [],
@@ -213,7 +213,7 @@ class S {
   /// `Description`
   String get desc {
     return Intl.message(
-      'description',
+      'Description',
       name: 'desc',
       desc: '',
       args: [],
@@ -245,6 +245,16 @@ class S {
     return Intl.message(
       'No excersises on this day.',
       name: 'noex',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `min.`
+  String get min {
+    return Intl.message(
+      'min.',
+      name: 'min',
       desc: '',
       args: [],
     );
@@ -349,6 +359,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Log`
+  String get log {
+    return Intl.message(
+      'Log',
+      name: 'log',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Workout begin`
+  String get wrkBegin {
+    return Intl.message(
+      'Workout begin',
+      name: 'wrkBegin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Workout end`
+  String get wrkEnd {
+    return Intl.message(
+      'Workout end',
+      name: 'wrkEnd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Workout duration`
+  String get wrkDuration {
+    return Intl.message(
+      'Workout duration',
+      name: 'wrkDuration',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -356,7 +406,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   List<Locale> get supportedLocales {
     return const <Locale>[
-      //Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'ru'),
     ];
   }

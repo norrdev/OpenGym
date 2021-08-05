@@ -51,11 +51,11 @@ SPEC CHECKSUMS:
   FlutterMacOS: 57701585bf7de1b3fc2bb61f6378d73bbdea8424
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   package_info_plus_macos: f010621b07802a241d96d01876d6705f15e77c1c
-  path_provider_macos: a0a3fd666cb7cd0448e936fb4abad4052961002b
+  path_provider_macos: 160cab0d5461f0c0e02995469a98f24bdb9a3f1f
   sqflite: a5789cceda41d54d23f31d6de539d65bb14100ea
   url_launcher_macos: 45af3d61de06997666568a7149c1be98b41c95d4
   wakelock_macos: f1457c9101563f8ddc3498664d8da40d9117309d
 
 PODFILE CHECKSUM: cf4d34d5d0e86f0ef644e779e0f322ec2c947d4d
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.2

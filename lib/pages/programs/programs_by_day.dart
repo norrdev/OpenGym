@@ -7,7 +7,7 @@ import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 
 class ProgramsByDayPage extends StatefulWidget {
-  static String id = 'routines_by_day';
+  static String id = 'programs_by_day';
   final String? pageTitle;
   final int? dayId;
 
@@ -29,7 +29,7 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
 
   void _refresh() async {
     _results = await db!.rawQuery('''
-SELECT workouts.id AS id, exercises.${kLocale}_name AS name, exercises.description as description, sets, ord, repeats, rest FROM workouts 
+SELECT workouts.id AS id, exercises.${kLocale}_name AS name, exercises.${kLocale}_description as description, sets, ord, repeats, rest FROM workouts 
 JOIN exercises on workouts.exerscises_id = exercises.id 
 WHERE days_id = ${widget.dayId} ORDER BY ord;
     ''');
@@ -119,8 +119,8 @@ WHERE days_id = ${widget.dayId} ORDER BY ord;
                   //TODO: Do not close on button click
                   child: ExpansionTile(
                     tilePadding: EdgeInsets.only(right: 30.0, left: 16.0),
-                    title: Text(item['${kLocale}_name']),
-                    subtitle: Text(item['${kLocale}_description'] ?? ''),
+                    title: Text(item['name']),
+                    subtitle: Text(item['description'] ?? ''),
                     children: [
                       Column(
                         children: [

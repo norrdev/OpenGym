@@ -531,3 +531,27 @@ class MpChangeDoubleFieldExtended extends StatelessWidget {
     );
   }
 }
+
+/// Alert dialog.
+class MpAlertDialog extends StatelessWidget {
+  final Widget? title;
+  final Widget? content;
+  const MpAlertDialog({Key? key, this.title, this.content}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (isApple) {
+      return CupertinoAlertDialog(
+        key: key,
+        title: this.title,
+        content: this.content,
+      );
+    } else {
+      return AlertDialog(
+        key: key,
+        title: this.title,
+        content: this.content,
+      );
+    }
+  }
+}

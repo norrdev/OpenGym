@@ -6,6 +6,7 @@ import 'package:npng/config.dart';
 import 'package:npng/pages/about_page.dart';
 import 'package:npng/pages/exercises/exercises_page.dart';
 import 'package:npng/generated/l10n.dart';
+import 'package:npng/pages/log/log_start_page.dart';
 import 'package:npng/pages/programs/programs_page.dart';
 import 'package:npng/pages/workout/workout_00_start_page.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -76,6 +77,7 @@ class BottomBar extends StatelessWidget {
         TabItem(icon: Icons.list, title: S.of(context).pageProgramsTitle),
         TabItem(icon: Icons.ac_unit, title: S.of(context).pageExerciseTitle),
         TabItem(icon: Icons.help, title: S.of(context).about),
+        TabItem(icon: Icons.calendar_view_month, title: S.of(context).log),
       ],
       initialActiveIndex: this.initialActiveIndex,
       onTap: (int i) {
@@ -110,6 +112,15 @@ class BottomBar extends StatelessWidget {
               break;
             case 3:
               _getAboutPage(context);
+              break;
+            case 4:
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  PageTransition(
+                    child: LogStartPage(),
+                    type: PageTransitionType.fade,
+                  ),
+                  (route) => false);
               break;
             default:
           }

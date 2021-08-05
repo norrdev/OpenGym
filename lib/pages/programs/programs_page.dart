@@ -9,7 +9,7 @@ import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 
 class ProgramsPage extends StatefulWidget {
-  static String id = '/routines';
+  static String id = '/programs';
 
   @override
   _ProgramsPageState createState() => _ProgramsPageState();
@@ -27,15 +27,19 @@ class _ProgramsPageState extends State<ProgramsPage> {
   }
 
   void _refresh() async {
-    _results = await db!.query('routines');
+    _results = await db!.query('programs', columns: [
+      'id',
+      '${kLocale}_name as name',
+      '${kLocale}_description as description'
+    ]);
     _user = await db!.query('user', where: 'id = ?', whereArgs: [1]);
-    _current = _user.first['routines_id'] ?? 0;
+    _current = _user.first['programs_id'] ?? 0;
     setState(() {});
   }
 
   void _insert({String? name, String? description}) async {
     await db!.transaction((txn) async {
-      await txn.insert('routines',
+      await txn.insert('programs',
           {'${kLocale}_name': name, '${kLocale}_description': description});
     });
   }
@@ -43,7 +47,7 @@ class _ProgramsPageState extends State<ProgramsPage> {
   void _update({int? id, String? name, String? description}) async {
     await db!.transaction((txn) async {
       await txn.update(
-        'routines',
+        'programs',
         {'${kLocale}_name': name, '${kLocale}_description': description},
         where: 'id = ?',
         whereArgs: [id],
@@ -53,14 +57,14 @@ class _ProgramsPageState extends State<ProgramsPage> {
 
   void _delete({int? id}) async {
     await db!.transaction((txn) async {
-      await txn.delete('routines', where: 'id = ?', whereArgs: [id]);
+      await txn.delete('programs', where: 'id = ?', whereArgs: [id]);
     });
   }
 
   void _changeCurrent(int current) {
     db!.update(
       'user',
-      {'routines_id': current},
+      {'programs_id': current},
       where: 'id = ?',
       whereArgs: [1],
     );
@@ -100,14 +104,14 @@ class _ProgramsPageState extends State<ProgramsPage> {
                         value: item['id'],
                         groupValue: _current,
                         onChanged: (value) => _changeCurrent(item['id'])),
-                    title: Text(item['${kLocale}_name']),
-                    subtitle: Text(item['${kLocale}_description']),
+                    title: Text(item['name']),
+                    subtitle: Text(item['description']),
                     trailing: MpLinkButton(
                       label: S.of(context).edit,
                       onPressed: () => editModalPopup(context,
                           id: item['id'],
-                          name: item['${kLocale}_name'],
-                          description: item['${kLocale}_description'],
+                          name: item['name'],
+                          description: item['description'],
                           update: _update,
                           refresh: _refresh,
                           delete: _delete),
@@ -119,8 +123,8 @@ class _ProgramsPageState extends State<ProgramsPage> {
                         mpPageRoute(
                           builder: (context) {
                             return DaysPage(
-                              routinesId: item['id'],
-                              pageTitle: item['${kLocale}_name'],
+                              programsId: item['id'],
+                              pageTitle: item['name'],
                             );
                           },
                         ),

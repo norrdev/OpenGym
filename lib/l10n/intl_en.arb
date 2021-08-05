@@ -20,6 +20,7 @@
     "weight":"Weight",
     "ccontinue":"Continue",
     "noex":"No excersises on this day.",
+    "min":"min.",
 
     "pageProgramsTitle":"Programs",
 
@@ -34,5 +35,11 @@
     "pageWorkout":"Workout",
     "currentWorkout": "Current workout",
     "workoutFinished":"Workout finished",
-    "saveToLog": "Save to Log"
+    "saveToLog": "Save to Log",
+    "log": "Log",
+
+    "wrkBegin":"Workout begin",
+    "wrkEnd":"Workout end",
+    "wrkDuration":"Workout duration"
+
 }

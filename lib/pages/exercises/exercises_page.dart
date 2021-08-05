@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
@@ -24,7 +27,11 @@ class _ExercisesPageState extends State<ExercisesPage> {
   }
 
   void _refresh() async {
-    _results = await db!.query('musсles');
+    _results = await db!.query('musсles', columns: [
+      'id',
+      '${kLocale}_name AS name',
+      'icon',
+    ]);
     setState(() {});
   }
 
@@ -46,7 +53,18 @@ class _ExercisesPageState extends State<ExercisesPage> {
                 child: Theme(
                   data: (darkModeOn) ? kMaterialDark : kMaterialLight,
                   child: ListTile(
-                    title: Text(item['${kLocale}_name']),
+                    leading: (item['icon'] != null)
+                        ? Container(
+                            child: Image.memory(
+                            item['icon'],
+                            width: 96,
+                            height: 96,
+                          ))
+                        : Container(
+                            width: 96,
+                            height: 96,
+                          ),
+                    title: Text(item['name']),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -54,7 +72,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                           builder: (context) {
                             return ExercisesByMusclePage(
                               musclesId: item['id'],
-                              pageTitle: item['${kLocale}_name'],
+                              pageTitle: item['name'],
                             );
                           },
                         ),

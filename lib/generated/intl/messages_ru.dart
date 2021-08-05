@@ -33,6 +33,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "exName": MessageLookupByLibrary.simpleMessage("Название упражнения"),
         "finish": MessageLookupByLibrary.simpleMessage("Закончить"),
         "from": MessageLookupByLibrary.simpleMessage(" из "),
+        "log": MessageLookupByLibrary.simpleMessage("Дневник"),
+        "min": MessageLookupByLibrary.simpleMessage("мин."),
         "name": MessageLookupByLibrary.simpleMessage("Название"),
         "noex":
             MessageLookupByLibrary.simpleMessage("В этом дне нет упражнений."),
@@ -57,6 +59,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "title": MessageLookupByLibrary.simpleMessage("НбНп"),
         "weight": MessageLookupByLibrary.simpleMessage("Вес"),
         "workoutFinished":
-            MessageLookupByLibrary.simpleMessage("Тренировка завершена")
+            MessageLookupByLibrary.simpleMessage("Тренировка завершена"),
+        "wrkBegin": MessageLookupByLibrary.simpleMessage("Начало тренировки"),
+        "wrkDuration": MessageLookupByLibrary.simpleMessage(
+            "Продолжительность тренировки"),
+        "wrkEnd": MessageLookupByLibrary.simpleMessage("Конец тренировки")
       };
 }

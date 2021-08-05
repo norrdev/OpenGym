@@ -28,15 +28,22 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
   void _getDefaultRoutine() async {
     List<Map<String, dynamic>> _user = [];
     _user = await db!.query('user', where: 'id = ?', whereArgs: [1]);
-    defRoutine = _user.first['routines_id'] ?? 0;
+    defRoutine = _user.first['programs_id'] ?? 0;
     _refresh();
   }
 
   void _refresh() async {
     _days = await db!.query(
       'days',
+      columns: [
+        'id',
+        'ord',
+        '${kLocale}_name AS name',
+        '${kLocale}_description AS description',
+        'programs_id'
+      ],
       orderBy: 'ord',
-      where: 'routines_id = ?',
+      where: 'programs_id = ?',
       whereArgs: [defRoutine],
     );
     setState(() {});
@@ -86,8 +93,8 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
                       return Material(
                         type: MaterialType.transparency,
                         child: ListTile(
-                          title: Text(item['${kLocale}_name']),
-                          subtitle: Text(item['${kLocale}_description']),
+                          title: Text(item['name']),
+                          subtitle: Text(item['description']),
                           onTap: () => Navigator.push(
                             context,
                             mpPageRoute(

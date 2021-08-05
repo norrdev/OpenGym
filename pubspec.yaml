@@ -27,6 +27,7 @@ dependencies:
   path: ^1.8.0
   wakelock: ^0.5.2
   page_transition: ^2.0.2
+  cell_calendar: ^0.5.0+1
 
 dev_dependencies:
   flutter_test:
@@ -35,8 +36,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/icons/
-    - assets/images/ 
+    #- assets/icons/
+    #- assets/images/ 
     - assets/texts/en/
     - assets/texts/ru_RU/
     - assets/sounds/

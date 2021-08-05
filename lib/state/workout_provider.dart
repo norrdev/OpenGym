@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:npng/config.dart';
 
 class Set {
   int repeats = 0;
@@ -47,7 +46,7 @@ class WorkoutProvider extends ChangeNotifier {
   void loadEx(List<Map<String, dynamic>> excersisesInput) {
     for (Map<String, dynamic> item in excersisesInput) {
       Exerscise ex = Exerscise();
-      ex.id = item['id'];
+      ex.id = item['exercises_id'];
       ex.name = item['name'];
       ex.maxSets = item['sets'];
       ex.restTime = item['rest'];
