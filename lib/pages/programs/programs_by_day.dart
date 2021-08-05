@@ -29,9 +29,9 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
 
   void _refresh() async {
     _results = await db!.rawQuery('''
-SELECT workouts.id AS id, exercises.${kLocale}_name AS name, exercises.${kLocale}_description as description, sets, ord, repeats, rest FROM workouts 
-JOIN exercises on workouts.exerscises_id = exercises.id 
-WHERE days_id = ${widget.dayId} ORDER BY ord;
+    SELECT workouts.id AS id, exercises.${kLocale}_name AS name, exercises.${kLocale}_description as description, sets, ord, repeats, rest FROM workouts 
+    JOIN exercises on workouts.exercises_id = exercises.id 
+    WHERE days_id = ${widget.dayId} ORDER BY ord;
     ''');
     _resultsMutable.clear();
     _resultsMutable.addAll(_results);
