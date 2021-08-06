@@ -71,7 +71,7 @@ class BottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConvexAppBar(
-      style: TabStyle.react,
+      style: TabStyle.flip,
       items: [
         TabItem(
             icon: Image.asset('assets/icons/icons8-gym-96.png'),

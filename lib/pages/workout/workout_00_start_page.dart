@@ -105,12 +105,12 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
                               },
                             ),
                           ),
-                          trailing: Icon(
-                            (isApple)
-                                ? CupertinoIcons.play_circle
-                                : Icons.play_circle,
-                            color: Theme.of(context).accentColor,
-                          ),
+                          // trailing: Icon(
+                          //   (isApple)
+                          //       ? CupertinoIcons.play_circle
+                          //       : Icons.play_circle,
+                          //   color: Theme.of(context).accentColor,
+                          // ),
                         ),
                       );
                     },
