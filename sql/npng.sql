@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.3.3 on Fri Aug 6 16:00:41 2021
+-- File generated with SQLiteStudio v3.3.3 on Fri Aug 6 17:21:53 2021
 --
 -- Text encoding used: UTF-8
 --
@@ -18,6 +18,158 @@ CREATE TABLE days (
     ru_description STRING,
     programs_id    INT
 );
+
+INSERT INTO days (
+                     id,
+                     ord,
+                     en_name,
+                     ru_name,
+                     en_description,
+                     ru_description,
+                     programs_id
+                 )
+                 VALUES (
+                     1,
+                     NULL,
+                     'Chiest Day',
+                     NULL,
+                     '',
+                     NULL,
+                     1
+                 );
+
+INSERT INTO days (
+                     id,
+                     ord,
+                     en_name,
+                     ru_name,
+                     en_description,
+                     ru_description,
+                     programs_id
+                 )
+                 VALUES (
+                     2,
+                     NULL,
+                     'Biceps Day',
+                     NULL,
+                     '',
+                     NULL,
+                     1
+                 );
+
+INSERT INTO days (
+                     id,
+                     ord,
+                     en_name,
+                     ru_name,
+                     en_description,
+                     ru_description,
+                     programs_id
+                 )
+                 VALUES (
+                     3,
+                     NULL,
+                     'Back Day',
+                     NULL,
+                     '',
+                     NULL,
+                     1
+                 );
+
+INSERT INTO days (
+                     id,
+                     ord,
+                     en_name,
+                     ru_name,
+                     en_description,
+                     ru_description,
+                     programs_id
+                 )
+                 VALUES (
+                     4,
+                     NULL,
+                     'Triceps Day',
+                     NULL,
+                     '',
+                     NULL,
+                     1
+                 );
+
+INSERT INTO days (
+                     id,
+                     ord,
+                     en_name,
+                     ru_name,
+                     en_description,
+                     ru_description,
+                     programs_id
+                 )
+                 VALUES (
+                     5,
+                     NULL,
+                     'Legs Day',
+                     NULL,
+                     '',
+                     NULL,
+                     1
+                 );
+
+INSERT INTO days (
+                     id,
+                     ord,
+                     en_name,
+                     ru_name,
+                     en_description,
+                     ru_description,
+                     programs_id
+                 )
+                 VALUES (
+                     6,
+                     NULL,
+                     'Shoulders Day',
+                     NULL,
+                     '',
+                     NULL,
+                     1
+                 );
+
+INSERT INTO days (
+                     id,
+                     ord,
+                     en_name,
+                     ru_name,
+                     en_description,
+                     ru_description,
+                     programs_id
+                 )
+                 VALUES (
+                     7,
+                     NULL,
+                     'Workout A',
+                     NULL,
+                     '',
+                     NULL,
+                     2
+                 );
+
+INSERT INTO days (
+                     id,
+                     ord,
+                     en_name,
+                     ru_name,
+                     en_description,
+                     ru_description,
+                     programs_id
+                 )
+                 VALUES (
+                     8,
+                     NULL,
+                     'Workout B',
+                     NULL,
+                     '',
+                     NULL,
+                     2
+                 );
 
 
 -- Table: equipment
@@ -1092,6 +1244,40 @@ INSERT INTO exercises (
                           NULL
                       );
 
+INSERT INTO exercises (
+                          id,
+                          en_name,
+                          ru_name,
+                          en_description,
+                          ru_description,
+                          equipment_id
+                      )
+                      VALUES (
+                          59,
+                          'Dumbbell Flys',
+                          'Разводки с гантелями',
+                          '',
+                          NULL,
+                          NULL
+                      );
+
+INSERT INTO exercises (
+                          id,
+                          en_name,
+                          ru_name,
+                          en_description,
+                          ru_description,
+                          equipment_id
+                      )
+                      VALUES (
+                          60,
+                          'Rubber Band Flys',
+                          'Разводки с резиновой лентой',
+                          '',
+                          NULL,
+                          NULL
+                      );
+
 
 -- Table: load
 CREATE TABLE load (
@@ -1729,6 +1915,24 @@ INSERT INTO load (
                      14
                  );
 
+INSERT INTO load (
+                     exercises_id,
+                     muscles_id
+                 )
+                 VALUES (
+                     59,
+                     3
+                 );
+
+INSERT INTO load (
+                     exercises_id,
+                     muscles_id
+                 )
+                 VALUES (
+                     60,
+                     3
+                 );
+
 
 -- Table: log_days
 CREATE TABLE log_days (
@@ -1967,6 +2171,36 @@ CREATE TABLE programs (
     ru_description STRING
 );
 
+INSERT INTO programs (
+                         id,
+                         en_name,
+                         ru_name,
+                         en_description,
+                         ru_description
+                     )
+                     VALUES (
+                         1,
+                         'Rubber Band',
+                         NULL,
+                         'Every day morning routine.',
+                         NULL
+                     );
+
+INSERT INTO programs (
+                         id,
+                         en_name,
+                         ru_name,
+                         en_description,
+                         ru_description
+                     )
+                     VALUES (
+                         2,
+                         '5x5',
+                         NULL,
+                         'Stronglyft training. Program for 12 weeks.',
+                         NULL
+                     );
+
 
 -- Table: user
 CREATE TABLE user (
@@ -2008,6 +2242,531 @@ CREATE TABLE workouts (
     weight       DOUBLE  NOT NULL
                          DEFAULT (10) 
 );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         1,
+                         0,
+                         1,
+                         13,
+                         4,
+                         8,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         2,
+                         1,
+                         1,
+                         60,
+                         4,
+                         8,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         4,
+                         3,
+                         2,
+                         44,
+                         3,
+                         1,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         5,
+                         0,
+                         2,
+                         23,
+                         4,
+                         8,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         6,
+                         1,
+                         2,
+                         24,
+                         4,
+                         8,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         7,
+                         2,
+                         2,
+                         38,
+                         4,
+                         8,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         8,
+                         1,
+                         3,
+                         46,
+                         3,
+                         8,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         9,
+                         2,
+                         3,
+                         48,
+                         3,
+                         8,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         10,
+                         0,
+                         3,
+                         19,
+                         3,
+                         8,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         11,
+                         4,
+                         4,
+                         29,
+                         3,
+                         8,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         12,
+                         5,
+                         4,
+                         31,
+                         3,
+                         8,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         13,
+                         6,
+                         4,
+                         41,
+                         3,
+                         8,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         14,
+                         7,
+                         1,
+                         42,
+                         3,
+                         1,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         15,
+                         8,
+                         5,
+                         50,
+                         3,
+                         8,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         16,
+                         9,
+                         5,
+                         57,
+                         3,
+                         8,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         17,
+                         10,
+                         5,
+                         44,
+                         3,
+                         8,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         18,
+                         11,
+                         6,
+                         9,
+                         3,
+                         8,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         19,
+                         12,
+                         6,
+                         5,
+                         3,
+                         8,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         20,
+                         13,
+                         6,
+                         41,
+                         3,
+                         8,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         21,
+                         14,
+                         7,
+                         49,
+                         5,
+                         5,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         22,
+                         15,
+                         7,
+                         11,
+                         5,
+                         5,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         23,
+                         16,
+                         7,
+                         45,
+                         5,
+                         5,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         24,
+                         17,
+                         8,
+                         49,
+                         5,
+                         5,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         25,
+                         18,
+                         8,
+                         7,
+                         5,
+                         5,
+                         90,
+                         10.0
+                     );
+
+INSERT INTO workouts (
+                         id,
+                         ord,
+                         days_id,
+                         exercises_id,
+                         sets,
+                         repeats,
+                         rest,
+                         weight
+                     )
+                     VALUES (
+                         26,
+                         19,
+                         8,
+                         16,
+                         1,
+                         5,
+                         90,
+                         10.0
+                     );
 
 
 COMMIT TRANSACTION;

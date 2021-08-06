@@ -47,7 +47,7 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
         //     : itemForMax.first['maxOrd'];
         await txn.insert('workouts', {
           'days_id': widget.dayId,
-          'exerscises_id': exIds[i],
+          'exercises_id': exIds[i],
           'ord': maxOrd + 1,
         });
       }
