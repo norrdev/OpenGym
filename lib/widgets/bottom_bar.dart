@@ -73,11 +73,21 @@ class BottomBar extends StatelessWidget {
     return ConvexAppBar(
       style: TabStyle.react,
       items: [
-        TabItem(icon: Icons.play_arrow, title: S.of(context).pageWorkout),
-        TabItem(icon: Icons.list, title: S.of(context).pageProgramsTitle),
-        TabItem(icon: Icons.ac_unit, title: S.of(context).pageExerciseTitle),
-        TabItem(icon: Icons.help, title: S.of(context).about),
-        TabItem(icon: Icons.calendar_view_month, title: S.of(context).log),
+        TabItem(
+            icon: Image.asset('assets/icons/icons8-gym-96.png'),
+            title: S.of(context).pageWorkout),
+        TabItem(
+            icon: Image.asset('assets/icons/icons8-rules-96.png'),
+            title: S.of(context).pageProgramsTitle),
+        TabItem(
+            icon: Image.asset('assets/icons/icons8-deadlift-96.png'),
+            title: S.of(context).pageExerciseTitle),
+        TabItem(
+            icon: Image.asset('assets/icons/icons8-calendar-96.png'),
+            title: S.of(context).log),
+        TabItem(
+            icon: Image.asset('assets/icons/icons8-info-96.png'),
+            title: S.of(context).about),
       ],
       initialActiveIndex: this.initialActiveIndex,
       onTap: (int i) {
@@ -111,9 +121,6 @@ class BottomBar extends StatelessWidget {
                   (route) => false);
               break;
             case 3:
-              _getAboutPage(context);
-              break;
-            case 4:
               Navigator.pushAndRemoveUntil(
                   context,
                   PageTransition(
@@ -122,6 +129,10 @@ class BottomBar extends StatelessWidget {
                   ),
                   (route) => false);
               break;
+            case 4:
+              _getAboutPage(context);
+              break;
+
             default:
           }
         }

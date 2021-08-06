@@ -169,7 +169,7 @@ class _LogStartPageState extends State<LogStartPage> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomBar(initialActiveIndex: 4),
+      bottomNavigationBar: BottomBar(initialActiveIndex: 3),
     );
   }
 }

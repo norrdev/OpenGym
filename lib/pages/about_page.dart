@@ -37,7 +37,7 @@ class AboutPage extends StatelessWidget {
           onTapLink: (text, href, title) => launch(href!),
         ),
       ),
-      bottomNavigationBar: BottomBar(initialActiveIndex: 3),
+      bottomNavigationBar: BottomBar(initialActiveIndex: 4),
     );
   }
 }
