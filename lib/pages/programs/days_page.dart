@@ -118,46 +118,43 @@ class _DaysPageState extends State<DaysPage> {
       body: Container(
         constraints: BoxConstraints.expand(),
         child: SafeArea(
-          child: Theme(
-            data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-            child: ReorderableListView.builder(
-              onReorder: _onReorder,
-              itemCount: _mutableDays.length,
-              itemBuilder: (context, index) {
-                final item = _mutableDays[index];
-                return Material(
-                  type: MaterialType.transparency,
-                  key: ValueKey(item),
-                  child: ListTile(
-                    title: Text(item['name']),
-                    subtitle: Text(item['description']),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        mpPageRoute(
-                          builder: (context) {
-                            return ProgramsByDayPage(
-                              dayId: item['id'],
-                              pageTitle: item['name'],
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    trailing: MpLinkButton(
-                      label: S.of(context).edit,
-                      onPressed: () => editModalPopup(context,
-                          id: item['id'],
-                          name: item['name'],
-                          description: item['description'],
-                          update: _update,
-                          refresh: _refresh,
-                          delete: _delete),
-                    ),
+          child: ReorderableListView.builder(
+            onReorder: _onReorder,
+            itemCount: _mutableDays.length,
+            itemBuilder: (context, index) {
+              final item = _mutableDays[index];
+              return Material(
+                type: MaterialType.transparency,
+                key: ValueKey(item),
+                child: ListTile(
+                  title: Text(item['name']),
+                  subtitle: Text(item['description']),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      mpPageRoute(
+                        builder: (context) {
+                          return ProgramsByDayPage(
+                            dayId: item['id'],
+                            pageTitle: item['name'],
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  trailing: MpLinkButton(
+                    label: S.of(context).edit,
+                    onPressed: () => editModalPopup(context,
+                        id: item['id'],
+                        name: item['name'],
+                        description: item['description'],
+                        update: _update,
+                        refresh: _refresh,
+                        delete: _delete),
                   ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
         ),
       ),

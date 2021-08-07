@@ -47,18 +47,21 @@ class AppMaterial extends StatelessWidget {
 class AppCupertino extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      onGenerateTitle: (BuildContext context) => S.of(context).title,
-      theme: kCupertinoTheme,
-      initialRoute: kInitialRoute,
-      routes: kAppRoutes,
+    return Theme(
+      data: (darkModeOn) ? kMaterialDark : kMaterialLight,
+      child: CupertinoApp(
+        localizationsDelegates: [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        onGenerateTitle: (BuildContext context) => S.of(context).title,
+        theme: kCupertinoTheme,
+        initialRoute: kInitialRoute,
+        routes: kAppRoutes,
+      ),
     );
   }
 }

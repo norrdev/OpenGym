@@ -84,37 +84,34 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
               //TODO: Make here button or special screen, if workout in process.
               constraints: BoxConstraints.expand(),
               child: SafeArea(
-                child: Theme(
-                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                  child: ListView.builder(
-                    itemCount: _days.length,
-                    itemBuilder: (context, index) {
-                      final item = _days[index];
-                      return Material(
-                        type: MaterialType.transparency,
-                        child: ListTile(
-                          title: Text(item['name']),
-                          subtitle: Text(item['description']),
-                          onTap: () => Navigator.push(
-                            context,
-                            mpPageRoute(
-                              builder: (context) {
-                                return WorkoutProcessPage(
-                                  dayId: item['id'],
-                                );
-                              },
-                            ),
+                child: ListView.builder(
+                  itemCount: _days.length,
+                  itemBuilder: (context, index) {
+                    final item = _days[index];
+                    return Material(
+                      type: MaterialType.transparency,
+                      child: ListTile(
+                        title: Text(item['name']),
+                        subtitle: Text(item['description']),
+                        onTap: () => Navigator.push(
+                          context,
+                          mpPageRoute(
+                            builder: (context) {
+                              return WorkoutProcessPage(
+                                dayId: item['id'],
+                              );
+                            },
                           ),
-                          // trailing: Icon(
-                          //   (isApple)
-                          //       ? CupertinoIcons.play_circle
-                          //       : Icons.play_circle,
-                          //   color: Theme.of(context).accentColor,
-                          // ),
                         ),
-                      );
-                    },
-                  ),
+                        // trailing: Icon(
+                        //   (isApple)
+                        //       ? CupertinoIcons.play_circle
+                        //       : Icons.play_circle,
+                        //   color: Theme.of(context).accentColor,
+                        // ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),

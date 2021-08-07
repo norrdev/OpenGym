@@ -40,8 +40,12 @@ final ThemeData kMaterialLight = ThemeData(
 final ThemeData kMaterialDark = ThemeData(
   brightness: Brightness.dark,
   accentColor: Colors.blue,
-  primarySwatch: Colors.blue,
+  primarySwatch: Colors.grey,
   buttonColor: Colors.blue,
+  primaryColor: Colors.black,
+  backgroundColor: const Color(0xFF212121),
+  accentIconTheme: IconThemeData(color: Colors.black),
+  dividerColor: Colors.black12,
 );
 
 /// Cupertino light & dark theme

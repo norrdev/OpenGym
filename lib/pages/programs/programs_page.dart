@@ -97,40 +97,37 @@ class _ProgramsPageState extends State<ProgramsPage> {
               final item = _results[index];
               return Material(
                 type: MaterialType.transparency,
-                child: Theme(
-                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                  child: ListTile(
-                    leading: Radio<int>(
-                        value: item['id'],
-                        groupValue: _current,
-                        onChanged: (value) => _changeCurrent(item['id'])),
-                    title: Text(item['name']),
-                    subtitle: Text(item['description']),
-                    trailing: MpLinkButton(
-                      label: S.of(context).edit,
-                      onPressed: () => editModalPopup(context,
-                          id: item['id'],
-                          name: item['name'],
-                          description: item['description'],
-                          update: _update,
-                          refresh: _refresh,
-                          delete: _delete),
-                    ),
-                    //onTap: () => Navigator.pushNamed(context, DaysPage.id),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        mpPageRoute(
-                          builder: (context) {
-                            return DaysPage(
-                              programsId: item['id'],
-                              pageTitle: item['name'],
-                            );
-                          },
-                        ),
-                      );
-                    },
+                child: ListTile(
+                  leading: Radio<int>(
+                      value: item['id'],
+                      groupValue: _current,
+                      onChanged: (value) => _changeCurrent(item['id'])),
+                  title: Text(item['name']),
+                  subtitle: Text(item['description']),
+                  trailing: MpLinkButton(
+                    label: S.of(context).edit,
+                    onPressed: () => editModalPopup(context,
+                        id: item['id'],
+                        name: item['name'],
+                        description: item['description'],
+                        update: _update,
+                        refresh: _refresh,
+                        delete: _delete),
                   ),
+                  //onTap: () => Navigator.pushNamed(context, DaysPage.id),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      mpPageRoute(
+                        builder: (context) {
+                          return DaysPage(
+                            programsId: item['id'],
+                            pageTitle: item['name'],
+                          );
+                        },
+                      ),
+                    );
+                  },
                 ),
               );
             },

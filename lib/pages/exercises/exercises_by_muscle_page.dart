@@ -96,20 +96,17 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
               final item = _results[index];
               return Material(
                 type: MaterialType.transparency,
-                child: Theme(
-                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                  child: ListTile(
-                    title: Text(item['name']),
-                    trailing: MpLinkButton(
-                      label: S.of(context).edit,
-                      onPressed: () => editModalPopup(context,
-                          id: item['id'],
-                          name: item['name'],
-                          description: item['description'],
-                          update: _update,
-                          refresh: _refresh,
-                          delete: _delete),
-                    ),
+                child: ListTile(
+                  title: Text(item['name']),
+                  trailing: MpLinkButton(
+                    label: S.of(context).edit,
+                    onPressed: () => editModalPopup(context,
+                        id: item['id'],
+                        name: item['name'],
+                        description: item['description'],
+                        update: _update,
+                        refresh: _refresh,
+                        delete: _delete),
                   ),
                 ),
               );

@@ -47,35 +47,32 @@ class _ExercisesPageState extends State<ExercisesPage> {
               final item = _results[index];
               return Material(
                 type: MaterialType.transparency,
-                child: Theme(
-                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                  child: ListTile(
-                    leading: (item['icon'] != null)
-                        ? Container(
-                            child: Image.memory(
-                            item['icon'],
-                            width: 96,
-                            height: 96,
-                          ))
-                        : Container(
-                            width: 96,
-                            height: 96,
-                          ),
-                    title: Text(item['name']),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        mpPageRoute(
-                          builder: (context) {
-                            return ExercisesByMusclePage(
-                              musclesId: item['id'],
-                              pageTitle: item['name'],
-                            );
-                          },
+                child: ListTile(
+                  leading: (item['icon'] != null)
+                      ? Container(
+                          child: Image.memory(
+                          item['icon'],
+                          width: 96,
+                          height: 96,
+                        ))
+                      : Container(
+                          width: 96,
+                          height: 96,
                         ),
-                      );
-                    },
-                  ),
+                  title: Text(item['name']),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      mpPageRoute(
+                        builder: (context) {
+                          return ExercisesByMusclePage(
+                            musclesId: item['id'],
+                            pageTitle: item['name'],
+                          );
+                        },
+                      ),
+                    );
+                  },
                 ),
               );
             },
