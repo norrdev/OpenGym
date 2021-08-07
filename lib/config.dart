@@ -27,31 +27,10 @@ final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
 /// Current locale
 late Locale kLocale;
 
-/// Material light theme
-final ThemeData kMaterialLight = ThemeData(
-  primarySwatch: Colors.blue,
-  buttonColor: Colors.blue,
-  brightness: Brightness.light,
-  visualDensity: VisualDensity.adaptivePlatformDensity,
-);
-
-/// Material dark theme
-//TODO: Make blue primary color
-final ThemeData kMaterialDark = ThemeData(
-  brightness: Brightness.dark,
-  accentColor: Colors.blue,
-  primarySwatch: Colors.grey,
-  buttonColor: Colors.blue,
-  primaryColor: Colors.black,
-  backgroundColor: const Color(0xFF212121),
-  accentIconTheme: IconThemeData(color: Colors.black),
-  dividerColor: Colors.black12,
-);
-
 /// Cupertino light & dark theme
 //final Brightness brightness = MediaQuery.platformBrightnessOf(context);
 
-final Brightness brightness =
+final Brightness brightness = //Brightness.light;
     WidgetsBinding.instance!.window.platformBrightness;
 
 //get brightness => WidgetsBinding.instance!.window.platformBrightness;
@@ -60,6 +39,29 @@ bool darkModeOn = brightness == Brightness.dark;
 
 final CupertinoThemeData kCupertinoTheme = CupertinoThemeData(
   brightness: brightness, //darkModeOn ? Brightness.dark : Brightness.light,
+);
+
+/// Material light theme
+final ThemeData kMaterialLight = ThemeData(
+  brightness: Brightness.light,
+  primaryColor: kCupertinoTheme.primaryColor,
+  primarySwatch: Colors.blue,
+  visualDensity: VisualDensity.adaptivePlatformDensity,
+);
+
+/// Material dark theme
+//TODO: Make blue primary color
+final ThemeData kMaterialDark = ThemeData(
+  brightness: Brightness.dark,
+  primaryColor: Colors.black,
+  primarySwatch: Colors.blue,
+  bottomAppBarColor: Colors.black,
+  //accentColor: kCupertinoTheme.primaryContrastingColor,
+  //primarySwatch: Colors.grey,
+  // buttonColor: Colors.blue,
+  // primaryColor: kCupertinoTheme.primaryColor,
+  // toggleableActiveColor: kCupertinoTheme.primaryColor,
+  // backgroundColor: kCupertinoTheme.scaffoldBackgroundColor,
 );
 
 /// Initial route
