@@ -39,7 +39,7 @@ flutter:
     - assets/icons/
     #- assets/images/ 
     - assets/texts/en/
-    - assets/texts/ru_RU/
+    - assets/texts/ru/
     - assets/sounds/
     - CHANGELOG.md
     - assets/db/npng.db

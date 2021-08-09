@@ -107,8 +107,8 @@ class _ProgramsPageState extends State<ProgramsPage> {
                       value: item['id'],
                       groupValue: _current,
                       onChanged: (value) => _changeCurrent(item['id'])),
-                  title: Text(item['name']),
-                  subtitle: Text(item['description']),
+                  title: Text(item['name'] ?? ''),
+                  subtitle: Text(item['description'] ?? ''),
                   trailing: MpLinkButton(
                     label: S.of(context).edit,
                     onPressed: () => editModalPopup(context,

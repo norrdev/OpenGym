@@ -132,8 +132,8 @@ class _ProgramsDaysPageState extends State<ProgramsDaysPage> {
                 type: MaterialType.transparency,
                 key: ValueKey(item),
                 child: ListTile(
-                  title: Text(item['name']),
-                  subtitle: Text(item['description']),
+                  title: Text(item['name'] ?? ''),
+                  subtitle: Text(item['description'] ?? ''),
                   onTap: () {
                     Navigator.push(
                       context,

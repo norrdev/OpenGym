@@ -75,7 +75,7 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
           Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
-              'Muscles',
+              S.of(context).muscles,
             ),
           ),
           Padding(
@@ -91,7 +91,7 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
                   return ChoiceChip(
                     selected: (index == selectedMuscle) ? true : false,
                     label: Text(
-                      item['name'],
+                      item['name'] ?? '',
                     ),
                     onSelected: (bool selected) {
                       setState(() {
@@ -123,10 +123,10 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
                     selected: selectedEx[index],
                     //labelStyle: TextStyle(fontWeight: FontWeight.bold),
                     label: Text(
-                      item['name'],
+                      item['name'] ?? '',
                       textScaleFactor: 1.2,
                     ),
-                    tooltip: item['description'],
+                    tooltip: item['description'] ?? '',
                     onSelected: (bool selected) {
                       setState(() {
                         selectedEx[index] = !selectedEx[index];
@@ -140,7 +140,7 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: MpButton(
-                label: 'Add',
+                label: S.of(context).add,
                 onPressed: () {
                   List<int?> buffer = [];
                   for (var i = 0; i < selectedEx.length; i++) {

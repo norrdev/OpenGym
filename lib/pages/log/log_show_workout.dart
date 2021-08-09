@@ -97,7 +97,7 @@ class _LogShowWorkoutPageState extends State<LogShowWorkoutPage> {
     //         '${i + 1}. ${item.sets[i].weight} kg X ${item.sets[i].repeats}\n\r';
     //   }
     // }
-
+    MarkdownStyleSheet style = MarkdownStyleSheet.fromTheme(Theme.of(context));
     return MpScaffold(
       appBar: MpAppBar(
         title: Text(_resultsDay.first['programsName'] +
@@ -109,7 +109,8 @@ class _LogShowWorkoutPageState extends State<LogShowWorkoutPage> {
           data: output,
           controller: controller,
           selectable: false,
-          styleSheetTheme: MarkdownStyleSheetBaseTheme.platform,
+          styleSheet: style,
+          //styleSheetTheme: MarkdownStyleSheetBaseTheme.platform,
           //onTapLink: (href) => launch(href),
           onTapLink: (text, href, title) => launch(href!),
         ),

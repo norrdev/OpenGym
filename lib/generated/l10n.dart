@@ -260,6 +260,26 @@ class S {
     );
   }
 
+  /// `Muscles`
+  String get muscles {
+    return Intl.message(
+      'Muscles',
+      name: 'muscles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add`
+  String get add {
+    return Intl.message(
+      'Add',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Programs`
   String get pageProgramsTitle {
     return Intl.message(

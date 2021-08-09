@@ -91,8 +91,8 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
                     return Material(
                       type: MaterialType.transparency,
                       child: ListTile(
-                        title: Text(item['name']),
-                        subtitle: Text(item['description']),
+                        title: Text(item['name'] ?? ''),
+                        subtitle: Text(item['description'] ?? ''),
                         onTap: () => Navigator.push(
                           context,
                           mpPageRoute(
