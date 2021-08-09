@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.3.3 on Fri Aug 6 17:21:53 2021
+-- File generated with SQLiteStudio v3.3.3 on Mon Aug 9 17:36:05 2021
 --
 -- Text encoding used: UTF-8
 --
@@ -32,7 +32,7 @@ INSERT INTO days (
                      1,
                      NULL,
                      'Chiest Day',
-                     NULL,
+                     'Грудь',
                      '',
                      NULL,
                      1
@@ -51,7 +51,7 @@ INSERT INTO days (
                      2,
                      NULL,
                      'Biceps Day',
-                     NULL,
+                     'Бицепс',
                      '',
                      NULL,
                      1
@@ -70,7 +70,7 @@ INSERT INTO days (
                      3,
                      NULL,
                      'Back Day',
-                     NULL,
+                     'Спина',
                      '',
                      NULL,
                      1
@@ -89,7 +89,7 @@ INSERT INTO days (
                      4,
                      NULL,
                      'Triceps Day',
-                     NULL,
+                     'Трицепс',
                      '',
                      NULL,
                      1
@@ -108,7 +108,7 @@ INSERT INTO days (
                      5,
                      NULL,
                      'Legs Day',
-                     NULL,
+                     'Ноги',
                      '',
                      NULL,
                      1
@@ -127,7 +127,7 @@ INSERT INTO days (
                      6,
                      NULL,
                      'Shoulders Day',
-                     NULL,
+                     'Плечи',
                      '',
                      NULL,
                      1
@@ -144,11 +144,11 @@ INSERT INTO days (
                  )
                  VALUES (
                      7,
-                     NULL,
+                     0,
                      'Workout A',
-                     NULL,
+                     'Тренировка А',
                      '',
-                     NULL,
+                     '',
                      2
                  );
 
@@ -163,9 +163,9 @@ INSERT INTO days (
                  )
                  VALUES (
                      8,
-                     NULL,
+                     1,
                      'Workout B',
-                     NULL,
+                     'Тренировка Б',
                      '',
                      NULL,
                      2
@@ -2181,7 +2181,7 @@ INSERT INTO programs (
                      VALUES (
                          1,
                          'Rubber Band',
-                         NULL,
+                         'Резиновая лента',
                          'Every day morning routine.',
                          NULL
                      );
@@ -2196,7 +2196,7 @@ INSERT INTO programs (
                      VALUES (
                          2,
                          '5x5',
-                         NULL,
+                         '5х5',
                          'Stronglyft training. Program for 12 weeks.',
                          NULL
                      );
@@ -2221,7 +2221,7 @@ INSERT INTO user (
                      1,
                      NULL,
                      NULL,
-                     1
+                     2
                  );
 
 
@@ -2654,7 +2654,7 @@ INSERT INTO workouts (
                      )
                      VALUES (
                          21,
-                         14,
+                         0,
                          7,
                          49,
                          5,
@@ -2675,7 +2675,7 @@ INSERT INTO workouts (
                      )
                      VALUES (
                          22,
-                         15,
+                         1,
                          7,
                          11,
                          5,
@@ -2696,7 +2696,7 @@ INSERT INTO workouts (
                      )
                      VALUES (
                          23,
-                         16,
+                         2,
                          7,
                          45,
                          5,
@@ -2762,7 +2762,7 @@ INSERT INTO workouts (
                          19,
                          8,
                          16,
-                         1,
+                         5,
                          5,
                          90,
                          10.0
