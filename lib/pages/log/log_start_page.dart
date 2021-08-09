@@ -40,7 +40,9 @@ class _LogStartPageState extends State<LogStartPage> {
       CalendarEvent event = CalendarEvent(
         eventName: '${item['programsName']}: ${item['daysName']}',
         eventDate: DateTime.parse(item['start']),
-        eventBackgroundColor: Colors.indigoAccent,
+        eventBackgroundColor: (isApple)
+            ? CupertinoTheme.of(context).primaryColor
+            : Theme.of(context).accentColor,
         eventID: item['logDaysId'].toString(),
       );
       days.add(event);
