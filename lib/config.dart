@@ -30,8 +30,8 @@ late Locale kLocale;
 /// Cupertino light & dark theme
 //final Brightness brightness = MediaQuery.platformBrightnessOf(context);
 
-final Brightness brightness = //Brightness.light;
-    WidgetsBinding.instance!.window.platformBrightness;
+final Brightness brightness = Brightness.dark;
+// WidgetsBinding.instance!.window.platformBrightness;
 
 //get brightness => WidgetsBinding.instance!.window.platformBrightness;
 //var brightness = SchedulerBinding.instance.window.platformBrightness;
@@ -50,18 +50,25 @@ final ThemeData kMaterialLight = ThemeData(
 );
 
 /// Material dark theme
-//TODO: Make blue primary color
 final ThemeData kMaterialDark = ThemeData(
   brightness: Brightness.dark,
   primaryColor: Colors.black,
+  accentColor: kCupertinoTheme.primaryColor,
   primarySwatch: Colors.blue,
-  bottomAppBarColor: Colors.black,
-  //accentColor: kCupertinoTheme.primaryContrastingColor,
-  //primarySwatch: Colors.grey,
-  // buttonColor: Colors.blue,
-  // primaryColor: kCupertinoTheme.primaryColor,
-  // toggleableActiveColor: kCupertinoTheme.primaryColor,
-  // backgroundColor: kCupertinoTheme.scaffoldBackgroundColor,
+  bottomAppBarColor: Colors.black, // for bottomBar
+  toggleableActiveColor: kCupertinoTheme.primaryColor, // for radio
+  chipTheme: ChipThemeData(
+    backgroundColor: Colors.black45,
+    disabledColor: Color(0xaaF5E0C3),
+    shape: StadiumBorder(),
+    brightness: Brightness.dark,
+    labelPadding: EdgeInsets.all(8),
+    labelStyle: TextStyle(),
+    padding: EdgeInsets.all(8),
+    secondaryLabelStyle: TextStyle(),
+    secondarySelectedColor: Colors.white38,
+    selectedColor: Colors.white38,
+  ),
 );
 
 /// Initial route
