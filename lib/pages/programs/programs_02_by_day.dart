@@ -93,7 +93,12 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
         title: Text(widget.pageTitle!),
         trailing: MpFlatButton(
           padding: EdgeInsets.all(8),
-          child: Icon(CupertinoIcons.add),
+          child: Icon(
+            (isApple) ? CupertinoIcons.add : Icons.add,
+            color: (isApple)
+                ? CupertinoTheme.of(context).textTheme.navTitleTextStyle.color
+                : Theme.of(context).secondaryHeaderColor,
+          ),
           onPressed: () => Navigator.push(
             context,
             mpPageRoute(

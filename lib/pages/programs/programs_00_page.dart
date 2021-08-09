@@ -80,7 +80,12 @@ class _ProgramsPageState extends State<ProgramsPage> {
         title: Text(S.of(context).pageProgramsTitle),
         trailing: MpFlatButton(
           padding: EdgeInsets.all(8),
-          child: Icon(CupertinoIcons.add),
+          child: Icon(
+            (isApple) ? CupertinoIcons.add : Icons.add,
+            color: (isApple)
+                ? CupertinoTheme.of(context).textTheme.navTitleTextStyle.color
+                : Theme.of(context).secondaryHeaderColor,
+          ),
           onPressed: () => setState(() => insertModalPopup(context,
               name: tcName,
               description: tcDesc,

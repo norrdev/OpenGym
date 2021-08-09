@@ -15,8 +15,8 @@ import 'package:npng/pages/workout/workout_00_start_page.dart';
 
 /// Place for themes, configuration constants, etc.
 
-final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
-//final bool isApple = false;
+// final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
+final bool isApple = false;
 
 // bool get isMobileDevice => !kIsWeb && (Platform.isIOS || Platform.isAndroid);
 // bool get isDesktopDevice =>
@@ -30,8 +30,8 @@ late Locale kLocale;
 /// Cupertino light & dark theme
 //final Brightness brightness = MediaQuery.platformBrightnessOf(context);
 
-final Brightness brightness = Brightness.dark;
-// WidgetsBinding.instance!.window.platformBrightness;
+final Brightness brightness = //Brightness.dark;
+    WidgetsBinding.instance!.window.platformBrightness;
 
 //get brightness => WidgetsBinding.instance!.window.platformBrightness;
 //var brightness = SchedulerBinding.instance.window.platformBrightness;
