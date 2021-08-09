@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
-import 'package:npng/pages/programs/days_page.dart';
+import 'package:npng/pages/programs/programs_01_days_page.dart';
 import 'package:npng/db.dart';
 import 'package:npng/widgets/modal_popups.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
@@ -120,7 +120,7 @@ class _ProgramsPageState extends State<ProgramsPage> {
                       context,
                       mpPageRoute(
                         builder: (context) {
-                          return DaysPage(
+                          return ProgramsDaysPage(
                             programsId: item['id'],
                             pageTitle: item['name'],
                           );

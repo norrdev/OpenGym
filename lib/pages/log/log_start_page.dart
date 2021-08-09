@@ -28,7 +28,7 @@ class _LogStartPageState extends State<LogStartPage> {
   }
 
   void _refresh() async {
-    //TODO: Pagination by mounth
+    //TODO: 1.2 Pagination by mounth
     _results = await db!.rawQuery('''
     select log_days.id AS logDaysId, log_days.days_id AS daysId, start, days.${kLocale}_name AS daysName,
     programs.${kLocale}_name as programsName

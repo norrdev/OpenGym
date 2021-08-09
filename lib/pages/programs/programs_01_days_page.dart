@@ -2,23 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
 import 'package:npng/db.dart';
-import 'package:npng/pages/programs/programs_by_day.dart';
+import 'package:npng/pages/programs/programs_02_by_day.dart';
 import 'package:npng/widgets/modal_popups.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 
-class DaysPage extends StatefulWidget {
+class ProgramsDaysPage extends StatefulWidget {
   static String id = 'days';
   final int? programsId;
   final String? pageTitle;
 
-  DaysPage({this.programsId, this.pageTitle});
+  ProgramsDaysPage({this.programsId, this.pageTitle});
 
   @override
-  _DaysPageState createState() => _DaysPageState();
+  _ProgramsDaysPageState createState() => _ProgramsDaysPageState();
 }
 
-class _DaysPageState extends State<DaysPage> {
+class _ProgramsDaysPageState extends State<ProgramsDaysPage> {
   List<Map<String, dynamic>> _days = [];
   List<Map<String, dynamic>> _mutableDays = [];
 
@@ -142,15 +142,18 @@ class _DaysPageState extends State<DaysPage> {
                       ),
                     );
                   },
-                  trailing: MpLinkButton(
-                    label: S.of(context).edit,
-                    onPressed: () => editModalPopup(context,
-                        id: item['id'],
-                        name: item['name'],
-                        description: item['description'],
-                        update: _update,
-                        refresh: _refresh,
-                        delete: _delete),
+                  trailing: Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: MpLinkButton(
+                      label: S.of(context).edit,
+                      onPressed: () => editModalPopup(context,
+                          id: item['id'],
+                          name: item['name'],
+                          description: item['description'],
+                          update: _update,
+                          refresh: _refresh,
+                          delete: _delete),
+                    ),
                   ),
                 ),
               );

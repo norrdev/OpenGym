@@ -5,8 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:npng/pages/exercises/exercise.dart';
 import 'package:npng/pages/exercises/exercises_by_muscle_page.dart';
 import 'package:npng/pages/exercises/exercises_page.dart';
-import 'package:npng/pages/programs/days_page.dart';
-import 'package:npng/pages/programs/programs_page.dart';
+import 'package:npng/pages/programs/programs_01_days_page.dart';
+import 'package:npng/pages/programs/programs_00_page.dart';
 import 'package:npng/pages/workout/workout_02_set_page.dart';
 import 'package:npng/pages/about_page.dart';
 import 'package:npng/pages/workout/workout_03_timer_page.dart';
@@ -85,7 +85,7 @@ final Map<String, Widget Function(BuildContext)> kAppRoutes = {
   ExercisesPage.id: (context) => ExercisesPage(),
   ExercisesByMusclePage.id: (context) => ExercisesByMusclePage(),
   ExercisePage.id: (context) => ExercisePage(),
-  DaysPage.id: (context) => DaysPage(),
+  ProgramsDaysPage.id: (context) => ProgramsDaysPage(),
   // RoutinesByDayPage.id: (context) => RoutinesByDayPage(),
   // AddExcersisePage.id: (context) => AddExcersisePage(),
 };

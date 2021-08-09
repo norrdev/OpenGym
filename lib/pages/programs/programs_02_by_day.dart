@@ -115,11 +115,16 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
               return Card(
                 key: ValueKey(item),
                 //TODO: Do not close on button click
-                child: ExpansionTile(
-                  tilePadding: EdgeInsets.only(right: 30.0, left: 16.0),
-                  title: Text(item['name']),
-                  subtitle: Text(item['description'] ?? ''),
+                child: Column(
+                  // ExpansionTile(
+                  //   tilePadding: EdgeInsets.only(right: 30.0, left: 16.0),
+                  //   title: Text(item['name']),
+                  //   subtitle: Text(item['description'] ?? ''),
                   children: [
+                    ListTile(
+                      title: Text(item['name']),
+                      subtitle: Text(item['description'] ?? ''),
+                    ),
                     Column(
                       children: [
                         Text(S.of(context).sets),
@@ -212,74 +217,60 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
   }
 
   void _decreaseSets(int index) {
-    setState(() {
-      if (_resultsMutable[index]['sets'] > 1) {
-        _updateSets(
-            id: _resultsMutable[index]['id'],
-            sets: _resultsMutable[index]['sets'] - 1);
-        _refresh();
-      }
-    });
+    if (_resultsMutable[index]['sets'] > 1) {
+      _updateSets(
+          id: _resultsMutable[index]['id'],
+          sets: _resultsMutable[index]['sets'] - 1);
+      _refresh();
+    }
   }
 
   void _increaseSets(int index) {
-    setState(() {
-      _updateSets(
-          id: _resultsMutable[index]['id'],
-          sets: _resultsMutable[index]['sets'] + 1);
-      _refresh();
-    });
+    _updateSets(
+        id: _resultsMutable[index]['id'],
+        sets: _resultsMutable[index]['sets'] + 1);
+    _refresh();
   }
 
   void _decreaseRepeats(int index) {
-    setState(() {
-      if (_resultsMutable[index]['sets'] > 1) {
-        _updateRepeats(
-          id: _resultsMutable[index]['id'],
-          repeats: _resultsMutable[index]['repeats'] - 1,
-        );
-        _refresh();
-      }
-    });
+    if (_resultsMutable[index]['sets'] > 1) {
+      _updateRepeats(
+        id: _resultsMutable[index]['id'],
+        repeats: _resultsMutable[index]['repeats'] - 1,
+      );
+      _refresh();
+    }
   }
 
   void _increseRepeats(int index) {
-    setState(() {
-      _updateRepeats(
-        id: _resultsMutable[index]['id'],
-        repeats: _resultsMutable[index]['repeats'] + 1,
-      );
-      _refresh();
-    });
+    _updateRepeats(
+      id: _resultsMutable[index]['id'],
+      repeats: _resultsMutable[index]['repeats'] + 1,
+    );
+    _refresh();
   }
 
   void _decreaseRest(int index) {
-    setState(() {
-      if (_resultsMutable[index]['rest'] > 5) {
-        _updateRest(
-            id: _resultsMutable[index]['id'],
-            rest: _resultsMutable[index]['rest'] - 5);
-        _refresh();
-      }
-    });
+    if (_resultsMutable[index]['rest'] > 5) {
+      _updateRest(
+          id: _resultsMutable[index]['id'],
+          rest: _resultsMutable[index]['rest'] - 5);
+      _refresh();
+    }
   }
 
   void _increaseRest(int index) {
-    setState(() {
-      _updateRest(
-          id: _resultsMutable[index]['id'],
-          rest: _resultsMutable[index]['rest'] + 5);
-      _refresh();
-    });
+    _updateRest(
+        id: _resultsMutable[index]['id'],
+        rest: _resultsMutable[index]['rest'] + 5);
+    _refresh();
   }
 
   void _onReorder(int oldIndex, int newIndex) {
-    setState(() {
-      if (newIndex > oldIndex) newIndex -= 1;
-      final Map<String, dynamic> item = _resultsMutable.removeAt(oldIndex);
-      _resultsMutable.insert(newIndex, item);
-      _updateOrder(id: item['id'], ord: newIndex);
-      _refresh();
-    });
+    if (newIndex > oldIndex) newIndex -= 1;
+    final Map<String, dynamic> item = _resultsMutable.removeAt(oldIndex);
+    _resultsMutable.insert(newIndex, item);
+    _updateOrder(id: item['id'], ord: newIndex);
+    _refresh();
   }
 }
