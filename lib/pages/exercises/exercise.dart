@@ -59,7 +59,12 @@ WHERE muscles_id = ${widget.musclesId}''');
       appBar: AppBar(
         title: Text(widget.pageTitle!),
         leading: MpFlatButton(
-          child: Icon(CupertinoIcons.add),
+          child: Icon(
+            (isApple) ? CupertinoIcons.add : Icons.add,
+            color: (isApple)
+                ? CupertinoTheme.of(context).textTheme.navTitleTextStyle.color
+                : Theme.of(context).secondaryHeaderColor,
+          ),
           onPressed: () {
             return insertModalPopup(
               context,

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
-import 'package:npng/pages/programs/programs_page.dart';
+import 'package:npng/pages/programs/programs_00_page.dart';
 import 'package:npng/pages/workout/workout_01_process_page.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
@@ -84,37 +84,34 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
               //TODO: Make here button or special screen, if workout in process.
               constraints: BoxConstraints.expand(),
               child: SafeArea(
-                child: Theme(
-                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                  child: ListView.builder(
-                    itemCount: _days.length,
-                    itemBuilder: (context, index) {
-                      final item = _days[index];
-                      return Material(
-                        type: MaterialType.transparency,
-                        child: ListTile(
-                          title: Text(item['name']),
-                          subtitle: Text(item['description']),
-                          onTap: () => Navigator.push(
-                            context,
-                            mpPageRoute(
-                              builder: (context) {
-                                return WorkoutProcessPage(
-                                  dayId: item['id'],
-                                );
-                              },
-                            ),
-                          ),
-                          trailing: Icon(
-                            (isApple)
-                                ? CupertinoIcons.play_circle
-                                : Icons.play_circle,
-                            color: Theme.of(context).accentColor,
+                child: ListView.builder(
+                  itemCount: _days.length,
+                  itemBuilder: (context, index) {
+                    final item = _days[index];
+                    return Material(
+                      type: MaterialType.transparency,
+                      child: ListTile(
+                        title: Text(item['name'] ?? ''),
+                        subtitle: Text(item['description'] ?? ''),
+                        onTap: () => Navigator.push(
+                          context,
+                          mpPageRoute(
+                            builder: (context) {
+                              return WorkoutProcessPage(
+                                dayId: item['id'],
+                              );
+                            },
                           ),
                         ),
-                      );
-                    },
-                  ),
+                        // trailing: Icon(
+                        //   (isApple)
+                        //       ? CupertinoIcons.play_circle
+                        //       : Icons.play_circle,
+                        //   color: Theme.of(context).accentColor,
+                        // ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),

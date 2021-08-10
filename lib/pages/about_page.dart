@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:npng/config.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -17,27 +18,32 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MarkdownStyleSheet style = MarkdownStyleSheet.fromTheme(Theme.of(context));
     return MpScaffold(
       appBar: MpAppBar(
           title: Text('About'),
-          trailing: MpLinkButton(
-            label: 'Licenses',
-            onPressed: () => showLicensePage(
-                context: context,
-                applicationVersion: this.version,
-                applicationLegalese: '© Denis Filonov'),
+          trailing: Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: MpLinkButton(
+              label: 'Licenses',
+              onPressed: () => showLicensePage(
+                  context: context,
+                  applicationVersion: this.version,
+                  applicationLegalese: '© Denis Filonov'),
+            ),
           )),
       body: SafeArea(
         child: Markdown(
           data: about! + '\n' + history!,
           controller: controller,
           selectable: false,
-          styleSheetTheme: MarkdownStyleSheetBaseTheme.platform,
+          styleSheet: style,
+          //styleSheetTheme: MarkdownStyleSheetBaseTheme.platform,
           //onTapLink: (href) => launch(href),
           onTapLink: (text, href, title) => launch(href!),
         ),
       ),
-      bottomNavigationBar: BottomBar(initialActiveIndex: 3),
+      bottomNavigationBar: BottomBar(initialActiveIndex: 4),
     );
   }
 }

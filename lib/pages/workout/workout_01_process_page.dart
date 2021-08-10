@@ -88,13 +88,9 @@ class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
         constraints: BoxConstraints.expand(),
         child: SafeArea(
           child: (_resultsMutable.length > 0)
-              ? Theme(
-                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                  child: (!Provider.of<WorkoutProvider>(context, listen: false)
-                          .active)
-                      ? buildReorderableListView()
-                      : buildListView(),
-                )
+              ? (!Provider.of<WorkoutProvider>(context, listen: false).active)
+                  ? buildReorderableListView()
+                  : buildListView()
               //TODO: Create warning screen.
               : Container(child: Text(S.of(context).noex)),
         ),

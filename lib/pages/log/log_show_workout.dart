@@ -4,9 +4,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:npng/config.dart';
 import 'package:npng/db.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/state/workout_provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
-import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LogShowWorkoutPage extends StatefulWidget {
@@ -99,7 +97,7 @@ class _LogShowWorkoutPageState extends State<LogShowWorkoutPage> {
     //         '${i + 1}. ${item.sets[i].weight} kg X ${item.sets[i].repeats}\n\r';
     //   }
     // }
-
+    MarkdownStyleSheet style = MarkdownStyleSheet.fromTheme(Theme.of(context));
     return MpScaffold(
       appBar: MpAppBar(
         title: Text(_resultsDay.first['programsName'] +
@@ -111,7 +109,8 @@ class _LogShowWorkoutPageState extends State<LogShowWorkoutPage> {
           data: output,
           controller: controller,
           selectable: false,
-          styleSheetTheme: MarkdownStyleSheetBaseTheme.platform,
+          styleSheet: style,
+          //styleSheetTheme: MarkdownStyleSheetBaseTheme.platform,
           //onTapLink: (href) => launch(href),
           onTapLink: (text, href, title) => launch(href!),
         ),

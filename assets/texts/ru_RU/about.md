@@ -1,1 +1,0 @@
-# NpNg %version%

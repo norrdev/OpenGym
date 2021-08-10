@@ -104,7 +104,8 @@ class WorkoutProvider extends ChangeNotifier {
   }
 
   /// Current rest
-  //FIXME Cange from excersise to set level (not critical now)
+  // ignore: todo
+  //TODO Cange from excersise to set level (not critical now)
   int get currentRest => excersises[_currentExcersise].restTime;
 
   /// Check if excersise is completed

@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("О приложении"),
+        "add": MessageLookupByLibrary.simpleMessage("Добавить"),
         "ccontinue": MessageLookupByLibrary.simpleMessage("Продолжить"),
         "currentWorkout":
             MessageLookupByLibrary.simpleMessage("Текущая тренировка"),
@@ -35,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "from": MessageLookupByLibrary.simpleMessage(" из "),
         "log": MessageLookupByLibrary.simpleMessage("Дневник"),
         "min": MessageLookupByLibrary.simpleMessage("мин."),
+        "muscles": MessageLookupByLibrary.simpleMessage("Мышцы"),
         "name": MessageLookupByLibrary.simpleMessage("Название"),
         "noex":
             MessageLookupByLibrary.simpleMessage("В этом дне нет упражнений."),

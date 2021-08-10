@@ -7,7 +7,7 @@ import 'package:npng/pages/about_page.dart';
 import 'package:npng/pages/exercises/exercises_page.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/pages/log/log_start_page.dart';
-import 'package:npng/pages/programs/programs_page.dart';
+import 'package:npng/pages/programs/programs_00_page.dart';
 import 'package:npng/pages/workout/workout_00_start_page.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:page_transition/page_transition.dart';
@@ -71,13 +71,23 @@ class BottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConvexAppBar(
-      style: TabStyle.react,
+      style: TabStyle.flip,
       items: [
-        TabItem(icon: Icons.play_arrow, title: S.of(context).pageWorkout),
-        TabItem(icon: Icons.list, title: S.of(context).pageProgramsTitle),
-        TabItem(icon: Icons.ac_unit, title: S.of(context).pageExerciseTitle),
-        TabItem(icon: Icons.help, title: S.of(context).about),
-        TabItem(icon: Icons.calendar_view_month, title: S.of(context).log),
+        TabItem(
+            icon: Image.asset('assets/icons/icons8-gym-96.png'),
+            title: S.of(context).pageWorkout),
+        TabItem(
+            icon: Image.asset('assets/icons/icons8-rules-96.png'),
+            title: S.of(context).pageProgramsTitle),
+        TabItem(
+            icon: Image.asset('assets/icons/icons8-deadlift-96.png'),
+            title: S.of(context).pageExerciseTitle),
+        TabItem(
+            icon: Image.asset('assets/icons/icons8-calendar-96.png'),
+            title: S.of(context).log),
+        TabItem(
+            icon: Image.asset('assets/icons/icons8-info-96.png'),
+            title: S.of(context).about),
       ],
       initialActiveIndex: this.initialActiveIndex,
       onTap: (int i) {
@@ -111,9 +121,6 @@ class BottomBar extends StatelessWidget {
                   (route) => false);
               break;
             case 3:
-              _getAboutPage(context);
-              break;
-            case 4:
               Navigator.pushAndRemoveUntil(
                   context,
                   PageTransition(
@@ -122,6 +129,10 @@ class BottomBar extends StatelessWidget {
                   ),
                   (route) => false);
               break;
+            case 4:
+              _getAboutPage(context);
+              break;
+
             default:
           }
         }
@@ -131,10 +142,10 @@ class BottomBar extends StatelessWidget {
           : Theme.of(context).appBarTheme.color,
       activeColor: (isApple)
           ? CupertinoTheme.of(context).primaryColor
-          : Theme.of(context).bottomAppBarColor,
+          : Theme.of(context).bottomAppBarTheme.color,
       backgroundColor: (isApple)
           ? CupertinoTheme.of(context).barBackgroundColor
-          : Theme.of(context).accentColor,
+          : Theme.of(context).bottomAppBarColor,
     );
   }
 }

@@ -79,7 +79,12 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
         title: Text(widget.pageTitle!),
         trailing: MpFlatButton(
           padding: EdgeInsets.all(8),
-          child: Icon(CupertinoIcons.add),
+          child: Icon(
+            (isApple) ? CupertinoIcons.add : Icons.add,
+            color: (isApple)
+                ? CupertinoTheme.of(context).textTheme.navTitleTextStyle.color
+                : Theme.of(context).secondaryHeaderColor,
+          ),
           onPressed: () => insertModalPopup(context,
               name: tcName,
               description: tcDesc,
@@ -96,20 +101,17 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
               final item = _results[index];
               return Material(
                 type: MaterialType.transparency,
-                child: Theme(
-                  data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                  child: ListTile(
-                    title: Text(item['name']),
-                    trailing: MpLinkButton(
-                      label: S.of(context).edit,
-                      onPressed: () => editModalPopup(context,
-                          id: item['id'],
-                          name: item['name'],
-                          description: item['description'],
-                          update: _update,
-                          refresh: _refresh,
-                          delete: _delete),
-                    ),
+                child: ListTile(
+                  title: Text(item['name']),
+                  trailing: MpLinkButton(
+                    label: S.of(context).edit,
+                    onPressed: () => editModalPopup(context,
+                        id: item['id'],
+                        name: item['name'],
+                        description: item['description'],
+                        update: _update,
+                        refresh: _refresh,
+                        delete: _delete),
                   ),
                 ),
               );

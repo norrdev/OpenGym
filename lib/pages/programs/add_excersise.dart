@@ -75,35 +75,32 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
           Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
-              'Muscles',
+              S.of(context).muscles,
             ),
           ),
           Padding(
             padding: EdgeInsets.all(4),
             child: Material(
               type: MaterialType.transparency,
-              child: Theme(
-                data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                child: Wrap(
-                  spacing: 4.0, // gap between adjacent chips
-                  runSpacing: 4.0, // gap between lines
-                  children:
-                      List<Widget>.generate(_dynamicChips.length, (int index) {
-                    final item = _dynamicChips[index];
-                    return ChoiceChip(
-                      selected: (index == selectedMuscle) ? true : false,
-                      label: Text(
-                        item['name'],
-                      ),
-                      onSelected: (bool selected) {
-                        setState(() {
-                          selectedMuscle = index;
-                          _refreshEx();
-                        });
-                      },
-                    );
-                  }),
-                ),
+              child: Wrap(
+                spacing: 4.0, // gap between adjacent chips
+                runSpacing: 4.0, // gap between lines
+                children:
+                    List<Widget>.generate(_dynamicChips.length, (int index) {
+                  final item = _dynamicChips[index];
+                  return ChoiceChip(
+                    selected: (index == selectedMuscle) ? true : false,
+                    label: Text(
+                      item['name'] ?? '',
+                    ),
+                    onSelected: (bool selected) {
+                      setState(() {
+                        selectedMuscle = index;
+                        _refreshEx();
+                      });
+                    },
+                  );
+                }),
               ),
             ),
           ),
@@ -117,37 +114,33 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
             padding: EdgeInsets.all(4.0),
             child: Material(
               type: MaterialType.transparency,
-              child: Theme(
-                data: (darkModeOn) ? kMaterialDark : kMaterialLight,
-                child: Wrap(
-                  spacing: 4.0, // gap between adjacent chips
-                  runSpacing: 4.0, // gap between lines
-                  children:
-                      List<Widget>.generate(_exersises.length, (int index) {
-                    final item = _exersises[index];
-                    return FilterChip(
-                      selected: selectedEx[index],
-                      //labelStyle: TextStyle(fontWeight: FontWeight.bold),
-                      label: Text(
-                        item['name'],
-                        textScaleFactor: 1.2,
-                      ),
-                      tooltip: item['description'],
-                      onSelected: (bool selected) {
-                        setState(() {
-                          selectedEx[index] = !selectedEx[index];
-                        });
-                      },
-                    );
-                  }),
-                ),
+              child: Wrap(
+                spacing: 4.0, // gap between adjacent chips
+                runSpacing: 4.0, // gap between lines
+                children: List<Widget>.generate(_exersises.length, (int index) {
+                  final item = _exersises[index];
+                  return FilterChip(
+                    selected: selectedEx[index],
+                    //labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                    label: Text(
+                      item['name'] ?? '',
+                      textScaleFactor: 1.2,
+                    ),
+                    tooltip: item['description'] ?? '',
+                    onSelected: (bool selected) {
+                      setState(() {
+                        selectedEx[index] = !selectedEx[index];
+                      });
+                    },
+                  );
+                }),
               ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: MpButton(
-                label: 'Add',
+                label: S.of(context).add,
                 onPressed: () {
                   List<int?> buffer = [];
                   for (var i = 0; i < selectedEx.length; i++) {

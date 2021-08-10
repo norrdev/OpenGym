@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:npng/config.dart';
 import 'package:npng/pages/workout/workout_04_finish_page.dart';
 import 'package:npng/state/workout_provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
@@ -22,12 +23,10 @@ class TimerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //FIXME: Make real data
-    int duration = 1; //Provider.of<WorkoutProvider>(context).currentRest;
+    int duration = Provider.of<WorkoutProvider>(context).currentRest;
     CountDownController _controller = CountDownController();
 
     return Scaffold(
-      //appBar: MpAppBar(title: Text(S.of(context).title)),
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -49,7 +48,9 @@ class TimerPage extends StatelessWidget {
               ringColor: Colors.white,
 
               // Filling Color for Countdown Timer
-              fillColor: Colors.blueAccent,
+              fillColor: (isApple)
+                  ? CupertinoTheme.of(context).primaryColor
+                  : Theme.of(context).accentColor,
 
               // Background Color for Countdown Widget
               backgroundColor: null,
@@ -60,7 +61,9 @@ class TimerPage extends StatelessWidget {
               // Text Style for Countdown Text
               textStyle: TextStyle(
                 fontSize: MediaQuery.of(context).size.height / 12, //22.0,
-                color: Colors.blueAccent,
+                color: (isApple)
+                    ? CupertinoTheme.of(context).primaryColor
+                    : Theme.of(context).accentColor,
                 //fontWeight: FontWeight.bold,
               ),
 
