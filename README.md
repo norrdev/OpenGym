@@ -1,20 +1,9 @@
 # NpNg
-No pain, no gain – fitness and body parameters diary.
+No pain, no gain – fitness / bodybuilding / powerlifting diary.
 
-No resistration.
-No personal data needed.
-No Ads.
-Simple interface.
+No resistration. No personal data needed. No tracking and telemetry. No Ads. Simple interface. No remote backend.
 
-# Roadmap
 - Exercises catalog
 - Training programs constructor
 - Workout log
-- Workout history
-- Body measures
-- Body measures history
-- Progress analytics
-- Nutritions tracker
-- Export data
-- Sync data with desktop 
   
