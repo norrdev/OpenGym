@@ -28,6 +28,7 @@ class AppMaterial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       localizationsDelegates: [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -50,6 +51,7 @@ class AppCupertino extends StatelessWidget {
     return Theme(
       data: (darkModeOn) ? kMaterialDark : kMaterialLight,
       child: CupertinoApp(
+        debugShowCheckedModeBanner: false,
         localizationsDelegates: [
           S.delegate,
           GlobalMaterialLocalizations.delegate,
