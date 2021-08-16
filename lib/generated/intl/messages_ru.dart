@@ -57,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "setsText": MessageLookupByLibrary.simpleMessage(
             "Выполните подход, и когда закончите, нажмите кнопку."),
         "start": MessageLookupByLibrary.simpleMessage("Старт"),
+        "stopRest": MessageLookupByLibrary.simpleMessage("Прервать отдых"),
         "timer": MessageLookupByLibrary.simpleMessage("Таймер"),
         "title": MessageLookupByLibrary.simpleMessage("НбНп"),
         "weight": MessageLookupByLibrary.simpleMessage("Вес"),

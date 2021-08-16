@@ -130,6 +130,16 @@ class S {
     );
   }
 
+  /// `Stop the rest`
+  String get stopRest {
+    return Intl.message(
+      'Stop the rest',
+      name: 'stopRest',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Perfom the set, and when you're done, press the button.`
   String get setsText {
     return Intl.message(

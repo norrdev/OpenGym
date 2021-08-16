@@ -55,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "setsText": MessageLookupByLibrary.simpleMessage(
             "Perfom the set, and when you\'re done, press the button."),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
+        "stopRest": MessageLookupByLibrary.simpleMessage("Stop the rest"),
         "timer": MessageLookupByLibrary.simpleMessage("Timer"),
         "title": MessageLookupByLibrary.simpleMessage("NpNg"),
         "weight": MessageLookupByLibrary.simpleMessage("Weight"),
