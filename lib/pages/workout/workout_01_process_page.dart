@@ -149,6 +149,10 @@ class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
                           // Provider.of<WorkoutProvider>(context, listen: false)
                           //     .resetAllData();
                           Wakelock.disable();
+                          Provider.of<WorkoutProvider>(context, listen: false)
+                              .finishTime = DateTime.now();
+                          Provider.of<WorkoutProvider>(context, listen: false)
+                              .finished = true;
                           Navigator.pushAndRemoveUntil(
                               context,
                               mpPageRoute(
