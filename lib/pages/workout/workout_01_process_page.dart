@@ -5,6 +5,7 @@ import 'package:npng/db.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/pages/workout/workout_02_set_page.dart';
 import 'package:npng/pages/workout/workout_00_start_page.dart';
+import 'package:npng/pages/workout/workout_04_finish_page.dart';
 import 'package:npng/state/workout_provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:page_transition/page_transition.dart';
@@ -150,10 +151,9 @@ class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
                           Wakelock.disable();
                           Navigator.pushAndRemoveUntil(
                               context,
-                              PageTransition(
-                                child: WorkoutStartPage(),
-                                type: PageTransitionType.fade,
-                              ),
+                              mpPageRoute(
+                                  builder: (BuildContext context) =>
+                                      WorkoutFinishPage()),
                               (route) => false);
                         },
                       ),

@@ -83,7 +83,7 @@ class WorkoutFinishPage extends StatelessWidget {
                     });
                   }
                 }
-              });
+              }).then((value) => wp.resetAllData());
               Navigator.pushAndRemoveUntil(
                   context,
                   PageTransition(
