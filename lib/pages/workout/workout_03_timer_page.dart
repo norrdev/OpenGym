@@ -14,7 +14,7 @@ class TimerPage extends StatelessWidget {
   void playSound() {
     final player = AudioCache();
     try {
-      player.play('sounds/444672__tissman__cool-tone.wav',
+      player.play('sounds/545913__jose-danielms__alarm.wav',
           mode: PlayerMode.LOW_LATENCY);
     } catch (e) {
       print(e);
