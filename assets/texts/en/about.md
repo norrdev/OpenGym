@@ -1,3 +1,6 @@
 # NpNg %version%
 
+No resistration. No personal data needed. No tracking and telemetry. Simple interface. No remote backend.
+
 Icons by [Icons8](https://icons8.com).
+Sound from [freesound.org](https://freesound.org/people/Jose_DanielMs/sounds/545913/).
