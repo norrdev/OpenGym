@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
+import 'package:npng/generated/l10n.dart';
 import 'package:npng/pages/workout/workout_04_finish_page.dart';
 import 'package:npng/state/workout_provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
@@ -23,7 +24,7 @@ class TimerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int duration = 3; //Provider.of<WorkoutProvider>(context).currentRest;
+    int duration = Provider.of<WorkoutProvider>(context).currentRest;
     CountDownController _controller = CountDownController();
 
     return Scaffold(
@@ -101,7 +102,7 @@ class TimerPage extends StatelessWidget {
                   height: 24.0,
                 ),
                 MpButton(
-                  label: 'Прервать отдых',
+                  label: S.of(context).stopRest,
                   onPressed: () {
                     _controller.pause();
                     Provider.of<WorkoutProvider>(context, listen: false)
