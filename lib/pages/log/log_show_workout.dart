@@ -98,6 +98,7 @@ class _LogShowWorkoutPageState extends State<LogShowWorkoutPage> {
     //   }
     // }
     MarkdownStyleSheet style = MarkdownStyleSheet.fromTheme(Theme.of(context));
+
     return MpScaffold(
       appBar: MpAppBar(
         title: Text(_resultsDay.first['programsName'] +
