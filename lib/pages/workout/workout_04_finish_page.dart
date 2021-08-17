@@ -35,6 +35,7 @@ class WorkoutFinishPage extends StatelessWidget {
     }
 
     MarkdownStyleSheet style = MarkdownStyleSheet.fromTheme(Theme.of(context));
+
     return MpScaffold(
       appBar: MpAppBar(
         title: Text(S.of(context).workoutFinished),
@@ -92,7 +93,7 @@ class WorkoutFinishPage extends StatelessWidget {
                   ),
                   (route) => false);
             },
-          )
+          ),
         ]),
       ),
     );

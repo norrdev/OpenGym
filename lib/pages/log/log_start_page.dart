@@ -53,6 +53,7 @@ class _LogStartPageState extends State<LogStartPage> {
   @override
   Widget build(BuildContext context) {
     final cellCalendarPageController = CellCalendarPageController();
+
     return MpScaffold(
       appBar: MpAppBar(
         title: Text(S.of(context).log),
@@ -66,7 +67,8 @@ class _LogStartPageState extends State<LogStartPage> {
               cellCalendarPageController: cellCalendarPageController,
               events: days,
               daysOfTheWeekBuilder: (dayIndex) {
-                final labels = ["Su", "Mo", "T", "W", "T", "F", "S"];
+                final labels = ["S", "M", "T", "W", "T", "F", "S"];
+
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 4.0),
                   child: Text(

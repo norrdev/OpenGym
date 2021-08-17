@@ -30,7 +30,7 @@ class _ProgramsPageState extends State<ProgramsPage> {
     _results = await db!.query('programs', columns: [
       'id',
       '${kLocale}_name as name',
-      '${kLocale}_description as description'
+      '${kLocale}_description as description',
     ]);
     _user = await db!.query('user', where: 'id = ?', whereArgs: [1]);
     _current = _user.first['programs_id'] ?? 0;
@@ -39,8 +39,10 @@ class _ProgramsPageState extends State<ProgramsPage> {
 
   void _insert({String? name, String? description}) async {
     await db!.transaction((txn) async {
-      await txn.insert('programs',
-          {'${kLocale}_name': name, '${kLocale}_description': description});
+      await txn.insert('programs', {
+        '${kLocale}_name': name,
+        '${kLocale}_description': description,
+      });
     });
   }
 
@@ -75,6 +77,7 @@ class _ProgramsPageState extends State<ProgramsPage> {
   Widget build(BuildContext context) {
     TextEditingController tcName = TextEditingController(text: '');
     TextEditingController tcDesc = TextEditingController(text: '');
+
     return MpScaffold(
       appBar: MpAppBar(
         title: Text(S.of(context).pageProgramsTitle),
@@ -86,11 +89,13 @@ class _ProgramsPageState extends State<ProgramsPage> {
                 ? CupertinoTheme.of(context).textTheme.navTitleTextStyle.color
                 : Theme.of(context).secondaryHeaderColor,
           ),
-          onPressed: () => setState(() => insertModalPopup(context,
-              name: tcName,
-              description: tcDesc,
-              insert: _insert,
-              refresh: _refresh)),
+          onPressed: () => setState(() => insertModalPopup(
+                context,
+                name: tcName,
+                description: tcDesc,
+                insert: _insert,
+                refresh: _refresh,
+              )),
         ),
       ),
       body: Container(
@@ -100,24 +105,29 @@ class _ProgramsPageState extends State<ProgramsPage> {
             itemCount: _results.length,
             itemBuilder: (context, index) {
               final item = _results[index];
+
               return Material(
                 type: MaterialType.transparency,
                 child: ListTile(
                   leading: Radio<int>(
                       value: item['id'],
                       groupValue: _current,
-                      onChanged: (value) => _changeCurrent(item['id'])),
+                      onChanged: (value) => _changeCurrent(
+                            item['id'],
+                          )),
                   title: Text(item['name'] ?? ''),
                   subtitle: Text(item['description'] ?? ''),
                   trailing: MpLinkButton(
                     label: S.of(context).edit,
-                    onPressed: () => editModalPopup(context,
-                        id: item['id'],
-                        name: item['name'],
-                        description: item['description'],
-                        update: _update,
-                        refresh: _refresh,
-                        delete: _delete),
+                    onPressed: () => editModalPopup(
+                      context,
+                      id: item['id'],
+                      name: item['name'],
+                      description: item['description'],
+                      update: _update,
+                      refresh: _refresh,
+                      delete: _delete,
+                    ),
                   ),
                   //onTap: () => Navigator.pushNamed(context, DaysPage.id),
                   onTap: () {

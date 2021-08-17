@@ -44,10 +44,14 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
   void _insert({String? name, String? description}) async {
     int id = 0;
     await db!.transaction((txn) async {
-      id = await txn.insert('exercises',
-          {'${kLocale}_name': name, '${kLocale}_description': description});
-      await txn
-          .insert('load', {'exercises_id': id, 'muscles_id': widget.musclesId});
+      id = await txn.insert('exercises', {
+        '${kLocale}_name': name,
+        '${kLocale}_description': description,
+      });
+      await txn.insert('load', {
+        'exercises_id': id,
+        'muscles_id': widget.musclesId,
+      });
     });
   }
 
@@ -85,11 +89,13 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
                 ? CupertinoTheme.of(context).textTheme.navTitleTextStyle.color
                 : Theme.of(context).secondaryHeaderColor,
           ),
-          onPressed: () => insertModalPopup(context,
-              name: tcName,
-              description: tcDesc,
-              insert: _insert,
-              refresh: _refresh),
+          onPressed: () => insertModalPopup(
+            context,
+            name: tcName,
+            description: tcDesc,
+            insert: _insert,
+            refresh: _refresh,
+          ),
         ),
       ),
       body: Container(
@@ -99,19 +105,22 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
             itemCount: _results.length,
             itemBuilder: (context, index) {
               final item = _results[index];
+
               return Material(
                 type: MaterialType.transparency,
                 child: ListTile(
                   title: Text(item['name']),
                   trailing: MpLinkButton(
                     label: S.of(context).edit,
-                    onPressed: () => editModalPopup(context,
-                        id: item['id'],
-                        name: item['name'],
-                        description: item['description'],
-                        update: _update,
-                        refresh: _refresh,
-                        delete: _delete),
+                    onPressed: () => editModalPopup(
+                      context,
+                      id: item['id'],
+                      name: item['name'],
+                      description: item['description'],
+                      update: _update,
+                      refresh: _refresh,
+                      delete: _delete,
+                    ),
                   ),
                 ),
               );

@@ -35,14 +35,14 @@ class MpScaffold extends StatelessWidget {
 }
 
 /// Page router.
-PageRoute mpPageRoute({Widget Function(BuildContext)? builder}) {
+PageRoute mpPageRoute({required Widget Function(BuildContext) builder}) {
   if (isApple) {
     return CupertinoPageRoute(
-      builder: builder!,
+      builder: builder,
     );
   } else {
     return MaterialPageRoute(
-      builder: builder!,
+      builder: builder,
     );
   }
 }
@@ -254,32 +254,30 @@ class MpSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (isApple) {
-      return Row(
-        children: [
-          Expanded(
-            flex: 4,
-            child: Text(title),
-          ),
-          Expanded(
-            flex: 1,
-            child: CupertinoSwitch(
+    return isApple
+        ? Row(
+            children: [
+              Expanded(
+                flex: 4,
+                child: Text(title),
+              ),
+              Expanded(
+                flex: 1,
+                child: CupertinoSwitch(
+                  value: value,
+                  onChanged: onChanged,
+                ),
+              ),
+            ],
+          )
+        : ListTile(
+            title: Text(title),
+            trailing: Switch(
               value: value,
               onChanged: onChanged,
             ),
-          ),
-        ],
-      );
-    } else {
-      return ListTile(
-        title: Text(title),
-        trailing: Switch(
-          value: value,
-          onChanged: onChanged,
-        ),
-        onTap: onTap as void Function()?,
-      );
-    }
+            onTap: onTap as void Function()?,
+          );
   }
 }
 
@@ -540,18 +538,16 @@ class MpAlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (isApple) {
-      return CupertinoAlertDialog(
-        key: key,
-        title: this.title,
-        content: this.content,
-      );
-    } else {
-      return AlertDialog(
-        key: key,
-        title: this.title,
-        content: this.content,
-      );
-    }
+    return isApple
+        ? CupertinoAlertDialog(
+            key: key,
+            title: this.title,
+            content: this.content,
+          )
+        : AlertDialog(
+            key: key,
+            title: this.title,
+            content: this.content,
+          );
   }
 }

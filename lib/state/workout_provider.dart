@@ -26,6 +26,7 @@ class Exerscise {
   }
 }
 
+/// Workout settings and methods.
 class WorkoutProvider extends ChangeNotifier {
   /// Active workout flag.
   bool active = false;

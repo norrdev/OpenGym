@@ -33,9 +33,10 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
     JOIN exercises on workouts.exercises_id = exercises.id 
     WHERE days_id = ${widget.dayId} ORDER BY ord;
     ''');
-    _resultsMutable.clear();
-    _resultsMutable.addAll(_results);
-    setState(() {});
+    setState(() {
+      _resultsMutable.clear();
+      _resultsMutable.addAll(_results);
+    });
   }
 
   void _updateOrder({int? id, int? ord}) async {

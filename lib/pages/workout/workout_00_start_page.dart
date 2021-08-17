@@ -40,7 +40,7 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
         'ord',
         '${kLocale}_name AS name',
         '${kLocale}_description AS description',
-        'programs_id'
+        'programs_id',
       ],
       orderBy: 'ord',
       where: 'programs_id = ?',

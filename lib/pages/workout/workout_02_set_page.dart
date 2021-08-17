@@ -14,7 +14,7 @@ class WorkoutSetPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (Provider.of<WorkoutProvider>(context, listen: false).finished == true) {
+    if (Provider.of<WorkoutProvider>(context, listen: false).finished) {
       Navigator.pop(context);
     }
 

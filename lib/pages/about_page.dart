@@ -18,6 +18,7 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MarkdownStyleSheet style = MarkdownStyleSheet.fromTheme(Theme.of(context));
+
     return MpScaffold(
       appBar: MpAppBar(
           title: Text('About'),

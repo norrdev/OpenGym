@@ -42,10 +42,14 @@ WHERE muscles_id = ${widget.musclesId}''');
   void _insert({String? name, String? description}) async {
     int id = 0;
     await db!.transaction((txn) async {
-      id = await txn.insert('exercises',
-          {'${kLocale}_name': name, '${kLocale}_description': description});
-      await txn
-          .insert('load', {'exercises_id': id, 'muscles_id': widget.musclesId});
+      id = await txn.insert('exercises', {
+        '${kLocale}_name': name,
+        '${kLocale}_description': description,
+      });
+      await txn.insert('load', {
+        'exercises_id': id,
+        'muscles_id': widget.musclesId,
+      });
     });
   }
 

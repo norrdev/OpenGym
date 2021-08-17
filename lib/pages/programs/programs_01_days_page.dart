@@ -33,7 +33,7 @@ class _ProgramsDaysPageState extends State<ProgramsDaysPage> {
       '${kLocale}_name': name,
       'ord': ord,
       '${kLocale}_description': description,
-      'programs_id': widget.programsId
+      'programs_id': widget.programsId,
     });
   }
 
@@ -62,15 +62,16 @@ class _ProgramsDaysPageState extends State<ProgramsDaysPage> {
         'id',
         '${kLocale}_name AS name',
         '${kLocale}_description AS description',
-        'programs_id'
+        'programs_id',
       ],
       orderBy: 'ord',
       where: 'programs_id = ?',
       whereArgs: [widget.programsId],
     );
-    _mutableDays.clear();
-    _mutableDays.addAll(_days);
-    setState(() {});
+    setState(() {
+      _mutableDays.clear();
+      _mutableDays.addAll(_days);
+    });
   }
 
   void _updateOrder({int? id, int? ord}) async {

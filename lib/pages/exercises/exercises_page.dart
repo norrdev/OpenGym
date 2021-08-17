@@ -45,16 +45,18 @@ class _ExercisesPageState extends State<ExercisesPage> {
             itemCount: _results.length,
             itemBuilder: (context, index) {
               final item = _results[index];
+
               return Material(
                 type: MaterialType.transparency,
                 child: ListTile(
                   leading: (item['icon'] != null)
                       ? Container(
                           child: Image.memory(
-                          item['icon'],
-                          width: 96,
-                          height: 96,
-                        ))
+                            item['icon'],
+                            width: 96,
+                            height: 96,
+                          ),
+                        )
                       : Container(
                           width: 96,
                           height: 96,

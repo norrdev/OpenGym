@@ -49,12 +49,13 @@ class BottomBar extends StatelessWidget {
     Navigator.pushAndRemoveUntil(
         context,
         PageTransition(
-            child: AboutPage(
-              about: about,
-              history: history,
-              version: version,
-            ),
-            type: PageTransitionType.fade),
+          child: AboutPage(
+            about: about,
+            history: history,
+            version: version,
+          ),
+          type: PageTransitionType.fade,
+        ),
         (route) => false);
 
     // Navigator.pushAndRemoveUntil(context, mpPageRoute(

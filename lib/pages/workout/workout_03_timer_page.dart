@@ -114,8 +114,9 @@ class TimerPage extends StatelessWidget {
                       Navigator.pushAndRemoveUntil(
                           context,
                           mpPageRoute(
-                              builder: (BuildContext context) =>
-                                  WorkoutFinishPage()),
+                            builder: (BuildContext context) =>
+                                WorkoutFinishPage(),
+                          ),
                           (route) => false);
                     }
                   },
