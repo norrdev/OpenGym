@@ -246,11 +246,12 @@ class MpSwitch extends StatelessWidget {
   final ValueChanged<bool> onChanged;
   final Function? onTap;
 
-  MpSwitch(
-      {required this.title,
-      required this.value,
-      required this.onChanged,
-      this.onTap});
+  MpSwitch({
+    required this.title,
+    required this.value,
+    required this.onChanged,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {

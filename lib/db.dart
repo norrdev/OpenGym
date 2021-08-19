@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:path/path.dart';
 import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:share_plus/share_plus.dart';
 
 Database? db;
 
@@ -38,4 +39,18 @@ Future<void> initDataBase() async {
   } catch (ex) {
     print(ex);
   }
+}
+
+Future<String> backupDataBase() async {
+  String path =
+      await getDatabasesPath() + '/npng ${DateTime.now().toString()}.db';
+  await db!.rawQuery("VACUUM npng INTO '$path';");
+  return path;
+}
+
+void shareDataBase() async {
+  String path =
+      await getDatabasesPath() + '/npng ${DateTime.now().toString()}.db';
+  await db!.rawQuery("VACUUM npng INTO '$path';");
+  await Share.shareFiles(['$path'], text: 'NpNg batabase.');
 }

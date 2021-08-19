@@ -7,7 +7,8 @@ import 'package:npng/widgets/bottom_bar.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:page_transition/page_transition.dart';
-
+import 'package:flash/flash.dart';
+import 'package:npng/db.dart';
 import 'about_page.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -58,6 +59,44 @@ class SettingsPage extends StatelessWidget {
     //     (route) => false);
   }
 
+  void _share() {
+    shareDataBase();
+  }
+
+  void _backup(BuildContext context) async {
+    String name = await backupDataBase();
+    _showBasicsFlash(
+      duration: Duration(seconds: 3),
+      context: context,
+      message: 'Backup completed in $name.',
+      //child: Text('Basics | Duration'),
+    );
+  }
+
+  void _showBasicsFlash({
+    Duration? duration,
+    required BuildContext context,
+    String? message,
+    flashStyle = FlashBehavior.floating,
+  }) {
+    showFlash(
+      context: context,
+      duration: duration,
+      builder: (context, controller) {
+        return Flash(
+          controller: controller,
+          behavior: flashStyle,
+          position: FlashPosition.bottom,
+          boxShadows: kElevationToShadow[4],
+          horizontalDismissDirection: HorizontalDismissDirection.horizontal,
+          child: FlashBar(
+            content: Text(message ?? ''),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     _getVer();
@@ -75,7 +114,12 @@ class SettingsPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               MpLinkButton(
-                label: 'Backup',
+                label: 'Share database',
+                onPressed: () => _share(),
+              ),
+              MpLinkButton(
+                label: 'Backup database',
+                onPressed: () => _backup(context),
               ),
               MpLinkButton(
                 label: 'Import',
