@@ -8,7 +8,7 @@ import 'package:npng/pages/exercises/exercises_page.dart';
 import 'package:npng/pages/programs/programs_01_days_page.dart';
 import 'package:npng/pages/programs/programs_00_page.dart';
 import 'package:npng/pages/workout/workout_02_set_page.dart';
-import 'package:npng/pages/about_page.dart';
+import 'package:npng/pages/settings/about_page.dart';
 import 'package:npng/pages/workout/workout_03_timer_page.dart';
 import 'package:npng/pages/workout/workout_01_process_page.dart';
 import 'package:npng/pages/workout/workout_00_start_page.dart';

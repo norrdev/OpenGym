@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "exName": MessageLookupByLibrary.simpleMessage("Название упражнения"),
         "finish": MessageLookupByLibrary.simpleMessage("Закончить"),
         "from": MessageLookupByLibrary.simpleMessage(" из "),
+        "licenses": MessageLookupByLibrary.simpleMessage("Лицензии"),
         "log": MessageLookupByLibrary.simpleMessage("Дневник"),
         "min": MessageLookupByLibrary.simpleMessage("мин."),
         "muscles": MessageLookupByLibrary.simpleMessage("Мышцы"),
@@ -56,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sets": MessageLookupByLibrary.simpleMessage("Подходы"),
         "setsText": MessageLookupByLibrary.simpleMessage(
             "Выполните подход, и когда закончите, нажмите кнопку."),
+        "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
         "start": MessageLookupByLibrary.simpleMessage("Старт"),
         "stopRest": MessageLookupByLibrary.simpleMessage("Прервать отдых"),
         "timer": MessageLookupByLibrary.simpleMessage("Таймер"),
