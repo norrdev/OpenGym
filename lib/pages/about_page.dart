@@ -21,17 +21,18 @@ class AboutPage extends StatelessWidget {
 
     return MpScaffold(
       appBar: MpAppBar(
-          title: Text('About'),
-          trailing: Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: MpLinkButton(
-              label: 'Licenses',
-              onPressed: () => showLicensePage(
-                  context: context,
-                  applicationVersion: this.version,
-                  applicationLegalese: '© Denis Filonov'),
-            ),
-          )),
+        title: Text('About'),
+        trailing: Padding(
+          padding: const EdgeInsets.only(right: 8.0),
+          child: MpLinkButton(
+            label: 'Licenses',
+            onPressed: () => showLicensePage(
+                context: context,
+                applicationVersion: this.version,
+                applicationLegalese: '© Denis Filonov'),
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Markdown(
           data: about! + '\n' + history!,

@@ -86,12 +86,13 @@ class WorkoutFinishPage extends StatelessWidget {
                 }
               }).then((value) => wp.resetAllData());
               Navigator.pushAndRemoveUntil(
-                  context,
-                  PageTransition(
-                    child: WorkoutStartPage(),
-                    type: PageTransitionType.fade,
-                  ),
-                  (route) => false);
+                context,
+                PageTransition(
+                  child: WorkoutStartPage(),
+                  type: PageTransitionType.fade,
+                ),
+                (route) => false,
+              );
             },
           ),
         ]),

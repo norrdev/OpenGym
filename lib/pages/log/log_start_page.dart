@@ -83,6 +83,7 @@ class _LogStartPageState extends State<LogStartPage> {
               monthYearLabelBuilder: (datetime) {
                 final year = datetime!.year.toString();
                 final month = datetime.month.monthName;
+
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Row(
@@ -106,7 +107,7 @@ class _LogStartPageState extends State<LogStartPage> {
                             duration: Duration(milliseconds: 300),
                           );
                         },
-                      )
+                      ),
                     ],
                   ),
                 );
@@ -114,51 +115,53 @@ class _LogStartPageState extends State<LogStartPage> {
               onCellTapped: (date) {
                 final eventsOnTheDate = days.where((event) {
                   final eventDate = event.eventDate;
+
                   return eventDate.year == date.year &&
                       eventDate.month == date.month &&
                       eventDate.day == date.day;
                 }).toList();
                 showDialog(
-                    context: context,
-                    builder: (_) {
-                      return MpAlertDialog(
-                        title: Text(
-                            date.month.monthName + " " + date.day.toString()),
-                        content: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: eventsOnTheDate
-                              .map(
-                                (event) => GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      mpPageRoute(
-                                        builder: (context) {
-                                          return LogShowWorkoutPage(
-                                            logDayId: int.parse(
-                                                event.eventID ?? '-1'),
-                                          );
-                                        },
-                                      ),
-                                    );
-                                  },
-                                  child: Container(
-                                    width: double.infinity,
-                                    padding: EdgeInsets.all(4),
-                                    margin: EdgeInsets.only(bottom: 12),
-                                    color: event.eventBackgroundColor,
-                                    child: Text(
-                                      event.eventName,
-                                      style: TextStyle(
-                                          color: event.eventTextColor),
+                  context: context,
+                  builder: (_) {
+                    return MpAlertDialog(
+                      title: Text(
+                          date.month.monthName + " " + date.day.toString()),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: eventsOnTheDate
+                            .map(
+                              (event) => GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    mpPageRoute(
+                                      builder: (context) {
+                                        return LogShowWorkoutPage(
+                                          logDayId:
+                                              int.parse(event.eventID ?? '-1'),
+                                        );
+                                      },
                                     ),
+                                  );
+                                },
+                                child: Container(
+                                  width: double.infinity,
+                                  padding: EdgeInsets.all(4),
+                                  margin: EdgeInsets.only(bottom: 12),
+                                  color: event.eventBackgroundColor,
+                                  child: Text(
+                                    event.eventName,
+                                    style:
+                                        TextStyle(color: event.eventTextColor),
                                   ),
                                 ),
-                              )
-                              .toList(),
-                        ),
-                      );
-                    });
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    );
+                  },
+                );
               },
               onPageChanged: (firstDate, lastDate) {
                 /// Called when the page was changed

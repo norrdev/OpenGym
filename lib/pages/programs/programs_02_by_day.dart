@@ -118,6 +118,7 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
             itemCount: _resultsMutable.length,
             itemBuilder: (context, index) {
               final item = _resultsMutable[index];
+
               return Card(
                 key: ValueKey(item),
                 //TODO: Do not close on button click
@@ -135,9 +136,10 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
                       children: [
                         Text(S.of(context).sets),
                         MpChangeIntField(
-                            value: item['sets'],
-                            decreaseCallback: () => _decreaseSets(index),
-                            increaseCallback: () => _increaseSets(index)),
+                          value: item['sets'],
+                          decreaseCallback: () => _decreaseSets(index),
+                          increaseCallback: () => _increaseSets(index),
+                        ),
                       ],
                     ),
                     Column(

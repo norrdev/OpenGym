@@ -101,6 +101,7 @@ class _ProgramsDaysPageState extends State<ProgramsDaysPage> {
   Widget build(BuildContext context) {
     TextEditingController tcName = TextEditingController(text: '');
     TextEditingController tcDesc = TextEditingController(text: '');
+
     return MpScaffold(
       appBar: MpAppBar(
         title: Text(S.of(context).pageDaysTitle),
@@ -129,6 +130,7 @@ class _ProgramsDaysPageState extends State<ProgramsDaysPage> {
             itemCount: _mutableDays.length,
             itemBuilder: (context, index) {
               final item = _mutableDays[index];
+
               return Material(
                 type: MaterialType.transparency,
                 key: ValueKey(item),

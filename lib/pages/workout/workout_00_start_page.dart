@@ -53,6 +53,7 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
   Widget build(BuildContext context) {
     // Getting locale. Must be on main screen!
     kLocale = Localizations.localeOf(context);
+
     return MpScaffold(
       appBar: MpAppBar(
         title: Text(S.of(context).pageWorkout),
@@ -63,23 +64,24 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                  Expanded(
-                    flex: 1,
-                    child: Container(),
+                Expanded(
+                  flex: 1,
+                  child: Container(),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: MpButton(
+                    label: 'Select',
+                    onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                        context, ProgramsPage.id, (route) => false),
                   ),
-                  Expanded(
-                    flex: 3,
-                    child: MpButton(
-                      label: 'Select',
-                      onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                          context, ProgramsPage.id, (route) => false),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Container(),
-                  ),
-                ])
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Container(),
+                ),
+              ],
+            )
           : Container(
               //TODO: Make here button or special screen, if workout in process.
               constraints: BoxConstraints.expand(),

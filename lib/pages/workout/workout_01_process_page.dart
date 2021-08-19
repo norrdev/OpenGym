@@ -152,12 +152,13 @@ class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
                           Provider.of<WorkoutProvider>(context, listen: false)
                               .finished = true;
                           Navigator.pushAndRemoveUntil(
-                              context,
-                              mpPageRoute(
-                                builder: (BuildContext context) =>
-                                    WorkoutFinishPage(),
-                              ),
-                              (route) => false);
+                            context,
+                            mpPageRoute(
+                              builder: (BuildContext context) =>
+                                  WorkoutFinishPage(),
+                            ),
+                            (route) => false,
+                          );
                         },
                       ),
                     ],

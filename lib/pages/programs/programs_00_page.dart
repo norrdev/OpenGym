@@ -110,11 +110,12 @@ class _ProgramsPageState extends State<ProgramsPage> {
                 type: MaterialType.transparency,
                 child: ListTile(
                   leading: Radio<int>(
-                      value: item['id'],
-                      groupValue: _current,
-                      onChanged: (value) => _changeCurrent(
-                            item['id'],
-                          )),
+                    value: item['id'],
+                    groupValue: _current,
+                    onChanged: (value) => _changeCurrent(
+                      item['id'],
+                    ),
+                  ),
                   title: Text(item['name'] ?? ''),
                   subtitle: Text(item['description'] ?? ''),
                   trailing: MpLinkButton(

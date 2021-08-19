@@ -142,17 +142,18 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: MpButton(
-                label: S.of(context).add,
-                onPressed: () {
-                  List<int?> buffer = [];
-                  for (var i = 0; i < selectedEx.length; i++) {
-                    if (selectedEx[i] == true) {
-                      buffer.add(_exersises[i]['id']);
-                    }
+              label: S.of(context).add,
+              onPressed: () {
+                List<int?> buffer = [];
+                for (var i = 0; i < selectedEx.length; i++) {
+                  if (selectedEx[i] == true) {
+                    buffer.add(_exersises[i]['id']);
                   }
-                  _insert(buffer);
-                  //setState(() {});
-                }),
+                }
+                _insert(buffer);
+                //setState(() {});
+              },
+            ),
           ),
         ],
       ),
