@@ -11,6 +11,8 @@
     "stopRest": "Stop the rest",
     "setsText": "Perfom the set, and when you're done, press the button.",
     "about":"About",
+    "licenses":"Licenses",
+    "settings":"Settings",
     "timer":"Timer",
     "edit":"Edit",
     "save":"Save",

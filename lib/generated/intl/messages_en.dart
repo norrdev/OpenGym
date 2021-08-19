@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "exName": MessageLookupByLibrary.simpleMessage("Exercise name"),
         "finish": MessageLookupByLibrary.simpleMessage("Finish"),
         "from": MessageLookupByLibrary.simpleMessage(" from "),
+        "licenses": MessageLookupByLibrary.simpleMessage("Licenses"),
         "log": MessageLookupByLibrary.simpleMessage("Log"),
         "min": MessageLookupByLibrary.simpleMessage("min."),
         "muscles": MessageLookupByLibrary.simpleMessage("Muscles"),
@@ -54,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sets": MessageLookupByLibrary.simpleMessage("Sets"),
         "setsText": MessageLookupByLibrary.simpleMessage(
             "Perfom the set, and when you\'re done, press the button."),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
         "stopRest": MessageLookupByLibrary.simpleMessage("Stop the rest"),
         "timer": MessageLookupByLibrary.simpleMessage("Timer"),
