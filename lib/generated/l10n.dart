@@ -310,6 +310,46 @@ class S {
     );
   }
 
+  /// `Share database`
+  String get share {
+    return Intl.message(
+      'Share database',
+      name: 'share',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Backup database`
+  String get backup {
+    return Intl.message(
+      'Backup database',
+      name: 'backup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Restore from backup`
+  String get restore {
+    return Intl.message(
+      'Restore from backup',
+      name: 'restore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Import database`
+  String get import {
+    return Intl.message(
+      'Import database',
+      name: 'import',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Programs`
   String get pageProgramsTitle {
     return Intl.message(

@@ -1,14 +1,30 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/widgets/bottom_bar.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:flash/flash.dart';
 import 'package:npng/db.dart';
-import 'about_page.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:sqflite/sqflite.dart';
+
+/// https://stackoverflow.com/questions/54692052/display-all-images-in-a-directory-to-a-list-in-flutter
+
+class RestoreDbPageState extends StatefulWidget {
+  const RestoreDbPageState({Key? key}) : super(key: key);
+
+  @override
+  _RestoreDbPageStateState createState() => _RestoreDbPageStateState();
+}
+
+class _RestoreDbPageStateState extends State<RestoreDbPageState> {
+  @override
+  Widget build(BuildContext context) {
+    return MpScaffold(
+      appBar: MpAppBar(
+        title: Text(S.of(context).restore),
+      ),
+      body: SafeArea(
+        child: Container(),
+      ),
+    );
+  }
+}

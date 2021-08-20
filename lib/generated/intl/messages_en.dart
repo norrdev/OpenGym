@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("About"),
         "add": MessageLookupByLibrary.simpleMessage("Add"),
+        "backup": MessageLookupByLibrary.simpleMessage("Backup database"),
         "ccontinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "currentWorkout":
             MessageLookupByLibrary.simpleMessage("Current workout"),
@@ -35,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "exName": MessageLookupByLibrary.simpleMessage("Exercise name"),
         "finish": MessageLookupByLibrary.simpleMessage("Finish"),
         "from": MessageLookupByLibrary.simpleMessage(" from "),
+        "import": MessageLookupByLibrary.simpleMessage("Import database"),
         "licenses": MessageLookupByLibrary.simpleMessage("Licenses"),
         "log": MessageLookupByLibrary.simpleMessage("Log"),
         "min": MessageLookupByLibrary.simpleMessage("min."),
@@ -50,12 +52,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "repeats": MessageLookupByLibrary.simpleMessage("Repeats"),
         "rest": MessageLookupByLibrary.simpleMessage("Rest time (sec)"),
         "restButton": MessageLookupByLibrary.simpleMessage("Save & rest"),
+        "restore": MessageLookupByLibrary.simpleMessage("Restore from backup"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "saveToLog": MessageLookupByLibrary.simpleMessage("Save to Log"),
         "sets": MessageLookupByLibrary.simpleMessage("Sets"),
         "setsText": MessageLookupByLibrary.simpleMessage(
             "Perfom the set, and when you\'re done, press the button."),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "share": MessageLookupByLibrary.simpleMessage("Share database"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
         "stopRest": MessageLookupByLibrary.simpleMessage("Stop the rest"),
         "timer": MessageLookupByLibrary.simpleMessage("Timer"),

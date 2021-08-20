@@ -23,6 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("О приложении"),
         "add": MessageLookupByLibrary.simpleMessage("Добавить"),
+        "backup":
+            MessageLookupByLibrary.simpleMessage("Создать резервную копию БД"),
         "ccontinue": MessageLookupByLibrary.simpleMessage("Продолжить"),
         "currentWorkout":
             MessageLookupByLibrary.simpleMessage("Текущая тренировка"),
@@ -34,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "exName": MessageLookupByLibrary.simpleMessage("Название упражнения"),
         "finish": MessageLookupByLibrary.simpleMessage("Закончить"),
         "from": MessageLookupByLibrary.simpleMessage(" из "),
+        "import": MessageLookupByLibrary.simpleMessage("Импортировать БД"),
         "licenses": MessageLookupByLibrary.simpleMessage("Лицензии"),
         "log": MessageLookupByLibrary.simpleMessage("Дневник"),
         "min": MessageLookupByLibrary.simpleMessage("мин."),
@@ -51,6 +54,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "rest": MessageLookupByLibrary.simpleMessage("Отдых (сек)"),
         "restButton":
             MessageLookupByLibrary.simpleMessage("Сохранить и отдохнуть"),
+        "restore": MessageLookupByLibrary.simpleMessage(
+            "Восстановить из резервной копии БД"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
         "saveToLog":
             MessageLookupByLibrary.simpleMessage("Сохранить в дневник"),
@@ -58,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "setsText": MessageLookupByLibrary.simpleMessage(
             "Выполните подход, и когда закончите, нажмите кнопку."),
         "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
+        "share":
+            MessageLookupByLibrary.simpleMessage("Экспортировать базу данных"),
         "start": MessageLookupByLibrary.simpleMessage("Старт"),
         "stopRest": MessageLookupByLibrary.simpleMessage("Прервать отдых"),
         "timer": MessageLookupByLibrary.simpleMessage("Таймер"),

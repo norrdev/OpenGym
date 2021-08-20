@@ -1,15 +1,16 @@
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:npng/generated/l10n.dart';
+import 'package:npng/pages/settings/restore_db_page.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flash/flash.dart';
 import 'package:npng/db.dart';
+import 'package:share_plus/share_plus.dart';
 import 'about_page.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -35,34 +36,21 @@ class SettingsPage extends StatelessWidget {
     String about = await _loadAsset("assets/texts/$myLocale/about.md");
     about = about.replaceAll('%version%', version);
     String history = await _loadAsset("CHANGELOG.md");
-
     Navigator.push(
       context,
-      PageTransition(
-        type: PageTransitionType.fade,
-        child: AboutPage(
+      mpPageRoute(
+        builder: (BuildContext context) => AboutPage(
           about: about,
           history: history,
           version: version,
         ),
       ),
     );
-
-    // Navigator.pushAndRemoveUntil(
-    //     context,
-    //     PageTransition(
-    //       child: AboutPage(
-    //         about: about,
-    //         history: history,
-    //         version: version,
-    //       ),
-    //       type: PageTransitionType.fade,
-    //     ),
-    //     (route) => false);
   }
 
-  void _share() {
-    shareDataBase();
+  void _share() async {
+    String path = await backupDataBase();
+    await Share.shareFiles(['$path'], text: 'NpNg database.');
   }
 
   void _backup(BuildContext context) async {
@@ -71,11 +59,17 @@ class SettingsPage extends StatelessWidget {
       duration: Duration(seconds: 3),
       context: context,
       message: 'Backup completed in $name.',
-      //child: Text('Basics | Duration'),
     );
   }
 
-  void _restore(BuildContext context) {}
+  void _restore(BuildContext context) {
+    Navigator.push(
+      context,
+      mpPageRoute(
+        builder: (BuildContext context) => RestoreDbPage(),
+      ),
+    );
+  }
 
   void _importFile(BuildContext context) async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -88,10 +82,14 @@ class SettingsPage extends StatelessWidget {
       _showBasicsFlash(
         duration: Duration(seconds: 3),
         context: context,
-        message: 'DB importedfrom ${result.files.single.path!}.',
+        message: 'DB imported from ${result.files.single.path!}.',
       );
     } else {
-      // User canceled the picker
+      _showBasicsFlash(
+        duration: Duration(seconds: 3),
+        context: context,
+        message: 'Nothing selected.',
+      );
     }
   }
 
@@ -136,20 +134,21 @@ class SettingsPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               MpLinkButton(
-                label: 'Share database',
-                onPressed: () => _share(),
-              ),
-              MpLinkButton(
-                label: 'Backup database',
+                label: S.of(context).backup,
                 onPressed: () => _backup(context),
               ),
               MpLinkButton(
-                label: 'Restore database',
+                label: S.of(context).restore,
                 onPressed: () => _restore(context),
               ),
+              Divider(),
               MpLinkButton(
-                label: 'Import database',
+                label: S.of(context).import,
                 onPressed: () => _importFile(context),
+              ),
+              MpLinkButton(
+                label: S.of(context).share,
+                onPressed: () => _share(),
               ),
               Divider(),
               MpLinkButton(

@@ -26,6 +26,10 @@
     "min":"min.",
     "muscles": "Muscles",
     "add":"Add",
+    "share":"Share database",
+    "backup":"Backup database",
+    "restore":"Restore from backup",
+    "import":"Import database",
 
     "pageProgramsTitle":"Programs",
 
