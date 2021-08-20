@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -10,6 +11,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:flash/flash.dart';
 import 'package:npng/db.dart';
 import 'about_page.dart';
+import 'package:file_picker/file_picker.dart';
 
 class SettingsPage extends StatelessWidget {
   static String id = '/settings';
@@ -73,6 +75,26 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
+  void _restore(BuildContext context) {}
+
+  void _importFile(BuildContext context) async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['db'],
+    );
+
+    if (result != null) {
+      importDataBase(result.files.single.path!);
+      _showBasicsFlash(
+        duration: Duration(seconds: 3),
+        context: context,
+        message: 'DB importedfrom ${result.files.single.path!}.',
+      );
+    } else {
+      // User canceled the picker
+    }
+  }
+
   void _showBasicsFlash({
     Duration? duration,
     required BuildContext context,
@@ -122,8 +144,14 @@ class SettingsPage extends StatelessWidget {
                 onPressed: () => _backup(context),
               ),
               MpLinkButton(
-                label: 'Import',
+                label: 'Restore database',
+                onPressed: () => _restore(context),
               ),
+              MpLinkButton(
+                label: 'Import database',
+                onPressed: () => _importFile(context),
+              ),
+              Divider(),
               MpLinkButton(
                 label: S.of(context).about,
                 onPressed: () => _getAboutPage(context),

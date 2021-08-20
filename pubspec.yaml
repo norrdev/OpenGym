@@ -16,7 +16,6 @@ dependencies:
   intl: ^0.17.0
   cupertino_icons: ^1.0.2
   provider: ^5.0.0
-  # flutter_bloc: ^7.0.0
   circular_countdown_timer: ^0.2.0
   flutter_markdown: ^0.6.2
   url_launcher: ^6.0.3
@@ -30,6 +29,7 @@ dependencies:
   cell_calendar: ^0.5.0+1
   share_plus: ^2.1.4
   flash: ^2.0.1
+  file_picker: ^4.0.0
 
 dev_dependencies:
   # dart_code_metrics: ^4.1.0

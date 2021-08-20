@@ -41,16 +41,28 @@ Future<void> initDataBase() async {
   }
 }
 
+//TODO Create backup directory
 Future<String> backupDataBase() async {
-  String path =
-      await getDatabasesPath() + '/npng ${DateTime.now().toString()}.db';
+  String path = await getDatabasesPath() +
+      '/npng ${DateTime.now().toLocal().toString()}.db';
   await db!.rawQuery("VACUUM npng INTO '$path';");
   return path;
 }
 
+//TODO Create backup directory
 void shareDataBase() async {
-  String path =
-      await getDatabasesPath() + '/npng ${DateTime.now().toString()}.db';
+  String path = await getDatabasesPath() +
+      '/npng ${DateTime.now().toLocal().toString()}.db';
   await db!.rawQuery("VACUUM npng INTO '$path';");
   await Share.shareFiles(['$path'], text: 'NpNg batabase.');
+}
+
+void importDataBase(String filePath) async {
+  File file = File(filePath);
+  String pathToDb = await getDatabasesPath() + '/npng.db';
+  backupDataBase();
+  await db!.close();
+  db = null;
+  await file.copy(pathToDb);
+  await initDataBase();
 }
