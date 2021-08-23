@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/pages/settings/restore_db_page.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:flash/flash.dart';
 import 'package:npng/db.dart';
 import 'package:share_plus/share_plus.dart';
@@ -53,23 +51,23 @@ class SettingsPage extends StatelessWidget {
     await Share.shareFiles(['$path'], text: 'NpNg database.');
   }
 
-  void _backup(BuildContext context) async {
-    String name = await backupDataBase();
-    _showBasicsFlash(
-      duration: Duration(seconds: 3),
-      context: context,
-      message: 'Backup completed in $name.',
-    );
-  }
+  // void _backup(BuildContext context) async {
+  //   String name = await backupDataBase();
+  //   _showBasicsFlash(
+  //     duration: Duration(seconds: 3),
+  //     context: context,
+  //     message: 'Backup completed in $name.',
+  //   );
+  // }
 
-  void _restore(BuildContext context) {
-    Navigator.push(
-      context,
-      mpPageRoute(
-        builder: (BuildContext context) => RestoreDbPage(),
-      ),
-    );
-  }
+  // void _restore(BuildContext context) {
+  //   Navigator.push(
+  //     context,
+  //     mpPageRoute(
+  //       builder: (BuildContext context) => RestoreDbPage(),
+  //     ),
+  //   );
+  // }
 
   void _importFile(BuildContext context) async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -133,22 +131,22 @@ class SettingsPage extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              MpLinkButton(
-                label: S.of(context).backup,
-                onPressed: () => _backup(context),
-              ),
-              MpLinkButton(
-                label: S.of(context).restore,
-                onPressed: () => _restore(context),
-              ),
-              Divider(),
-              MpLinkButton(
-                label: S.of(context).import,
-                onPressed: () => _importFile(context),
-              ),
+              // MpLinkButton(
+              //   label: S.of(context).backup,
+              //   onPressed: () => _backup(context),
+              // ),
+              // MpLinkButton(
+              //   label: S.of(context).restore,
+              //   onPressed: () => _restore(context),
+              // ),
+              // Divider(),
               MpLinkButton(
                 label: S.of(context).share,
                 onPressed: () => _share(),
+              ),
+              MpLinkButton(
+                label: S.of(context).import,
+                onPressed: () => _importFile(context),
               ),
               Divider(),
               MpLinkButton(

@@ -42,9 +42,21 @@ Future<void> initDataBase() async {
 
 Future<String> backupDataBase() async {
   String path = await getDatabasesPath() +
-      '/npng ${DateTime.now().toLocal().toString()}.db';
+      //'/npng ${DateTime.now().toLocal().toString()}.db';
+      '/npng-backup.db';
+  await deleteDbBackupFile(path);
   await db!.rawQuery("VACUUM npng INTO '$path';");
   return path;
+}
+
+Future<void> deleteDbBackupFile(String filePath) async {
+  if (filePath != await getDatabasesPath() + '/npng.db') {
+    File fileToDel = File(filePath);
+    if (await fileToDel.exists()) {
+      fileToDel.delete();
+      print('$filePath deleted');
+    }
+  }
 }
 
 void importDataBase(String filePath) async {
