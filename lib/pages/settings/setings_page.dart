@@ -13,25 +13,25 @@ import 'about_page.dart';
 import 'package:file_picker/file_picker.dart';
 
 class SettingsPage extends StatelessWidget {
-  //const SettingsPage({Key? key}) : super(key: key);
+  const SettingsPage({Key? key}) : super(key: key);
   static String id = '/settings';
-  late String version;
 
   Future<String> _loadAsset(String path) async {
     return await rootBundle.loadString(path);
   }
 
-  void _getVer() async {
+  Future<String> _getVer() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     //String appName = packageInfo.appName;
     //String packageName = packageInfo.packageName;
-    version = packageInfo.version;
+    return packageInfo.version;
     //String buildNumber = packageInfo.buildNumber;
   }
 
   /// Preparing data for "About" page
   void _getAboutPage(BuildContext context) async {
     Locale myLocale = Localizations.localeOf(context);
+    String version = await _getVer();
     String about = await _loadAsset("assets/texts/$myLocale/about.md");
     about = about.replaceAll('%version%', version);
     String history = await _loadAsset("CHANGELOG.md");
@@ -120,8 +120,6 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _getVer();
-
     return MpScaffold(
       appBar: MpAppBar(
         title: Text(S.of(context).settings),
@@ -160,7 +158,8 @@ class SettingsPage extends StatelessWidget {
                 label: S.of(context).licenses,
                 onPressed: () => showLicensePage(
                     context: context,
-                    applicationVersion: version,
+                    //TODO get version
+                    //applicationVersion: _getVer(),
                     applicationLegalese: '© Denis Filonov'),
               ),
             ],
