@@ -119,19 +119,15 @@ class _ProgramsPageState extends State<ProgramsPage> {
                   ),
                   title: Text(item['name'] as String),
                   subtitle: Text(item['description'] as String),
-                  trailing: MpLinkButton(
-                    label: S.of(context).edit,
-                    onPressed: () => editModalPopup(
-                      context,
-                      id: item['id'] as int,
-                      name: item['name'] as String,
-                      description: item['description'] as String,
-                      update: _update,
-                      refresh: _refresh,
-                      delete: _delete,
-                    ),
+                  onLongPress: () => editModalPopup(
+                    context,
+                    id: item['id'] as int,
+                    name: item['name'] as String,
+                    description: item['description'] as String,
+                    update: _update,
+                    refresh: _refresh,
+                    delete: _delete,
                   ),
-                  //onTap: () => Navigator.pushNamed(context, DaysPage.id),
                   onTap: () {
                     Navigator.push(
                       context,

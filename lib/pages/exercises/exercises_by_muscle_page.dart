@@ -111,17 +111,14 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
                 type: MaterialType.transparency,
                 child: ListTile(
                   title: Text(item['name'].toString()),
-                  trailing: MpLinkButton(
-                    label: S.of(context).edit,
-                    onPressed: () => editModalPopup(
-                      context,
-                      id: item['id'] as int,
-                      name: item['name'] as String,
-                      description: item['description'] as String,
-                      update: _update,
-                      refresh: _refresh,
-                      delete: _delete,
-                    ),
+                  onLongPress: () => editModalPopup(
+                    context,
+                    id: item['id'] as int,
+                    name: item['name'] as String,
+                    description: item['description'] as String,
+                    update: _update,
+                    refresh: _refresh,
+                    delete: _delete,
                   ),
                 ),
               );
@@ -129,7 +126,7 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
           ),
         ),
       ),
-      bottomNavigationBar: const BottomBar(initialActiveIndex: 3),
+      //bottomNavigationBar: const BottomBar(initialActiveIndex: 2),
     );
   }
 }
