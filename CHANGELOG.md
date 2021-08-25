@@ -1,5 +1,5 @@
 ## 1.1.1
-- Fixes and perfomance improvance.
+- Perfomance and interface fixes.
 - Replaced "Edit" name buttons to longtap. 
 
 ## 1.1
