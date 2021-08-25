@@ -151,19 +151,13 @@ class _ProgramsDaysPageState extends State<ProgramsDaysPage> {
                       ),
                     );
                   },
-                  trailing: Padding(
-                    padding: const EdgeInsets.only(right: 16.0),
-                    child: MpLinkButton(
-                      label: S.of(context).edit,
-                      onPressed: () => editModalPopup(context,
-                          id: item['id'] as int,
-                          name: item['name'] as String,
-                          description: item['description'] as String,
-                          update: _update,
-                          refresh: _refresh,
-                          delete: _delete),
-                    ),
-                  ),
+                  onLongPress: () => editModalPopup(context,
+                      id: item['id'] as int,
+                      name: item['name'] as String,
+                      description: item['description'] as String,
+                      update: _update,
+                      refresh: _refresh,
+                      delete: _delete),
                 ),
               );
             },
