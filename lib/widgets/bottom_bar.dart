@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:npng/config.dart';
 import 'package:npng/pages/exercises/exercises_page.dart';
-import 'package:npng/generated/l10n.dart';
 import 'package:npng/pages/log/log_start_page.dart';
 import 'package:npng/pages/programs/programs_00_page.dart';
 import 'package:npng/pages/settings/setings_page.dart';
@@ -11,7 +10,7 @@ import 'package:npng/pages/workout/workout_00_start_page.dart';
 import 'package:page_transition/page_transition.dart';
 
 class BottomBar extends StatelessWidget {
-  BottomBar({this.initialActiveIndex});
+  const BottomBar({Key? key, this.initialActiveIndex}) : super(key: key);
 
   final int? initialActiveIndex;
 
@@ -41,15 +40,15 @@ class BottomBar extends StatelessWidget {
           // title: S.of(context).about,
         ),
       ],
-      initialActiveIndex: this.initialActiveIndex,
+      initialActiveIndex: initialActiveIndex,
       onTap: (int i) {
-        if (i != this.initialActiveIndex) {
+        if (i != initialActiveIndex) {
           switch (i) {
             case 0:
               Navigator.pushAndRemoveUntil(
                   context,
                   PageTransition(
-                    child: WorkoutStartPage(),
+                    child: const WorkoutStartPage(),
                     type: PageTransitionType.fade,
                   ),
                   (route) => false);
@@ -58,7 +57,7 @@ class BottomBar extends StatelessWidget {
               Navigator.pushAndRemoveUntil(
                   context,
                   PageTransition(
-                    child: ProgramsPage(),
+                    child: const ProgramsPage(),
                     type: PageTransitionType.fade,
                   ),
                   (route) => false);
@@ -67,7 +66,7 @@ class BottomBar extends StatelessWidget {
               Navigator.pushAndRemoveUntil(
                   context,
                   PageTransition(
-                    child: ExercisesPage(),
+                    child: const ExercisesPage(),
                     type: PageTransitionType.fade,
                   ),
                   (route) => false);
@@ -76,7 +75,7 @@ class BottomBar extends StatelessWidget {
               Navigator.pushAndRemoveUntil(
                   context,
                   PageTransition(
-                    child: LogStartPage(),
+                    child: const LogStartPage(),
                     type: PageTransitionType.fade,
                   ),
                   (route) => false);

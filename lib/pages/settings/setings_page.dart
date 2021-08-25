@@ -13,6 +13,7 @@ import 'about_page.dart';
 import 'package:file_picker/file_picker.dart';
 
 class SettingsPage extends StatelessWidget {
+  //const SettingsPage({Key? key}) : super(key: key);
   static String id = '/settings';
   late String version;
 
@@ -48,7 +49,7 @@ class SettingsPage extends StatelessWidget {
 
   void _share() async {
     String path = await backupDataBase();
-    await Share.shareFiles(['$path'], text: 'NpNg database.');
+    await Share.shareFiles([path], text: 'NpNg database.');
   }
 
   // void _backup(BuildContext context) async {
@@ -78,14 +79,16 @@ class SettingsPage extends StatelessWidget {
     if (result != null) {
       importDataBase(result.files.single.path!);
       _showBasicsFlash(
-        duration: Duration(seconds: 3),
+        duration: const Duration(seconds: 3),
         context: context,
+        //FIXME: Translate
         message: 'DB imported from ${result.files.single.path!}.',
       );
     } else {
       _showBasicsFlash(
-        duration: Duration(seconds: 3),
+        duration: const Duration(seconds: 3),
         context: context,
+        //FIXME: Translate
         message: 'Nothing selected.',
       );
     }
@@ -103,7 +106,7 @@ class SettingsPage extends StatelessWidget {
       builder: (context, controller) {
         return Flash(
           controller: controller,
-          behavior: flashStyle,
+          behavior: flashStyle as FlashBehavior,
           position: FlashPosition.bottom,
           boxShadows: kElevationToShadow[4],
           horizontalDismissDirection: HorizontalDismissDirection.horizontal,
@@ -125,8 +128,8 @@ class SettingsPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.only(left: 16.0, right: 8.0),
-          constraints: BoxConstraints.expand(),
+          padding: const EdgeInsets.only(left: 16.0, right: 8.0),
+          constraints: const BoxConstraints.expand(),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,7 +151,7 @@ class SettingsPage extends StatelessWidget {
                 label: S.of(context).import,
                 onPressed: () => _importFile(context),
               ),
-              Divider(),
+              const Divider(),
               MpLinkButton(
                 label: S.of(context).about,
                 onPressed: () => _getAboutPage(context),
@@ -164,7 +167,7 @@ class SettingsPage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomBar(initialActiveIndex: 4),
+      bottomNavigationBar: const BottomBar(initialActiveIndex: 4),
     );
   }
 }

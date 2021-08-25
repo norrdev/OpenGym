@@ -11,7 +11,8 @@ class AboutPage extends StatelessWidget {
   final String? history;
   final String? version;
 
-  AboutPage({this.about, this.history, this.version});
+  AboutPage({Key? key, this.about, this.history, this.version})
+      : super(key: key);
 
   final controller = ScrollController();
 

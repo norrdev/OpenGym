@@ -19,17 +19,18 @@ void main() async {
         ChangeNotifierProvider(create: (context) => SetRestProvider()),
         ChangeNotifierProvider(create: (context) => WorkoutProvider()),
       ],
-      child: (isApple) ? AppCupertino() : AppMaterial(),
+      child: (isApple) ? const AppCupertino() : const AppMaterial(),
     ),
   );
 }
 
 class AppMaterial extends StatelessWidget {
+  const AppMaterial({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: [
+      localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -46,13 +47,14 @@ class AppMaterial extends StatelessWidget {
 }
 
 class AppCupertino extends StatelessWidget {
+  const AppCupertino({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Theme(
       data: (darkModeOn) ? kMaterialDark : kMaterialLight,
       child: CupertinoApp(
         debugShowCheckedModeBanner: false,
-        localizationsDelegates: [
+        localizationsDelegates: const [
           S.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,

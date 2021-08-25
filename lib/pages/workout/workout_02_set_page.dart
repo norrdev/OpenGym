@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/pages/workout/workout_03_timer_page.dart';
@@ -10,6 +9,7 @@ import 'package:npng/generated/l10n.dart';
 import 'package:npng/config.dart';
 
 class WorkoutSetPage extends StatelessWidget {
+  const WorkoutSetPage({Key? key}) : super(key: key);
   static const String id = '/set';
 
   @override

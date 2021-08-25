@@ -17,7 +17,7 @@ Future<void> initDataBase() async {
 
   if (!exists) {
     // Should happen only the first time you launch your application
-    print("Creating new DB copy from asset...");
+    //print("Creating new DB copy from asset...");
 
     // Make sure the parent directory exists
     try {
@@ -36,7 +36,7 @@ Future<void> initDataBase() async {
   try {
     db = await openDatabase(path, version: 1);
   } catch (ex) {
-    print(ex);
+    //print(ex);
   }
 }
 
@@ -54,7 +54,7 @@ Future<void> deleteDbBackupFile(String filePath) async {
     File fileToDel = File(filePath);
     if (await fileToDel.exists()) {
       fileToDel.delete();
-      print('$filePath deleted');
+      //print('$filePath deleted');
     }
   }
 }

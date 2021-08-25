@@ -65,8 +65,8 @@ class _LogShowWorkoutPageState extends State<LogShowWorkoutPage> {
   Widget build(BuildContext context) {
     final controller = ScrollController();
 
-    DateTime start = DateTime.parse(_resultsDay.first['start']);
-    DateTime finish = DateTime.parse(_resultsDay.first['finish']);
+    DateTime start = DateTime.parse(_resultsDay.first['start'] as String);
+    DateTime finish = DateTime.parse(_resultsDay.first['finish'] as String);
     String duration = finish.difference(start).inMinutes.toString();
     String output = S.of(context).wrkDuration +
         ": $duration " +
@@ -79,7 +79,7 @@ class _LogShowWorkoutPageState extends State<LogShowWorkoutPage> {
     for (Map<String, dynamic> item in _resultsEx) {
       if (flagName != item['name']) {
         output += "**${item['name']}** \n\r";
-        flagName = item['name'];
+        flagName = item['name'] as String;
         count = 0;
       }
       output += '${count + 1}. ${item['weight']} kg X ${item['repeat']}\n\r';
@@ -101,9 +101,9 @@ class _LogShowWorkoutPageState extends State<LogShowWorkoutPage> {
 
     return MpScaffold(
       appBar: MpAppBar(
-        title: Text(_resultsDay.first['programsName'] +
+        title: Text((_resultsDay.first['programsName'] as String) +
             ": " +
-            _resultsDay.first['daysName']),
+            (_resultsDay.first['daysName'] as String)),
       ),
       body: SafeArea(
         child: Markdown(

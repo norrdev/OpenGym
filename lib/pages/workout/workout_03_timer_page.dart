@@ -10,6 +10,8 @@ import 'package:provider/provider.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 class TimerPage extends StatelessWidget {
+  const TimerPage({Key? key}) : super(key: key);
+
   static const String id = '/timer';
 
   void playSound() {
@@ -18,7 +20,7 @@ class TimerPage extends StatelessWidget {
       player.play('sounds/545913__jose-danielms__alarm.wav',
           mode: PlayerMode.LOW_LATENCY);
     } catch (e) {
-      print(e);
+      //print(e);
     }
   }
 
@@ -93,14 +95,14 @@ class TimerPage extends StatelessWidget {
                         context,
                         mpPageRoute(
                           builder: (BuildContext context) =>
-                              WorkoutFinishPage(),
+                              const WorkoutFinishPage(),
                         ),
                         (route) => false,
                       );
                     }
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 24.0,
                 ),
                 MpButton(
@@ -117,7 +119,7 @@ class TimerPage extends StatelessWidget {
                           context,
                           mpPageRoute(
                             builder: (BuildContext context) =>
-                                WorkoutFinishPage(),
+                                const WorkoutFinishPage(),
                           ),
                           (route) => false);
                     }

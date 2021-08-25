@@ -11,7 +11,9 @@ class ProgramsByDayPage extends StatefulWidget {
   final String? pageTitle;
   final int? dayId;
 
-  ProgramsByDayPage({required this.pageTitle, required this.dayId});
+  const ProgramsByDayPage(
+      {Key? key, required this.pageTitle, required this.dayId})
+      : super(key: key);
 
   @override
   _ProgramsByDayPageState createState() => _ProgramsByDayPageState();
@@ -19,6 +21,7 @@ class ProgramsByDayPage extends StatefulWidget {
 
 class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
   List<Map<String, dynamic>> _results = [];
+  // ignore: prefer_final_fields
   List<Map<String, dynamic>> _resultsMutable = [];
 
   @override
@@ -93,7 +96,7 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
       appBar: MpAppBar(
         title: Text(widget.pageTitle!),
         trailing: MpFlatButton(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: Icon(
             (isApple) ? CupertinoIcons.add : Icons.add,
             color: (isApple)
@@ -111,7 +114,7 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
         ),
       ),
       body: Container(
-        constraints: BoxConstraints.expand(),
+        constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: ReorderableListView.builder(
             onReorder: _onReorder,
@@ -129,14 +132,14 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
                   //   subtitle: Text(item['description'] ?? ''),
                   children: [
                     ListTile(
-                      title: Text(item['name']),
-                      subtitle: Text(item['description'] ?? ''),
+                      title: Text(item['name'] as String),
+                      subtitle: Text(item['description'] as String),
                     ),
                     Column(
                       children: [
                         Text(S.of(context).sets),
                         MpChangeIntField(
-                          value: item['sets'],
+                          value: item['sets'] as int,
                           decreaseCallback: () => _decreaseSets(index),
                           increaseCallback: () => _increaseSets(index),
                         ),
@@ -146,7 +149,7 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
                       children: [
                         Text(S.of(context).repeats),
                         MpChangeIntField(
-                          value: item['repeats'],
+                          value: item['repeats'] as int,
                           decreaseCallback: () => _decreaseRepeats(index),
                           increaseCallback: () => _increseRepeats(index),
                         ),
@@ -156,7 +159,7 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
                       children: [
                         Text(S.of(context).rest),
                         MpChangeIntField(
-                          value: item['rest'],
+                          value: item['rest'] as int,
                           decreaseCallback: () => _decreaseRest(index),
                           increaseCallback: () => _increaseRest(index),
                         ),
@@ -178,7 +181,7 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
                                   ),
                                   TextButton(
                                     onPressed: () {
-                                      _deleteRow(id: item['id']);
+                                      _deleteRow(id: item['id'] as int);
                                       _refresh();
                                       Navigator.pop(context, 'OK');
                                     },
@@ -192,28 +195,29 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
                               context: context,
                               builder: (BuildContext context) =>
                                   CupertinoAlertDialog(
+                                //FIXME: Translate!!!
                                 title: const Text('Delete something'),
                                 content: const Text('Are you shure?'),
                                 actions: <Widget>[
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.pop(context, 'Cancel'),
-                                    child: Text('Cancel'),
+                                    child: const Text('Cancel'),
                                   ),
                                   TextButton(
                                     onPressed: () {
-                                      _deleteRow(id: item['id']);
+                                      _deleteRow(id: item['id'] as int);
                                       _refresh();
                                       Navigator.pop(context, 'OK');
                                     },
-                                    child: Text('OK'),
+                                    child: const Text('OK'),
                                   ),
                                 ],
                               ),
                             );
                           }
                         },
-                        icon: Icon(Icons.delete)),
+                        icon: const Icon(Icons.delete)),
                   ],
                 ),
               );
@@ -225,26 +229,26 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
   }
 
   void _decreaseSets(int index) {
-    if (_resultsMutable[index]['sets'] > 1) {
+    if (_resultsMutable[index]['sets'] as int > 1) {
       _updateSets(
-          id: _resultsMutable[index]['id'],
-          sets: _resultsMutable[index]['sets'] - 1);
+          id: _resultsMutable[index]['id'] as int,
+          sets: (_resultsMutable[index]['sets'] as int) - 1);
       _refresh();
     }
   }
 
   void _increaseSets(int index) {
     _updateSets(
-        id: _resultsMutable[index]['id'],
-        sets: _resultsMutable[index]['sets'] + 1);
+        id: _resultsMutable[index]['id'] as int,
+        sets: (_resultsMutable[index]['sets'] as int) + 1);
     _refresh();
   }
 
   void _decreaseRepeats(int index) {
-    if (_resultsMutable[index]['sets'] > 1) {
+    if (_resultsMutable[index]['sets'] as int > 1) {
       _updateRepeats(
-        id: _resultsMutable[index]['id'],
-        repeats: _resultsMutable[index]['repeats'] - 1,
+        id: _resultsMutable[index]['id'] as int,
+        repeats: (_resultsMutable[index]['repeats'] as int) - 1,
       );
       _refresh();
     }
@@ -252,25 +256,25 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
 
   void _increseRepeats(int index) {
     _updateRepeats(
-      id: _resultsMutable[index]['id'],
-      repeats: _resultsMutable[index]['repeats'] + 1,
+      id: _resultsMutable[index]['id'] as int,
+      repeats: (_resultsMutable[index]['repeats'] as int) + 1,
     );
     _refresh();
   }
 
   void _decreaseRest(int index) {
-    if (_resultsMutable[index]['rest'] > 5) {
+    if (_resultsMutable[index]['rest'] as int > 5) {
       _updateRest(
-          id: _resultsMutable[index]['id'],
-          rest: _resultsMutable[index]['rest'] - 5);
+          id: _resultsMutable[index]['id'] as int,
+          rest: (_resultsMutable[index]['rest'] as int) - 5);
       _refresh();
     }
   }
 
   void _increaseRest(int index) {
     _updateRest(
-        id: _resultsMutable[index]['id'],
-        rest: _resultsMutable[index]['rest'] + 5);
+        id: _resultsMutable[index]['id'] as int,
+        rest: (_resultsMutable[index]['rest'] as int) + 5);
     _refresh();
   }
 
@@ -278,7 +282,7 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
     if (newIndex > oldIndex) newIndex -= 1;
     final Map<String, dynamic> item = _resultsMutable.removeAt(oldIndex);
     _resultsMutable.insert(newIndex, item);
-    _updateOrder(id: item['id'], ord: newIndex);
+    _updateOrder(id: item['id'] as int, ord: newIndex);
     _refresh();
   }
 }

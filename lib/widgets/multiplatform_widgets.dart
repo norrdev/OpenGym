@@ -10,25 +10,27 @@ class MpScaffold extends StatelessWidget {
   final Widget body;
   final Widget? bottomNavigationBar;
 
-  MpScaffold({this.appBar, required this.body, this.bottomNavigationBar});
+  const MpScaffold(
+      {Key? key, this.appBar, required this.body, this.bottomNavigationBar})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     if (isApple) {
       return CupertinoPageScaffold(
-        navigationBar: this.appBar as ObstructingPreferredSizeWidget?,
+        navigationBar: appBar as ObstructingPreferredSizeWidget?,
         child: Column(
           children: [
-            Expanded(child: this.body),
-            if (this.bottomNavigationBar != null) this.bottomNavigationBar!
+            Expanded(child: body),
+            if (bottomNavigationBar != null) bottomNavigationBar!
           ],
         ),
       );
     } else {
       return Scaffold(
-        appBar: this.appBar as PreferredSizeWidget?,
-        body: this.body,
-        bottomNavigationBar: this.bottomNavigationBar,
+        appBar: appBar as PreferredSizeWidget?,
+        body: body,
+        bottomNavigationBar: bottomNavigationBar,
       );
     }
   }
@@ -62,11 +64,12 @@ class MpAppBar extends StatelessWidget
     return backgroundColor.alpha == 0xFF;
   }
 
-  MpAppBar({
+  const MpAppBar({
+    Key? key,
     this.title,
     this.trailing,
     this.preferredSize = const Size.fromHeight(56.0),
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,13 +77,13 @@ class MpAppBar extends StatelessWidget
       return CupertinoNavigationBar(
         transitionBetweenRoutes: false,
         middle: title,
-        trailing: (trailing != null) ? trailing : SizedBox(),
+        trailing: (trailing != null) ? trailing : const SizedBox(),
       );
     } else {
       return AppBar(
         title: title,
         actions: [
-          (trailing != null) ? trailing! : SizedBox(),
+          (trailing != null) ? trailing! : const SizedBox(),
         ],
       );
     }
@@ -89,7 +92,7 @@ class MpAppBar extends StatelessWidget
 
 /// Button.
 class MpButton extends StatelessWidget {
-  MpButton({this.label, this.onPressed});
+  const MpButton({Key? key, this.label, this.onPressed}) : super(key: key);
   final String? label;
   final Function? onPressed;
 
@@ -104,7 +107,7 @@ class MpButton extends StatelessWidget {
       return ElevatedButton(
         child: Text(
           label!,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         ),
         onPressed: onPressed as void Function()?,
       );
@@ -114,7 +117,7 @@ class MpButton extends StatelessWidget {
 
 /// Link button.
 class MpLinkButton extends StatelessWidget {
-  MpLinkButton({this.label, this.onPressed});
+  const MpLinkButton({Key? key, this.label, this.onPressed}) : super(key: key);
   final String? label;
   final Function? onPressed;
 
@@ -137,11 +140,12 @@ class MpLinkButton extends StatelessWidget {
 
 /// Round button with icon.
 class RoundIconButton extends StatelessWidget {
-  RoundIconButton({
+  const RoundIconButton({
+    Key? key,
     this.icon,
     this.fillColor,
     required this.onPressed,
-  });
+  }) : super(key: key);
 
   final IconData? icon;
   final Function? onPressed;
@@ -153,12 +157,12 @@ class RoundIconButton extends StatelessWidget {
       child: Icon(icon),
       onPressed: onPressed as void Function()?,
       elevation: 0.0,
-      constraints: BoxConstraints.tightFor(
+      constraints: const BoxConstraints.tightFor(
         width: 56.0,
         height: 56.0,
       ),
-      shape: CircleBorder(),
-      fillColor: this.fillColor,
+      shape: const CircleBorder(),
+      fillColor: fillColor,
     );
   }
 }
@@ -170,12 +174,13 @@ class MpFlatButton extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final Widget? child;
 
-  MpFlatButton({
+  const MpFlatButton({
+    Key? key,
     this.label,
     this.onPressed,
     this.padding,
     this.child,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -201,12 +206,13 @@ class MpTextField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final bool readOnly;
 
-  MpTextField({
+  const MpTextField({
+    Key? key,
     required this.controller,
     this.labelText,
     this.inputFormatters,
     this.readOnly = false,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -215,7 +221,7 @@ class MpTextField extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(labelText!),
-          SizedBox(
+          const SizedBox(
             height: 8.0,
           ),
           CupertinoTextField(
@@ -229,7 +235,7 @@ class MpTextField extends StatelessWidget {
       return TextField(
         controller: controller,
         decoration: InputDecoration(
-          border: OutlineInputBorder(),
+          border: const OutlineInputBorder(),
           labelText: labelText,
         ),
         inputFormatters: inputFormatters,
@@ -246,12 +252,13 @@ class MpSwitch extends StatelessWidget {
   final ValueChanged<bool> onChanged;
   final Function? onTap;
 
-  MpSwitch({
+  const MpSwitch({
+    Key? key,
     required this.title,
     required this.value,
     required this.onChanged,
     this.onTap,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -286,18 +293,19 @@ class MpSwitch extends StatelessWidget {
 class MpValidationMessage extends StatelessWidget {
   final String message;
 
-  MpValidationMessage({required this.message});
+  const MpValidationMessage({Key? key, required this.message})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 2.0),
+      padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: Row(
         children: [
           Text(
-            this.message,
+            message,
             textScaleFactor: 0.8,
-            style: TextStyle(color: Colors.redAccent),
+            style: const TextStyle(color: Colors.redAccent),
           ),
         ],
       ),
@@ -388,7 +396,7 @@ class MpChangeIntField extends StatelessWidget {
           width: 70.0,
           child: Text(
             value.toString(),
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
             textAlign: TextAlign.center,
           ),
         ),
@@ -435,7 +443,7 @@ class MpChangeDoubleField extends StatelessWidget {
           width: 70.0,
           child: Text(
             value.toString(),
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
             textAlign: TextAlign.center,
           ),
         ),
@@ -484,7 +492,7 @@ class MpChangeDoubleFieldExtended extends StatelessWidget {
                     : Theme.of(context).bottomAppBarColor,
                 onPressed: decreaseCallbackFast,
               ),
-              SizedBox(width: 8.0),
+              const SizedBox(width: 8.0),
               RoundIconButton(
                 icon: Icons.arrow_back_ios_rounded,
                 fillColor: (isApple)
@@ -500,7 +508,7 @@ class MpChangeDoubleFieldExtended extends StatelessWidget {
           child: Text(
             value.toString(),
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             textAlign: TextAlign.center,
           ),
         ),
@@ -515,7 +523,7 @@ class MpChangeDoubleFieldExtended extends StatelessWidget {
                     : Theme.of(context).bottomAppBarColor,
                 onPressed: increaseCallback,
               ),
-              SizedBox(width: 8.0),
+              const SizedBox(width: 8.0),
               RoundIconButton(
                 icon: Icons.fast_forward_rounded,
                 fillColor: (isApple)
@@ -542,13 +550,13 @@ class MpAlertDialog extends StatelessWidget {
     return isApple
         ? CupertinoAlertDialog(
             key: key,
-            title: this.title,
-            content: this.content,
+            title: title,
+            content: content,
           )
         : AlertDialog(
             key: key,
-            title: this.title,
-            content: this.content,
+            title: title,
+            content: content,
           );
   }
 }

@@ -9,6 +9,7 @@ import 'package:npng/generated/l10n.dart';
 import 'package:npng/db.dart';
 
 class WorkoutStartPage extends StatefulWidget {
+  const WorkoutStartPage({Key? key}) : super(key: key);
   static const String id = '/';
 
   @override
@@ -28,7 +29,7 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
   void _getDefaultRoutine() async {
     List<Map<String, dynamic>> _user = [];
     _user = await db!.query('user', where: 'id = ?', whereArgs: [1]);
-    defRoutine = _user.first['programs_id'] ?? 0;
+    defRoutine = _user.first['programs_id'] as int;
     _refresh();
   }
 
@@ -84,7 +85,7 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
             )
           : Container(
               //TODO: Make here button or special screen, if workout in process.
-              constraints: BoxConstraints.expand(),
+              constraints: const BoxConstraints.expand(),
               child: SafeArea(
                 child: ListView.builder(
                   itemCount: _days.length,
@@ -93,14 +94,14 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
                     return Material(
                       type: MaterialType.transparency,
                       child: ListTile(
-                        title: Text(item['name'] ?? ''),
-                        subtitle: Text(item['description'] ?? ''),
+                        title: Text(item['name'] as String),
+                        subtitle: Text(item['description'] as String),
                         onTap: () => Navigator.push(
                           context,
                           mpPageRoute(
                             builder: (context) {
                               return WorkoutProcessPage(
-                                dayId: item['id'],
+                                dayId: item['id'] as int,
                               );
                             },
                           ),
@@ -117,7 +118,7 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
                 ),
               ),
             ),
-      bottomNavigationBar: BottomBar(initialActiveIndex: 0),
+      bottomNavigationBar: const BottomBar(initialActiveIndex: 0),
     );
   }
 }

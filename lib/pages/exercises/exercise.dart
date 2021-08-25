@@ -11,7 +11,8 @@ class ExercisePage extends StatefulWidget {
   final int? musclesId;
   final String? pageTitle;
 
-  ExercisePage({this.musclesId, this.pageTitle});
+  const ExercisePage({Key? key, this.musclesId, this.pageTitle})
+      : super(key: key);
 
   @override
   _ExercisePageState createState() => _ExercisePageState();
@@ -81,22 +82,22 @@ WHERE muscles_id = ${widget.musclesId}''');
         ),
       ),
       body: Container(
-        constraints: BoxConstraints.expand(),
+        constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: ListView.builder(
             itemCount: _results.length,
             itemBuilder: (context, index) {
               final item = _results[index];
               return ListTile(
-                title: Text(item['name']),
-                leading: Text('l'),
+                title: Text(item['name'].toString()),
+                leading: const Text('l'),
                 onTap: () {},
               );
             },
           ),
         ),
       ),
-      bottomNavigationBar: BottomBar(initialActiveIndex: 3),
+      bottomNavigationBar: const BottomBar(initialActiveIndex: 3),
     );
   }
 }

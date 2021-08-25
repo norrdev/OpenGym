@@ -12,7 +12,8 @@ class ExercisesByMusclePage extends StatefulWidget {
   final int? musclesId;
   final String? pageTitle;
 
-  ExercisesByMusclePage({this.musclesId, this.pageTitle});
+  const ExercisesByMusclePage({Key? key, this.musclesId, this.pageTitle})
+      : super(key: key);
 
   @override
   _ExercisesByMusclePageState createState() => _ExercisesByMusclePageState();
@@ -82,7 +83,7 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
       appBar: MpAppBar(
         title: Text(widget.pageTitle!),
         trailing: MpFlatButton(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: Icon(
             (isApple) ? CupertinoIcons.add : Icons.add,
             color: (isApple)
@@ -99,7 +100,7 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
         ),
       ),
       body: Container(
-        constraints: BoxConstraints.expand(),
+        constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: ListView.builder(
             itemCount: _results.length,
@@ -109,14 +110,14 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
               return Material(
                 type: MaterialType.transparency,
                 child: ListTile(
-                  title: Text(item['name']),
+                  title: Text(item['name'].toString()),
                   trailing: MpLinkButton(
                     label: S.of(context).edit,
                     onPressed: () => editModalPopup(
                       context,
-                      id: item['id'],
-                      name: item['name'],
-                      description: item['description'],
+                      id: item['id'] as int,
+                      name: item['name'] as String,
+                      description: item['description'] as String,
                       update: _update,
                       refresh: _refresh,
                       delete: _delete,
@@ -128,7 +129,7 @@ class _ExercisesByMusclePageState extends State<ExercisesByMusclePage> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomBar(initialActiveIndex: 3),
+      bottomNavigationBar: const BottomBar(initialActiveIndex: 3),
     );
   }
 }

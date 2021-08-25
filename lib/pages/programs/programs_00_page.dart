@@ -9,6 +9,7 @@ import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 
 class ProgramsPage extends StatefulWidget {
+  const ProgramsPage({Key? key}) : super(key: key);
   static String id = '/programs';
 
   @override
@@ -33,7 +34,7 @@ class _ProgramsPageState extends State<ProgramsPage> {
       '${kLocale}_description as description',
     ]);
     _user = await db!.query('user', where: 'id = ?', whereArgs: [1]);
-    _current = _user.first['programs_id'] ?? 0;
+    _current = _user.first['programs_id'] as int;
     setState(() {});
   }
 
@@ -82,7 +83,7 @@ class _ProgramsPageState extends State<ProgramsPage> {
       appBar: MpAppBar(
         title: Text(S.of(context).pageProgramsTitle),
         trailing: MpFlatButton(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: Icon(
             (isApple) ? CupertinoIcons.add : Icons.add,
             color: (isApple)
@@ -99,7 +100,7 @@ class _ProgramsPageState extends State<ProgramsPage> {
         ),
       ),
       body: Container(
-        constraints: BoxConstraints.expand(),
+        constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: ListView.builder(
             itemCount: _results.length,
@@ -110,21 +111,21 @@ class _ProgramsPageState extends State<ProgramsPage> {
                 type: MaterialType.transparency,
                 child: ListTile(
                   leading: Radio<int>(
-                    value: item['id'],
+                    value: item['id'] as int,
                     groupValue: _current,
                     onChanged: (value) => _changeCurrent(
-                      item['id'],
+                      item['id'] as int,
                     ),
                   ),
-                  title: Text(item['name'] ?? ''),
-                  subtitle: Text(item['description'] ?? ''),
+                  title: Text(item['name'] as String),
+                  subtitle: Text(item['description'] as String),
                   trailing: MpLinkButton(
                     label: S.of(context).edit,
                     onPressed: () => editModalPopup(
                       context,
-                      id: item['id'],
-                      name: item['name'],
-                      description: item['description'],
+                      id: item['id'] as int,
+                      name: item['name'] as String,
+                      description: item['description'] as String,
                       update: _update,
                       refresh: _refresh,
                       delete: _delete,
@@ -137,8 +138,8 @@ class _ProgramsPageState extends State<ProgramsPage> {
                       mpPageRoute(
                         builder: (context) {
                           return ProgramsDaysPage(
-                            programsId: item['id'],
-                            pageTitle: item['name'],
+                            programsId: item['id'] as int,
+                            pageTitle: item['name'] as String,
                           );
                         },
                       ),
@@ -150,7 +151,7 @@ class _ProgramsPageState extends State<ProgramsPage> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomBar(initialActiveIndex: 1),
+      bottomNavigationBar: const BottomBar(initialActiveIndex: 1),
     );
   }
 }

@@ -14,7 +14,7 @@ class WorkoutProcessPage extends StatefulWidget {
   static const String id = 'TrainProcessPage';
   final int? dayId;
 
-  WorkoutProcessPage({Key? key, this.dayId}) : super(key: key);
+  const WorkoutProcessPage({Key? key, this.dayId}) : super(key: key);
 
   @override
   _WorkoutProcessPageState createState() => _WorkoutProcessPageState();
@@ -71,7 +71,7 @@ class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
         if (newIndex > oldIndex) newIndex -= 1;
         final Map<String, dynamic> item = _resultsMutable.removeAt(oldIndex);
         _resultsMutable.insert(newIndex, item);
-        _updateOrder(id: item['id'], ord: newIndex);
+        _updateOrder(id: item['id'] as int, ord: newIndex);
         _init();
       });
     }
@@ -84,14 +84,14 @@ class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
         title: Text(S.of(context).currentWorkout),
       ),
       body: Container(
-        constraints: BoxConstraints.expand(),
+        constraints: const BoxConstraints.expand(),
         child: SafeArea(
-          child: (_resultsMutable.length > 0)
+          child: (_resultsMutable.isNotEmpty)
               ? (!Provider.of<WorkoutProvider>(context, listen: false).active)
                   ? buildReorderableListView()
                   : buildListView()
               //TODO: Create warning screen.
-              : Container(child: Text(S.of(context).noex)),
+              : Text(S.of(context).noex),
         ),
       ),
       bottomNavigationBar: Container(
@@ -140,7 +140,7 @@ class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
                               Navigator.pushNamed(context, WorkoutSetPage.id)
                                   .whenComplete(() => _init()),
                         ),
-                      SizedBox(width: 16.0),
+                      const SizedBox(width: 16.0),
                       MpButton(
                         label: S.of(context).finish,
                         onPressed: () {
@@ -155,7 +155,7 @@ class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
                             context,
                             mpPageRoute(
                               builder: (BuildContext context) =>
-                                  WorkoutFinishPage(),
+                                  const WorkoutFinishPage(),
                             ),
                             (route) => false,
                           );
@@ -180,8 +180,8 @@ class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
           type: MaterialType.transparency,
           key: ValueKey(item),
           child: ListTile(
-            title: Text(item['name']),
-            subtitle: Text(item['description'] ?? ''),
+            title: Text(item['name'] as String),
+            subtitle: Text(item['description'] as String),
           ),
         );
       },
@@ -205,13 +205,13 @@ class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
                     Icons.done,
                     color: Theme.of(context).accentColor,
                   )
-                : Icon(
+                : const Icon(
                     Icons.fitness_center,
                     //color: Theme.of(context).accentColor,
                   ),
 
-            title: Text(item['name']),
-            subtitle: Text(item['description'] ?? ''),
+            title: Text(item['name'] as String),
+            subtitle: Text(item['description'] as String),
           ),
         );
       },

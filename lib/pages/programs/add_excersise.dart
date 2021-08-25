@@ -6,10 +6,9 @@ import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 
 class AddExcersisePage extends StatefulWidget {
+  const AddExcersisePage({Key? key, required this.dayId}) : super(key: key);
   static String id = 'AddExcersisePage';
   final int? dayId;
-
-  AddExcersisePage({required this.dayId});
 
   @override
   _AddExcersisePageState createState() => _AddExcersisePageState();
@@ -41,9 +40,9 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
   void _insert(List<int?> exIds) async {
     await db!.transaction((txn) async {
       for (var i = 0; i < exIds.length; i++) {
-        List<Map> itemForMax =
+        List<Map<String, dynamic>> itemForMax =
             await txn.rawQuery('SELECT MAX(ord) AS maxOrd FROM workouts');
-        int maxOrd = itemForMax.first['maxOrd'] ?? -1;
+        int maxOrd = itemForMax.first['maxOrd'] as int;
         // (itemForMax.first['maxOrd'] == null)
         //     ? -1
         //     : itemForMax.first['maxOrd'];
@@ -73,15 +72,15 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
         //mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          if (isApple) SizedBox(height: 56.0),
+          if (isApple) const SizedBox(height: 56.0),
           Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Text(
               S.of(context).muscles,
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(4),
+            padding: const EdgeInsets.all(4),
             child: Material(
               type: MaterialType.transparency,
               child: Wrap(
@@ -93,7 +92,7 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
                   return ChoiceChip(
                     selected: (index == selectedMuscle) ? true : false,
                     label: Text(
-                      item['name'] ?? '',
+                      item['name'] as String,
                     ),
                     onSelected: (bool selected) {
                       setState(() {
@@ -113,7 +112,7 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(4.0),
             child: Material(
               type: MaterialType.transparency,
               child: Wrap(
@@ -125,10 +124,10 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
                     selected: selectedEx[index],
                     //labelStyle: TextStyle(fontWeight: FontWeight.bold),
                     label: Text(
-                      item['name'] ?? '',
+                      item['name'] as String,
                       textScaleFactor: 1.2,
                     ),
-                    tooltip: item['description'] ?? '',
+                    tooltip: item['description'] as String,
                     onSelected: (bool selected) {
                       setState(() {
                         selectedEx[index] = !selectedEx[index];
@@ -147,7 +146,7 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
                 List<int?> buffer = [];
                 for (var i = 0; i < selectedEx.length; i++) {
                   if (selectedEx[i] == true) {
-                    buffer.add(_exersises[i]['id']);
+                    buffer.add(_exersises[i]['id'] as int);
                   }
                 }
                 _insert(buffer);

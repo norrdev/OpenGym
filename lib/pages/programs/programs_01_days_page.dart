@@ -8,11 +8,11 @@ import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 
 class ProgramsDaysPage extends StatefulWidget {
+  const ProgramsDaysPage({Key? key, this.programsId, this.pageTitle})
+      : super(key: key);
   static String id = 'days';
   final int? programsId;
   final String? pageTitle;
-
-  ProgramsDaysPage({this.programsId, this.pageTitle});
 
   @override
   _ProgramsDaysPageState createState() => _ProgramsDaysPageState();
@@ -20,6 +20,7 @@ class ProgramsDaysPage extends StatefulWidget {
 
 class _ProgramsDaysPageState extends State<ProgramsDaysPage> {
   List<Map<String, dynamic>> _days = [];
+  // ignore: prefer_final_fields
   List<Map<String, dynamic>> _mutableDays = [];
 
   @override
@@ -92,7 +93,7 @@ class _ProgramsDaysPageState extends State<ProgramsDaysPage> {
       if (newIndex > oldIndex) newIndex -= 1;
       final Map<String, dynamic> item = _mutableDays.removeAt(oldIndex);
       _mutableDays.insert(newIndex, item);
-      _updateOrder(id: item['id'], ord: newIndex);
+      _updateOrder(id: item['id'] as int, ord: newIndex);
       _refresh();
     });
   }
@@ -106,7 +107,7 @@ class _ProgramsDaysPageState extends State<ProgramsDaysPage> {
       appBar: MpAppBar(
         title: Text(S.of(context).pageDaysTitle),
         trailing: MpFlatButton(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: Icon(
             (isApple) ? CupertinoIcons.add : Icons.add,
             color: (isApple)
@@ -123,7 +124,7 @@ class _ProgramsDaysPageState extends State<ProgramsDaysPage> {
         ),
       ),
       body: Container(
-        constraints: BoxConstraints.expand(),
+        constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: ReorderableListView.builder(
             onReorder: _onReorder,
@@ -135,16 +136,16 @@ class _ProgramsDaysPageState extends State<ProgramsDaysPage> {
                 type: MaterialType.transparency,
                 key: ValueKey(item),
                 child: ListTile(
-                  title: Text(item['name'] ?? ''),
-                  subtitle: Text(item['description'] ?? ''),
+                  title: Text(item['name'] as String),
+                  subtitle: Text(item['description'] as String),
                   onTap: () {
                     Navigator.push(
                       context,
                       mpPageRoute(
                         builder: (context) {
                           return ProgramsByDayPage(
-                            dayId: item['id'],
-                            pageTitle: item['name'],
+                            dayId: item['id'] as int,
+                            pageTitle: item['name'] as String,
                           );
                         },
                       ),
@@ -155,9 +156,9 @@ class _ProgramsDaysPageState extends State<ProgramsDaysPage> {
                     child: MpLinkButton(
                       label: S.of(context).edit,
                       onPressed: () => editModalPopup(context,
-                          id: item['id'],
-                          name: item['name'],
-                          description: item['description'],
+                          id: item['id'] as int,
+                          name: item['name'] as String,
+                          description: item['description'] as String,
                           update: _update,
                           refresh: _refresh,
                           delete: _delete),

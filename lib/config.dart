@@ -57,7 +57,7 @@ final ThemeData kMaterialDark = ThemeData(
   primarySwatch: Colors.blue,
   bottomAppBarColor: Colors.black, // for bottomBar
   toggleableActiveColor: kCupertinoTheme.primaryColor, // for radio
-  chipTheme: ChipThemeData(
+  chipTheme: const ChipThemeData(
     backgroundColor: Colors.black45,
     disabledColor: Color(0xaaF5E0C3),
     shape: StadiumBorder(),
@@ -72,20 +72,20 @@ final ThemeData kMaterialDark = ThemeData(
 );
 
 /// Initial route
-final kInitialRoute = WorkoutStartPage.id;
+const kInitialRoute = WorkoutStartPage.id;
 
 /// Route map
 final Map<String, Widget Function(BuildContext)> kAppRoutes = {
-  WorkoutStartPage.id: (context) => WorkoutStartPage(),
-  WorkoutProcessPage.id: (context) => WorkoutProcessPage(),
-  ProgramsPage.id: (context) => ProgramsPage(),
-  WorkoutSetPage.id: (context) => WorkoutSetPage(),
-  TimerPage.id: (context) => TimerPage(),
+  WorkoutStartPage.id: (context) => const WorkoutStartPage(),
+  WorkoutProcessPage.id: (context) => const WorkoutProcessPage(),
+  ProgramsPage.id: (context) => const ProgramsPage(),
+  WorkoutSetPage.id: (context) => const WorkoutSetPage(),
+  TimerPage.id: (context) => const TimerPage(),
   AboutPage.id: (context) => AboutPage(),
-  ExercisesPage.id: (context) => ExercisesPage(),
-  ExercisesByMusclePage.id: (context) => ExercisesByMusclePage(),
-  ExercisePage.id: (context) => ExercisePage(),
-  ProgramsDaysPage.id: (context) => ProgramsDaysPage(),
+  ExercisesPage.id: (context) => const ExercisesPage(),
+  ExercisesByMusclePage.id: (context) => const ExercisesByMusclePage(),
+  ExercisePage.id: (context) => const ExercisePage(),
+  ProgramsDaysPage.id: (context) => const ProgramsDaysPage(),
   // RoutinesByDayPage.id: (context) => RoutinesByDayPage(),
   // AddExcersisePage.id: (context) => AddExcersisePage(),
 };

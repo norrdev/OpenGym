@@ -47,15 +47,15 @@ class WorkoutProvider extends ChangeNotifier {
   void loadEx(List<Map<String, dynamic>> excersisesInput) {
     for (Map<String, dynamic> item in excersisesInput) {
       Exerscise ex = Exerscise();
-      ex.id = item['exercises_id'];
-      ex.name = item['name'];
-      ex.maxSets = item['sets'];
-      ex.restTime = item['rest'];
-      for (int i = 0; i < item['sets']; i++) {
+      ex.id = item['exercises_id'] as int;
+      ex.name = item['name'] as String;
+      ex.maxSets = item['sets'] as int;
+      ex.restTime = item['rest'] as int;
+      for (int i = 0; i < (item['sets'] as int); i++) {
         Set oneset = Set();
-        oneset.repeats = item['repeats'];
-        oneset.weight = item['weight'];
-        oneset.rest = item['rest'];
+        oneset.repeats = item['repeats'] as int;
+        oneset.weight = item['weight'] as double;
+        oneset.rest = item['rest'] as int;
         oneset.completed = false;
         ex.sets.add(oneset);
       }
@@ -111,10 +111,11 @@ class WorkoutProvider extends ChangeNotifier {
 
   /// Check if excersise is completed
   bool excersiseCompleted(int index) {
-    if (excersises[index].completed == true)
+    if (excersises[index].completed == true) {
       return true;
-    else
+    } else {
       return false;
+    }
   }
 
   /// Increase repeats in set

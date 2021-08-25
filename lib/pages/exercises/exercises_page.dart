@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
@@ -8,6 +10,7 @@ import 'package:npng/db.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 
 class ExercisesPage extends StatefulWidget {
+  const ExercisesPage({Key? key}) : super(key: key);
   static String id = 'exercises';
 
   @override
@@ -39,7 +42,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
         title: Text(S.of(context).pageExerciseTitle),
       ),
       body: Container(
-        constraints: BoxConstraints.expand(),
+        constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: ListView.builder(
             itemCount: _results.length,
@@ -50,26 +53,24 @@ class _ExercisesPageState extends State<ExercisesPage> {
                 type: MaterialType.transparency,
                 child: ListTile(
                   leading: (item['icon'] != null)
-                      ? Container(
-                          child: Image.memory(
-                            item['icon'],
-                            width: 96,
-                            height: 96,
-                          ),
+                      ? Image.memory(
+                          item['icon'] as Uint8List,
+                          width: 96,
+                          height: 96,
                         )
-                      : Container(
+                      : const SizedBox(
                           width: 96,
                           height: 96,
                         ),
-                  title: Text(item['name']),
+                  title: Text(item['name'] as String),
                   onTap: () {
                     Navigator.push(
                       context,
                       mpPageRoute(
                         builder: (context) {
                           return ExercisesByMusclePage(
-                            musclesId: item['id'],
-                            pageTitle: item['name'],
+                            musclesId: item['id'] as int,
+                            pageTitle: item['name'] as String,
                           );
                         },
                       ),
@@ -81,7 +82,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomBar(initialActiveIndex: 2),
+      bottomNavigationBar: const BottomBar(initialActiveIndex: 2),
     );
   }
 }

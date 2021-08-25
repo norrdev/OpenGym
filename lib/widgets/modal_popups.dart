@@ -4,7 +4,7 @@ import 'package:npng/config.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 
-Future insertModalPopup(
+Future<void> insertModalPopup(
   BuildContext context, {
   required TextEditingController name,
   required TextEditingController description,
@@ -19,7 +19,9 @@ Future insertModalPopup(
       color: (isApple)
           ? CupertinoTheme.of(context).barBackgroundColor
           : Theme.of(context).appBarTheme.color,
-      padding: (isApple) ? EdgeInsets.only(top: 16.0) : EdgeInsets.all(16.0),
+      padding: (isApple)
+          ? const EdgeInsets.only(top: 16.0)
+          : const EdgeInsets.all(16.0),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 2.0,
       child: Form(
@@ -56,7 +58,7 @@ Future insertModalPopup(
                 controller: name,
                 decoration: InputDecoration(
                   labelText: S.of(context).exName,
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     //borderRadius: new BorderRadius.circular(25.0),
                     borderSide: BorderSide(),
                   ),
@@ -69,7 +71,7 @@ Future insertModalPopup(
                 },
               ),
             if (!isApple)
-              SizedBox(
+              const SizedBox(
                 height: 16.0,
               ),
             if (!isApple)
@@ -77,7 +79,7 @@ Future insertModalPopup(
                 controller: description,
                 decoration: InputDecoration(
                   labelText: S.of(context).exDesc,
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderSide: BorderSide(),
                   ),
                 ),
@@ -88,7 +90,7 @@ Future insertModalPopup(
                   return null;
                 },
               ),
-            SizedBox(
+            const SizedBox(
               height: 16.0,
             ),
             MpButton(
@@ -109,7 +111,7 @@ Future insertModalPopup(
   );
 }
 
-Future editModalPopup(
+Future<void> editModalPopup(
   BuildContext context, {
   required int? id,
   required String? name,
@@ -127,7 +129,9 @@ Future editModalPopup(
       color: (isApple)
           ? CupertinoTheme.of(context).barBackgroundColor
           : Theme.of(context).appBarTheme.color,
-      padding: (isApple) ? EdgeInsets.only(top: 16.0) : EdgeInsets.all(16.0),
+      padding: (isApple)
+          ? const EdgeInsets.only(top: 16.0)
+          : const EdgeInsets.all(16.0),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 2.0,
       child: Form(
@@ -135,7 +139,7 @@ Future editModalPopup(
         child: Column(
           children: [
             Text(S.of(context).edit),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             if (isApple)
               CupertinoFormSection.insetGrouped(
                 children: [
@@ -166,7 +170,7 @@ Future editModalPopup(
                 controller: _tcName,
                 decoration: InputDecoration(
                   labelText: S.of(context).name,
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     //borderRadius: new BorderRadius.circular(25.0),
                     borderSide: BorderSide(),
                   ),
@@ -178,13 +182,13 @@ Future editModalPopup(
                   return null;
                 },
               ),
-            if (!isApple) SizedBox(height: 16.0),
+            if (!isApple) const SizedBox(height: 16.0),
             if (!isApple)
               TextFormField(
                 controller: _tcDesc,
                 decoration: InputDecoration(
                   labelText: S.of(context).desc,
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderSide: BorderSide(),
                   ),
                 ),
@@ -195,7 +199,7 @@ Future editModalPopup(
                   return null;
                 },
               ),
-            SizedBox(
+            const SizedBox(
               height: 16.0,
             ),
             Row(
@@ -215,7 +219,7 @@ Future editModalPopup(
                     }
                   },
                 ),
-                SizedBox(width: 16.0),
+                const SizedBox(width: 16.0),
                 MpButton(
                   label: S.of(context).delete,
                   onPressed: () {

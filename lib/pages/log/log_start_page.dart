@@ -39,7 +39,7 @@ class _LogStartPageState extends State<LogStartPage> {
     for (Map<String, dynamic> item in _results) {
       CalendarEvent event = CalendarEvent(
         eventName: '${item['programsName']}: ${item['daysName']}',
-        eventDate: DateTime.parse(item['start']),
+        eventDate: DateTime.parse(item['start'] as String),
         eventBackgroundColor: (isApple)
             ? CupertinoTheme.of(context).primaryColor
             : Theme.of(context).accentColor,
@@ -59,7 +59,7 @@ class _LogStartPageState extends State<LogStartPage> {
         title: Text(S.of(context).log),
       ),
       body: Container(
-        constraints: BoxConstraints.expand(),
+        constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: Material(
             type: MaterialType.transparency,
@@ -73,7 +73,7 @@ class _LogStartPageState extends State<LogStartPage> {
                   padding: const EdgeInsets.only(bottom: 4.0),
                   child: Text(
                     labels[dayIndex],
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
@@ -91,7 +91,7 @@ class _LogStartPageState extends State<LogStartPage> {
                       const SizedBox(width: 16),
                       Text(
                         "$month  $year",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
@@ -99,12 +99,12 @@ class _LogStartPageState extends State<LogStartPage> {
                       const Spacer(),
                       IconButton(
                         padding: EdgeInsets.zero,
-                        icon: Icon(Icons.calendar_today),
+                        icon: const Icon(Icons.calendar_today),
                         onPressed: () {
                           cellCalendarPageController.animateToDate(
                             DateTime.now(),
                             curve: Curves.linear,
-                            duration: Duration(milliseconds: 300),
+                            duration: const Duration(milliseconds: 300),
                           );
                         },
                       ),
@@ -146,8 +146,8 @@ class _LogStartPageState extends State<LogStartPage> {
                                 },
                                 child: Container(
                                   width: double.infinity,
-                                  padding: EdgeInsets.all(4),
-                                  margin: EdgeInsets.only(bottom: 12),
+                                  padding: const EdgeInsets.all(4),
+                                  margin: const EdgeInsets.only(bottom: 12),
                                   color: event.eventBackgroundColor,
                                   child: Text(
                                     event.eventName,
@@ -171,7 +171,7 @@ class _LogStartPageState extends State<LogStartPage> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomBar(initialActiveIndex: 3),
+      bottomNavigationBar: const BottomBar(initialActiveIndex: 3),
     );
   }
 }

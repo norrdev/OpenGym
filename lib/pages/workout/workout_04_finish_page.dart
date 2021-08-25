@@ -88,7 +88,7 @@ class WorkoutFinishPage extends StatelessWidget {
               Navigator.pushAndRemoveUntil(
                 context,
                 PageTransition(
-                  child: WorkoutStartPage(),
+                  child: const WorkoutStartPage(),
                   type: PageTransitionType.fade,
                 ),
                 (route) => false,
