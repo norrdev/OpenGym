@@ -124,10 +124,10 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
                     selected: selectedEx[index],
                     //labelStyle: TextStyle(fontWeight: FontWeight.bold),
                     label: Text(
-                      item['name'] as String,
+                      (item['name'] ?? '') as String,
                       textScaleFactor: 1.2,
                     ),
-                    tooltip: item['description'] as String,
+                    tooltip: (item['description'] ?? '') as String,
                     onSelected: (bool selected) {
                       setState(() {
                         selectedEx[index] = !selectedEx[index];
@@ -150,6 +150,7 @@ class _AddExcersisePageState extends State<AddExcersisePage> {
                   }
                 }
                 _insert(buffer);
+                mpShowToast('Exercise added.', context: context);
                 //setState(() {});
               },
             ),

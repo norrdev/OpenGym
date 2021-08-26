@@ -84,7 +84,7 @@ class BottomBar extends StatelessWidget {
               Navigator.pushAndRemoveUntil(
                   context,
                   PageTransition(
-                    child: SettingsPage(),
+                    child: const SettingsPage(),
                     type: PageTransitionType.fade,
                   ),
                   (route) => false);

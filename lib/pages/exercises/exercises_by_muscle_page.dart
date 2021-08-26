@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
-import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/db.dart';
-import 'package:npng/widgets/bottom_bar.dart';
 import 'package:npng/widgets/modal_popups.dart';
 
 class ExercisesByMusclePage extends StatefulWidget {
