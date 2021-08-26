@@ -1,3 +1,8 @@
+## 1.1.2
+- Fixed bug with adding exercises.
+- Add message after adding exercises.
+- Fixed message color on dark theme.
+
 ## 1.1.1
 - Perfomance and interface fixes.
 - Replaced "Edit" name buttons to longtap. 
