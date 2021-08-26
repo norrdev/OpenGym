@@ -2,12 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:npng/config.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:flash/flash.dart';
 import 'package:npng/db.dart';
 import 'package:share_plus/share_plus.dart';
 import 'about_page.dart';
@@ -79,32 +77,11 @@ class SettingsPage extends StatelessWidget {
 
     if (result != null) {
       importDataBase(result.files.single.path!);
-      _showMessage('DB imported from ${result.files.single.path!}.',
+      mpShowToast('DB imported from ${result.files.single.path!}.',
           context: context);
     } else {
-      _showMessage('Nothing selected.', context: context);
+      mpShowToast('Nothing selected.', context: context);
     }
-  }
-
-  void _showMessage(
-    String message, {
-    required BuildContext context,
-  }) {
-    //if (!mounted) return;
-    showFlash(
-        context: context,
-        duration: const Duration(seconds: 3),
-        builder: (_, controller) {
-          return Flash(
-            backgroundColor: Colors.black45,
-            controller: controller,
-            position: FlashPosition.top,
-            behavior: FlashBehavior.fixed,
-            child: FlashBar(
-              content: Text(message),
-            ),
-          );
-        });
   }
 
   @override

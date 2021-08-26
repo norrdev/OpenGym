@@ -1,3 +1,4 @@
+import 'package:flash/flash.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -559,4 +560,25 @@ class MpAlertDialog extends StatelessWidget {
             content: content,
           );
   }
+}
+
+void mpShowToast(
+  String message, {
+  required BuildContext context,
+}) {
+  //if (!mounted) return;
+  showFlash(
+      context: context,
+      duration: const Duration(seconds: 3),
+      builder: (_, controller) {
+        return Flash(
+          backgroundColor: Colors.black45,
+          controller: controller,
+          position: FlashPosition.top,
+          behavior: FlashBehavior.fixed,
+          child: FlashBar(
+            content: Text(message),
+          ),
+        );
+      });
 }
