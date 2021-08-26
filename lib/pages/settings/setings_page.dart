@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:npng/config.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
@@ -78,44 +79,32 @@ class SettingsPage extends StatelessWidget {
 
     if (result != null) {
       importDataBase(result.files.single.path!);
-      _showBasicsFlash(
-        duration: const Duration(seconds: 3),
-        context: context,
-        //FIXME: Translate
-        message: 'DB imported from ${result.files.single.path!}.',
-      );
+      _showMessage('DB imported from ${result.files.single.path!}.',
+          context: context);
     } else {
-      _showBasicsFlash(
-        duration: const Duration(seconds: 3),
-        context: context,
-        //FIXME: Translate
-        message: 'Nothing selected.',
-      );
+      _showMessage('Nothing selected.', context: context);
     }
   }
 
-  void _showBasicsFlash({
-    Duration? duration,
+  void _showMessage(
+    String message, {
     required BuildContext context,
-    String? message,
-    flashStyle = FlashBehavior.floating,
   }) {
+    //if (!mounted) return;
     showFlash(
-      context: context,
-      duration: duration,
-      builder: (context, controller) {
-        return Flash(
-          controller: controller,
-          behavior: flashStyle as FlashBehavior,
-          position: FlashPosition.bottom,
-          boxShadows: kElevationToShadow[4],
-          horizontalDismissDirection: HorizontalDismissDirection.horizontal,
-          child: FlashBar(
-            content: Text(message ?? ''),
-          ),
-        );
-      },
-    );
+        context: context,
+        duration: const Duration(seconds: 3),
+        builder: (_, controller) {
+          return Flash(
+            backgroundColor: Colors.black45,
+            controller: controller,
+            position: FlashPosition.top,
+            behavior: FlashBehavior.fixed,
+            child: FlashBar(
+              content: Text(message),
+            ),
+          );
+        });
   }
 
   @override
@@ -129,7 +118,6 @@ class SettingsPage extends StatelessWidget {
           padding: const EdgeInsets.only(left: 16.0, right: 8.0),
           constraints: const BoxConstraints.expand(),
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // MpLinkButton(
