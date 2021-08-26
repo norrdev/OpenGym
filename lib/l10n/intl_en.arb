@@ -49,6 +49,8 @@
 
     "wrkBegin":"Workout begin",
     "wrkEnd":"Workout end",
-    "wrkDuration":"Workout duration"
+    "wrkDuration":"Workout duration",
+
+    "addEx":"Exercise added."
 
 }

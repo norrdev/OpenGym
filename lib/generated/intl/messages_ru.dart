@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("О приложении"),
         "add": MessageLookupByLibrary.simpleMessage("Добавить"),
+        "addEx": MessageLookupByLibrary.simpleMessage("Упражнение добавлено."),
         "backup":
             MessageLookupByLibrary.simpleMessage("Создать резервную копию БД"),
         "ccontinue": MessageLookupByLibrary.simpleMessage("Продолжить"),
