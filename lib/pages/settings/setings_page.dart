@@ -46,9 +46,16 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  void _share() async {
+  void _share(BuildContext context) async {
     String path = await backupDataBase();
-    await Share.shareFiles([path], text: 'NpNg database.');
+    //final RenderBox box = context.findRenderObject() as RenderBox;
+    final Size size = MediaQuery.of(context).size;
+    await Share.shareFiles(
+      [path],
+      text: 'NpNg database.',
+      sharePositionOrigin: Rect.fromLTWH(0, 0, size.width, size.height / 6),
+      // sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
+    );
   }
 
   // void _backup(BuildContext context) async {
@@ -76,8 +83,8 @@ class SettingsPage extends StatelessWidget {
     );
 
     if (result != null) {
-      importDataBase(result.files.single.path!);
-      mpShowToast('DB imported from ${result.files.single.path!}.',
+      importDataBase(result.files.single.path);
+      mpShowToast('DB imported from ${result.files.single.path}.',
           context: context);
     } else {
       mpShowToast('Nothing selected.', context: context);
@@ -108,7 +115,7 @@ class SettingsPage extends StatelessWidget {
               // Divider(),
               MpLinkButton(
                 label: S.of(context).share,
-                onPressed: () => _share(),
+                onPressed: () => _share(context),
               ),
               MpLinkButton(
                 label: S.of(context).import,

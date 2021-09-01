@@ -1,3 +1,6 @@
+## 1.1.3
+- Fixed iPad file sharing.
+  
 ## 1.1.2
 - Fixed bug with adding exercises.
 - Add message after adding exercises.
