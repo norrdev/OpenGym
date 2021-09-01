@@ -1,7 +1,7 @@
 name: npng
 description: No pain, no gain – fitness and body parameters diary.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.1.2+6
+version: 1.1.3+6
 author: Denis Filonov
 homepage: https://filonov.pro
 
