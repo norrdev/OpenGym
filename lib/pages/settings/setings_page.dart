@@ -10,6 +10,7 @@ import 'package:npng/db.dart';
 import 'package:share_plus/share_plus.dart';
 import 'about_page.dart';
 import 'package:file_picker/file_picker.dart';
+//import 'package:file_picker_cross/file_picker_cross.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -78,8 +79,8 @@ class SettingsPage extends StatelessWidget {
 
   void _importFile(BuildContext context) async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['db'],
+      type: FileType.any,
+      //allowedExtensions: ['db', 'DB'],
     );
 
     if (result != null) {
@@ -90,6 +91,22 @@ class SettingsPage extends StatelessWidget {
       mpShowToast('Nothing selected.', context: context);
     }
   }
+
+  // void _importFile(BuildContext context) async {
+  //   FilePickerCross myFile = await FilePickerCross.importFromStorage(
+  //     type: FileTypeCross
+  //         .any, // Available: `any`, `audio`, `image`, `video`, `custom`. Note: not available using FDE
+  //     // fileExtension:
+  //     //     'db, DB, Db, dB' // Only if FileTypeCross.custom . May be any file extension like `dot`, `ppt,pptx,odp`
+  //   );
+
+  //   if (myFile.path != null) {
+  //     importDataBase(myFile.path!);
+  //     mpShowToast('DB imported from ${myFile.path}.', context: context);
+  //   } else {
+  //     mpShowToast('Nothing selected.', context: context);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +147,7 @@ class SettingsPage extends StatelessWidget {
                 label: S.of(context).licenses,
                 onPressed: () => showLicensePage(
                     context: context,
-                    //TODO get version
+                    //FIXME get version
                     //applicationVersion: _getVer(),
                     applicationLegalese: '© Denis Filonov'),
               ),

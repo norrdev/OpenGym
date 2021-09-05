@@ -60,9 +60,10 @@ Future<void> deleteDbBackupFile(String filePath) async {
 }
 
 void importDataBase(String filePath) async {
+  //TODO: make try/catch block. If file is not DB, restore from last backup.
   File file = File(filePath);
   String pathToDb = await getDatabasesPath() + '/npng.db';
-  backupDataBase();
+  await backupDataBase();
   await db!.close();
   db = null;
   await file.copy(pathToDb);
