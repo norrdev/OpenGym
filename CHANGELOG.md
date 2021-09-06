@@ -1,6 +1,5 @@
 ## 1.1.4
-- Improved DB import, added checks to correct db file.
-- On finish – only completed excercises.
+- Improved DB import.
 
 ## 1.1.3
 - Fixed iPad file sharing.
