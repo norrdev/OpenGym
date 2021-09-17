@@ -1,3 +1,6 @@
+## 2.0
+- Changed place for weight and repeats.
+
 ## 1.1.4
 - Improved DB import.
 
