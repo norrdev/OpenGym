@@ -63,17 +63,6 @@ class WorkoutSetPage extends StatelessWidget {
                             textAlign: TextAlign.left,
                           ),
                         ),
-                        Text(S.of(context).repeats),
-                        MpChangeIntField(
-                          value: workout.excersises[workout.currentExcersise]
-                              .sets[i].repeats,
-                          decreaseCallback: () => workout.decRepeats(
-                              excersiseNumber: workout.currentExcersise,
-                              setNumber: i),
-                          increaseCallback: () => workout.incRepeats(
-                              excersiseNumber: workout.currentExcersise,
-                              setNumber: i),
-                        ),
                         Text(S.of(context).weight),
                         MpChangeDoubleFieldExtended(
                           //TODO: Get from previous log!
@@ -89,6 +78,17 @@ class WorkoutSetPage extends StatelessWidget {
                               excersiseNumber: workout.currentExcersise,
                               setNumber: i),
                           decreaseCallbackFast: () => workout.decWeight5(
+                              excersiseNumber: workout.currentExcersise,
+                              setNumber: i),
+                        ),
+                        Text(S.of(context).repeats),
+                        MpChangeIntField(
+                          value: workout.excersises[workout.currentExcersise]
+                              .sets[i].repeats,
+                          decreaseCallback: () => workout.decRepeats(
+                              excersiseNumber: workout.currentExcersise,
+                              setNumber: i),
+                          increaseCallback: () => workout.incRepeats(
                               excersiseNumber: workout.currentExcersise,
                               setNumber: i),
                         ),
