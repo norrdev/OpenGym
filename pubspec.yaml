@@ -1,8 +1,7 @@
 name: npng
 description: No pain, no gain – fitness and body parameters diary.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.1.4+7
-author: Denis Filonov
+version: 1.2.0+9
 homepage: https://filonov.pro
 
 environment:
@@ -14,13 +13,14 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
+  
   cupertino_icons: ^1.0.2
   provider: ^5.0.0
   circular_countdown_timer: ^0.2.0
   flutter_markdown: ^0.6.6
   url_launcher: ^6.0.3
   package_info_plus: ^1.0.1
-  audioplayers: ^0.19.0
+  audioplayers: ^0.20.0
   convex_bottom_bar: ^3.0.0
   sqflite: ^2.0.0+3
   path: ^1.8.0
@@ -29,7 +29,6 @@ dependencies:
   cell_calendar: ^0.5.0+1
   share_plus: ^2.1.4
   flash: ^2.0.1
-  #file_picker_cross: ^4.4.2
   file_picker: ^4.0.1
 
 dev_dependencies:

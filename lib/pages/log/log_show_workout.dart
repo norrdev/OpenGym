@@ -69,9 +69,9 @@ class _LogShowWorkoutPageState extends State<LogShowWorkoutPage> {
     DateTime finish = DateTime.parse(_resultsDay.first['finish'] as String);
     String duration = finish.difference(start).inMinutes.toString();
     String output = S.of(context).wrkDuration +
-        ": $duration " +
+        ': $duration ' +
         S.of(context).min +
-        "\n\r \n\r";
+        '\n\r \n\r';
 
     String flagName = '';
     int count = 0;
@@ -102,7 +102,7 @@ class _LogShowWorkoutPageState extends State<LogShowWorkoutPage> {
     return MpScaffold(
       appBar: MpAppBar(
         title: Text((_resultsDay.first['programsName'] as String) +
-            ": " +
+            ': ' +
             (_resultsDay.first['daysName'] as String)),
       ),
       body: SafeArea(

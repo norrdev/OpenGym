@@ -67,7 +67,7 @@ class _LogStartPageState extends State<LogStartPage> {
               cellCalendarPageController: cellCalendarPageController,
               events: days,
               daysOfTheWeekBuilder: (dayIndex) {
-                final labels = ["S", "M", "T", "W", "T", "F", "S"];
+                final labels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 4.0),
@@ -90,7 +90,7 @@ class _LogStartPageState extends State<LogStartPage> {
                     children: [
                       const SizedBox(width: 16),
                       Text(
-                        "$month  $year",
+                        '$month  $year',
                         style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -125,7 +125,7 @@ class _LogStartPageState extends State<LogStartPage> {
                   builder: (_) {
                     return MpAlertDialog(
                       title: Text(
-                          date.month.monthName + " " + date.day.toString()),
+                          date.month.monthName + ' ' + date.day.toString()),
                       content: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: eventsOnTheDate

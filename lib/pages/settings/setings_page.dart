@@ -32,9 +32,9 @@ class SettingsPage extends StatelessWidget {
   void _getAboutPage(BuildContext context) async {
     Locale myLocale = Localizations.localeOf(context);
     String version = await _getVer();
-    String about = await _loadAsset("assets/texts/$myLocale/about.md");
+    String about = await _loadAsset('assets/texts/$myLocale/about.md');
     about = about.replaceAll('%version%', version);
-    String history = await _loadAsset("CHANGELOG.md");
+    String history = await _loadAsset('CHANGELOG.md');
     Navigator.push(
       context,
       mpPageRoute(

@@ -33,7 +33,7 @@ linter:
   # producing the lint.
   rules:
     # Error
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+    prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
     # avoid_empty_else: true
     avoid_print: true
     # always_use_package_imports: true

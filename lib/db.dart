@@ -25,7 +25,7 @@ Future<void> initDataBase() async {
     } catch (_) {}
 
     // Copy from asset
-    ByteData data = await rootBundle.load(join("assets/db", "npng.db"));
+    ByteData data = await rootBundle.load(join('assets/db', 'npng.db'));
     List<int> bytes =
         data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
