@@ -53,7 +53,6 @@ final ThemeData kMaterialLight = ThemeData(
 final ThemeData kMaterialDark = ThemeData(
   brightness: Brightness.dark,
   primaryColor: Colors.black,
-  accentColor: kCupertinoTheme.primaryColor,
   primarySwatch: Colors.blue,
   bottomAppBarColor: Colors.black, // for bottomBar
   toggleableActiveColor: kCupertinoTheme.primaryColor, // for radio

@@ -56,7 +56,7 @@ class TimerPage extends StatelessWidget {
                   // Filling Color for Countdown Timer
                   fillColor: (isApple)
                       ? CupertinoTheme.of(context).primaryColor
-                      : Theme.of(context).accentColor,
+                      : Theme.of(context).colorScheme.secondary,
 
                   // Background Color for Countdown Widget
                   backgroundColor: null,
@@ -69,7 +69,7 @@ class TimerPage extends StatelessWidget {
                     fontSize: MediaQuery.of(context).size.height / 12, //22.0,
                     color: (isApple)
                         ? CupertinoTheme.of(context).primaryColor
-                        : Theme.of(context).accentColor,
+                        : Theme.of(context).colorScheme.secondary,
                     //fontWeight: FontWeight.bold,
                   ),
 

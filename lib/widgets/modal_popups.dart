@@ -18,7 +18,7 @@ Future<void> insertModalPopup(
     child: Container(
       color: (isApple)
           ? CupertinoTheme.of(context).barBackgroundColor
-          : Theme.of(context).appBarTheme.color,
+          : Theme.of(context).appBarTheme.backgroundColor,
       padding: (isApple)
           ? const EdgeInsets.only(top: 16.0)
           : const EdgeInsets.all(16.0),
@@ -128,7 +128,7 @@ Future<void> editModalPopup(
     child: Container(
       color: (isApple)
           ? CupertinoTheme.of(context).barBackgroundColor
-          : Theme.of(context).appBarTheme.color,
+          : Theme.of(context).appBarTheme.backgroundColor,
       padding: (isApple)
           ? const EdgeInsets.only(top: 16.0)
           : const EdgeInsets.all(16.0),

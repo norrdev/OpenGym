@@ -110,7 +110,7 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
                         //   (isApple)
                         //       ? CupertinoIcons.play_circle
                         //       : Icons.play_circle,
-                        //   color: Theme.of(context).accentColor,
+                        //   color: Theme.of(context).colorScheme.secondary,
                         // ),
                       ),
                     );

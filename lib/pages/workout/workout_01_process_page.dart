@@ -203,11 +203,11 @@ class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
                     .excersiseCompleted(index))
                 ? Icon(
                     Icons.done,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   )
                 : const Icon(
                     Icons.fitness_center,
-                    //color: Theme.of(context).accentColor,
+                    //color: Theme.of(context).colorScheme.secondary,
                   ),
 
             title: Text(item['name'] as String),

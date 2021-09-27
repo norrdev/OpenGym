@@ -42,7 +42,7 @@ class _LogStartPageState extends State<LogStartPage> {
         eventDate: DateTime.parse(item['start'] as String),
         eventBackgroundColor: (isApple)
             ? CupertinoTheme.of(context).primaryColor
-            : Theme.of(context).accentColor,
+            : Theme.of(context).colorScheme.secondary,
         eventID: item['logDaysId'].toString(),
       );
       days.add(event);
