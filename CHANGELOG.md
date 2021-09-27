@@ -1,5 +1,6 @@
 ## 2.0
 - Changed place for weight and repeats.
+- Added system splashscreen on start.
 
 ## 1.1.4
 - Improved DB import.

@@ -23,7 +23,7 @@ Future<void> insertModalPopup(
           ? const EdgeInsets.only(top: 16.0)
           : const EdgeInsets.all(16.0),
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 2.0,
+      height: 200.0,
       child: Form(
         key: _formKey,
         child: Column(
@@ -133,7 +133,7 @@ Future<void> editModalPopup(
           ? const EdgeInsets.only(top: 16.0)
           : const EdgeInsets.all(16.0),
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 2.0,
+      height: 200.0,
       child: Form(
         key: _formKey,
         child: Column(
