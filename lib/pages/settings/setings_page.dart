@@ -84,7 +84,7 @@ class SettingsPage extends StatelessWidget {
     );
 
     if (result != null) {
-      importDataBase(result.files.single.path);
+      importDataBase(result.files.single.path!);
       mpShowToast('DB imported from ${result.files.single.path}.',
           context: context);
     } else {
