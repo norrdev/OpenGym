@@ -19,11 +19,14 @@ class WorkoutSetPage extends StatelessWidget {
     }
 
     return MpScaffold(
-      appBar: MpAppBar(title: Consumer<WorkoutProvider>(
-        builder: (context, wk, child) {
-          return Text(wk.excersises[wk.currentExcersise].name);
-        },
-      )),
+      appBar: MpAppBar(
+        title: Consumer<WorkoutProvider>(
+          builder: (context, wk, child) {
+            return Text(wk.excersises[wk.currentExcersise].name);
+          },
+        ),
+      ),
+      bottomNavigationBar: const BottomNavBar(),
       body: SafeArea(
         child: Material(
           type: MaterialType.transparency,
@@ -56,13 +59,6 @@ class WorkoutSetPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 16.0),
-                          child: Text(
-                            S.of(context).setsText,
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
                         Text(S.of(context).weight),
                         MpChangeDoubleFieldExtended(
                           //TODO: Get from previous log!
@@ -92,17 +88,6 @@ class WorkoutSetPage extends StatelessWidget {
                               excersiseNumber: workout.currentExcersise,
                               setNumber: i),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 16.0),
-                          child: MpButton(
-                            label: S.of(context).restButton,
-                            onPressed: () {
-                              Navigator.pushNamed(context, TimerPage.id);
-                              // .whenComplete(
-                              //     () => workout.incCurrentSet());
-                            },
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -115,15 +100,59 @@ class WorkoutSetPage extends StatelessWidget {
               key: Key(Random.secure().nextDouble().toString()),
               steps: steps,
               currentStep: workout.currentSet,
-              onStepTapped: (int index) {
-                workout.currentSet = index;
-              },
               controlsBuilder: (context, {onStepCancel, onStepContinue}) {
                 return Container();
               },
             );
           }),
         ),
+      ),
+    );
+  }
+}
+
+/// Bottom navigation bar
+class BottomNavBar extends StatelessWidget {
+  const BottomNavBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: (isApple)
+            ? CupertinoTheme.of(context).barBackgroundColor
+            : Theme.of(context).bottomAppBarColor,
+        border: Border(
+          top: BorderSide(color: Theme.of(context).dividerColor),
+        ),
+      ),
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          MpFlatButton(
+            child: const Icon(Icons.exposure_minus_1),
+            onPressed: () =>
+                Provider.of<WorkoutProvider>(context, listen: false)
+                    .manualRemoveOneSet(),
+          ),
+          MpButton(
+            label: S.of(context).restButton,
+            onPressed: () {
+              Navigator.pushNamed(context, TimerPage.id);
+              // .whenComplete(
+              //     () => workout.incCurrentSet());
+            },
+          ),
+          MpFlatButton(
+            child: const Icon(Icons.exposure_plus_1),
+            onPressed: () =>
+                Provider.of<WorkoutProvider>(context, listen: false)
+                    .manualAddOneSet(),
+          ),
+        ],
       ),
     );
   }

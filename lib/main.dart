@@ -8,7 +8,6 @@ import 'package:npng/generated/l10n.dart';
 import 'package:npng/state/workout_provider.dart';
 import 'package:provider/provider.dart';
 import 'db.dart';
-import 'state/set_rest_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +15,6 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => SetRestProvider()),
         ChangeNotifierProvider(create: (context) => WorkoutProvider()),
       ],
       child: (isApple) ? const AppCupertino() : const AppMaterial(),

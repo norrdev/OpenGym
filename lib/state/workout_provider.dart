@@ -1,9 +1,12 @@
+import 'dart:ffi';
+
 import 'package:flutter/foundation.dart';
 
+/// Data classes ===============================================================
 class Set {
   int repeats = 0;
   double weight = 0;
-  int rest = 0;
+  //int rest = 0;
   bool completed = false;
 }
 
@@ -12,7 +15,6 @@ class Exerscise {
   String name = '';
   int maxSets = 0;
   int restTime = 0;
-
   List<Set> sets = [];
 
   bool get completed {
@@ -26,7 +28,8 @@ class Exerscise {
   }
 }
 
-/// Workout settings and methods.
+/// Workout settings and methods. ==============================================
+
 class WorkoutProvider extends ChangeNotifier {
   /// Active workout flag.
   bool active = false;
@@ -44,6 +47,7 @@ class WorkoutProvider extends ChangeNotifier {
   ///Exerscises from DB
   List<Exerscise> excersises = [];
 
+  /// Loading from database
   void loadEx(List<Map<String, dynamic>> excersisesInput) {
     for (Map<String, dynamic> item in excersisesInput) {
       Exerscise ex = Exerscise();
@@ -55,7 +59,6 @@ class WorkoutProvider extends ChangeNotifier {
         Set oneset = Set();
         oneset.repeats = item['repeats'] as int;
         oneset.weight = item['weight'] as double;
-        oneset.rest = item['rest'] as int;
         oneset.completed = false;
         ex.sets.add(oneset);
       }
@@ -63,7 +66,7 @@ class WorkoutProvider extends ChangeNotifier {
     }
   }
 
-  /// Completion Log
+  /// Completion Log------------------------------------------------------------
 
   ///Current excersise counter
   int _currentExcersise = 0;
@@ -90,6 +93,7 @@ class WorkoutProvider extends ChangeNotifier {
   int _currentSet = 0;
   int get currentSet => _currentSet;
   int get maxSet => excersises[_currentExcersise].maxSets - 1;
+
   set currentSet(int currentSet) {
     _currentSet = currentSet;
     notifyListeners();
@@ -105,8 +109,6 @@ class WorkoutProvider extends ChangeNotifier {
   }
 
   /// Current rest
-  // ignore: todo
-  //TODO Cange from excersise to set level (not critical now)
   int get currentRest => excersises[_currentExcersise].restTime;
 
   /// Check if excersise is completed
@@ -162,11 +164,32 @@ class WorkoutProvider extends ChangeNotifier {
     }
   }
 
+  /// +1 Button
+  void manualAddOneSet() {
+    excersises[currentExcersise].sets.add(excersises[currentExcersise]
+        .sets[excersises[currentExcersise].sets.length - 1]);
+    excersises[currentExcersise].maxSets++;
+    notifyListeners();
+  }
+
+  /// -1 Button
+  void manualRemoveOneSet() {
+    if (excersises[currentExcersise].sets.length > currentSet + 1) {
+      excersises[currentExcersise].sets.removeLast();
+      excersises[currentExcersise].maxSets--;
+      notifyListeners();
+    }
+  }
+
   /// Clear object.
   void resetAllData() {
-    active = finished = false;
-    dayID = _currentExcersise = _currentSet = 0;
-    startTime = finishTime = null;
+    active = false;
+    finished = false;
+    dayID = 0;
+    _currentExcersise = 0;
+    _currentSet = 0;
+    startTime = null;
+    finishTime = null;
     excersises.clear();
   }
 }
