@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -10,11 +12,29 @@ import 'package:npng/db.dart';
 import 'package:share_plus/share_plus.dart';
 import 'about_page.dart';
 import 'package:file_picker/file_picker.dart';
-//import 'package:file_picker_cross/file_picker_cross.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
   static String id = '/settings';
+
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+  String version = '';
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  late Future<bool> _isImperial;
+
+  @override
+  void initState() {
+    super.initState();
+    _getVer().then((result) => version = result);
+    _isImperial = _prefs.then((SharedPreferences prefs) {
+      return (prefs.getBool('isImperial') ?? false);
+    });
+  }
 
   Future<String> _loadAsset(String path) async {
     return await rootBundle.loadString(path);
@@ -22,10 +42,7 @@ class SettingsPage extends StatelessWidget {
 
   Future<String> _getVer() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    //String appName = packageInfo.appName;
-    //String packageName = packageInfo.packageName;
     return packageInfo.version;
-    //String buildNumber = packageInfo.buildNumber;
   }
 
   /// Preparing data for "About" page
@@ -49,38 +66,17 @@ class SettingsPage extends StatelessWidget {
 
   void _share(BuildContext context) async {
     String path = await backupDataBase();
-    //final RenderBox box = context.findRenderObject() as RenderBox;
     final Size size = MediaQuery.of(context).size;
     await Share.shareFiles(
       [path],
       text: 'NpNg database.',
       sharePositionOrigin: Rect.fromLTWH(0, 0, size.width, size.height / 6),
-      // sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
     );
   }
-
-  // void _backup(BuildContext context) async {
-  //   String name = await backupDataBase();
-  //   _showBasicsFlash(
-  //     duration: Duration(seconds: 3),
-  //     context: context,
-  //     message: 'Backup completed in $name.',
-  //   );
-  // }
-
-  // void _restore(BuildContext context) {
-  //   Navigator.push(
-  //     context,
-  //     mpPageRoute(
-  //       builder: (BuildContext context) => RestoreDbPage(),
-  //     ),
-  //   );
-  // }
 
   void _importFile(BuildContext context) async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.any,
-      //allowedExtensions: ['db', 'DB'],
     );
 
     if (result != null) {
@@ -92,21 +88,15 @@ class SettingsPage extends StatelessWidget {
     }
   }
 
-  // void _importFile(BuildContext context) async {
-  //   FilePickerCross myFile = await FilePickerCross.importFromStorage(
-  //     type: FileTypeCross
-  //         .any, // Available: `any`, `audio`, `image`, `video`, `custom`. Note: not available using FDE
-  //     // fileExtension:
-  //     //     'db, DB, Db, dB' // Only if FileTypeCross.custom . May be any file extension like `dot`, `ppt,pptx,odp`
-  //   );
-
-  //   if (myFile.path != null) {
-  //     importDataBase(myFile.path!);
-  //     mpShowToast('DB imported from ${myFile.path}.', context: context);
-  //   } else {
-  //     mpShowToast('Nothing selected.', context: context);
-  //   }
-  // }
+  Future<void> _saveImperial(bool isImperial) async {
+    final SharedPreferences prefs = await _prefs;
+    setState(() {
+      _isImperial =
+          prefs.setBool('isImperial', isImperial).then((bool success) {
+        return isImperial;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,15 +111,28 @@ class SettingsPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // MpLinkButton(
-              //   label: S.of(context).backup,
-              //   onPressed: () => _backup(context),
-              // ),
-              // MpLinkButton(
-              //   label: S.of(context).restore,
-              //   onPressed: () => _restore(context),
-              // ),
-              // Divider(),
+              FutureBuilder<bool>(
+                future: _isImperial,
+                builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      return MpSwitch(
+                          title: 'Metric / Imperial (UK, US)',
+                          value: false,
+                          onChanged: (val) {});
+                    default:
+                      if (snapshot.hasError) {
+                        return Text('Error: ${snapshot.error}');
+                      } else {
+                        return MpSwitch(
+                            title: 'Metric / Imperial (UK, US)',
+                            value: snapshot.data!,
+                            onChanged: _saveImperial);
+                      }
+                  }
+                },
+              ),
+              const Divider(),
               MpLinkButton(
                 label: S.of(context).share,
                 onPressed: () => _share(context),
@@ -147,8 +150,7 @@ class SettingsPage extends StatelessWidget {
                 label: S.of(context).licenses,
                 onPressed: () => showLicensePage(
                     context: context,
-                    //FIXME get version
-                    //applicationVersion: _getVer(),
+                    applicationVersion: version,
                     applicationLegalese: '© Denis Filonov'),
               ),
             ],
