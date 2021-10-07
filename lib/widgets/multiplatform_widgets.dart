@@ -118,9 +118,11 @@ class MpButton extends StatelessWidget {
 
 /// Link button.
 class MpLinkButton extends StatelessWidget {
-  const MpLinkButton({Key? key, this.label, this.onPressed}) : super(key: key);
+  const MpLinkButton({Key? key, this.label, this.onPressed, this.context})
+      : super(key: key);
   final String? label;
   final Function? onPressed;
+  final BuildContext? context;
 
   @override
   Widget build(BuildContext context) {

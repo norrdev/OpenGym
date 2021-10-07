@@ -25,6 +25,60 @@ class WorkoutSetPage extends StatelessWidget {
             return Text(wk.excersises[wk.currentExcersise].name);
           },
         ),
+        // trailing: MpLinkButton(
+        //   label: S.of(context).skip,
+        //   onPressed: () {
+        //     if (!isApple) {
+        //       showDialog(
+        //         context: context,
+        //         builder: (BuildContext context) => AlertDialog(
+        //           title: Text(S.of(context).skip),
+        //           content: Text(S.of(context).skipDialog),
+        //           actions: <Widget>[
+        //             TextButton(
+        //               onPressed: () =>
+        //                   Navigator.pop(context, S.of(context).cancel),
+        //               child: Text(S.of(context).cancel),
+        //             ),
+        //             TextButton(
+        //               onPressed: () {
+        //                 // action
+        //                 Provider.of<WorkoutProvider>(context, listen: false)
+        //                     .manualSkipExersise();
+        //                 Navigator.pop(context, 'OK');
+        //               },
+        //               child: const Text('OK'),
+        //             ),
+        //           ],
+        //         ),
+        //       );
+        //     } else {
+        //       showDialog(
+        //         context: context,
+        //         builder: (BuildContext context) => CupertinoAlertDialog(
+        //           title: Text(S.of(context).skip),
+        //           content: Text(S.of(context).skipDialog),
+        //           actions: <Widget>[
+        //             TextButton(
+        //               onPressed: () =>
+        //                   Navigator.pop(context, S.of(context).cancel),
+        //               child: Text(S.of(context).cancel),
+        //             ),
+        //             TextButton(
+        //               onPressed: () {
+        //                 // action
+        //                 Provider.of<WorkoutProvider>(context, listen: false)
+        //                     .manualSkipExersise();
+        //                 Navigator.pop(context, 'OK');
+        //               },
+        //               child: const Text('OK'),
+        //             ),
+        //           ],
+        //         ),
+        //       );
+        //     }
+        //   },
+        // ),
       ),
       bottomNavigationBar: const BottomNavBar(),
       body: SafeArea(

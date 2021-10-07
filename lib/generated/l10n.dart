@@ -350,6 +350,36 @@ class S {
     );
   }
 
+  /// `Skip`
+  String get skip {
+    return Intl.message(
+      'Skip',
+      name: 'skip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you really want to skip this excersise today?`
+  String get skipDialog {
+    return Intl.message(
+      'Are you really want to skip this excersise today?',
+      name: 'skipDialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Canсel`
+  String get cancel {
+    return Intl.message(
+      'Canсel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Programs`
   String get pageProgramsTitle {
     return Intl.message(

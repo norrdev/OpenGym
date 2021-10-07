@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add": MessageLookupByLibrary.simpleMessage("Add"),
         "addEx": MessageLookupByLibrary.simpleMessage("Exercise added."),
         "backup": MessageLookupByLibrary.simpleMessage("Backup database"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Canсel"),
         "ccontinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "currentWorkout":
             MessageLookupByLibrary.simpleMessage("Current workout"),
@@ -61,6 +62,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Perfom the set, and when you\'re done, press the button."),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "share": MessageLookupByLibrary.simpleMessage("Share database"),
+        "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "skipDialog": MessageLookupByLibrary.simpleMessage(
+            "Are you really want to skip this excersise today?"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
         "stopRest": MessageLookupByLibrary.simpleMessage("Stop the rest"),
         "timer": MessageLookupByLibrary.simpleMessage("Timer"),

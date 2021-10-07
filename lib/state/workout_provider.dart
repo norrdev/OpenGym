@@ -164,7 +164,7 @@ class WorkoutProvider extends ChangeNotifier {
     }
   }
 
-  /// +1 Button
+  /// +1 set Button
   void manualAddOneSet() {
     excersises[currentExcersise].sets.add(excersises[currentExcersise]
         .sets[excersises[currentExcersise].sets.length - 1]);
@@ -172,13 +172,23 @@ class WorkoutProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// -1 Button
+  /// -1 set Button
   void manualRemoveOneSet() {
     if (excersises[currentExcersise].sets.length > currentSet + 1) {
       excersises[currentExcersise].sets.removeLast();
       excersises[currentExcersise].maxSets--;
       notifyListeners();
     }
+  }
+
+  /// Skip exersise and remove it from log
+  /// Set as completed
+  void manualSkipExersise() {
+    //if (currentSet == 0) {
+    // print('skip');
+    // excersises.removeAt(currentExcersise);
+    // notifyListeners();
+    //}
   }
 
   /// Clear object.

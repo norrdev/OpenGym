@@ -171,20 +171,26 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
                             showDialog<String>(
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
+                                //FIXME: Translate!!!
                                 title: const Text('Delete something'),
+                                //FIXME: Translate!!!
                                 content: const Text('Are you shure?'),
                                 actions: <Widget>[
                                   TextButton(
                                     onPressed: () =>
+                                        //FIXME: Translate!!!
                                         Navigator.pop(context, 'Cancel'),
+                                    //FIXME: Translate!!!
                                     child: const Text('Cancel'),
                                   ),
                                   TextButton(
                                     onPressed: () {
                                       _deleteRow(id: item['id'] as int);
                                       _refresh();
+                                      //FIXME: Translate!!!
                                       Navigator.pop(context, 'OK');
                                     },
+                                    //FIXME: Translate!!!
                                     child: const Text('OK'),
                                   ),
                                 ],
@@ -197,19 +203,24 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
                                   CupertinoAlertDialog(
                                 //FIXME: Translate!!!
                                 title: const Text('Delete something'),
+                                //FIXME: Translate!!!
                                 content: const Text('Are you shure?'),
                                 actions: <Widget>[
                                   TextButton(
                                     onPressed: () =>
+                                        //FIXME: Translate!!!
                                         Navigator.pop(context, 'Cancel'),
+                                    //FIXME: Translate!!!
                                     child: const Text('Cancel'),
                                   ),
                                   TextButton(
                                     onPressed: () {
                                       _deleteRow(id: item['id'] as int);
                                       _refresh();
+                                      //FIXME: Translate!!!
                                       Navigator.pop(context, 'OK');
                                     },
+                                    //FIXME: Translate!!!
                                     child: const Text('OK'),
                                   ),
                                 ],

@@ -30,6 +30,9 @@
     "backup":"Backup database",
     "restore":"Restore from backup",
     "import":"Import database",
+    "skip":"Skip",
+    "skipDialog":"Are you really want to skip this excersise today?",
+    "cancel":"Canсel",
 
     "pageProgramsTitle":"Programs",
 

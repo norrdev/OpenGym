@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addEx": MessageLookupByLibrary.simpleMessage("Упражнение добавлено."),
         "backup":
             MessageLookupByLibrary.simpleMessage("Создать резервную копию БД"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
         "ccontinue": MessageLookupByLibrary.simpleMessage("Продолжить"),
         "currentWorkout":
             MessageLookupByLibrary.simpleMessage("Текущая тренировка"),
@@ -66,6 +67,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
         "share":
             MessageLookupByLibrary.simpleMessage("Экспортировать базу данных"),
+        "skip": MessageLookupByLibrary.simpleMessage("Пропустить"),
+        "skipDialog": MessageLookupByLibrary.simpleMessage(
+            "Вы действительно хотите не выполнять это упражнение сегодня?"),
         "start": MessageLookupByLibrary.simpleMessage("Старт"),
         "stopRest": MessageLookupByLibrary.simpleMessage("Прервать отдых"),
         "timer": MessageLookupByLibrary.simpleMessage("Таймер"),
