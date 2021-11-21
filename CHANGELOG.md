@@ -1,4 +1,4 @@
-## 1.1.5
+## 1.2.0
 - Changed place for weight and repeats.
 - Added system splashscreen on start.
 - Added stop button to rest timer.
@@ -19,7 +19,7 @@
 - Perfomance and interface fixes.
 - Replaced "Edit" name buttons to longtap. 
 
-## 1.1
+## 1.1.0
 - Changed alarm sound.
 - Added "Stop the rest" button on timer screen.
 - Fix: Resetting workout data after finish.
@@ -27,5 +27,5 @@
 - Share database.
 - Import database.
 
-## 1.0
+## 1.0.0
 First version.
