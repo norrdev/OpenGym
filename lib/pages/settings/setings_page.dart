@@ -111,28 +111,28 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              FutureBuilder<bool>(
-                future: _isImperial,
-                builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.waiting:
-                      return MpSwitch(
-                          title: 'Metric / Imperial (UK, US)',
-                          value: false,
-                          onChanged: (val) {});
-                    default:
-                      if (snapshot.hasError) {
-                        return Text('Error: ${snapshot.error}');
-                      } else {
-                        return MpSwitch(
-                            title: 'Metric / Imperial (UK, US)',
-                            value: snapshot.data!,
-                            onChanged: _saveImperial);
-                      }
-                  }
-                },
-              ),
-              const Divider(),
+              // FutureBuilder<bool>(
+              //   future: _isImperial,
+              //   builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+              //     switch (snapshot.connectionState) {
+              //       case ConnectionState.waiting:
+              //         return MpSwitch(
+              //             title: 'Metric / Imperial (UK, US)',
+              //             value: false,
+              //             onChanged: (val) {});
+              //       default:
+              //         if (snapshot.hasError) {
+              //           return Text('Error: ${snapshot.error}');
+              //         } else {
+              //           return MpSwitch(
+              //               title: 'Metric / Imperial (UK, US)',
+              //               value: snapshot.data!,
+              //               onChanged: _saveImperial);
+              //         }
+              //     }
+              //   },
+              // ),
+              // const Divider(),
               MpLinkButton(
                 label: S.of(context).share,
                 onPressed: () => _share(context),
