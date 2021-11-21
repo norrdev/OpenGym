@@ -1,7 +1,7 @@
 ## 1.1.5
 - Changed place for weight and repeats.
-- Added system splashscreen on start
-- Added stop button to rest timer
+- Added system splashscreen on start.
+- Added stop button to rest timer.
 - Added ability to increase/decrease amount of sets during workout.
 
 ## 1.1.4
