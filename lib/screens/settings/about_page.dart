@@ -30,12 +30,9 @@ class AboutPage extends StatelessWidget {
           controller: controller,
           selectable: false,
           styleSheet: style,
-          //styleSheetTheme: MarkdownStyleSheetBaseTheme.platform,
-          //onTapLink: (href) => launch(href),
           onTapLink: (text, href, title) => launch(href!),
         ),
       ),
-      //bottomNavigationBar: BottomBar(initialActiveIndex: 4),
     );
   }
 }

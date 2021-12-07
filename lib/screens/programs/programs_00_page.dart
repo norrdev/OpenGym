@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
-import 'package:npng/pages/programs/programs_01_days_page.dart';
-import 'package:npng/db.dart';
+import 'package:npng/screens/programs/programs_01_days_page.dart';
+import 'package:npng/data/db.dart';
 import 'package:npng/widgets/modal_popups.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/widgets/bottom_bar.dart';
 
 class ProgramsPage extends StatefulWidget {
   const ProgramsPage({Key? key}) : super(key: key);
@@ -147,7 +146,6 @@ class _ProgramsPageState extends State<ProgramsPage> {
           ),
         ),
       ),
-      bottomNavigationBar: const BottomBar(initialActiveIndex: 1),
     );
   }
 }

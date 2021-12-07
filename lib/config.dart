@@ -2,21 +2,23 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:npng/pages/exercises/exercise.dart';
-import 'package:npng/pages/exercises/exercises_by_muscle_page.dart';
-import 'package:npng/pages/exercises/exercises_page.dart';
-import 'package:npng/pages/programs/programs_01_days_page.dart';
-import 'package:npng/pages/programs/programs_00_page.dart';
-import 'package:npng/pages/workout/workout_02_set_page.dart';
-import 'package:npng/pages/settings/about_page.dart';
-import 'package:npng/pages/workout/workout_03_timer_page.dart';
-import 'package:npng/pages/workout/workout_01_process_page.dart';
-import 'package:npng/pages/workout/workout_00_start_page.dart';
+import 'package:npng/screens/exercises/exercise.dart';
+import 'package:npng/screens/exercises/exercises_by_muscle_page.dart';
+import 'package:npng/screens/exercises/exercises_page.dart';
+import 'package:npng/screens/programs/programs_01_days_page.dart';
+import 'package:npng/screens/programs/programs_00_page.dart';
+import 'package:npng/screens/workout/workout_02_set_page.dart';
+import 'package:npng/screens/settings/about_page.dart';
+import 'package:npng/screens/workout/workout_03_timer_page.dart';
+import 'package:npng/screens/workout/workout_01_process_page.dart';
+import 'package:npng/screens/workout/workout_00_start_page.dart';
+import 'package:path/path.dart';
+import 'screens/main_screen.dart';
 
 /// Place for themes, configuration constants, etc.
 
 final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
-// final bool isApple = false;
+//const bool isApple = false;
 
 // bool get isMobileDevice => !kIsWeb && (Platform.isIOS || Platform.isAndroid);
 // bool get isDesktopDevice =>
@@ -71,10 +73,11 @@ final ThemeData kMaterialDark = ThemeData(
 );
 
 /// Initial route
-const kInitialRoute = WorkoutStartPage.id;
+const kInitialRoute = '/'; //WorkoutStartPage.id;
 
 /// Route map
 final Map<String, Widget Function(BuildContext)> kAppRoutes = {
+  '/': (context) => const MainScreen(),
   WorkoutStartPage.id: (context) => const WorkoutStartPage(),
   WorkoutProcessPage.id: (context) => const WorkoutProcessPage(),
   ProgramsPage.id: (context) => const ProgramsPage(),

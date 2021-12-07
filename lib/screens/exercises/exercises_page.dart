@@ -5,9 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/pages/exercises/exercises_by_muscle_page.dart';
-import 'package:npng/db.dart';
-import 'package:npng/widgets/bottom_bar.dart';
+import 'package:npng/screens/exercises/exercises_by_muscle_page.dart';
+import 'package:npng/data/db.dart';
 
 class ExercisesPage extends StatefulWidget {
   const ExercisesPage({Key? key}) : super(key: key);
@@ -82,7 +81,6 @@ class _ExercisesPageState extends State<ExercisesPage> {
           ),
         ),
       ),
-      bottomNavigationBar: const BottomBar(initialActiveIndex: 2),
     );
   }
 }

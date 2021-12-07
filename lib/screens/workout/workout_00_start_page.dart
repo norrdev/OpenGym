@@ -1,16 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
-import 'package:npng/pages/programs/programs_00_page.dart';
-import 'package:npng/pages/workout/workout_01_process_page.dart';
-import 'package:npng/widgets/bottom_bar.dart';
+import 'package:npng/screens/programs/programs_00_page.dart';
+import 'package:npng/screens/workout/workout_01_process_page.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/db.dart';
+import 'package:npng/data/db.dart';
 
 class WorkoutStartPage extends StatefulWidget {
   const WorkoutStartPage({Key? key}) : super(key: key);
-  static const String id = '/';
+  static const String id = '/workout';
 
   @override
   _WorkoutStartPageState createState() => _WorkoutStartPageState();
@@ -118,7 +117,6 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
                 ),
               ),
             ),
-      bottomNavigationBar: const BottomBar(initialActiveIndex: 0),
     );
   }
 }
