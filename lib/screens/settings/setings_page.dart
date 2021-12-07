@@ -8,7 +8,7 @@ import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/bottom_bar.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:npng/db.dart';
+import 'package:npng/data/db.dart';
 import 'package:share_plus/share_plus.dart';
 import 'about_page.dart';
 import 'package:file_picker/file_picker.dart';

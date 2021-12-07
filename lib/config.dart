@@ -2,21 +2,21 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:npng/pages/exercises/exercise.dart';
-import 'package:npng/pages/exercises/exercises_by_muscle_page.dart';
-import 'package:npng/pages/exercises/exercises_page.dart';
-import 'package:npng/pages/programs/programs_01_days_page.dart';
-import 'package:npng/pages/programs/programs_00_page.dart';
-import 'package:npng/pages/workout/workout_02_set_page.dart';
-import 'package:npng/pages/settings/about_page.dart';
-import 'package:npng/pages/workout/workout_03_timer_page.dart';
-import 'package:npng/pages/workout/workout_01_process_page.dart';
-import 'package:npng/pages/workout/workout_00_start_page.dart';
+import 'package:npng/screens/exercises/exercise.dart';
+import 'package:npng/screens/exercises/exercises_by_muscle_page.dart';
+import 'package:npng/screens/exercises/exercises_page.dart';
+import 'package:npng/screens/programs/programs_01_days_page.dart';
+import 'package:npng/screens/programs/programs_00_page.dart';
+import 'package:npng/screens/workout/workout_02_set_page.dart';
+import 'package:npng/screens/settings/about_page.dart';
+import 'package:npng/screens/workout/workout_03_timer_page.dart';
+import 'package:npng/screens/workout/workout_01_process_page.dart';
+import 'package:npng/screens/workout/workout_00_start_page.dart';
 
 /// Place for themes, configuration constants, etc.
 
-final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
-// final bool isApple = false;
+//final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
+const bool isApple = false;
 
 // bool get isMobileDevice => !kIsWeb && (Platform.isIOS || Platform.isAndroid);
 // bool get isDesktopDevice =>

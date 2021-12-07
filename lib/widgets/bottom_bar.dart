@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:npng/config.dart';
-import 'package:npng/pages/exercises/exercises_page.dart';
-import 'package:npng/pages/log/log_start_page.dart';
-import 'package:npng/pages/programs/programs_00_page.dart';
-import 'package:npng/pages/settings/setings_page.dart';
-import 'package:npng/pages/workout/workout_00_start_page.dart';
+import 'package:npng/screens/exercises/exercises_page.dart';
+import 'package:npng/screens/log/log_start_page.dart';
+import 'package:npng/screens/programs/programs_00_page.dart';
+import 'package:npng/screens/settings/setings_page.dart';
+import 'package:npng/screens/workout/workout_00_start_page.dart';
 import 'package:page_transition/page_transition.dart';
 
 class BottomBar extends StatelessWidget {

@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
-import 'package:npng/db.dart';
+import 'package:npng/data/db.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/pages/workout/workout_02_set_page.dart';
-import 'package:npng/pages/workout/workout_04_finish_page.dart';
-import 'package:npng/state/workout_provider.dart';
+import 'package:npng/screens/workout/workout_02_set_page.dart';
+import 'package:npng/screens/workout/workout_04_finish_page.dart';
+import 'package:npng/models/workout_provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:wakelock/wakelock.dart';
