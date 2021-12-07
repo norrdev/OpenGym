@@ -4,7 +4,6 @@ import 'package:npng/config.dart';
 import 'package:npng/widgets/modal_popups.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/data/db.dart';
-import 'package:npng/widgets/bottom_bar.dart';
 
 class ExercisePage extends StatefulWidget {
   static String id = 'exersise';
@@ -97,7 +96,6 @@ WHERE muscles_id = ${widget.musclesId}''');
           ),
         ),
       ),
-      bottomNavigationBar: const BottomBar(initialActiveIndex: 3),
     );
   }
 }

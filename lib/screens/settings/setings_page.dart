@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/widgets/bottom_bar.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:npng/data/db.dart';
@@ -157,7 +156,6 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
         ),
       ),
-      bottomNavigationBar: const BottomBar(initialActiveIndex: 4),
     );
   }
 }

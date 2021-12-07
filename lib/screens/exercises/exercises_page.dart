@@ -7,7 +7,6 @@ import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/exercises/exercises_by_muscle_page.dart';
 import 'package:npng/data/db.dart';
-import 'package:npng/widgets/bottom_bar.dart';
 
 class ExercisesPage extends StatefulWidget {
   const ExercisesPage({Key? key}) : super(key: key);
@@ -82,7 +81,6 @@ class _ExercisesPageState extends State<ExercisesPage> {
           ),
         ),
       ),
-      bottomNavigationBar: const BottomBar(initialActiveIndex: 2),
     );
   }
 }

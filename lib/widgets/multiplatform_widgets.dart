@@ -37,6 +37,33 @@ class MpScaffold extends StatelessWidget {
   }
 }
 
+/// Bottom navigation bar.
+class MpBottomNavigationBar extends StatelessWidget {
+  final List<BottomNavigationBarItem> items;
+  final int currentIndex;
+  final void Function(int)? onTap;
+  const MpBottomNavigationBar(
+      {Key? key, required this.items, required this.currentIndex, this.onTap})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (isApple) {
+      return CupertinoTabBar(
+        items: items,
+        currentIndex: currentIndex,
+        onTap: onTap,
+      );
+    } else {
+      return BottomNavigationBar(
+        items: items,
+        currentIndex: currentIndex,
+        onTap: onTap,
+      );
+    }
+  }
+}
+
 /// Page router.
 PageRoute mpPageRoute({required Widget Function(BuildContext) builder}) {
   if (isApple) {

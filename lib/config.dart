@@ -12,11 +12,13 @@ import 'package:npng/screens/settings/about_page.dart';
 import 'package:npng/screens/workout/workout_03_timer_page.dart';
 import 'package:npng/screens/workout/workout_01_process_page.dart';
 import 'package:npng/screens/workout/workout_00_start_page.dart';
+import 'package:path/path.dart';
+import 'screens/main_screen.dart';
 
 /// Place for themes, configuration constants, etc.
 
-//final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
-const bool isApple = false;
+final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
+//const bool isApple = false;
 
 // bool get isMobileDevice => !kIsWeb && (Platform.isIOS || Platform.isAndroid);
 // bool get isDesktopDevice =>
@@ -71,10 +73,11 @@ final ThemeData kMaterialDark = ThemeData(
 );
 
 /// Initial route
-const kInitialRoute = WorkoutStartPage.id;
+const kInitialRoute = '/'; //WorkoutStartPage.id;
 
 /// Route map
 final Map<String, Widget Function(BuildContext)> kAppRoutes = {
+  '/': (context) => const MainScreen(),
   WorkoutStartPage.id: (context) => const WorkoutStartPage(),
   WorkoutProcessPage.id: (context) => const WorkoutProcessPage(),
   ProgramsPage.id: (context) => const ProgramsPage(),
