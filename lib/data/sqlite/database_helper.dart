@@ -15,6 +15,7 @@ class DatabaseHelper {
 
   static const muscleTable = 'muscles';
   static const exerciseTable = 'exercises';
+  static const loadTable = 'load';
   // static const ingredientTable = 'Ingredient';
   // static const recipeId = 'recipeId';
   // static const ingredientId = 'ingredientId';
@@ -115,14 +116,16 @@ class DatabaseHelper {
 
   Stream<List<Exercise>> watchAllExcersisesByMuscle(int id) async* {
     final db = await instance.streamDatabase;
-    String sql = ''''
-      SELECT exercises.id AS id, exercises.${kLocale}_name AS name, ${kLocale}_description AS description, equipment_id FROM load  
-      JOIN exercises ON exercises_id = exercises.id 
-      WHERE muscles_id = $id''';
-    yield* db.createRawQuery([exerciseTable, muscleTable], sql).mapToList(
-        (row) => Exercise.fromJson(row));
-  }
+    String sql =
+        '''SELECT exercises.id AS id, exercises.${kLocale}_name AS name, 
+           ${kLocale}_description AS description, equipment_id
+           FROM load  
+           JOIN exercises ON exercises_id = exercises.id 
+           WHERE muscles_id = $id''';
 
+    yield* db.createRawQuery(
+        [loadTable], sql).mapToList((row) => Exercise.fromJson(row));
+  }
   /*List<Recipe> parseRecipes(List<Map<String, dynamic>> recipeList) {
     final recipes = <Recipe>[];
     // 1

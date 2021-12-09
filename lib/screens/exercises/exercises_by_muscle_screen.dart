@@ -1,24 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
+import 'package:npng/data/models/models.dart';
+import 'package:npng/data/repository.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/widgets/modal_popups.dart';
+import 'package:provider/provider.dart';
 
-class ExercisesByMuscleScreen extends StatefulWidget {
+class ExercisesByMuscleScreen extends StatelessWidget {
   static String id = 'exersises_by_muscle';
-  final int? musclesId;
-  final String? pageTitle;
+  final int musclesId;
+  final String pageTitle;
 
-  const ExercisesByMuscleScreen({Key? key, this.musclesId, this.pageTitle})
+  const ExercisesByMuscleScreen(
+      {Key? key, required this.musclesId, required this.pageTitle})
       : super(key: key);
-
-  @override
-  _ExercisesByMuscleScreenState createState() =>
-      _ExercisesByMuscleScreenState();
-}
-
-class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
-  List<Map<String, dynamic>> _results = [];
 
   // void _refresh() async {
   //   _results = await db!.rawQuery('''
@@ -67,7 +63,7 @@ class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
 
     return MpScaffold(
       appBar: MpAppBar(
-        title: Text(widget.pageTitle!),
+        title: Text(pageTitle),
         trailing: MpFlatButton(
           padding: const EdgeInsets.all(8),
           child: Icon(
@@ -85,29 +81,49 @@ class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
           // ),
         ),
       ),
-      body: ListView.builder(
-        itemCount: _results.length,
-        itemBuilder: (context, index) {
-          final item = _results[index];
+      body: _buildExercisesList(context, musclesId),
+    );
+  }
+
+  Widget _buildExercisesList(BuildContext context, int id) {
+    final repository = Provider.of<Repository>(context, listen: false);
+    return StreamBuilder<List<Exercise>>(
+      stream: repository.watchAllExcersisesByMuscle(id),
+      builder: (context, AsyncSnapshot<List<Exercise>> snapshot) {
+        if (snapshot.connectionState == ConnectionState.active) {
+          final exes = snapshot.data ?? [];
           return Material(
             type: MaterialType.transparency,
-            //TODO: Make swipes to delete and edit
-            child: ListTile(
-              title: Text(item['name'].toString()),
-              //TODO: New Add page
-              // onLongPress: () => editModalPopup(
-              //   context,
-              //   id: item['id'] as int,
-              //   name: item['name'] as String,
-              //   description: item['description'] as String,
-              //   update: _update,
-              //   refresh: _refresh,
-              //   delete: _delete,
-              // ),
+            child: ListView.builder(
+              itemCount: exes.length,
+              itemBuilder: (context, index) {
+                final item = exes[index];
+                return Material(
+                  type: MaterialType.transparency,
+                  //TODO: Make swipes to delete and edit
+                  child: ListTile(
+                    title: Text(item.name!),
+                    //TODO: New Add page
+                    // onLongPress: () => editModalPopup(
+                    //   context,
+                    //   id: item['id'] as int,
+                    //   name: item['name'] as String,
+                    //   description: item['description'] as String,
+                    //   update: _update,
+                    //   refresh: _refresh,
+                    //   delete: _delete,
+                    // ),
+                  ),
+                );
+              },
             ),
           );
-        },
-      ),
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
     );
   }
 }

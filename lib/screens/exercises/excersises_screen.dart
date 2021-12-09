@@ -1,22 +1,16 @@
 import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:npng/screens/exercises/exercises_by_muscle_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/screens/exercises/exercises_by_muscle_page.dart';
 import 'package:npng/data/models/muscle.dart';
 
-class ExercisesScreen extends StatefulWidget {
+class ExercisesScreen extends StatelessWidget {
   const ExercisesScreen({Key? key}) : super(key: key);
   static String id = '/exercises';
-
-  @override
-  _ExercisesScreenState createState() => _ExercisesScreenState();
-}
-
-class _ExercisesScreenState extends State<ExercisesScreen> {
-  List<Muscle> muscles = [];
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +48,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                         context,
                         mpPageRoute(
                           builder: (context) {
-                            return ExercisesByMusclePage(
+                            return ExercisesByMuscleScreen(
                               musclesId: item.id as int,
                               pageTitle: item.name as String,
                             );
