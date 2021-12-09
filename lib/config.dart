@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:npng/screens/exercises/exercise.dart';
 import 'package:npng/screens/exercises/exercises_by_muscle_page.dart';
 import 'package:npng/screens/exercises/exercises_page.dart';
@@ -26,7 +27,7 @@ final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
 // bool get isDesktopDeviceOrWeb => kIsWeb || isDesktopDevice;
 
 /// Current locale
-late Locale kLocale;
+String kLocale = Intl.getCurrentLocale();
 
 /// Cupertino light & dark theme
 //final Brightness brightness = MediaQuery.platformBrightnessOf(context);

@@ -10,7 +10,7 @@ import 'package:npng/data/sqlite/db.dart';
 
 class ExercisesPage extends StatefulWidget {
   const ExercisesPage({Key? key}) : super(key: key);
-  static String id = 'exercises';
+  static String id = '/exercises_old';
 
   @override
   _ExercisesPageState createState() => _ExercisesPageState();

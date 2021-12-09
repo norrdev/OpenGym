@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:npng/screens/exercises/excersises_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/log/log_start_page.dart';
 import 'package:npng/screens/settings/setings_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:npng/screens/exercises/exercises_page.dart';
 import 'package:npng/screens/programs/programs_00_page.dart';
 import 'package:npng/screens/workout/workout_00_start_page.dart';
 
@@ -25,10 +25,12 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    pageList.add(const WorkoutStartPage());
-    pageList.add(const ProgramsPage());
-    pageList.add(const ExercisesPage());
-    pageList.add(const LogStartPage());
+    pageList.add(const Center(
+      child: CircularProgressIndicator(),
+    )); //pageList.add(const WorkoutStartPage());
+    pageList.add(Container()); //pageList.add(const ProgramsPage());
+    pageList.add(const ExercisesScreen());
+    pageList.add(Container()); //pageList.add(const LogStartPage());
     pageList.add(const SettingsPage());
     getCurrentIndex();
   }
@@ -64,6 +66,25 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String title = 'NpNg';
+    switch (_selectedIndex) {
+      case 0:
+        title = S.of(context).pageWorkout;
+        break;
+      case 1:
+        title = S.of(context).pageProgramsTitle;
+        break;
+      case 2:
+        title = S.of(context).pageExerciseTitle;
+        break;
+      case 3:
+        title = S.of(context).log;
+        break;
+      case 4:
+        title = S.of(context).settings;
+        break;
+      default:
+    }
     return MpScaffold(
       bottomNavigationBar: MpBottomNavigationBar(
         items: [
@@ -107,9 +128,9 @@ class _MainScreenState extends State<MainScreen> {
         onTap: _onItemTapped,
         //selectedItemColor: Theme.of(context).colorScheme.primary,
       ),
-      // appBar: MpAppBar(
-      //   title: Text(title),
-      // ),
+      appBar: MpAppBar(
+        title: Text(title),
+      ),
       body: IndexedStack(
         index: _selectedIndex,
         children: pageList,

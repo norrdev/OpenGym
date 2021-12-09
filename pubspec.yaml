@@ -21,9 +21,11 @@ dependencies:
   url_launcher: ^6.0.3
   package_info_plus: ^1.0.1
   audioplayers: ^0.20.0
+  equatable: ^2.0.3
   sqflite: ^2.0.0+4
   synchronized: ^3.0.0
   sqlbrite: ^2.1.0
+  # json_annotation: ^4.1.0
   path: ^1.8.0
   wakelock: ^0.5.2
   page_transition: ^2.0.2

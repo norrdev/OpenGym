@@ -51,9 +51,6 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Getting locale. Must be on main screen!
-    kLocale = Localizations.localeOf(context);
-
     return MpScaffold(
       appBar: MpAppBar(
         title: Text(S.of(context).pageWorkout),
