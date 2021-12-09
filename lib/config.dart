@@ -3,9 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
-import 'package:npng/screens/exercises/exercise.dart';
+import 'package:npng/screens/exercises/excersises_screen.dart';
 import 'package:npng/screens/exercises/exercises_by_muscle_page.dart';
-import 'package:npng/screens/exercises/exercises_page.dart';
 import 'package:npng/screens/programs/programs_01_days_page.dart';
 import 'package:npng/screens/programs/programs_00_page.dart';
 import 'package:npng/screens/workout/workout_02_set_page.dart';
@@ -73,7 +72,7 @@ final ThemeData kMaterialDark = ThemeData(
 );
 
 /// Initial route
-const kInitialRoute = '/'; //WorkoutStartPage.id;
+const kInitialRoute = '/';
 
 /// Route map
 final Map<String, Widget Function(BuildContext)> kAppRoutes = {
@@ -84,9 +83,8 @@ final Map<String, Widget Function(BuildContext)> kAppRoutes = {
   WorkoutSetPage.id: (context) => const WorkoutSetPage(),
   TimerPage.id: (context) => const TimerPage(),
   AboutPage.id: (context) => AboutPage(),
-  ExercisesPage.id: (context) => const ExercisesPage(),
+  ExercisesScreen.id: (context) => const ExercisesScreen(),
   ExercisesByMusclePage.id: (context) => const ExercisesByMusclePage(),
-  ExercisePage.id: (context) => const ExercisePage(),
   ProgramsDaysPage.id: (context) => const ProgramsDaysPage(),
   // RoutinesByDayPage.id: (context) => RoutinesByDayPage(),
   // AddExcersisePage.id: (context) => AddExcersisePage(),

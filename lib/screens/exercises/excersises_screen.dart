@@ -1,15 +1,11 @@
 import 'dart:typed_data';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
-import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/exercises/exercises_by_muscle_page.dart';
-import 'package:provider/provider.dart';
-import '../../data/models/muscle.dart';
-//import 'package:npng/data/sqlite/db.dart';
+import 'package:npng/data/models/muscle.dart';
 
 class ExercisesScreen extends StatefulWidget {
   const ExercisesScreen({Key? key}) : super(key: key);
@@ -53,6 +49,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                           ),
                     title: Text(item.name as String),
                     onTap: () {
+                      //TODO: Switch to exersises by muscle screen
                       Navigator.push(
                         context,
                         mpPageRoute(
