@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:npng/data/db.dart';
+import 'package:npng/data/sqlite/db.dart';
 import 'package:share_plus/share_plus.dart';
 import 'about_page.dart';
 import 'package:file_picker/file_picker.dart';
@@ -108,29 +108,29 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //TODO: Implement US metrics
-            FutureBuilder<bool>(
-              future: _isImperial,
-              builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                switch (snapshot.connectionState) {
-                  case ConnectionState.waiting:
-                    return MpSwitch(
-                        title: 'Metric / Imperial (UK, US) - not work',
-                        value: false,
-                        onChanged: (val) {});
-                  default:
-                    if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
-                    } else {
-                      return MpSwitch(
-                          title: 'Metric / Imperial (UK, US) - not work',
-                          value: snapshot.data!,
-                          onChanged: _saveImperial);
-                    }
-                }
-              },
-            ),
-            const Divider(),
+            // // Implement US metrics
+            // FutureBuilder<bool>(
+            //   future: _isImperial,
+            //   builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            //     switch (snapshot.connectionState) {
+            //       case ConnectionState.waiting:
+            //         return MpSwitch(
+            //             title: 'Metric / Imperial (UK, US) - not work',
+            //             value: false,
+            //             onChanged: (val) {});
+            //       default:
+            //         if (snapshot.hasError) {
+            //           return Text('Error: ${snapshot.error}');
+            //         } else {
+            //           return MpSwitch(
+            //               title: 'Metric / Imperial (UK, US) - not work',
+            //               value: snapshot.data!,
+            //               onChanged: _saveImperial);
+            //         }
+            //     }
+            //   },
+            // ),
+            //const Divider(),
             MpLinkButton(
               label: S.of(context).share,
               onPressed: () => _share(context),

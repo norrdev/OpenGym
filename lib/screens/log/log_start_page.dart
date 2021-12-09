@@ -4,7 +4,7 @@ import 'package:npng/config.dart';
 import 'package:npng/screens/log/log_show_workout.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/data/db.dart';
+import 'package:npng/data/sqlite/db.dart';
 import 'package:cell_calendar/cell_calendar.dart';
 
 class LogStartPage extends StatefulWidget {

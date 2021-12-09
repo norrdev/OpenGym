@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/screens/workout/workout_03_timer_page.dart';
-import 'package:npng/models/workout_provider.dart';
+import 'package:npng/data/models/workout_provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/generated/l10n.dart';

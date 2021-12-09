@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:npng/config.dart';
-import 'package:npng/data/db.dart';
+import 'package:npng/data/sqlite/db.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:url_launcher/url_launcher.dart';

@@ -65,7 +65,8 @@ class MpBottomNavigationBar extends StatelessWidget {
 }
 
 /// Page router.
-PageRoute mpPageRoute({required Widget Function(BuildContext) builder}) {
+PageRoute<dynamic> mpPageRoute(
+    {required Widget Function(BuildContext) builder}) {
   if (isApple) {
     return CupertinoPageRoute(
       builder: builder,

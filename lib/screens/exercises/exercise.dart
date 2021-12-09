@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
 import 'package:npng/widgets/modal_popups.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
-import 'package:npng/data/db.dart';
+import 'package:npng/data/sqlite/db.dart';
 
 class ExercisePage extends StatefulWidget {
   static String id = 'exersise';
