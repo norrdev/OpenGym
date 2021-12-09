@@ -14,6 +14,7 @@ class DatabaseHelper {
   static const _databaseVersion = 1;
 
   static const muscleTable = 'muscles';
+  static const exerciseTable = 'exercises';
   // static const ingredientTable = 'Ingredient';
   // static const recipeId = 'recipeId';
   // static const ingredientId = 'ingredientId';
@@ -30,9 +31,7 @@ class DatabaseHelper {
   static Database? _database;
 
 // SQL code to create the database table
-// 1
   // Future _onCreate(Database db, int version) async {
-  //   // 2
   //   await db.execute('''
   //       CREATE TABLE $recipeTable (
   //         $recipeId INTEGER PRIMARY KEY,
@@ -44,7 +43,6 @@ class DatabaseHelper {
   //         totalTime REAL
   //       )
   //       ''');
-  //   // 3
   //   await db.execute('''
   //       CREATE TABLE $ingredientTable (
   //         $ingredientId INTEGER PRIMARY KEY,
@@ -111,10 +109,18 @@ class DatabaseHelper {
   }
 
   Stream<List<Muscle>> watchAllMuscles() async* {
-    final sdb = await instance.streamDatabase;
-    yield* sdb
-        .createQuery(muscleTable)
-        .mapToList((row) => Muscle.fromJson(row));
+    final db = await instance.streamDatabase;
+    yield* db.createQuery(muscleTable).mapToList((row) => Muscle.fromJson(row));
+  }
+
+  Stream<List<Exercise>> watchAllExcersisesByMuscle(int id) async* {
+    final db = await instance.streamDatabase;
+    String sql = ''''
+      SELECT exercises.id AS id, exercises.${kLocale}_name AS name, ${kLocale}_description AS description, equipment_id FROM load  
+      JOIN exercises ON exercises_id = exercises.id 
+      WHERE muscles_id = $id''';
+    yield* db.createRawQuery([exerciseTable, muscleTable], sql).mapToList(
+        (row) => Exercise.fromJson(row));
   }
 
   /*List<Recipe> parseRecipes(List<Map<String, dynamic>> recipeList) {

@@ -21,4 +21,9 @@ class SqliteRepository extends Repository {
   Stream<List<Muscle>> watchAllMuscles() {
     return dbHelper.watchAllMuscles();
   }
+
+  @override
+  Stream<List<Exercise>> watchAllExcersisesByMuscle(int id) {
+    return dbHelper.watchAllExcersisesByMuscle(id);
+  }
 }

@@ -16,7 +16,7 @@ class ExercisesScreen extends StatefulWidget {
 }
 
 class _ExercisesScreenState extends State<ExercisesScreen> {
-  List<Muscle> musles = [];
+  List<Muscle> muscles = [];
 
   @override
   Widget build(BuildContext context) {
