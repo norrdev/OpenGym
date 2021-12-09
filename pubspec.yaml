@@ -30,10 +30,11 @@ dependencies:
   wakelock: ^0.5.2
   page_transition: ^2.0.2
   cell_calendar: ^0.5.0+1
-  share_plus: ^3.0.4 #^2.1.4
+  share_plus: ^3.0.4
   flash: ^2.0.1
   file_picker: ^4.0.1
   shared_preferences: ^2.0.8
+  flutter_slidable: ^1.1.0
 
 dev_dependencies:
   flutter_lints: ^1.0.4
@@ -50,8 +51,5 @@ flutter:
     - assets/texts/ru/
     - assets/sounds/
     - CHANGELOG.md
+    #todo New asset, change table name!
     - assets/db/npng.db
-
-flutter_intl:
-  enabled: true
-  main_locale: en

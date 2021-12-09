@@ -5,6 +5,7 @@ import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/widgets/modal_popups.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
 class ExercisesByMuscleScreen extends StatelessWidget {
