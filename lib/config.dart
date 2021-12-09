@@ -12,7 +12,6 @@ import 'package:npng/screens/settings/about_page.dart';
 import 'package:npng/screens/workout/workout_03_timer_page.dart';
 import 'package:npng/screens/workout/workout_01_process_page.dart';
 import 'package:npng/screens/workout/workout_00_start_page.dart';
-import 'package:path/path.dart';
 import 'screens/main_screen.dart';
 
 /// Place for themes, configuration constants, etc.
