@@ -99,21 +99,28 @@ class ExercisesByMuscleScreen extends StatelessWidget {
               itemCount: exes.length,
               itemBuilder: (context, index) {
                 final item = exes[index];
-                return Material(
-                  type: MaterialType.transparency,
-                  //TODO: Make swipes to delete and edit
-                  child: ListTile(
-                    title: Text(item.name!),
-                    //TODO: New Add page
-                    // onLongPress: () => editModalPopup(
-                    //   context,
-                    //   id: item['id'] as int,
-                    //   name: item['name'] as String,
-                    //   description: item['description'] as String,
-                    //   update: _update,
-                    //   refresh: _refresh,
-                    //   delete: _delete,
-                    // ),
+                return Slidable(
+                  child: ListTile(title: Text(item.name!)),
+                  endActionPane: const ActionPane(
+                    motion: ScrollMotion(),
+                    children: [
+                      SlidableAction(
+                        onPressed: doNothing,
+                        backgroundColor: Color(0xFF0392CF),
+                        foregroundColor: Colors.white,
+                        icon: Icons.edit,
+                        label: 'Edit',
+                      ),
+                      SlidableAction(
+                        // An action can be bigger than the others.
+                        //flex: 2,
+                        onPressed: doNothing,
+                        backgroundColor: Colors.redAccent,
+                        foregroundColor: Colors.white,
+                        icon: Icons.delete,
+                        label: 'Delete',
+                      ),
+                    ],
                   ),
                 );
               },
@@ -128,3 +135,5 @@ class ExercisesByMuscleScreen extends StatelessWidget {
     );
   }
 }
+
+void doNothing(BuildContext context) {}
