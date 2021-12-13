@@ -1,3 +1,9 @@
+## 2.0.0
+- Full refactoring of database.
+- Improved speed.
+- Slidable lists.
+- New exercise screen.
+
 ## 1.2.0
 - Changed place for weight and repeats.
 - Added system splashscreen on start.

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
+import 'package:npng/screens/exercises/exercise_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/widgets/modal_popups.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -89,7 +90,7 @@ class ExercisesByMuscleScreen extends StatelessWidget {
   Widget _buildExercisesList(BuildContext context, int id) {
     final repository = Provider.of<Repository>(context, listen: false);
     return StreamBuilder<List<Exercise>>(
-      stream: repository.watchAllExcersisesByMuscle(id),
+      stream: repository.findExcersisesByMuscle(id),
       builder: (context, AsyncSnapshot<List<Exercise>> snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           final exes = snapshot.data ?? [];
@@ -100,7 +101,20 @@ class ExercisesByMuscleScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 final item = exes[index];
                 return Slidable(
-                  child: ListTile(title: Text(item.name!)),
+                  key: ValueKey(item),
+                  child: ListTile(
+                    title: Text(item.name!),
+                    onTap: () => Navigator.push(
+                      context,
+                      mpPageRoute(
+                        builder: (context) {
+                          return ExerciseScreen(
+                            exeId: item.id as int,
+                          );
+                        },
+                      ),
+                    ),
+                  ),
                   endActionPane: const ActionPane(
                     motion: ScrollMotion(),
                     children: [

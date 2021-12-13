@@ -23,7 +23,13 @@ class SqliteRepository extends Repository {
   }
 
   @override
-  Stream<List<Exercise>> watchAllExcersisesByMuscle(int id) {
-    return dbHelper.watchAllExcersisesByMuscle(id);
+  Stream<List<Exercise>> findExcersisesByMuscle(int id) {
+    return dbHelper.findExcersisesByMuscle(id);
+  }
+
+  @override
+  Future<Exercise> findExerciseById(int id) {
+    // TODO: implement findExerciseById
+    throw UnimplementedError();
   }
 }

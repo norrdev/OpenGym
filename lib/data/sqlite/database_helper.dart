@@ -71,6 +71,7 @@ class DatabaseHelper {
       await File(path).writeAsBytes(bytes, flush: true);
     }
 
+    // TODO: Set to OFF in production.
     Sqflite.setDebugModeOn(true);
     return openDatabase(
       path,
@@ -111,7 +112,7 @@ class DatabaseHelper {
     yield* db.createQuery(muscleTable).mapToList((row) => Muscle.fromJson(row));
   }
 
-  Stream<List<Exercise>> watchAllExcersisesByMuscle(int id) async* {
+  Stream<List<Exercise>> findExcersisesByMuscle(int id) async* {
     final db = await instance.streamDatabase;
     String sql =
         '''SELECT exercises.id AS id, exercises.${kLocale}_name AS name, 
@@ -122,6 +123,13 @@ class DatabaseHelper {
 
     yield* db.createRawQuery(
         [loadTable], sql).mapToList((row) => Exercise.fromJson(row));
+  }
+
+  Future<Exercise> findExerciseById(id) async {
+    final db = await instance.streamDatabase;
+    final exeList = await db.query(exerciseTable, where: 'id = $id', limit: 1);
+    final Exercise exe = Exercise.fromJson(exeList.first);
+    return exe;
   }
 
   void close() {

@@ -7,5 +7,7 @@ abstract class Repository {
 
   Stream<List<Muscle>> watchAllMuscles();
 
-  Stream<List<Exercise>> watchAllExcersisesByMuscle(int id);
+  Stream<List<Exercise>> findExcersisesByMuscle(int id);
+
+  Future<Exercise> findExerciseById(int id);
 }
