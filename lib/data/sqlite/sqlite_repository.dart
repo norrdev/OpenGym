@@ -29,7 +29,6 @@ class SqliteRepository extends Repository {
 
   @override
   Future<Exercise> findExerciseById(int id) {
-    // TODO: implement findExerciseById
-    throw UnimplementedError();
+    return dbHelper.findExerciseById(id);
   }
 }

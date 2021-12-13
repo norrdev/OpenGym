@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
 import 'package:npng/data/sqlite/db.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:npng/config.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 
@@ -14,7 +13,7 @@ class ExerciseScreen extends StatelessWidget {
           title: Text('Exe $exeId'),
         ),
         body: const Center(
-          child: const CircularProgressIndicator(),
+          child: CircularProgressIndicator(),
         ));
   }
 }

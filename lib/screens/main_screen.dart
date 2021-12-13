@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:npng/screens/exercises/excersises_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/screens/log/log_start_page.dart';
 import 'package:npng/screens/settings/setings_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:npng/screens/programs/programs_00_page.dart';
-import 'package:npng/screens/workout/workout_00_start_page.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);

@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -7,7 +6,6 @@ import 'data/sqlite/sqlite_repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/data/models/workout_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/foundation.dart';
 import 'config.dart';
 
 void main() async {

@@ -1,11 +1,9 @@
 import 'dart:typed_data';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/screens/exercises/exercises_by_muscle_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
-import 'package:npng/screens/exercises/exercises_by_muscle_page.dart';
 import 'package:npng/data/models/muscle.dart';
 
 class ExercisesScreen extends StatelessWidget {
