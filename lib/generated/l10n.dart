@@ -370,10 +370,10 @@ class S {
     );
   }
 
-  /// `Canсel`
+  /// `Cancel`
   String get cancel {
     return Intl.message(
-      'Canсel',
+      'Cancel',
       name: 'cancel',
       desc: '',
       args: [],
@@ -525,6 +525,16 @@ class S {
     return Intl.message(
       'Exercise added.',
       name: 'addEx',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No description.`
+  String get noDesc {
+    return Intl.message(
+      'No description.',
+      name: 'noDesc',
       desc: '',
       args: [],
     );
