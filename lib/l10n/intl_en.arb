@@ -32,7 +32,7 @@
     "import":"Import database",
     "skip":"Skip",
     "skipDialog":"Are you really want to skip this excersise today?",
-    "cancel":"Cancel",
+    "cancel":"Canсel",
 
     "pageProgramsTitle":"Programs",
 
@@ -54,7 +54,6 @@
     "wrkEnd":"Workout end",
     "wrkDuration":"Workout duration",
 
-    "addEx":"Exercise added.",
-    "noDesc": "No description."
+    "addEx":"Exercise added."
 
 }

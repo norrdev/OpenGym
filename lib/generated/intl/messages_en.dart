@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add": MessageLookupByLibrary.simpleMessage("Add"),
         "addEx": MessageLookupByLibrary.simpleMessage("Exercise added."),
         "backup": MessageLookupByLibrary.simpleMessage("Backup database"),
-        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Canсel"),
         "ccontinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "currentWorkout":
             MessageLookupByLibrary.simpleMessage("Current workout"),
@@ -45,7 +45,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "min": MessageLookupByLibrary.simpleMessage("min."),
         "muscles": MessageLookupByLibrary.simpleMessage("Muscles"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
-        "noDesc": MessageLookupByLibrary.simpleMessage("No description."),
         "noex":
             MessageLookupByLibrary.simpleMessage("No excersises on this day."),
         "pageAddEx": MessageLookupByLibrary.simpleMessage("Add exercise"),
