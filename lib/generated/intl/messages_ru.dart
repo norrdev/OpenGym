@@ -45,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "min": MessageLookupByLibrary.simpleMessage("мин."),
         "muscles": MessageLookupByLibrary.simpleMessage("Мышцы"),
         "name": MessageLookupByLibrary.simpleMessage("Название"),
+        "noDesc": MessageLookupByLibrary.simpleMessage("Нет описания."),
         "noex":
             MessageLookupByLibrary.simpleMessage("В этом дне нет упражнений."),
         "pageAddEx":

@@ -49,6 +49,8 @@ class DatabaseHelper {
   //       ''');
   // }
 
+// TODO Create migration https://github.com/tekartik/sqflite/blob/master/sqflite/doc/migration_example.md
+
   // this opens the database (and creates it if it doesn't exist)
   Future<Database> _initDatabase() async {
     final documentsDirectory = await getApplicationDocumentsDirectory();

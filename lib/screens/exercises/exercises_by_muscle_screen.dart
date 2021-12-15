@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
-import 'package:npng/screens/exercises/exercise_screen.dart';
+import 'package:npng/screens/exercises/exercise_view_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/widgets/modal_popups.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -108,8 +108,8 @@ class ExercisesByMuscleScreen extends StatelessWidget {
                       context,
                       mpPageRoute(
                         builder: (context) {
-                          return ExerciseScreen(
-                            exeId: item.id as int,
+                          return ExerciseViewScreen(
+                            exe: item,
                           );
                         },
                       ),
