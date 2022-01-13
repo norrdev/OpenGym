@@ -1,7 +1,7 @@
 import 'dart:async';
-import '../repository.dart';
-import 'database_helper.dart';
-import '../models/models.dart';
+import 'package:npng/data/repository.dart';
+import 'package:npng/data/sqlite/database_helper.dart';
+import 'package:npng/data/models/models.dart';
 
 class SqliteRepository extends Repository {
   final dbHelper = DatabaseHelper.instance;
@@ -35,5 +35,17 @@ class SqliteRepository extends Repository {
   @override
   Future<int> updateExercise(Exercise exe) {
     return dbHelper.updateExercise(exe);
+  }
+
+  @override
+  Future<void> insertExercise(int muscleId, Exercise exercise) {
+    dbHelper.insertExercise(muscleId, exercise);
+    return Future.value();
+  }
+
+  @override
+  Future<void> deleteExercise(Exercise exercise) {
+    dbHelper.deleteExercise(exercise);
+    return Future.value();
   }
 }

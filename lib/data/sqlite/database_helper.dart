@@ -149,6 +149,31 @@ class DatabaseHelper {
         [exe.name, exe.description, exe.id]);
   }
 
+  Future<void> insertExercise(int muscleId, Exercise exercise) async {
+    final db = await instance.streamDatabase;
+    await db.transaction((txn) async {
+      int id = await txn.insert('exercises', {
+        '${kLocale}_name': exercise.name,
+        '${kLocale}_description': exercise.description,
+      });
+      await txn.insert('load', {
+        'exercises_id': id,
+        'muscles_id': muscleId,
+      });
+    });
+    return Future.value();
+  }
+
+  Future<void> deleteExercise(Exercise exercise) async {
+    final db = await instance.streamDatabase;
+    await db.transaction((txn) async {
+      await txn.delete('exercises', where: 'id = ?', whereArgs: [exercise.id]);
+      await txn
+          .delete('load', where: 'exercises_id = ?', whereArgs: [exercise.id]);
+    });
+    return Future.value();
+  }
+
   void close() {
     _streamDatabase.close();
   }

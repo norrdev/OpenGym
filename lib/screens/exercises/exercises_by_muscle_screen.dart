@@ -4,51 +4,12 @@ import 'package:npng/config.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/screens/exercises/exercise_edit_screen.dart';
+import 'package:npng/screens/exercises/exercise_new_screen.dart';
 import 'package:npng/screens/exercises/exercise_view_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/generated/l10n.dart';
-
-// void _refresh() async {
-//   _results = await db!.rawQuery('''
-//     SELECT exercises.id AS id, exercises.${kLocale}_name AS name, ${kLocale}_description AS description, equipment_id FROM load
-//     JOIN exercises ON exercises_id = exercises.id
-//     WHERE muscles_id = ${widget.musclesId}''');
-//   setState(() {});
-// }
-
-// void _insert({String? name, String? description}) async {
-//   int id = 0;
-//   await db!.transaction((txn) async {
-//     id = await txn.insert('exercises', {
-//       '${kLocale}_name': name,
-//       '${kLocale}_description': description,
-//     });
-//     await txn.insert('load', {
-//       'exercises_id': id,
-//       'muscles_id': widget.musclesId,
-//     });
-//   });
-// }
-
-// void _update({int? id, String? name, String? description}) async {
-//   await db!.transaction((txn) async {
-//     await txn.update(
-//       'exercises',
-//       {'${kLocale}_name': name, '${kLocale}_description': description},
-//       where: 'id = ?',
-//       whereArgs: [id],
-//     );
-//   });
-// }
-
-// void _delete({int? id}) async {
-//   await db!.transaction((txn) async {
-//     await txn.delete('exercises', where: 'id = ?', whereArgs: [id]);
-//     await txn.delete('load', where: 'exercises_id = ?', whereArgs: [id]);
-//   });
-// }
 
 class ExercisesByMuscleScreen extends StatefulWidget {
   static String id = 'exersises_by_muscle';
@@ -76,16 +37,19 @@ class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
           child: Icon(
             (isApple) ? CupertinoIcons.add : Icons.add,
             color: (isApple)
-                ? CupertinoTheme.of(context).textTheme.navTitleTextStyle.color
+                ? CupertinoTheme.of(context).textTheme.actionTextStyle.color
                 : Theme.of(context).secondaryHeaderColor,
           ),
-          // onPressed: () => insertModalPopup(
-          //   context,
-          //   name: tcName,
-          //   description: tcDesc,
-          //   insert: _insert,
-          //   refresh: _refresh,
-          // ),
+          onPressed: () => Navigator.push(
+            context,
+            mpPageRoute(
+              builder: (context) {
+                return ExerciseNewScreen(
+                  muscleId: widget.musclesId,
+                );
+              },
+            ),
+          ).then((value) => setState(() {})),
         ),
       ),
       body: StreamBuilder<List<Exercise>>(
@@ -135,14 +99,17 @@ class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
                           icon: Icons.edit,
                           label: S.of(context).edit,
                         ),
-                        const SlidableAction(
+                        SlidableAction(
                           // An action can be bigger than the others.
                           //flex: 2,
-                          onPressed: doNothing,
+                          onPressed: (context) {
+                            repository.deleteExercise(item);
+                            setState(() {});
+                          },
                           backgroundColor: Colors.redAccent,
                           foregroundColor: Colors.white,
                           icon: Icons.delete,
-                          label: 'Delete',
+                          label: S.of(context).delete,
                         ),
                       ],
                     ),

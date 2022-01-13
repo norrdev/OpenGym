@@ -12,4 +12,8 @@ abstract class Repository {
   Future<Exercise> findExerciseById(int id);
 
   Future<int> updateExercise(Exercise exe);
+
+  Future<void> insertExercise(int muscleId, Exercise exercise);
+
+  Future<void> deleteExercise(Exercise exercise);
 }
