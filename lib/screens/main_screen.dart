@@ -3,7 +3,7 @@ import 'package:npng/screens/exercises/exercises_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/screens/settings/setings_page.dart';
+import 'package:npng/screens/settings/setings_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MainScreen extends StatefulWidget {
@@ -27,7 +27,7 @@ class _MainScreenState extends State<MainScreen> {
     pageList.add(Container()); //pageList.add(const ProgramsPage());
     pageList.add(const ExercisesScreen());
     pageList.add(Container()); //pageList.add(const LogStartPage());
-    pageList.add(const SettingsPage());
+    pageList.add(const SettingsScreen());
     getCurrentIndex();
   }
 

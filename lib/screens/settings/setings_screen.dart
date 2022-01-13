@@ -7,19 +7,19 @@ import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:npng/data/sqlite/db.dart';
 import 'package:share_plus/share_plus.dart';
-import 'about_page.dart';
+import 'about_screen.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SettingsPage extends StatefulWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({Key? key}) : super(key: key);
   static String id = '/settings';
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _SettingsScreenState extends State<SettingsScreen> {
   String version = '';
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   late Future<bool> _isImperial;
@@ -52,7 +52,7 @@ class _SettingsPageState extends State<SettingsPage> {
     Navigator.push(
       context,
       mpPageRoute(
-        builder: (BuildContext context) => AboutPage(
+        builder: (BuildContext context) => AboutScreen(
           about: about,
           history: history,
           version: version,

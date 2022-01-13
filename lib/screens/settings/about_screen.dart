@@ -4,13 +4,13 @@ import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AboutPage extends StatelessWidget {
+class AboutScreen extends StatelessWidget {
   static String id = '/about';
   final String? about;
   final String? history;
   final String? version;
 
-  AboutPage({Key? key, this.about, this.history, this.version})
+  AboutScreen({Key? key, this.about, this.history, this.version})
       : super(key: key);
 
   final controller = ScrollController();
