@@ -34,9 +34,6 @@ class SqliteRepository extends Repository {
 
   @override
   Future<int> updateExercise(Exercise exe) {
-    return Future(() async {
-      final id = await dbHelper.updateExercise(exe);
-      return id;
-    });
+    return dbHelper.updateExercise(exe);
   }
 }
