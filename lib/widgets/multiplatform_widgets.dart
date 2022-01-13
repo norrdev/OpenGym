@@ -156,12 +156,20 @@ class MpLinkButton extends StatelessWidget {
     if (isApple) {
       return CupertinoButton(
         padding: EdgeInsetsDirectional.zero,
-        child: Text(label!),
+        child: Text(
+          label!,
+          style: TextStyle(
+              color:
+                  CupertinoTheme.of(context).textTheme.navTitleTextStyle.color),
+        ),
         onPressed: onPressed as void Function()?,
       );
     } else {
       return TextButton(
-        child: Text(label!),
+        child: Text(
+          label!,
+          style: TextStyle(color: Theme.of(context).secondaryHeaderColor),
+        ),
         onPressed: onPressed as void Function()?,
       );
     }

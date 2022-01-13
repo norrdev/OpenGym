@@ -10,4 +10,6 @@ abstract class Repository {
   Stream<List<Exercise>> findExcersisesByMuscle(int id);
 
   Future<Exercise> findExerciseById(int id);
+
+  Future<int> updateExercise(Exercise exe);
 }

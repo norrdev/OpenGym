@@ -41,7 +41,6 @@ class ExercisesScreen extends StatelessWidget {
                           ),
                     title: Text(item.name as String),
                     onTap: () {
-                      //TODO: Switch to exersises by muscle screen
                       Navigator.push(
                         context,
                         mpPageRoute(

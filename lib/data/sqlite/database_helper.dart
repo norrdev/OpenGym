@@ -11,7 +11,8 @@ class DatabaseHelper {
   static const _databaseName = 'npng.db';
   static const _databaseVersion = 1;
 
-  static const muscleTable = 'muscles';
+// FIXME Change letter in migration!!!
+  static const muscleTable = 'musсles';
   static const exerciseTable = 'exercises';
   static const loadTable = 'load';
 
@@ -100,6 +101,17 @@ class DatabaseHelper {
     return db.insert(table, row);
   }
 
+  // Future<int> update(String table, Map<String, dynamic> row,
+  //     {String? where, List<Object?>? whereArgs}) async {
+  //   final db = await instance.streamDatabase;
+  //   return db.update(
+  //     table,
+  //     row,
+  //     where: where,
+  //     whereArgs: whereArgs,
+  //   );
+  // }
+
   Future<int> _delete(String table, String columnId, int id) async {
     final db = await instance.streamDatabase;
     return db.delete(table, where: '$columnId = ?', whereArgs: [id]);
@@ -128,6 +140,13 @@ class DatabaseHelper {
     final exeList = await db.query(exerciseTable, where: 'id = $id', limit: 1);
     final Exercise exe = Exercise.fromJson(exeList.first);
     return exe;
+  }
+
+  Future<int> updateExercise(Exercise exe) async {
+    final db = await instance.streamDatabase;
+    return db.rawUpdate(
+        'UPDATE $exerciseTable SET ${kLocale}_name = ?, ${kLocale}_description = ? WHERE id = ${exe.id}',
+        [exe.name, exe.description, exe.id]);
   }
 
   void close() {

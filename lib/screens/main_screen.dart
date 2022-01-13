@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:npng/screens/exercises/excersises_screen.dart';
+import 'package:npng/screens/exercises/exercises_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 
 import 'package:npng/generated/l10n.dart';
