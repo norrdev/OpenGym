@@ -390,6 +390,16 @@ class S {
     );
   }
 
+  /// `Add program`
+  String get programAdd {
+    return Intl.message(
+      'Add program',
+      name: 'programAdd',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Days`
   String get pageDaysTitle {
     return Intl.message(

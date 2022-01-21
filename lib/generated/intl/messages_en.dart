@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pageExerciseTitle": MessageLookupByLibrary.simpleMessage("Exercises"),
         "pageProgramsTitle": MessageLookupByLibrary.simpleMessage("Programs"),
         "pageWorkout": MessageLookupByLibrary.simpleMessage("Workout"),
+        "programAdd": MessageLookupByLibrary.simpleMessage("Add program"),
         "repeats": MessageLookupByLibrary.simpleMessage("Repeats"),
         "rest": MessageLookupByLibrary.simpleMessage("Rest time (sec)"),
         "restButton": MessageLookupByLibrary.simpleMessage("Save & rest"),

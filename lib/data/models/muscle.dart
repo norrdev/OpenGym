@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-import 'package:npng/config.dart';
 import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
@@ -16,7 +15,7 @@ class Muscle extends Equatable {
   // Create a Mucscle from JSON data
   factory Muscle.fromJson(Map<String, dynamic> json) => Muscle(
         id: json['id'] as int,
-        name: json['${kLocale}_name'] as String,
+        name: json['name'] as String,
         icon: json['icon'] as Uint8List,
       );
 
@@ -24,7 +23,7 @@ class Muscle extends Equatable {
   // store it in the database
   Map<String, dynamic> toJson() => {
         'id': id,
-        '${kLocale}_name': name,
+        'name': name,
         'icon': icon,
       };
 }

@@ -16,4 +16,12 @@ abstract class Repository {
   Future<void> insertExercise(int muscleId, Exercise exercise);
 
   Future<void> deleteExercise(Exercise exercise);
+
+  Stream<List<Program>> watchAllPrograms();
+
+  Future<int> getCurrentProgram();
+
+  Future<void> setCurrentProgram(int id);
+
+  Future<void> insertProgram(Program program);
 }

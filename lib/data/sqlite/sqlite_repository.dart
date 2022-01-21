@@ -48,4 +48,26 @@ class SqliteRepository extends Repository {
     dbHelper.deleteExercise(exercise);
     return Future.value();
   }
+
+  @override
+  Stream<List<Program>> watchAllPrograms() {
+    return dbHelper.watchAllPrograms();
+  }
+
+  @override
+  Future<int> getCurrentProgram() {
+    return dbHelper.getCurrentProgram();
+  }
+
+  @override
+  Future<void> setCurrentProgram(int id) {
+    dbHelper.setCurrentProgram(id);
+    return Future.value();
+  }
+
+  @override
+  Future<void> insertProgram(Program program) {
+    dbHelper.insertProgram(program);
+    return Future.value();
+  }
 }

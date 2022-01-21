@@ -12,10 +12,6 @@ class ExercisesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _buildMusclesList(context);
-  }
-
-  Widget _buildMusclesList(BuildContext context) {
     final repository = Provider.of<Repository>(context, listen: false);
     return StreamBuilder<List<Muscle>>(
       stream: repository.watchAllMuscles(),

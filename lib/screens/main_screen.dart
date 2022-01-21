@@ -1,5 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:npng/config.dart';
 import 'package:npng/screens/exercises/exercises_screen.dart';
+import 'package:npng/screens/programs/programs_screen.dart';
+import 'package:npng/screens/programs/program_new_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 
 import 'package:npng/generated/l10n.dart';
@@ -24,7 +28,7 @@ class _MainScreenState extends State<MainScreen> {
     pageList.add(const Center(
       child: CircularProgressIndicator(),
     )); //pageList.add(const WorkoutStartPage());
-    pageList.add(Container()); //pageList.add(const ProgramsPage());
+    pageList.add(const ProgramsScreen());
     pageList.add(const ExercisesScreen());
     pageList.add(Container()); //pageList.add(const LogStartPage());
     pageList.add(const SettingsScreen());
@@ -126,6 +130,26 @@ class _MainScreenState extends State<MainScreen> {
       ),
       appBar: MpAppBar(
         title: Text(title),
+        trailing: (_selectedIndex == 1)
+            ? MpFlatButton(
+                padding: const EdgeInsets.all(8),
+                child: Icon(
+                  (isApple) ? CupertinoIcons.add : Icons.add,
+                  color: (isApple)
+                      ? CupertinoTheme.of(context)
+                          .textTheme
+                          .actionTextStyle
+                          .color
+                      : Theme.of(context).secondaryHeaderColor,
+                ),
+                onPressed: () => Navigator.push(
+                  context,
+                  mpPageRoute(
+                    builder: (context) => const ProgramNewScreen(),
+                  ),
+                ).then((value) => setState(() {})),
+              )
+            : null,
       ),
       body: IndexedStack(
         index: _selectedIndex,

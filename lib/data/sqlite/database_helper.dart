@@ -14,7 +14,9 @@ class DatabaseHelper {
 // FIXME Change letter in migration!!!
   static const muscleTable = 'musсles';
   static const exerciseTable = 'exercises';
+  static const programsTable = 'programs';
   static const loadTable = 'load';
+  static const userTable = 'user';
 
   static late BriteDatabase _streamDatabase;
 
@@ -96,11 +98,6 @@ class DatabaseHelper {
     return _streamDatabase;
   }
 
-  Future<int> insert(String table, Map<String, dynamic> row) async {
-    final db = await instance.streamDatabase;
-    return db.insert(table, row);
-  }
-
   // Future<int> update(String table, Map<String, dynamic> row,
   //     {String? where, List<Object?>? whereArgs}) async {
   //   final db = await instance.streamDatabase;
@@ -112,14 +109,28 @@ class DatabaseHelper {
   //   );
   // }
 
-  Future<int> _delete(String table, String columnId, int id) async {
-    final db = await instance.streamDatabase;
-    return db.delete(table, where: '$columnId = ?', whereArgs: [id]);
-  }
-
   Stream<List<Muscle>> watchAllMuscles() async* {
     final db = await instance.streamDatabase;
-    yield* db.createQuery(muscleTable).mapToList((row) => Muscle.fromJson(row));
+    yield* db.createQuery(
+      muscleTable,
+      columns: [
+        'id',
+        '${kLocale}_name as name',
+        'icon',
+      ],
+    ).mapToList((row) => Muscle.fromJson(row));
+  }
+
+  Stream<List<Program>> watchAllPrograms() async* {
+    final db = await instance.streamDatabase;
+    yield* db.createQuery(
+      programsTable,
+      columns: [
+        'id',
+        '${kLocale}_name as name',
+        '${kLocale}_description as description',
+      ],
+    ).mapToList((row) => Program.fromJson(row));
   }
 
   Stream<List<Exercise>> findExcersisesByMuscle(int id) async* {
@@ -127,8 +138,8 @@ class DatabaseHelper {
     String sql =
         '''SELECT exercises.id AS id, exercises.${kLocale}_name AS name, 
            ${kLocale}_description AS description, equipment_id
-           FROM load  
-           JOIN exercises ON exercises_id = exercises.id 
+           FROM $loadTable  
+           JOIN $exerciseTable ON exercises_id = exercises.id 
            WHERE muscles_id = $id''';
 
     yield* db.createRawQuery(
@@ -137,7 +148,16 @@ class DatabaseHelper {
 
   Future<Exercise> findExerciseById(id) async {
     final db = await instance.streamDatabase;
-    final exeList = await db.query(exerciseTable, where: 'id = $id', limit: 1);
+    final exeList = await db.query(
+      exerciseTable,
+      columns: [
+        'id',
+        '${kLocale}_name as name',
+        '${kLocale}_description as description',
+      ],
+      where: 'id = $id',
+      limit: 1,
+    );
     final Exercise exe = Exercise.fromJson(exeList.first);
     return exe;
   }
@@ -152,11 +172,11 @@ class DatabaseHelper {
   Future<void> insertExercise(int muscleId, Exercise exercise) async {
     final db = await instance.streamDatabase;
     await db.transaction((txn) async {
-      int id = await txn.insert('exercises', {
+      int id = await txn.insert(exerciseTable, {
         '${kLocale}_name': exercise.name,
         '${kLocale}_description': exercise.description,
       });
-      await txn.insert('load', {
+      await txn.insert(loadTable, {
         'exercises_id': id,
         'muscles_id': muscleId,
       });
@@ -167,9 +187,40 @@ class DatabaseHelper {
   Future<void> deleteExercise(Exercise exercise) async {
     final db = await instance.streamDatabase;
     await db.transaction((txn) async {
-      await txn.delete('exercises', where: 'id = ?', whereArgs: [exercise.id]);
       await txn
-          .delete('load', where: 'exercises_id = ?', whereArgs: [exercise.id]);
+          .delete(exerciseTable, where: 'id = ?', whereArgs: [exercise.id]);
+      await txn.delete(loadTable,
+          where: 'exercises_id = ?', whereArgs: [exercise.id]);
+    });
+    return Future.value();
+  }
+
+  Future<int> getCurrentProgram() async {
+    final db = await instance.streamDatabase;
+    final userList = await db.query(userTable, where: 'id = 1');
+    return userList.first['programs_id'] as int;
+  }
+
+  Future<void> setCurrentProgram(int id) async {
+    final db = await instance.streamDatabase;
+    await db.update(userTable, {'programs_id': id}, where: 'id = 1');
+    return Future.value();
+  }
+
+  //   void _insert({String? name, String? description}) async {
+  //   await db!.transaction((txn) async {
+  //     await txn.insert('programs', {
+  //       '${kLocale}_name': name,
+  //       '${kLocale}_description': description,
+  //     });
+  //   });
+  // }
+
+  Future<void> insertProgram(Program program) async {
+    final db = await instance.streamDatabase;
+    await db.insert(programsTable, {
+      '${kLocale}_name': program.name,
+      '${kLocale}_description': program.description,
     });
     return Future.value();
   }

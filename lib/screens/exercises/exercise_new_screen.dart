@@ -17,6 +17,7 @@ class ExerciseNewScreen extends StatelessWidget {
     final repository = Provider.of<Repository>(context, listen: false);
     TextEditingController _tcName = TextEditingController(text: '');
     TextEditingController _tcDesc = TextEditingController(text: '');
+    final _formKey = GlobalKey<FormState>();
 
     return MpScaffold(
       appBar: MpAppBar(
@@ -24,74 +25,79 @@ class ExerciseNewScreen extends StatelessWidget {
         trailing: MpLinkButton(
           label: S.of(context).save,
           onPressed: () {
-            Exercise newExe = Exercise(
-              name: _tcName.text,
-              description: _tcDesc.text,
-            );
-            repository.insertExercise(muscleId, newExe);
-            Navigator.pop(context);
+            if (_formKey.currentState!.validate()) {
+              Exercise newExe = Exercise(
+                name: _tcName.text,
+                description: _tcDesc.text,
+              );
+              repository.insertExercise(muscleId, newExe);
+              Navigator.pop(context);
+            }
           },
         ),
       ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: ListView(
-            children: [
-              if (isApple)
-                CupertinoTextFormFieldRow(
-                  controller: _tcName,
-                  placeholder: S.of(context).name,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return S.of(context).enterText;
-                    }
-                    return null;
-                  },
-                ),
-              if (isApple)
-                CupertinoTextFormFieldRow(
-                  controller: _tcDesc,
-                  placeholder: S.of(context).desc,
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  validator: (value) {
-                    return null;
-                  },
-                ),
-              if (!isApple)
-                TextFormField(
-                  controller: _tcName,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return S.of(context).enterText;
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    labelText: S.of(context).name,
-                    border: const OutlineInputBorder(
-                      borderSide: BorderSide(),
+          child: Form(
+            key: _formKey,
+            child: ListView(
+              children: [
+                if (isApple)
+                  CupertinoTextFormFieldRow(
+                    controller: _tcName,
+                    placeholder: S.of(context).name,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return S.of(context).enterText;
+                      }
+                      return null;
+                    },
+                  ),
+                if (isApple)
+                  CupertinoTextFormFieldRow(
+                    controller: _tcDesc,
+                    placeholder: S.of(context).desc,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    validator: (value) {
+                      return null;
+                    },
+                  ),
+                if (!isApple)
+                  TextFormField(
+                    controller: _tcName,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return S.of(context).enterText;
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      labelText: S.of(context).name,
+                      border: const OutlineInputBorder(
+                        borderSide: BorderSide(),
+                      ),
                     ),
                   ),
-                ),
-              if (!isApple) const SizedBox(height: 16.0),
-              if (!isApple)
-                TextFormField(
-                  controller: _tcDesc,
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  validator: (value) {
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    labelText: S.of(context).desc,
-                    border: const OutlineInputBorder(
-                      borderSide: BorderSide(),
+                if (!isApple) const SizedBox(height: 16.0),
+                if (!isApple)
+                  TextFormField(
+                    controller: _tcDesc,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    validator: (value) {
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      labelText: S.of(context).desc,
+                      border: const OutlineInputBorder(
+                        borderSide: BorderSide(),
+                      ),
                     ),
                   ),
-                ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

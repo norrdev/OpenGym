@@ -54,6 +54,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pageExerciseTitle": MessageLookupByLibrary.simpleMessage("Упражнения"),
         "pageProgramsTitle": MessageLookupByLibrary.simpleMessage("Программы"),
         "pageWorkout": MessageLookupByLibrary.simpleMessage("Тренировка"),
+        "programAdd":
+            MessageLookupByLibrary.simpleMessage("Добавить программу"),
         "repeats": MessageLookupByLibrary.simpleMessage("Повторы"),
         "rest": MessageLookupByLibrary.simpleMessage("Отдых (сек)"),
         "restButton":

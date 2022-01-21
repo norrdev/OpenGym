@@ -1,39 +1,34 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
-import 'package:npng/data/models/excercise.dart';
+import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
-class ExerciseEditScreen extends StatelessWidget {
-  final Exercise exercise;
-
-  const ExerciseEditScreen({Key? key, required this.exercise})
-      : super(key: key);
+class ProgramNewScreen extends StatelessWidget {
+  const ProgramNewScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final repository = Provider.of<Repository>(context, listen: false);
-    TextEditingController _tcName = TextEditingController(text: exercise.name);
-    TextEditingController _tcDesc =
-        TextEditingController(text: exercise.description);
+    TextEditingController _tcName = TextEditingController(text: '');
+    TextEditingController _tcDesc = TextEditingController(text: '');
     final _formKey = GlobalKey<FormState>();
 
     return MpScaffold(
       appBar: MpAppBar(
-        title: Text(exercise.name.toString()),
+        title: Text(S.of(context).programAdd),
         trailing: MpLinkButton(
           label: S.of(context).save,
           onPressed: () {
             if (_formKey.currentState!.validate()) {
-              Exercise newExe = Exercise(
-                id: exercise.id,
+              Program newProgram = Program(
                 name: _tcName.text,
                 description: _tcDesc.text,
               );
-              repository.updateExercise(newExe);
+              repository.insertProgram(newProgram);
               Navigator.pop(context);
             }
           },
