@@ -24,4 +24,6 @@ abstract class Repository {
   Future<void> setCurrentProgram(int id);
 
   Future<void> insertProgram(Exercise program);
+
+  Future<int> updateProgram(Program program);
 }

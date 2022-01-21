@@ -32,7 +32,7 @@ class ProgramEditScreen extends StatelessWidget {
                 name: _tcName.text,
                 description: _tcDesc.text,
               );
-              //repository.updateProgram(newProgram);
+              repository.updateProgram(newProgram);
               Navigator.pop(context);
             }
           },

@@ -207,15 +207,6 @@ class DatabaseHelper {
     return Future.value();
   }
 
-  //   void _insert({String? name, String? description}) async {
-  //   await db!.transaction((txn) async {
-  //     await txn.insert('programs', {
-  //       '${kLocale}_name': name,
-  //       '${kLocale}_description': description,
-  //     });
-  //   });
-  // }
-
   Future<void> insertProgram(Exercise program) async {
     final db = await instance.streamDatabase;
     await db.insert(programsTable, {
@@ -223,6 +214,13 @@ class DatabaseHelper {
       '${kLocale}_description': program.description,
     });
     return Future.value();
+  }
+
+  Future<int> updateProgram(Program program) async {
+    final db = await instance.streamDatabase;
+    return db.rawUpdate(
+        'UPDATE $programsTable SET ${kLocale}_name = ?, ${kLocale}_description = ? WHERE id = ${program.id}',
+        [program.name, program.description, program.id]);
   }
 
   void close() {

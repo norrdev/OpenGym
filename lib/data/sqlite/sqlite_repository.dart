@@ -70,4 +70,9 @@ class SqliteRepository extends Repository {
     dbHelper.insertProgram(program);
     return Future.value();
   }
+
+  @override
+  Future<int> updateProgram(Program program) {
+    return dbHelper.updateProgram(program);
+  }
 }
