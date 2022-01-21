@@ -1,3 +1,3 @@
 export 'muscle.dart';
-export 'excercise.dart';
+export 'exercise.dart';
 export 'program.dart';

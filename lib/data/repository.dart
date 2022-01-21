@@ -23,5 +23,5 @@ abstract class Repository {
 
   Future<void> setCurrentProgram(int id);
 
-  Future<void> insertProgram(Program program);
+  Future<void> insertProgram(Exercise program);
 }

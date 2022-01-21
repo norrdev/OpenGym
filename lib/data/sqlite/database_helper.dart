@@ -72,7 +72,7 @@ class DatabaseHelper {
       await File(path).writeAsBytes(bytes, flush: true);
     }
 
-    // TODO: Set to OFF in production.
+    // FIXME: Set to OFF in production.
     Sqflite.setDebugModeOn(true);
     return openDatabase(
       path,
@@ -216,7 +216,7 @@ class DatabaseHelper {
   //   });
   // }
 
-  Future<void> insertProgram(Program program) async {
+  Future<void> insertProgram(Exercise program) async {
     final db = await instance.streamDatabase;
     await db.insert(programsTable, {
       '${kLocale}_name': program.name,

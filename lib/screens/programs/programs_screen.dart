@@ -3,6 +3,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
+import 'package:npng/screens/programs/program_edit_screen.dart';
+import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 
 class ProgramsScreen extends StatefulWidget {
@@ -54,36 +56,38 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                     endActionPane: ActionPane(
                       motion: const ScrollMotion(),
                       children: [
-                        // SlidableAction(
-                        //   onPressed: (context) => Navigator.push(
-                        //     context,
-                        //     mpPageRoute(
-                        //       builder: (context) {
-                        //         return ExerciseEditScreen(
-                        //           exercise: item,
-                        //         );
-                        //       },
-                        //     ),
-                        //   ).then((value) {
-                        //     setState(() {});
-                        //   }),
-                        //   backgroundColor: const Color(0xFF0392CF),
-                        //   foregroundColor: Colors.white,
-                        //   icon: Icons.edit,
-                        //   label: S.of(context).edit,
-                        // ),
                         SlidableAction(
-                          // An action can be bigger than the others.
-                          //flex: 2,
-                          onPressed: (context) {
-                            //repository.deleteExercise(item);
+                          onPressed: (context) => Navigator.push(
+                            context,
+                            mpPageRoute(
+                              builder: (context) {
+                                return ProgramEditScreen(
+                                  program: item,
+                                );
+                              },
+                            ),
+                          ).then((value) {
                             setState(() {});
-                          },
-                          backgroundColor: Colors.redAccent,
+                          }),
+                          backgroundColor: const Color(0xFF0392CF),
                           foregroundColor: Colors.white,
-                          icon: Icons.delete,
-                          label: S.of(context).delete,
+                          icon: Icons.edit,
+                          label: S.of(context).edit,
                         ),
+                        //TODO CASCADE DELETE PROGRAMS AND DAYS AND LOG. OR HIDE PROGRAM
+
+                        // SlidableAction(
+                        //   // An action can be bigger than the others.
+                        //   //flex: 2,
+                        //   onPressed: (context) {
+                        //     //repository.deleteExercise(item);
+                        //     setState(() {});
+                        //   },
+                        //   backgroundColor: Colors.redAccent,
+                        //   foregroundColor: Colors.white,
+                        //   icon: Icons.delete,
+                        //   label: S.of(context).delete,
+                        // ),
                       ],
                     ),
                   );

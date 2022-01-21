@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
-import 'package:npng/screens/exercises/exercises_by_muscle_screen.dart';
 import 'package:npng/screens/exercises/exercises_screen.dart';
 import 'package:npng/screens/programs/programs_01_days_page.dart';
 import 'package:npng/screens/programs/programs_00_page.dart';

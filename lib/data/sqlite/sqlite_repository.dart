@@ -66,7 +66,7 @@ class SqliteRepository extends Repository {
   }
 
   @override
-  Future<void> insertProgram(Program program) {
+  Future<void> insertProgram(Exercise program) {
     dbHelper.insertProgram(program);
     return Future.value();
   }

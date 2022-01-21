@@ -24,7 +24,7 @@ class ProgramNewScreen extends StatelessWidget {
           label: S.of(context).save,
           onPressed: () {
             if (_formKey.currentState!.validate()) {
-              Program newProgram = Program(
+              Exercise newProgram = Exercise(
                 name: _tcName.text,
                 description: _tcDesc.text,
               );
