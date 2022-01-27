@@ -3,6 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
+import 'package:npng/screens/programs/program_days_screen.dart';
 import 'package:npng/screens/programs/program_edit_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
@@ -46,12 +47,16 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                             setState(() {});
                           });
                         },
-                        // onChanged: (value) => _changeCurrent(
-                        //   item['id'] as int,
-                        // ),
                       ),
                       title: Text(item.name as String),
                       subtitle: Text(item.description as String),
+                      onTap: () => Navigator.push(
+                        context,
+                        mpPageRoute(
+                            builder: (context) => ProgramDaysScreen(
+                                  program: item,
+                                )),
+                      ),
                     ),
                     endActionPane: ActionPane(
                       motion: const ScrollMotion(),

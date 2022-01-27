@@ -75,4 +75,9 @@ class SqliteRepository extends Repository {
   Future<int> updateProgram(Program program) {
     return dbHelper.updateProgram(program);
   }
+
+  @override
+  Stream<List<Day>> findDaysByProgram(int id) {
+    return dbHelper.findDaysByProgram(id);
+  }
 }

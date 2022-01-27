@@ -43,11 +43,9 @@ class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
           onPressed: () => Navigator.push(
             context,
             mpPageRoute(
-              builder: (context) {
-                return ExerciseNewScreen(
-                  muscleId: widget.musclesId,
-                );
-              },
+              builder: (context) => ExerciseNewScreen(
+                muscleId: widget.musclesId,
+              ),
             ),
           ).then((value) => setState(() {})),
         ),

@@ -17,6 +17,7 @@ class DatabaseHelper {
   static const programsTable = 'programs';
   static const loadTable = 'load';
   static const userTable = 'user';
+  static const daysTable = 'days';
 
   static late BriteDatabase _streamDatabase;
 
@@ -221,6 +222,46 @@ class DatabaseHelper {
     return db.rawUpdate(
         'UPDATE $programsTable SET ${kLocale}_name = ?, ${kLocale}_description = ? WHERE id = ${program.id}',
         [program.name, program.description, program.id]);
+  }
+
+/*
+  void _refresh() async {
+    _days = await db!.query(
+      'days',
+      columns: [
+        'id',
+        '${kLocale}_name AS name',
+        '${kLocale}_description AS description',
+        'programs_id',
+      ],
+      orderBy: 'ord',
+      where: 'programs_id = ?',
+      whereArgs: [widget.programsId],
+    );
+    setState(() {
+      _mutableDays.clear();
+      _mutableDays.addAll(_days);
+    });
+  }
+*/
+
+  Stream<List<Day>> findDaysByProgram(int id) async* {
+    final db = await instance.streamDatabase;
+
+    yield* db
+        .createQuery(
+          daysTable,
+          columns: [
+            'id',
+            'ord',
+            '${kLocale}_name AS name',
+            '${kLocale}_description AS description',
+            'programs_id',
+          ],
+          orderBy: 'ord',
+          where: 'programs_id = $id',
+        )
+        .mapToList((row) => Day.fromJson(row));
   }
 
   void close() {

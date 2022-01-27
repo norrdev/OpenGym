@@ -26,4 +26,6 @@ abstract class Repository {
   Future<void> insertProgram(Exercise program);
 
   Future<int> updateProgram(Program program);
+
+  Stream<List<Day>> findDaysByProgram(int id);
 }
