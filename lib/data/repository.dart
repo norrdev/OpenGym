@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:npng/data/models/models.dart';
 
 abstract class Repository {
@@ -28,4 +30,6 @@ abstract class Repository {
   Future<int> updateProgram(Program program);
 
   Stream<List<Day>> findDaysByProgram(int id);
+
+  Future<void> reorderDays(List<Day> days);
 }

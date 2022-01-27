@@ -224,44 +224,37 @@ class DatabaseHelper {
         [program.name, program.description, program.id]);
   }
 
-/*
-  void _refresh() async {
-    _days = await db!.query(
-      'days',
-      columns: [
-        'id',
-        '${kLocale}_name AS name',
-        '${kLocale}_description AS description',
-        'programs_id',
-      ],
-      orderBy: 'ord',
-      where: 'programs_id = ?',
-      whereArgs: [widget.programsId],
-    );
-    setState(() {
-      _mutableDays.clear();
-      _mutableDays.addAll(_days);
-    });
-  }
-*/
-
   Stream<List<Day>> findDaysByProgram(int id) async* {
     final db = await instance.streamDatabase;
 
     yield* db
-        .createQuery(
-          daysTable,
-          columns: [
-            'id',
-            'ord',
-            '${kLocale}_name AS name',
-            '${kLocale}_description AS description',
-            'programs_id',
-          ],
-          orderBy: 'ord',
-          where: 'programs_id = $id',
-        )
+        .createQuery(daysTable,
+            columns: [
+              'id',
+              'ord',
+              '${kLocale}_name AS name',
+              '${kLocale}_description AS description',
+              'programs_id',
+            ],
+            orderBy: 'ord',
+            where: 'programs_id = ?',
+            whereArgs: [id])
         .mapToList((row) => Day.fromJson(row));
+  }
+
+  Future<void> reorderDays(List<Day> days) async {
+    final db = await instance.streamDatabase;
+    await db.transaction((txn) async {
+      for (int i = 0; i <= days.length - 1; i++) {
+        await txn.update(
+          daysTable,
+          {'ord': i},
+          where: 'id = ?',
+          whereArgs: [days[i].id],
+        );
+      }
+    });
+    return Future.value();
   }
 
   void close() {

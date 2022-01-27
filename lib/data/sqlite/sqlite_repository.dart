@@ -80,4 +80,10 @@ class SqliteRepository extends Repository {
   Stream<List<Day>> findDaysByProgram(int id) {
     return dbHelper.findDaysByProgram(id);
   }
+
+  @override
+  Future<void> reorderDays(List<Day> days) {
+    dbHelper.reorderDays(days);
+    return Future.value();
+  }
 }
