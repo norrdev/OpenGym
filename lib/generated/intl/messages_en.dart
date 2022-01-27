@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ccontinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "currentWorkout":
             MessageLookupByLibrary.simpleMessage("Current workout"),
+        "dayAdd": MessageLookupByLibrary.simpleMessage("Add day"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "desc": MessageLookupByLibrary.simpleMessage("Description"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),

@@ -410,6 +410,16 @@ class S {
     );
   }
 
+  /// `Add day`
+  String get dayAdd {
+    return Intl.message(
+      'Add day',
+      name: 'dayAdd',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Exercises`
   String get pageExerciseTitle {
     return Intl.message(

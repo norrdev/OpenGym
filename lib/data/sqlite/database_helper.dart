@@ -30,29 +30,6 @@ class DatabaseHelper {
   // only have a single app-wide reference to the database
   static Database? _database;
 
-// SQL code to create the database table
-  // Future _onCreate(Database db, int version) async {
-  //   await db.execute('''
-  //       CREATE TABLE $recipeTable (
-  //         $recipeId INTEGER PRIMARY KEY,
-  //         label TEXT,
-  //         image TEXT,
-  //         url TEXT,
-  //         calories REAL,
-  //         totalWeight REAL,
-  //         totalTime REAL
-  //       )
-  //       ''');
-  //   await db.execute('''
-  //       CREATE TABLE $ingredientTable (
-  //         $ingredientId INTEGER PRIMARY KEY,
-  //         $recipeId INTEGER,
-  //         name TEXT,
-  //         weight REAL
-  //       )
-  //       ''');
-  // }
-
   // this opens the database (and creates it if it doesn't exist)
   Future<Database> _initDatabase() async {
     final documentsDirectory = await getApplicationDocumentsDirectory();
@@ -98,17 +75,6 @@ class DatabaseHelper {
     await database;
     return _streamDatabase;
   }
-
-  // Future<int> update(String table, Map<String, dynamic> row,
-  //     {String? where, List<Object?>? whereArgs}) async {
-  //   final db = await instance.streamDatabase;
-  //   return db.update(
-  //     table,
-  //     row,
-  //     where: where,
-  //     whereArgs: whereArgs,
-  //   );
-  // }
 
   Stream<List<Muscle>> watchAllMuscles() async* {
     final db = await instance.streamDatabase;
@@ -253,6 +219,28 @@ class DatabaseHelper {
           whereArgs: [days[i].id],
         );
       }
+    });
+    return Future.value();
+  }
+
+  Future<void> insertDay(int programId, Day day) async {
+    final db = await instance.streamDatabase;
+
+    final queryResult = await db.query(
+      daysTable,
+      columns: ['MAX(ord) AS maxOrd'],
+      where: 'programs_id = ?',
+      whereArgs: [programId],
+    );
+    int maxOrd = (queryResult.first['maxOrd'] != null)
+        ? queryResult.first['maxOrd'] as int
+        : -1;
+
+    await db.insert(daysTable, {
+      '${kLocale}_name': day.name,
+      'ord': ++maxOrd,
+      '${kLocale}_description': day.description,
+      'programs_id': programId,
     });
     return Future.value();
   }

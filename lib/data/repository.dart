@@ -32,4 +32,6 @@ abstract class Repository {
   Stream<List<Day>> findDaysByProgram(int id);
 
   Future<void> reorderDays(List<Day> days);
+
+  Future<void> insertDay(int programId, Day day);
 }

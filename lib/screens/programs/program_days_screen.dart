@@ -4,6 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/config.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
+import 'package:npng/screens/programs/program_new_day_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:provider/provider.dart';
@@ -32,9 +33,14 @@ class _ProgramDaysScreenState extends State<ProgramDaysScreen> {
                 ? CupertinoTheme.of(context).textTheme.actionTextStyle.color
                 : Theme.of(context).secondaryHeaderColor,
           ),
-          onPressed: () {
-            //TODO Add day screen
-          },
+          onPressed: () => Navigator.push(
+            context,
+            mpPageRoute(
+              builder: (context) => ProgramNewDayScreen(
+                programId: widget.program.id as int,
+              ),
+            ),
+          ).then((value) => setState(() {})),
         ),
       ),
       body: SafeArea(
