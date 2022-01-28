@@ -1,10 +1,12 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/screens/exercises/exercises_by_muscle_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/data/models/muscle.dart';
+import 'package:npng/generated/l10n.dart';
 
 class ExercisesScreen extends StatelessWidget {
   const ExercisesScreen({Key? key}) : super(key: key);
@@ -24,20 +26,20 @@ class ExercisesScreen extends StatelessWidget {
                 itemCount: muscles.length,
                 itemBuilder: (BuildContext context, int index) {
                   final item = muscles[index];
-                  return ListTile(
-                    leading: (item.icon != null)
-                        ? Image.memory(
-                            item.icon as Uint8List,
-                            width: 96,
-                            height: 96,
-                          )
-                        : const SizedBox(
-                            width: 96,
-                            height: 96,
-                          ),
-                    title: Text(item.name as String),
-                    onTap: () {
-                      Navigator.push(
+                  return Slidable(
+                    child: ListTile(
+                      leading: (item.icon != null)
+                          ? Image.memory(
+                              item.icon as Uint8List,
+                              width: 96,
+                              height: 96,
+                            )
+                          : const SizedBox(
+                              width: 96,
+                              height: 96,
+                            ),
+                      title: Text(item.name as String),
+                      onTap: () => Navigator.push(
                         context,
                         mpPageRoute(
                           builder: (context) {
@@ -47,8 +49,30 @@ class ExercisesScreen extends StatelessWidget {
                             );
                           },
                         ),
-                      );
-                    },
+                      ),
+                    ),
+                    endActionPane: ActionPane(
+                      motion: const ScrollMotion(),
+                      children: [
+                        SlidableAction(
+                          onPressed: (context) => Navigator.push(
+                            context,
+                            mpPageRoute(
+                              builder: (context) {
+                                return ExercisesByMuscleScreen(
+                                  musclesId: item.id as int,
+                                  pageTitle: item.name as String,
+                                );
+                              },
+                            ),
+                          ),
+                          backgroundColor: const Color(0xFF0392CF),
+                          foregroundColor: Colors.white,
+                          icon: Icons.edit,
+                          label: S.of(context).edit,
+                        ),
+                      ],
+                    ),
                   );
                 }),
           );
