@@ -88,6 +88,12 @@ class SqliteRepository extends Repository {
   }
 
   @override
+  Future<void> reorderWorkouts(List<Workout> workouts) {
+    dbHelper.reorderWorkouts(workouts);
+    return Future.value();
+  }
+
+  @override
   Future<void> insertDay(int programId, Day day) {
     dbHelper.insertDay(programId, day);
     return Future.value();
@@ -96,5 +102,10 @@ class SqliteRepository extends Repository {
   @override
   Future<int> updateDay(Day day) {
     return dbHelper.updateDay(day);
+  }
+
+  @override
+  Stream<List<Workout>> findWorkoutByDay(int dayId) {
+    return dbHelper.findWorkoutByDay(dayId);
   }
 }

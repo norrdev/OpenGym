@@ -12,12 +12,13 @@ class DatabaseHelper {
   static const _databaseVersion = 1;
 
 // FIXME Change letter in migration!!!
-  static const muscleTable = 'musсles';
-  static const exerciseTable = 'exercises';
-  static const programsTable = 'programs';
-  static const loadTable = 'load';
-  static const userTable = 'user';
-  static const daysTable = 'days';
+  static const String muscleTable = 'musсles';
+  static const String exerciseTable = 'exercises';
+  static const String programsTable = 'programs';
+  static const String loadTable = 'load';
+  static const String userTable = 'user';
+  static const String daysTable = 'days';
+  static const String workoutsTable = 'workouts';
 
   static late BriteDatabase _streamDatabase;
 
@@ -223,6 +224,21 @@ class DatabaseHelper {
     return Future.value();
   }
 
+  Future<void> reorderWorkouts(List<Workout> workouts) async {
+    final db = await instance.streamDatabase;
+    await db.transaction((txn) async {
+      for (int i = 0; i <= workouts.length - 1; i++) {
+        await txn.update(
+          workoutsTable,
+          {'ord': i},
+          where: 'id = ?',
+          whereArgs: [workouts[i].id],
+        );
+      }
+    });
+    return Future.value();
+  }
+
   Future<void> insertDay(int programId, Day day) async {
     final db = await instance.streamDatabase;
 
@@ -250,6 +266,17 @@ class DatabaseHelper {
     return db.rawUpdate(
         'UPDATE $daysTable SET ${kLocale}_name = ?, ${kLocale}_description = ? WHERE id = ?',
         [day.name, day.description, day.id]);
+  }
+
+  Stream<List<Workout>> findWorkoutByDay(int dayId) async* {
+    final db = await instance.streamDatabase;
+    final String sql = '''
+    SELECT workouts.id AS id, exercises.${kLocale}_name AS name, exercises.${kLocale}_description as description, sets, ord, repeats, rest FROM workouts 
+    JOIN exercises on workouts.exercises_id = exercises.id 
+    WHERE days_id = $dayId ORDER BY ord;
+      ''';
+    yield* db.createRawQuery(
+        [workoutsTable], sql).mapToList((row) => Workout.fromJson(row));
   }
 
   void close() {

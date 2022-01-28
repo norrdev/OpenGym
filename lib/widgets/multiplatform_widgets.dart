@@ -226,12 +226,12 @@ class MpFlatButton extends StatelessWidget {
       return CupertinoButton(
         padding: padding,
         onPressed: onPressed as void Function()?,
-        child: child!,
+        child: child ?? Text(label ?? ''),
       );
     } else {
       return TextButton(
         onPressed: onPressed as void Function()?,
-        child: child!,
+        child: child ?? Text(label ?? ''),
       );
     }
   }

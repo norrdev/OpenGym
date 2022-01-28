@@ -11,15 +11,12 @@ class Program extends Equatable {
   @override
   List<Object?> get props => [id, name, description];
 
-  // Create a Program from JSON data
   factory Program.fromJson(Map<String, dynamic> json) => Program(
         id: json['id'] as int,
         name: json['name'] as String,
         description: json['description'] as String,
       );
 
-  // Convert our Program to JSON to make it easier when you
-  // store it in the database
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,

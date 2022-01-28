@@ -31,7 +31,11 @@ abstract class Repository {
 
   Future<void> reorderDays(List<Day> days);
 
+  Future<void> reorderWorkouts(List<Workout> workouts);
+
   Future<void> insertDay(int programId, Day day);
 
   Future<void> updateDay(Day day);
+
+  Stream<List<Workout>> findWorkoutByDay(int dayId);
 }
