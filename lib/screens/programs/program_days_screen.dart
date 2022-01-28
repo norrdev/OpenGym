@@ -4,6 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/config.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
+import 'package:npng/screens/programs/program_edit_day_screen.dart';
 import 'package:npng/screens/programs/program_new_day_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
@@ -71,6 +72,27 @@ class _ProgramDaysScreenState extends State<ProgramDaysScreen> {
                       child: ListTile(
                         title: Text(item.name as String),
                         subtitle: Text(item.description as String),
+                      ),
+                      startActionPane: ActionPane(
+                        motion: const ScrollMotion(),
+                        children: [
+                          SlidableAction(
+                            onPressed: (context) => Navigator.push(
+                              context,
+                              mpPageRoute(
+                                builder: (context) => ProgramEditDayScreen(
+                                  day: item,
+                                ),
+                              ),
+                            ).then((value) {
+                              setState(() {});
+                            }),
+                            backgroundColor: const Color(0xFF0392CF),
+                            foregroundColor: Colors.white,
+                            icon: Icons.edit,
+                            label: S.of(context).edit,
+                          ),
+                        ],
                       ),
                     );
                   },

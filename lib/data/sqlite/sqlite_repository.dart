@@ -92,4 +92,9 @@ class SqliteRepository extends Repository {
     dbHelper.insertDay(programId, day);
     return Future.value();
   }
+
+  @override
+  Future<int> updateDay(Day day) {
+    return dbHelper.updateDay(day);
+  }
 }

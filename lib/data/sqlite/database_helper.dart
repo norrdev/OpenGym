@@ -186,7 +186,7 @@ class DatabaseHelper {
   Future<int> updateProgram(Program program) async {
     final db = await instance.streamDatabase;
     return db.rawUpdate(
-        'UPDATE $programsTable SET ${kLocale}_name = ?, ${kLocale}_description = ? WHERE id = ${program.id}',
+        'UPDATE $programsTable SET ${kLocale}_name = ?, ${kLocale}_description = ? WHERE id = ?',
         [program.name, program.description, program.id]);
   }
 
@@ -243,6 +243,13 @@ class DatabaseHelper {
       'programs_id': programId,
     });
     return Future.value();
+  }
+
+  Future<int> updateDay(Day day) async {
+    final db = await instance.streamDatabase;
+    return db.rawUpdate(
+        'UPDATE $daysTable SET ${kLocale}_name = ?, ${kLocale}_description = ? WHERE id = ?',
+        [day.name, day.description, day.id]);
   }
 
   void close() {
