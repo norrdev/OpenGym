@@ -256,7 +256,7 @@ class _ProgramsByDayPageState extends State<ProgramsByDayPage> {
   }
 
   void _decreaseRepeats(int index) {
-    if (_resultsMutable[index]['sets'] as int > 1) {
+    if (_resultsMutable[index]['repeats'] as int > 1) {
       _updateRepeats(
         id: _resultsMutable[index]['id'] as int,
         repeats: (_resultsMutable[index]['repeats'] as int) - 1,

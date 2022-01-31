@@ -108,4 +108,10 @@ class SqliteRepository extends Repository {
   Stream<List<Workout>> findWorkoutByDay(int dayId) {
     return dbHelper.findWorkoutByDay(dayId);
   }
+
+  @override
+  Future<void> updateWorkoutSetsRepeatsRest(Workout workout) {
+    dbHelper.updateWorkoutSetsRepeatsRest(workout);
+    return Future.value();
+  }
 }

@@ -191,6 +191,8 @@ class DatabaseHelper {
         [program.name, program.description, program.id]);
   }
 
+  // Days
+
   Stream<List<Day>> findDaysByProgram(int id) async* {
     final db = await instance.streamDatabase;
 
@@ -218,21 +220,6 @@ class DatabaseHelper {
           {'ord': i},
           where: 'id = ?',
           whereArgs: [days[i].id],
-        );
-      }
-    });
-    return Future.value();
-  }
-
-  Future<void> reorderWorkouts(List<Workout> workouts) async {
-    final db = await instance.streamDatabase;
-    await db.transaction((txn) async {
-      for (int i = 0; i <= workouts.length - 1; i++) {
-        await txn.update(
-          workoutsTable,
-          {'ord': i},
-          where: 'id = ?',
-          whereArgs: [workouts[i].id],
         );
       }
     });
@@ -268,6 +255,8 @@ class DatabaseHelper {
         [day.name, day.description, day.id]);
   }
 
+  // Workouts
+
   Stream<List<Workout>> findWorkoutByDay(int dayId) async* {
     final db = await instance.streamDatabase;
     final String sql = '''
@@ -277,6 +266,36 @@ class DatabaseHelper {
       ''';
     yield* db.createRawQuery(
         [workoutsTable], sql).mapToList((row) => Workout.fromJson(row));
+  }
+
+  Future<void> reorderWorkouts(List<Workout> workouts) async {
+    final db = await instance.streamDatabase;
+    await db.transaction((txn) async {
+      for (int i = 0; i <= workouts.length - 1; i++) {
+        await txn.update(
+          workoutsTable,
+          {'ord': i},
+          where: 'id = ?',
+          whereArgs: [workouts[i].id],
+        );
+      }
+    });
+    return Future.value();
+  }
+
+  Future<void> updateWorkoutSetsRepeatsRest(Workout workout) async {
+    final db = await instance.streamDatabase;
+    await db.update(
+      workoutsTable,
+      {
+        'sets': workout.sets,
+        'repeats': workout.repeats,
+        'rest': workout.rest,
+      },
+      where: 'id = ?',
+      whereArgs: [workout.id],
+    );
+    return Future.value();
   }
 
   void close() {

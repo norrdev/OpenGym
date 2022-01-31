@@ -3,9 +3,9 @@ class Workout {
   final String? name;
   final String? description;
   final int? ord;
-  final int? sets;
-  final int? repeats;
-  final int? rest;
+  int? sets;
+  int? repeats;
+  int? rest;
   // final double? weight;
 
   Workout({

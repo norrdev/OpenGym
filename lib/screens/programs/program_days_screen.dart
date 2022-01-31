@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/config.dart';
@@ -80,7 +81,7 @@ class _ProgramDaysScreenState extends State<ProgramDaysScreen> {
                                 builder: (context) =>
                                     ProgramDayScreen(day: item))),
                       ),
-                      startActionPane: ActionPane(
+                      endActionPane: ActionPane(
                         motion: const ScrollMotion(),
                         children: [
                           SlidableAction(

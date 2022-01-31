@@ -38,4 +38,6 @@ abstract class Repository {
   Future<void> updateDay(Day day);
 
   Stream<List<Workout>> findWorkoutByDay(int dayId);
+
+  Future<void> updateWorkoutSetsRepeatsRest(Workout workout);
 }
