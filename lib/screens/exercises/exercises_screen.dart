@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:npng/config.dart';
 import 'package:npng/screens/exercises/exercises_by_muscle_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/data/repository.dart';
