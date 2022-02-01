@@ -298,6 +298,16 @@ class DatabaseHelper {
     return Future.value();
   }
 
+  Future<void> deleteWorkout(Workout workout) async {
+    final db = await instance.streamDatabase;
+    await db.delete(
+      workoutsTable,
+      where: 'id = ?',
+      whereArgs: [workout.id],
+    );
+    return Future.value();
+  }
+
   void close() {
     _streamDatabase.close();
   }

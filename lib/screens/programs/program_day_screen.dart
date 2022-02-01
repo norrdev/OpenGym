@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/config.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
@@ -57,16 +58,25 @@ class _ProgramDayScreenState extends State<ProgramDayScreen> {
                     itemCount: workouts.length,
                     itemBuilder: (context, index) {
                       final item = workouts[index];
-                      // return Card(
-                      //   key: ValueKey(item),
-                      //   child: ListTile(
-                      //     title: Text(item.name as String),
-                      //     subtitle: Text(item.description as String),
-                      //   ),
-                      // );
-                      return Card(
+                      return Slidable(
+                        endActionPane: ActionPane(
+                          motion: const ScrollMotion(),
+                          children: [
+                            SlidableAction(
+                              onPressed: (context) {
+                                repository.deleteWorkout(item);
+                                setState(() {});
+                              },
+                              backgroundColor: Colors.redAccent,
+                              foregroundColor: Colors.white,
+                              icon: isApple
+                                  ? CupertinoIcons.delete
+                                  : Icons.delete,
+                              label: S.of(context).delete,
+                            ),
+                          ],
+                        ),
                         key: ValueKey(item),
-                        clipBehavior: Clip.antiAlias,
                         child: Column(
                           children: [
                             ExpansionTile(
@@ -145,20 +155,6 @@ class _ProgramDayScreenState extends State<ProgramDayScreen> {
                                 const SizedBox(
                                   height: 16.0,
                                 ),
-                                // ButtonBar(
-                                //   alignment: MainAxisAlignment.center,
-                                //   children: [
-                                //     MpFlatButton(
-                                //       label: S.of(context).delete,
-                                //       child: (isApple)
-                                //           ? const Icon(CupertinoIcons.delete)
-                                //           : const Icon(Icons.delete),
-                                //       onPressed: () {
-                                //         //TODO: Delete workout here.
-                                //       },
-                                //     )
-                                //   ],
-                                // ),
                               ],
                             ),
                           ],
