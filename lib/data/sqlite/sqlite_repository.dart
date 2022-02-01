@@ -120,4 +120,10 @@ class SqliteRepository extends Repository {
     dbHelper.deleteWorkout(workout);
     return Future.value();
   }
+
+  @override
+  Future<void> insertWorkout(int dayId, int exerciseId) {
+    dbHelper.insertWorkout(dayId, exerciseId);
+    return Future.value();
+  }
 }

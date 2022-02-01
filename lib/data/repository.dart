@@ -42,4 +42,6 @@ abstract class Repository {
   Future<void> updateWorkoutSetsRepeatsRest(Workout workout);
 
   Future<void> deleteWorkout(Workout workout);
+
+  Future<void> insertWorkout(int dayId, int exerciseId);
 }

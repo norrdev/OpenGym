@@ -599,19 +599,18 @@ class MpAlertDialog extends StatelessWidget {
   }
 }
 
-void mpShowToast(
-  String message, {
-  required BuildContext context,
-}) {
+void mpShowToast(String message,
+    {required BuildContext context,
+    Color backgroundColor = Colors.blueAccent}) {
   //if (!mounted) return;
   showFlash(
       context: context,
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 2),
       builder: (_, controller) {
         return Flash(
-          backgroundColor: Colors.black45,
+          backgroundColor: backgroundColor,
           controller: controller,
-          position: FlashPosition.top,
+          position: FlashPosition.bottom,
           behavior: FlashBehavior.fixed,
           child: FlashBar(
             content: Text(message),

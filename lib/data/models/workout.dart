@@ -6,6 +6,7 @@ class Workout {
   int? sets;
   int? repeats;
   int? rest;
+  final int? exercisesId;
   // final double? weight;
 
   Workout({
@@ -16,6 +17,7 @@ class Workout {
     this.sets,
     this.repeats,
     this.rest,
+    this.exercisesId,
     // this.weight
   });
 
@@ -31,6 +33,7 @@ class Workout {
       sets: json['sets'] as int,
       repeats: json['repeats'] as int,
       rest: json['rest'] as int,
+      exercisesId: json['exercises_id'] as int,
       // weight: json['weight'] as double,
     );
   }
@@ -43,6 +46,7 @@ class Workout {
         'sets': sets,
         'repeats': repeats,
         'rest': rest,
+        'exercises_id': exercisesId,
         // 'weight': weight,
       };
 }

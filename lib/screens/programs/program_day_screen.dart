@@ -4,6 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/config.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
+import 'package:npng/screens/programs/program_day_add_exercise.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/generated/l10n.dart';
@@ -28,19 +29,19 @@ class _ProgramDayScreenState extends State<ProgramDayScreen> {
         trailing: MpFlatButton(
           padding: const EdgeInsets.all(8),
           child: Icon(
-            (isApple) ? CupertinoIcons.add : Icons.add,
-            color: (isApple)
+            isApple ? CupertinoIcons.add : Icons.add,
+            color: isApple
                 ? CupertinoTheme.of(context).textTheme.actionTextStyle.color
                 : Theme.of(context).secondaryHeaderColor,
           ),
-          // onPressed: () => Navigator.push(
-          //   context,
-          //   mpPageRoute(
-          //     builder: (context) => ProgramNewDayScreen(
-          //       programId: widget.program.id as int,
-          //     ),
-          //   ),
-          // ).then((value) => setState(() {})),
+          onPressed: () => Navigator.push(
+            context,
+            mpPageRoute(
+              builder: (context) => ProgramDayAddExercise(
+                day: widget.day,
+              ),
+            ),
+          ).then((value) => setState(() {})),
         ),
       ),
       body: SafeArea(

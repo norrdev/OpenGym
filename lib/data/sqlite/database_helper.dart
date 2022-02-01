@@ -260,7 +260,7 @@ class DatabaseHelper {
   Stream<List<Workout>> findWorkoutByDay(int dayId) async* {
     final db = await instance.streamDatabase;
     final String sql = '''
-    SELECT workouts.id AS id, exercises.${kLocale}_name AS name, exercises.${kLocale}_description as description, sets, ord, repeats, rest FROM workouts 
+    SELECT workouts.id AS id, exercises.${kLocale}_name AS name, exercises.${kLocale}_description as description, sets, ord, repeats, rest, exercises_id FROM workouts 
     JOIN exercises on workouts.exercises_id = exercises.id 
     WHERE days_id = $dayId ORDER BY ord;
       ''';
@@ -304,6 +304,29 @@ class DatabaseHelper {
       workoutsTable,
       where: 'id = ?',
       whereArgs: [workout.id],
+    );
+    return Future.value();
+  }
+
+  Future<void> insertWorkout(int dayId, int exersiseId) async {
+    final db = await instance.streamDatabase;
+    final queryResult = await db.query(
+      workoutsTable,
+      columns: ['MAX(ord) AS maxOrd'],
+      where: 'days_id = ?',
+      whereArgs: [dayId],
+    );
+    int maxOrd = (queryResult.first['maxOrd'] != null)
+        ? queryResult.first['maxOrd'] as int
+        : -1;
+
+    await db.insert(
+      workoutsTable,
+      {
+        'ord': ++maxOrd,
+        'exercises_id': exersiseId,
+        'days_id': dayId,
+      },
     );
     return Future.value();
   }
