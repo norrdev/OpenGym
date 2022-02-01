@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
-import 'package:npng/screens/programs/programs_00_page.dart';
 import 'package:npng/screens/workout/workout_01_process_page.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
@@ -68,8 +67,10 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
                   flex: 3,
                   child: MpButton(
                     label: 'Select',
-                    onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                        context, ProgramsPage.id, (route) => false),
+                    onPressed: () {},
+
+                    // () => Navigator.pushNamedAndRemoveUntil(
+                    //     context, ProgramsPage.id, (route) => false),
                   ),
                 ),
                 Expanded(
