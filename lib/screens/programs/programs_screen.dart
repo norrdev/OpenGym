@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/data/models/models.dart';
+import 'package:npng/data/models/workout_provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/programs/program_days_screen.dart';
 import 'package:npng/screens/programs/program_edit_screen.dart';
+import 'package:npng/screens/workout/workout_00_start_page.dart';
+import 'package:npng/screens/workout/workout_00_start_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -40,10 +43,12 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                       leading: Radio<int>(
                         value: item.id as int,
                         groupValue: _current,
-                        onChanged: (value) {
+                        onChanged: (_) {
                           repository
                               .setCurrentProgram(item.id as int)
-                              .then((value) {
+                              .then((_) {
+                            Provider.of<WorkoutProvider>(context, listen: false)
+                                .defaultProgram = item.id as int;
                             setState(() {});
                           });
                         },

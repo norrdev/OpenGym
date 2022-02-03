@@ -97,55 +97,57 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // // Implement US metrics
-          // FutureBuilder<bool>(
-          //   future: _isImperial,
-          //   builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          //     switch (snapshot.connectionState) {
-          //       case ConnectionState.waiting:
-          //         return MpSwitch(
-          //             title: 'Metric / Imperial (UK, US) - not work',
-          //             value: false,
-          //             onChanged: (val) {});
-          //       default:
-          //         if (snapshot.hasError) {
-          //           return Text('Error: ${snapshot.error}');
-          //         } else {
-          //           return MpSwitch(
-          //               title: 'Metric / Imperial (UK, US) - not work',
-          //               value: snapshot.data!,
-          //               onChanged: _saveImperial);
-          //         }
-          //     }
-          //   },
-          // ),
-          //const Divider(),
-          MpLinkButton(
-            label: S.of(context).share,
-            onPressed: () => _share(context),
-          ),
-          MpLinkButton(
-            label: S.of(context).import,
-            onPressed: () => _importFile(context),
-          ),
-          const Divider(),
-          MpLinkButton(
-            label: S.of(context).about,
-            onPressed: () => _getAboutPage(context),
-          ),
-          MpLinkButton(
-            label: S.of(context).licenses,
-            onPressed: () => showLicensePage(
-                context: context,
-                applicationVersion: version,
-                applicationLegalese: '© Denis Filonov'),
-          ),
-        ],
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // // Implement US metrics
+            // FutureBuilder<bool>(
+            //   future: _isImperial,
+            //   builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            //     switch (snapshot.connectionState) {
+            //       case ConnectionState.waiting:
+            //         return MpSwitch(
+            //             title: 'Metric / Imperial (UK, US) - not work',
+            //             value: false,
+            //             onChanged: (val) {});
+            //       default:
+            //         if (snapshot.hasError) {
+            //           return Text('Error: ${snapshot.error}');
+            //         } else {
+            //           return MpSwitch(
+            //               title: 'Metric / Imperial (UK, US) - not work',
+            //               value: snapshot.data!,
+            //               onChanged: _saveImperial);
+            //         }
+            //     }
+            //   },
+            // ),
+            //const Divider(),
+            MpLinkButton(
+              label: S.of(context).share,
+              onPressed: () => _share(context),
+            ),
+            MpLinkButton(
+              label: S.of(context).import,
+              onPressed: () => _importFile(context),
+            ),
+            const Divider(),
+            MpLinkButton(
+              label: S.of(context).about,
+              onPressed: () => _getAboutPage(context),
+            ),
+            MpLinkButton(
+              label: S.of(context).licenses,
+              onPressed: () => showLicensePage(
+                  context: context,
+                  applicationVersion: version,
+                  applicationLegalese: '© Denis Filonov'),
+            ),
+          ],
+        ),
       ),
     );
   }

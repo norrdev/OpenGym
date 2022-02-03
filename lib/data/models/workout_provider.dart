@@ -29,6 +29,18 @@ class Exerscise {
 /// Workout settings and methods. ==============================================
 
 class WorkoutProvider extends ChangeNotifier {
+  /// Default program.
+  int _defaultProgram = -1;
+
+  /// Default program.
+  int get defaultProgram => _defaultProgram;
+
+  /// Default program.
+  set defaultProgram(int defaultProgram) {
+    _defaultProgram = defaultProgram;
+    notifyListeners();
+  }
+
   /// Active workout flag.
   bool active = false;
 

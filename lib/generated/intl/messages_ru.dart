@@ -66,6 +66,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
         "saveToLog":
             MessageLookupByLibrary.simpleMessage("Сохранить в дневник"),
+        "selectProgram":
+            MessageLookupByLibrary.simpleMessage("Сначала выберите программу."),
         "sets": MessageLookupByLibrary.simpleMessage("Подходы"),
         "setsText": MessageLookupByLibrary.simpleMessage(
             "Выполните подход, и когда закончите, нажмите кнопку."),

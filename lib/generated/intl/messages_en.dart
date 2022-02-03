@@ -61,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "restore": MessageLookupByLibrary.simpleMessage("Restore from backup"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "saveToLog": MessageLookupByLibrary.simpleMessage("Save to Log"),
+        "selectProgram":
+            MessageLookupByLibrary.simpleMessage("Select program first."),
         "sets": MessageLookupByLibrary.simpleMessage("Sets"),
         "setsText": MessageLookupByLibrary.simpleMessage(
             "Perfom the set, and when you\'re done, press the button."),
