@@ -21,17 +21,20 @@ dependencies:
   url_launcher: ^6.0.3
   package_info_plus: ^1.0.1
   audioplayers: ^0.20.0
+  #equatable: ^2.0.3
   sqflite: ^2.0.0+4
   synchronized: ^3.0.0
   sqlbrite: ^2.1.0
+  # json_annotation: ^4.1.0
   path: ^1.8.0
   wakelock: ^0.5.2
   page_transition: ^2.0.2
   cell_calendar: ^0.5.0+1
-  share_plus: ^3.0.4 #^2.1.4
+  share_plus: ^3.0.4
   flash: ^2.0.1
   file_picker: ^4.0.1
   shared_preferences: ^2.0.8
+  flutter_slidable: ^1.1.0
 
 dev_dependencies:
   flutter_lints: ^1.0.4
@@ -48,8 +51,13 @@ flutter:
     - assets/texts/ru/
     - assets/sounds/
     - CHANGELOG.md
+    #todo New asset, change table name!
     - assets/db/npng.db
 
 flutter_intl:
   enabled: true
+  class_name: S
   main_locale: en
+  arb_dir: lib/l10n
+  output_dir: lib/generated
+  use_deferred_loading: false

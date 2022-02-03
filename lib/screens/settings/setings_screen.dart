@@ -1,27 +1,25 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:npng/data/sqlite/db.dart';
+import 'package:npng/data/sqlite/db_old.dart';
 import 'package:share_plus/share_plus.dart';
-import 'about_page.dart';
+import 'about_screen.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SettingsPage extends StatefulWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({Key? key}) : super(key: key);
   static String id = '/settings';
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _SettingsScreenState extends State<SettingsScreen> {
   String version = '';
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   late Future<bool> _isImperial;
@@ -54,7 +52,7 @@ class _SettingsPageState extends State<SettingsPage> {
     Navigator.push(
       context,
       mpPageRoute(
-        builder: (BuildContext context) => AboutPage(
+        builder: (BuildContext context) => AboutScreen(
           about: about,
           history: history,
           version: version,
@@ -99,60 +97,55 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MpScaffold(
-      appBar: MpAppBar(
-        title: Text(S.of(context).settings),
-      ),
-      body: SafeArea(
-        minimum: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // // Implement US metrics
-            // FutureBuilder<bool>(
-            //   future: _isImperial,
-            //   builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-            //     switch (snapshot.connectionState) {
-            //       case ConnectionState.waiting:
-            //         return MpSwitch(
-            //             title: 'Metric / Imperial (UK, US) - not work',
-            //             value: false,
-            //             onChanged: (val) {});
-            //       default:
-            //         if (snapshot.hasError) {
-            //           return Text('Error: ${snapshot.error}');
-            //         } else {
-            //           return MpSwitch(
-            //               title: 'Metric / Imperial (UK, US) - not work',
-            //               value: snapshot.data!,
-            //               onChanged: _saveImperial);
-            //         }
-            //     }
-            //   },
-            // ),
-            //const Divider(),
-            MpLinkButton(
-              label: S.of(context).share,
-              onPressed: () => _share(context),
-            ),
-            MpLinkButton(
-              label: S.of(context).import,
-              onPressed: () => _importFile(context),
-            ),
-            const Divider(),
-            MpLinkButton(
-              label: S.of(context).about,
-              onPressed: () => _getAboutPage(context),
-            ),
-            MpLinkButton(
-              label: S.of(context).licenses,
-              onPressed: () => showLicensePage(
-                  context: context,
-                  applicationVersion: version,
-                  applicationLegalese: '© Denis Filonov'),
-            ),
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // // Implement US metrics
+          // FutureBuilder<bool>(
+          //   future: _isImperial,
+          //   builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          //     switch (snapshot.connectionState) {
+          //       case ConnectionState.waiting:
+          //         return MpSwitch(
+          //             title: 'Metric / Imperial (UK, US) - not work',
+          //             value: false,
+          //             onChanged: (val) {});
+          //       default:
+          //         if (snapshot.hasError) {
+          //           return Text('Error: ${snapshot.error}');
+          //         } else {
+          //           return MpSwitch(
+          //               title: 'Metric / Imperial (UK, US) - not work',
+          //               value: snapshot.data!,
+          //               onChanged: _saveImperial);
+          //         }
+          //     }
+          //   },
+          // ),
+          //const Divider(),
+          MpLinkButton(
+            label: S.of(context).share,
+            onPressed: () => _share(context),
+          ),
+          MpLinkButton(
+            label: S.of(context).import,
+            onPressed: () => _importFile(context),
+          ),
+          const Divider(),
+          MpLinkButton(
+            label: S.of(context).about,
+            onPressed: () => _getAboutPage(context),
+          ),
+          MpLinkButton(
+            label: S.of(context).licenses,
+            onPressed: () => showLicensePage(
+                context: context,
+                applicationVersion: version,
+                applicationLegalese: '© Denis Filonov'),
+          ),
+        ],
       ),
     );
   }

@@ -1,14 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:npng/config.dart';
+import 'package:npng/screens/exercises/exercises_screen.dart';
+import 'package:npng/screens/log/log_calendar_screen.dart';
+import 'package:npng/screens/programs/programs_screen.dart';
+import 'package:npng/screens/programs/program_new_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/screens/log/log_start_page.dart';
-import 'package:npng/screens/settings/setings_page.dart';
+import 'package:npng/screens/settings/setings_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:npng/screens/exercises/exercises_page.dart';
-import 'package:npng/screens/programs/programs_00_page.dart';
-import 'package:npng/screens/workout/workout_00_start_page.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -25,11 +26,13 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    pageList.add(const WorkoutStartPage());
-    pageList.add(const ProgramsPage());
-    pageList.add(const ExercisesPage());
-    pageList.add(const LogStartPage());
-    pageList.add(const SettingsPage());
+    pageList.add(const Center(
+      child: CircularProgressIndicator(),
+    )); //pageList.add(const WorkoutStartPage());
+    pageList.add(const ProgramsScreen());
+    pageList.add(const ExercisesScreen());
+    pageList.add(const LogCalendarScreen());
+    pageList.add(const SettingsScreen());
     getCurrentIndex();
   }
 
@@ -64,6 +67,25 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String title = 'NpNg';
+    switch (_selectedIndex) {
+      case 0:
+        title = S.of(context).pageWorkout;
+        break;
+      case 1:
+        title = S.of(context).pageProgramsTitle;
+        break;
+      case 2:
+        title = S.of(context).pageExerciseTitle;
+        break;
+      case 3:
+        title = S.of(context).log;
+        break;
+      case 4:
+        title = S.of(context).settings;
+        break;
+      default:
+    }
     return MpScaffold(
       bottomNavigationBar: MpBottomNavigationBar(
         items: [
@@ -107,9 +129,29 @@ class _MainScreenState extends State<MainScreen> {
         onTap: _onItemTapped,
         //selectedItemColor: Theme.of(context).colorScheme.primary,
       ),
-      // appBar: MpAppBar(
-      //   title: Text(title),
-      // ),
+      appBar: MpAppBar(
+        title: Text(title),
+        trailing: (_selectedIndex == 1)
+            ? MpFlatButton(
+                padding: const EdgeInsets.all(8),
+                child: Icon(
+                  (isApple) ? CupertinoIcons.add : Icons.add,
+                  color: (isApple)
+                      ? CupertinoTheme.of(context)
+                          .textTheme
+                          .actionTextStyle
+                          .color
+                      : Theme.of(context).secondaryHeaderColor,
+                ),
+                onPressed: () => Navigator.push(
+                  context,
+                  mpPageRoute(
+                    builder: (context) => const ProgramNewScreen(),
+                  ),
+                ).then((value) => setState(() {})),
+              )
+            : null,
+      ),
       body: IndexedStack(
         index: _selectedIndex,
         children: pageList,

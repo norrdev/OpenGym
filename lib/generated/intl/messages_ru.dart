@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ccontinue": MessageLookupByLibrary.simpleMessage("Продолжить"),
         "currentWorkout":
             MessageLookupByLibrary.simpleMessage("Текущая тренировка"),
+        "dayAdd": MessageLookupByLibrary.simpleMessage("Добавить день"),
         "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
         "desc": MessageLookupByLibrary.simpleMessage("Описание"),
         "edit": MessageLookupByLibrary.simpleMessage("Правка"),
@@ -45,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "min": MessageLookupByLibrary.simpleMessage("мин."),
         "muscles": MessageLookupByLibrary.simpleMessage("Мышцы"),
         "name": MessageLookupByLibrary.simpleMessage("Название"),
+        "noDesc": MessageLookupByLibrary.simpleMessage("Нет описания."),
         "noex":
             MessageLookupByLibrary.simpleMessage("В этом дне нет упражнений."),
         "pageAddEx":
@@ -53,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pageExerciseTitle": MessageLookupByLibrary.simpleMessage("Упражнения"),
         "pageProgramsTitle": MessageLookupByLibrary.simpleMessage("Программы"),
         "pageWorkout": MessageLookupByLibrary.simpleMessage("Тренировка"),
+        "programAdd":
+            MessageLookupByLibrary.simpleMessage("Добавить программу"),
         "repeats": MessageLookupByLibrary.simpleMessage("Повторы"),
         "rest": MessageLookupByLibrary.simpleMessage("Отдых (сек)"),
         "restButton":

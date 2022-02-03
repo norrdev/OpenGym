@@ -2,13 +2,10 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:npng/screens/exercises/exercise.dart';
-import 'package:npng/screens/exercises/exercises_by_muscle_page.dart';
-import 'package:npng/screens/exercises/exercises_page.dart';
-import 'package:npng/screens/programs/programs_01_days_page.dart';
-import 'package:npng/screens/programs/programs_00_page.dart';
+import 'package:intl/intl.dart';
+import 'package:npng/screens/exercises/exercises_screen.dart';
 import 'package:npng/screens/workout/workout_02_set_page.dart';
-import 'package:npng/screens/settings/about_page.dart';
+import 'package:npng/screens/settings/about_screen.dart';
 import 'package:npng/screens/workout/workout_03_timer_page.dart';
 import 'package:npng/screens/workout/workout_01_process_page.dart';
 import 'package:npng/screens/workout/workout_00_start_page.dart';
@@ -26,7 +23,7 @@ final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
 // bool get isDesktopDeviceOrWeb => kIsWeb || isDesktopDevice;
 
 /// Current locale
-late Locale kLocale;
+String kLocale = Intl.getCurrentLocale();
 
 /// Cupertino light & dark theme
 //final Brightness brightness = MediaQuery.platformBrightnessOf(context);
@@ -72,21 +69,15 @@ final ThemeData kMaterialDark = ThemeData(
 );
 
 /// Initial route
-const kInitialRoute = '/'; //WorkoutStartPage.id;
+const kInitialRoute = '/';
 
 /// Route map
 final Map<String, Widget Function(BuildContext)> kAppRoutes = {
   '/': (context) => const MainScreen(),
   WorkoutStartPage.id: (context) => const WorkoutStartPage(),
   WorkoutProcessPage.id: (context) => const WorkoutProcessPage(),
-  ProgramsPage.id: (context) => const ProgramsPage(),
   WorkoutSetPage.id: (context) => const WorkoutSetPage(),
   TimerPage.id: (context) => const TimerPage(),
-  AboutPage.id: (context) => AboutPage(),
-  ExercisesPage.id: (context) => const ExercisesPage(),
-  ExercisesByMusclePage.id: (context) => const ExercisesByMusclePage(),
-  ExercisePage.id: (context) => const ExercisePage(),
-  ProgramsDaysPage.id: (context) => const ProgramsDaysPage(),
-  // RoutinesByDayPage.id: (context) => RoutinesByDayPage(),
-  // AddExcersisePage.id: (context) => AddExcersisePage(),
+  AboutScreen.id: (context) => AboutScreen(),
+  ExercisesScreen.id: (context) => const ExercisesScreen(),
 };

@@ -1,3 +1,9 @@
+## 2.0.0
+- Full core refactoring.
+- Improved speed.
+- Improved interface.
+- Slidable lists.
+
 ## 1.2.0
 - Changed place for weight and repeats.
 - Added system splashscreen on start.

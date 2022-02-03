@@ -18,10 +18,10 @@ class Exerscise {
   bool get completed {
     bool flag = true;
     // May be usual circle.
-    sets.forEach((element) {
+    for (var element in sets) {
       if (!element.completed) flag = false;
-      return;
-    });
+      return flag;
+    }
     return flag;
   }
 }

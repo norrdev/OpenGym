@@ -154,9 +154,10 @@ class WorkoutSetPage extends StatelessWidget {
               key: Key(Random.secure().nextDouble().toString()),
               steps: steps,
               currentStep: workout.currentSet,
-              controlsBuilder: (context, {onStepCancel, onStepContinue}) {
-                return Container();
-              },
+              // TODO: WTF after update?
+              // controlsBuilder: (context, {onStepCancel, onStepContinue}) {
+              //   return Container();
+              // },
             );
           }),
         ),

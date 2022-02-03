@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
-import 'package:npng/screens/programs/programs_00_page.dart';
 import 'package:npng/screens/workout/workout_01_process_page.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/data/sqlite/db.dart';
+import 'package:npng/data/sqlite/db_old.dart';
 
 class WorkoutStartPage extends StatefulWidget {
   const WorkoutStartPage({Key? key}) : super(key: key);
@@ -51,9 +49,6 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Getting locale. Must be on main screen!
-    kLocale = Localizations.localeOf(context);
-
     return MpScaffold(
       appBar: MpAppBar(
         title: Text(S.of(context).pageWorkout),
@@ -72,8 +67,10 @@ class _WorkoutStartPageState extends State<WorkoutStartPage> {
                   flex: 3,
                   child: MpButton(
                     label: 'Select',
-                    onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                        context, ProgramsPage.id, (route) => false),
+                    onPressed: () {},
+
+                    // () => Navigator.pushNamedAndRemoveUntil(
+                    //     context, ProgramsPage.id, (route) => false),
                   ),
                 ),
                 Expanded(

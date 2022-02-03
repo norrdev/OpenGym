@@ -1,29 +1,38 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// Localization
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:npng/config.dart';
+import 'package:npng/data/repository.dart';
+import 'data/sqlite/sqlite_repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/data/models/workout_provider.dart';
 import 'package:provider/provider.dart';
-import 'data/sqlite/db.dart';
+import 'config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initDataBase();
+  final repository = SqliteRepository();
+  await repository.init();
+
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => WorkoutProvider()),
+        Provider<Repository>(
+          lazy: false,
+          create: (_) => repository,
+          dispose: (_, Repository repository) => repository.close(),
+        ),
       ],
-      child: (isApple) ? const AppCupertino() : const AppMaterial(),
+      child: (isApple)
+          ? AppCupertino(repository: repository)
+          : AppMaterial(repository: repository),
     ),
   );
 }
 
 class AppMaterial extends StatelessWidget {
-  const AppMaterial({Key? key}) : super(key: key);
+  final Repository repository;
+  const AppMaterial({Key? key, required this.repository}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -45,7 +54,8 @@ class AppMaterial extends StatelessWidget {
 }
 
 class AppCupertino extends StatelessWidget {
-  const AppCupertino({Key? key}) : super(key: key);
+  final Repository repository;
+  const AppCupertino({Key? key, required this.repository}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Theme(

@@ -370,10 +370,10 @@ class S {
     );
   }
 
-  /// `Canсel`
+  /// `Cancel`
   String get cancel {
     return Intl.message(
-      'Canсel',
+      'Cancel',
       name: 'cancel',
       desc: '',
       args: [],
@@ -390,11 +390,31 @@ class S {
     );
   }
 
+  /// `Add program`
+  String get programAdd {
+    return Intl.message(
+      'Add program',
+      name: 'programAdd',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Days`
   String get pageDaysTitle {
     return Intl.message(
       'Days',
       name: 'pageDaysTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add day`
+  String get dayAdd {
+    return Intl.message(
+      'Add day',
+      name: 'dayAdd',
       desc: '',
       args: [],
     );
@@ -525,6 +545,16 @@ class S {
     return Intl.message(
       'Exercise added.',
       name: 'addEx',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No description.`
+  String get noDesc {
+    return Intl.message(
+      'No description.',
+      name: 'noDesc',
       desc: '',
       args: [],
     );

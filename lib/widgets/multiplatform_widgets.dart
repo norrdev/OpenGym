@@ -1,5 +1,4 @@
 import 'package:flash/flash.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -157,12 +156,20 @@ class MpLinkButton extends StatelessWidget {
     if (isApple) {
       return CupertinoButton(
         padding: EdgeInsetsDirectional.zero,
-        child: Text(label!),
+        child: Text(label!,
+            style: TextStyle(
+                color: CupertinoTheme.of(context)
+                    .textTheme
+                    .actionTextStyle
+                    .color)),
         onPressed: onPressed as void Function()?,
       );
     } else {
       return TextButton(
-        child: Text(label!),
+        child: Text(
+          label!,
+          style: TextStyle(color: Theme.of(context).secondaryHeaderColor),
+        ),
         onPressed: onPressed as void Function()?,
       );
     }
@@ -219,12 +226,12 @@ class MpFlatButton extends StatelessWidget {
       return CupertinoButton(
         padding: padding,
         onPressed: onPressed as void Function()?,
-        child: child!,
+        child: child ?? Text(label ?? ''),
       );
     } else {
       return TextButton(
         onPressed: onPressed as void Function()?,
-        child: child!,
+        child: child ?? Text(label ?? ''),
       );
     }
   }
@@ -592,19 +599,18 @@ class MpAlertDialog extends StatelessWidget {
   }
 }
 
-void mpShowToast(
-  String message, {
-  required BuildContext context,
-}) {
+void mpShowToast(String message,
+    {required BuildContext context,
+    Color backgroundColor = Colors.blueAccent}) {
   //if (!mounted) return;
   showFlash(
       context: context,
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 2),
       builder: (_, controller) {
         return Flash(
-          backgroundColor: Colors.black45,
+          backgroundColor: backgroundColor,
           controller: controller,
-          position: FlashPosition.top,
+          position: FlashPosition.bottom,
           behavior: FlashBehavior.fixed,
           child: FlashBar(
             content: Text(message),

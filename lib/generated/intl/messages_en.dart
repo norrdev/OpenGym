@@ -26,10 +26,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "add": MessageLookupByLibrary.simpleMessage("Add"),
         "addEx": MessageLookupByLibrary.simpleMessage("Exercise added."),
         "backup": MessageLookupByLibrary.simpleMessage("Backup database"),
-        "cancel": MessageLookupByLibrary.simpleMessage("Canсel"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "ccontinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "currentWorkout":
             MessageLookupByLibrary.simpleMessage("Current workout"),
+        "dayAdd": MessageLookupByLibrary.simpleMessage("Add day"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "desc": MessageLookupByLibrary.simpleMessage("Description"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
@@ -45,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "min": MessageLookupByLibrary.simpleMessage("min."),
         "muscles": MessageLookupByLibrary.simpleMessage("Muscles"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "noDesc": MessageLookupByLibrary.simpleMessage("No description."),
         "noex":
             MessageLookupByLibrary.simpleMessage("No excersises on this day."),
         "pageAddEx": MessageLookupByLibrary.simpleMessage("Add exercise"),
@@ -52,6 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pageExerciseTitle": MessageLookupByLibrary.simpleMessage("Exercises"),
         "pageProgramsTitle": MessageLookupByLibrary.simpleMessage("Programs"),
         "pageWorkout": MessageLookupByLibrary.simpleMessage("Workout"),
+        "programAdd": MessageLookupByLibrary.simpleMessage("Add program"),
         "repeats": MessageLookupByLibrary.simpleMessage("Repeats"),
         "rest": MessageLookupByLibrary.simpleMessage("Rest time (sec)"),
         "restButton": MessageLookupByLibrary.simpleMessage("Save & rest"),
