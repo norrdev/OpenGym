@@ -44,4 +44,8 @@ abstract class Repository {
   Future<void> deleteWorkout(Workout workout);
 
   Future<void> insertWorkout(int dayId, int exerciseId);
+
+  Future<List<LogDay>> wathchAllLogDays();
+
+  Future<List<LogWorkout>> findLogWorkoutByDay(int logDayId);
 }

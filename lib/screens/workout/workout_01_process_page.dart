@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
-import 'package:npng/data/sqlite/db.dart';
+import 'package:npng/data/sqlite/db_old.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/workout/workout_02_set_page.dart';
 import 'package:npng/screens/workout/workout_04_finish_page.dart';

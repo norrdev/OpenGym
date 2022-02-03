@@ -1,8 +1,8 @@
 ## 2.0.0
-- Full refactoring of database.
+- Full core refactoring.
 - Improved speed.
+- Improved interface.
 - Slidable lists.
-- New exercise screen.
 
 ## 1.2.0
 - Changed place for weight and repeats.

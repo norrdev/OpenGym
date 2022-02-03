@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:npng/config.dart';
-import 'package:npng/data/sqlite/db.dart';
+import 'package:npng/data/sqlite/db_old.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/workout/workout_00_start_page.dart';
 import 'package:npng/data/models/workout_provider.dart';

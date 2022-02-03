@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:npng/data/sqlite/db.dart';
+import 'package:npng/data/sqlite/db_old.dart';
 import 'package:share_plus/share_plus.dart';
 import 'about_screen.dart';
 import 'package:file_picker/file_picker.dart';

@@ -1,3 +1,4 @@
+/// Workout model (exercise, sets, repeats, rest).
 class Workout {
   int? id;
   final String? name;
@@ -18,11 +19,7 @@ class Workout {
     this.repeats,
     this.rest,
     this.exercisesId,
-    // this.weight
   });
-
-  // @override
-  // List<Object?> get props => [id, name, description, ord, sets, repeats, rest];
 
   factory Workout.fromJson(Map<String, dynamic> json) {
     return Workout(
@@ -34,7 +31,6 @@ class Workout {
       repeats: json['repeats'] as int,
       rest: json['rest'] as int,
       exercisesId: json['exercises_id'] as int,
-      // weight: json['weight'] as double,
     );
   }
 
@@ -47,6 +43,5 @@ class Workout {
         'repeats': repeats,
         'rest': rest,
         'exercises_id': exercisesId,
-        // 'weight': weight,
       };
 }

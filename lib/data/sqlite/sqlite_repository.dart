@@ -126,4 +126,14 @@ class SqliteRepository extends Repository {
     dbHelper.insertWorkout(dayId, exerciseId);
     return Future.value();
   }
+
+  @override
+  Future<List<LogDay>> wathchAllLogDays() {
+    return dbHelper.wathchAllLogDays();
+  }
+
+  @override
+  Future<List<LogWorkout>> findLogWorkoutByDay(int logDayId) {
+    return dbHelper.findLogWorkoutByDay(logDayId);
+  }
 }

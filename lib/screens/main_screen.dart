@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
 import 'package:npng/screens/exercises/exercises_screen.dart';
+import 'package:npng/screens/log/log_calendar_screen.dart';
 import 'package:npng/screens/programs/programs_screen.dart';
 import 'package:npng/screens/programs/program_new_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
@@ -30,7 +31,7 @@ class _MainScreenState extends State<MainScreen> {
     )); //pageList.add(const WorkoutStartPage());
     pageList.add(const ProgramsScreen());
     pageList.add(const ExercisesScreen());
-    pageList.add(Container()); //pageList.add(const LogStartPage());
+    pageList.add(const LogCalendarScreen());
     pageList.add(const SettingsScreen());
     getCurrentIndex();
   }

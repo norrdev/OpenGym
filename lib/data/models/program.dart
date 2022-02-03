@@ -1,15 +1,10 @@
-import 'package:equatable/equatable.dart';
-
-// ignore: must_be_immutable
-class Program extends Equatable {
+/// Training program model.
+class Program {
   int? id;
   final String? name;
   final String? description;
 
   Program({this.id, this.name, this.description});
-
-  @override
-  List<Object?> get props => [id, name, description];
 
   factory Program.fromJson(Map<String, dynamic> json) => Program(
         id: json['id'] as int,

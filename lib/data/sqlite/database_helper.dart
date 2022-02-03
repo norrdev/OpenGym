@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:npng/config.dart';
+import 'package:npng/data/models/log_workout.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqlbrite/sqlbrite.dart';
@@ -19,6 +20,8 @@ class DatabaseHelper {
   static const String userTable = 'user';
   static const String daysTable = 'days';
   static const String workoutsTable = 'workouts';
+  static const String logDaysTable = 'log_days';
+  static const String logWorkoutsTable = 'log_ex';
 
   static late BriteDatabase _streamDatabase;
 
@@ -31,7 +34,7 @@ class DatabaseHelper {
   // only have a single app-wide reference to the database
   static Database? _database;
 
-  // this opens the database (and creates it if it doesn't exist)
+  /// Open the database or create it from asset.
   Future<Database> _initDatabase() async {
     final documentsDirectory = await getApplicationDocumentsDirectory();
     final String path = join(documentsDirectory.path, _databaseName);
@@ -59,6 +62,7 @@ class DatabaseHelper {
     );
   }
 
+  /// Stream database getter.
   Future<Database> get database async {
     if (_database != null) return _database!;
     // Use this object to prevent concurrent access to data
@@ -329,6 +333,56 @@ class DatabaseHelper {
       },
     );
     return Future.value();
+  }
+
+  // Log
+
+  /// All log days.
+  //TODO: Refactor without using streamDatabase, not needed in screen.
+  Future<List<LogDay>> wathchAllLogDays() async {
+    final db = await instance.streamDatabase;
+    final String sql = '''
+    select 
+      $logDaysTable.id AS logDaysId, 
+      $logDaysTable.days_id AS daysId, 
+      start, 
+      finish,
+      $daysTable.${kLocale}_name AS daysName,
+      $programsTable.${kLocale}_name as programsName
+    from $logDaysTable
+    join $daysTable on $logDaysTable.days_id = $daysTable.id 
+    join $programsTable on $daysTable.programs_id = $programsTable.id
+    ORDER BY logDaysId
+    ''';
+    final List<Map<String, dynamic>> list = await db.rawQuery(sql);
+    List<LogDay> result = [];
+    for (Map<String, dynamic> item in list) {
+      result.add(LogDay.fromJson(item));
+    }
+    return result;
+  }
+
+  /// Get workout for day in log.
+  //TODO: Refactor without using streamDatabase, not needed in screen.
+  Future<List<LogWorkout>> findLogWorkoutByDay(int logDayId) async {
+    final db = await instance.streamDatabase;
+    final String sql = '''
+    SELECT $logWorkoutsTable.exercises_id AS id,
+              repeat,
+              weight,
+              $exerciseTable.${kLocale}_name AS name
+        FROM $logWorkoutsTable
+              JOIN
+              $exerciseTable ON $logWorkoutsTable.exercises_id = $exerciseTable.id
+        WHERE $logWorkoutsTable.log_days_id = $logDayId
+        ORDER BY $logWorkoutsTable.id;
+    ''';
+    final List<Map<String, dynamic>> list = await db.rawQuery(sql);
+    List<LogWorkout> result = [];
+    for (Map<String, dynamic> item in list) {
+      result.add(LogWorkout.fromJson(item));
+    }
+    return result;
   }
 
   void close() {

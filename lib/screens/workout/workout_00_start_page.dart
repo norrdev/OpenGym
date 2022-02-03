@@ -3,7 +3,7 @@ import 'package:npng/config.dart';
 import 'package:npng/screens/workout/workout_01_process_page.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/data/sqlite/db.dart';
+import 'package:npng/data/sqlite/db_old.dart';
 
 class WorkoutStartPage extends StatefulWidget {
   const WorkoutStartPage({Key? key}) : super(key: key);
