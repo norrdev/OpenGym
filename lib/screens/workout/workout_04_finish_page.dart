@@ -4,8 +4,8 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:npng/config.dart';
 import 'package:npng/data/sqlite/db_old.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/screens/workout/workout_00_start_page.dart';
 import 'package:npng/data/models/workout_provider.dart';
+import 'package:npng/screens/workout/workout_00_start_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -88,7 +88,7 @@ class WorkoutFinishPage extends StatelessWidget {
               Navigator.pushAndRemoveUntil(
                 context,
                 PageTransition(
-                  child: const WorkoutStartPage(),
+                  child: const WorkoutStartScreen(),
                   type: PageTransitionType.fade,
                 ),
                 (route) => false,

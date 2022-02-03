@@ -6,8 +6,6 @@ import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/programs/program_days_screen.dart';
 import 'package:npng/screens/programs/program_edit_screen.dart';
-import 'package:npng/screens/workout/workout_00_start_page.dart';
-import 'package:npng/screens/workout/workout_00_start_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 
