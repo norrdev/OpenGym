@@ -5,7 +5,7 @@ import 'package:npng/data/models/log_workout.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
-import 'package:provider/src/provider.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LogWorkoutScreen extends StatefulWidget {
