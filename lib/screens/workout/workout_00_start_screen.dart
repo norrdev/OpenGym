@@ -3,6 +3,8 @@ import 'package:npng/data/models/models.dart';
 import 'package:npng/data/models/workout_provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
+import 'package:npng/screens/workout/workout_01_process_screen.dart';
+import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 
 class WorkoutStartScreen extends StatefulWidget {
@@ -54,7 +56,15 @@ class _WorkoutStartScreenState extends State<WorkoutStartScreen> {
                       return ListTile(
                         title: Text(item.name as String),
                         subtitle: Text(item.description as String),
-                        onTap: () {},
+                        onTap: () => Navigator.push(
+                          context,
+                          mpPageRoute(
+                            builder: (context) => Center(
+                                child: WorkoutProcessScreen(
+                              day: item,
+                            )),
+                          ),
+                        ).then((value) => setState(() {})),
                       );
                     },
                   ),
