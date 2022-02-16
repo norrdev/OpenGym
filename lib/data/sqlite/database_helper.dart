@@ -260,10 +260,15 @@ class DatabaseHelper {
 
   // Workouts
 
+  /// Return workout as a stream.
   Stream<List<Workout>> findWorkoutByDay(int dayId) async* {
     final db = await instance.streamDatabase;
     final String sql = '''
-    SELECT workouts.id AS id, exercises.${kLocale}_name AS name, exercises.${kLocale}_description as description, sets, ord, repeats, rest, exercises_id FROM workouts 
+    SELECT 
+      workouts.id AS id, 
+      exercises.${kLocale}_name AS name, 
+      exercises.${kLocale}_description as description, 
+      sets, ord, repeats, rest, exercises_id, weight FROM workouts 
     JOIN exercises on workouts.exercises_id = exercises.id 
     WHERE days_id = $dayId ORDER BY ord;
       ''';

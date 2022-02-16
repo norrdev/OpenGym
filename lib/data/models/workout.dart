@@ -8,7 +8,7 @@ class Workout {
   int? repeats;
   int? rest;
   final int? exercisesId;
-  // final double? weight;
+  final double? weight;
 
   Workout({
     this.id,
@@ -19,6 +19,7 @@ class Workout {
     this.repeats,
     this.rest,
     this.exercisesId,
+    this.weight,
   });
 
   factory Workout.fromJson(Map<String, dynamic> json) {
@@ -31,6 +32,7 @@ class Workout {
       repeats: json['repeats'] as int,
       rest: json['rest'] as int,
       exercisesId: json['exercises_id'] as int,
+      weight: json['weight'] as double,
     );
   }
 
@@ -43,5 +45,6 @@ class Workout {
         'repeats': repeats,
         'rest': rest,
         'exercises_id': exercisesId,
+        'weight': weight,
       };
 }

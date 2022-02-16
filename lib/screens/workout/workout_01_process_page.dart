@@ -22,6 +22,7 @@ class WorkoutProcessPage extends StatefulWidget {
 
 class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
   List<Map<String, dynamic>> _results = [];
+  // Use ...spread operator, Luk
   List<Map<String, dynamic>> _resultsMutable = [];
 
   @override
@@ -91,7 +92,7 @@ class _WorkoutProcessPageState extends State<WorkoutProcessPage> {
                   ? buildReorderableListView()
                   : buildListView()
               //TODO: Create warning screen.
-              : Text(S.of(context).noex),
+              : Center(child: Text(S.of(context).noex)),
         ),
       ),
       bottomNavigationBar: Container(
