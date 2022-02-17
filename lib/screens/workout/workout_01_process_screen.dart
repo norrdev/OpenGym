@@ -4,13 +4,13 @@ import 'package:npng/config.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
+import 'package:npng/screens/workout/workout_02_set_screen.dart';
 import 'package:npng/screens/workout/workout_04_finish_page.dart';
 import 'package:npng/data/models/workout_provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:wakelock/wakelock.dart';
 
-// TODO Init provider state
 // TODO Continue
 // TODO Finish
 
@@ -24,6 +24,8 @@ class WorkoutProcessScreen extends StatefulWidget {
 
 class _WorkoutProcessScreenState extends State<WorkoutProcessScreen> {
   Map<int, bool> expanded = {};
+
+  void pushBack() => setState(() {});
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +47,25 @@ class _WorkoutProcessScreenState extends State<WorkoutProcessScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            (!Provider.of<WorkoutProvider>(context, listen: false).active)
-                ? const NotAcriveWorkoutBottomBar()
-                : const ActiveWorkoutBottomBar(),
+            (Provider.of<WorkoutProvider>(context, listen: false).active)
+                ? ActiveBottomBar(
+                    pushBack: pushBack,
+                  )
+                : InitBottomBar(
+                    dayId: widget.day.id as int,
+                    pushBack: pushBack,
+                  ),
           ],
         ),
       ),
       body: SafeArea(
-        child: (!Provider.of<WorkoutProvider>(context, listen: false).active)
-            ? InitListView(
-                repository: repository, widget: widget, expanded: expanded)
-            : Center(child: Text(S.of(context).noex)),
+        child: (Provider.of<WorkoutProvider>(context, listen: false).active)
+            ? const ActiveListView()
+            : InitListView(
+                repository: repository,
+                widget: widget,
+                expanded: expanded,
+              ),
       ),
     );
   }
@@ -82,6 +92,10 @@ class InitListView extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.active) {
           final List<Workout> workouts =
               (snapshot.hasData) ? [...snapshot.data!] : [];
+          if (workouts.isNotEmpty) {
+            Provider.of<WorkoutProvider>(context, listen: false)
+                .workoutsSnapshot = workouts;
+          }
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Material(
@@ -186,9 +200,47 @@ class InitListView extends StatelessWidget {
   }
 }
 
-class NotAcriveWorkoutBottomBar extends StatelessWidget {
-  const NotAcriveWorkoutBottomBar({
+/// Shows active workout screen.
+class ActiveListView extends StatelessWidget {
+  const ActiveListView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: Provider.of<WorkoutProvider>(context, listen: false)
+          .excersises
+          .length,
+      itemBuilder: (context, index) {
+        final item = Provider.of<WorkoutProvider>(context, listen: false)
+            .excersises[index];
+        return Material(
+          type: MaterialType.transparency,
+          key: ValueKey(item),
+          child: ListTile(
+              //FIXME: Show status of excersises, check completed.
+              leading: (item.completed)
+                  ? const Icon(
+                      Icons.done,
+                    )
+                  : const Icon(
+                      Icons.fitness_center,
+                    ),
+              title: Text(item.name)),
+        );
+      },
+    );
+  }
+}
+
+/// This bottom bar on workout init
+class InitBottomBar extends StatelessWidget {
+  final int dayId;
+  final Function? pushBack;
+
+  const InitBottomBar({
     Key? key,
+    required this.dayId,
+    this.pushBack,
   }) : super(key: key);
 
   @override
@@ -196,29 +248,29 @@ class NotAcriveWorkoutBottomBar extends StatelessWidget {
     return MpButton(
       label: S.of(context).start,
       onPressed: () {
-        // Provider.of<WorkoutProvider>(context, listen: false)
-        //     .resetAllData();
-        // Provider.of<WorkoutProvider>(context, listen: false)
-        //     .dayID = widget.dayId!;
-        // Provider.of<WorkoutProvider>(context, listen: false)
-        //     .loadEx(_resultsMutable);
-
-        // Provider.of<WorkoutProvider>(context, listen: false)
-        //     .startTime = DateTime.now();
-        // Provider.of<WorkoutProvider>(context, listen: false)
-        //     .active = true;
-        // Wakelock.enable();
-        // Navigator.pushNamed(context, WorkoutSetPage.id)
-        //     .whenComplete(() => _init());
+        Provider.of<WorkoutProvider>(context, listen: false).dayID = dayId;
+        Provider.of<WorkoutProvider>(context, listen: false).startTime =
+            DateTime.now();
+        Provider.of<WorkoutProvider>(context, listen: false).active = true;
+        Wakelock.enable();
+        pushBack!();
+        Navigator.push(
+          context,
+          mpPageRoute(
+            builder: (context) => const WorkoutSetScreen(),
+          ),
+        ).whenComplete(() => pushBack);
       },
     );
   }
 }
 
 /// This bottom bar for workout-in progress
-class ActiveWorkoutBottomBar extends StatelessWidget {
-  const ActiveWorkoutBottomBar({
+class ActiveBottomBar extends StatelessWidget {
+  final Function? pushBack;
+  const ActiveBottomBar({
     Key? key,
+    this.pushBack,
   }) : super(key: key);
 
   @override
@@ -230,8 +282,12 @@ class ActiveWorkoutBottomBar extends StatelessWidget {
           MpButton(
             label: S.of(context).ccontinue,
             onPressed: () {
-              // return Navigator.pushNamed(context, WorkoutSetPage.id)
-              //       .whenComplete(() => _init());
+              Navigator.push(
+                context,
+                mpPageRoute(
+                  builder: (context) => const WorkoutSetScreen(),
+                ),
+              ).whenComplete(() => pushBack);
             },
           ),
         const SizedBox(width: 16.0),

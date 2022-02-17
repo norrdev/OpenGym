@@ -9,8 +9,8 @@ import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
-class TimerPage extends StatelessWidget {
-  const TimerPage({Key? key}) : super(key: key);
+class TimerScreen extends StatelessWidget {
+  const TimerScreen({Key? key}) : super(key: key);
 
   static const String id = '/timer';
 

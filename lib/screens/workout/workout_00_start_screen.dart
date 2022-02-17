@@ -59,10 +59,9 @@ class _WorkoutStartScreenState extends State<WorkoutStartScreen> {
                         onTap: () => Navigator.push(
                           context,
                           mpPageRoute(
-                            builder: (context) => Center(
-                                child: WorkoutProcessScreen(
+                            builder: (context) => WorkoutProcessScreen(
                               day: item,
-                            )),
+                            ),
                           ),
                         ).then((value) => setState(() {})),
                       );
