@@ -5,8 +5,8 @@ import 'package:npng/screens/exercises/exercises_screen.dart';
 import 'package:npng/screens/log/log_calendar_screen.dart';
 import 'package:npng/screens/programs/programs_screen.dart';
 import 'package:npng/screens/programs/program_new_screen.dart';
+import 'package:npng/screens/workout/workout_00_start_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
-
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/settings/setings_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,9 +26,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    pageList.add(const Center(
-      child: CircularProgressIndicator(),
-    )); //pageList.add(const WorkoutStartPage());
+    pageList.add(const WorkoutStartScreen());
     pageList.add(const ProgramsScreen());
     pageList.add(const ExercisesScreen());
     pageList.add(const LogCalendarScreen());
@@ -44,18 +42,13 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void saveCurrentIndex() async {
-    // 1
     final prefs = await SharedPreferences.getInstance();
-    // 2
     prefs.setInt(prefSelectedIndexKey, _selectedIndex);
   }
 
   void getCurrentIndex() async {
-    // 1
     final prefs = await SharedPreferences.getInstance();
-    // 2
     if (prefs.containsKey(prefSelectedIndexKey)) {
-      // 3
       setState(() {
         final index = prefs.getInt(prefSelectedIndexKey);
         if (index != null) {
@@ -86,6 +79,7 @@ class _MainScreenState extends State<MainScreen> {
         break;
       default:
     }
+
     return MpScaffold(
       bottomNavigationBar: MpBottomNavigationBar(
         items: [

@@ -49,5 +49,6 @@
     "wrkEnd": "Workout end",
     "wrkDuration": "Workout duration",
     "addEx": "Exercise added.",
-    "noDesc": "No description."
+    "noDesc": "No description.",
+    "selectProgram": "Select program first."
 }

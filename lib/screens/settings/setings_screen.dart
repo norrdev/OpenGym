@@ -1,11 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:npng/data/sqlite/db_old.dart';
 import 'package:share_plus/share_plus.dart';
 import 'about_screen.dart';
 import 'package:file_picker/file_picker.dart';
@@ -61,91 +59,93 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  void _share(BuildContext context) async {
-    String path = await backupDataBase();
-    final Size size = MediaQuery.of(context).size;
-    await Share.shareFiles(
-      [path],
-      text: 'NpNg database.',
-      sharePositionOrigin: Rect.fromLTWH(0, 0, size.width, size.height / 6),
-    );
-  }
+  // void _share(BuildContext context) async {
+  //   String path = await backupDataBase();
+  //   final Size size = MediaQuery.of(context).size;
+  //   await Share.shareFiles(
+  //     [path],
+  //     text: 'NpNg database.',
+  //     sharePositionOrigin: Rect.fromLTWH(0, 0, size.width, size.height / 6),
+  //   );
+  // }
 
-  void _importFile(BuildContext context) async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.any,
-    );
+  // void _importFile(BuildContext context) async {
+  //   FilePickerResult? result = await FilePicker.platform.pickFiles(
+  //     type: FileType.any,
+  //   );
 
-    if (result != null) {
-      importDataBase(result.files.single.path!);
-      mpShowToast('DB imported from ${result.files.single.path}.',
-          context: context);
-    } else {
-      mpShowToast('Nothing selected.', context: context);
-    }
-  }
+  //   if (result != null) {
+  //     importDataBase(result.files.single.path!);
+  //     mpShowToast('DB imported from ${result.files.single.path}.',
+  //         context: context);
+  //   } else {
+  //     mpShowToast('Nothing selected.', context: context);
+  //   }
+  // }
 
-  Future<void> _saveImperial(bool isImperial) async {
-    final SharedPreferences prefs = await _prefs;
-    setState(() {
-      _isImperial =
-          prefs.setBool('isImperial', isImperial).then((bool success) {
-        return isImperial;
-      });
-    });
-  }
+  // Future<void> _saveImperial(bool isImperial) async {
+  //   final SharedPreferences prefs = await _prefs;
+  //   setState(() {
+  //     _isImperial =
+  //         prefs.setBool('isImperial', isImperial).then((bool success) {
+  //       return isImperial;
+  //     });
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // // Implement US metrics
-          // FutureBuilder<bool>(
-          //   future: _isImperial,
-          //   builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          //     switch (snapshot.connectionState) {
-          //       case ConnectionState.waiting:
-          //         return MpSwitch(
-          //             title: 'Metric / Imperial (UK, US) - not work',
-          //             value: false,
-          //             onChanged: (val) {});
-          //       default:
-          //         if (snapshot.hasError) {
-          //           return Text('Error: ${snapshot.error}');
-          //         } else {
-          //           return MpSwitch(
-          //               title: 'Metric / Imperial (UK, US) - not work',
-          //               value: snapshot.data!,
-          //               onChanged: _saveImperial);
-          //         }
-          //     }
-          //   },
-          // ),
-          //const Divider(),
-          MpLinkButton(
-            label: S.of(context).share,
-            onPressed: () => _share(context),
-          ),
-          MpLinkButton(
-            label: S.of(context).import,
-            onPressed: () => _importFile(context),
-          ),
-          const Divider(),
-          MpLinkButton(
-            label: S.of(context).about,
-            onPressed: () => _getAboutPage(context),
-          ),
-          MpLinkButton(
-            label: S.of(context).licenses,
-            onPressed: () => showLicensePage(
-                context: context,
-                applicationVersion: version,
-                applicationLegalese: '© Denis Filonov'),
-          ),
-        ],
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // // Implement US metrics
+            // FutureBuilder<bool>(
+            //   future: _isImperial,
+            //   builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            //     switch (snapshot.connectionState) {
+            //       case ConnectionState.waiting:
+            //         return MpSwitch(
+            //             title: 'Metric / Imperial (UK, US) - not work',
+            //             value: false,
+            //             onChanged: (val) {});
+            //       default:
+            //         if (snapshot.hasError) {
+            //           return Text('Error: ${snapshot.error}');
+            //         } else {
+            //           return MpSwitch(
+            //               title: 'Metric / Imperial (UK, US) - not work',
+            //               value: snapshot.data!,
+            //               onChanged: _saveImperial);
+            //         }
+            //     }
+            //   },
+            // ),
+            //const Divider(),
+            // MpLinkButton(
+            //   label: S.of(context).share,
+            //   onPressed: () => _share(context),
+            // ),
+            // MpLinkButton(
+            //   label: S.of(context).import,
+            //   onPressed: () => _importFile(context),
+            // ),
+            // const Divider(),
+            MpLinkButton(
+              label: S.of(context).about,
+              onPressed: () => _getAboutPage(context),
+            ),
+            MpLinkButton(
+              label: S.of(context).licenses,
+              onPressed: () => showLicensePage(
+                  context: context,
+                  applicationVersion: version,
+                  applicationLegalese: '© Denis Filonov'),
+            ),
+          ],
+        ),
       ),
     );
   }

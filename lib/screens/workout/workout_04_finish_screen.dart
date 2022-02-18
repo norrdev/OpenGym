@@ -2,17 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:npng/config.dart';
-import 'package:npng/data/sqlite/db_old.dart';
+import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/screens/workout/workout_00_start_page.dart';
 import 'package:npng/data/models/workout_provider.dart';
+import 'package:npng/screens/main_screen.dart';
+import 'package:npng/screens/workout/workout_00_start_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class WorkoutFinishPage extends StatelessWidget {
-  const WorkoutFinishPage({Key? key}) : super(key: key);
+class WorkoutFinishScreen extends StatelessWidget {
+  const WorkoutFinishScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -65,32 +66,14 @@ class WorkoutFinishPage extends StatelessWidget {
           MpButton(
             label: S.of(context).saveToLog,
             onPressed: () async {
-              int logDaysId = 0;
-              // Save to table log_days
-              final wp = context.read<WorkoutProvider>();
-              logDaysId = await db!.insert('log_days', {
-                'start': start.toLocal().toString(),
-                'finish': finish.toLocal().toString(),
-                'days_id': wp.dayID,
-              });
-              await db!.transaction((txn) async {
-                for (Exerscise item in wp.excersises) {
-                  for (int i = 0; i < item.sets.length; i++) {
-                    await txn.insert('log_ex', {
-                      'log_days_id': logDaysId,
-                      'exercises_id': item.id,
-                      'repeat': item.sets[i].repeats,
-                      'weight': item.sets[i].weight,
-                    });
-                  }
-                }
-              }).then((value) => wp.resetAllData());
+              final repository =
+                  Provider.of<Repository>(context, listen: false);
+              await repository.insertLog(context);
+              wp.active = false;
+              wp.finished = true;
               Navigator.pushAndRemoveUntil(
                 context,
-                PageTransition(
-                  child: const WorkoutStartPage(),
-                  type: PageTransitionType.fade,
-                ),
+                mpPageRoute(builder: (context) => const MainScreen()),
                 (route) => false,
               );
             },

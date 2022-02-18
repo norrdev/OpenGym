@@ -559,6 +559,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Select program first.`
+  String get selectProgram {
+    return Intl.message(
+      'Select program first.',
+      name: 'selectProgram',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

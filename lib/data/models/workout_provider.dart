@@ -1,10 +1,9 @@
 import 'package:flutter/foundation.dart';
+import 'package:npng/data/models/workout.dart';
 
-/// Data classes ===============================================================
 class Set {
   int repeats = 0;
   double weight = 0;
-  //int rest = 0;
   bool completed = false;
 }
 
@@ -16,47 +15,68 @@ class Exerscise {
   List<Set> sets = [];
 
   bool get completed {
-    bool flag = true;
-    // May be usual circle.
     for (var element in sets) {
-      if (!element.completed) flag = false;
-      return flag;
+      if (element.completed == false) {
+        return false;
+      }
     }
-    return flag;
+    return true;
   }
 }
 
-/// Workout settings and methods. ==============================================
-
+/// Workout settings and methods.
 class WorkoutProvider extends ChangeNotifier {
-  /// Active workout flag.
+  // Default program.
+  int _defaultProgram = -1;
+
+  // Default program.
+  int get defaultProgram => _defaultProgram;
+
+  // Default program.
+  set defaultProgram(int defaultProgram) {
+    _defaultProgram = defaultProgram;
+    notifyListeners();
+  }
+
+  // Active workout flag.
   bool active = false;
 
-  /// Finished workout flag. Active != filished.
+  // Finished workout flag. Active != filished.
   bool finished = false;
 
-  /// Workout day from DB.days.
+  // Workout day from DB.days.
   int dayID = 0;
 
-  /// Workout time
+  // Workout time
   DateTime? startTime;
   DateTime? finishTime;
 
-  ///Exerscises from DB
+  //Exerscises from DB
   List<Exerscise> excersises = [];
 
-  /// Loading from database
-  void loadEx(List<Map<String, dynamic>> excersisesInput) {
-    for (Map<String, dynamic> item in excersisesInput) {
+  //Snapshot of workouts
+  List<Workout> _workoutsSnapshot = [];
+
+  List<Workout> get workoutsSnapshot => _workoutsSnapshot;
+
+  set workoutsSnapshot(List<Workout> workoutsSnapshot) {
+    _workoutsSnapshot = workoutsSnapshot;
+    resetAllData();
+    _loadEx();
+  }
+
+  /// Load data from database
+  void _loadEx() {
+    for (Workout item in _workoutsSnapshot) {
       Exerscise ex = Exerscise();
-      ex.id = item['exercises_id'] as int;
-      ex.name = item['name'] as String;
-      ex.maxSets = item['sets'] as int;
-      ex.restTime = item['rest'] as int;
-      for (int i = 0; i < (item['sets'] as int); i++) {
+      ex.id = item.exercisesId as int;
+      ex.name = item.name as String;
+      ex.maxSets = item.sets as int;
+      ex.restTime = item.rest as int;
+      for (int i = 0; i < (item.sets as int); i++) {
         Set oneset = Set();
-        oneset.repeats = item['repeats'] as int;
-        oneset.weight = item['weight'] as double;
+        oneset.repeats = item.repeats as int;
+        oneset.weight = item.weight as double;
         oneset.completed = false;
         ex.sets.add(oneset);
       }
@@ -64,7 +84,7 @@ class WorkoutProvider extends ChangeNotifier {
     }
   }
 
-  /// Completion Log------------------------------------------------------------
+  // Completion Log
 
   ///Current excersise counter
   int _currentExcersise = 0;
@@ -110,13 +130,13 @@ class WorkoutProvider extends ChangeNotifier {
   int get currentRest => excersises[_currentExcersise].restTime;
 
   /// Check if excersise is completed
-  bool excersiseCompleted(int index) {
-    if (excersises[index].completed == true) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  // bool excersiseCompleted(int index) {
+  //   if (excersises[index].completed == true) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   /// Increase repeats in set
   void incRepeats({int? excersiseNumber, int? setNumber}) {

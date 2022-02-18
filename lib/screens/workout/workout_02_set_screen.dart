@@ -1,15 +1,16 @@
 import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:npng/screens/workout/workout_03_timer_page.dart';
+import 'package:npng/screens/workout/workout_03_timer_screen.dart';
 import 'package:npng/data/models/workout_provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/config.dart';
 
-class WorkoutSetPage extends StatelessWidget {
-  const WorkoutSetPage({Key? key}) : super(key: key);
+class WorkoutSetScreen extends StatelessWidget {
+  const WorkoutSetScreen({Key? key}) : super(key: key);
   static const String id = '/set';
 
   @override
@@ -92,7 +93,6 @@ class WorkoutSetPage extends StatelessWidget {
                 Step(
                   isActive: (workout.currentSet == i) ? true : false,
                   title: Text(
-                    //TODO: Get weight from previous log!
                     workout.excersises[workout.currentExcersise].sets[i].weight
                             .toString() +
                         ' kg x ' +
@@ -115,7 +115,6 @@ class WorkoutSetPage extends StatelessWidget {
                       children: [
                         Text(S.of(context).weight),
                         MpChangeDoubleFieldExtended(
-                          //TODO: Get from previous log!
                           value: workout.excersises[workout.currentExcersise]
                               .sets[i].weight,
                           increaseCallback: () => workout.incWeight025(
@@ -151,13 +150,14 @@ class WorkoutSetPage extends StatelessWidget {
 
             return Stepper(
               // https://github.com/flutter/flutter/issues/27187
-              key: Key(Random.secure().nextDouble().toString()),
+              key: Key(Random.secure()
+                  .nextDouble()
+                  .toString()), //ValueKey(workout.currentSet),
               steps: steps,
               currentStep: workout.currentSet,
-              // TODO: WTF after update?
-              // controlsBuilder: (context, {onStepCancel, onStepContinue}) {
-              //   return Container();
-              // },
+              controlsBuilder: (BuildContext context, ControlsDetails details) {
+                return const SizedBox();
+              },
             );
           }),
         ),
@@ -196,7 +196,7 @@ class BottomNavBar extends StatelessWidget {
           MpButton(
             label: S.of(context).restButton,
             onPressed: () {
-              Navigator.pushNamed(context, TimerPage.id);
+              Navigator.pushNamed(context, TimerScreen.id);
               // .whenComplete(
               //     () => workout.incCurrentSet());
             },

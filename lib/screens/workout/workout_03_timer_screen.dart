@@ -3,14 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/config.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/screens/workout/workout_04_finish_page.dart';
+import 'package:npng/screens/workout/workout_04_finish_screen.dart';
 import 'package:npng/data/models/workout_provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
-class TimerPage extends StatelessWidget {
-  const TimerPage({Key? key}) : super(key: key);
+class TimerScreen extends StatelessWidget {
+  const TimerScreen({Key? key}) : super(key: key);
 
   static const String id = '/timer';
 
@@ -95,7 +95,7 @@ class TimerPage extends StatelessWidget {
                         context,
                         mpPageRoute(
                           builder: (BuildContext context) =>
-                              const WorkoutFinishPage(),
+                              const WorkoutFinishScreen(),
                         ),
                         (route) => false,
                       );
@@ -119,7 +119,7 @@ class TimerPage extends StatelessWidget {
                           context,
                           mpPageRoute(
                             builder: (BuildContext context) =>
-                                const WorkoutFinishPage(),
+                                const WorkoutFinishScreen(),
                           ),
                           (route) => false);
                     }

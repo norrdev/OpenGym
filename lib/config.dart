@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:npng/screens/exercises/exercises_screen.dart';
-import 'package:npng/screens/workout/workout_02_set_page.dart';
+import 'package:npng/screens/workout/workout_02_set_screen.dart';
 import 'package:npng/screens/settings/about_screen.dart';
-import 'package:npng/screens/workout/workout_03_timer_page.dart';
-import 'package:npng/screens/workout/workout_01_process_page.dart';
-import 'package:npng/screens/workout/workout_00_start_page.dart';
+import 'package:npng/screens/workout/workout_03_timer_screen.dart';
 import 'screens/main_screen.dart';
 
 /// Place for themes, configuration constants, etc.
@@ -74,10 +72,8 @@ const kInitialRoute = '/';
 /// Route map
 final Map<String, Widget Function(BuildContext)> kAppRoutes = {
   '/': (context) => const MainScreen(),
-  WorkoutStartPage.id: (context) => const WorkoutStartPage(),
-  WorkoutProcessPage.id: (context) => const WorkoutProcessPage(),
-  WorkoutSetPage.id: (context) => const WorkoutSetPage(),
-  TimerPage.id: (context) => const TimerPage(),
+  WorkoutSetScreen.id: (context) => const WorkoutSetScreen(),
+  TimerScreen.id: (context) => const TimerScreen(),
   AboutScreen.id: (context) => AboutScreen(),
   ExercisesScreen.id: (context) => const ExercisesScreen(),
 };

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:npng/data/models/models.dart';
 
 abstract class Repository {
@@ -48,4 +49,6 @@ abstract class Repository {
   Future<List<LogDay>> wathchAllLogDays();
 
   Future<List<LogWorkout>> findLogWorkoutByDay(int logDayId);
+
+  Future<void> insertLog(BuildContext context);
 }
