@@ -118,7 +118,6 @@ class DatabaseHelper {
     await db.close();
     _database = null;
     file.copySync(pathToDb);
-    print('=============File copyed');
     return Future.value();
   }
 
