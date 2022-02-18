@@ -5,7 +5,7 @@ import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/workout/workout_02_set_screen.dart';
-import 'package:npng/screens/workout/workout_04_finish_page.dart';
+import 'package:npng/screens/workout/workout_04_finish_screen.dart';
 import 'package:npng/data/models/workout_provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
@@ -304,7 +304,7 @@ class ActiveBottomBar extends StatelessWidget {
             Navigator.pushAndRemoveUntil(
               context,
               mpPageRoute(
-                builder: (BuildContext context) => const WorkoutFinishPage(),
+                builder: (BuildContext context) => const WorkoutFinishScreen(),
               ),
               (route) => false,
             );

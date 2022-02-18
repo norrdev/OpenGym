@@ -53,7 +53,7 @@ flutter:
     - assets/db/npng.db
 
 flutter_intl:
-  enabled: true
+  enabled: false
   class_name: S
   main_locale: en
   arb_dir: lib/l10n

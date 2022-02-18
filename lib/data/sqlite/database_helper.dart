@@ -1,8 +1,11 @@
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:npng/config.dart';
+import 'package:npng/data/models/workout_provider.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:sqlbrite/sqlbrite.dart';
 import 'package:synchronized/synchronized.dart';
 import 'package:npng/data/models/models.dart';
@@ -342,7 +345,6 @@ class DatabaseHelper {
   // Log
 
   /// All log days.
-  //TODO: Refactor without using streamDatabase, not needed in screen.
   Future<List<LogDay>> wathchAllLogDays() async {
     final db = await instance.streamDatabase;
     final String sql = '''
@@ -367,7 +369,6 @@ class DatabaseHelper {
   }
 
   /// Get workout for day in log.
-  //TODO: Refactor without using streamDatabase, not needed in screen.
   Future<List<LogWorkout>> findLogWorkoutByDay(int logDayId) async {
     final db = await instance.streamDatabase;
     final String sql = '''
@@ -387,6 +388,32 @@ class DatabaseHelper {
       result.add(LogWorkout.fromJson(item));
     }
     return result;
+  }
+
+  Future<void> insertLog(BuildContext context) async {
+    final db = await instance.streamDatabase;
+    final wp = Provider.of<WorkoutProvider>(context, listen: false);
+
+    int logDaysId = await db.insert(logDaysTable, {
+      'start': wp.startTime?.toLocal().toString() ?? '',
+      'finish': wp.finishTime?.toLocal().toString() ?? '',
+      'days_id': wp.dayID,
+    });
+
+    await db.transaction((txn) async {
+      for (Exerscise item in wp.excersises) {
+        for (int i = 0; i < item.sets.length; i++) {
+          await txn.insert(logWorkoutsTable, {
+            'log_days_id': logDaysId,
+            'exercises_id': item.id,
+            'repeat': item.sets[i].repeats,
+            'weight': item.sets[i].weight,
+          });
+        }
+      }
+    });
+
+    return Future.value();
   }
 
   void close() {

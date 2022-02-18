@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:npng/data/models/workout_provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/data/sqlite/database_helper.dart';
 import 'package:npng/data/models/models.dart';
@@ -135,5 +137,11 @@ class SqliteRepository extends Repository {
   @override
   Future<List<LogWorkout>> findLogWorkoutByDay(int logDayId) {
     return dbHelper.findLogWorkoutByDay(logDayId);
+  }
+
+  @override
+  Future<void> insertLog(BuildContext context) {
+    dbHelper.insertLog(context);
+    return Future.value();
   }
 }
