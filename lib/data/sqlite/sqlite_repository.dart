@@ -143,4 +143,15 @@ class SqliteRepository extends Repository {
     dbHelper.insertLog(context);
     return Future.value();
   }
+
+  @override
+  Future<String> backupDatabase() {
+    return dbHelper.backupDatabase();
+  }
+
+  @override
+  Future<void> importDataBase(String filePath) {
+    dbHelper.importDataBase(filePath);
+    return Future.value();
+  }
 }

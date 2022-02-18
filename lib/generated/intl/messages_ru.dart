@@ -41,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "finish": MessageLookupByLibrary.simpleMessage("Закончить"),
         "from": MessageLookupByLibrary.simpleMessage(" из "),
         "import": MessageLookupByLibrary.simpleMessage("Импортировать БД"),
+        "importWarning": MessageLookupByLibrary.simpleMessage(
+            "Эта опция приведёт к перезаписи всех данных импортируемыми и выходу из приложения. Сделайте резервную копию!"),
         "licenses": MessageLookupByLibrary.simpleMessage("Лицензии"),
         "log": MessageLookupByLibrary.simpleMessage("Дневник"),
         "min": MessageLookupByLibrary.simpleMessage("мин."),
@@ -64,6 +66,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "restore": MessageLookupByLibrary.simpleMessage(
             "Восстановить из резервной копии БД"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
+        "saveToFile":
+            MessageLookupByLibrary.simpleMessage("Сохранить БД в файл"),
         "saveToLog":
             MessageLookupByLibrary.simpleMessage("Сохранить в дневник"),
         "selectProgram":
@@ -72,8 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "setsText": MessageLookupByLibrary.simpleMessage(
             "Выполните подход, и когда закончите, нажмите кнопку."),
         "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
-        "share":
-            MessageLookupByLibrary.simpleMessage("Экспортировать базу данных"),
+        "share": MessageLookupByLibrary.simpleMessage("Экспортировать БД"),
         "skip": MessageLookupByLibrary.simpleMessage("Пропустить"),
         "skipDialog": MessageLookupByLibrary.simpleMessage(
             "Вы действительно хотите не выполнять это упражнение сегодня?"),

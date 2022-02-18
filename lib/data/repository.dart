@@ -51,4 +51,8 @@ abstract class Repository {
   Future<List<LogWorkout>> findLogWorkoutByDay(int logDayId);
 
   Future<void> insertLog(BuildContext context);
+
+  Future<String> backupDatabase();
+
+  Future<void> importDataBase(String filePath);
 }

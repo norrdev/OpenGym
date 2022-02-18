@@ -15,8 +15,8 @@ final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
 //const bool isApple = false;
 
 // bool get isMobileDevice => !kIsWeb && (Platform.isIOS || Platform.isAndroid);
-// bool get isDesktopDevice =>
-//     !kIsWeb && (Platform.isMacOS || Platform.isWindows || Platform.isLinux);
+final bool isDesktopDevice =
+    !kIsWeb && (Platform.isMacOS || Platform.isWindows || Platform.isLinux);
 // bool get isMobileDeviceOrWeb => kIsWeb || isMobileDevice;
 // bool get isDesktopDeviceOrWeb => kIsWeb || isDesktopDevice;
 

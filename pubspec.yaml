@@ -49,7 +49,6 @@ flutter:
     - assets/texts/ru/
     - assets/sounds/
     - CHANGELOG.md
-    #todo New asset, change table name!
     - assets/db/npng.db
 
 flutter_intl:

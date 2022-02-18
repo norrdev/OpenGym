@@ -1,9 +1,13 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:npng/config.dart';
+import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'about_screen.dart';
 import 'package:file_picker/file_picker.dart';
@@ -59,29 +63,47 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  // void _share(BuildContext context) async {
-  //   String path = await backupDataBase();
-  //   final Size size = MediaQuery.of(context).size;
-  //   await Share.shareFiles(
-  //     [path],
-  //     text: 'NpNg database.',
-  //     sharePositionOrigin: Rect.fromLTWH(0, 0, size.width, size.height / 6),
-  //   );
-  // }
+  void _shareFile(BuildContext context) async {
+    final repository = Provider.of<Repository>(context, listen: false);
+    String path = await repository.backupDatabase();
+    final Size size = MediaQuery.of(context).size;
+    await Share.shareFiles(
+      [path],
+      //text: 'NpNg database.',
+      sharePositionOrigin: Rect.fromLTWH(0, 0, size.width, size.height / 6),
+    );
+  }
 
-  // void _importFile(BuildContext context) async {
-  //   FilePickerResult? result = await FilePicker.platform.pickFiles(
-  //     type: FileType.any,
-  //   );
+  void _saveFile(BuildContext context) async {
+    final Repository repository =
+        Provider.of<Repository>(context, listen: false);
+    String path = await repository.backupDatabase();
+    final File file = File(path);
+    String? result = await FilePicker.platform.saveFile(
+      dialogTitle: S.of(context).save,
+      fileName: 'npng-backup-v2.db',
+      lockParentWindow: true,
+    );
+    if (result != null) file.copySync(result);
+  }
 
-  //   if (result != null) {
-  //     importDataBase(result.files.single.path!);
-  //     mpShowToast('DB imported from ${result.files.single.path}.',
-  //         context: context);
-  //   } else {
-  //     mpShowToast('Nothing selected.', context: context);
-  //   }
-  // }
+  void _importFile(BuildContext context) async {
+    final Repository repository =
+        Provider.of<Repository>(context, listen: false);
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.any,
+    );
+    if (result != null) {
+      await repository.importDataBase(result.files.single.path!);
+      mpShowToast('DB imported from ${result.files.single.path}.',
+          context: context);
+      Timer(const Duration(seconds: 3), () {
+        exit(0);
+      });
+    } else {
+      mpShowToast('Nothing selected.', context: context);
+    }
+  }
 
   // Future<void> _saveImperial(bool isImperial) async {
   //   final SharedPreferences prefs = await _prefs;
@@ -123,16 +145,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
             //     }
             //   },
             // ),
-            //const Divider(),
-            // MpLinkButton(
-            //   label: S.of(context).share,
-            //   onPressed: () => _share(context),
-            // ),
-            // MpLinkButton(
-            //   label: S.of(context).import,
-            //   onPressed: () => _importFile(context),
-            // ),
             // const Divider(),
+            if (isDesktopDevice)
+              MpLinkButton(
+                label: S.of(context).saveToFile,
+                onPressed: () => _saveFile(context),
+              ),
+            MpLinkButton(
+              label: S.of(context).share,
+              onPressed: () => _shareFile(context),
+            ),
+            MpLinkButton(
+              label: S.of(context).import,
+              onPressed: () => _importFile(context),
+            ),
+            Text(
+              S.of(context).importWarning,
+              style: Theme.of(context).textTheme.caption,
+            ),
+            const Divider(),
             MpLinkButton(
               label: S.of(context).about,
               onPressed: () => _getAboutPage(context),
