@@ -82,20 +82,6 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                           icon: Icons.edit,
                           label: S.of(context).edit,
                         ),
-                        //TODO CASCADE DELETE PROGRAMS AND DAYS AND LOG. OR HIDE PROGRAM
-
-                        // SlidableAction(
-                        //   // An action can be bigger than the others.
-                        //   //flex: 2,
-                        //   onPressed: (context) {
-                        //     //repository.deleteExercise(item);
-                        //     setState(() {});
-                        //   },
-                        //   backgroundColor: Colors.redAccent,
-                        //   foregroundColor: Colors.white,
-                        //   icon: Icons.delete,
-                        //   label: S.of(context).delete,
-                        // ),
                       ],
                     ),
                   );
