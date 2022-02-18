@@ -23,6 +23,7 @@ class ExercisesScreen extends StatelessWidget {
           return Material(
             type: MaterialType.transparency,
             child: ListView.builder(
+                controller: ScrollController(),
                 itemCount: muscles.length,
                 itemBuilder: (BuildContext context, int index) {
                   final item = muscles[index];

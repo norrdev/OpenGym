@@ -9,13 +9,13 @@ import 'package:provider/provider.dart';
 import 'package:sqlbrite/sqlbrite.dart';
 import 'package:synchronized/synchronized.dart';
 import 'package:npng/data/models/models.dart';
+part 'package:npng/data/sqlite/migrations.dart';
 
 class DatabaseHelper {
   static const _databaseName = 'npng.db';
-  static const _databaseVersion = 1;
+  static const _databaseVersion = 2;
 
-// FIXME Change letter in migration!!!
-  static const String muscleTable = 'musсles';
+  static const String muscleTable = 'muscles';
   static const String exerciseTable = 'exercises';
   static const String programsTable = 'programs';
   static const String loadTable = 'load';
@@ -40,28 +40,37 @@ class DatabaseHelper {
   Future<Database> _initDatabase() async {
     final documentsDirectory = await getApplicationDocumentsDirectory();
     final String path = join(documentsDirectory.path, _databaseName);
-    // Check if the database exists
     final bool exists = await databaseExists(path);
     if (!exists) {
-      // Should happen only the first time you launch your application
-      // Make sure the parent directory exists
       try {
         await Directory(dirname(path)).create(recursive: true);
       } catch (_) {}
-      // Copy from asset
       ByteData data = await rootBundle.load(join('assets/db', 'npng.db'));
       List<int> bytes =
           data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-      // Write and flush the bytes written
       await File(path).writeAsBytes(bytes, flush: true);
     }
 
     // FIXME: Set to OFF in production.
     Sqflite.setDebugModeOn(true);
-    return openDatabase(
+
+    Database db = await openDatabase(
       path,
-      version: _databaseVersion, /*onCreate: _onCreate*/
+      version: _databaseVersion,
+      onUpgrade: (db, oldVersion, newVersion) async {
+        // print('→ oldVersion: $oldVersion');
+        // print('→ newVersion: $newVersion');
+        Batch batch = db.batch();
+        if (oldVersion == 1) {
+          _upgradeTableMuscleV1toV2(batch);
+          _upgradeTableDaysV1toV2(batch);
+          _upgradeTableUserV1toV2(batch);
+        }
+        await batch.commit();
+      },
     );
+
+    return db;
   }
 
   /// Stream database getter.
