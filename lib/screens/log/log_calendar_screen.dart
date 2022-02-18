@@ -51,7 +51,6 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
           cellCalendarPageController: cellCalendarPageController,
           events: days,
           onCellTapped: (date) {
-            //FIXME: Trouble, if day is deleted
             final List<CalendarEvent> eventsOnTheDate = days.where((event) {
               final eventDate = event.eventDate;
               return eventDate.year == date.year &&

@@ -6,9 +6,7 @@ import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/data/models/workout_provider.dart';
 import 'package:npng/screens/main_screen.dart';
-import 'package:npng/screens/workout/workout_00_start_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 

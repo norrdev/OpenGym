@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:npng/data/models/workout_provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/data/sqlite/database_helper.dart';
 import 'package:npng/data/models/models.dart';

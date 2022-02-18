@@ -11,9 +11,6 @@ import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:wakelock/wakelock.dart';
 
-// TODO Continue
-// TODO Finish
-
 class WorkoutProcessScreen extends StatefulWidget {
   const WorkoutProcessScreen({Key? key, required this.day}) : super(key: key);
   final Day day;
