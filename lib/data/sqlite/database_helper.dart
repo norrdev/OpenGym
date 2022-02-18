@@ -92,6 +92,38 @@ class DatabaseHelper {
     return _streamDatabase;
   }
 
+  /// Backup
+  Future<String> backupDatabase() async {
+    final db = await instance.streamDatabase;
+    String path = await getDatabasesPath() + '/npng-backup.db';
+    await deleteDbBackupFile(path);
+    await db.rawQuery("VACUUM npng INTO '$path';");
+    return path;
+  }
+
+  Future<void> deleteDbBackupFile(String filePath) async {
+    if (filePath != await getDatabasesPath() + '/npng.db') {
+      File fileToDel = File(filePath);
+      if (await fileToDel.exists()) {
+        fileToDel.delete();
+      }
+    }
+  }
+
+  /// Import DB
+  Future<void> importDataBase(String filePath) async {
+    final db = await instance.streamDatabase;
+    File file = File(filePath);
+    String pathToDb = await getDatabasesPath() + '/npng.db';
+    await db.close();
+    _database = null;
+    file.copySync(pathToDb);
+    print('=============File copyed');
+    return Future.value();
+  }
+
+  // Muscles
+
   Stream<List<Muscle>> watchAllMuscles() async* {
     final db = await instance.streamDatabase;
     yield* db.createQuery(

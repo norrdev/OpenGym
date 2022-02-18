@@ -41,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "finish": MessageLookupByLibrary.simpleMessage("Finish"),
         "from": MessageLookupByLibrary.simpleMessage(" from "),
         "import": MessageLookupByLibrary.simpleMessage("Import database"),
+        "importWarning": MessageLookupByLibrary.simpleMessage(
+            "This option will overwrite all data with imports and exit the application. Make a backup!"),
         "licenses": MessageLookupByLibrary.simpleMessage("Licenses"),
         "log": MessageLookupByLibrary.simpleMessage("Log"),
         "min": MessageLookupByLibrary.simpleMessage("min."),
@@ -60,6 +62,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "restButton": MessageLookupByLibrary.simpleMessage("Save & rest"),
         "restore": MessageLookupByLibrary.simpleMessage("Restore from backup"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "saveToFile":
+            MessageLookupByLibrary.simpleMessage("Save database to file"),
         "saveToLog": MessageLookupByLibrary.simpleMessage("Save to Log"),
         "selectProgram":
             MessageLookupByLibrary.simpleMessage("Select program first."),

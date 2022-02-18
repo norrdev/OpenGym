@@ -320,6 +320,16 @@ class S {
     );
   }
 
+  /// `Save database to file`
+  String get saveToFile {
+    return Intl.message(
+      'Save database to file',
+      name: 'saveToFile',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Backup database`
   String get backup {
     return Intl.message(
@@ -345,6 +355,16 @@ class S {
     return Intl.message(
       'Import database',
       name: 'import',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This option will overwrite all data with imports and exit the application. Make a backup!`
+  String get importWarning {
+    return Intl.message(
+      'This option will overwrite all data with imports and exit the application. Make a backup!',
+      name: 'importWarning',
       desc: '',
       args: [],
     );
