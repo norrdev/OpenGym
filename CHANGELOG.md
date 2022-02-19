@@ -3,6 +3,9 @@
 - Improved speed.
 - Improved interface.
 - Slidable lists.
+- Share and export database to file.
+- Fixed bugs.
+- Prepared for big changes.
 
 ## 1.2.0
 - Changed place for weight and repeats.
@@ -34,4 +37,4 @@
 - Import database.
 
 ## 1.0.0
-First version.
+- First version.

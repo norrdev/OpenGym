@@ -1,8 +1,8 @@
 name: npng
-description: Fitness and body parameters diary.
+description: Crossplatform Workout Tracker.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 2.0.0+11 # Last AppStore/Play - 11
-homepage: https://filonov.pro
+version: 2.0.0+13 # Last AppStore/Play - 12
+homepage: https://filonov.pro/npng-site/
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
@@ -38,7 +38,7 @@ dev_dependencies:
   flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
-  flutter_native_splash: ^2.0.1+1
+  flutter_native_splash: ^2.0.4
 
 flutter:
   uses-material-design: true

@@ -1,9 +1,10 @@
-# No Pain, No Gain
+# NpNg: Cross-platform Private Offline Workout Tracker
 
-No pain, no gain – fitness / bodybuilding / powerlifting diary.
-
-No resistration. No personal data needed. No tracking and telemetry. No remote backend. Simple interface. Free.
+No resistration. 
+No personal data needed. 
+No tracking and telemetry.
 
 - Exercises catalog
 - Training programs constructor
+- Workout mode with timer
 - Workout log

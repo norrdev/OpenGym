@@ -51,8 +51,7 @@ class DatabaseHelper {
       await File(path).writeAsBytes(bytes, flush: true);
     }
 
-    // FIXME: Set to OFF in production.
-    Sqflite.setDebugModeOn(true);
+    Sqflite.setDebugModeOn(false);
 
     Database db = await openDatabase(
       path,
