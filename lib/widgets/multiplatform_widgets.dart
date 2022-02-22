@@ -168,7 +168,7 @@ class MpLinkButton extends StatelessWidget {
       return TextButton(
         child: Text(
           label!,
-          style: TextStyle(color: Theme.of(context).secondaryHeaderColor),
+          style: TextStyle(color: Theme.of(context).primaryColor),
         ),
         onPressed: onPressed as void Function()?,
       );

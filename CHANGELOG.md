@@ -9,7 +9,7 @@
 
 ## 1.2.0
 - Changed place for weight and repeats.
-- Added system splashscreen on start.
+- Added system splashscreen on start.npng
 - Added stop button to rest timer.
 - Added ability to increase/decrease amount of sets during workout.
 
