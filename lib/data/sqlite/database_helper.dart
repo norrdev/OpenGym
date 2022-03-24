@@ -95,9 +95,14 @@ class DatabaseHelper {
   Future<String> backupDatabase() async {
     final db = await instance.streamDatabase;
     String path = await getDatabasesPath() + '/npng-backup.db';
-    await deleteDbBackupFile(path);
-    await db.rawQuery("VACUUM npng INTO '$path';");
-    return path;
+    try {
+      await deleteDbBackupFile(path);
+      // TODO Another way to export, without VACUUM into
+      await db.rawQuery("VACUUM npng INTO '$path'");
+      return path;
+    } catch (e) {
+      return '';
+    }
   }
 
   Future<void> deleteDbBackupFile(String filePath) async {

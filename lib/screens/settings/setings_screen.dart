@@ -66,12 +66,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void _shareFile(BuildContext context) async {
     final repository = Provider.of<Repository>(context, listen: false);
     String path = await repository.backupDatabase();
-    final Size size = MediaQuery.of(context).size;
-    await Share.shareFiles(
-      [path],
-      //text: 'NpNg database.',
-      sharePositionOrigin: Rect.fromLTWH(0, 0, size.width, size.height / 6),
-    );
+    if (path.isNotEmpty) {
+      final Size size = MediaQuery.of(context).size;
+      await Share.shareFiles(
+        [path],
+        //text: 'NpNg database.',
+        sharePositionOrigin: Rect.fromLTWH(0, 0, size.width, size.height / 6),
+      );
+    }
   }
 
   void _saveFile(BuildContext context) async {
