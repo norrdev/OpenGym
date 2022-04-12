@@ -30,7 +30,7 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
     logDays = await context.read<Repository>().wathchAllLogDays();
     for (LogDay item in logDays) {
       days.add(CalendarEvent(
-        eventName: item.programsName as String,
+        eventName: item.daysName as String,
         eventDate: DateTime.parse(item.start as String),
         eventBackgroundColor: isApple
             ? CupertinoTheme.of(context).primaryColor
