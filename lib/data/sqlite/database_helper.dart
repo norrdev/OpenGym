@@ -97,8 +97,7 @@ class DatabaseHelper {
     String path = await getDatabasesPath() + '/npng-backup.db';
     try {
       await deleteDbBackupFile(path);
-      // TODO Another way to export, without VACUUM into
-      await db.rawQuery("VACUUM npng INTO '$path'");
+      await db.rawQuery("VACUUM INTO '$path'");
       return path;
     } catch (e) {
       return '';

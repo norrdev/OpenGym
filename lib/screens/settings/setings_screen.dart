@@ -66,6 +66,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
+  /// Preparing data for "Share" dialog
   void _shareFile(BuildContext context) async {
     final repository = Provider.of<Repository>(context, listen: false);
     String path = await repository.backupDatabase();
@@ -73,12 +74,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
       final Size size = MediaQuery.of(context).size;
       await Share.shareFiles(
         [path],
-        //text: 'NpNg database.',
         sharePositionOrigin: Rect.fromLTWH(0, 0, size.width, size.height / 6),
       );
     }
   }
 
+  /// Preparing data for "Save" dialog
   void _saveFile(BuildContext context) async {
     final Repository repository =
         Provider.of<Repository>(context, listen: false);
