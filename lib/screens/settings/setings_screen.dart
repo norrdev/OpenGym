@@ -1,17 +1,20 @@
 import 'dart:async';
 import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:npng/config.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:provider/provider.dart';
-import 'package:share_plus/share_plus.dart';
+
 import 'about_screen.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -63,6 +66,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
+  /// Preparing data for "Share" dialog
   void _shareFile(BuildContext context) async {
     final repository = Provider.of<Repository>(context, listen: false);
     String path = await repository.backupDatabase();
@@ -70,12 +74,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
       final Size size = MediaQuery.of(context).size;
       await Share.shareFiles(
         [path],
-        //text: 'NpNg database.',
         sharePositionOrigin: Rect.fromLTWH(0, 0, size.width, size.height / 6),
       );
     }
   }
 
+  /// Preparing data for "Save" dialog
   void _saveFile(BuildContext context) async {
     final Repository repository =
         Provider.of<Repository>(context, listen: false);
