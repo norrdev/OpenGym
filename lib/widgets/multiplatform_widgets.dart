@@ -422,11 +422,8 @@ class MpChangeIntField extends StatelessWidget {
     return Row(
       children: <Widget>[
         Expanded(
-          child: RoundIconButton(
-            icon: Icons.arrow_back_ios_rounded,
-            fillColor: (isApple)
-                ? CupertinoTheme.of(context).barBackgroundColor
-                : Theme.of(context).bottomAppBarColor,
+          child: MpFlatButton(
+            child: const Icon(Icons.arrow_back_ios_rounded),
             onPressed: decreaseCallback,
           ),
         ),
@@ -439,11 +436,8 @@ class MpChangeIntField extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: RoundIconButton(
-            icon: Icons.arrow_forward_ios_rounded,
-            fillColor: (isApple)
-                ? CupertinoTheme.of(context).barBackgroundColor
-                : Theme.of(context).bottomAppBarColor,
+          child: MpFlatButton(
+            child: const Icon(Icons.arrow_forward_ios_rounded),
             onPressed: increaseCallback,
           ),
         ),
@@ -471,9 +465,6 @@ class MpChangeDoubleField extends StatelessWidget {
         Expanded(
           child: RoundIconButton(
             icon: Icons.arrow_back_ios_rounded,
-            fillColor: (isApple)
-                ? CupertinoTheme.of(context).barBackgroundColor
-                : Theme.of(context).bottomAppBarColor,
             onPressed: decreaseCallback,
           ),
         ),
@@ -488,9 +479,6 @@ class MpChangeDoubleField extends StatelessWidget {
         Expanded(
           child: RoundIconButton(
             icon: Icons.arrow_forward_ios_rounded,
-            fillColor: (isApple)
-                ? CupertinoTheme.of(context).barBackgroundColor
-                : Theme.of(context).bottomAppBarColor,
             onPressed: increaseCallback,
           ),
         ),
@@ -523,19 +511,12 @@ class MpChangeDoubleFieldExtended extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              RoundIconButton(
-                icon: Icons.fast_rewind_rounded,
-                fillColor: (isApple)
-                    ? CupertinoTheme.of(context).barBackgroundColor
-                    : Theme.of(context).bottomAppBarColor,
+              MpFlatButton(
+                child: const Icon(Icons.fast_rewind_rounded),
                 onPressed: decreaseCallbackFast,
               ),
-              const SizedBox(width: 8.0),
-              RoundIconButton(
-                icon: Icons.arrow_back_ios_rounded,
-                fillColor: (isApple)
-                    ? CupertinoTheme.of(context).barBackgroundColor
-                    : Theme.of(context).bottomAppBarColor,
+              MpFlatButton(
+                child: const Icon(Icons.arrow_back_ios_rounded),
                 onPressed: decreaseCallback,
               ),
             ],
@@ -554,19 +535,12 @@ class MpChangeDoubleFieldExtended extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              RoundIconButton(
-                icon: Icons.arrow_forward_ios_rounded,
-                fillColor: (isApple)
-                    ? CupertinoTheme.of(context).barBackgroundColor
-                    : Theme.of(context).bottomAppBarColor,
+              MpFlatButton(
+                child: const Icon(Icons.arrow_forward_ios_rounded),
                 onPressed: increaseCallback,
               ),
-              const SizedBox(width: 8.0),
-              RoundIconButton(
-                icon: Icons.fast_forward_rounded,
-                fillColor: (isApple)
-                    ? CupertinoTheme.of(context).barBackgroundColor
-                    : Theme.of(context).bottomAppBarColor,
+              MpFlatButton(
+                child: const Icon(Icons.fast_forward_rounded),
                 onPressed: increaseCallbackFast,
               ),
             ],
