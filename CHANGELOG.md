@@ -1,3 +1,7 @@
+## 2.0.1
+- Fixed permissions.
+- Name of the day in calendar.
+
 ## 2.0.0
 - Full core refactoring.
 - Improved speed.

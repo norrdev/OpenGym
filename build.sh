@@ -1,13 +1,13 @@
-echo Cleanup...
-flutter clean \
-        && rm ios/Podfile.lock pubspec.lock \
-        && rm -rf ios/Pods ios/Runner.xcworkspace \
-        && rm macos/Podfile.lock \
-        && rm -rf iomacoss/Pods macos/Runner.xcworkspace
+# echo Cleanup...
+# flutter clean \
+#         && rm ios/Podfile.lock pubspec.lock \
+#         && rm -rf ios/Pods ios/Runner.xcworkspace \
+#         && rm macos/Podfile.lock \
+#         && rm -rf macos/Pods macos/Runner.xcworkspace
 
-echo
-echo Packages update...
-flutter pub get
+# echo
+# echo Packages update...
+# flutter pub get
 
 echo
 echo Changelog sync...
