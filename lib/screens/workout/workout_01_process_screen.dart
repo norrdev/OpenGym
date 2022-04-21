@@ -276,7 +276,7 @@ class ActiveBottomBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         if (!Provider.of<WorkoutProvider>(context, listen: false).finished)
-          MpButton(
+          MpFlatButton(
             label: S.of(context).ccontinue,
             onPressed: () {
               Navigator.push(
@@ -288,7 +288,7 @@ class ActiveBottomBar extends StatelessWidget {
             },
           ),
         const SizedBox(width: 16.0),
-        MpButton(
+        MpFlatButton(
           label: S.of(context).finish,
           onPressed: () {
             // Provider.of<WorkoutProvider>(context, listen: false)

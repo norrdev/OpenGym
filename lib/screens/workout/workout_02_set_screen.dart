@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/screens/workout/workout_03_timer_screen.dart';
@@ -8,17 +6,14 @@ import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/config.dart';
+import 'package:steps_indicator/steps_indicator.dart';
 
 class WorkoutSetScreen extends StatelessWidget {
-  const WorkoutSetScreen({Key? key}) : super(key: key);
   static const String id = '/set';
+  const WorkoutSetScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (Provider.of<WorkoutProvider>(context, listen: false).finished) {
-      Navigator.pop(context);
-    }
-
     return MpScaffold(
       appBar: MpAppBar(
         title: Consumer<WorkoutProvider>(
@@ -26,189 +21,124 @@ class WorkoutSetScreen extends StatelessWidget {
             return Text(wk.excersises[wk.currentExcersise].name);
           },
         ),
-        // trailing: MpLinkButton(
-        //   label: S.of(context).skip,
-        //   onPressed: () {
-        //     if (!isApple) {
-        //       showDialog(
-        //         context: context,
-        //         builder: (BuildContext context) => AlertDialog(
-        //           title: Text(S.of(context).skip),
-        //           content: Text(S.of(context).skipDialog),
-        //           actions: <Widget>[
-        //             TextButton(
-        //               onPressed: () =>
-        //                   Navigator.pop(context, S.of(context).cancel),
-        //               child: Text(S.of(context).cancel),
-        //             ),
-        //             TextButton(
-        //               onPressed: () {
-        //                 // action
-        //                 Provider.of<WorkoutProvider>(context, listen: false)
-        //                     .manualSkipExersise();
-        //                 Navigator.pop(context, 'OK');
-        //               },
-        //               child: const Text('OK'),
-        //             ),
-        //           ],
-        //         ),
-        //       );
-        //     } else {
-        //       showDialog(
-        //         context: context,
-        //         builder: (BuildContext context) => CupertinoAlertDialog(
-        //           title: Text(S.of(context).skip),
-        //           content: Text(S.of(context).skipDialog),
-        //           actions: <Widget>[
-        //             TextButton(
-        //               onPressed: () =>
-        //                   Navigator.pop(context, S.of(context).cancel),
-        //               child: Text(S.of(context).cancel),
-        //             ),
-        //             TextButton(
-        //               onPressed: () {
-        //                 // action
-        //                 Provider.of<WorkoutProvider>(context, listen: false)
-        //                     .manualSkipExersise();
-        //                 Navigator.pop(context, 'OK');
-        //               },
-        //               child: const Text('OK'),
-        //             ),
-        //           ],
-        //         ),
-        //       );
-        //     }
-        //   },
-        // ),
       ),
-      bottomNavigationBar: const BottomNavBar(),
       body: SafeArea(
-        child: Material(
-          type: MaterialType.transparency,
-          child: Consumer<WorkoutProvider>(builder: (context, workout, child) {
-            List<Step> steps = [];
-
-            for (int i = 0; i <= workout.maxSet; i++) {
-              steps.add(
-                Step(
-                  isActive: (workout.currentSet == i) ? true : false,
-                  title: Text(
-                    workout.excersises[workout.currentExcersise].sets[i].weight
-                            .toString() +
-                        ' kg x ' +
-                        workout.excersises[workout.currentExcersise].sets[i]
-                            .repeats
-                            .toString(),
-                    style: TextStyle(
-                        fontSize: 20.0,
-                        color: (isApple)
-                            ? CupertinoTheme.of(context)
-                                .textTheme
-                                .tabLabelTextStyle
-                                .color
-                            : Theme.of(context).textTheme.caption!.color),
+        child: Column(
+          children: [
+            Text(S.of(context).sets),
+            SizedBox(
+              height: 80.0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MpFlatButton(
+                    child: const Icon(Icons.arrow_back_ios_rounded),
+                    onPressed: () =>
+                        Provider.of<WorkoutProvider>(context, listen: false)
+                            .manualRemoveOneSet(),
                   ),
-                  content: Container(
-                    alignment: Alignment.centerLeft,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(S.of(context).weight),
-                        MpChangeDoubleFieldExtended(
-                          value: workout.excersises[workout.currentExcersise]
-                              .sets[i].weight,
-                          increaseCallback: () => workout.incWeight025(
-                              excersiseNumber: workout.currentExcersise,
-                              setNumber: i),
-                          decreaseCallback: () => workout.decWeight025(
-                              excersiseNumber: workout.currentExcersise,
-                              setNumber: i),
-                          increaseCallbackFast: () => workout.incWeight5(
-                              excersiseNumber: workout.currentExcersise,
-                              setNumber: i),
-                          decreaseCallbackFast: () => workout.decWeight5(
-                              excersiseNumber: workout.currentExcersise,
-                              setNumber: i),
-                        ),
-                        Text(S.of(context).repeats),
-                        MpChangeIntField(
-                          value: workout.excersises[workout.currentExcersise]
-                              .sets[i].repeats,
-                          decreaseCallback: () => workout.decRepeats(
-                              excersiseNumber: workout.currentExcersise,
-                              setNumber: i),
-                          increaseCallback: () => workout.incRepeats(
-                              excersiseNumber: workout.currentExcersise,
-                              setNumber: i),
-                        ),
-                      ],
-                    ),
+                  Consumer<WorkoutProvider>(
+                    builder: (context, workout, child) {
+                      int mSet = workout.maxSet + 1;
+                      double maxLineLength =
+                          MediaQuery.of(context).size.width * 0.65;
+                      double linelength = maxLineLength;
+                      if (mSet > 1) {
+                        linelength = maxLineLength / (mSet - 1) -
+                            14 / (mSet - 1) -
+                            10 / (mSet - 1) * mSet;
+                        if (linelength < 0) {
+                          linelength = 0;
+                        }
+                      }
+                      return StepsIndicator(
+                        lineLength: linelength,
+                        selectedStep: workout.currentSet,
+                        nbSteps: workout.maxSet + 1,
+                        doneLineColor: (isApple)
+                            ? CupertinoTheme.of(context).primaryColor
+                            : Theme.of(context).colorScheme.secondary,
+                        undoneLineColor: (isApple)
+                            ? CupertinoTheme.of(context).primaryColor
+                            : Theme.of(context).colorScheme.secondary,
+                      );
+                    },
                   ),
-                ),
-              );
-            } // for
-
-            return Stepper(
-              // https://github.com/flutter/flutter/issues/27187
-              key: Key(Random.secure()
-                  .nextDouble()
-                  .toString()), //ValueKey(workout.currentSet),
-              steps: steps,
-              currentStep: workout.currentSet,
-              controlsBuilder: (BuildContext context, ControlsDetails details) {
-                return const SizedBox();
+                  MpFlatButton(
+                    child: const Icon(Icons.arrow_forward_ios_rounded),
+                    onPressed: () =>
+                        Provider.of<WorkoutProvider>(context, listen: false)
+                            .manualAddOneSet(),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Consumer<WorkoutProvider>(
+                builder: (context, workout, child) {
+                  return CurrentSetWidget(
+                    setNumber: workout.currentSet,
+                  );
+                },
+              ),
+            ),
+            MpButton(
+              label: S.of(context).restButton,
+              onPressed: () {
+                Navigator.pushNamed(context, TimerScreen.id);
+                // .whenComplete(
+                //     () => workout.incCurrentSet());
               },
-            );
-          }),
+            ),
+            const SizedBox(
+              height: 40.0,
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-/// Bottom navigation bar
-class BottomNavBar extends StatelessWidget {
-  const BottomNavBar({
+class CurrentSetWidget extends StatelessWidget {
+  const CurrentSetWidget({
     Key? key,
+    required this.setNumber,
   }) : super(key: key);
+
+  final int setNumber;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: (isApple)
-            ? CupertinoTheme.of(context).barBackgroundColor
-            : Theme.of(context).bottomAppBarColor,
-        border: Border(
-          top: BorderSide(color: Theme.of(context).dividerColor),
+    WorkoutProvider workout =
+        Provider.of<WorkoutProvider>(context, listen: false);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(S.of(context).weight),
+        MpChangeDoubleFieldExtended(
+          value: workout
+              .excersises[workout.currentExcersise].sets[setNumber].weight,
+          increaseCallback: () => workout.incWeight025(
+              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
+          decreaseCallback: () => workout.decWeight025(
+              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
+          increaseCallbackFast: () => workout.incWeight5(
+              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
+          decreaseCallbackFast: () => workout.decWeight5(
+              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
         ),
-      ),
-      padding: const EdgeInsets.all(16.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          MpFlatButton(
-            child: const Icon(Icons.exposure_minus_1),
-            onPressed: () =>
-                Provider.of<WorkoutProvider>(context, listen: false)
-                    .manualRemoveOneSet(),
-          ),
-          MpButton(
-            label: S.of(context).restButton,
-            onPressed: () {
-              Navigator.pushNamed(context, TimerScreen.id);
-              // .whenComplete(
-              //     () => workout.incCurrentSet());
-            },
-          ),
-          MpFlatButton(
-            child: const Icon(Icons.exposure_plus_1),
-            onPressed: () =>
-                Provider.of<WorkoutProvider>(context, listen: false)
-                    .manualAddOneSet(),
-          ),
-        ],
-      ),
+        Text(S.of(context).repeats),
+        MpChangeIntField(
+          value: workout
+              .excersises[workout.currentExcersise].sets[setNumber].repeats,
+          decreaseCallback: () => workout.decRepeats(
+              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
+          increaseCallback: () => workout.incRepeats(
+              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
+        ),
+      ],
     );
   }
 }
