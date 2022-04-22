@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:npng/config.dart';
@@ -51,7 +52,11 @@ class DatabaseHelper {
       await File(path).writeAsBytes(bytes, flush: true);
     }
 
-    Sqflite.setDebugModeOn(false);
+    if (kDebugMode) {
+      Sqflite.setDebugModeOn(true);
+    } else {
+      Sqflite.setDebugModeOn(false);
+    }
 
     Database db = await openDatabase(
       path,
