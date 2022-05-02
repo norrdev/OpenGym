@@ -34,8 +34,14 @@ final Brightness brightness = //Brightness.dark;
 bool darkModeOn = brightness == Brightness.dark;
 
 final CupertinoThemeData kCupertinoTheme = CupertinoThemeData(
+  //materialTheme: kMaterialLight,
   brightness: brightness, //darkModeOn ? Brightness.dark : Brightness.light,
 );
+
+// final CupertinoThemeData kCupertinoTheme = MaterialBasedCupertinoThemeData(
+//   materialTheme: kMaterialLight,
+//   //brightness: brightness, //darkModeOn ? Brightness.dark : Brightness.light,
+// );
 
 /// Material light theme
 final ThemeData kMaterialLight = ThemeData(

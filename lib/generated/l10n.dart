@@ -220,6 +220,16 @@ class S {
     );
   }
 
+  /// `Rename`
+  String get rename {
+    return Intl.message(
+      'Rename',
+      name: 'rename',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please enter some text`
   String get enterText {
     return Intl.message(
