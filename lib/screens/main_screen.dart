@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:npng/config.dart';
 import 'package:npng/screens/exercises/exercises_screen.dart';
 import 'package:npng/screens/log/log_calendar_screen.dart';
 import 'package:npng/screens/programs/programs_screen.dart';
-import 'package:npng/screens/programs/program_new_screen.dart';
 import 'package:npng/screens/workout/workout_00_start_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
@@ -27,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     pageList.add(const WorkoutStartScreen());
-    pageList.add(const ProgramsScreen());
+    //pageList.add(const ProgramsScreen());
     pageList.add(const ExercisesScreen());
     pageList.add(const LogCalendarScreen());
     pageList.add(const SettingsScreen());
@@ -58,6 +55,24 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
+  StatelessWidget? _appBarButton(int selected) {
+    switch (selected) {
+      case 0:
+        return MpFlatButton(
+          padding: const EdgeInsets.all(8),
+          child: const Icon(Icons.checklist_rounded),
+          onPressed: () => Navigator.push(
+            context,
+            mpPageRoute(
+              builder: (context) => const ProgramsScreen(),
+            ),
+          ).then((value) => setState(() {})),
+        );
+      default:
+        return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     String title = 'NpNg';
@@ -65,16 +80,16 @@ class _MainScreenState extends State<MainScreen> {
       case 0:
         title = S.of(context).pageWorkout;
         break;
+      // case 1:
+      //   title = S.of(context).pageProgramsTitle;
+      //   break;
       case 1:
-        title = S.of(context).pageProgramsTitle;
-        break;
-      case 2:
         title = S.of(context).pageExerciseTitle;
         break;
-      case 3:
+      case 2:
         title = S.of(context).log;
         break;
-      case 4:
+      case 3:
         title = S.of(context).settings;
         break;
       default:
@@ -90,13 +105,13 @@ class _MainScreenState extends State<MainScreen> {
             ),
             label: S.of(context).pageWorkout,
           ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/icons8-rules-96.png',
-              height: 40,
-            ),
-            label: S.of(context).pageProgramsTitle,
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Image.asset(
+          //     'assets/icons/icons8-rules-96.png',
+          //     height: 40,
+          //   ),
+          //   label: S.of(context).pageProgramsTitle,
+          // ),
           BottomNavigationBarItem(
             icon: Image.asset(
               'assets/icons/icons8-deadlift-96.png',
@@ -125,26 +140,7 @@ class _MainScreenState extends State<MainScreen> {
       ),
       appBar: MpAppBar(
         title: Text(title),
-        trailing: (_selectedIndex == 1)
-            ? MpFlatButton(
-                padding: const EdgeInsets.all(8),
-                child: Icon(
-                  (isApple) ? CupertinoIcons.add : Icons.add,
-                  color: (isApple)
-                      ? CupertinoTheme.of(context)
-                          .textTheme
-                          .actionTextStyle
-                          .color
-                      : Theme.of(context).secondaryHeaderColor,
-                ),
-                onPressed: () => Navigator.push(
-                  context,
-                  mpPageRoute(
-                    builder: (context) => const ProgramNewScreen(),
-                  ),
-                ).then((value) => setState(() {})),
-              )
-            : null,
+        trailing: _appBarButton(_selectedIndex),
       ),
       body: IndexedStack(
         index: _selectedIndex,

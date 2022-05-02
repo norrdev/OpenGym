@@ -6,6 +6,7 @@ import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/programs/program_days_screen.dart';
 import 'package:npng/screens/programs/program_edit_screen.dart';
+import 'package:npng/screens/programs/program_new_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -24,75 +25,91 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
   Widget build(BuildContext context) {
     final repository = Provider.of<Repository>(context, listen: false);
     repository.getCurrentProgram().then((value) => _current = value);
-    return StreamBuilder<List<Program>>(
-      stream: repository.watchAllPrograms(),
-      builder: (context, AsyncSnapshot<List<Program>> snapshot) {
-        if (snapshot.connectionState == ConnectionState.active) {
-          final programs = snapshot.data ?? [];
-          return Material(
-            type: MaterialType.transparency,
-            child: ListView.builder(
-                itemCount: programs.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final item = programs[index];
-                  return Slidable(
-                    key: ValueKey(item),
-                    child: ListTile(
-                      leading: Radio<int>(
-                        value: item.id as int,
-                        groupValue: _current,
-                        onChanged: (_) {
-                          repository
-                              .setCurrentProgram(item.id as int)
-                              .then((_) {
-                            Provider.of<WorkoutProvider>(context, listen: false)
-                                .defaultProgram = item.id as int;
-                            setState(() {});
-                          });
-                        },
-                      ),
-                      title: Text(item.name as String),
-                      subtitle: Text(item.description as String),
-                      onTap: () => Navigator.push(
-                        context,
-                        mpPageRoute(
-                            builder: (context) => ProgramDaysScreen(
-                                  program: item,
-                                )),
-                      ),
-                    ),
-                    endActionPane: ActionPane(
-                      motion: const ScrollMotion(),
-                      children: [
-                        SlidableAction(
-                          onPressed: (context) => Navigator.push(
-                            context,
-                            mpPageRoute(
-                              builder: (context) {
-                                return ProgramEditScreen(
-                                  program: item,
-                                );
-                              },
-                            ),
-                          ).then((value) {
-                            setState(() {});
-                          }),
-                          backgroundColor: const Color(0xFF0392CF),
-                          foregroundColor: Colors.white,
-                          icon: Icons.edit,
-                          label: S.of(context).edit,
+    return MpScaffold(
+      appBar: MpAppBar(
+        title: Text(S.of(context).pageProgramsTitle),
+        trailing: MpFlatButton(
+          padding: const EdgeInsets.all(8),
+          child: const Icon(Icons.add),
+          onPressed: () => Navigator.push(
+            context,
+            mpPageRoute(
+              builder: (context) => const ProgramNewScreen(),
+            ),
+          ).then((value) => setState(() {})),
+        ),
+      ),
+      body: StreamBuilder<List<Program>>(
+        stream: repository.watchAllPrograms(),
+        builder: (context, AsyncSnapshot<List<Program>> snapshot) {
+          if (snapshot.connectionState == ConnectionState.active) {
+            final programs = snapshot.data ?? [];
+            return Material(
+              type: MaterialType.transparency,
+              child: ListView.builder(
+                  itemCount: programs.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final item = programs[index];
+                    return Slidable(
+                      key: ValueKey(item),
+                      child: ListTile(
+                        leading: Radio<int>(
+                          value: item.id as int,
+                          groupValue: _current,
+                          onChanged: (_) {
+                            repository
+                                .setCurrentProgram(item.id as int)
+                                .then((_) {
+                              Provider.of<WorkoutProvider>(context,
+                                      listen: false)
+                                  .defaultProgram = item.id as int;
+                              setState(() {});
+                            });
+                          },
                         ),
-                      ],
-                    ),
-                  );
-                }),
-          );
-        } else {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-      },
+                        title: Text(item.name as String),
+                        subtitle: Text(item.description as String),
+                        onTap: () => Navigator.push(
+                          context,
+                          mpPageRoute(
+                              builder: (context) => ProgramDaysScreen(
+                                    program: item,
+                                  )),
+                        ),
+                      ),
+                      endActionPane: ActionPane(
+                        motion: const ScrollMotion(),
+                        children: [
+                          SlidableAction(
+                            onPressed: (context) => Navigator.push(
+                              context,
+                              mpPageRoute(
+                                builder: (context) {
+                                  return ProgramEditScreen(
+                                    program: item,
+                                  );
+                                },
+                              ),
+                            ).then((value) {
+                              setState(() {});
+                            }),
+                            backgroundColor: const Color(0xFF0392CF),
+                            foregroundColor: Colors.white,
+                            icon: Icons.edit,
+                            label: S.of(context).edit,
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
     );
   }
 }
