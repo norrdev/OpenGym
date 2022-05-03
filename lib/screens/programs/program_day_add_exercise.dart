@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:npng/config.dart';
+import 'package:npng/main.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
@@ -83,7 +83,7 @@ class _ProgramDayAddExerciseState extends State<ProgramDayAddExercise> {
                         return ListTile(
                           title: Text(item.name as String),
                           trailing: MpFlatButton(
-                            child: Icon(isApple
+                            child: const Icon(isApple
                                 ? CupertinoIcons.add_circled
                                 : Icons.add_circle),
                             onPressed: () {

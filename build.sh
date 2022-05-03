@@ -18,14 +18,21 @@ flutter pub run flutter_native_splash:create
 
 echo 
 echo Build android app...
+cp -v -R lib/widgets/multiplatform_widgets.material.dart lib/widgets/multiplatform_widgets.dart
+cp -v -R lib/main.material.dart lib/main.dart
+flutter build apk --release
 flutter build appbundle --release
 
 echo 
 echo Build iOS app...
+cp -v -R lib/widgets/multiplatform_widgets.cupertino.dart lib/widgets/multiplatform_widgets.dart
+cp -v -R lib/main.cupertino.dart lib/main.dart
 flutter build ios --release
 
 echo 
 echo Build MacOS app...
+cp -v -R lib/widgets/multiplatform_widgets.cupertino.dart lib/widgets/multiplatform_widgets.dart
+cp -v -R lib/main.cupertino.dart lib/main.dart
 flutter build macos --release
 
 # echo Build web app...

@@ -5,7 +5,7 @@ import 'package:npng/data/models/workout_provider.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/config.dart';
+import 'package:npng/main.dart';
 import 'package:steps_indicator/steps_indicator.dart';
 
 class WorkoutSetScreen extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:npng/config.dart';
+import 'package:npng/main.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/workout/workout_04_finish_screen.dart';
 import 'package:npng/data/models/workout_provider.dart';
