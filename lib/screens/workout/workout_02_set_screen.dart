@@ -55,9 +55,12 @@ class WorkoutSetScreen extends StatelessWidget {
                         lineLength: linelength,
                         selectedStep: workout.currentSet,
                         nbSteps: workout.maxSet + 1,
-                        doneLineColor: Theme.of(context).colorScheme.secondary,
-                        undoneLineColor:
-                            Theme.of(context).colorScheme.secondary,
+                        selectedStepColorOut: Theme.of(context).primaryColor,
+                        unselectedStepColorIn: Theme.of(context).primaryColor,
+                        unselectedStepColorOut: Theme.of(context).primaryColor,
+                        doneStepColor: Theme.of(context).primaryColor,
+                        doneLineColor: Theme.of(context).primaryColor,
+                        undoneLineColor: Theme.of(context).primaryColor,
                       );
                     },
                   ),

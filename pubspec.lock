@@ -85,20 +85,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.2"
-  cupertino_icons:
-    dependency: "direct main"
-    description:
-      name: cupertino_icons
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.4"
-  cupertino_list_tile:
-    dependency: "direct main"
-    description:
-      name: cupertino_list_tile
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.1"
   fake_async:
     dependency: transitive
     description:
@@ -127,13 +113,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.5.1"
-  flash:
-    dependency: "direct main"
-    description:
-      name: flash
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.3+2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -322,13 +301,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
-  page_transition:
-    dependency: "direct main"
-    description:
-      name: page_transition
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.5"
   path:
     dependency: "direct main"
     description:
@@ -594,7 +566,7 @@ packages:
     source: hosted
     version: "1.1.0"
   synchronized:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: synchronized
       url: "https://pub.dartlang.org"

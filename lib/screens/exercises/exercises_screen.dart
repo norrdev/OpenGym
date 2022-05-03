@@ -28,10 +28,36 @@ class ExercisesScreen extends StatelessWidget {
                 return Slidable(
                   child: ListTile(
                     leading: (item.icon != null)
-                        ? Image.memory(
-                            item.icon as Uint8List,
-                            width: 96,
-                            height: 96,
+                        ? ColorFiltered(
+                            colorFilter: const ColorFilter.matrix(
+                              <double>[
+                                0.2126,
+                                0.7152,
+                                0.0722,
+                                0,
+                                0,
+                                0.2126,
+                                0.7152,
+                                0.0722,
+                                0,
+                                0,
+                                0.2126,
+                                0.7152,
+                                0.0722,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                1,
+                                0,
+                              ],
+                            ),
+                            child: Image.memory(
+                              item.icon as Uint8List,
+                              width: 96,
+                              height: 96,
+                            ),
                           )
                         : const SizedBox(
                             width: 96,

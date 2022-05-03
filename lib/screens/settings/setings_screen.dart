@@ -132,70 +132,65 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // // Implement US metrics
-            // FutureBuilder<bool>(
-            //   future: _isImperial,
-            //   builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-            //     switch (snapshot.connectionState) {
-            //       case ConnectionState.waiting:
-            //         return MpSwitch(
-            //             title: 'Metric / Imperial (UK, US) - not work',
-            //             value: false,
-            //             onChanged: (val) {});
-            //       default:
-            //         if (snapshot.hasError) {
-            //           return Text('Error: ${snapshot.error}');
-            //         } else {
-            //           return MpSwitch(
-            //               title: 'Metric / Imperial (UK, US) - not work',
-            //               value: snapshot.data!,
-            //               onChanged: _saveImperial);
-            //         }
-            //     }
-            //   },
-            // ),
-            // const Divider(),
-            if (isDesktopDevice)
-              TextButton(
-                child: Text(S.of(context).saveToFile),
-                onPressed: () => _saveFile(context),
-              ),
-            TextButton(
-              child: Text(S.of(context).share),
-              onPressed: () => _shareFile(context),
+      child: ListView(
+        //crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // // Implement US metrics
+          // FutureBuilder<bool>(
+          //   future: _isImperial,
+          //   builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          //     switch (snapshot.connectionState) {
+          //       case ConnectionState.waiting:
+          //         return MpSwitch(
+          //             title: 'Metric / Imperial (UK, US) - not work',
+          //             value: false,
+          //             onChanged: (val) {});
+          //       default:
+          //         if (snapshot.hasError) {
+          //           return Text('Error: ${snapshot.error}');
+          //         } else {
+          //           return MpSwitch(
+          //               title: 'Metric / Imperial (UK, US) - not work',
+          //               value: snapshot.data!,
+          //               onChanged: _saveImperial);
+          //         }
+          //     }
+          //   },
+          // ),
+          // const Divider(),
+          if (isDesktopDevice)
+            ListTile(
+              title: Text(S.of(context).saveToFile),
+              onTap: () => _saveFile(context),
             ),
-            TextButton(
-              child: Text(S.of(context).import,
-                  style: const TextStyle(color: Colors.redAccent)),
-              onPressed: () => _importFile(context),
+
+          ListTile(
+            title: Text(S.of(context).share),
+            onTap: () => _shareFile(context),
+          ),
+          ListTile(
+            title: Text(S.of(context).import,
+                style: const TextStyle(color: Colors.redAccent)),
+            subtitle: Text(
+              S.of(context).importWarning,
+              style: Theme.of(context).textTheme.caption,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                S.of(context).importWarning,
-                style: Theme.of(context).textTheme.caption,
-              ),
-            ),
-            const Divider(),
-            TextButton(
-              child: Text(S.of(context).about),
-              onPressed: () => _getAboutPage(context),
-            ),
-            TextButton(
-              child: Text(S.of(context).licenses),
-              onPressed: () => showLicensePage(
-                  context: context,
-                  applicationVersion: version,
-                  //TODO: Message in arb
-                  applicationLegalese: '© Denis Filonov'),
-            ),
-          ],
-        ),
+            onTap: () => _importFile(context),
+          ),
+          const Divider(),
+          ListTile(
+            title: Text(S.of(context).about),
+            onTap: () => _getAboutPage(context),
+          ),
+          ListTile(
+            title: Text(S.of(context).licenses),
+            onTap: () => showLicensePage(
+                context: context,
+                applicationVersion: version,
+                //TODO: Message in arb
+                applicationLegalese: '© Denis Filonov'),
+          ),
+        ],
       ),
     );
   }

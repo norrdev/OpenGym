@@ -61,9 +61,6 @@ class _MainScreenState extends State<MainScreen> {
       case 0:
         title = S.of(context).pageWorkout;
         break;
-      // case 1:
-      //   title = S.of(context).pageProgramsTitle;
-      //   break;
       case 1:
         title = S.of(context).pageExerciseTitle;
         break;
@@ -81,31 +78,19 @@ class _MainScreenState extends State<MainScreen> {
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/icons8-gym-96.png',
-              height: 40,
-            ),
+            icon: const Icon(Icons.fitness_center_rounded),
             label: S.of(context).pageWorkout,
           ),
           BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/icons8-deadlift-96.png',
-              height: 40,
-            ),
+            icon: const Icon(Icons.directions_run_rounded),
             label: S.of(context).pageExerciseTitle,
           ),
           BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/icons8-calendar-96.png',
-              height: 40,
-            ),
+            icon: const Icon(Icons.calendar_month_rounded),
             label: S.of(context).log,
           ),
           BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/icons8-settings-96.png',
-              height: 40,
-            ),
+            icon: const Icon(Icons.settings_rounded),
             label: S.of(context).settings,
           ),
         ],

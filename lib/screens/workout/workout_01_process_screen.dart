@@ -90,8 +90,19 @@ class InitListView extends StatelessWidget {
                     key: Key(index.toString()),
                     initiallyExpanded: expanded[index] ?? false,
                     tilePadding: const EdgeInsets.only(right: 30.0, left: 16.0),
-                    title: Text(item.name as String),
-                    subtitle: Text(item.description as String),
+                    title: Text(
+                      item.name as String,
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
+                    iconColor: Theme.of(context).primaryColor,
+                    collapsedIconColor: Theme.of(context).primaryColor,
+                    subtitle: Text(
+                      item.description as String,
+                      style: TextStyle(
+                          color: Theme.of(context)
+                              .bottomNavigationBarTheme
+                              .unselectedItemColor),
+                    ),
                     children: [
                       Column(
                         children: [
@@ -246,7 +257,7 @@ class ActiveBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         if (!Provider.of<WorkoutProvider>(context, listen: false).finished)
           ElevatedButton(

@@ -27,6 +27,7 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
     logDays = await context.read<Repository>().wathchAllLogDays();
     for (LogDay item in logDays) {
       days.add(CalendarEvent(
+        eventBackgroundColor: Theme.of(context).primaryColor,
         eventName: item.daysName as String,
         eventDate: DateTime.parse(item.start as String),
         eventID: item.logDaysId.toString(),
@@ -40,6 +41,7 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
     final cellCalendarPageController = CellCalendarPageController();
     return SafeArea(
       child: CellCalendar(
+        todayMarkColor: Theme.of(context).primaryColor,
         cellCalendarPageController: cellCalendarPageController,
         events: days,
         onCellTapped: (date) {
