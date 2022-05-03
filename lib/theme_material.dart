@@ -6,6 +6,10 @@ final ThemeData materialLight = ThemeData(
   primaryColor: Colors.blue,
   primarySwatch: Colors.blue,
   visualDensity: VisualDensity.adaptivePlatformDensity,
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    selectedItemColor: Colors.blue,
+    unselectedItemColor: Colors.grey,
+  ),
 );
 
 /// Material dark theme
@@ -26,5 +30,10 @@ final ThemeData materialDark = ThemeData(
     secondaryLabelStyle: TextStyle(),
     secondarySelectedColor: Colors.white38,
     selectedColor: Colors.white38,
+  ),
+
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    selectedItemColor: Colors.blue,
+    unselectedItemColor: Colors.grey,
   ),
 );

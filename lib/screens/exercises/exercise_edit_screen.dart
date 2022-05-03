@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/data/models/exercise.dart';
 import 'package:npng/data/repository.dart';
-import 'package:npng/main.dart';
-import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
@@ -21,23 +18,25 @@ class ExerciseEditScreen extends StatelessWidget {
         TextEditingController(text: exercise.description);
     final _formKey = GlobalKey<FormState>();
 
-    return MpScaffold(
-      appBar: MpAppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: Text(exercise.name.toString()),
-        trailing: MpLinkButton(
-          label: S.of(context).save,
-          onPressed: () {
-            if (_formKey.currentState!.validate()) {
-              Exercise newExe = Exercise(
-                id: exercise.id,
-                name: _tcName.text,
-                description: _tcDesc.text,
-              );
-              repository.updateExercise(newExe);
-              Navigator.pop(context);
-            }
-          },
-        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text(S.of(context).save),
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                Exercise newExe = Exercise(
+                  id: exercise.id,
+                  name: _tcName.text,
+                  description: _tcDesc.text,
+                );
+                repository.updateExercise(newExe);
+                Navigator.pop(context);
+              }
+            },
+          )
+        ],
       ),
       body: SafeArea(
         child: Padding(
@@ -46,59 +45,36 @@ class ExerciseEditScreen extends StatelessWidget {
             key: _formKey,
             child: ListView(
               children: [
-                if (isApple)
-                  CupertinoTextFormFieldRow(
-                    controller: _tcName,
-                    placeholder: S.of(context).name,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return S.of(context).enterText;
-                      }
-                      return null;
-                    },
-                  ),
-                if (isApple)
-                  CupertinoTextFormFieldRow(
-                    controller: _tcDesc,
-                    placeholder: S.of(context).desc,
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    validator: (value) {
-                      return null;
-                    },
-                  ),
-                if (!isApple)
-                  TextFormField(
-                    controller: _tcName,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return S.of(context).enterText;
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      labelText: S.of(context).name,
-                      border: const OutlineInputBorder(
-                        borderSide: BorderSide(),
-                      ),
+                TextFormField(
+                  controller: _tcName,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return S.of(context).enterText;
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    labelText: S.of(context).name,
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(),
                     ),
                   ),
-                if (!isApple) const SizedBox(height: 16.0),
-                if (!isApple)
-                  TextFormField(
-                    controller: _tcDesc,
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    validator: (value) {
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      labelText: S.of(context).desc,
-                      border: const OutlineInputBorder(
-                        borderSide: BorderSide(),
-                      ),
+                ),
+                const SizedBox(height: 16.0),
+                TextFormField(
+                  controller: _tcDesc,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  validator: (value) {
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    labelText: S.of(context).desc,
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(),
                     ),
                   ),
+                ),
               ],
             ),
           ),
