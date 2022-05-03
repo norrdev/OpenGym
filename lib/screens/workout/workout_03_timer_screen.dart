@@ -49,7 +49,7 @@ class TimerScreen extends StatelessWidget {
                   height: MediaQuery.of(context).size.height / 2,
 
                   // Default Color for Countdown Timer
-                  ringColor: Theme.of(context).backgroundColor,
+                  ringColor: Colors.transparent,
 
                   // Filling Color for Countdown Timer
                   fillColor: AppTheme.light.primaryColor,
