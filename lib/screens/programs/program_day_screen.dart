@@ -45,122 +45,119 @@ class _ProgramDayScreenState extends State<ProgramDayScreen> {
             if (snapshot.connectionState == ConnectionState.active) {
               final List<Workout> workouts =
                   (snapshot.hasData) ? [...snapshot.data!] : [];
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ReorderableListView.builder(
-                  itemCount: workouts.length,
-                  itemBuilder: (context, index) {
-                    final item = workouts[index];
-                    return Slidable(
-                      endActionPane: ActionPane(
-                        motion: const ScrollMotion(),
-                        children: [
-                          SlidableAction(
-                            onPressed: (context) {
-                              repository.deleteWorkout(item);
-                              setState(() {});
-                            },
-                            //TODO: Add const colors
-                            backgroundColor: Colors.redAccent,
-                            foregroundColor: Colors.white,
-                            icon: Icons.delete,
-                            label: S.of(context).delete,
-                          ),
-                        ],
-                      ),
-                      key: ValueKey(item),
-                      child: Column(
-                        children: [
-                          ExpansionTile(
-                            onExpansionChanged: (value) =>
-                                expanded[index] = value,
-                            key: Key(index.toString()),
-                            initiallyExpanded: expanded[index] ?? false,
-                            tilePadding:
-                                const EdgeInsets.only(right: 30.0, left: 16.0),
-                            title: Text(item.name as String),
-                            subtitle: Text(item.description as String),
-                            children: [
-                              Column(
-                                children: [
-                                  Text(S.of(context).sets),
-                                  ChangeIntField(
-                                    value: item.sets as int,
-                                    decreaseCallback: () {
-                                      if (item.sets as int > 1) {
-                                        item.sets = item.sets! - 1;
-                                        repository
-                                            .updateWorkoutSetsRepeatsRest(item);
-                                      }
-                                    },
-                                    increaseCallback: () {
-                                      item.sets = item.sets! + 1;
+              return ReorderableListView.builder(
+                itemCount: workouts.length,
+                itemBuilder: (context, index) {
+                  final item = workouts[index];
+                  return Slidable(
+                    endActionPane: ActionPane(
+                      motion: const ScrollMotion(),
+                      children: [
+                        SlidableAction(
+                          onPressed: (context) {
+                            repository.deleteWorkout(item);
+                            setState(() {});
+                          },
+                          //TODO: Add const colors
+                          backgroundColor: Colors.redAccent,
+                          foregroundColor: Colors.white,
+                          icon: Icons.delete,
+                          label: S.of(context).delete,
+                        ),
+                      ],
+                    ),
+                    key: ValueKey(item),
+                    child: Column(
+                      children: [
+                        ExpansionTile(
+                          onExpansionChanged: (value) =>
+                              expanded[index] = value,
+                          key: Key(index.toString()),
+                          initiallyExpanded: expanded[index] ?? false,
+                          tilePadding:
+                              const EdgeInsets.only(right: 30.0, left: 16.0),
+                          title: Text(item.name as String),
+                          subtitle: Text(item.description as String),
+                          children: [
+                            Column(
+                              children: [
+                                Text(S.of(context).sets),
+                                ChangeIntField(
+                                  value: item.sets as int,
+                                  decreaseCallback: () {
+                                    if (item.sets as int > 1) {
+                                      item.sets = item.sets! - 1;
                                       repository
                                           .updateWorkoutSetsRepeatsRest(item);
-                                    },
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text(S.of(context).repeats),
-                                  ChangeIntField(
-                                    value: item.repeats as int,
-                                    decreaseCallback: () {
-                                      if (item.repeats as int > 1) {
-                                        item.repeats = item.repeats! - 1;
-                                        repository
-                                            .updateWorkoutSetsRepeatsRest(item);
-                                      }
-                                    },
-                                    increaseCallback: () {
-                                      item.repeats = item.repeats! + 1;
+                                    }
+                                  },
+                                  increaseCallback: () {
+                                    item.sets = item.sets! + 1;
+                                    repository
+                                        .updateWorkoutSetsRepeatsRest(item);
+                                  },
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text(S.of(context).repeats),
+                                ChangeIntField(
+                                  value: item.repeats as int,
+                                  decreaseCallback: () {
+                                    if (item.repeats as int > 1) {
+                                      item.repeats = item.repeats! - 1;
                                       repository
                                           .updateWorkoutSetsRepeatsRest(item);
-                                    },
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text(S.of(context).rest),
-                                  ChangeIntField(
-                                    value: item.rest as int,
-                                    decreaseCallback: () {
-                                      if (item.rest as int > 5) {
-                                        item.rest = item.rest! - 5;
-                                        repository
-                                            .updateWorkoutSetsRepeatsRest(item);
-                                      }
-                                    },
-                                    increaseCallback: () {
-                                      item.rest = item.rest! + 5;
+                                    }
+                                  },
+                                  increaseCallback: () {
+                                    item.repeats = item.repeats! + 1;
+                                    repository
+                                        .updateWorkoutSetsRepeatsRest(item);
+                                  },
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text(S.of(context).rest),
+                                ChangeIntField(
+                                  value: item.rest as int,
+                                  decreaseCallback: () {
+                                    if (item.rest as int > 5) {
+                                      item.rest = item.rest! - 5;
                                       repository
                                           .updateWorkoutSetsRepeatsRest(item);
-                                    },
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 16.0,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                  onReorder: (int oldIndex, int newIndex) {
-                    if (newIndex > oldIndex) newIndex -= 1;
-                    final Workout movedWorkout = workouts.removeAt(oldIndex);
-                    workouts.insert(newIndex, movedWorkout);
-                    repository.reorderWorkouts(workouts);
-                    // There is no need to update state here.
-                    // repository.reorderDays(days).then((value) {
-                    //   setState(() {});
-                    // });
-                  },
-                ),
+                                    }
+                                  },
+                                  increaseCallback: () {
+                                    item.rest = item.rest! + 5;
+                                    repository
+                                        .updateWorkoutSetsRepeatsRest(item);
+                                  },
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 16.0,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                onReorder: (int oldIndex, int newIndex) {
+                  if (newIndex > oldIndex) newIndex -= 1;
+                  final Workout movedWorkout = workouts.removeAt(oldIndex);
+                  workouts.insert(newIndex, movedWorkout);
+                  repository.reorderWorkouts(workouts);
+                  // There is no need to update state here.
+                  // repository.reorderDays(days).then((value) {
+                  //   setState(() {});
+                  // });
+                },
               );
             } else {
               return const Center(

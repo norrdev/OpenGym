@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/screens/log/log_show_workout_screen.dart';
+import 'package:npng/theme_material.dart';
 import 'package:provider/provider.dart';
 
 class LogCalendarScreen extends StatefulWidget {
@@ -27,7 +28,8 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
     logDays = await context.read<Repository>().wathchAllLogDays();
     for (LogDay item in logDays) {
       days.add(CalendarEvent(
-        eventBackgroundColor: Theme.of(context).primaryColor,
+        //eventBackgroundColor: Theme.of(context).primaryColor,
+        eventBackgroundColor: AppTheme.light.primaryColor,
         eventName: item.daysName as String,
         eventDate: DateTime.parse(item.start as String),
         eventID: item.logDaysId.toString(),
@@ -41,7 +43,8 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
     final cellCalendarPageController = CellCalendarPageController();
     return SafeArea(
       child: CellCalendar(
-        todayMarkColor: Theme.of(context).primaryColor,
+        todayMarkColor: AppTheme.light.primaryColor,
+        todayTextColor: AppTheme.dark.primaryColor,
         cellCalendarPageController: cellCalendarPageController,
         events: days,
         onCellTapped: (date) {

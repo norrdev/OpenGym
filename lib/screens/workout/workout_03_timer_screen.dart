@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/workout/workout_04_finish_screen.dart';
 import 'package:npng/data/models/workout_provider.dart';
+import 'package:npng/theme_material.dart';
 import 'package:provider/provider.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
@@ -48,10 +49,10 @@ class TimerScreen extends StatelessWidget {
                   height: MediaQuery.of(context).size.height / 2,
 
                   // Default Color for Countdown Timer
-                  ringColor: Colors.white,
+                  ringColor: Theme.of(context).backgroundColor,
 
                   // Filling Color for Countdown Timer
-                  fillColor: Theme.of(context).colorScheme.secondary,
+                  fillColor: AppTheme.light.primaryColor,
 
                   // Background Color for Countdown Widget
                   backgroundColor: null,
@@ -62,7 +63,7 @@ class TimerScreen extends StatelessWidget {
                   // Text Style for Countdown Text
                   textStyle: TextStyle(
                     fontSize: MediaQuery.of(context).size.height / 12, //22.0,
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: Theme.of(context).primaryColor,
                     //fontWeight: FontWeight.bold,
                   ),
 

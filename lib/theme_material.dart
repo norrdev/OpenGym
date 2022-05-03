@@ -53,9 +53,48 @@ class AppTheme {
   static ThemeData dark = ThemeData(
     visualDensity: VisualDensity.adaptivePlatformDensity,
     brightness: Brightness.dark,
-    primaryColor: Colors.black,
-    bottomAppBarColor: Colors.black, // for bottomBar
-    toggleableActiveColor: Colors.blue, // for radio
+    primaryColor: Colors.white,
+    toggleableActiveColor: Colors.white,
+    textTheme: const TextTheme(
+      subtitle1: TextStyle(
+        color: Colors.white,
+      ),
+    ),
+    appBarTheme: const AppBarTheme(
+      foregroundColor: Colors.white,
+      backgroundColor: Colors.black,
+      actionsIconTheme: IconThemeData(color: Colors.white),
+      //color: Colors.blue,
+    ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+        backgroundColor: Colors.black),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(primary: Colors.white),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+        minimumSize: MaterialStateProperty.all<Size>(const Size.square(50)),
+      ),
+    ),
+    radioTheme: RadioThemeData(
+      fillColor: MaterialStateProperty.all<Color>(Colors.white),
+    ),
+    inputDecorationTheme: const InputDecorationTheme(
+      labelStyle: TextStyle(color: Colors.white),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.white),
+      ),
+    ),
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: Colors.white, //thereby
+    ),
+    progressIndicatorTheme: const ProgressIndicatorThemeData(
+      color: Colors.white,
+    ),
+    //colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
     chipTheme: const ChipThemeData(
       backgroundColor: Colors.black45,
       disabledColor: Color(0xaaF5E0C3),
@@ -67,11 +106,6 @@ class AppTheme {
       secondaryLabelStyle: TextStyle(),
       secondarySelectedColor: Colors.white38,
       selectedColor: Colors.white38,
-    ),
-
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      selectedItemColor: Colors.blue,
-      unselectedItemColor: Colors.grey,
     ),
   );
 }

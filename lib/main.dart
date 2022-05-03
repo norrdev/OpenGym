@@ -54,9 +54,9 @@ class Application extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       onGenerateTitle: (BuildContext context) => S.of(context).title,
+      //theme: AppTheme.light,
       theme: AppTheme.light,
-      // theme: AppTheme.light,
-      // darkTheme: AppTheme.dark,
+      darkTheme: AppTheme.dark,
       initialRoute: kInitialRoute,
       routes: appRoutes,
     );
