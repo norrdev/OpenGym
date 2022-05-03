@@ -4,7 +4,6 @@ import 'package:npng/data/models/log_day.dart';
 import 'package:npng/data/models/log_workout.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -57,8 +56,8 @@ class _LogWorkoutScreenState extends State<LogWorkoutScreen> {
       output += '${count + 1}. ${item.weight} kg X ${item.repeat}\n\r';
     }
 
-    return MpScaffold(
-        appBar: MpAppBar(
+    return Scaffold(
+        appBar: AppBar(
           title: Text(widget.logday.daysName as String),
         ),
         body: SafeArea(
@@ -69,7 +68,7 @@ class _LogWorkoutScreenState extends State<LogWorkoutScreen> {
             styleSheet: style,
             //styleSheetTheme: MarkdownStyleSheetBaseTheme.platform,
             //onTapLink: (href) => launch(href),
-            onTapLink: (text, href, title) => launch(href!),
+            onTapLink: (text, href, title) => launchUrl(Uri.parse(href!)),
           ),
         ));
   }
