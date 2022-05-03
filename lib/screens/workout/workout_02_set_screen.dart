@@ -1,12 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:npng/screens/workout/workout_03_timer_screen.dart';
-import 'package:npng/data/models/workout_provider.dart';
-import 'package:npng/widgets/multiplatform_widgets.dart';
+import 'package:npng/widgets/change_double_field_extended.dart';
+import 'package:npng/widgets/change_int_field.dart';
 import 'package:provider/provider.dart';
-import 'package:npng/generated/l10n.dart';
-import 'package:npng/main.dart';
 import 'package:steps_indicator/steps_indicator.dart';
+
+import 'package:npng/data/models/workout_provider.dart';
+import 'package:npng/generated/l10n.dart';
+import 'package:npng/screens/workout/workout_03_timer_screen.dart';
 
 class WorkoutSetScreen extends StatelessWidget {
   static const String id = '/set';
@@ -14,8 +14,8 @@ class WorkoutSetScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MpScaffold(
-      appBar: MpAppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: Consumer<WorkoutProvider>(
           builder: (context, wk, child) {
             return Text(wk.excersises[wk.currentExcersise].name);
@@ -31,8 +31,8 @@ class WorkoutSetScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  MpFlatButton(
-                    child: const Icon(Icons.arrow_back_ios_rounded),
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back_ios_rounded),
                     onPressed: () =>
                         Provider.of<WorkoutProvider>(context, listen: false)
                             .manualRemoveOneSet(),
@@ -55,17 +55,14 @@ class WorkoutSetScreen extends StatelessWidget {
                         lineLength: linelength,
                         selectedStep: workout.currentSet,
                         nbSteps: workout.maxSet + 1,
-                        doneLineColor: (isApple)
-                            ? CupertinoTheme.of(context).primaryColor
-                            : Theme.of(context).colorScheme.secondary,
-                        undoneLineColor: (isApple)
-                            ? CupertinoTheme.of(context).primaryColor
-                            : Theme.of(context).colorScheme.secondary,
+                        doneLineColor: Theme.of(context).colorScheme.secondary,
+                        undoneLineColor:
+                            Theme.of(context).colorScheme.secondary,
                       );
                     },
                   ),
-                  MpFlatButton(
-                    child: const Icon(Icons.arrow_forward_ios_rounded),
+                  IconButton(
+                    icon: const Icon(Icons.arrow_forward_ios_rounded),
                     onPressed: () =>
                         Provider.of<WorkoutProvider>(context, listen: false)
                             .manualAddOneSet(),
@@ -82,8 +79,8 @@ class WorkoutSetScreen extends StatelessWidget {
                 },
               ),
             ),
-            MpButton(
-              label: S.of(context).restButton,
+            ElevatedButton(
+              child: Text(S.of(context).restButton),
               onPressed: () {
                 Navigator.pushNamed(context, TimerScreen.id);
                 // .whenComplete(
@@ -117,7 +114,7 @@ class CurrentSetWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(S.of(context).weight),
-        MpChangeDoubleFieldExtended(
+        ChangeDoubleFieldExtended(
           value: workout
               .excersises[workout.currentExcersise].sets[setNumber].weight,
           increaseCallback: () => workout.incWeight025(
@@ -130,7 +127,7 @@ class CurrentSetWidget extends StatelessWidget {
               excersiseNumber: workout.currentExcersise, setNumber: setNumber),
         ),
         Text(S.of(context).repeats),
-        MpChangeIntField(
+        ChangeIntField(
           value: workout
               .excersises[workout.currentExcersise].sets[setNumber].repeats,
           decreaseCallback: () => workout.decRepeats(

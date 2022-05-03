@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class ChangeIntField extends StatelessWidget {
   final int? value;
-  final Function? increaseCallback;
-  final Function? decreaseCallback;
+  final void Function()? increaseCallback;
+  final void Function()? decreaseCallback;
 
   const ChangeIntField({
     Key? key,
@@ -19,7 +19,7 @@ class ChangeIntField extends StatelessWidget {
         Expanded(
           child: IconButton(
             icon: const Icon(Icons.arrow_back_ios_rounded),
-            onPressed: () => decreaseCallback,
+            onPressed: decreaseCallback,
           ),
         ),
         SizedBox(
@@ -33,7 +33,7 @@ class ChangeIntField extends StatelessWidget {
         Expanded(
           child: IconButton(
             icon: const Icon(Icons.arrow_forward_ios_rounded),
-            onPressed: () => increaseCallback,
+            onPressed: increaseCallback,
           ),
         ),
       ],

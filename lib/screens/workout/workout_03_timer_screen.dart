@@ -1,11 +1,8 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:npng/main.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/workout/workout_04_finish_screen.dart';
 import 'package:npng/data/models/workout_provider.dart';
-import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
@@ -54,9 +51,7 @@ class TimerScreen extends StatelessWidget {
                   ringColor: Colors.white,
 
                   // Filling Color for Countdown Timer
-                  fillColor: (isApple)
-                      ? CupertinoTheme.of(context).primaryColor
-                      : Theme.of(context).colorScheme.secondary,
+                  fillColor: Theme.of(context).colorScheme.secondary,
 
                   // Background Color for Countdown Widget
                   backgroundColor: null,
@@ -67,9 +62,7 @@ class TimerScreen extends StatelessWidget {
                   // Text Style for Countdown Text
                   textStyle: TextStyle(
                     fontSize: MediaQuery.of(context).size.height / 12, //22.0,
-                    color: (isApple)
-                        ? CupertinoTheme.of(context).primaryColor
-                        : Theme.of(context).colorScheme.secondary,
+                    color: Theme.of(context).colorScheme.secondary,
                     //fontWeight: FontWeight.bold,
                   ),
 
@@ -93,7 +86,7 @@ class TimerScreen extends StatelessWidget {
                     } else {
                       Navigator.pushAndRemoveUntil(
                         context,
-                        mpPageRoute(
+                        MaterialPageRoute(
                           builder: (BuildContext context) =>
                               const WorkoutFinishScreen(),
                         ),
@@ -105,8 +98,8 @@ class TimerScreen extends StatelessWidget {
                 const SizedBox(
                   height: 24.0,
                 ),
-                MpButton(
-                  label: S.of(context).stopRest,
+                ElevatedButton(
+                  child: Text(S.of(context).stopRest),
                   onPressed: () {
                     _controller.pause();
                     Provider.of<WorkoutProvider>(context, listen: false)
@@ -117,7 +110,7 @@ class TimerScreen extends StatelessWidget {
                     } else {
                       Navigator.pushAndRemoveUntil(
                           context,
-                          mpPageRoute(
+                          MaterialPageRoute(
                             builder: (BuildContext context) =>
                                 const WorkoutFinishScreen(),
                           ),
