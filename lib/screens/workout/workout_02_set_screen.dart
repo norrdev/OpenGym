@@ -22,10 +22,25 @@ class WorkoutSetScreen extends StatelessWidget {
           },
         ),
       ),
+      persistentFooterButtons: [
+        Center(
+          child: ElevatedButton(
+            child: Text(S.of(context).restButton),
+            onPressed: () {
+              Navigator.pushNamed(context, TimerScreen.id);
+              // .whenComplete(
+              //     () => workout.incCurrentSet());
+            },
+          ),
+        )
+      ],
       body: SafeArea(
         child: Column(
           children: [
-            Text(S.of(context).sets),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Text(S.of(context).sets),
+            ),
             SizedBox(
               height: 80.0,
               child: Row(
@@ -55,6 +70,7 @@ class WorkoutSetScreen extends StatelessWidget {
                         lineLength: linelength,
                         selectedStep: workout.currentSet,
                         nbSteps: workout.maxSet + 1,
+                        selectedStepColorIn: Colors.transparent,
                         selectedStepColorOut: Theme.of(context).primaryColor,
                         unselectedStepColorIn: Theme.of(context).primaryColor,
                         unselectedStepColorOut: Theme.of(context).primaryColor,
@@ -81,17 +97,6 @@ class WorkoutSetScreen extends StatelessWidget {
                   );
                 },
               ),
-            ),
-            ElevatedButton(
-              child: Text(S.of(context).restButton),
-              onPressed: () {
-                Navigator.pushNamed(context, TimerScreen.id);
-                // .whenComplete(
-                //     () => workout.incCurrentSet());
-              },
-            ),
-            const SizedBox(
-              height: 40.0,
             ),
           ],
         ),
