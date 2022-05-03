@@ -63,7 +63,7 @@ class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
                   final item = exes[index];
                   return Slidable(
                     key: ValueKey(item),
-                    child: ListTile(
+                    child: MpListTile(
                       title: Text(item.name!),
                       onTap: () => Navigator.push(
                         context,

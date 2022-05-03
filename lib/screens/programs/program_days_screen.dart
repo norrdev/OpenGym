@@ -71,7 +71,7 @@ class _ProgramDaysScreenState extends State<ProgramDaysScreen> {
                     final item = days[index];
                     return Slidable(
                       key: ValueKey(item),
-                      child: ListTile(
+                      child: MpListTile(
                         title: Text(item.name as String),
                         subtitle: Text(item.description as String),
                         onTap: () => Navigator.push(

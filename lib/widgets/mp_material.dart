@@ -386,3 +386,36 @@ void mpShowToast(String message,
         );
       });
 }
+
+/// List tile.
+class MpListTile extends StatelessWidget {
+  final Widget? leading;
+  final Widget? title;
+  final Widget? subtitle;
+  final Widget? trailing;
+  final VoidCallback? onTap;
+  final VoidCallback? onLongPress;
+
+  const MpListTile({
+    Key? key,
+    this.leading,
+    this.title,
+    this.subtitle,
+    this.trailing,
+    this.onTap,
+    this.onLongPress,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      key: key,
+      leading: leading,
+      title: title,
+      subtitle: subtitle,
+      trailing: trailing,
+      onTap: onTap,
+      onLongPress: onLongPress,
+    );
+  }
+}

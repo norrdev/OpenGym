@@ -53,7 +53,7 @@ class _WorkoutStartScreenState extends State<WorkoutStartScreen> {
                     itemCount: days.length,
                     itemBuilder: (context, index) {
                       final item = days[index];
-                      return ListTile(
+                      return MpListTile(
                         title: Text(item.name as String),
                         subtitle: Text(item.description as String),
                         onTap: () => Navigator.push(

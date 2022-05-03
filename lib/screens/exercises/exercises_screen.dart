@@ -28,7 +28,7 @@ class ExercisesScreen extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   final item = muscles[index];
                   return Slidable(
-                    child: ListTile(
+                    child: MpListTile(
                       leading: (item.icon != null)
                           ? Image.memory(
                               item.icon as Uint8List,

@@ -52,7 +52,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                     final item = programs[index];
                     return Slidable(
                       key: ValueKey(item),
-                      child: ListTile(
+                      child: MpListTile(
                         leading: Radio<int>(
                           value: item.id as int,
                           groupValue: _current,
