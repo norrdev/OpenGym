@@ -9,27 +9,24 @@
 # echo Packages update...
 # flutter pub get
 
-echo
-echo Changelog sync...
-cp CHANGELOG.md ../npng-site/
+# echo
+# echo Changelog sync...
+# cp CHANGELOG.md ../npng-site/
 
 echo SplashScreen creating...
 flutter pub run flutter_native_splash:create
 
 echo 
 echo Build android app...
-./switch2material.sh
 flutter build apk --release
 flutter build appbundle --release
 
 echo 
 echo Build iOS app...
-./switch2cupertino.sh
 flutter build ios --release
 
 echo 
 echo Build MacOS app...
-#./switch2cupertino.sh
 flutter build macos --release
 
 # echo Build web app...

@@ -1,15 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:npng/main.dart';
+import 'package:npng/widgets/change_int_field.dart';
+import 'package:provider/provider.dart';
+import 'package:wakelock/wakelock.dart';
+
 import 'package:npng/data/models/models.dart';
+import 'package:npng/data/models/workout_provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/workout/workout_02_set_screen.dart';
 import 'package:npng/screens/workout/workout_04_finish_screen.dart';
-import 'package:npng/data/models/workout_provider.dart';
-import 'package:npng/widgets/multiplatform_widgets.dart';
-import 'package:provider/provider.dart';
-import 'package:wakelock/wakelock.dart';
 
 class WorkoutProcessScreen extends StatefulWidget {
   const WorkoutProcessScreen({Key? key, required this.day}) : super(key: key);
@@ -27,34 +26,20 @@ class _WorkoutProcessScreenState extends State<WorkoutProcessScreen> {
   @override
   Widget build(BuildContext context) {
     final repository = Provider.of<Repository>(context, listen: false);
-    return MpScaffold(
-      appBar: MpAppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: Text(S.of(context).currentWorkout),
       ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: (isApple)
-              ? CupertinoTheme.of(context).barBackgroundColor
-              : Theme.of(context).bottomAppBarColor,
-          border: Border(
-            top: BorderSide(color: Theme.of(context).dividerColor),
-          ),
-        ),
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            (Provider.of<WorkoutProvider>(context, listen: false).active)
-                ? ActiveBottomBar(
-                    pushBack: pushBack,
-                  )
-                : InitBottomBar(
-                    dayId: widget.day.id as int,
-                    pushBack: pushBack,
-                  ),
-          ],
-        ),
-      ),
+      persistentFooterButtons: [
+        (Provider.of<WorkoutProvider>(context, listen: false).active)
+            ? ActiveBottomBar(
+                pushBack: pushBack,
+              )
+            : InitBottomBar(
+                dayId: widget.day.id as int,
+                pushBack: pushBack,
+              ),
+      ],
       body: SafeArea(
         child: (Provider.of<WorkoutProvider>(context, listen: false).active)
             ? const ActiveListView()
@@ -93,99 +78,100 @@ class InitListView extends StatelessWidget {
             Provider.of<WorkoutProvider>(context, listen: false)
                 .workoutsSnapshot = workouts;
           }
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Material(
-              type: MaterialType.transparency,
-              child: ReorderableListView.builder(
-                itemCount: workouts.length,
-                itemBuilder: (context, index) {
-                  final item = workouts[index];
-                  return Column(
-                    key: ValueKey(item),
+          return ReorderableListView.builder(
+            itemCount: workouts.length,
+            itemBuilder: (context, index) {
+              final item = workouts[index];
+              return Column(
+                key: ValueKey(item),
+                children: [
+                  ExpansionTile(
+                    onExpansionChanged: (value) => expanded[index] = value,
+                    key: Key(index.toString()),
+                    initiallyExpanded: expanded[index] ?? false,
+                    tilePadding: const EdgeInsets.only(right: 30.0, left: 16.0),
+                    title: Text(
+                      item.name as String,
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
+                    iconColor: Theme.of(context).primaryColor,
+                    collapsedIconColor: Theme.of(context).primaryColor,
+                    subtitle: Text(
+                      item.description as String,
+                      style: TextStyle(
+                          color: Theme.of(context)
+                              .bottomNavigationBarTheme
+                              .unselectedItemColor),
+                    ),
                     children: [
-                      ExpansionTile(
-                        onExpansionChanged: (value) => expanded[index] = value,
-                        key: Key(index.toString()),
-                        initiallyExpanded: expanded[index] ?? false,
-                        tilePadding:
-                            const EdgeInsets.only(right: 30.0, left: 16.0),
-                        title: Text(item.name as String),
-                        subtitle: Text(item.description as String),
+                      Column(
                         children: [
-                          Column(
-                            children: [
-                              Text(S.of(context).sets),
-                              MpChangeIntField(
-                                value: item.sets as int,
-                                decreaseCallback: () {
-                                  if (item.sets as int > 1) {
-                                    item.sets = item.sets! - 1;
-                                    repository
-                                        .updateWorkoutSetsRepeatsRest(item);
-                                  }
-                                },
-                                increaseCallback: () {
-                                  item.sets = item.sets! + 1;
-                                  repository.updateWorkoutSetsRepeatsRest(item);
-                                },
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(S.of(context).repeats),
-                              MpChangeIntField(
-                                value: item.repeats as int,
-                                decreaseCallback: () {
-                                  if (item.repeats as int > 1) {
-                                    item.repeats = item.repeats! - 1;
-                                    repository
-                                        .updateWorkoutSetsRepeatsRest(item);
-                                  }
-                                },
-                                increaseCallback: () {
-                                  item.repeats = item.repeats! + 1;
-                                  repository.updateWorkoutSetsRepeatsRest(item);
-                                },
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(S.of(context).rest),
-                              MpChangeIntField(
-                                value: item.rest as int,
-                                decreaseCallback: () {
-                                  if (item.rest as int > 5) {
-                                    item.rest = item.rest! - 5;
-                                    repository
-                                        .updateWorkoutSetsRepeatsRest(item);
-                                  }
-                                },
-                                increaseCallback: () {
-                                  item.rest = item.rest! + 5;
-                                  repository.updateWorkoutSetsRepeatsRest(item);
-                                },
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 16.0,
+                          Text(S.of(context).sets),
+                          ChangeIntField(
+                            value: item.sets as int,
+                            decreaseCallback: () {
+                              if (item.sets as int > 1) {
+                                item.sets = item.sets! - 1;
+                                repository.updateWorkoutSetsRepeatsRest(item);
+                              }
+                            },
+                            increaseCallback: () {
+                              item.sets = item.sets! + 1;
+                              repository.updateWorkoutSetsRepeatsRest(item);
+                            },
                           ),
                         ],
                       ),
+                      Column(
+                        children: [
+                          Text(S.of(context).repeats),
+                          ChangeIntField(
+                            value: item.repeats as int,
+                            decreaseCallback: () {
+                              if (item.repeats as int > 1) {
+                                item.repeats = item.repeats! - 1;
+                                repository.updateWorkoutSetsRepeatsRest(item);
+                              }
+                            },
+                            increaseCallback: () {
+                              item.repeats = item.repeats! + 1;
+                              repository.updateWorkoutSetsRepeatsRest(item);
+                            },
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text(S.of(context).rest),
+                          ChangeIntField(
+                            value: item.rest as int,
+                            decreaseCallback: () {
+                              if (item.rest as int > 5) {
+                                item.rest = item.rest! - 5;
+                                repository.updateWorkoutSetsRepeatsRest(item);
+                              }
+                            },
+                            increaseCallback: () {
+                              item.rest = item.rest! + 5;
+                              repository.updateWorkoutSetsRepeatsRest(item);
+                            },
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 16.0,
+                      ),
                     ],
-                  );
-                },
-                onReorder: (int oldIndex, int newIndex) {
-                  if (newIndex > oldIndex) newIndex -= 1;
-                  final Workout movedWorkout = workouts.removeAt(oldIndex);
-                  workouts.insert(newIndex, movedWorkout);
-                  repository.reorderWorkouts(workouts);
-                },
-              ),
-            ),
+                  ),
+                ],
+              );
+            },
+            onReorder: (int oldIndex, int newIndex) {
+              if (newIndex > oldIndex) newIndex -= 1;
+              final Workout movedWorkout = workouts.removeAt(oldIndex);
+              workouts.insert(newIndex, movedWorkout);
+              repository.reorderWorkouts(workouts);
+            },
           );
         } else {
           return const Center(
@@ -210,20 +196,13 @@ class ActiveListView extends StatelessWidget {
       itemBuilder: (context, index) {
         final item = Provider.of<WorkoutProvider>(context, listen: false)
             .excersises[index];
-        return Material(
-          type: MaterialType.transparency,
-          key: ValueKey(item),
-          child: ListTile(
-              //FIXME: Show status of excersises, check completed.
-              leading: (item.completed)
-                  ? const Icon(
-                      Icons.done,
-                    )
-                  : const Icon(
-                      Icons.fitness_center,
-                    ),
-              title: Text(item.name)),
-        );
+        return ListTile(
+            leading: (item.completed)
+                ? const Icon(
+                    Icons.done,
+                  )
+                : null,
+            title: Text(item.name));
       },
     );
   }
@@ -242,22 +221,24 @@ class InitBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MpButton(
-      label: S.of(context).start,
-      onPressed: () {
-        Provider.of<WorkoutProvider>(context, listen: false).dayID = dayId;
-        Provider.of<WorkoutProvider>(context, listen: false).startTime =
-            DateTime.now();
-        Provider.of<WorkoutProvider>(context, listen: false).active = true;
-        Wakelock.enable();
-        pushBack!();
-        Navigator.push(
-          context,
-          mpPageRoute(
-            builder: (context) => const WorkoutSetScreen(),
-          ),
-        ).whenComplete(() => pushBack);
-      },
+    return Center(
+      child: ElevatedButton(
+        child: Text(S.of(context).start),
+        onPressed: () {
+          Provider.of<WorkoutProvider>(context, listen: false).dayID = dayId;
+          Provider.of<WorkoutProvider>(context, listen: false).startTime =
+              DateTime.now();
+          Provider.of<WorkoutProvider>(context, listen: false).active = true;
+          Wakelock.enable();
+          pushBack!();
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const WorkoutSetScreen(),
+            ),
+          ).whenComplete(() => pushBack);
+        },
+      ),
     );
   }
 }
@@ -273,23 +254,23 @@ class ActiveBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         if (!Provider.of<WorkoutProvider>(context, listen: false).finished)
-          MpFlatButton(
-            label: S.of(context).ccontinue,
+          ElevatedButton(
+            child: Text(S.of(context).ccontinue),
             onPressed: () {
               Navigator.push(
                 context,
-                mpPageRoute(
+                MaterialPageRoute(
                   builder: (context) => const WorkoutSetScreen(),
                 ),
               ).whenComplete(() => pushBack);
             },
           ),
         const SizedBox(width: 16.0),
-        MpFlatButton(
-          label: S.of(context).finish,
+        ElevatedButton(
+          child: Text(S.of(context).finish),
           onPressed: () {
             // Provider.of<WorkoutProvider>(context, listen: false)
             //     .resetAllData();
@@ -300,7 +281,7 @@ class ActiveBottomBar extends StatelessWidget {
                 true;
             Navigator.pushAndRemoveUntil(
               context,
-              mpPageRoute(
+              MaterialPageRoute(
                 builder: (BuildContext context) => const WorkoutFinishScreen(),
               ),
               (route) => false,

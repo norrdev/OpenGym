@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/data/models/exercise.dart';
-import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 
 class ExerciseViewScreen extends StatelessWidget {
@@ -12,8 +10,8 @@ class ExerciseViewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String desc = exercise.description.toString();
-    return MpScaffold(
-      appBar: MpAppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: Text(exercise.name.toString()),
       ),
       body: SafeArea(

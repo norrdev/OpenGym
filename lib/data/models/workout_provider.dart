@@ -13,15 +13,7 @@ class Exerscise {
   int maxSets = 0;
   int restTime = 0;
   List<Set> sets = [];
-
-  bool get completed {
-    for (var element in sets) {
-      if (element.completed == false) {
-        return false;
-      }
-    }
-    return true;
-  }
+  bool completed = false;
 }
 
 /// Workout settings and methods.
@@ -97,8 +89,9 @@ class WorkoutProvider extends ChangeNotifier {
 
   void incCurrentExcersise() {
     if (_currentExcersise < maxExcersise) {
-      // Flag previous excersise as 'completed'
+      //TODO: Flag previous excersise as 'completed'
       _currentSet = 0;
+      excersises[_currentExcersise].completed = true;
       _currentExcersise++;
       notifyListeners();
     } else {

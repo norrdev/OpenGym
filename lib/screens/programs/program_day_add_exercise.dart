@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:npng/main.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
-import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
@@ -24,8 +21,8 @@ class _ProgramDayAddExerciseState extends State<ProgramDayAddExercise> {
   @override
   Widget build(BuildContext context) {
     final repository = Provider.of<Repository>(context, listen: false);
-    return MpScaffold(
-      appBar: MpAppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: Text(S.of(context).pageAddEx),
       ),
       body: SafeArea(
@@ -41,26 +38,23 @@ class _ProgramDayAddExerciseState extends State<ProgramDayAddExercise> {
                   //if (snapshot.connectionState == ConnectionState.active) {
                   final List<Muscle> muscles =
                       snapshot.hasData ? [...snapshot.data!] : [];
-                  return Material(
-                    type: MaterialType.transparency,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Wrap(
-                        spacing: 4.0,
-                        runSpacing: 4.0,
-                        children:
-                            List<Widget>.generate(muscles.length, (int index) {
-                          final item = muscles[index];
-                          return ChoiceChip(
-                            selected: (index == selectedMuscle) ? true : false,
-                            label: Text(item.name as String),
-                            onSelected: (bool selected) {
-                              selectedMuscle = index;
-                              setState(() {});
-                            },
-                          );
-                        }),
-                      ),
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Wrap(
+                      spacing: 4.0,
+                      runSpacing: 4.0,
+                      children:
+                          List<Widget>.generate(muscles.length, (int index) {
+                        final item = muscles[index];
+                        return ChoiceChip(
+                          selected: (index == selectedMuscle) ? true : false,
+                          label: Text(item.name as String),
+                          onSelected: (bool selected) {
+                            selectedMuscle = index;
+                            setState(() {});
+                          },
+                        );
+                      }),
                     ),
                   );
                 },
@@ -74,28 +68,26 @@ class _ProgramDayAddExerciseState extends State<ProgramDayAddExercise> {
                   final List<Exercise> exercises =
                       (snapshotEx.hasData) ? [...snapshotEx.data!] : [];
                   selectedEx = List<bool>.filled(exercises.length, false);
-                  return Material(
-                    type: MaterialType.transparency,
-                    child: ListView.builder(
-                      itemCount: exercises.length,
-                      itemBuilder: (context, index) {
-                        final Exercise item = exercises[index];
-                        return ListTile(
-                          title: Text(item.name as String),
-                          trailing: MpFlatButton(
-                            child: const Icon(isApple
-                                ? CupertinoIcons.add_circled
-                                : Icons.add_circle),
-                            onPressed: () {
-                              repository.insertWorkout(
-                                  widget.day.id as int, item.id as int);
-                              mpShowToast(S.of(context).addEx,
-                                  context: context);
-                            },
-                          ),
-                        );
-                      },
-                    ),
+                  return ListView.builder(
+                    itemCount: exercises.length,
+                    itemBuilder: (context, index) {
+                      final Exercise item = exercises[index];
+                      return ListTile(
+                        title: Text(item.name as String),
+                        trailing: IconButton(
+                          icon: const Icon(Icons.add_circle),
+                          onPressed: () {
+                            repository.insertWorkout(
+                                widget.day.id as int, item.id as int);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(S.of(context).addEx),
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    },
                   );
                 },
               ),

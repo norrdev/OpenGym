@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/exercises/exercises_screen.dart';
 import 'package:npng/screens/log/log_calendar_screen.dart';
 import 'package:npng/screens/programs/programs_screen.dart';
-import 'package:npng/screens/workout/workout_00_start_screen.dart';
-import 'package:npng/widgets/multiplatform_widgets.dart';
-import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/settings/setings_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:npng/screens/workout/workout_00_start_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -24,7 +24,6 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     pageList.add(const WorkoutStartScreen());
-    //pageList.add(const ProgramsScreen());
     pageList.add(const ExercisesScreen());
     pageList.add(const LogCalendarScreen());
     pageList.add(const SettingsScreen());
@@ -55,24 +54,6 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
-  StatelessWidget? _appBarButton(int selected) {
-    switch (selected) {
-      case 0:
-        return MpFlatButton(
-          padding: const EdgeInsets.all(8),
-          child: const Icon(Icons.checklist_rounded),
-          onPressed: () => Navigator.push(
-            context,
-            mpPageRoute(
-              builder: (context) => const ProgramsScreen(),
-            ),
-          ).then((value) => setState(() {})),
-        );
-      default:
-        return null;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     String title = 'NpNg';
@@ -80,9 +61,6 @@ class _MainScreenState extends State<MainScreen> {
       case 0:
         title = S.of(context).pageWorkout;
         break;
-      // case 1:
-      //   title = S.of(context).pageProgramsTitle;
-      //   break;
       case 1:
         title = S.of(context).pageExerciseTitle;
         break;
@@ -95,52 +73,45 @@ class _MainScreenState extends State<MainScreen> {
       default:
     }
 
-    return MpScaffold(
-      bottomNavigationBar: MpBottomNavigationBar(
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/icons8-gym-96.png',
-              height: 40,
-            ),
+            icon: const Icon(Icons.fitness_center_rounded),
             label: S.of(context).pageWorkout,
           ),
-          // BottomNavigationBarItem(
-          //   icon: Image.asset(
-          //     'assets/icons/icons8-rules-96.png',
-          //     height: 40,
-          //   ),
-          //   label: S.of(context).pageProgramsTitle,
-          // ),
           BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/icons8-deadlift-96.png',
-              height: 40,
-            ),
+            icon: const Icon(Icons.directions_run_rounded),
             label: S.of(context).pageExerciseTitle,
           ),
           BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/icons8-calendar-96.png',
-              height: 40,
-            ),
+            icon: const Icon(Icons.calendar_month_rounded),
             label: S.of(context).log,
           ),
           BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/icons8-settings-96.png',
-              height: 40,
-            ),
+            icon: const Icon(Icons.settings_rounded),
             label: S.of(context).settings,
           ),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        //selectedItemColor: Theme.of(context).colorScheme.primary,
       ),
-      appBar: MpAppBar(
+      appBar: AppBar(
         title: Text(title),
-        trailing: _appBarButton(_selectedIndex),
+        actions: <Widget>[
+          if (_selectedIndex == 0)
+            IconButton(
+              padding: const EdgeInsets.all(8),
+              icon: const Icon(Icons.checklist_rounded),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProgramsScreen(),
+                ),
+              ).then((value) => setState(() {})),
+            )
+        ],
       ),
       body: IndexedStack(
         index: _selectedIndex,
