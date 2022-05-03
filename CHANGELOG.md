@@ -1,5 +1,7 @@
 ## 2.1.0
 - Same desingn in all operation systems.
+- Excersises checkbox on workout screen.
+- Program selection now is on the Workout screen appbar.
 - Improved perfomance.
 
 ## 2.0.1

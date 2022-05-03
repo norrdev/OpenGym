@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/widgets/change_int_field.dart';
 import 'package:provider/provider.dart';
@@ -197,9 +196,6 @@ class ActiveListView extends StatelessWidget {
       itemBuilder: (context, index) {
         final item = Provider.of<WorkoutProvider>(context, listen: false)
             .excersises[index];
-        if (kDebugMode) {
-          print(item.completed);
-        }
         return ListTile(
             leading: (item.completed)
                 ? const Icon(
