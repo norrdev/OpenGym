@@ -1,10 +1,14 @@
+## 2.1.0
+- Same desingn in all operation systems.
+- Improved perfomance.
+
 ## 2.0.1
 - Fixed permissions.
 - Name of the day in calendar.
 
 ## 2.0.0
 - Full core refactoring.
-- Improved speed.
+- Improved perfomance.
 - Improved interface.
 - Slidable lists.
 - Share and export database to file.
@@ -13,7 +17,7 @@
 
 ## 1.2.0
 - Changed place for weight and repeats.
-- Added system splashscreen on start.npng
+- Added system splashscreen on start.
 - Added stop button to rest timer.
 - Added ability to increase/decrease amount of sets during workout.
 

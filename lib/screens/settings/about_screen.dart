@@ -3,7 +3,6 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/widgets/multiplatform_widgets.dart';
 
 class AboutScreen extends StatelessWidget {
   static String id = '/about';
@@ -20,8 +19,8 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     MarkdownStyleSheet style = MarkdownStyleSheet.fromTheme(Theme.of(context));
 
-    return MpScaffold(
-      appBar: MpAppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: Text(S.of(context).about),
       ),
       body: SafeArea(
@@ -30,7 +29,7 @@ class AboutScreen extends StatelessWidget {
           controller: controller,
           selectable: false,
           styleSheet: style,
-          onTapLink: (text, href, title) => launch(href!),
+          onTapLink: (text, href, title) => launchUrl(Uri.parse(href!)),
         ),
       ),
     );

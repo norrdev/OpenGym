@@ -66,8 +66,6 @@ class _LogWorkoutScreenState extends State<LogWorkoutScreen> {
             controller: controller,
             selectable: false,
             styleSheet: style,
-            //styleSheetTheme: MarkdownStyleSheetBaseTheme.platform,
-            //onTapLink: (href) => launch(href),
             onTapLink: (text, href, title) => launchUrl(Uri.parse(href!)),
           ),
         ));
