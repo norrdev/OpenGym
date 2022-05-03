@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:npng/config.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
+import 'package:npng/main.dart';
 import 'package:npng/screens/exercises/exercise_edit_screen.dart';
 import 'package:npng/screens/exercises/exercise_new_screen.dart';
 import 'package:npng/screens/exercises/exercise_view_screen.dart';

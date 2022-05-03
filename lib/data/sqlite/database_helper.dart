@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:npng/config.dart';
+import 'package:intl/intl.dart';
 import 'package:npng/data/models/workout_provider.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -11,6 +11,8 @@ import 'package:sqlbrite/sqlbrite.dart';
 import 'package:synchronized/synchronized.dart';
 import 'package:npng/data/models/models.dart';
 part 'package:npng/data/sqlite/migrations.dart';
+
+String kLocale = Intl.getCurrentLocale();
 
 class DatabaseHelper {
   static const _databaseName = 'npng.db';

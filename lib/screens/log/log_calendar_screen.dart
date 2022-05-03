@@ -1,9 +1,9 @@
 import 'package:cell_calendar/cell_calendar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:npng/config.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
+import 'package:npng/main.dart';
 import 'package:npng/screens/log/log_show_workout_screen.dart';
 import 'package:npng/widgets/multiplatform_widgets.dart';
 import 'package:provider/provider.dart';

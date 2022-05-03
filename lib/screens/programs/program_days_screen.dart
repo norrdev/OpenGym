@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:npng/config.dart';
+import 'package:npng/main.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/screens/programs/program_edit_day_screen.dart';

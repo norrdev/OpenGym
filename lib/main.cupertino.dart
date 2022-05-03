@@ -4,14 +4,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:npng/app_material.dart';
+import 'package:npng/app_cupertino.dart';
 import 'package:npng/data/models/workout_provider.dart';
 import 'package:npng/data/repository.dart';
 
 import 'package:npng/data/sqlite/sqlite_repository.dart';
 
 //final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
-const bool isApple = false;
+//TODO: Remove in all files
+const bool isApple = true;
 
 // bool get isMobileDevice => !kIsWeb && (Platform.isIOS || Platform.isAndroid);
 final bool isDesktopDevice =
