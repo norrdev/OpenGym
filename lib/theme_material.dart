@@ -6,6 +6,11 @@ final ThemeData materialLight = ThemeData(
   primaryColor: Colors.blue,
   primarySwatch: Colors.blue,
   visualDensity: VisualDensity.adaptivePlatformDensity,
+  appBarTheme: const AppBarTheme(
+    actionsIconTheme: IconThemeData(color: Colors.white),
+    color: Colors.blue,
+    elevation: 0,
+  ),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     selectedItemColor: Colors.blue,
     unselectedItemColor: Colors.grey,

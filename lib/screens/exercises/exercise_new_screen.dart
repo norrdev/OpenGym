@@ -20,8 +20,8 @@ class ExerciseNewScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(S.of(context).pageAddEx),
         actions: <Widget>[
-          TextButton(
-            child: Text(S.of(context).save),
+          IconButton(
+            icon: const Icon(Icons.save),
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 Exercise newExe = Exercise(
