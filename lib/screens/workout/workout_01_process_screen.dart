@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:npng/widgets/change_int_field.dart';
 import 'package:provider/provider.dart';
 import 'package:wakelock/wakelock.dart';
 
@@ -9,10 +8,14 @@ import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/workout/workout_02_set_screen.dart';
 import 'package:npng/screens/workout/workout_04_finish_screen.dart';
+import 'package:npng/widgets/change_int_field.dart';
 
 class WorkoutProcessScreen extends StatefulWidget {
-  const WorkoutProcessScreen({Key? key, required this.day}) : super(key: key);
-  final Day day;
+  final Day? day;
+  final void Function()? refresh;
+
+  const WorkoutProcessScreen({Key? key, this.day, this.refresh})
+      : super(key: key);
 
   @override
   _WorkoutProcessScreenState createState() => _WorkoutProcessScreenState();
@@ -21,7 +24,10 @@ class WorkoutProcessScreen extends StatefulWidget {
 class _WorkoutProcessScreenState extends State<WorkoutProcessScreen> {
   Map<int, bool> expanded = {};
 
-  void pushBack() => setState(() {});
+  void pushBack() {
+    setState(() {});
+    widget.refresh?.call();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,7 @@ class _WorkoutProcessScreenState extends State<WorkoutProcessScreen> {
                 pushBack: pushBack,
               )
             : InitBottomBar(
-                dayId: widget.day.id as int,
+                dayId: widget.day?.id as int,
                 pushBack: pushBack,
               ),
       ],
@@ -69,7 +75,7 @@ class InitListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Workout>>(
-      stream: repository.findWorkoutByDay(widget.day.id as int),
+      stream: repository.findWorkoutByDay(widget.day?.id as int),
       builder: (context, AsyncSnapshot<List<Workout>> snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           final List<Workout> workouts =

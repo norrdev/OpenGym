@@ -28,6 +28,29 @@ class _WorkoutStartScreenState extends State<WorkoutStartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (Provider.of<WorkoutProvider>(context, listen: false).active) {
+      return SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              //TODO: Add in arb
+              const Text('Workout in progress'),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                child: Text(S.of(context).ccontinue),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const WorkoutProcessScreen(),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
     final repository = Provider.of<Repository>(context, listen: false);
     ScrollController _scontroller = ScrollController();
     return SafeArea(
@@ -60,7 +83,8 @@ class _WorkoutStartScreenState extends State<WorkoutStartScreen> {
                             day: item,
                           ),
                         ),
-                      ).then((value) => setState(() {})),
+                        //FIXME: Не показывается галка, не обновляется стейт
+                      ),
                     );
                   },
                 );

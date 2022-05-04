@@ -28,6 +28,30 @@ class TimerScreen extends StatelessWidget {
     CountDownController _controller = CountDownController();
 
     return Scaffold(
+      persistentFooterButtons: <Widget>[
+        Center(
+          child: ElevatedButton(
+            child: Text(S.of(context).stopRest),
+            onPressed: () {
+              _controller.pause();
+              Provider.of<WorkoutProvider>(context, listen: false)
+                  .incCurrentSet();
+              if (!Provider.of<WorkoutProvider>(context, listen: false)
+                  .finished) {
+                Navigator.pop(context);
+              } else {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          const WorkoutFinishScreen(),
+                    ),
+                    (route) => false);
+              }
+            },
+          ),
+        ),
+      ],
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -98,26 +122,6 @@ class TimerScreen extends StatelessWidget {
                 ),
                 const SizedBox(
                   height: 24.0,
-                ),
-                ElevatedButton(
-                  child: Text(S.of(context).stopRest),
-                  onPressed: () {
-                    _controller.pause();
-                    Provider.of<WorkoutProvider>(context, listen: false)
-                        .incCurrentSet();
-                    if (!Provider.of<WorkoutProvider>(context, listen: false)
-                        .finished) {
-                      Navigator.pop(context);
-                    } else {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const WorkoutFinishScreen(),
-                          ),
-                          (route) => false);
-                    }
-                  },
                 ),
               ],
             ),

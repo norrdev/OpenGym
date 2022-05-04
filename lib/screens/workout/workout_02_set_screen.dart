@@ -10,6 +10,7 @@ import 'package:npng/screens/workout/workout_03_timer_screen.dart';
 
 class WorkoutSetScreen extends StatelessWidget {
   static const String id = '/set';
+
   const WorkoutSetScreen({Key? key}) : super(key: key);
 
   @override
@@ -28,8 +29,6 @@ class WorkoutSetScreen extends StatelessWidget {
             child: Text(S.of(context).restButton),
             onPressed: () {
               Navigator.pushNamed(context, TimerScreen.id);
-              // .whenComplete(
-              //     () => workout.incCurrentSet());
             },
           ),
         )
