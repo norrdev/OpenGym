@@ -10,12 +10,11 @@ import 'package:npng/screens/workout/workout_02_set_screen.dart';
 import 'package:npng/screens/workout/workout_04_finish_screen.dart';
 import 'package:npng/widgets/change_int_field.dart';
 
+/// Shows current workouprogram day and sets.
 class WorkoutProcessScreen extends StatefulWidget {
   final Day? day;
-  final void Function()? refresh;
 
-  const WorkoutProcessScreen({Key? key, this.day, this.refresh})
-      : super(key: key);
+  const WorkoutProcessScreen({Key? key, this.day}) : super(key: key);
 
   @override
   _WorkoutProcessScreenState createState() => _WorkoutProcessScreenState();
@@ -26,7 +25,6 @@ class _WorkoutProcessScreenState extends State<WorkoutProcessScreen> {
 
   void pushBack() {
     setState(() {});
-    widget.refresh?.call();
   }
 
   @override
@@ -37,29 +35,33 @@ class _WorkoutProcessScreenState extends State<WorkoutProcessScreen> {
         title: Text(S.of(context).currentWorkout),
       ),
       persistentFooterButtons: [
-        (Provider.of<WorkoutProvider>(context, listen: false).active)
-            ? ActiveBottomBar(
-                pushBack: pushBack,
-              )
-            : InitBottomBar(
-                dayId: widget.day?.id as int,
-                pushBack: pushBack,
-              ),
+        Consumer<WorkoutProvider>(builder: (context, workout, child) {
+          if (workout.active == true) {
+            return const ActiveBottomBar();
+          } else {
+            return InitBottomBar(
+                dayId: widget.day?.id as int, pushBack: pushBack);
+          }
+        }),
       ],
       body: SafeArea(
-        child: (Provider.of<WorkoutProvider>(context, listen: false).active)
-            ? const ActiveListView()
-            : InitListView(
-                repository: repository,
-                widget: widget,
-                expanded: expanded,
-              ),
+        child: Consumer<WorkoutProvider>(builder: (context, workout, child) {
+          if (workout.active == true) {
+            return const ActiveListView();
+          } else {
+            return InitListView(
+              repository: repository,
+              widget: widget,
+              expanded: expanded,
+            );
+          }
+        }),
       ),
     );
   }
 }
 
-/// Current workout not started view.
+/// Current workout before start.
 class InitListView extends StatelessWidget {
   const InitListView({
     Key? key,
@@ -189,7 +191,7 @@ class InitListView extends StatelessWidget {
   }
 }
 
-/// Shows active workout screen.
+/// Shows active workout after start screen.
 class ActiveListView extends StatelessWidget {
   const ActiveListView({Key? key}) : super(key: key);
 
@@ -200,34 +202,32 @@ class ActiveListView extends StatelessWidget {
           .excersises
           .length,
       itemBuilder: (context, index) {
-        final item = Provider.of<WorkoutProvider>(context, listen: false)
-            .excersises[index];
-        return ListTile(
-            leading: (item.completed)
-                ? const Icon(
-                    Icons.done,
-                  )
-                : null,
-            title: Text(item.name));
+        return Consumer<WorkoutProvider>(builder: (context, workout, child) {
+          return ListTile(
+              leading: (workout.excersises[index].completed)
+                  ? const Icon(
+                      Icons.done,
+                    )
+                  : null,
+              title: Text(workout.excersises[index].name));
+        });
       },
     );
   }
 }
 
-/// This bottom bar on workout init
+/// This bottom bar on workout init with start button.
 class InitBottomBar extends StatelessWidget {
   final int dayId;
-  final Function? pushBack;
+  final void Function() pushBack;
 
-  const InitBottomBar({
-    Key? key,
-    required this.dayId,
-    this.pushBack,
-  }) : super(key: key);
+  const InitBottomBar({Key? key, required this.dayId, required this.pushBack})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
+      // Start button
       child: ElevatedButton(
         child: Text(S.of(context).start),
         onPressed: () {
@@ -236,13 +236,12 @@ class InitBottomBar extends StatelessWidget {
               DateTime.now();
           Provider.of<WorkoutProvider>(context, listen: false).active = true;
           Wakelock.enable();
-          pushBack!();
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => const WorkoutSetScreen(),
             ),
-          ).whenComplete(() => pushBack);
+          ).whenComplete(() => pushBack());
         },
       ),
     );
@@ -251,10 +250,8 @@ class InitBottomBar extends StatelessWidget {
 
 /// This bottom bar for workout-in progress
 class ActiveBottomBar extends StatelessWidget {
-  final Function? pushBack;
   const ActiveBottomBar({
     Key? key,
-    this.pushBack,
   }) : super(key: key);
 
   @override
@@ -271,15 +268,13 @@ class ActiveBottomBar extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => const WorkoutSetScreen(),
                 ),
-              ).whenComplete(() => pushBack);
+              );
             },
           ),
         const SizedBox(width: 16.0),
         ElevatedButton(
           child: Text(S.of(context).finish),
           onPressed: () {
-            // Provider.of<WorkoutProvider>(context, listen: false)
-            //     .resetAllData();
             Wakelock.disable();
             Provider.of<WorkoutProvider>(context, listen: false).finishTime =
                 DateTime.now();

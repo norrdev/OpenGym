@@ -30,6 +30,10 @@ class WorkoutProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  notify() {
+    notifyListeners();
+  }
+
   // Active workout flag.
   bool active = false;
 

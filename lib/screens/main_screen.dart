@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:npng/data/models/workout_provider.dart';
+import 'package:npng/data/repository.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:npng/generated/l10n.dart';
@@ -22,12 +25,19 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    super.initState();
     pageList.add(const WorkoutStartScreen());
     pageList.add(const ExercisesScreen());
     pageList.add(const LogCalendarScreen());
     pageList.add(const SettingsScreen());
     getCurrentIndex();
+    _selector();
+    super.initState();
+  }
+
+  /// Select program from the database and put in to the provider
+  void _selector() async {
+    int def = await context.read<Repository>().getCurrentProgram();
+    Provider.of<WorkoutProvider>(context, listen: false).defaultProgram = def;
   }
 
   void _onItemTapped(int index) {
