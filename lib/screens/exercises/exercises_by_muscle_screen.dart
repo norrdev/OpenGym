@@ -89,18 +89,17 @@ class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
                         icon: Icons.edit,
                         label: S.of(context).edit,
                       ),
-                      SlidableAction(
-                        // An action can be bigger than the others.
-                        //flex: 2,
-                        onPressed: (context) {
-                          repository.deleteExercise(item);
-                          setState(() {});
-                        },
-                        backgroundColor: kActionColorDelete,
-                        foregroundColor: kActionColorIcon,
-                        icon: Icons.delete,
-                        label: S.of(context).delete,
-                      ),
+                      // Delete only arter log changes
+                      // SlidableAction(
+                      //   onPressed: (context) {
+                      //     repository.deleteExercise(item);
+                      //     setState(() {});
+                      //   },
+                      //   backgroundColor: kActionColorDelete,
+                      //   foregroundColor: kActionColorIcon,
+                      //   icon: Icons.delete,
+                      //   label: S.of(context).delete,
+                      // ),
                     ],
                   ),
                 );
