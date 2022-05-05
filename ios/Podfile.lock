@@ -63,6 +63,7 @@ PODS:
 
 DEPENDENCIES:
   - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
+  - DKImagePickerController/PhotoGallery (from `https://github.com/miguelpruivo/DKImagePickerController.git`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Flutter (from `Flutter`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
@@ -76,7 +77,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - DKImagePickerController
     - DKPhotoGallery
     - FMDB
     - SDWebImage
@@ -85,6 +85,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   audioplayers:
     :path: ".symlinks/plugins/audioplayers/ios"
+  DKImagePickerController:
+    :git: https://github.com/miguelpruivo/DKImagePickerController.git
   file_picker:
     :path: ".symlinks/plugins/file_picker/ios"
   Flutter:
@@ -106,6 +108,11 @@ EXTERNAL SOURCES:
   wakelock:
     :path: ".symlinks/plugins/wakelock/ios"
 
+CHECKOUT OPTIONS:
+  DKImagePickerController:
+    :commit: ded0926eb9fddf0bc03fa79d552b1cbd3537ce97
+    :git: https://github.com/miguelpruivo/DKImagePickerController.git
+
 SPEC CHECKSUMS:
   audioplayers: 455322b54050b30ea4b1af7cd9e9d105f74efa8c
   DKImagePickerController: b5eb7f7a388e4643264105d648d01f727110fc3d
@@ -124,6 +131,6 @@ SPEC CHECKSUMS:
   url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
 
-PODFILE CHECKSUM: a56032f44f4d40b0a901ccf2b5c27cfd5e953d53
+PODFILE CHECKSUM: 941957836d28f9516948cacc9c728a936ae2ddaf
 
 COCOAPODS: 1.11.2
