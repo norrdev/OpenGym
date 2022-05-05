@@ -60,6 +60,16 @@ class S {
     );
   }
 
+  /// `© Denis Filonov`
+  String get copyright {
+    return Intl.message(
+      '© Denis Filonov',
+      name: 'copyright',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sets`
   String get sets {
     return Intl.message(
@@ -400,6 +410,26 @@ class S {
     );
   }
 
+  /// `Database imported from`
+  String get dbImportedFrom {
+    return Intl.message(
+      'Database imported from',
+      name: 'dbImportedFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nothing selected`
+  String get nothingSelected {
+    return Intl.message(
+      'Nothing selected',
+      name: 'nothingSelected',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cancel`
   String get cancel {
     return Intl.message(
@@ -595,6 +625,16 @@ class S {
     return Intl.message(
       'Select program first.',
       name: 'selectProgram',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Workout in progress`
+  String get workoutInProgress {
+    return Intl.message(
+      'Workout in progress',
+      name: 'workoutInProgress',
       desc: '',
       args: [],
     );

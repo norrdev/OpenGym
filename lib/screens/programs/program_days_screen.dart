@@ -6,6 +6,7 @@ import 'package:npng/screens/programs/program_edit_day_screen.dart';
 import 'package:npng/screens/programs/program_new_day_screen.dart';
 import 'package:npng/screens/programs/program_day_screen.dart';
 import 'package:npng/generated/l10n.dart';
+import 'package:npng/theme.dart';
 import 'package:provider/provider.dart';
 
 class ProgramDaysScreen extends StatefulWidget {
@@ -85,9 +86,8 @@ class _ProgramDaysScreenState extends State<ProgramDaysScreen> {
                           ).then((value) {
                             setState(() {});
                           }),
-                          //TODO: Add const colors
-                          backgroundColor: const Color(0xFF0392CF),
-                          foregroundColor: Colors.white,
+                          backgroundColor: kActionColorEdit,
+                          foregroundColor: kActionColorIcon,
                           icon: Icons.edit,
                           label: S.of(context).edit,
                         ),

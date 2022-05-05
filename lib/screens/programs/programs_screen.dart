@@ -7,6 +7,7 @@ import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/programs/program_days_screen.dart';
 import 'package:npng/screens/programs/program_edit_screen.dart';
 import 'package:npng/screens/programs/program_new_screen.dart';
+import 'package:npng/theme.dart';
 
 import 'package:provider/provider.dart';
 
@@ -91,9 +92,8 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                           ).then((value) {
                             setState(() {});
                           }),
-                          //TODO: Add const colors
-                          backgroundColor: const Color(0xFF0392CF),
-                          foregroundColor: Colors.white,
+                          backgroundColor: kActionColorEdit,
+                          foregroundColor: kActionColorIcon,
                           icon: Icons.edit,
                           label: S.of(context).edit,
                         ),

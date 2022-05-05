@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/workout/workout_04_finish_screen.dart';
 import 'package:npng/data/models/workout_provider.dart';
-import 'package:npng/theme_material.dart';
+import 'package:npng/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 

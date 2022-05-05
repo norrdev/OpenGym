@@ -5,6 +5,7 @@ import 'package:npng/screens/exercises/exercise_edit_screen.dart';
 import 'package:npng/screens/exercises/exercise_new_screen.dart';
 import 'package:npng/screens/exercises/exercise_view_screen.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:npng/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/generated/l10n.dart';
 
@@ -83,9 +84,8 @@ class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
                         ).then((value) {
                           setState(() {});
                         }),
-                        //TODO: Make const colors
-                        backgroundColor: const Color(0xFF0392CF),
-                        foregroundColor: Colors.white,
+                        backgroundColor: kActionColorEdit,
+                        foregroundColor: kActionColorIcon,
                         icon: Icons.edit,
                         label: S.of(context).edit,
                       ),
@@ -96,9 +96,8 @@ class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
                           repository.deleteExercise(item);
                           setState(() {});
                         },
-                        //TODO: Make const colors
-                        backgroundColor: Colors.redAccent,
-                        foregroundColor: Colors.white,
+                        backgroundColor: kActionColorDelete,
+                        foregroundColor: kActionColorIcon,
                         icon: Icons.delete,
                         label: S.of(context).delete,
                       ),

@@ -28,9 +28,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "backup": MessageLookupByLibrary.simpleMessage("Backup database"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "ccontinue": MessageLookupByLibrary.simpleMessage("Continue"),
+        "copyright": MessageLookupByLibrary.simpleMessage("© Denis Filonov"),
         "currentWorkout":
             MessageLookupByLibrary.simpleMessage("Current workout"),
         "dayAdd": MessageLookupByLibrary.simpleMessage("Add day"),
+        "dbImportedFrom":
+            MessageLookupByLibrary.simpleMessage("Database imported from"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "desc": MessageLookupByLibrary.simpleMessage("Description"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
@@ -51,6 +54,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "noDesc": MessageLookupByLibrary.simpleMessage("No description."),
         "noex":
             MessageLookupByLibrary.simpleMessage("No excersises on this day."),
+        "nothingSelected":
+            MessageLookupByLibrary.simpleMessage("Nothing selected"),
         "pageAddEx": MessageLookupByLibrary.simpleMessage("Add exercise"),
         "pageDaysTitle": MessageLookupByLibrary.simpleMessage("Days"),
         "pageExerciseTitle": MessageLookupByLibrary.simpleMessage("Exercises"),
@@ -83,6 +88,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "weight": MessageLookupByLibrary.simpleMessage("Weight"),
         "workoutFinished":
             MessageLookupByLibrary.simpleMessage("Workout finished"),
+        "workoutInProgress":
+            MessageLookupByLibrary.simpleMessage("Workout in progress"),
         "wrkBegin": MessageLookupByLibrary.simpleMessage("Workout begin"),
         "wrkDuration": MessageLookupByLibrary.simpleMessage("Workout duration"),
         "wrkEnd": MessageLookupByLibrary.simpleMessage("Workout end")

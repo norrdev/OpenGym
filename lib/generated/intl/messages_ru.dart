@@ -29,9 +29,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Создать резервную копию БД"),
         "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
         "ccontinue": MessageLookupByLibrary.simpleMessage("Продолжить"),
+        "copyright": MessageLookupByLibrary.simpleMessage("© Denis Filonov"),
         "currentWorkout":
             MessageLookupByLibrary.simpleMessage("Текущая тренировка"),
         "dayAdd": MessageLookupByLibrary.simpleMessage("Добавить день"),
+        "dbImportedFrom": MessageLookupByLibrary.simpleMessage(
+            "База данных импортирована из"),
         "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
         "desc": MessageLookupByLibrary.simpleMessage("Описание"),
         "edit": MessageLookupByLibrary.simpleMessage("Правка"),
@@ -51,6 +54,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "noDesc": MessageLookupByLibrary.simpleMessage("Нет описания."),
         "noex":
             MessageLookupByLibrary.simpleMessage("В этом дне нет упражнений."),
+        "nothingSelected":
+            MessageLookupByLibrary.simpleMessage("Ничего не выбрано"),
         "pageAddEx":
             MessageLookupByLibrary.simpleMessage("Добавить упражнение"),
         "pageDaysTitle": MessageLookupByLibrary.simpleMessage("Дни"),
@@ -88,6 +93,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "weight": MessageLookupByLibrary.simpleMessage("Вес"),
         "workoutFinished":
             MessageLookupByLibrary.simpleMessage("Тренировка завершена"),
+        "workoutInProgress":
+            MessageLookupByLibrary.simpleMessage("Тренировка в процессе."),
         "wrkBegin": MessageLookupByLibrary.simpleMessage("Начало тренировки"),
         "wrkDuration": MessageLookupByLibrary.simpleMessage(
             "Продолжительность тренировки"),

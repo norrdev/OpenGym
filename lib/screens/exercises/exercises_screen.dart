@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/screens/exercises/exercises_by_muscle_screen.dart';
+import 'package:npng/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/data/repository.dart';
 
@@ -91,9 +92,8 @@ class ExercisesScreen extends StatelessWidget {
                             },
                           ),
                         ),
-                        // TODO: Make const colors
-                        backgroundColor: const Color(0xFF0392CF),
-                        foregroundColor: Colors.white,
+                        backgroundColor: kActionColorEdit,
+                        foregroundColor: kActionColorIcon,
                         icon: Icons.edit,
                         label: S.of(context).edit,
                       ),

@@ -2,6 +2,7 @@
 - Same desingn in all operation systems.
 - Excersises checkbox on workout screen.
 - Program selection now is on the Workout screen appbar.
+- Removed window header in macOS.
 - Improved perfomance.
 
 ## 2.0.1

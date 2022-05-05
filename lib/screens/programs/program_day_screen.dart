@@ -3,6 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/screens/programs/program_day_add_exercise.dart';
+import 'package:npng/theme.dart';
 import 'package:npng/widgets/change_int_field.dart';
 import 'package:provider/provider.dart';
 import 'package:npng/generated/l10n.dart';
@@ -58,9 +59,8 @@ class _ProgramDayScreenState extends State<ProgramDayScreen> {
                             repository.deleteWorkout(item);
                             setState(() {});
                           },
-                          //TODO: Add const colors
-                          backgroundColor: Colors.redAccent,
-                          foregroundColor: Colors.white,
+                          backgroundColor: kActionColorDelete,
+                          foregroundColor: kActionColorIcon,
                           icon: Icons.delete,
                           label: S.of(context).delete,
                         ),

@@ -1,5 +1,6 @@
 {
     "title": "NpNg",
+    "copyright": "© Denis Filonov",
     "sets": "Sets",
     "repeats": "Repeats",
     "rest": "Rest time (sec)",
@@ -34,6 +35,8 @@
     "importWarning": "This option will overwrite all data with imports and exit the application. Make a backup!",
     "skip": "Skip",
     "skipDialog": "Are you really want to skip this excersise today?",
+    "dbImportedFrom": "Database imported from",
+    "nothingSelected": "Nothing selected",
     "cancel": "Cancel",
     "pageProgramsTitle": "Programs",
     "programAdd": "Add program",
@@ -53,5 +56,6 @@
     "wrkDuration": "Workout duration",
     "addEx": "Exercise added.",
     "noDesc": "No description.",
-    "selectProgram": "Select program first."
+    "selectProgram": "Select program first.",
+    "workoutInProgress": "Workout in progress"
 }

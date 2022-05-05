@@ -101,19 +101,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (result != null) {
       await repository.importDataBase(result.files.single.path!);
       ScaffoldMessenger.of(context).showSnackBar(
-        //TODO: Message in arb
         SnackBar(
-          content: Text('DB imported from ${result.files.single.path}.'),
+          content: Text(
+              '${S.of(context).dbImportedFrom} ${result.files.single.path}.'),
         ),
       );
       Timer(const Duration(seconds: 3), () {
         exit(0);
       });
     } else {
-      //TODO: Message in arb
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Nothing selected.'),
+        SnackBar(
+          content: Text(S.of(context).nothingSelected),
         ),
       );
     }
@@ -187,8 +186,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onTap: () => showLicensePage(
                 context: context,
                 applicationVersion: version,
-                //TODO: Message in arb
-                applicationLegalese: '© Denis Filonov'),
+                applicationLegalese: S.of(context).copyright),
           ),
         ],
       ),

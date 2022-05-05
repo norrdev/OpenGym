@@ -9,7 +9,6 @@ import 'package:npng/screens/workout/workout_03_timer_screen.dart';
 const kInitialRoute = '/';
 
 /// Route map
-/// TODO: Remove all
 final Map<String, Widget Function(BuildContext)> appRoutes = {
   '/': (context) => const MainScreen(),
   WorkoutSetScreen.id: (context) => const WorkoutSetScreen(),

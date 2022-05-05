@@ -34,8 +34,7 @@ class _WorkoutStartScreenState extends State<WorkoutStartScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              //TODO: Add in arb
-              const Text('Workout in progress'),
+              Text(S.of(context).workoutInProgress),
               const SizedBox(height: 20),
               ElevatedButton(
                 child: Text(S.of(context).ccontinue),
