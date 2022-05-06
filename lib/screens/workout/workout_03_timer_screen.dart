@@ -24,7 +24,7 @@ class TimerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int duration = Provider.of<WorkoutProvider>(context).currentRest;
+    int duration = Provider.of<WorkoutProviderModel>(context).currentRest;
     CountDownController _controller = CountDownController();
 
     return Scaffold(
@@ -34,9 +34,9 @@ class TimerScreen extends StatelessWidget {
             child: Text(S.of(context).stopRest),
             onPressed: () {
               _controller.pause();
-              Provider.of<WorkoutProvider>(context, listen: false)
+              Provider.of<WorkoutProviderModel>(context, listen: false)
                   .incCurrentSet();
-              if (!Provider.of<WorkoutProvider>(context, listen: false)
+              if (!Provider.of<WorkoutProviderModel>(context, listen: false)
                   .finished) {
                 Navigator.pop(context);
               } else {
@@ -103,9 +103,10 @@ class TimerScreen extends StatelessWidget {
                   // Function which will execute when the Countdown Ends
                   onComplete: () {
                     playSound();
-                    Provider.of<WorkoutProvider>(context, listen: false)
+                    Provider.of<WorkoutProviderModel>(context, listen: false)
                         .incCurrentSet();
-                    if (!Provider.of<WorkoutProvider>(context, listen: false)
+                    if (!Provider.of<WorkoutProviderModel>(context,
+                            listen: false)
                         .finished) {
                       Navigator.pop(context);
                     } else {

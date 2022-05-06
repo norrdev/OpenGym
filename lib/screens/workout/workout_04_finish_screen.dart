@@ -14,7 +14,7 @@ class WorkoutFinishScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = ScrollController();
-    final wp = context.read<WorkoutProvider>();
+    final wp = context.read<WorkoutProviderModel>();
     DateTime? start = wp.startTime;
     DateTime? finish = wp.finishTime;
     String duration = finish!.difference(start!).inMinutes.toString();

@@ -17,7 +17,7 @@ class WorkoutSetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Consumer<WorkoutProvider>(
+        title: Consumer<WorkoutProviderModel>(
           builder: (context, wk, child) {
             return Text(wk.excersises[wk.currentExcersise].name);
           },
@@ -47,11 +47,11 @@ class WorkoutSetScreen extends StatelessWidget {
                 children: [
                   IconButton(
                     icon: const Icon(Icons.arrow_back_ios_rounded),
-                    onPressed: () =>
-                        Provider.of<WorkoutProvider>(context, listen: false)
-                            .manualRemoveOneSet(),
+                    onPressed: () => Provider.of<WorkoutProviderModel>(context,
+                            listen: false)
+                        .manualRemoveOneSet(),
                   ),
-                  Consumer<WorkoutProvider>(
+                  Consumer<WorkoutProviderModel>(
                     builder: (context, workout, child) {
                       int mSet = workout.maxSet + 1;
                       double maxLineLength =
@@ -81,15 +81,15 @@ class WorkoutSetScreen extends StatelessWidget {
                   ),
                   IconButton(
                     icon: const Icon(Icons.arrow_forward_ios_rounded),
-                    onPressed: () =>
-                        Provider.of<WorkoutProvider>(context, listen: false)
-                            .manualAddOneSet(),
+                    onPressed: () => Provider.of<WorkoutProviderModel>(context,
+                            listen: false)
+                        .manualAddOneSet(),
                   ),
                 ],
               ),
             ),
             Expanded(
-              child: Consumer<WorkoutProvider>(
+              child: Consumer<WorkoutProviderModel>(
                 builder: (context, workout, child) {
                   return CurrentSetWidget(
                     setNumber: workout.currentSet,
@@ -114,8 +114,8 @@ class CurrentSetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WorkoutProvider workout =
-        Provider.of<WorkoutProvider>(context, listen: false);
+    WorkoutProviderModel workout =
+        Provider.of<WorkoutProviderModel>(context, listen: false);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,

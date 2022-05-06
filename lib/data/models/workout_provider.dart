@@ -17,7 +17,7 @@ class Exerscise {
 }
 
 /// Workout settings and methods.
-class WorkoutProvider extends ChangeNotifier {
+class WorkoutProviderModel extends ChangeNotifier {
   // Default program.
   int _defaultProgram = -1;
 

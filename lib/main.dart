@@ -28,7 +28,7 @@ void main() async {
 
   runApp(
     MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) => WorkoutProvider()),
+      ChangeNotifierProvider(create: (context) => WorkoutProviderModel()),
       Provider<Repository>(
         lazy: false,
         create: (_) => repository,

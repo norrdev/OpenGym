@@ -60,7 +60,8 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                           repository
                               .setCurrentProgram(item.id as int)
                               .then((_) {
-                            Provider.of<WorkoutProvider>(context, listen: false)
+                            Provider.of<WorkoutProviderModel>(context,
+                                    listen: false)
                                 .defaultProgram = item.id as int;
                             setState(() {});
                           });

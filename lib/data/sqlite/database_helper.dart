@@ -442,7 +442,7 @@ class DatabaseHelper {
 
   Future<void> insertLog(BuildContext context) async {
     final db = await instance.streamDatabase;
-    final wp = Provider.of<WorkoutProvider>(context, listen: false);
+    final wp = Provider.of<WorkoutProviderModel>(context, listen: false);
 
     int logDaysId = await db.insert(logDaysTable, {
       'start': wp.startTime?.toLocal().toString() ?? '',

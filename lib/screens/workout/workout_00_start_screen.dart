@@ -15,7 +15,7 @@ class WorkoutStartScreen extends StatelessWidget {
     final repository = Provider.of<Repository>(context, listen: false);
     ScrollController _scontroller = ScrollController();
     return SafeArea(
-      child: Consumer<WorkoutProvider>(
+      child: Consumer<WorkoutProviderModel>(
         builder: (context, workout, child) {
           // If the workout is started
           if (workout.active == true) {

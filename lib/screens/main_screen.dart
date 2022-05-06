@@ -37,7 +37,8 @@ class _MainScreenState extends State<MainScreen> {
   /// Select program from the database and put in to the provider
   void _selector() async {
     int def = await context.read<Repository>().getCurrentProgram();
-    Provider.of<WorkoutProvider>(context, listen: false).defaultProgram = def;
+    Provider.of<WorkoutProviderModel>(context, listen: false).defaultProgram =
+        def;
   }
 
   void _onItemTapped(int index) {
