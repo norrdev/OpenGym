@@ -25,6 +25,7 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
   }
 
   void _refresh() async {
+    // TODO: May be change for context.watch?
     logDays = await context.read<Repository>().wathchAllLogDays();
     for (LogDay item in logDays) {
       days.add(CalendarEvent(
