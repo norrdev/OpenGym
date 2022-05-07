@@ -18,24 +18,13 @@ class Exerscise {
 
 /// Workout settings and methods.
 class WorkoutProviderModel extends ChangeNotifier {
-  // Default program.
-  int _defaultProgram = -1;
-
-  // Default program.
-  int get defaultProgram => _defaultProgram;
-
-  // Default program.
-  set defaultProgram(int defaultProgram) {
-    _defaultProgram = defaultProgram;
-    notifyListeners();
-  }
-
-  notify() {
-    notifyListeners();
-  }
-
   // Active workout flag.
   bool active = false;
+
+  // TODO If I make setter for active, will be a problem with the stream.
+  void notify() {
+    notifyListeners();
+  }
 
   // Finished workout flag. Active != filished.
   bool finished = false;

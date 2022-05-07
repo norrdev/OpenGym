@@ -11,7 +11,7 @@ class ProgramEditScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final repository = Provider.of<Repository>(context, listen: false);
+    final repository = context.read<Repository>();
     TextEditingController _tcName = TextEditingController(text: program.name);
     TextEditingController _tcDesc =
         TextEditingController(text: program.description);

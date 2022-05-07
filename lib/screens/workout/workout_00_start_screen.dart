@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:npng/data/models/app_state_provider.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/models/workout_provider.dart';
 import 'package:npng/data/repository.dart';
@@ -12,17 +13,17 @@ class WorkoutStartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final repository = Provider.of<Repository>(context, listen: false);
+    final repository = context.read<Repository>();
+    // Watch only one defaultProgram, not the whole AppStateProvider.
+    final int _defaultProgram =
+        context.select((AppStateProvider value) => value.defaultProgram);
+
     ScrollController _scontroller = ScrollController();
     return SafeArea(
-      child: Consumer<WorkoutProviderModel>(
-        builder: (context, workout, child) {
-          // If the workout is started
-          if (workout.active == true) {
-            return const ArtiveWorkoutScreen();
-          } else {
-            return StreamBuilder<List<Day>>(
-              stream: repository.findDaysByProgram(workout.defaultProgram),
+      child: (context.watch<WorkoutProviderModel>().active)
+          ? const ArtiveWorkoutScreen()
+          : StreamBuilder<List<Day>>(
+              stream: repository.findDaysByProgram(_defaultProgram),
               builder: (context, AsyncSnapshot<List<Day>> snapshot) {
                 if (snapshot.connectionState == ConnectionState.active) {
                   // Because must be mutable for sorting
@@ -46,7 +47,7 @@ class WorkoutStartScreen extends StatelessWidget {
                               day: item,
                             ),
                           ),
-                        ).whenComplete(() => workout.notify()),
+                        ),
                       );
                     },
                   );
@@ -56,10 +57,7 @@ class WorkoutStartScreen extends StatelessWidget {
                   );
                 }
               },
-            );
-          }
-        },
-      ),
+            ),
     );
   }
 }

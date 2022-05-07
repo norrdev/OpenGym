@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:npng/data/models/app_state_provider.dart';
 import 'package:npng/data/models/models.dart';
-import 'package:npng/data/models/workout_provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/programs/program_days_screen.dart';
@@ -20,12 +20,10 @@ class ProgramsScreen extends StatefulWidget {
 }
 
 class _ProgramsScreenState extends State<ProgramsScreen> {
-  int _current = 0;
-
   @override
   Widget build(BuildContext context) {
-    final repository = Provider.of<Repository>(context, listen: false);
-    repository.getCurrentProgram().then((value) => _current = value);
+    final repository = context.watch<Repository>();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).pageProgramsTitle),
@@ -37,7 +35,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
               MaterialPageRoute(
                 builder: (context) => const ProgramNewScreen(),
               ),
-            ).then((value) => setState(() {})),
+            ),
           ),
         ],
       ),
@@ -55,15 +53,14 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                     child: ListTile(
                       leading: Radio<int>(
                         value: item.id as int,
-                        groupValue: _current,
+                        groupValue:
+                            context.watch<AppStateProvider>().defaultProgram,
                         onChanged: (_) {
                           repository
                               .setCurrentProgram(item.id as int)
                               .then((_) {
-                            Provider.of<WorkoutProviderModel>(context,
-                                    listen: false)
-                                .defaultProgram = item.id as int;
-                            setState(() {});
+                            context.read<AppStateProvider>().defaultProgram =
+                                item.id as int;
                           });
                         },
                       ),
@@ -72,9 +69,10 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ProgramDaysScreen(
-                                  program: item,
-                                )),
+                          builder: (context) => ProgramDaysScreen(
+                            program: item,
+                          ),
+                        ),
                       ),
                     ),
                     endActionPane: ActionPane(
@@ -90,9 +88,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                                 );
                               },
                             ),
-                          ).then((value) {
-                            setState(() {});
-                          }),
+                          ).whenComplete(() => setState(() {})),
                           backgroundColor: kActionColorEdit,
                           foregroundColor: kActionColorIcon,
                           icon: Icons.edit,

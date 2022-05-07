@@ -11,52 +11,38 @@ import 'package:npng/screens/workout/workout_04_finish_screen.dart';
 import 'package:npng/widgets/change_int_field.dart';
 
 /// Shows current workouprogram day and sets.
-class WorkoutProcessScreen extends StatefulWidget {
+class WorkoutProcessScreen extends StatelessWidget {
   final Day? day;
 
   const WorkoutProcessScreen({Key? key, this.day}) : super(key: key);
 
   @override
-  _WorkoutProcessScreenState createState() => _WorkoutProcessScreenState();
-}
-
-class _WorkoutProcessScreenState extends State<WorkoutProcessScreen> {
-  Map<int, bool> expanded = {};
-
-  void pushBack() {
-    setState(() {});
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final repository = Provider.of<Repository>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).currentWorkout),
       ),
       persistentFooterButtons: [
-        Consumer<WorkoutProviderModel>(builder: (context, workout, child) {
-          if (workout.active == true) {
-            return const ActiveBottomBar();
-          } else {
-            return InitBottomBar(
-                dayId: widget.day?.id as int, pushBack: pushBack);
-          }
-        }),
+        Consumer<WorkoutProviderModel>(
+          builder: (context, workout, _) {
+            if (workout.active) {
+              return const ActiveBottomBar();
+            } else {
+              return InitBottomBar(dayId: day?.id as int);
+            }
+          },
+        ),
       ],
       body: SafeArea(
-        child:
-            Consumer<WorkoutProviderModel>(builder: (context, workout, child) {
-          if (workout.active == true) {
-            return const ActiveListView();
-          } else {
-            return InitListView(
-              repository: repository,
-              widget: widget,
-              expanded: expanded,
-            );
-          }
-        }),
+        child: Consumer<WorkoutProviderModel>(
+          builder: (context, workout, _) {
+            if (workout.active) {
+              return const ActiveListView();
+            } else {
+              return InitListView(day: day);
+            }
+          },
+        ),
       ),
     );
   }
@@ -66,26 +52,23 @@ class _WorkoutProcessScreenState extends State<WorkoutProcessScreen> {
 class InitListView extends StatelessWidget {
   const InitListView({
     Key? key,
-    required this.repository,
-    required this.widget,
-    required this.expanded,
+    required this.day,
   }) : super(key: key);
 
-  final Repository repository;
-  final WorkoutProcessScreen widget;
-  final Map<int, bool> expanded;
+  final Day? day;
 
   @override
   Widget build(BuildContext context) {
+    Map<int, bool> expanded = {};
+    final repository = context.read<Repository>();
     return StreamBuilder<List<Workout>>(
-      stream: repository.findWorkoutByDay(widget.day?.id as int),
+      stream: repository.findWorkoutByDay(day?.id as int),
       builder: (context, AsyncSnapshot<List<Workout>> snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           final List<Workout> workouts =
               (snapshot.hasData) ? [...snapshot.data!] : [];
           if (workouts.isNotEmpty) {
-            Provider.of<WorkoutProviderModel>(context, listen: false)
-                .workoutsSnapshot = workouts;
+            context.read<WorkoutProviderModel>().workoutsSnapshot = workouts;
           }
           return ReorderableListView.builder(
             itemCount: workouts.length,
@@ -199,9 +182,7 @@ class ActiveListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: Provider.of<WorkoutProviderModel>(context, listen: false)
-          .excersises
-          .length,
+      itemCount: context.read<WorkoutProviderModel>().excersises.length,
       itemBuilder: (context, index) {
         return Consumer<WorkoutProviderModel>(
             builder: (context, workout, child) {
@@ -221,10 +202,8 @@ class ActiveListView extends StatelessWidget {
 /// This bottom bar on workout init with start button.
 class InitBottomBar extends StatelessWidget {
   final int dayId;
-  final void Function() pushBack;
 
-  const InitBottomBar({Key? key, required this.dayId, required this.pushBack})
-      : super(key: key);
+  const InitBottomBar({Key? key, required this.dayId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -233,19 +212,17 @@ class InitBottomBar extends StatelessWidget {
       child: ElevatedButton(
         child: Text(S.of(context).start),
         onPressed: () {
-          Provider.of<WorkoutProviderModel>(context, listen: false).dayID =
-              dayId;
-          Provider.of<WorkoutProviderModel>(context, listen: false).startTime =
-              DateTime.now();
-          Provider.of<WorkoutProviderModel>(context, listen: false).active =
-              true;
+          context.read<WorkoutProviderModel>().dayID = dayId;
+          context.read<WorkoutProviderModel>().startTime = DateTime.now();
+          context.read<WorkoutProviderModel>().active = true;
           Wakelock.enable();
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => const WorkoutSetScreen(),
             ),
-          ).whenComplete(() => pushBack());
+          ).whenComplete(() => context.read<WorkoutProviderModel>().notify());
+          // TODO: Here is a problem with a state
         },
       ),
     );
@@ -263,7 +240,7 @@ class ActiveBottomBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        if (!Provider.of<WorkoutProviderModel>(context, listen: false).finished)
+        if (!context.read<WorkoutProviderModel>().finished)
           ElevatedButton(
             child: Text(S.of(context).ccontinue),
             onPressed: () {
@@ -280,10 +257,8 @@ class ActiveBottomBar extends StatelessWidget {
           child: Text(S.of(context).finish),
           onPressed: () {
             Wakelock.disable();
-            Provider.of<WorkoutProviderModel>(context, listen: false)
-                .finishTime = DateTime.now();
-            Provider.of<WorkoutProviderModel>(context, listen: false).finished =
-                true;
+            context.read<WorkoutProviderModel>().finishTime = DateTime.now();
+            context.read<WorkoutProviderModel>().finished = true;
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(

@@ -3,6 +3,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:npng/data/models/app_state_provider.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/route_map.dart';
 import 'package:npng/theme.dart';
@@ -28,6 +29,7 @@ void main() async {
 
   runApp(
     MultiProvider(providers: [
+      ChangeNotifierProvider(create: (context) => AppStateProvider()),
       ChangeNotifierProvider(create: (context) => WorkoutProviderModel()),
       Provider<Repository>(
         lazy: false,
@@ -43,6 +45,9 @@ class Application extends StatelessWidget {
   const Application({Key? key, required this.repository}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    // Get default program.
+    repository.getCurrentProgram().then(
+        (value) => context.read<AppStateProvider>().defaultProgram = value);
     return MaterialApp(
       //debugShowCheckedModeBanner: false,
       localizationsDelegates: const [

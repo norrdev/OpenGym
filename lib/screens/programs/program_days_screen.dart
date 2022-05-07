@@ -21,7 +21,7 @@ class ProgramDaysScreen extends StatefulWidget {
 class _ProgramDaysScreenState extends State<ProgramDaysScreen> {
   @override
   Widget build(BuildContext context) {
-    final repository = Provider.of<Repository>(context, listen: false);
+    final repository = context.read<Repository>();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.program.name as String),
@@ -35,7 +35,7 @@ class _ProgramDaysScreenState extends State<ProgramDaysScreen> {
                   programId: widget.program.id as int,
                 ),
               ),
-            ).then((value) => setState(() {})),
+            ).whenComplete(() => setState(() {})),
           ),
         ],
       ),
@@ -54,6 +54,8 @@ class _ProgramDaysScreenState extends State<ProgramDaysScreen> {
                   final Day movedDay = days.removeAt(oldIndex);
                   days.insert(newIndex, movedDay);
                   repository.reorderDays(days);
+                  // TODO: Here we must update WorkoutStartScreen
+
                   // There is no need to update state here.
                   // repository.reorderDays(days).then((value) {
                   //   setState(() {});
@@ -83,7 +85,7 @@ class _ProgramDaysScreenState extends State<ProgramDaysScreen> {
                                 day: item,
                               ),
                             ),
-                          ).then((value) {
+                          ).whenComplete(() {
                             setState(() {});
                           }),
                           backgroundColor: kActionColorEdit,

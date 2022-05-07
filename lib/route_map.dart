@@ -10,7 +10,7 @@ const kInitialRoute = '/';
 
 /// Route map
 final Map<String, Widget Function(BuildContext)> appRoutes = {
-  '/': (context) => const MainScreen(),
+  '/': (context) => MainScreen(),
   WorkoutSetScreen.id: (context) => const WorkoutSetScreen(),
   TimerScreen.id: (context) => const TimerScreen(),
   AboutScreen.id: (context) => AboutScreen(),

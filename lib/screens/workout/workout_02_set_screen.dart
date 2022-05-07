@@ -18,7 +18,7 @@ class WorkoutSetScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Consumer<WorkoutProviderModel>(
-          builder: (context, wk, child) {
+          builder: (context, wk, _) {
             return Text(wk.excersises[wk.currentExcersise].name);
           },
         ),
@@ -47,12 +47,12 @@ class WorkoutSetScreen extends StatelessWidget {
                 children: [
                   IconButton(
                     icon: const Icon(Icons.arrow_back_ios_rounded),
-                    onPressed: () => Provider.of<WorkoutProviderModel>(context,
-                            listen: false)
+                    onPressed: () => context
+                        .read<WorkoutProviderModel>()
                         .manualRemoveOneSet(),
                   ),
                   Consumer<WorkoutProviderModel>(
-                    builder: (context, workout, child) {
+                    builder: (context, workout, _) {
                       int mSet = workout.maxSet + 1;
                       double maxLineLength =
                           MediaQuery.of(context).size.width * 0.65;
@@ -81,9 +81,8 @@ class WorkoutSetScreen extends StatelessWidget {
                   ),
                   IconButton(
                     icon: const Icon(Icons.arrow_forward_ios_rounded),
-                    onPressed: () => Provider.of<WorkoutProviderModel>(context,
-                            listen: false)
-                        .manualAddOneSet(),
+                    onPressed: () =>
+                        context.read<WorkoutProviderModel>().manualAddOneSet(),
                   ),
                 ],
               ),
@@ -114,8 +113,7 @@ class CurrentSetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WorkoutProviderModel workout =
-        Provider.of<WorkoutProviderModel>(context, listen: false);
+    WorkoutProviderModel workout = context.read<WorkoutProviderModel>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
