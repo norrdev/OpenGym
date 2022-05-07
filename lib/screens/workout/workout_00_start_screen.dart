@@ -21,7 +21,6 @@ class WorkoutStartScreen extends StatelessWidget {
   }
 }
 
-// TODO: Rebuild on days order changed
 class DaysListWidget extends StatelessWidget {
   const DaysListWidget({
     Key? key,
