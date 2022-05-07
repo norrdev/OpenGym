@@ -13,52 +13,68 @@ class WorkoutStartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return SafeArea(
+      child: (context.watch<WorkoutProviderModel>().active)
+          ? const ArtiveWorkoutScreen()
+          : const DaysListWidget(),
+    );
+  }
+}
+
+// TODO: Rebuild on days order changed
+class DaysListWidget extends StatelessWidget {
+  const DaysListWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     final repository = context.read<Repository>();
     // Watch only one defaultProgram, not the whole AppStateProvider.
     final int _defaultProgram =
         context.select((AppStateProvider value) => value.defaultProgram);
-
     ScrollController _scontroller = ScrollController();
-    return SafeArea(
-      child: (context.watch<WorkoutProviderModel>().active)
-          ? const ArtiveWorkoutScreen()
-          : StreamBuilder<List<Day>>(
-              stream: repository.findDaysByProgram(_defaultProgram),
-              builder: (context, AsyncSnapshot<List<Day>> snapshot) {
-                if (snapshot.connectionState == ConnectionState.active) {
-                  // Because must be mutable for sorting
-                  final List<Day> days =
-                      (snapshot.hasData) ? [...snapshot.data!] : [];
-                  if (days.isEmpty) {
-                    return Center(child: Text(S.of(context).selectProgram));
-                  }
-                  return ListView.builder(
-                    controller: _scontroller,
-                    itemCount: days.length,
-                    itemBuilder: (context, index) {
-                      final item = days[index];
-                      return ListTile(
-                        title: Text(item.name as String),
-                        subtitle: Text(item.description as String),
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => WorkoutProcessScreen(
-                              day: item,
-                            ),
+    return Selector(
+        selector: (BuildContext context, AppStateProvider value) =>
+            value.isDaysReordered,
+        builder: (context, bool isDaysReordered, _) {
+          return StreamBuilder<List<Day>>(
+            stream: repository.findDaysByProgram(_defaultProgram),
+            builder: (context, AsyncSnapshot<List<Day>> snapshot) {
+              if (snapshot.connectionState == ConnectionState.active) {
+                // Because must be mutable for sorting
+                final List<Day> days =
+                    (snapshot.hasData) ? [...snapshot.data!] : [];
+                if (days.isEmpty) {
+                  return Center(child: Text(S.of(context).selectProgram));
+                }
+                return ListView.builder(
+                  controller: _scontroller,
+                  itemCount: days.length,
+                  itemBuilder: (context, index) {
+                    final item = days[index];
+                    return ListTile(
+                      title: Text(item.name as String),
+                      subtitle: Text(item.description as String),
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => WorkoutProcessScreen(
+                            day: item,
                           ),
                         ),
-                      );
-                    },
-                  );
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              },
-            ),
-    );
+                      ),
+                    );
+                  },
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          );
+        });
   }
 }
 

@@ -53,4 +53,17 @@ class AppStateProvider extends ChangeNotifier {
     _defaultProgram = defaultProgram;
     notifyListeners();
   }
+
+  bool _isDaysReordered = false;
+
+  bool get isDaysReordered => _isDaysReordered;
+
+  set isDaysReordered(bool isDaysReordered) {
+    _isDaysReordered = isDaysReordered;
+    notifyListeners();
+  }
+
+  void setDaysReorderedFalse() {
+    _isDaysReordered = false;
+  }
 }

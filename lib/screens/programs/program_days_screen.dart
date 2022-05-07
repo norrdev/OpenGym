@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:npng/data/models/app_state_provider.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/screens/programs/program_edit_day_screen.dart';
@@ -55,6 +56,7 @@ class _ProgramDaysScreenState extends State<ProgramDaysScreen> {
                   days.insert(newIndex, movedDay);
                   repository.reorderDays(days);
                   // TODO: Here we must update WorkoutStartScreen
+                  context.read<AppStateProvider>().isDaysReordered = true;
 
                   // There is no need to update state here.
                   // repository.reorderDays(days).then((value) {
