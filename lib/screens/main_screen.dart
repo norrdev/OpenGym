@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:npng/data/models/app_state_provider.dart';
+import 'package:npng/state/current_tab_state.dart';
 import 'package:provider/provider.dart';
 
 import 'package:npng/generated/l10n.dart';
@@ -22,7 +22,7 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String title = 'NpNg';
-    switch (context.watch<AppStateProvider>().selectedIndex) {
+    switch (context.watch<CurrentTabState>().selectedIndex) {
       case 0:
         title = S.of(context).pageWorkout;
         break;
@@ -59,15 +59,15 @@ class MainScreen extends StatelessWidget {
             label: S.of(context).settings,
           ),
         ],
-        currentIndex: context.watch<AppStateProvider>().selectedIndex,
+        currentIndex: context.watch<CurrentTabState>().selectedIndex,
         onTap: (int index) {
-          context.read<AppStateProvider>().selectedIndex = index;
+          context.read<CurrentTabState>().selectedIndex = index;
         },
       ),
       appBar: AppBar(
         title: Text(title),
         actions: <Widget>[
-          if (context.watch<AppStateProvider>().selectedIndex == 0)
+          if (context.watch<CurrentTabState>().selectedIndex == 0)
             IconButton(
               padding: const EdgeInsets.all(8),
               icon: const Icon(Icons.checklist_rounded),
@@ -81,7 +81,7 @@ class MainScreen extends StatelessWidget {
         ],
       ),
       body: IndexedStack(
-        index: context.watch<AppStateProvider>().selectedIndex,
+        index: context.watch<CurrentTabState>().selectedIndex,
         children: pageList,
       ),
     );

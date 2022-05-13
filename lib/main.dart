@@ -3,13 +3,15 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:npng/data/models/app_state_provider.dart';
+import 'package:npng/state/current_tab_state.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/route_map.dart';
+import 'package:npng/state/days_%20reordered_state.dart';
+import 'package:npng/state/default_program_state.dart';
 import 'package:npng/theme.dart';
 import 'package:provider/provider.dart';
 
-import 'package:npng/data/models/workout_provider.dart';
+import 'package:npng/state/workout_provider.dart';
 import 'package:npng/data/repository.dart';
 
 import 'package:npng/data/sqlite/sqlite_repository.dart';
@@ -29,8 +31,10 @@ void main() async {
 
   runApp(
     MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) => AppStateProvider()),
-      ChangeNotifierProvider(create: (context) => WorkoutProviderModel()),
+      ChangeNotifierProvider(create: (context) => CurrentTabState()),
+      ChangeNotifierProvider(create: (context) => DefaultProgramState()),
+      ChangeNotifierProvider(create: (context) => DaysReorderedState()),
+      ChangeNotifierProvider(create: (context) => WorkoutState()),
       Provider<Repository>(
         lazy: false,
         create: (_) => repository,
@@ -47,7 +51,7 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     // Get default program.
     repository.getCurrentProgram().then(
-        (value) => context.read<AppStateProvider>().defaultProgram = value);
+        (value) => context.read<DefaultProgramState>().defaultProgram = value);
     return MaterialApp(
       //debugShowCheckedModeBanner: false,
       localizationsDelegates: const [

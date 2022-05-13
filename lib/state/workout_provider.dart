@@ -17,7 +17,7 @@ class Exerscise {
 }
 
 /// Workout settings and methods.
-class WorkoutProviderModel extends ChangeNotifier {
+class WorkoutState extends ChangeNotifier {
   // Active workout flag.
   bool active = false;
 
@@ -26,17 +26,19 @@ class WorkoutProviderModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Finished workout flag. Active != filished.
+  /// Finished workout flag. Active != filished.
   bool finished = false;
 
-  // Workout day from DB.days.
+  /// Workout day from DB.days.
   int dayID = 0;
 
-  // Workout time
+  /// Workout start time.
   DateTime? startTime;
+
+  /// Workout end time.
   DateTime? finishTime;
 
-  //Exerscises from DB
+  /// Exerscises from DB.
   List<Exerscise> excersises = [];
 
   //Snapshot of workouts
@@ -114,15 +116,6 @@ class WorkoutProviderModel extends ChangeNotifier {
   /// Current rest
   int get currentRest => excersises[_currentExcersise].restTime;
 
-  /// Check if excersise is completed
-  // bool excersiseCompleted(int index) {
-  //   if (excersises[index].completed == true) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
   /// Increase repeats in set
   void incRepeats({int? excersiseNumber, int? setNumber}) {
     excersises[excersiseNumber!].sets[setNumber!].repeats++;
@@ -137,13 +130,14 @@ class WorkoutProviderModel extends ChangeNotifier {
     }
   }
 
-  /// Increase weight in set
+  /// Increase weight in set by 0.25
   void incWeight025({int? excersiseNumber, int? setNumber}) {
     excersises[excersiseNumber!].sets[setNumber!].weight =
         excersises[excersiseNumber].sets[setNumber].weight + 0.25;
     notifyListeners();
   }
 
+  /// Increase weight in set by 0.5
   void incWeight5({int? excersiseNumber, int? setNumber}) {
     excersises[excersiseNumber!].sets[setNumber!].weight =
         excersises[excersiseNumber].sets[setNumber].weight + 5;
@@ -159,6 +153,7 @@ class WorkoutProviderModel extends ChangeNotifier {
     }
   }
 
+  ///Decrease weight in set in 0.5
   void decWeight5({int? excersiseNumber, int? setNumber}) {
     if (excersises[excersiseNumber!].sets[setNumber!].weight > 5) {
       excersises[excersiseNumber].sets[setNumber].weight =
@@ -182,16 +177,6 @@ class WorkoutProviderModel extends ChangeNotifier {
       excersises[currentExcersise].maxSets--;
       notifyListeners();
     }
-  }
-
-  /// Skip exersise and remove it from log
-  /// Set as completed
-  void manualSkipExersise() {
-    //if (currentSet == 0) {
-    // print('skip');
-    // excersises.removeAt(currentExcersise);
-    // notifyListeners();
-    //}
   }
 
   /// Clear object.

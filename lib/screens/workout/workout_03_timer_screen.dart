@@ -2,7 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/workout/workout_04_finish_screen.dart';
-import 'package:npng/data/models/workout_provider.dart';
+import 'package:npng/state/workout_provider.dart';
 import 'package:npng/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
@@ -24,7 +24,7 @@ class TimerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int duration = Provider.of<WorkoutProviderModel>(context).currentRest;
+    int duration = Provider.of<WorkoutState>(context).currentRest;
     CountDownController _controller = CountDownController();
 
     return Scaffold(
@@ -34,10 +34,8 @@ class TimerScreen extends StatelessWidget {
             child: Text(S.of(context).stopRest),
             onPressed: () {
               _controller.pause();
-              Provider.of<WorkoutProviderModel>(context, listen: false)
-                  .incCurrentSet();
-              if (!Provider.of<WorkoutProviderModel>(context, listen: false)
-                  .finished) {
+              Provider.of<WorkoutState>(context, listen: false).incCurrentSet();
+              if (!Provider.of<WorkoutState>(context, listen: false).finished) {
                 Navigator.pop(context);
               } else {
                 Navigator.pushAndRemoveUntil(
@@ -103,10 +101,9 @@ class TimerScreen extends StatelessWidget {
                   // Function which will execute when the Countdown Ends
                   onComplete: () {
                     playSound();
-                    Provider.of<WorkoutProviderModel>(context, listen: false)
+                    Provider.of<WorkoutState>(context, listen: false)
                         .incCurrentSet();
-                    if (!Provider.of<WorkoutProviderModel>(context,
-                            listen: false)
+                    if (!Provider.of<WorkoutState>(context, listen: false)
                         .finished) {
                       Navigator.pop(context);
                     } else {

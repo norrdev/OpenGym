@@ -9,6 +9,7 @@ import 'package:npng/data/repository.dart';
 import 'package:npng/data/models/muscle.dart';
 import 'package:npng/generated/l10n.dart';
 
+/// Muscle list screen. Read-only from database, doesn't need any state.
 class ExercisesScreen extends StatelessWidget {
   const ExercisesScreen({Key? key}) : super(key: key);
   static String id = '/exercises';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:provider/provider.dart';
 
-import 'package:npng/data/models/workout_provider.dart';
+import 'package:npng/state/workout_provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/main_screen.dart';
@@ -14,7 +14,7 @@ class WorkoutFinishScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = ScrollController();
-    final wp = context.read<WorkoutProviderModel>();
+    final wp = context.read<WorkoutState>();
     DateTime? start = wp.startTime;
     DateTime? finish = wp.finishTime;
     String duration = finish!.difference(start!).inMinutes.toString();

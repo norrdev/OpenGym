@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:npng/data/models/app_state_provider.dart';
 import 'package:npng/data/models/models.dart';
-import 'package:npng/data/models/workout_provider.dart';
+import 'package:npng/state/workout_provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/workout/workout_01_process_screen.dart';
+import 'package:npng/state/days_%20reordered_state.dart';
+import 'package:npng/state/default_program_state.dart';
 import 'package:provider/provider.dart';
 
 /// This is the first screen of the workout.
@@ -14,7 +15,7 @@ class WorkoutStartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: (context.watch<WorkoutProviderModel>().active)
+      child: (context.watch<WorkoutState>().active)
           ? const ArtiveWorkoutScreen()
           : const DaysListWidget(),
     );
@@ -31,10 +32,10 @@ class DaysListWidget extends StatelessWidget {
     final repository = context.read<Repository>();
     // Watch only one defaultProgram, not the whole AppStateProvider.
     final int _defaultProgram =
-        context.select((AppStateProvider value) => value.defaultProgram);
+        context.select((DefaultProgramState value) => value.defaultProgram);
     ScrollController _scontroller = ScrollController();
     return Selector(
-        selector: (BuildContext context, AppStateProvider value) =>
+        selector: (BuildContext context, DaysReorderedState value) =>
             value.isDaysReordered,
         builder: (context, bool isDaysReordered, _) {
           return StreamBuilder<List<Day>>(

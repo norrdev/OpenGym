@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:wakelock/wakelock.dart';
 
 import 'package:npng/data/models/models.dart';
-import 'package:npng/data/models/workout_provider.dart';
+import 'package:npng/state/workout_provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/screens/workout/workout_02_set_screen.dart';
@@ -23,7 +23,7 @@ class WorkoutProcessScreen extends StatelessWidget {
         title: Text(S.of(context).currentWorkout),
       ),
       persistentFooterButtons: [
-        Consumer<WorkoutProviderModel>(
+        Consumer<WorkoutState>(
           builder: (context, workout, _) {
             if (workout.active) {
               return const ActiveBottomBar();
@@ -34,7 +34,7 @@ class WorkoutProcessScreen extends StatelessWidget {
         ),
       ],
       body: SafeArea(
-        child: Consumer<WorkoutProviderModel>(
+        child: Consumer<WorkoutState>(
           builder: (context, workout, _) {
             if (workout.active) {
               return const ActiveListView();
@@ -68,7 +68,7 @@ class InitListView extends StatelessWidget {
           final List<Workout> workouts =
               (snapshot.hasData) ? [...snapshot.data!] : [];
           if (workouts.isNotEmpty) {
-            context.read<WorkoutProviderModel>().workoutsSnapshot = workouts;
+            context.read<WorkoutState>().workoutsSnapshot = workouts;
           }
           return ReorderableListView.builder(
             itemCount: workouts.length,
@@ -182,10 +182,9 @@ class ActiveListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: context.read<WorkoutProviderModel>().excersises.length,
+      itemCount: context.read<WorkoutState>().excersises.length,
       itemBuilder: (context, index) {
-        return Consumer<WorkoutProviderModel>(
-            builder: (context, workout, child) {
+        return Consumer<WorkoutState>(builder: (context, workout, child) {
           return ListTile(
               leading: (workout.excersises[index].completed)
                   ? const Icon(
@@ -212,16 +211,16 @@ class InitBottomBar extends StatelessWidget {
       child: ElevatedButton(
         child: Text(S.of(context).start),
         onPressed: () {
-          context.read<WorkoutProviderModel>().dayID = dayId;
-          context.read<WorkoutProviderModel>().startTime = DateTime.now();
-          context.read<WorkoutProviderModel>().active = true;
+          context.read<WorkoutState>().dayID = dayId;
+          context.read<WorkoutState>().startTime = DateTime.now();
+          context.read<WorkoutState>().active = true;
           Wakelock.enable();
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => const WorkoutSetScreen(),
             ),
-          ).whenComplete(() => context.read<WorkoutProviderModel>().notify());
+          ).whenComplete(() => context.read<WorkoutState>().notify());
           // TODO: Here is a problem with a state
         },
       ),
@@ -240,7 +239,7 @@ class ActiveBottomBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        if (!context.read<WorkoutProviderModel>().finished)
+        if (!context.read<WorkoutState>().finished)
           ElevatedButton(
             child: Text(S.of(context).ccontinue),
             onPressed: () {
@@ -257,8 +256,8 @@ class ActiveBottomBar extends StatelessWidget {
           child: Text(S.of(context).finish),
           onPressed: () {
             Wakelock.disable();
-            context.read<WorkoutProviderModel>().finishTime = DateTime.now();
-            context.read<WorkoutProviderModel>().finished = true;
+            context.read<WorkoutState>().finishTime = DateTime.now();
+            context.read<WorkoutState>().finished = true;
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(

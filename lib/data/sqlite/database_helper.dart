@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:npng/data/models/workout_provider.dart';
+import 'package:npng/state/workout_provider.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
@@ -442,7 +442,7 @@ class DatabaseHelper {
 
   Future<void> insertLog(BuildContext context) async {
     final db = await instance.streamDatabase;
-    final wp = Provider.of<WorkoutProviderModel>(context, listen: false);
+    final wp = Provider.of<WorkoutState>(context, listen: false);
 
     int logDaysId = await db.insert(logDaysTable, {
       'start': wp.startTime?.toLocal().toString() ?? '',
