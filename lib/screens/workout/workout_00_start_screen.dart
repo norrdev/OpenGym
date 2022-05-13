@@ -31,15 +31,15 @@ class DaysListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final repository = context.read<Repository>();
     // Watch only one defaultProgram, not the whole AppStateProvider.
-    final int _defaultProgram =
+    final int defaultProgram =
         context.select((DefaultProgramState value) => value.defaultProgram);
-    ScrollController _scontroller = ScrollController();
+    ScrollController scontroller = ScrollController();
     return Selector(
         selector: (BuildContext context, DaysReorderedState value) =>
             value.isDaysReordered,
         builder: (context, bool isDaysReordered, _) {
           return StreamBuilder<List<Day>>(
-            stream: repository.findDaysByProgram(_defaultProgram),
+            stream: repository.findDaysByProgram(defaultProgram),
             builder: (context, AsyncSnapshot<List<Day>> snapshot) {
               if (snapshot.connectionState == ConnectionState.active) {
                 // Because must be mutable for sorting
@@ -49,7 +49,7 @@ class DaysListWidget extends StatelessWidget {
                   return Center(child: Text(S.of(context).selectProgram));
                 }
                 return ListView.builder(
-                  controller: _scontroller,
+                  controller: scontroller,
                   itemCount: days.length,
                   itemBuilder: (context, index) {
                     final item = days[index];

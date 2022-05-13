@@ -39,10 +39,8 @@ class _LogWorkoutScreenState extends State<LogWorkoutScreen> {
     DateTime start = DateTime.parse(widget.logday.start as String);
     DateTime finish = DateTime.parse(widget.logday.finish as String);
     String duration = finish.difference(start).inMinutes.toString();
-    String output = S.of(context).wrkDuration +
-        ': $duration ' +
-        S.of(context).min +
-        '\n\r \n\r';
+    String output =
+        '${S.of(context).wrkDuration}: $duration ${S.of(context).min}\n\r \n\r';
 
     String flagName = '';
     int count = 0;

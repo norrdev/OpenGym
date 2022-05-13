@@ -25,7 +25,7 @@ class AboutScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: Markdown(
-          data: about! + '\n' + history!,
+          data: '${about!}\n${history!}',
           controller: controller,
           selectable: false,
           styleSheet: style,

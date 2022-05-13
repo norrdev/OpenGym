@@ -28,6 +28,28 @@ class ExercisesScreen extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 final item = muscles[index];
                 return Slidable(
+                  endActionPane: ActionPane(
+                    motion: const ScrollMotion(),
+                    children: [
+                      SlidableAction(
+                        onPressed: (context) => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return ExercisesByMuscleScreen(
+                                musclesId: item.id as int,
+                                pageTitle: item.name as String,
+                              );
+                            },
+                          ),
+                        ),
+                        backgroundColor: kActionColorEdit,
+                        foregroundColor: kActionColorIcon,
+                        icon: Icons.edit,
+                        label: S.of(context).edit,
+                      ),
+                    ],
+                  ),
                   child: ListTile(
                     leading: (item.icon != null)
                         ? ColorFiltered(
@@ -77,28 +99,6 @@ class ExercisesScreen extends StatelessWidget {
                         },
                       ),
                     ),
-                  ),
-                  endActionPane: ActionPane(
-                    motion: const ScrollMotion(),
-                    children: [
-                      SlidableAction(
-                        onPressed: (context) => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return ExercisesByMuscleScreen(
-                                musclesId: item.id as int,
-                                pageTitle: item.name as String,
-                              );
-                            },
-                          ),
-                        ),
-                        backgroundColor: kActionColorEdit,
-                        foregroundColor: kActionColorIcon,
-                        icon: Icons.edit,
-                        label: S.of(context).edit,
-                      ),
-                    ],
                   ),
                 );
               });

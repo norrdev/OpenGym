@@ -12,10 +12,10 @@ class ProgramEditScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final repository = context.read<Repository>();
-    TextEditingController _tcName = TextEditingController(text: program.name);
-    TextEditingController _tcDesc =
+    TextEditingController tcName = TextEditingController(text: program.name);
+    TextEditingController tcDesc =
         TextEditingController(text: program.description);
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     return Scaffold(
       appBar: AppBar(
@@ -24,11 +24,11 @@ class ProgramEditScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.save),
             onPressed: () {
-              if (_formKey.currentState!.validate()) {
+              if (formKey.currentState!.validate()) {
                 Program newProgram = Program(
                   id: program.id,
-                  name: _tcName.text,
-                  description: _tcDesc.text,
+                  name: tcName.text,
+                  description: tcDesc.text,
                 );
                 repository.updateProgram(newProgram);
                 Navigator.pop(context);
@@ -41,11 +41,11 @@ class ProgramEditScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
-            key: _formKey,
+            key: formKey,
             child: ListView(
               children: [
                 TextFormField(
-                  controller: _tcName,
+                  controller: tcName,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return S.of(context).enterText;
@@ -61,7 +61,7 @@ class ProgramEditScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16.0),
                 TextFormField(
-                  controller: _tcDesc,
+                  controller: tcDesc,
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
                   validator: (value) {

@@ -13,10 +13,10 @@ class ExerciseEditScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final repository = Provider.of<Repository>(context, listen: false);
-    TextEditingController _tcName = TextEditingController(text: exercise.name);
-    TextEditingController _tcDesc =
+    TextEditingController tcName = TextEditingController(text: exercise.name);
+    TextEditingController tcDesc =
         TextEditingController(text: exercise.description);
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     return Scaffold(
       appBar: AppBar(
@@ -25,11 +25,11 @@ class ExerciseEditScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.save),
             onPressed: () {
-              if (_formKey.currentState!.validate()) {
+              if (formKey.currentState!.validate()) {
                 Exercise newExe = Exercise(
                   id: exercise.id,
-                  name: _tcName.text,
-                  description: _tcDesc.text,
+                  name: tcName.text,
+                  description: tcDesc.text,
                 );
                 repository.updateExercise(newExe);
                 Navigator.pop(context);
@@ -42,11 +42,11 @@ class ExerciseEditScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
-            key: _formKey,
+            key: formKey,
             child: ListView(
               children: [
                 TextFormField(
-                  controller: _tcName,
+                  controller: tcName,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return S.of(context).enterText;
@@ -62,7 +62,7 @@ class ExerciseEditScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16.0),
                 TextFormField(
-                  controller: _tcDesc,
+                  controller: tcDesc,
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
                   validator: (value) {

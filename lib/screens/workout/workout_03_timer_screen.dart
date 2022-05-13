@@ -25,7 +25,7 @@ class TimerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int duration = Provider.of<WorkoutState>(context).currentRest;
-    CountDownController _controller = CountDownController();
+    CountDownController controller = CountDownController();
 
     return Scaffold(
       persistentFooterButtons: <Widget>[
@@ -33,7 +33,7 @@ class TimerScreen extends StatelessWidget {
           child: ElevatedButton(
             child: Text(S.of(context).stopRest),
             onPressed: () {
-              _controller.pause();
+              controller.pause();
               Provider.of<WorkoutState>(context, listen: false).incCurrentSet();
               if (!Provider.of<WorkoutState>(context, listen: false).finished) {
                 Navigator.pop(context);
@@ -62,7 +62,7 @@ class TimerScreen extends StatelessWidget {
                   duration: duration,
 
                   // Controller to control (i.e Pause, Resume, Restart) the Countdown
-                  controller: _controller,
+                  controller: controller,
 
                   // Width of the Countdown Widget
                   width: MediaQuery.of(context).size.width / 2,

@@ -220,7 +220,7 @@ class InitBottomBar extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) => const WorkoutSetScreen(),
             ),
-          ).whenComplete(() => context.read<WorkoutState>().notify());
+          );
           // TODO: Here is a problem with a state
         },
       ),

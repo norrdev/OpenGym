@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:npng/main.dart';
 import 'package:npng/data/repository.dart';
@@ -25,16 +24,11 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   String version = '';
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  late Future<bool> _isImperial;
 
   @override
   void initState() {
     super.initState();
     _getVer().then((result) => version = result);
-    _isImperial = _prefs.then((SharedPreferences prefs) {
-      return (prefs.getBool('isImperial') ?? false);
-    });
   }
 
   Future<String> _loadAsset(String path) async {
@@ -46,7 +40,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return packageInfo.version;
   }
 
-  /// Preparing data for "About" page
+  /// Preparing data for "About" page.
   void _getAboutPage(BuildContext context) async {
     Locale myLocale = Localizations.localeOf(context);
     String version = await _getVer();
@@ -65,7 +59,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  /// Preparing data for "Share" dialog
+  /// Preparing data for "Share" dialog.
   void _shareFile(BuildContext context) async {
     final repository = Provider.of<Repository>(context, listen: false);
     String path = await repository.backupDatabase();
@@ -78,7 +72,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     }
   }
 
-  /// Preparing data for "Save" dialog
+  /// Preparing data for "Save" dialog.
   void _saveFile(BuildContext context) async {
     final Repository repository =
         Provider.of<Repository>(context, listen: false);
@@ -118,51 +112,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
     }
   }
 
-  // Future<void> _saveImperial(bool isImperial) async {
-  //   final SharedPreferences prefs = await _prefs;
-  //   setState(() {
-  //     _isImperial =
-  //         prefs.setBool('isImperial', isImperial).then((bool success) {
-  //       return isImperial;
-  //     });
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: ListView(
-        //crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // // Implement US metrics
-          // FutureBuilder<bool>(
-          //   future: _isImperial,
-          //   builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          //     switch (snapshot.connectionState) {
-          //       case ConnectionState.waiting:
-          //         return MpSwitch(
-          //             title: 'Metric / Imperial (UK, US) - not work',
-          //             value: false,
-          //             onChanged: (val) {});
-          //       default:
-          //         if (snapshot.hasError) {
-          //           return Text('Error: ${snapshot.error}');
-          //         } else {
-          //           return MpSwitch(
-          //               title: 'Metric / Imperial (UK, US) - not work',
-          //               value: snapshot.data!,
-          //               onChanged: _saveImperial);
-          //         }
-          //     }
-          //   },
-          // ),
-          // const Divider(),
           if (isDesktopDevice)
             ListTile(
               title: Text(S.of(context).saveToFile),
               onTap: () => _saveFile(context),
             ),
-
           ListTile(
             title: Text(S.of(context).share),
             onTap: () => _shareFile(context),

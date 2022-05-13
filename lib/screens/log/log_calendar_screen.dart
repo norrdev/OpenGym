@@ -59,7 +59,7 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
             context: context,
             builder: (_) {
               return AlertDialog(
-                title: Text(date.month.monthName + ' ' + date.day.toString()),
+                title: Text('${date.month.monthName} ${date.day}'),
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: eventsOnTheDate

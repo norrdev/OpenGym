@@ -21,11 +21,6 @@ class WorkoutState extends ChangeNotifier {
   // Active workout flag.
   bool active = false;
 
-  // TODO If I make setter for active, will be a problem with the stream.
-  void notify() {
-    notifyListeners();
-  }
-
   /// Finished workout flag. Active != filished.
   bool finished = false;
 

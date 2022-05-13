@@ -24,6 +24,8 @@ dependencies:
   sqflite: ^2.0.0+4
   sqlbrite: ^2.1.0
   path: ^1.8.0
+  path_provider: ^2.0.10
+  synchronized: ^3.0.0+2
   wakelock: ^0.6.1+1
   cell_calendar: ^0.6.0
   share_plus: ^4.0.4

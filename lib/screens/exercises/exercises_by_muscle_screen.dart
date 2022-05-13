@@ -55,19 +55,6 @@ class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
                 final item = exes[index];
                 return Slidable(
                   key: ValueKey(item),
-                  child: ListTile(
-                    title: Text(item.name!),
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return ExerciseViewScreen(
-                            exercise: item,
-                          );
-                        },
-                      ),
-                    ),
-                  ),
                   endActionPane: ActionPane(
                     motion: const ScrollMotion(),
                     children: [
@@ -101,6 +88,19 @@ class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
                       //   label: S.of(context).delete,
                       // ),
                     ],
+                  ),
+                  child: ListTile(
+                    title: Text(item.name!),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return ExerciseViewScreen(
+                            exercise: item,
+                          );
+                        },
+                      ),
+                    ),
                   ),
                 );
               },

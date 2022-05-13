@@ -67,15 +67,6 @@ class _ProgramDaysScreenState extends State<ProgramDaysScreen> {
                   final item = days[index];
                   return Slidable(
                     key: ValueKey(item),
-                    child: ListTile(
-                      title: Text(item.name as String),
-                      subtitle: Text(item.description as String),
-                      onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  ProgramDayScreen(day: item))),
-                    ),
                     endActionPane: ActionPane(
                       motion: const ScrollMotion(),
                       children: [
@@ -96,6 +87,15 @@ class _ProgramDaysScreenState extends State<ProgramDaysScreen> {
                           label: S.of(context).edit,
                         ),
                       ],
+                    ),
+                    child: ListTile(
+                      title: Text(item.name as String),
+                      subtitle: Text(item.description as String),
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ProgramDayScreen(day: item))),
                     ),
                   );
                 },

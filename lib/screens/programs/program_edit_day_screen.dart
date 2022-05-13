@@ -12,10 +12,9 @@ class ProgramEditDayScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final repository = Provider.of<Repository>(context, listen: false);
-    TextEditingController _tcName = TextEditingController(text: day.name);
-    TextEditingController _tcDesc =
-        TextEditingController(text: day.description);
-    final _formKey = GlobalKey<FormState>();
+    TextEditingController tcName = TextEditingController(text: day.name);
+    TextEditingController tcDesc = TextEditingController(text: day.description);
+    final formKey = GlobalKey<FormState>();
 
     return Scaffold(
       appBar: AppBar(
@@ -24,11 +23,11 @@ class ProgramEditDayScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.save),
             onPressed: () {
-              if (_formKey.currentState!.validate()) {
+              if (formKey.currentState!.validate()) {
                 Day newDay = Day(
                   id: day.id,
-                  name: _tcName.text,
-                  description: _tcDesc.text,
+                  name: tcName.text,
+                  description: tcDesc.text,
                 );
                 repository.updateDay(newDay);
                 Navigator.pop(context);
@@ -41,11 +40,11 @@ class ProgramEditDayScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
-            key: _formKey,
+            key: formKey,
             child: ListView(
               children: [
                 TextFormField(
-                  controller: _tcName,
+                  controller: tcName,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return S.of(context).enterText;
@@ -61,7 +60,7 @@ class ProgramEditDayScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16.0),
                 TextFormField(
-                  controller: _tcDesc,
+                  controller: tcDesc,
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
                   validator: (value) {

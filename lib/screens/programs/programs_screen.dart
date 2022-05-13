@@ -50,6 +50,27 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                   final item = programs[index];
                   return Slidable(
                     key: ValueKey(item),
+                    endActionPane: ActionPane(
+                      motion: const ScrollMotion(),
+                      children: [
+                        SlidableAction(
+                          onPressed: (context) => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ProgramEditScreen(
+                                  program: item,
+                                );
+                              },
+                            ),
+                          ).whenComplete(() => setState(() {})),
+                          backgroundColor: kActionColorEdit,
+                          foregroundColor: kActionColorIcon,
+                          icon: Icons.edit,
+                          label: S.of(context).edit,
+                        ),
+                      ],
+                    ),
                     child: ListTile(
                       leading: Radio<int>(
                         value: item.id as int,
@@ -74,27 +95,6 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                           ),
                         ),
                       ),
-                    ),
-                    endActionPane: ActionPane(
-                      motion: const ScrollMotion(),
-                      children: [
-                        SlidableAction(
-                          onPressed: (context) => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return ProgramEditScreen(
-                                  program: item,
-                                );
-                              },
-                            ),
-                          ).whenComplete(() => setState(() {})),
-                          backgroundColor: kActionColorEdit,
-                          foregroundColor: kActionColorIcon,
-                          icon: Icons.edit,
-                          label: S.of(context).edit,
-                        ),
-                      ],
                     ),
                   );
                 });
