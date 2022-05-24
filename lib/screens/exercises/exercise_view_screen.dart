@@ -4,8 +4,7 @@ import 'package:npng/generated/l10n.dart';
 
 class ExerciseViewScreen extends StatelessWidget {
   final Exercise exercise;
-  const ExerciseViewScreen({Key? key, required this.exercise})
-      : super(key: key);
+  const ExerciseViewScreen({super.key, required this.exercise});
 
   @override
   Widget build(BuildContext context) {

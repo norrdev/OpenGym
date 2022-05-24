@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class ProgramEditScreen extends StatelessWidget {
   final Program program;
 
-  const ProgramEditScreen({Key? key, required this.program}) : super(key: key);
+  const ProgramEditScreen({super.key, required this.program});
 
   @override
   Widget build(BuildContext context) {

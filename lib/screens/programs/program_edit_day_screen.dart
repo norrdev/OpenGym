@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class ProgramEditDayScreen extends StatelessWidget {
   final Day day;
 
-  const ProgramEditDayScreen({Key? key, required this.day}) : super(key: key);
+  const ProgramEditDayScreen({super.key, required this.day});
 
   @override
   Widget build(BuildContext context) {

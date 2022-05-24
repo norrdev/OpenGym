@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 class TimerScreen extends StatelessWidget {
-  const TimerScreen({Key? key}) : super(key: key);
+  const TimerScreen({super.key});
 
   static const String id = '/timer';
 

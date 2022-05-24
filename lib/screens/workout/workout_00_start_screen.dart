@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 
 /// This is the first screen of the workout.
 class WorkoutStartScreen extends StatelessWidget {
-  const WorkoutStartScreen({Key? key}) : super(key: key);
+  const WorkoutStartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,8 @@ class WorkoutStartScreen extends StatelessWidget {
 
 class DaysListWidget extends StatelessWidget {
   const DaysListWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +81,8 @@ class DaysListWidget extends StatelessWidget {
 /// Screen with button "Continue", if the workout is started.
 class ArtiveWorkoutScreen extends StatelessWidget {
   const ArtiveWorkoutScreen({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

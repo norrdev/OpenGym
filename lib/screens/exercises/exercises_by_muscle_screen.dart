@@ -15,8 +15,7 @@ class ExercisesByMuscleScreen extends StatefulWidget {
   final String pageTitle;
 
   const ExercisesByMuscleScreen(
-      {Key? key, required this.musclesId, required this.pageTitle})
-      : super(key: key);
+      {super.key, required this.musclesId, required this.pageTitle});
 
   @override
   State<ExercisesByMuscleScreen> createState() =>

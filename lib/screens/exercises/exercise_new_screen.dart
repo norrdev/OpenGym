@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class ExerciseNewScreen extends StatelessWidget {
   final int muscleId;
 
-  const ExerciseNewScreen({Key? key, required this.muscleId}) : super(key: key);
+  const ExerciseNewScreen({super.key, required this.muscleId});
 
   @override
   Widget build(BuildContext context) {

@@ -5,8 +5,7 @@ import 'package:npng/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 class ProgramNewDayScreen extends StatelessWidget {
-  const ProgramNewDayScreen({Key? key, required this.programId})
-      : super(key: key);
+  const ProgramNewDayScreen({super.key, required this.programId});
   final int programId;
 
   @override

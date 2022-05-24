@@ -15,7 +15,7 @@ import 'package:npng/generated/l10n.dart';
 import 'about_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+  const SettingsScreen({super.key});
   static String id = '/settings';
 
   @override

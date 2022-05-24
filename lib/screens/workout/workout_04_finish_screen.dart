@@ -9,7 +9,7 @@ import 'package:npng/screens/main_screen.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class WorkoutFinishScreen extends StatelessWidget {
-  const WorkoutFinishScreen({Key? key}) : super(key: key);
+  const WorkoutFinishScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

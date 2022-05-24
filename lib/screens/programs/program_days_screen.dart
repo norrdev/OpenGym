@@ -13,7 +13,7 @@ import 'package:provider/provider.dart';
 class ProgramDaysScreen extends StatefulWidget {
   static String id = 'program-days';
   final Program program;
-  const ProgramDaysScreen({Key? key, required this.program}) : super(key: key);
+  const ProgramDaysScreen({super.key, required this.program});
 
   @override
   State<ProgramDaysScreen> createState() => _ProgramDaysScreenState();

@@ -10,7 +10,7 @@ import 'package:npng/screens/settings/setings_screen.dart';
 import 'package:npng/screens/workout/workout_00_start_screen.dart';
 
 class MainScreen extends StatelessWidget {
-  MainScreen({Key? key}) : super(key: key);
+  MainScreen({super.key});
 
   final List<Widget> pageList = <Widget>[
     const WorkoutStartScreen(),

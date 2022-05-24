@@ -5,7 +5,7 @@ version: 2.1.0+15 # Last AppStore 15 /Play 15
 homepage: https://filonov.pro/npng-site/
 
 environment:
-  sdk: '>=2.17.0 <3.0.0'
+  sdk: '>=2.17.0 <3.0.1'
 
 dependencies:
   flutter:

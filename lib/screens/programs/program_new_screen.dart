@@ -5,7 +5,7 @@ import 'package:npng/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 class ProgramNewScreen extends StatelessWidget {
-  const ProgramNewScreen({Key? key}) : super(key: key);
+  const ProgramNewScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

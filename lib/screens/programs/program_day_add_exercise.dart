@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 /// Add exercise to workout day screen.
 /// [day]: day to add
 class ProgramDayAddExercise extends StatefulWidget {
-  const ProgramDayAddExercise({Key? key, required this.day}) : super(key: key);
+  const ProgramDayAddExercise({super.key, required this.day});
   final Day day;
 
   @override

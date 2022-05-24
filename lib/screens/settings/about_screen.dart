@@ -10,8 +10,7 @@ class AboutScreen extends StatelessWidget {
   final String? history;
   final String? version;
 
-  AboutScreen({Key? key, this.about, this.history, this.version})
-      : super(key: key);
+  AboutScreen({super.key, this.about, this.history, this.version});
 
   final controller = ScrollController();
 

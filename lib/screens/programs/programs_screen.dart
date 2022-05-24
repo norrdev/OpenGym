@@ -12,7 +12,7 @@ import 'package:npng/theme.dart';
 import 'package:provider/provider.dart';
 
 class ProgramsScreen extends StatefulWidget {
-  const ProgramsScreen({Key? key}) : super(key: key);
+  const ProgramsScreen({super.key});
   static String id = '/programs';
 
   @override

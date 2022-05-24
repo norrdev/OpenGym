@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LogWorkoutScreen extends StatefulWidget {
-  const LogWorkoutScreen({Key? key, required this.logday}) : super(key: key);
+  const LogWorkoutScreen({super.key, required this.logday});
   final LogDay logday;
 
   @override

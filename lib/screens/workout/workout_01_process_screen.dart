@@ -14,7 +14,7 @@ import 'package:npng/widgets/change_int_field.dart';
 class WorkoutProcessScreen extends StatelessWidget {
   final Day? day;
 
-  const WorkoutProcessScreen({Key? key, this.day}) : super(key: key);
+  const WorkoutProcessScreen({super.key, this.day});
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +51,9 @@ class WorkoutProcessScreen extends StatelessWidget {
 /// Current workout before start.
 class InitListView extends StatelessWidget {
   const InitListView({
-    Key? key,
+    super.key,
     required this.day,
-  }) : super(key: key);
+  });
 
   final Day? day;
 
@@ -177,7 +177,7 @@ class InitListView extends StatelessWidget {
 
 /// Shows active workout after start screen.
 class ActiveListView extends StatelessWidget {
-  const ActiveListView({Key? key}) : super(key: key);
+  const ActiveListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +202,7 @@ class ActiveListView extends StatelessWidget {
 class InitBottomBar extends StatelessWidget {
   final int dayId;
 
-  const InitBottomBar({Key? key, required this.dayId}) : super(key: key);
+  const InitBottomBar({super.key, required this.dayId});
 
   @override
   Widget build(BuildContext context) {
@@ -231,8 +231,8 @@ class InitBottomBar extends StatelessWidget {
 /// This bottom bar for workout-in progress
 class ActiveBottomBar extends StatelessWidget {
   const ActiveBottomBar({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

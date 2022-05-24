@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:npng/generated/l10n.dart';
 
 class ProgramDayScreen extends StatefulWidget {
-  const ProgramDayScreen({Key? key, required this.day}) : super(key: key);
+  const ProgramDayScreen({super.key, required this.day});
   final Day day;
 
   @override

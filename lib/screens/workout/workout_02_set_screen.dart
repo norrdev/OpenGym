@@ -11,7 +11,7 @@ import 'package:npng/screens/workout/workout_03_timer_screen.dart';
 class WorkoutSetScreen extends StatelessWidget {
   static const String id = '/set';
 
-  const WorkoutSetScreen({Key? key}) : super(key: key);
+  const WorkoutSetScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -104,9 +104,9 @@ class WorkoutSetScreen extends StatelessWidget {
 
 class CurrentSetWidget extends StatelessWidget {
   const CurrentSetWidget({
-    Key? key,
+    super.key,
     required this.setNumber,
-  }) : super(key: key);
+  });
 
   final int setNumber;
 

@@ -7,8 +7,7 @@ import 'package:provider/provider.dart';
 class ExerciseEditScreen extends StatelessWidget {
   final Exercise exercise;
 
-  const ExerciseEditScreen({Key? key, required this.exercise})
-      : super(key: key);
+  const ExerciseEditScreen({super.key, required this.exercise});
 
   @override
   Widget build(BuildContext context) {

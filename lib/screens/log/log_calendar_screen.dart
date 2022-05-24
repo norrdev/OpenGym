@@ -7,7 +7,7 @@ import 'package:npng/theme.dart';
 import 'package:provider/provider.dart';
 
 class LogCalendarScreen extends StatefulWidget {
-  const LogCalendarScreen({Key? key}) : super(key: key);
+  const LogCalendarScreen({super.key});
 
   @override
   State<LogCalendarScreen> createState() => _LogCalendarScreenState();

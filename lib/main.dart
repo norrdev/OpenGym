@@ -46,7 +46,7 @@ void main() async {
 
 class Application extends StatelessWidget {
   final Repository repository;
-  const Application({Key? key, required this.repository}) : super(key: key);
+  const Application({super.key, required this.repository});
   @override
   Widget build(BuildContext context) {
     // Get default program.
