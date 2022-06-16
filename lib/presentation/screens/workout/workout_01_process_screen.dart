@@ -6,8 +6,8 @@ import 'package:npng/data/models/models.dart';
 import 'package:npng/state/workout_provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/screens/workout/workout_02_set_screen.dart';
-import 'package:npng/screens/workout/workout_04_finish_screen.dart';
+import 'package:npng/presentation/screens/workout/workout_02_set_screen.dart';
+import 'package:npng/presentation/screens/workout/workout_04_finish_screen.dart';
 import 'package:npng/widgets/change_int_field.dart';
 
 /// Shows current workouprogram day and sets.

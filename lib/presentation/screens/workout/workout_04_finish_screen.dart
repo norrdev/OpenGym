@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:npng/state/workout_provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/screens/main_screen.dart';
+import 'package:npng/presentation/screens/main_screen.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class WorkoutFinishScreen extends StatelessWidget {
@@ -17,6 +17,8 @@ class WorkoutFinishScreen extends StatelessWidget {
     final wp = context.read<WorkoutState>();
     DateTime? start = wp.startTime;
     DateTime? finish = wp.finishTime;
+    double trainingVolume = 0.0;
+
     String duration = finish!.difference(start!).inMinutes.toString();
     String output =
         '${S.of(context).wrkDuration}: $duration ${S.of(context).min}\n\r \n\r';
@@ -26,8 +28,12 @@ class WorkoutFinishScreen extends StatelessWidget {
       for (int i = 0; i < item.sets.length; i++) {
         output +=
             '${i + 1}. ${item.sets[i].weight} kg X ${item.sets[i].repeats}\n\r';
+        trainingVolume += item.sets[i].weight * item.sets[i].repeats;
       }
     }
+
+    output +=
+        '\n\r**${S.of(context).wrkTrainingVolume}**: $trainingVolume kg\n\r';
 
     MarkdownStyleSheet style = MarkdownStyleSheet.fromTheme(Theme.of(context));
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
-import 'package:npng/screens/exercises/exercise_edit_screen.dart';
-import 'package:npng/screens/exercises/exercise_new_screen.dart';
-import 'package:npng/screens/exercises/exercise_view_screen.dart';
+import 'package:npng/presentation/screens/exercises/exercise_edit_screen.dart';
+import 'package:npng/presentation/screens/exercises/exercise_new_screen.dart';
+import 'package:npng/presentation/screens/exercises/exercise_view_screen.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/theme.dart';
 import 'package:provider/provider.dart';

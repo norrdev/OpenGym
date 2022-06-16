@@ -1,7 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/screens/workout/workout_04_finish_screen.dart';
+import 'package:npng/presentation/screens/workout/workout_04_finish_screen.dart';
 import 'package:npng/state/workout_provider.dart';
 import 'package:npng/theme.dart';
 import 'package:provider/provider.dart';

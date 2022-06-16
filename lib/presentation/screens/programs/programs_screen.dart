@@ -3,9 +3,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/screens/programs/program_days_screen.dart';
-import 'package:npng/screens/programs/program_edit_screen.dart';
-import 'package:npng/screens/programs/program_new_screen.dart';
+import 'package:npng/presentation/screens/programs/program_days_screen.dart';
+import 'package:npng/presentation/screens/programs/program_edit_screen.dart';
+import 'package:npng/presentation/screens/programs/program_new_screen.dart';
 import 'package:npng/state/default_program_state.dart';
 import 'package:npng/theme.dart';
 

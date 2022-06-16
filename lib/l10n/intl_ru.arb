@@ -57,5 +57,6 @@
     "addEx": "Упражнение добавлено.",
     "noDesc": "Нет описания.",
     "selectProgram": "Сначала выберите программу.",
-    "workoutInProgress": "Тренировка в процессе."
+    "workoutInProgress": "Тренировка в процессе.",
+    "wrkTrainingVolume": "Объём тренировки"
 }

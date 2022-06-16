@@ -639,6 +639,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Training volume`
+  String get wrkTrainingVolume {
+    return Intl.message(
+      'Training volume',
+      name: 'wrkTrainingVolume',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

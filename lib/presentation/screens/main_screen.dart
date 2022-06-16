@@ -3,11 +3,11 @@ import 'package:npng/state/current_tab_state.dart';
 import 'package:provider/provider.dart';
 
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/screens/exercises/exercises_screen.dart';
-import 'package:npng/screens/log/log_calendar_screen.dart';
-import 'package:npng/screens/programs/programs_screen.dart';
-import 'package:npng/screens/settings/setings_screen.dart';
-import 'package:npng/screens/workout/workout_00_start_screen.dart';
+import 'package:npng/presentation/screens/exercises/exercises_screen.dart';
+import 'package:npng/presentation/screens/log/log_calendar_screen.dart';
+import 'package:npng/presentation/screens/programs/programs_screen.dart';
+import 'package:npng/presentation/screens/settings/setings_screen.dart';
+import 'package:npng/presentation/screens/workout/workout_00_start_screen.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});

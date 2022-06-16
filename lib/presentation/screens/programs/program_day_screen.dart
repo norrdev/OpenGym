@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
-import 'package:npng/screens/programs/program_day_add_exercise.dart';
+import 'package:npng/presentation/screens/programs/program_day_add_exercise.dart';
 import 'package:npng/theme.dart';
 import 'package:npng/widgets/change_int_field.dart';
 import 'package:provider/provider.dart';

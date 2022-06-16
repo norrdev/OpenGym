@@ -6,7 +6,7 @@ import 'package:steps_indicator/steps_indicator.dart';
 
 import 'package:npng/state/workout_provider.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/screens/workout/workout_03_timer_screen.dart';
+import 'package:npng/presentation/screens/workout/workout_03_timer_screen.dart';
 
 class WorkoutSetScreen extends StatelessWidget {
   static const String id = '/set';

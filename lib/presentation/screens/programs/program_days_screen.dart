@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
-import 'package:npng/screens/programs/program_edit_day_screen.dart';
-import 'package:npng/screens/programs/program_new_day_screen.dart';
-import 'package:npng/screens/programs/program_day_screen.dart';
+import 'package:npng/presentation/screens/programs/program_edit_day_screen.dart';
+import 'package:npng/presentation/screens/programs/program_new_day_screen.dart';
+import 'package:npng/presentation/screens/programs/program_day_screen.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/state/days_%20reordered_state.dart';
+import 'package:npng/state/days_reordered_state.dart';
 import 'package:npng/theme.dart';
 import 'package:provider/provider.dart';
 

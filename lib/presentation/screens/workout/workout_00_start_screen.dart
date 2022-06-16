@@ -3,8 +3,8 @@ import 'package:npng/data/models/models.dart';
 import 'package:npng/state/workout_provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/screens/workout/workout_01_process_screen.dart';
-import 'package:npng/state/days_%20reordered_state.dart';
+import 'package:npng/presentation/screens/workout/workout_01_process_screen.dart';
+import 'package:npng/state/days_reordered_state.dart';
 import 'package:npng/state/default_program_state.dart';
 import 'package:provider/provider.dart';
 
