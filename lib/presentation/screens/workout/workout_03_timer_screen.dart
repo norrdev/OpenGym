@@ -13,10 +13,10 @@ class TimerScreen extends StatelessWidget {
   static const String id = '/timer';
 
   void playSound() {
-    final player = AudioCache();
+    final player = AudioPlayer();
     try {
-      player.play('sounds/545913__jose-danielms__alarm.wav',
-          mode: PlayerMode.LOW_LATENCY);
+      player.play(AssetSource('sounds/545913__jose-danielms__alarm.wav'),
+          mode: PlayerMode.lowLatency);
     } catch (e) {
       //print(e);
     }
