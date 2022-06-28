@@ -3,13 +3,14 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:npng/state/current_tab_state.dart';
 import 'package:npng/generated/l10n.dart';
+import 'package:npng/logic/cubit/current_tab_cubit.dart';
 import 'package:npng/presentation/routes/route_map.dart';
 import 'package:npng/state/days_reordered_state.dart';
 import 'package:npng/state/default_program_state.dart';
 import 'package:npng/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:npng/state/workout_provider.dart';
 import 'package:npng/data/repository.dart';
@@ -30,17 +31,24 @@ void main() async {
   await repository.init();
 
   runApp(
-    MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) => CurrentTabState()),
-      ChangeNotifierProvider(create: (context) => DefaultProgramState()),
-      ChangeNotifierProvider(create: (context) => DaysReorderedState()),
-      ChangeNotifierProvider(create: (context) => WorkoutState()),
-      Provider<Repository>(
-        lazy: false,
-        create: (_) => repository,
-        dispose: (_, Repository repository) => repository.close(),
-      ),
-    ], child: Application(repository: repository)),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<CurrentTabCubit>(
+          create: (context) => CurrentTabCubit(),
+        ),
+      ],
+      child: MultiProvider(providers: [
+        // ChangeNotifierProvider(create: (context) => CurrentTabState()),
+        ChangeNotifierProvider(create: (context) => DefaultProgramState()),
+        ChangeNotifierProvider(create: (context) => DaysReorderedState()),
+        ChangeNotifierProvider(create: (context) => WorkoutState()),
+        Provider<Repository>(
+          lazy: false,
+          create: (_) => repository,
+          dispose: (_, Repository repository) => repository.close(),
+        ),
+      ], child: Application(repository: repository)),
+    ),
   );
 }
 
