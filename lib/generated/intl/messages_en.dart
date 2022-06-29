@@ -92,6 +92,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Workout in progress"),
         "wrkBegin": MessageLookupByLibrary.simpleMessage("Workout begin"),
         "wrkDuration": MessageLookupByLibrary.simpleMessage("Workout duration"),
-        "wrkEnd": MessageLookupByLibrary.simpleMessage("Workout end")
+        "wrkEnd": MessageLookupByLibrary.simpleMessage("Workout end"),
+        "wrkTrainingVolume":
+            MessageLookupByLibrary.simpleMessage("Training volume")
       };
 }

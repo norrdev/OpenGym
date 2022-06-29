@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:npng/data/models/workout_provider.dart';
+import 'package:npng/state/workout_provider.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
@@ -101,7 +101,7 @@ class DatabaseHelper {
   /// Backup
   Future<String> backupDatabase() async {
     final db = await instance.streamDatabase;
-    String path = await getDatabasesPath() + '/npng-backup.db';
+    String path = '${await getDatabasesPath()}/npng-backup.db';
     try {
       await deleteDbBackupFile(path);
       await db.rawQuery("VACUUM INTO '$path'");
@@ -112,7 +112,7 @@ class DatabaseHelper {
   }
 
   Future<void> deleteDbBackupFile(String filePath) async {
-    if (filePath != await getDatabasesPath() + '/npng.db') {
+    if (filePath != '${await getDatabasesPath()}/npng.db') {
       File fileToDel = File(filePath);
       if (await fileToDel.exists()) {
         fileToDel.delete();
@@ -124,7 +124,7 @@ class DatabaseHelper {
   Future<void> importDataBase(String filePath) async {
     final db = await instance.streamDatabase;
     File file = File(filePath);
-    String pathToDb = await getDatabasesPath() + '/npng.db';
+    String pathToDb = '${await getDatabasesPath()}/npng.db';
     await db.close();
     _database = null;
     file.copySync(pathToDb);
@@ -442,7 +442,7 @@ class DatabaseHelper {
 
   Future<void> insertLog(BuildContext context) async {
     final db = await instance.streamDatabase;
-    final wp = Provider.of<WorkoutProviderModel>(context, listen: false);
+    final wp = Provider.of<WorkoutState>(context, listen: false);
 
     int logDaysId = await db.insert(logDaysTable, {
       'start': wp.startTime?.toLocal().toString() ?? '',

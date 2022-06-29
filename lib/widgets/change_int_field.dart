@@ -6,11 +6,11 @@ class ChangeIntField extends StatelessWidget {
   final void Function()? decreaseCallback;
 
   const ChangeIntField({
-    Key? key,
+    super.key,
     @required this.value,
     this.decreaseCallback,
     this.increaseCallback,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

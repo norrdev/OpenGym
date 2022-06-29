@@ -8,13 +8,13 @@ class ChangeDoubleFieldExtended extends StatelessWidget {
   final void Function()? decreaseCallbackFast;
 
   const ChangeDoubleFieldExtended({
-    Key? key,
+    super.key,
     required this.value,
     this.decreaseCallback,
     this.increaseCallback,
     this.decreaseCallbackFast,
     this.increaseCallbackFast,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

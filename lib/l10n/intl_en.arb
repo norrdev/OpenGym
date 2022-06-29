@@ -57,5 +57,6 @@
     "addEx": "Exercise added.",
     "noDesc": "No description.",
     "selectProgram": "Select program first.",
-    "workoutInProgress": "Workout in progress"
+    "workoutInProgress": "Workout in progress",
+    "wrkTrainingVolume": "Training volume"
 }

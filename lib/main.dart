@@ -2,17 +2,19 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:npng/data/models/app_state_provider.dart';
-import 'package:npng/generated/l10n.dart';
-import 'package:npng/route_map.dart';
-import 'package:npng/theme.dart';
 import 'package:provider/provider.dart';
 
-import 'package:npng/data/models/workout_provider.dart';
 import 'package:npng/data/repository.dart';
-
 import 'package:npng/data/sqlite/sqlite_repository.dart';
+import 'package:npng/generated/l10n.dart';
+import 'package:npng/logic/cubit/current_tab_cubit.dart';
+import 'package:npng/logic/cubit/default_program_cubit.dart';
+import 'package:npng/presentation/routes/route_map.dart';
+import 'package:npng/state/days_reordered_state.dart';
+import 'package:npng/state/workout_provider.dart';
+import 'package:npng/theme.dart';
 
 // final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
 // bool get isMobileDevice => !kIsWeb && (Platform.isIOS || Platform.isAndroid);
@@ -26,30 +28,42 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final repository = SqliteRepository();
   await repository.init();
+  late int defaultProgram;
+
+  // Get default program.
+  defaultProgram = await repository.getCurrentProgram();
 
   runApp(
-    MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) => AppStateProvider()),
-      ChangeNotifierProvider(create: (context) => WorkoutProviderModel()),
-      Provider<Repository>(
-        lazy: false,
-        create: (_) => repository,
-        dispose: (_, Repository repository) => repository.close(),
-      ),
-    ], child: Application(repository: repository)),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<CurrentTabCubit>(
+          create: (context) => CurrentTabCubit(),
+        ),
+        BlocProvider<DefaultProgramCubit>(
+          create: (context) =>
+              DefaultProgramCubit(defaultProgram: defaultProgram),
+        ),
+      ],
+      child: MultiProvider(providers: [
+        ChangeNotifierProvider(create: (context) => DaysReorderedState()),
+        ChangeNotifierProvider(create: (context) => WorkoutState()),
+        Provider<Repository>(
+          lazy: false,
+          create: (_) => repository,
+          dispose: (_, Repository repository) => repository.close(),
+        ),
+      ], child: Application(repository: repository)),
+    ),
   );
 }
 
 class Application extends StatelessWidget {
   final Repository repository;
-  const Application({Key? key, required this.repository}) : super(key: key);
+  const Application({super.key, required this.repository});
   @override
   Widget build(BuildContext context) {
-    // Get default program.
-    repository.getCurrentProgram().then(
-        (value) => context.read<AppStateProvider>().defaultProgram = value);
     return MaterialApp(
-      //debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
