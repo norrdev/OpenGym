@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
+import 'package:npng/logic/cubit/default_program_cubit.dart';
 import 'package:npng/presentation/screens/programs/program_days_screen.dart';
 import 'package:npng/presentation/screens/programs/program_edit_screen.dart';
 import 'package:npng/presentation/screens/programs/program_new_screen.dart';
-import 'package:npng/state/default_program_state.dart';
 import 'package:npng/theme.dart';
-
-import 'package:provider/provider.dart';
 
 class ProgramsScreen extends StatefulWidget {
   const ProgramsScreen({super.key});
@@ -72,17 +71,25 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                       ],
                     ),
                     child: ListTile(
-                      leading: Radio<int>(
-                        value: item.id as int,
-                        groupValue:
-                            context.watch<DefaultProgramState>().defaultProgram,
-                        onChanged: (_) {
-                          repository
-                              .setCurrentProgram(item.id as int)
-                              .then((_) {
-                            context.read<DefaultProgramState>().defaultProgram =
-                                item.id as int;
-                          });
+                      leading:
+                          BlocBuilder<DefaultProgramCubit, DefaultProgramState>(
+                        builder: (context, state) {
+                          return Radio<int>(
+                            value: item.id as int,
+                            groupValue: state is DefaultProgramLoaded
+                                ? state.defaultProgram
+                                : null,
+                            onChanged: (_) {
+                              // TODO Move to Cubit, after moving repository to it.
+                              repository
+                                  .setCurrentProgram(item.id as int)
+                                  .then((_) {
+                                context
+                                    .read<DefaultProgramCubit>()
+                                    .setDefaultProgram(item.id as int);
+                              });
+                            },
+                          );
                         },
                       ),
                       title: Text(item.name as String),
