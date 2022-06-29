@@ -6,8 +6,6 @@ import 'package:npng/state/workout_provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/presentation/screens/workout/workout_01_process_screen.dart';
-import 'package:npng/state/days_reordered_state.dart';
-import 'package:provider/provider.dart';
 
 /// This is the first screen of the workout.
 class WorkoutStartScreen extends StatelessWidget {
@@ -36,48 +34,43 @@ class DaysListWidget extends StatelessWidget {
     ScrollController scontroller = ScrollController();
     return BlocBuilder<DefaultProgramCubit, DefaultProgramState>(
       builder: (context, state) {
-        return Selector(
-            selector: (BuildContext context, DaysReorderedState value) =>
-                value.isDaysReordered,
-            builder: (context, bool isDaysReordered, _) {
-              return StreamBuilder<List<Day>>(
-                stream: repository.findDaysByProgram(
-                    state is DefaultProgramLoaded ? state.defaultProgram : 0),
-                builder: (context, AsyncSnapshot<List<Day>> snapshot) {
-                  if (snapshot.connectionState == ConnectionState.active) {
-                    // Because must be mutable for sorting
-                    final List<Day> days =
-                        (snapshot.hasData) ? [...snapshot.data!] : [];
-                    if (days.isEmpty) {
-                      return Center(child: Text(S.of(context).selectProgram));
-                    }
-                    return ListView.builder(
-                      controller: scontroller,
-                      itemCount: days.length,
-                      itemBuilder: (context, index) {
-                        final item = days[index];
-                        return ListTile(
-                          title: Text(item.name as String),
-                          subtitle: Text(item.description as String),
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => WorkoutProcessScreen(
-                                day: item,
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
+        return StreamBuilder<List<Day>>(
+          stream: repository.findDaysByProgram(
+              state is DefaultProgramLoaded ? state.defaultProgram : 0),
+          builder: (context, AsyncSnapshot<List<Day>> snapshot) {
+            if (snapshot.connectionState == ConnectionState.active) {
+              // Because must be mutable for sorting
+              final List<Day> days =
+                  (snapshot.hasData) ? [...snapshot.data!] : [];
+              if (days.isEmpty) {
+                return Center(child: Text(S.of(context).selectProgram));
+              }
+              return ListView.builder(
+                controller: scontroller,
+                itemCount: days.length,
+                itemBuilder: (context, index) {
+                  final item = days[index];
+                  return ListTile(
+                    title: Text(item.name as String),
+                    subtitle: Text(item.description as String),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => WorkoutProcessScreen(
+                          day: item,
+                        ),
+                      ),
+                    ),
+                  );
                 },
               );
-            });
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        );
       },
     );
   }

@@ -12,7 +12,6 @@ import 'package:npng/generated/l10n.dart';
 import 'package:npng/logic/cubit/current_tab_cubit.dart';
 import 'package:npng/logic/cubit/default_program_cubit.dart';
 import 'package:npng/presentation/routes/route_map.dart';
-import 'package:npng/state/days_reordered_state.dart';
 import 'package:npng/state/workout_provider.dart';
 import 'package:npng/theme.dart';
 
@@ -45,7 +44,6 @@ void main() async {
         ),
       ],
       child: MultiProvider(providers: [
-        ChangeNotifierProvider(create: (context) => DaysReorderedState()),
         ChangeNotifierProvider(create: (context) => WorkoutState()),
         Provider<Repository>(
           lazy: false,
