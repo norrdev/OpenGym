@@ -43,10 +43,7 @@ class MainScreen extends StatelessWidget {
           }
         }
       },
-      child: BlocConsumer<CurrentTabCubit, CurrentTabState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
+      child: BlocBuilder<CurrentTabCubit, CurrentTabState>(
         builder: (context, state) {
           return Scaffold(
             bottomNavigationBar: BottomNavigationBar(

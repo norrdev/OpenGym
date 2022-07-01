@@ -56,7 +56,7 @@
     "wrkDuration": "Workout duration",
     "addEx": "Exercise added.",
     "noDesc": "No description.",
-    "selectProgram": "Select program first.",
+    "selectProgram": "Select or create program first",
     "workoutInProgress": "Workout in progress",
     "wrkTrainingVolume": "Training volume"
 }

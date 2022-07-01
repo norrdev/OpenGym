@@ -71,8 +71,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "saveToFile":
             MessageLookupByLibrary.simpleMessage("Save database to file"),
         "saveToLog": MessageLookupByLibrary.simpleMessage("Save to Log"),
-        "selectProgram":
-            MessageLookupByLibrary.simpleMessage("Select program first."),
+        "selectProgram": MessageLookupByLibrary.simpleMessage(
+            "Select or create program first"),
         "sets": MessageLookupByLibrary.simpleMessage("Sets"),
         "setsText": MessageLookupByLibrary.simpleMessage(
             "Perfom the set, and when you\'re done, press the button."),
