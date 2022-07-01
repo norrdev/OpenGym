@@ -51,7 +51,7 @@ class _ProgramDayScreenState extends State<ProgramDayScreen> {
                 itemBuilder: (context, index) {
                   final item = workouts[index];
                   return Slidable(
-                    endActionPane: ActionPane(
+                    startActionPane: ActionPane(
                       motion: const ScrollMotion(),
                       children: [
                         SlidableAction(
@@ -76,8 +76,20 @@ class _ProgramDayScreenState extends State<ProgramDayScreen> {
                           initiallyExpanded: expanded[index] ?? false,
                           tilePadding:
                               const EdgeInsets.only(right: 30.0, left: 16.0),
-                          title: Text(item.name as String),
-                          subtitle: Text(item.description as String),
+                          title: Text(
+                            item.name as String,
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor),
+                          ),
+                          iconColor: Theme.of(context).primaryColor,
+                          collapsedIconColor: Theme.of(context).primaryColor,
+                          subtitle: Text(
+                            item.description as String,
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .bottomNavigationBarTheme
+                                    .unselectedItemColor),
+                          ),
                           children: [
                             Column(
                               children: [

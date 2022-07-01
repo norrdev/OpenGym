@@ -1,5 +1,7 @@
-##
-
+## 3.0.0
+- Core refactoring.
+- Improved perfomance.
+- Merged programs and workout screens.
 
 ## 2.1.0
 - Same desingn in all operation systems.

@@ -620,10 +620,10 @@ class S {
     );
   }
 
-  /// `Select program first.`
+  /// `Select or create program first`
   String get selectProgram {
     return Intl.message(
-      'Select program first.',
+      'Select or create program first',
       name: 'selectProgram',
       desc: '',
       args: [],

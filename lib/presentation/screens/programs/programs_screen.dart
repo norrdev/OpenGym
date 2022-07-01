@@ -49,7 +49,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                   final item = programs[index];
                   return Slidable(
                     key: ValueKey(item),
-                    endActionPane: ActionPane(
+                    startActionPane: ActionPane(
                       motion: const ScrollMotion(),
                       children: [
                         SlidableAction(

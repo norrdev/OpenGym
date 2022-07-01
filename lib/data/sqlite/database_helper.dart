@@ -111,6 +111,7 @@ class DatabaseHelper {
     }
   }
 
+  /// Delete backup file.
   Future<void> deleteDbBackupFile(String filePath) async {
     if (filePath != '${await getDatabasesPath()}/npng.db') {
       File fileToDel = File(filePath);
@@ -120,7 +121,7 @@ class DatabaseHelper {
     }
   }
 
-  /// Import DB
+  /// Import DB.
   Future<void> importDataBase(String filePath) async {
     final db = await instance.streamDatabase;
     File file = File(filePath);
@@ -133,6 +134,7 @@ class DatabaseHelper {
 
   // Muscles
 
+  /// Get all muscles.
   Stream<List<Muscle>> watchAllMuscles() async* {
     final db = await instance.streamDatabase;
     yield* db.createQuery(
@@ -145,6 +147,7 @@ class DatabaseHelper {
     ).mapToList((row) => Muscle.fromJson(row));
   }
 
+  /// Get all programs.
   Stream<List<Program>> watchAllPrograms() async* {
     final db = await instance.streamDatabase;
     yield* db.createQuery(

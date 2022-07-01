@@ -60,7 +60,7 @@ class _ProgramDaysScreenState extends State<ProgramDaysScreen> {
                   final item = days[index];
                   return Slidable(
                     key: ValueKey(item),
-                    endActionPane: ActionPane(
+                    startActionPane: ActionPane(
                       motion: const ScrollMotion(),
                       children: [
                         SlidableAction(
