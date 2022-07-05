@@ -1,11 +1,13 @@
+import 'package:equatable/equatable.dart';
+
 /// Traning day model.
-class Day {
-  int? id;
-  int? ord;
+class Day extends Equatable {
+  final int? id;
+  final int? ord;
   final String? name;
   final String? description;
 
-  Day({this.id, this.ord, this.name, this.description});
+  const Day({this.id, this.ord, this.name, this.description});
 
   factory Day.fromJson(Map<String, dynamic> json) => Day(
         id: json['id'] as int,
@@ -20,4 +22,7 @@ class Day {
         'name': name,
         'description': description,
       };
+
+  @override
+  List<Object?> get props => [id, ord, name, description];
 }

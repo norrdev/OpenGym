@@ -1,10 +1,15 @@
+import 'package:equatable/equatable.dart';
+
 /// Exercise model.
-class Exercise {
-  int? id;
+class Exercise extends Equatable {
+  final int? id;
   final String? name;
   final String? description;
 
-  Exercise({this.id, this.name, this.description});
+  const Exercise({this.id, this.name, this.description});
+
+  @override
+  List<Object?> get props => [id, name, description];
 
   factory Exercise.fromJson(Map<String, dynamic> json) => Exercise(
         id: json['id'] as int,

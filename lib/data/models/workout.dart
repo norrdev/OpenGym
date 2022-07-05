@@ -1,16 +1,18 @@
+import 'package:equatable/equatable.dart';
+
 /// Workout model (exercise, sets, repeats, rest).
-class Workout {
-  int? id;
+class Workout extends Equatable {
+  final int? id;
   final String? name;
   final String? description;
   final int? ord;
-  int? sets;
-  int? repeats;
-  int? rest;
+  final int? sets;
+  final int? repeats;
+  final int? rest;
   final int? exercisesId;
   final double? weight;
 
-  Workout({
+  const Workout({
     this.id,
     this.name,
     this.description,
@@ -47,4 +49,8 @@ class Workout {
         'exercises_id': exercisesId,
         'weight': weight,
       };
+
+  @override
+  List<Object?> get props =>
+      [id, name, description, ord, sets, repeats, rest, exercisesId, weight];
 }

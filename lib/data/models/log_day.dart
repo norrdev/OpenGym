@@ -1,5 +1,7 @@
+import 'package:equatable/equatable.dart';
+
 /// Day in traning log model.
-class LogDay {
+class LogDay extends Equatable {
   final int? logDaysId;
   final int? daysId;
   final String? start;
@@ -7,7 +9,7 @@ class LogDay {
   final String? daysName;
   final String? programsName;
 
-  LogDay({
+  const LogDay({
     this.logDaysId,
     this.daysId,
     this.start,
@@ -33,4 +35,14 @@ class LogDay {
         'daysName': daysName,
         'programsName': programsName,
       };
+
+  @override
+  List<Object?> get props => [
+        logDaysId,
+        daysId,
+        start,
+        finish,
+        daysName,
+        programsName,
+      ];
 }

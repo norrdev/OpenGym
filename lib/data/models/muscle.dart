@@ -1,12 +1,14 @@
-import 'dart:typed_data';
+import 'dart:typed_data' show Uint8List;
+
+import 'package:equatable/equatable.dart';
 
 /// Miscle model.
-class Muscle {
-  int? id;
+class Muscle extends Equatable {
+  final int? id;
   final String? name;
   final Uint8List? icon;
 
-  Muscle({this.id, this.name, this.icon});
+  const Muscle({this.id, this.name, this.icon});
 
   factory Muscle.fromJson(Map<String, dynamic> json) => Muscle(
         id: json['id'] as int,
@@ -19,4 +21,7 @@ class Muscle {
         'name': name,
         'icon': icon,
       };
+
+  @override
+  List<Object?> get props => [id, name, icon];
 }

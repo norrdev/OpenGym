@@ -1,10 +1,12 @@
+import 'package:equatable/equatable.dart';
+
 /// Training program model.
-class Program {
-  int? id;
+class Program extends Equatable {
+  final int? id;
   final String? name;
   final String? description;
 
-  Program({this.id, this.name, this.description});
+  const Program({this.id, this.name, this.description});
 
   factory Program.fromJson(Map<String, dynamic> json) => Program(
         id: json['id'] as int,
@@ -17,4 +19,7 @@ class Program {
         'name': name,
         'description': description,
       };
+
+  @override
+  List<Object?> get props => [id, name, description];
 }

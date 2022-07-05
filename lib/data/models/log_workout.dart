@@ -1,10 +1,12 @@
+import 'package:equatable/equatable.dart';
+
 /// Workout in log model.
-class LogWorkout {
+class LogWorkout extends Equatable {
   final int? id, repeat;
   final double? weight;
   final String? name;
 
-  LogWorkout({this.id, this.repeat, this.weight, this.name});
+  const LogWorkout({this.id, this.repeat, this.weight, this.name});
 
   factory LogWorkout.fromJson(Map<String, dynamic> json) => LogWorkout(
         id: json['id'] as int,
@@ -19,4 +21,7 @@ class LogWorkout {
         'weight': weight,
         'name': name,
       };
+
+  @override
+  List<Object?> get props => [id, repeat, weight, name];
 }
