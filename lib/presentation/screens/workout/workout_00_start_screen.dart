@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/logic/cubit/default_program_cubit.dart';
+import 'package:npng/logic/cubit/workout_cubit.dart';
 import 'package:npng/presentation/screens/programs/programs_screen.dart';
-import 'package:npng/state/workout_provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/presentation/screens/workout/workout_01_process_screen.dart';
@@ -15,7 +15,7 @@ class WorkoutStartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: (context.watch<WorkoutState>().active)
+      child: (context.watch<WorkoutCubit>().state.active)
           ? const ArtiveWorkoutScreen()
           : const DaysListWidget(),
     );

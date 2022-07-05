@@ -1,11 +1,12 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/material.dart';
-import 'package:npng/generated/l10n.dart';
-import 'package:npng/presentation/screens/workout/workout_04_finish_screen.dart';
-import 'package:npng/state/workout_provider.dart';
-import 'package:npng/theme.dart';
-import 'package:provider/provider.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:npng/generated/l10n.dart';
+import 'package:npng/logic/cubit/workout_cubit.dart';
+import 'package:npng/presentation/screens/workout/workout_04_finish_screen.dart';
+import 'package:npng/theme.dart';
 
 class TimerScreen extends StatelessWidget {
   const TimerScreen({super.key});
@@ -24,7 +25,7 @@ class TimerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int duration = Provider.of<WorkoutState>(context).currentRest;
+    int duration = context.read<WorkoutCubit>().state.currentRest;
     CountDownController controller = CountDownController();
 
     return Scaffold(
@@ -34,8 +35,8 @@ class TimerScreen extends StatelessWidget {
             child: Text(S.of(context).stopRest),
             onPressed: () {
               controller.pause();
-              Provider.of<WorkoutState>(context, listen: false).incCurrentSet();
-              if (!Provider.of<WorkoutState>(context, listen: false).finished) {
+              context.read<WorkoutCubit>().incCurrentSet();
+              if (!context.read<WorkoutCubit>().state.finished) {
                 Navigator.pop(context);
               } else {
                 Navigator.pushAndRemoveUntil(
@@ -101,10 +102,8 @@ class TimerScreen extends StatelessWidget {
                   // Function which will execute when the Countdown Ends
                   onComplete: () {
                     playSound();
-                    Provider.of<WorkoutState>(context, listen: false)
-                        .incCurrentSet();
-                    if (!Provider.of<WorkoutState>(context, listen: false)
-                        .finished) {
+                    context.read<WorkoutCubit>().incCurrentSet();
+                    if (!context.read<WorkoutCubit>().state.finished) {
                       Navigator.pop(context);
                     } else {
                       Navigator.pushAndRemoveUntil(

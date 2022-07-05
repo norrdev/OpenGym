@@ -11,8 +11,8 @@ import 'package:npng/data/sqlite/sqlite_repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/logic/cubit/current_tab_cubit.dart';
 import 'package:npng/logic/cubit/default_program_cubit.dart';
+import 'package:npng/logic/cubit/workout_cubit.dart';
 import 'package:npng/presentation/routes/route_map.dart';
-import 'package:npng/state/workout_provider.dart';
 import 'package:npng/theme.dart';
 
 // final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
@@ -42,9 +42,9 @@ void main() async {
           create: (context) =>
               DefaultProgramCubit(defaultProgram: defaultProgram),
         ),
+        BlocProvider<WorkoutCubit>(create: (context) => WorkoutCubit()),
       ],
       child: MultiProvider(providers: [
-        ChangeNotifierProvider(create: (context) => WorkoutState()),
         Provider<Repository>(
           lazy: false,
           create: (_) => repository,

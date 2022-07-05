@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
-import 'package:npng/state/workout_provider.dart';
+import 'package:npng/data/models/workout_exercise.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
+import 'package:npng/logic/cubit/workout_cubit.dart';
 import 'package:npng/presentation/screens/main_screen.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class WorkoutFinishScreen extends StatelessWidget {
   const WorkoutFinishScreen({super.key});
@@ -14,7 +15,7 @@ class WorkoutFinishScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = ScrollController();
-    final wp = context.read<WorkoutState>();
+    final wp = context.read<WorkoutCubit>().state;
     DateTime? start = wp.startTime;
     DateTime? finish = wp.finishTime;
     double trainingVolume = 0.0;
@@ -23,7 +24,7 @@ class WorkoutFinishScreen extends StatelessWidget {
     String output =
         '${S.of(context).wrkDuration}: $duration ${S.of(context).min}\n\r \n\r';
 
-    for (Exerscise item in wp.excersises) {
+    for (WorkoutExercise item in wp.exercises) {
       output += '**${item.name}**\n\r';
       for (int i = 0; i < item.sets.length; i++) {
         output +=

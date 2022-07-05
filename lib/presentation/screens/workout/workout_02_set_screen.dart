@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:npng/logic/cubit/workout_cubit.dart';
 import 'package:npng/widgets/change_double_field_extended.dart';
 import 'package:npng/widgets/change_int_field.dart';
-import 'package:provider/provider.dart';
 import 'package:steps_indicator/steps_indicator.dart';
 
-import 'package:npng/state/workout_provider.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/presentation/screens/workout/workout_03_timer_screen.dart';
 
@@ -17,9 +17,9 @@ class WorkoutSetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Consumer<WorkoutState>(
-          builder: (context, wk, _) {
-            return Text(wk.excersises[wk.currentExcersise].name);
+        title: BlocBuilder<WorkoutCubit, WorkoutState>(
+          builder: (_, wk) {
+            return Text(wk.exercises[wk.currentExcersise].name);
           },
         ),
       ),
@@ -48,10 +48,10 @@ class WorkoutSetScreen extends StatelessWidget {
                   IconButton(
                     icon: const Icon(Icons.arrow_back_ios_rounded),
                     onPressed: () =>
-                        context.read<WorkoutState>().manualRemoveOneSet(),
+                        context.read<WorkoutCubit>().manualRemoveOneSet(),
                   ),
-                  Consumer<WorkoutState>(
-                    builder: (context, workout, _) {
+                  BlocBuilder<WorkoutCubit, WorkoutState>(
+                    builder: (context, workout) {
                       int mSet = workout.maxSet + 1;
                       double maxLineLength =
                           MediaQuery.of(context).size.width * 0.65;
@@ -64,6 +64,7 @@ class WorkoutSetScreen extends StatelessWidget {
                           linelength = 0;
                         }
                       }
+                      // TODO: move in Theme
                       return StepsIndicator(
                         lineLength: linelength,
                         selectedStep: workout.currentSet,
@@ -81,14 +82,14 @@ class WorkoutSetScreen extends StatelessWidget {
                   IconButton(
                     icon: const Icon(Icons.arrow_forward_ios_rounded),
                     onPressed: () =>
-                        context.read<WorkoutState>().manualAddOneSet(),
+                        context.read<WorkoutCubit>().manualAddOneSet(),
                   ),
                 ],
               ),
             ),
             Expanded(
-              child: Consumer<WorkoutState>(
-                builder: (context, workout, child) {
+              child: BlocBuilder<WorkoutCubit, WorkoutState>(
+                builder: (_, workout) {
                   return CurrentSetWidget(
                     setNumber: workout.currentSet,
                   );
@@ -112,32 +113,38 @@ class CurrentSetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WorkoutState workout = context.read<WorkoutState>();
+    WorkoutCubit workout = context.read<WorkoutCubit>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(S.of(context).weight),
         ChangeDoubleFieldExtended(
-          value: workout
-              .excersises[workout.currentExcersise].sets[setNumber].weight,
+          value: workout.state.exercises[workout.state.currentExcersise]
+              .sets[setNumber].weight,
           increaseCallback: () => workout.incWeight025(
-              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
+              excersiseNumber: workout.state.currentExcersise,
+              setNumber: setNumber),
           decreaseCallback: () => workout.decWeight025(
-              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
+              excersiseNumber: workout.state.currentExcersise,
+              setNumber: setNumber),
           increaseCallbackFast: () => workout.incWeight5(
-              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
+              excersiseNumber: workout.state.currentExcersise,
+              setNumber: setNumber),
           decreaseCallbackFast: () => workout.decWeight5(
-              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
+              excersiseNumber: workout.state.currentExcersise,
+              setNumber: setNumber),
         ),
         Text(S.of(context).repeats),
         ChangeIntField(
-          value: workout
-              .excersises[workout.currentExcersise].sets[setNumber].repeats,
+          value: workout.state.exercises[workout.state.currentExcersise]
+              .sets[setNumber].repeats,
           decreaseCallback: () => workout.decRepeats(
-              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
+              excersiseNumber: workout.state.currentExcersise,
+              setNumber: setNumber),
           increaseCallback: () => workout.incRepeats(
-              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
+              excersiseNumber: workout.state.currentExcersise,
+              setNumber: setNumber),
         ),
       ],
     );
