@@ -53,4 +53,28 @@ class Workout extends Equatable {
   @override
   List<Object?> get props =>
       [id, name, description, ord, sets, repeats, rest, exercisesId, weight];
+
+  Workout copyWith({
+    int? id,
+    String? name,
+    String? description,
+    int? ord,
+    int? sets,
+    int? repeats,
+    int? rest,
+    int? exercisesId,
+    double? weight,
+  }) {
+    return Workout(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      ord: ord ?? this.ord,
+      sets: sets ?? this.sets,
+      repeats: repeats ?? this.repeats,
+      rest: rest ?? this.rest,
+      exercisesId: exercisesId ?? this.exercisesId,
+      weight: weight ?? this.weight,
+    );
+  }
 }

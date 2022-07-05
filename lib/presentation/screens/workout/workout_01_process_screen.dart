@@ -103,13 +103,13 @@ class InitListView extends StatelessWidget {
                             value: item.sets as int,
                             decreaseCallback: () {
                               if (item.sets as int > 1) {
-                                item.sets = item.sets! - 1;
-                                repository.updateWorkoutSetsRepeatsRest(item);
+                                repository.updateWorkoutSetsRepeatsRest(
+                                    item.copyWith(sets: item.sets! - 1));
                               }
                             },
                             increaseCallback: () {
-                              item.sets = item.sets! + 1;
-                              repository.updateWorkoutSetsRepeatsRest(item);
+                              repository.updateWorkoutSetsRepeatsRest(
+                                  item.copyWith(sets: item.sets! + 1));
                             },
                           ),
                         ],
@@ -121,13 +121,13 @@ class InitListView extends StatelessWidget {
                             value: item.repeats as int,
                             decreaseCallback: () {
                               if (item.repeats as int > 1) {
-                                item.repeats = item.repeats! - 1;
-                                repository.updateWorkoutSetsRepeatsRest(item);
+                                repository.updateWorkoutSetsRepeatsRest(
+                                    item.copyWith(repeats: item.repeats! - 1));
                               }
                             },
                             increaseCallback: () {
-                              item.repeats = item.repeats! + 1;
-                              repository.updateWorkoutSetsRepeatsRest(item);
+                              repository.updateWorkoutSetsRepeatsRest(
+                                  item.copyWith(repeats: item.repeats! + 1));
                             },
                           ),
                         ],
@@ -139,13 +139,13 @@ class InitListView extends StatelessWidget {
                             value: item.rest as int,
                             decreaseCallback: () {
                               if (item.rest as int > 5) {
-                                item.rest = item.rest! - 5;
-                                repository.updateWorkoutSetsRepeatsRest(item);
+                                repository.updateWorkoutSetsRepeatsRest(
+                                    item.copyWith(rest: item.rest! - 5));
                               }
                             },
                             increaseCallback: () {
-                              item.rest = item.rest! + 5;
-                              repository.updateWorkoutSetsRepeatsRest(item);
+                              repository.updateWorkoutSetsRepeatsRest(
+                                  item.copyWith(rest: item.rest! + 5));
                             },
                           ),
                         ],
