@@ -23,22 +23,30 @@ class WorkoutProcessScreen extends StatelessWidget {
         title: Text(S.of(context).currentWorkout),
       ),
       persistentFooterButtons: [
-        BlocBuilder<WorkoutCubit, WorkoutState>(builder: (_, state) {
-          if (state.active) {
-            return const ActiveBottomBar();
-          } else {
-            return InitBottomBar(dayId: day?.id as int);
-          }
-        }),
+        Builder(
+          builder: (context) {
+            final activeValue = context.select(
+                (WorkoutCubit workoutCubit) => workoutCubit.state.active);
+            if (activeValue) {
+              return const ActiveBottomBar();
+            } else {
+              return InitBottomBar(dayId: day?.id as int);
+            }
+          },
+        ),
       ],
       body: SafeArea(
-        child: BlocBuilder<WorkoutCubit, WorkoutState>(builder: (_, state) {
-          if (state.active) {
-            return const ActiveListView();
-          } else {
-            return InitListView(day: day);
-          }
-        }),
+        child: Builder(
+          builder: (context) {
+            final activeValue = context.select(
+                (WorkoutCubit workoutCubit) => workoutCubit.state.active);
+            if (activeValue) {
+              return const ActiveListView();
+            } else {
+              return InitListView(day: day);
+            }
+          },
+        ),
       ),
     );
   }
@@ -207,9 +215,7 @@ class InitBottomBar extends StatelessWidget {
       child: ElevatedButton(
         child: Text(S.of(context).start),
         onPressed: () {
-          context.read<WorkoutCubit>().state.dayID = dayId;
-          context.read<WorkoutCubit>().state.startTime = DateTime.now();
-          context.read<WorkoutCubit>().state.active = true;
+          context.read<WorkoutCubit>().startWorkout(dayId);
           Wakelock.enable();
           Navigator.push(
             context,
@@ -217,7 +223,6 @@ class InitBottomBar extends StatelessWidget {
               builder: (context) => const WorkoutSetScreen(),
             ),
           );
-          // TODO: Here was a problem with a state when Provider used
         },
       ),
     );
@@ -252,8 +257,9 @@ class ActiveBottomBar extends StatelessWidget {
           child: Text(S.of(context).finish),
           onPressed: () {
             Wakelock.disable();
-            context.read<WorkoutCubit>().state.finishTime = DateTime.now();
-            context.read<WorkoutCubit>().state.finished = true;
+            // TODO: FUNCTION HERE
+            // context.read<WorkoutCubit>().state.finishTime = DateTime.now();
+            // context.read<WorkoutCubit>().state.finished = true;
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(

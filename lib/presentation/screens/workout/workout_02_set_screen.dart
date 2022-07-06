@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:npng/logic/cubit/workout_cubit.dart';
 import 'package:npng/widgets/change_double_field_extended.dart';
 import 'package:npng/widgets/change_int_field.dart';
-import 'package:steps_indicator/steps_indicator.dart';
 
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/presentation/screens/workout/workout_03_timer_screen.dart';
+import 'package:steps_indicator/steps_indicator.dart';
 
 class WorkoutSetScreen extends StatelessWidget {
   static const String id = '/set';
@@ -51,8 +51,12 @@ class WorkoutSetScreen extends StatelessWidget {
                         context.read<WorkoutCubit>().manualRemoveOneSet(),
                   ),
                   BlocBuilder<WorkoutCubit, WorkoutState>(
-                    builder: (context, workout) {
-                      int mSet = workout.maxSet + 1;
+                    builder: (context, state) {
+                      final maxSet = state.maxSet;
+                      final currentSet = state.currentSet;
+
+                      print('--------------------------Widget rebuilded');
+                      int mSet = maxSet + 1;
                       double maxLineLength =
                           MediaQuery.of(context).size.width * 0.65;
                       double linelength = maxLineLength;
@@ -64,11 +68,11 @@ class WorkoutSetScreen extends StatelessWidget {
                           linelength = 0;
                         }
                       }
-                      // TODO: move in Theme
+
                       return StepsIndicator(
                         lineLength: linelength,
-                        selectedStep: workout.currentSet,
-                        nbSteps: workout.maxSet + 1,
+                        selectedStep: currentSet,
+                        nbSteps: maxSet + 1,
                         selectedStepColorIn: Colors.transparent,
                         selectedStepColorOut: Theme.of(context).primaryColor,
                         unselectedStepColorIn: Theme.of(context).primaryColor,
@@ -87,14 +91,8 @@ class WorkoutSetScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
-              child: BlocBuilder<WorkoutCubit, WorkoutState>(
-                builder: (_, workout) {
-                  return CurrentSetWidget(
-                    setNumber: workout.currentSet,
-                  );
-                },
-              ),
+            const Expanded(
+              child: CurrentSetWidget(),
             ),
           ],
         ),
@@ -106,45 +104,54 @@ class WorkoutSetScreen extends StatelessWidget {
 class CurrentSetWidget extends StatelessWidget {
   const CurrentSetWidget({
     super.key,
-    required this.setNumber,
   });
-
-  final int setNumber;
 
   @override
   Widget build(BuildContext context) {
-    WorkoutCubit workout = context.read<WorkoutCubit>();
+    WorkoutCubit workoutCubit = context.read<WorkoutCubit>();
+    int setNumber = workoutCubit.state.currentSet;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(S.of(context).weight),
-        ChangeDoubleFieldExtended(
-          value: workout.state.exercises[workout.state.currentExcersise]
-              .sets[setNumber].weight,
-          increaseCallback: () => workout.incWeight025(
-              excersiseNumber: workout.state.currentExcersise,
-              setNumber: setNumber),
-          decreaseCallback: () => workout.decWeight025(
-              excersiseNumber: workout.state.currentExcersise,
-              setNumber: setNumber),
-          increaseCallbackFast: () => workout.incWeight5(
-              excersiseNumber: workout.state.currentExcersise,
-              setNumber: setNumber),
-          decreaseCallbackFast: () => workout.decWeight5(
-              excersiseNumber: workout.state.currentExcersise,
-              setNumber: setNumber),
+        BlocBuilder<WorkoutCubit, WorkoutState>(
+          builder: (_, state) {
+            return ChangeDoubleFieldExtended(
+              value: state
+                  .exercises[state.currentExcersise].sets[setNumber].weight,
+              increaseCallback: () => workoutCubit.incWeight025(
+                  excersiseNumber: state.currentExcersise,
+                  setNumber: setNumber),
+              decreaseCallback: () => workoutCubit.decWeight025(
+                  excersiseNumber: state.currentExcersise,
+                  setNumber: setNumber),
+              increaseCallbackFast: () => workoutCubit.incWeight5(
+                  excersiseNumber: state.currentExcersise,
+                  setNumber: setNumber),
+              decreaseCallbackFast: () => workoutCubit.decWeight5(
+                  excersiseNumber: state.currentExcersise,
+                  setNumber: setNumber),
+            );
+          },
         ),
         Text(S.of(context).repeats),
-        ChangeIntField(
-          value: workout.state.exercises[workout.state.currentExcersise]
-              .sets[setNumber].repeats,
-          decreaseCallback: () => workout.decRepeats(
-              excersiseNumber: workout.state.currentExcersise,
-              setNumber: setNumber),
-          increaseCallback: () => workout.incRepeats(
-              excersiseNumber: workout.state.currentExcersise,
-              setNumber: setNumber),
+        BlocBuilder<WorkoutCubit, WorkoutState>(
+          builder: (_, state) {
+            return ChangeIntField(
+              value: workoutCubit
+                  .state
+                  .exercises[workoutCubit.state.currentExcersise]
+                  .sets[setNumber]
+                  .repeats,
+              decreaseCallback: () => workoutCubit.decRepeats(
+                  excersiseNumber: workoutCubit.state.currentExcersise,
+                  setNumber: setNumber),
+              increaseCallback: () => workoutCubit.incRepeats(
+                  excersiseNumber: workoutCubit.state.currentExcersise,
+                  setNumber: setNumber),
+            );
+          },
         ),
       ],
     );

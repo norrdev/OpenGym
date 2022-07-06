@@ -58,5 +58,6 @@
     "noDesc": "Нет описания.",
     "selectProgram": "Cоздайте или выберите программу",
     "workoutInProgress": "Тренировка в процессе.",
-    "wrkTrainingVolume": "Объём тренировки"
+    "wrkTrainingVolume": "Объём тренировки",
+    "total": "Всего"
 }

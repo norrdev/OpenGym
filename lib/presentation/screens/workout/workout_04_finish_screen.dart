@@ -15,26 +15,31 @@ class WorkoutFinishScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = ScrollController();
-    final wp = context.read<WorkoutCubit>().state;
-    DateTime? start = wp.startTime;
-    DateTime? finish = wp.finishTime;
+    final wp = context.read<WorkoutCubit>();
+    DateTime? start = wp.state.startTime;
+    DateTime? finish = wp.state.finishTime;
     double trainingVolume = 0.0;
+    double exTrainingVolume = 0.0;
 
     String duration = finish!.difference(start!).inMinutes.toString();
     String output =
-        '${S.of(context).wrkDuration}: $duration ${S.of(context).min}\n\r \n\r';
+        '${S.of(context).wrkDuration}: $duration ${S.of(context).min}';
 
-    for (WorkoutExercise item in wp.exercises) {
-      output += '**${item.name}**\n\r';
+    for (WorkoutExercise item in wp.state.exercises) {
+      output += '\n\r**${item.name}**';
       for (int i = 0; i < item.sets.length; i++) {
         output +=
-            '${i + 1}. ${item.sets[i].weight} kg X ${item.sets[i].repeats}\n\r';
-        trainingVolume += item.sets[i].weight * item.sets[i].repeats;
+            '\n\r ${i + 1}. ${item.sets[i].weight} kg X ${item.sets[i].repeats}';
+        exTrainingVolume += item.sets[i].weight * item.sets[i].repeats;
       }
+      output +=
+          '\n\r *${S.of(context).total}: ${exTrainingVolume.toStringAsFixed(2)} kg* \n\r';
+      trainingVolume += exTrainingVolume;
+      exTrainingVolume = 0.0;
     }
 
     output +=
-        '\n\r**${S.of(context).wrkTrainingVolume}**: $trainingVolume kg\n\r';
+        '\n\r **${S.of(context).wrkTrainingVolume}**: $trainingVolume kg\n\r';
 
     MarkdownStyleSheet style = MarkdownStyleSheet.fromTheme(Theme.of(context));
 
@@ -59,8 +64,7 @@ class WorkoutFinishScreen extends StatelessWidget {
               final repository =
                   Provider.of<Repository>(context, listen: false);
               await repository.insertLog(context);
-              wp.active = false;
-              wp.finished = true;
+              wp.finishWorkout();
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => MainScreen()),

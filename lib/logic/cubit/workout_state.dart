@@ -2,37 +2,53 @@ part of 'workout_cubit.dart';
 
 class WorkoutState extends Equatable {
   /// Active workout flag.
-  //TODO: make state
-  bool active = false;
+  final bool active;
 
   /// Finished workout flag. Active != filished.
-  //TODO: make state
-  bool finished = false;
+  final bool finished;
 
   /// Workout day from DB.days.
-  int dayID = 0;
+  final int dayID;
 
   /// Workout start time.
-  DateTime? startTime;
+  final DateTime? startTime;
 
   /// Workout end time.
-  DateTime? finishTime;
+  final DateTime? finishTime;
 
   /// Exerscises from DB.
-  List<WorkoutExercise> exercises = [];
+  final List<WorkoutExercise> exercises;
 
-  // Completion Log
+  ///Current excersise counter.
+  final int currentExcersise;
 
-  ///Current excersise counter
-  int currentExcersise = 0;
+  /// Current set counter.
+  final int currentSet;
+
+  //! TODO: unique field. Added to the state to re-rendering of the widget, cause of bug.
+  //! I do not know, why states is not unique. May be exercises is unique for compare.
+  final DateTime lastUpdate;
+
+  /// Max exervise.
   int get maxExcersise => exercises.length - 1;
 
-  /// Current set counter
-  int currentSet = 0;
+  /// Quantity of sets in current excersise
   int get maxSet => exercises[currentExcersise].maxSets - 1;
 
   /// Current rest
   int get currentRest => exercises[currentExcersise].restTime;
+
+  const WorkoutState({
+    required this.active,
+    required this.finished,
+    required this.dayID,
+    this.startTime,
+    this.finishTime,
+    required this.exercises,
+    required this.currentExcersise,
+    required this.currentSet,
+    required this.lastUpdate,
+  });
 
   @override
   List<Object?> get props => [
@@ -44,8 +60,35 @@ class WorkoutState extends Equatable {
         exercises,
         currentExcersise,
         currentSet,
-        currentRest,
-        maxExcersise,
-        maxSet,
+        lastUpdate, //! TODO: remove this field, then fix the bug.
+        // WRN: DO NOT ADD GETTERS HERE
+        // currentRest,
+        // maxExcersise,
+        // maxSet,
       ];
+
+  WorkoutState copyWith({
+    bool? active,
+    bool? finished,
+    int? dayID,
+    DateTime? startTime,
+    DateTime? finishTime,
+    List<WorkoutExercise>? exercises,
+    int? currentExcersise,
+    int? currentSet,
+    DateTime? lastUpdate,
+  }) {
+    return WorkoutState(
+      active: active ?? this.active,
+      finished: finished ?? this.finished,
+      dayID: dayID ?? this.dayID,
+      startTime: startTime ?? this.startTime,
+      finishTime: finishTime ?? this.finishTime,
+      exercises: exercises ?? this.exercises,
+      currentExcersise: currentExcersise ?? this.currentExcersise,
+      currentSet: currentSet ?? this.currentSet,
+      lastUpdate: DateTime.now(), //! TODO: remove this field, then fix the bug.
+      //lastUpdate: lastUpdate ?? this.lastUpdate,
+    );
+  }
 }
