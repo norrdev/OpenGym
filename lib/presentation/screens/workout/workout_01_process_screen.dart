@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:npng/logic/cubit/workout_cubit.dart';
 import 'package:wakelock/wakelock.dart';
 
 import 'package:npng/data/models/models.dart';
-import 'package:npng/state/workout_provider.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/presentation/screens/workout/workout_02_set_screen.dart';
 import 'package:npng/presentation/screens/workout/workout_04_finish_screen.dart';
 import 'package:npng/widgets/change_int_field.dart';
 
-/// Shows current workouprogram day and sets.
+/// Shows current workout program day and sets.
 class WorkoutProcessScreen extends StatelessWidget {
   final Day? day;
 
@@ -23,9 +23,11 @@ class WorkoutProcessScreen extends StatelessWidget {
         title: Text(S.of(context).currentWorkout),
       ),
       persistentFooterButtons: [
-        Consumer<WorkoutState>(
-          builder: (context, workout, _) {
-            if (workout.active) {
+        Builder(
+          builder: (context) {
+            final activeValue = context.select(
+                (WorkoutCubit workoutCubit) => workoutCubit.state.active);
+            if (activeValue) {
               return const ActiveBottomBar();
             } else {
               return InitBottomBar(dayId: day?.id as int);
@@ -34,9 +36,11 @@ class WorkoutProcessScreen extends StatelessWidget {
         ),
       ],
       body: SafeArea(
-        child: Consumer<WorkoutState>(
-          builder: (context, workout, _) {
-            if (workout.active) {
+        child: Builder(
+          builder: (context) {
+            final activeValue = context.select(
+                (WorkoutCubit workoutCubit) => workoutCubit.state.active);
+            if (activeValue) {
               return const ActiveListView();
             } else {
               return InitListView(day: day);
@@ -68,7 +72,7 @@ class InitListView extends StatelessWidget {
           final List<Workout> workouts =
               (snapshot.hasData) ? [...snapshot.data!] : [];
           if (workouts.isNotEmpty) {
-            context.read<WorkoutState>().workoutsSnapshot = workouts;
+            context.read<WorkoutCubit>().workoutsSnapshot = workouts;
           }
           return ReorderableListView.builder(
             itemCount: workouts.length,
@@ -182,16 +186,16 @@ class ActiveListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: context.read<WorkoutState>().excersises.length,
+      itemCount: context.read<WorkoutCubit>().state.exercises.length,
       itemBuilder: (context, index) {
-        return Consumer<WorkoutState>(builder: (context, workout, child) {
+        return BlocBuilder<WorkoutCubit, WorkoutState>(builder: (_, state) {
           return ListTile(
-              leading: (workout.excersises[index].completed)
+              leading: (state.exercises[index].completed)
                   ? const Icon(
                       Icons.done,
                     )
                   : null,
-              title: Text(workout.excersises[index].name));
+              title: Text(state.exercises[index].name));
         });
       },
     );
@@ -211,9 +215,7 @@ class InitBottomBar extends StatelessWidget {
       child: ElevatedButton(
         child: Text(S.of(context).start),
         onPressed: () {
-          context.read<WorkoutState>().dayID = dayId;
-          context.read<WorkoutState>().startTime = DateTime.now();
-          context.read<WorkoutState>().active = true;
+          context.read<WorkoutCubit>().startWorkout(dayId);
           Wakelock.enable();
           Navigator.push(
             context,
@@ -221,7 +223,6 @@ class InitBottomBar extends StatelessWidget {
               builder: (context) => const WorkoutSetScreen(),
             ),
           );
-          // TODO: Here is a problem with a state
         },
       ),
     );
@@ -239,7 +240,7 @@ class ActiveBottomBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        if (!context.read<WorkoutState>().finished)
+        if (!context.read<WorkoutCubit>().state.finished)
           ElevatedButton(
             child: Text(S.of(context).ccontinue),
             onPressed: () {
@@ -256,8 +257,9 @@ class ActiveBottomBar extends StatelessWidget {
           child: Text(S.of(context).finish),
           onPressed: () {
             Wakelock.disable();
-            context.read<WorkoutState>().finishTime = DateTime.now();
-            context.read<WorkoutState>().finished = true;
+            // TODO: FUNCTION HERE
+            // context.read<WorkoutCubit>().state.finishTime = DateTime.now();
+            // context.read<WorkoutCubit>().state.finished = true;
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(

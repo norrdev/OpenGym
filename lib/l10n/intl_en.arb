@@ -58,5 +58,6 @@
     "noDesc": "No description.",
     "selectProgram": "Select or create program first",
     "workoutInProgress": "Workout in progress",
-    "wrkTrainingVolume": "Training volume"
+    "wrkTrainingVolume": "Training volume",
+    "total": "Total"
 }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:npng/logic/cubit/workout_cubit.dart';
 import 'package:npng/widgets/change_double_field_extended.dart';
 import 'package:npng/widgets/change_int_field.dart';
-import 'package:provider/provider.dart';
-import 'package:steps_indicator/steps_indicator.dart';
 
-import 'package:npng/state/workout_provider.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/presentation/screens/workout/workout_03_timer_screen.dart';
+import 'package:steps_indicator/steps_indicator.dart';
 
 class WorkoutSetScreen extends StatelessWidget {
   static const String id = '/set';
@@ -17,9 +17,9 @@ class WorkoutSetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Consumer<WorkoutState>(
-          builder: (context, wk, _) {
-            return Text(wk.excersises[wk.currentExcersise].name);
+        title: BlocBuilder<WorkoutCubit, WorkoutState>(
+          builder: (_, wk) {
+            return Text(wk.exercises[wk.currentExcersise].name);
           },
         ),
       ),
@@ -48,11 +48,15 @@ class WorkoutSetScreen extends StatelessWidget {
                   IconButton(
                     icon: const Icon(Icons.arrow_back_ios_rounded),
                     onPressed: () =>
-                        context.read<WorkoutState>().manualRemoveOneSet(),
+                        context.read<WorkoutCubit>().manualRemoveOneSet(),
                   ),
-                  Consumer<WorkoutState>(
-                    builder: (context, workout, _) {
-                      int mSet = workout.maxSet + 1;
+                  BlocBuilder<WorkoutCubit, WorkoutState>(
+                    builder: (context, state) {
+                      final maxSet = state.maxSet;
+                      final currentSet = state.currentSet;
+
+                      print('--------------------------Widget rebuilded');
+                      int mSet = maxSet + 1;
                       double maxLineLength =
                           MediaQuery.of(context).size.width * 0.65;
                       double linelength = maxLineLength;
@@ -64,10 +68,11 @@ class WorkoutSetScreen extends StatelessWidget {
                           linelength = 0;
                         }
                       }
+
                       return StepsIndicator(
                         lineLength: linelength,
-                        selectedStep: workout.currentSet,
-                        nbSteps: workout.maxSet + 1,
+                        selectedStep: currentSet,
+                        nbSteps: maxSet + 1,
                         selectedStepColorIn: Colors.transparent,
                         selectedStepColorOut: Theme.of(context).primaryColor,
                         unselectedStepColorIn: Theme.of(context).primaryColor,
@@ -81,19 +86,13 @@ class WorkoutSetScreen extends StatelessWidget {
                   IconButton(
                     icon: const Icon(Icons.arrow_forward_ios_rounded),
                     onPressed: () =>
-                        context.read<WorkoutState>().manualAddOneSet(),
+                        context.read<WorkoutCubit>().manualAddOneSet(),
                   ),
                 ],
               ),
             ),
-            Expanded(
-              child: Consumer<WorkoutState>(
-                builder: (context, workout, child) {
-                  return CurrentSetWidget(
-                    setNumber: workout.currentSet,
-                  );
-                },
-              ),
+            const Expanded(
+              child: CurrentSetWidget(),
             ),
           ],
         ),
@@ -105,39 +104,54 @@ class WorkoutSetScreen extends StatelessWidget {
 class CurrentSetWidget extends StatelessWidget {
   const CurrentSetWidget({
     super.key,
-    required this.setNumber,
   });
-
-  final int setNumber;
 
   @override
   Widget build(BuildContext context) {
-    WorkoutState workout = context.read<WorkoutState>();
+    WorkoutCubit workoutCubit = context.read<WorkoutCubit>();
+    int setNumber = workoutCubit.state.currentSet;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(S.of(context).weight),
-        ChangeDoubleFieldExtended(
-          value: workout
-              .excersises[workout.currentExcersise].sets[setNumber].weight,
-          increaseCallback: () => workout.incWeight025(
-              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
-          decreaseCallback: () => workout.decWeight025(
-              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
-          increaseCallbackFast: () => workout.incWeight5(
-              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
-          decreaseCallbackFast: () => workout.decWeight5(
-              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
+        BlocBuilder<WorkoutCubit, WorkoutState>(
+          builder: (_, state) {
+            return ChangeDoubleFieldExtended(
+              value: state
+                  .exercises[state.currentExcersise].sets[setNumber].weight,
+              increaseCallback: () => workoutCubit.incWeight025(
+                  excersiseNumber: state.currentExcersise,
+                  setNumber: setNumber),
+              decreaseCallback: () => workoutCubit.decWeight025(
+                  excersiseNumber: state.currentExcersise,
+                  setNumber: setNumber),
+              increaseCallbackFast: () => workoutCubit.incWeight5(
+                  excersiseNumber: state.currentExcersise,
+                  setNumber: setNumber),
+              decreaseCallbackFast: () => workoutCubit.decWeight5(
+                  excersiseNumber: state.currentExcersise,
+                  setNumber: setNumber),
+            );
+          },
         ),
         Text(S.of(context).repeats),
-        ChangeIntField(
-          value: workout
-              .excersises[workout.currentExcersise].sets[setNumber].repeats,
-          decreaseCallback: () => workout.decRepeats(
-              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
-          increaseCallback: () => workout.incRepeats(
-              excersiseNumber: workout.currentExcersise, setNumber: setNumber),
+        BlocBuilder<WorkoutCubit, WorkoutState>(
+          builder: (_, state) {
+            return ChangeIntField(
+              value: workoutCubit
+                  .state
+                  .exercises[workoutCubit.state.currentExcersise]
+                  .sets[setNumber]
+                  .repeats,
+              decreaseCallback: () => workoutCubit.decRepeats(
+                  excersiseNumber: workoutCubit.state.currentExcersise,
+                  setNumber: setNumber),
+              increaseCallback: () => workoutCubit.incRepeats(
+                  excersiseNumber: workoutCubit.state.currentExcersise,
+                  setNumber: setNumber),
+            );
+          },
         ),
       ],
     );

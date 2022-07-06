@@ -90,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "stopRest": MessageLookupByLibrary.simpleMessage("Прервать отдых"),
         "timer": MessageLookupByLibrary.simpleMessage("Таймер"),
         "title": MessageLookupByLibrary.simpleMessage("NpNg"),
+        "total": MessageLookupByLibrary.simpleMessage("Всего"),
         "weight": MessageLookupByLibrary.simpleMessage("Вес"),
         "workoutFinished":
             MessageLookupByLibrary.simpleMessage("Тренировка завершена"),

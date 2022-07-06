@@ -3,7 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:npng/state/workout_provider.dart';
+import 'package:npng/data/models/workout_exercise.dart';
+import 'package:npng/logic/cubit/workout_cubit.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
@@ -443,9 +444,12 @@ class DatabaseHelper {
     return result;
   }
 
+// TODO: move to Cubit.
   Future<void> insertLog(BuildContext context) async {
     final db = await instance.streamDatabase;
-    final wp = Provider.of<WorkoutState>(context, listen: false);
+    final wp = context
+        .read<WorkoutCubit>()
+        .state; //Provider.of<OldWorkoutState>(context, listen: false);
 
     int logDaysId = await db.insert(logDaysTable, {
       'start': wp.startTime?.toLocal().toString() ?? '',
@@ -454,7 +458,7 @@ class DatabaseHelper {
     });
 
     await db.transaction((txn) async {
-      for (Exerscise item in wp.excersises) {
+      for (WorkoutExercise item in wp.exercises) {
         for (int i = 0; i < item.sets.length; i++) {
           await txn.insert(logWorkoutsTable, {
             'log_days_id': logDaysId,
