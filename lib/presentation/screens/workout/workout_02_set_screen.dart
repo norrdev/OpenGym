@@ -54,8 +54,6 @@ class WorkoutSetScreen extends StatelessWidget {
                     builder: (context, state) {
                       final maxSet = state.maxSet;
                       final currentSet = state.currentSet;
-
-                      print('--------------------------Widget rebuilded');
                       int mSet = maxSet + 1;
                       double maxLineLength =
                           MediaQuery.of(context).size.width * 0.65;

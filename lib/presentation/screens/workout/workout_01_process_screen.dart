@@ -257,9 +257,6 @@ class ActiveBottomBar extends StatelessWidget {
           child: Text(S.of(context).finish),
           onPressed: () {
             Wakelock.disable();
-            // TODO: FUNCTION HERE
-            // context.read<WorkoutCubit>().state.finishTime = DateTime.now();
-            // context.read<WorkoutCubit>().state.finished = true;
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
