@@ -2,6 +2,7 @@
 - Core refactoring.
 - Improved perfomance.
 - Merged programs and workout screens.
+- Total training volume on finish and log screen.
 
 ## 2.1.0
 - Same desingn in all operation systems.

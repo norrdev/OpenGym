@@ -39,6 +39,8 @@ class _LogWorkoutScreenState extends State<LogWorkoutScreen> {
     DateTime start = DateTime.parse(widget.logday.start as String);
     DateTime finish = DateTime.parse(widget.logday.finish as String);
     String duration = finish.difference(start).inMinutes.toString();
+    double trainingVolume = 0.0;
+    double exTrainingVolume = 0.0;
     String output =
         '${S.of(context).wrkDuration}: $duration ${S.of(context).min}\n\r \n\r';
 
@@ -47,12 +49,24 @@ class _LogWorkoutScreenState extends State<LogWorkoutScreen> {
 
     for (LogWorkout item in workouts) {
       if (flagName != item.name) {
+        if (exTrainingVolume > 0) {
+          output +=
+              '\n\r *${S.of(context).total}: ${exTrainingVolume.toStringAsFixed(2)} kg* \n\r';
+          trainingVolume += exTrainingVolume;
+          exTrainingVolume = 0.0;
+        }
         output += '**${item.name}** \n\r';
         flagName = item.name as String;
         count = 0;
       }
       output += '${count + 1}. ${item.weight} kg X ${item.repeat}\n\r';
+      exTrainingVolume += item.weight! * item.repeat!;
     }
+    output +=
+        '\n\r *${S.of(context).total}: ${exTrainingVolume.toStringAsFixed(2)} kg* \n\r';
+    trainingVolume += exTrainingVolume;
+    output +=
+        '\n\r **${S.of(context).wrkTrainingVolume}**: $trainingVolume kg\n\r';
 
     return Scaffold(
         appBar: AppBar(
