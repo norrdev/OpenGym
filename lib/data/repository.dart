@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:npng/data/models/models.dart';
+import 'package:npng/data/models/workout_exercise.dart';
 
 abstract class Repository {
   Future<void> init();
@@ -50,7 +50,12 @@ abstract class Repository {
 
   Future<List<LogWorkout>> findLogWorkoutByDay(int logDayId);
 
-  Future<void> insertLog(BuildContext context);
+  Future<void> insertLog({
+    required DateTime startTime,
+    required DateTime finishTime,
+    required int dayId,
+    required List<WorkoutExercise> exercises,
+  });
 
   Future<String> backupDatabase();
 

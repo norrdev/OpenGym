@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
+import 'package:npng/data/models/workout_exercise.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/data/sqlite/database_helper.dart';
 import 'package:npng/data/models/models.dart';
@@ -139,8 +139,18 @@ class SqliteRepository extends Repository {
   }
 
   @override
-  Future<void> insertLog(BuildContext context) {
-    dbHelper.insertLog(context);
+  Future<void> insertLog({
+    required DateTime startTime,
+    required DateTime finishTime,
+    required int dayId,
+    required List<WorkoutExercise> exercises,
+  }) {
+    dbHelper.insertLog(
+      startTime: startTime,
+      finishTime: finishTime,
+      dayId: dayId,
+      exercises: exercises,
+    );
     return Future.value();
   }
 

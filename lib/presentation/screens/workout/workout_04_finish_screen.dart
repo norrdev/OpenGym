@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:npng/data/models/workout_exercise.dart';
-import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/logic/cubit/workout_cubit.dart';
 import 'package:npng/presentation/screens/main_screen.dart';
@@ -60,11 +59,8 @@ class WorkoutFinishScreen extends StatelessWidget {
         Center(
           child: ElevatedButton(
             child: Text(S.of(context).saveToLog),
-            onPressed: () async {
-              final repository =
-                  Provider.of<Repository>(context, listen: false);
-              await repository.insertLog(context);
-              wp.finishWorkout();
+            onPressed: () {
+              wp.finishWorkout(context);
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => MainScreen()),

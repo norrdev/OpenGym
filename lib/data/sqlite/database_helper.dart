@@ -1,13 +1,10 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:npng/data/models/workout_exercise.dart';
-import 'package:npng/logic/cubit/workout_cubit.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:sqlbrite/sqlbrite.dart';
 import 'package:synchronized/synchronized.dart';
 import 'package:npng/data/models/models.dart';
@@ -444,21 +441,22 @@ class DatabaseHelper {
     return result;
   }
 
-// TODO: move to Cubit.
-  Future<void> insertLog(BuildContext context) async {
+  Future<void> insertLog({
+    required DateTime startTime,
+    required DateTime finishTime,
+    required int dayId,
+    required List<WorkoutExercise> exercises,
+  }) async {
     final db = await instance.streamDatabase;
-    final wp = context
-        .read<WorkoutCubit>()
-        .state; //Provider.of<OldWorkoutState>(context, listen: false);
 
     int logDaysId = await db.insert(logDaysTable, {
-      'start': wp.startTime?.toLocal().toString() ?? '',
-      'finish': wp.finishTime?.toLocal().toString() ?? '',
-      'days_id': wp.dayID,
+      'start': startTime.toLocal().toString(),
+      'finish': finishTime.toLocal().toString(),
+      'days_id': dayId,
     });
 
     await db.transaction((txn) async {
-      for (WorkoutExercise item in wp.exercises) {
+      for (WorkoutExercise item in exercises) {
         for (int i = 0; i < item.sets.length; i++) {
           await txn.insert(logWorkoutsTable, {
             'log_days_id': logDaysId,

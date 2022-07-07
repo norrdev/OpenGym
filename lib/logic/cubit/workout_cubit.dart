@@ -1,8 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/models/workout_exercise.dart';
 import 'package:npng/data/models/workout_set.dart';
+import 'package:npng/data/repository.dart';
+import 'package:provider/provider.dart';
 
 part 'workout_state.dart';
 
@@ -17,7 +20,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
           exercises: const [],
           currentExcersise: 0,
           currentSet: 0,
-          lastUpdate: DateTime.now(),
+          lastUpdate: DateTime.now(), //!
         ));
 
   //Snapshot of workouts
@@ -65,14 +68,21 @@ class WorkoutCubit extends Cubit<WorkoutState> {
     ));
   }
 
-  void finishWorkout() {
+  void finishWorkout(BuildContext context) async {
+    final repository = Provider.of<Repository>(context, listen: false);
+    await repository.insertLog(
+      startTime: state.startTime!,
+      finishTime: DateTime.now(),
+      dayId: state.dayID,
+      exercises: state.exercises,
+    );
     emit(state.copyWith(active: false, finished: true));
   }
 
   /// Increment the current exercise.
   void _incCurrentExcersise() {
     if (state.currentExcersise < state.maxExcersise) {
-      List<WorkoutExercise> exercises = state.exercises;
+      List<WorkoutExercise> exercises = [...state.exercises];
       exercises[state.currentExcersise].completed = true;
       emit(state.copyWith(
         currentSet: 0,
@@ -101,14 +111,14 @@ class WorkoutCubit extends Cubit<WorkoutState> {
 
   /// Increase repeats in set
   void incRepeats({int? excersiseNumber, int? setNumber}) {
-    List<WorkoutExercise> exercises = state.exercises;
+    List<WorkoutExercise> exercises = [...state.exercises];
     exercises[excersiseNumber!].sets[setNumber!].repeats++;
     emit(state.copyWith(exercises: exercises));
   }
 
   /// Decrease repeats in set
   void decRepeats({int? excersiseNumber, int? setNumber}) {
-    List<WorkoutExercise> exercises = state.exercises;
+    List<WorkoutExercise> exercises = [...state.exercises];
     if (exercises[excersiseNumber!].sets[setNumber!].repeats > 1) {
       exercises[excersiseNumber].sets[setNumber].repeats--;
       emit(state.copyWith(exercises: exercises));
@@ -117,7 +127,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
 
   /// Increase weight in set by 0.25
   void incWeight025({int? excersiseNumber, int? setNumber}) {
-    List<WorkoutExercise> exercises = state.exercises;
+    List<WorkoutExercise> exercises = [...state.exercises];
     exercises[excersiseNumber!].sets[setNumber!].weight =
         exercises[excersiseNumber].sets[setNumber].weight + 0.25;
     emit(state.copyWith(exercises: exercises));
@@ -125,7 +135,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
 
   /// Increase weight in set by 0.5
   void incWeight5({int? excersiseNumber, int? setNumber}) {
-    List<WorkoutExercise> exercises = state.exercises;
+    List<WorkoutExercise> exercises = [...state.exercises];
     exercises[excersiseNumber!].sets[setNumber!].weight =
         exercises[excersiseNumber].sets[setNumber].weight + 5;
     emit(state.copyWith(exercises: exercises));
@@ -133,7 +143,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
 
   /// Decrease weight in set
   void decWeight025({int? excersiseNumber, int? setNumber}) {
-    List<WorkoutExercise> exercises = state.exercises;
+    List<WorkoutExercise> exercises = [...state.exercises];
     if (exercises[excersiseNumber!].sets[setNumber!].weight > 0) {
       exercises[excersiseNumber].sets[setNumber].weight =
           exercises[excersiseNumber].sets[setNumber].weight - 0.25;
@@ -143,7 +153,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
 
   ///Decrease weight in set in 0.5
   void decWeight5({int? excersiseNumber, int? setNumber}) {
-    List<WorkoutExercise> exercises = state.exercises;
+    List<WorkoutExercise> exercises = [...state.exercises];
     if (exercises[excersiseNumber!].sets[setNumber!].weight > 5) {
       exercises[excersiseNumber].sets[setNumber].weight =
           exercises[excersiseNumber].sets[setNumber].weight - 5;
@@ -153,7 +163,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
 
   /// +1 set Button
   void manualAddOneSet() {
-    List<WorkoutExercise> exercises = state.exercises;
+    List<WorkoutExercise> exercises = [...state.exercises];
     exercises[state.currentExcersise].sets.add(exercises[state.currentExcersise]
         .sets[exercises[state.currentExcersise].sets.length - 1]);
     exercises[state.currentExcersise].maxSets++;
@@ -162,7 +172,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
 
   /// -1 set Button
   void manualRemoveOneSet() {
-    List<WorkoutExercise> exercises = state.exercises;
+    List<WorkoutExercise> exercises = [...state.exercises];
     if (exercises[state.currentExcersise].sets.length > state.currentSet + 1) {
       exercises[state.currentExcersise].sets.removeLast();
       exercises[state.currentExcersise].maxSets--;

@@ -1,6 +1,6 @@
 part of 'database_helper.dart';
 
-///Migration script v2
+/// Migration script v2
 void _upgradeTableMuscleV1toV2(Batch batch) {
   batch.execute('PRAGMA foreign_keys = 0');
   batch.execute(''' 

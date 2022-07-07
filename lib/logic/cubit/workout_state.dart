@@ -1,5 +1,14 @@
 part of 'workout_cubit.dart';
 
+class EquatableDateTime with EquatableMixin {
+  DateTime dateTime;
+
+  EquatableDateTime(this.dateTime);
+
+  @override
+  List<Object> get props => [dateTime];
+}
+
 class WorkoutState extends Equatable {
   /// Active workout flag.
   final bool active;
@@ -47,7 +56,7 @@ class WorkoutState extends Equatable {
     required this.exercises,
     required this.currentExcersise,
     required this.currentSet,
-    required this.lastUpdate,
+    required this.lastUpdate, //!
   });
 
   @override
@@ -88,7 +97,6 @@ class WorkoutState extends Equatable {
       currentExcersise: currentExcersise ?? this.currentExcersise,
       currentSet: currentSet ?? this.currentSet,
       lastUpdate: DateTime.now(), //! TODO: remove this field, then fix the bug.
-      //lastUpdate: lastUpdate ?? this.lastUpdate,
     );
   }
 }
