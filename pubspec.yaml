@@ -47,8 +47,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    #- assets/icons/
-    #- assets/images/
+    - assets/icons/
+    - assets/icons/
+    - assets/images/
     - assets/texts/en/
     - assets/texts/ru/
     - assets/sounds/

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:npng/logic/cubit/current_tab_cubit.dart';
 
 import 'package:npng/generated/l10n.dart';
+import 'package:npng/presentation/screens/calculators/calc_main_screen.dart';
 import 'package:npng/presentation/screens/exercises/exercises_screen.dart';
 import 'package:npng/presentation/screens/log/log_calendar_screen.dart';
 import 'package:npng/presentation/screens/programs/programs_screen.dart';
@@ -16,6 +17,7 @@ class MainScreen extends StatelessWidget {
     const WorkoutStartScreen(),
     const ExercisesScreen(),
     const LogCalendarScreen(),
+    const CalcMainScreen(),
     const SettingsScreen()
   ];
 
@@ -37,6 +39,9 @@ class MainScreen extends StatelessWidget {
               title = S.of(context).log;
               break;
             case 3:
+              title = S.of(context).calculate;
+              break;
+            case 4:
               title = S.of(context).settings;
               break;
             default:
@@ -60,6 +65,10 @@ class MainScreen extends StatelessWidget {
                 BottomNavigationBarItem(
                   icon: const Icon(Icons.calendar_month_rounded),
                   label: S.of(context).log,
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.gas_meter_rounded),
+                  label: S.of(context).calculate,
                 ),
                 BottomNavigationBarItem(
                   icon: const Icon(Icons.settings_rounded),
