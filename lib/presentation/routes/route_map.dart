@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:npng/presentation/screens/calculators/calc_bmi_screen.dart';
 import 'package:npng/presentation/screens/exercises/exercises_screen.dart';
 import 'package:npng/presentation/screens/main_screen.dart';
 import 'package:npng/presentation/screens/settings/about_screen.dart';
@@ -15,4 +16,5 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   TimerScreen.id: (context) => const TimerScreen(),
   AboutScreen.id: (context) => AboutScreen(),
   ExercisesScreen.id: (context) => const ExercisesScreen(),
+  '/bmi': (_) => const CalcBmiScreen(),
 };

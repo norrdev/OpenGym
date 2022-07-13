@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:npng/constants/colors.dart';
 import 'package:npng/generated/l10n.dart';
 
 class CalcMainScreen extends StatelessWidget {
@@ -14,38 +15,15 @@ class CalcMainScreen extends StatelessWidget {
         mainAxisSpacing: 10,
         maxCrossAxisExtent: 200.0,
         children: <Widget>[
-          MaterialButton(
-            padding: const EdgeInsets.all(8.0),
-            onPressed: () {
-              // Navigator.pushNamed(context, BmiPage.id);
-            },
-            child: Column(
-              children: [
-                Image.asset('assets/icons/icons8-bmi-96.png'),
-                Text(
-                  S.of(context).bmiPageTitle,
-                  textAlign: TextAlign.center,
-                  textScaleFactor: 0.9,
-                ),
-              ],
-            ),
+          CalcButton(
+            route: '/bmi',
+            title: S.of(context).bmiPageTitle,
+            asset: 'assets/icons/icons8-bmi-96.png',
           ),
-          MaterialButton(
-            padding: const EdgeInsets.all(8.0),
-            onPressed: () {
-              //Navigator.pushNamed(context, AbsiPage.id);
-            },
-            child: Column(
-              children: [
-                Image.asset('assets/icons/icons8-dead-man-in-a-coffin-96.png'),
-                Text(
-                  S.of(context).absiPageTitle,
-                  textAlign: TextAlign.center,
-                  textScaleFactor: 0.9,
-                ),
-              ],
-            ),
-          ),
+          CalcButton(
+              route: 'route',
+              asset: 'assets/icons/icons8-dead-man-in-a-coffin-96.png',
+              title: S.of(context).absiPageTitle),
           MaterialButton(
             padding: const EdgeInsets.all(8.0),
             onPressed: () {
@@ -188,6 +166,39 @@ class CalcMainScreen extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CalcButton extends StatelessWidget {
+  final String route;
+  final String asset;
+  final String title;
+
+  const CalcButton({
+    super.key,
+    required this.route,
+    required this.asset,
+    required this.title,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      padding: const EdgeInsets.all(8.0),
+      onPressed: () {
+        Navigator.pushNamed(context, route);
+      },
+      child: Column(
+        children: [
+          ColorFiltered(colorFilter: kGrayscale, child: Image.asset(asset)),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            textScaleFactor: 0.9,
           ),
         ],
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const ColorFilter grayscale = ColorFilter.matrix(
+const ColorFilter kGrayscale = ColorFilter.matrix(
   <double>[
     0.2126,
     0.7152,

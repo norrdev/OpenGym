@@ -1,5 +1,7 @@
 import 'dart:math';
+
 import 'package:flutter/widgets.dart';
+
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/logic/calculators/calc.dart';
 import 'package:npng/logic/calculators/calc_bmi.dart';
@@ -7,29 +9,33 @@ import 'package:npng/logic/calculators/calc_bmi.dart';
 /// ABSI calculation
 /// https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0039504
 class CalcABSI {
-  BuildContext? context; // For localization
-  double? weightAthlete;
-  double? heightAthleteCm;
-  double? waistCircumferenceCm;
-  Gender? gender;
-  int? age;
+  final BuildContext? context; // For localization
+  final double weightAthlete;
+  final double heightAthleteCm;
+  final double waistCircumferenceCm;
+  final Gender gender;
+  final int age;
+  late double _bmi;
 
-  CalcABSI(
-      {required this.context,
-      required this.weightAthlete,
-      required this.heightAthleteCm,
-      required this.gender,
-      required this.age,
-      required this.waistCircumferenceCm});
+  CalcABSI({
+    required this.context,
+    required this.weightAthlete,
+    required this.heightAthleteCm,
+    required this.waistCircumferenceCm,
+    required this.gender,
+    required this.age,
+  }) {
+    CalculatorBmi cBmi = CalculatorBmi(
+        weightAthlete: weightAthlete, heightAthleteCm: heightAthleteCm);
 
-  double get bmi =>
-      calcBmi(weightAthlete: weightAthlete!, heightAthleteCm: heightAthleteCm!);
+    _bmi = cBmi.bmi();
+  }
 
   double get absi =>
-      (waistCircumferenceCm! / 100.0) /
-      (pow(bmi, 2.0 / 3.0) * pow(heightAthleteCm! / 100.0, 0.5));
-  double get absiMean => absiTable[gender]![age]![3];
-  double get absiSD => absiTable[gender]![age]![4];
+      (waistCircumferenceCm / 100.0) /
+      (pow(_bmi, 2.0 / 3.0) * pow(heightAthleteCm / 100.0, 0.5));
+  double get absiMean => _absiTable[gender]![age]![3];
+  double get absiSD => _absiTable[gender]![age]![4];
   double get absiZ => (absi - absiMean) / absiSD;
 
   String get absiRisk {
@@ -51,7 +57,7 @@ class CalcABSI {
 
   /// ABSI Coeffs
   /// https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0039504.s001&type=supplementary
-  final Map<Gender, Map<int, List<double>>> absiTable = {
+  final Map<Gender, Map<int, List<double>>> _absiTable = {
     Gender.male: {
       //age: [ 0 numbber of people, 1 ABSImean, 2 ABSIsd, 3 smoothed ABSImean, 4 smothed ABSIsd]
       2: [320, 0.07778, 0.00312, 0.07890, 0.00384],

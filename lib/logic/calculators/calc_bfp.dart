@@ -12,8 +12,10 @@ double calcBFP(
   double sex = 0.0;
   if (gender == Gender.male) sex = 1.0;
 
-  double bmi =
-      calcBmi(weightAthlete: weightAthlete, heightAthleteCm: heightAthleteCm);
+  CalculatorBmi cBmi = CalculatorBmi(
+      weightAthlete: weightAthlete, heightAthleteCm: heightAthleteCm);
+
+  double bmi = cBmi.bmi();
 
   if (age <= 15.0) {
     res = (1.51 * bmi) - (0.7 * age) - (3.6 * sex) + 1.4;

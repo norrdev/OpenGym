@@ -2,14 +2,22 @@ import 'dart:math';
 import 'package:flutter/widgets.dart';
 import 'package:npng/generated/l10n.dart';
 
-double calcBmi(
-        {required double weightAthlete, required double heightAthleteCm}) =>
-    weightAthlete / pow((heightAthleteCm / 100), 2);
+class CalculatorBmi {
+  final double weightAthlete;
+  final double heightAthleteCm;
+  final BuildContext? context;
 
-String bmiInterpretation(
-    {required double? bmi, required BuildContext? context}) {
-  String result = '';
-  if (bmi != null) {
+  CalculatorBmi({
+    required this.weightAthlete,
+    required this.heightAthleteCm,
+    this.context,
+  });
+
+  double bmi() => weightAthlete / pow((heightAthleteCm / 100), 2);
+
+  String bmiInterpretation() {
+    double bmi = this.bmi();
+    String result = '';
     if (bmi < 15) {
       result = S.of(context!).bmi15;
     } else if (bmi >= 15 && bmi < 16) {
@@ -27,6 +35,6 @@ String bmiInterpretation(
     } else if (bmi >= 40) {
       result = S.of(context!).bmi40;
     }
+    return result;
   }
-  return result;
 }
