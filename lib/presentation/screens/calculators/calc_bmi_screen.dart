@@ -36,7 +36,7 @@ class _CalcBmiScreenState extends State<CalcBmiScreen> {
               flex: 1,
               child: Center(
                 child: Text(
-                  bmi.toStringAsFixed(3),
+                  (bmi > 0) ? bmi.toStringAsFixed(3) : '',
                   style: const TextStyle(fontSize: 40),
                 ),
               ),
