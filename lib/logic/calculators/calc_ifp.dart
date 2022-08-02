@@ -5,8 +5,8 @@ enum Equipment { raw, singlePly }
 
 enum Event { sbd, b }
 
-Map<Gender, Map<Equipment, Map<Event, List<double>>>> parameters = {
-  Gender.male: {
+Map<Sex, Map<Equipment, Map<Event, List<double>>>> parameters = {
+  Sex.male: {
     Equipment.raw: {
       Event.sbd: [1199.72839, 1025.18162, 0.009210],
       Event.b: [320.98041, 281.40258, 0.01008]
@@ -16,7 +16,7 @@ Map<Gender, Map<Equipment, Map<Event, List<double>>>> parameters = {
       Event.b: [381.22073, 733.79378, 0.02398]
     }
   },
-  Gender.female: {
+  Sex.female: {
     Equipment.raw: {
       Event.sbd: [610.32796, 1045.59282, 0.03048],
       Event.b: [142.40398, 442.52671, 0.04724]
@@ -50,11 +50,11 @@ double dotsW(double bodyweight) {
 Map<String, double> calcIFP(
     {required double total,
     required double bodyweight,
-    required Gender? gender,
+    required Sex? gender,
     required Equipment? equipment,
     required Event? event}) {
   double dots =
-      total * ((gender == Gender.male) ? dotsM(bodyweight) : dotsW(bodyweight));
+      total * ((gender == Sex.male) ? dotsM(bodyweight) : dotsW(bodyweight));
 
   List<double> params = parameters[gender]![equipment]![event]!;
   double denom = params[0] - (params[1] * exp(-1.0 * params[2] * bodyweight));

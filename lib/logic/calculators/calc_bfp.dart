@@ -6,11 +6,11 @@ import 'package:npng/logic/calculators/calc_bmi.dart';
 double calcBFP(
     {required double weightAthlete,
     required double heightAthleteCm,
-    required Gender? gender,
+    required Sex? gender,
     required int age}) {
   double res = 0;
   double sex = 0.0;
-  if (gender == Gender.male) sex = 1.0;
+  if (gender == Sex.male) sex = 1.0;
 
   CalculatorBmi cBmi = CalculatorBmi(
       weightAthlete: weightAthlete, heightAthleteCm: heightAthleteCm);

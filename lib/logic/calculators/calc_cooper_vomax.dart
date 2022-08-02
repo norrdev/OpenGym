@@ -14,12 +14,12 @@ bool inRange(int x, int a, int b) {
 
 String cooperRun(
     {required int distanse,
-    required Gender gender,
+    required Sex gender,
     required int age,
     required bool isAthlete,
     required BuildContext context}) {
   if (isAthlete) {
-    if (gender == Gender.male) {
+    if (gender == Sex.male) {
       if (distanse > 3700) {
         return S.of(context).cooperExcellent;
       } else if (inRange(distanse, 3400, 3700)) {
@@ -45,7 +45,7 @@ String cooperRun(
       }
     }
   } else {
-    if (gender == Gender.male) {
+    if (gender == Sex.male) {
       if (inRange(age, 13, 14)) {
         if (distanse > 2700) {
           return S.of(context).cooperExcellent;

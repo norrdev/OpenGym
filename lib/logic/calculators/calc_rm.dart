@@ -8,11 +8,11 @@ class CalcRm {
 
   int? repeat;
   double? weight;
-  Gender? gender;
+  Sex? gender;
   int age = 0;
 
-  Map<Gender, Map<Coeff, double>> coeff = {
-    Gender.male: {
+  Map<Sex, Map<Coeff, double>> coeff = {
+    Sex.male: {
       Coeff.a: -216.0475144,
       Coeff.b: 16.2606339,
       Coeff.c: -0.002388645,
@@ -20,7 +20,7 @@ class CalcRm {
       Coeff.e: 7.01863E-06,
       Coeff.f: -1.291E-08
     },
-    Gender.female: {
+    Sex.female: {
       Coeff.a: 594.31747775582,
       Coeff.b: -27.23842536447,
       Coeff.c: 0.82112226871,

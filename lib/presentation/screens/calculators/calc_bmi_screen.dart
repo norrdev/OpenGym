@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:npng/constants/numbers.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/logic/calculators/calc.dart';
 import 'package:npng/logic/calculators/calc_bmi.dart';
+import 'package:npng/widgets/text_form_fields.dart';
 
 class CalcBmiScreen extends StatefulWidget {
   const CalcBmiScreen({super.key});
@@ -14,10 +13,10 @@ class CalcBmiScreen extends StatefulWidget {
 
 class _CalcBmiScreenState extends State<CalcBmiScreen> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController tcWeight = TextEditingController(text: '89.6');
-  bool weightError = false;
-  TextEditingController tcHeight = TextEditingController(text: '183.5');
-  bool heightError = false;
+  TextEditingController tcWeight = TextEditingController();
+
+  TextEditingController tcHeight = TextEditingController();
+
   double bmi = 0;
   String result = '';
   bool isUS = false;
@@ -28,105 +27,74 @@ class _CalcBmiScreenState extends State<CalcBmiScreen> {
       appBar: AppBar(
         title: Text(S.of(context).bmiPageTitle),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Center(
-                child: Text(
-                  (bmi > 0) ? bmi.toStringAsFixed(3) : '',
-                  style: const TextStyle(fontSize: 40),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Center(
-                child: Text(
-                  result,
-                  style: const TextStyle(fontSize: 20),
-                ),
-              ),
-            ),
-            const Divider(),
-            Expanded(
-              flex: 2,
-              child: Form(
-                key: _formKey,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 60.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextFormField(
-                        controller: tcWeight,
-                        decoration: InputDecoration(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Form(
+                  key: _formKey,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 60.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextFormFieldDouble(
+                          tcWeight: tcWeight,
                           labelText: S.of(context).bmiWeight,
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide(),
-                          ),
+                          errorText: S.of(context).bmiWeightValidation,
                         ),
-                        keyboardType: TextInputType.number,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.allow(
-                              RegExp(kDoubleRegExp)),
-                        ],
-                        validator: (value) {
-                          if (double.tryParse(value!) == null) {
-                            return 'Please enter your weight';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                      TextFormField(
-                        controller: tcHeight,
-                        decoration: const InputDecoration(
-                          labelText: 'Height (cm)',
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(),
-                          ),
+                        const SizedBox(height: 16),
+                        TextFormFieldDouble(
+                          tcWeight: tcHeight,
+                          labelText: S.of(context).bmiHeight,
+                          errorText: S.of(context).bmiHeightValidation,
                         ),
-                        keyboardType: TextInputType.number,
-                        validator: (value) {
-                          if (double.tryParse(value!) == null) {
-                            return 'Please enter your height';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                      ElevatedButton(
-                        child: const Text('Calculate'),
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            double weight = double.parse(tcWeight.text);
-                            double height = double.parse(tcHeight.text);
+                        const SizedBox(height: 16),
+                        ElevatedButton(
+                          child: Text(S.of(context).calculate),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              double weight = double.parse(tcWeight.text);
+                              double height = double.parse(tcHeight.text);
 
-                            if (isUS) {
-                              weight = lbsToKg(weight);
-                              height = inchToCm(height);
+                              if (isUS) {
+                                weight = lbsToKg(weight);
+                                height = inchToCm(height);
+                              }
+
+                              CalculatorBmi calc = CalculatorBmi(
+                                  context: context,
+                                  weightAthlete: weight,
+                                  heightAthleteCm: height);
+
+                              bmi = calc.bmi();
+                              result = calc.bmiInterpretation();
+
+                              String res = '''
+# **${S.of(context).bmi}:** ${bmi.toStringAsFixed(3)}
+$result''';
+
+                              Navigator.pushNamed(
+                                context,
+                                '/result',
+                                arguments: {
+                                  'header': S.of(context).bmi,
+                                  'text': res,
+                                },
+                              );
                             }
-
-                            CalculatorBmi calc = CalculatorBmi(
-                                context: context,
-                                weightAthlete: weight,
-                                heightAthleteCm: height);
-
-                            bmi = calc.bmi();
-                            result = calc.bmiInterpretation();
-                            setState(() {});
-                          }
-                        },
-                      ),
-                    ],
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

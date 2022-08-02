@@ -1,4 +1,4 @@
-enum Gender { male, female }
+enum Sex { male, female }
 
 enum Coeff { a, b, c, d, e, f }
 

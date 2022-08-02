@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 
-import 'package:npng/generated/l10n.dart';
-import 'package:npng/logic/calculators/calc.dart';
-import 'package:npng/logic/calculators/calc_bmi.dart';
+import '../../generated/l10n.dart';
+import 'calc.dart';
+import 'calc_bmi.dart';
 
 /// ABSI calculation
 /// https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0039504
@@ -13,7 +13,7 @@ class CalcABSI {
   final double weightAthlete;
   final double heightAthleteCm;
   final double waistCircumferenceCm;
-  final Gender gender;
+  final Sex gender;
   final int age;
   late double _bmi;
 
@@ -57,8 +57,8 @@ class CalcABSI {
 
   /// ABSI Coeffs
   /// https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0039504.s001&type=supplementary
-  final Map<Gender, Map<int, List<double>>> _absiTable = {
-    Gender.male: {
+  final Map<Sex, Map<int, List<double>>> _absiTable = {
+    Sex.male: {
       //age: [ 0 numbber of people, 1 ABSImean, 2 ABSIsd, 3 smoothed ABSImean, 4 smothed ABSIsd]
       2: [320, 0.07778, 0.00312, 0.07890, 0.00384],
       3: [285, 0.07931, 0.00283, 0.07915, 0.00384],
@@ -145,7 +145,7 @@ class CalcABSI {
       84: [44, 0.08763, 0.00385, 0.08742, 0.00353],
       85: [153, 0.08811, 0.00356, 0.08811, 0.00356]
     },
-    Gender.female: {
+    Sex.female: {
       2: [336, 0.07922, 0.00319, 0.08031, 0.00363],
       3: [237, 0.08000, 0.00303, 0.08016, 0.00366],
       4: [280, 0.08045, 0.00280, 0.08001, 0.00369],
