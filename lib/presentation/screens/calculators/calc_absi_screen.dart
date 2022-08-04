@@ -35,102 +35,100 @@ class _CalcAbsiScreenState extends State<CalcAbsiScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: ListView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Expanded(
-                flex: 4,
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      TextFormFieldDouble(
-                        tcWeight: tcWeight,
-                        labelText: S.of(context).bmiWeight,
-                        errorText: S.of(context).bmiWeightValidation,
-                      ),
-                      const SizedBox(height: 16),
-                      TextFormFieldDouble(
-                        tcWeight: tcHeight,
-                        labelText: S.of(context).bmiHeight,
-                        errorText: S.of(context).bmiHeightValidation,
-                      ),
-                      const SizedBox(height: 16),
-                      TextFormFieldDouble(
-                        tcWeight: tcWaistCircumference,
-                        labelText: S.of(context).absiWaistCircumference,
-                        errorText:
-                            S.of(context).absiWaistCircumferenceValidation,
-                      ),
-                      const SizedBox(height: 16),
-                      TextFormFieldDouble(
-                        tcWeight: tcAge,
-                        labelText: S.of(context).age,
-                        errorText: S.of(context).ageValidation,
-                      ),
-                      const SizedBox(height: 16),
-                      ListTile(
-                        title: Text(S.of(context).useImperialUS),
-                        trailing: Switch(
-                            value: isUS,
-                            onChanged: (value) {
-                              setState(() {
-                                isUS = value;
-                              });
-                            }),
-                      ),
-                      const SizedBox(height: 16),
-                      Row(
-                        children: [
-                          Radio(
-                            value: Sex.female,
-                            groupValue: sex,
-                            onChanged: (Sex? value) {
-                              setState(() {
-                                sex = value!;
-                              });
-                            },
-                          ),
-                          Text(S.of(context).female),
-                          Radio(
-                            value: Sex.male,
-                            groupValue: sex,
-                            onChanged: (Sex? value) {
-                              setState(() {
-                                sex = value!;
-                              });
-                            },
-                          ),
-                          Text(S.of(context).male),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      ElevatedButton(
-                        child: Text(S.of(context).calculate),
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            double weight = double.parse(tcWeight.text);
-                            double height = double.parse(tcHeight.text);
-                            double waistCircumference =
-                                double.parse(tcWaistCircumference.text);
-                            int age = int.parse(tcAge.text);
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormFieldDouble(
+                      tcWeight: tcWeight,
+                      labelText: S.of(context).bmiWeight,
+                      errorText: S.of(context).bmiWeightValidation,
+                    ),
+                    const SizedBox(height: 16),
+                    TextFormFieldDouble(
+                      tcWeight: tcHeight,
+                      labelText: S.of(context).bmiHeight,
+                      errorText: S.of(context).bmiHeightValidation,
+                    ),
+                    const SizedBox(height: 16),
+                    TextFormFieldDouble(
+                      tcWeight: tcWaistCircumference,
+                      labelText: S.of(context).absiWaistCircumference,
+                      errorText: S.of(context).absiWaistCircumferenceValidation,
+                    ),
+                    const SizedBox(height: 16),
+                    TextFormFieldDouble(
+                      tcWeight: tcAge,
+                      labelText: S.of(context).age,
+                      errorText: S.of(context).ageValidation,
+                    ),
+                    const SizedBox(height: 16),
+                    ListTile(
+                      title: Text(S.of(context).useImperialUS),
+                      trailing: Switch(
+                          value: isUS,
+                          onChanged: (value) {
+                            setState(() {
+                              isUS = value;
+                            });
+                          }),
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      children: [
+                        Radio(
+                          value: Sex.female,
+                          groupValue: sex,
+                          onChanged: (Sex? value) {
+                            setState(() {
+                              sex = value!;
+                            });
+                          },
+                        ),
+                        Text(S.of(context).female),
+                        Radio(
+                          value: Sex.male,
+                          groupValue: sex,
+                          onChanged: (Sex? value) {
+                            setState(() {
+                              sex = value!;
+                            });
+                          },
+                        ),
+                        Text(S.of(context).male),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      child: Text(S.of(context).calculate),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          double weight = double.parse(tcWeight.text);
+                          double height = double.parse(tcHeight.text);
+                          double waistCircumference =
+                              double.parse(tcWaistCircumference.text);
+                          int age = int.parse(tcAge.text);
 
-                            if (isUS) {
-                              weight = lbsToKg(weight);
-                              height = inchToCm(height);
-                              waistCircumference = inchToCm(waistCircumference);
-                            }
+                          if (isUS) {
+                            weight = lbsToKg(weight);
+                            height = inchToCm(height);
+                            waistCircumference = inchToCm(waistCircumference);
+                          }
 
-                            CalcABSI calc = CalcABSI(
-                                context: context,
-                                weightAthlete: weight,
-                                heightAthleteCm: height,
-                                waistCircumferenceCm: waistCircumference,
-                                gender: sex,
-                                age: age);
+                          CalcABSI calc = CalcABSI(
+                              context: context,
+                              weightAthlete: weight,
+                              heightAthleteCm: height,
+                              waistCircumferenceCm: waistCircumference,
+                              gender: sex,
+                              age: age);
 
-                            absi = calc.absi;
+                          absi = calc.absi;
 
-                            String res = '''
+                          String res = '''
 # **ABSI:** ${absi.toStringAsFixed(5)}
 
 **${S.of(context).absiMean}**: ${calc.absiMean.toStringAsFixed(5)}
@@ -138,15 +136,14 @@ class _CalcAbsiScreenState extends State<CalcAbsiScreen> {
 **${S.of(context).absiRisk}**: ${calc.absiRisk}
 '''; //
 
-                            Navigator.pushNamed(context, '/result', arguments: {
-                              'header': S.of(context).absiPageTitle,
-                              'text': res,
-                            });
-                          }
-                        },
-                      ),
-                    ],
-                  ),
+                          Navigator.pushNamed(context, '/result', arguments: {
+                            'header': S.of(context).absiPageTitle,
+                            'text': res,
+                          });
+                        }
+                      },
+                    ),
+                  ],
                 ),
               ),
             ],

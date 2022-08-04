@@ -15,12 +15,16 @@ class ResultScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(args['header'] as String),
       ),
-      body: Markdown(
-        data: args['text'] as String,
-        controller: scrollController,
-        selectable: false,
-        styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)),
-        onTapLink: (text, href, title) => launchUrl(Uri.parse(href!)),
+      body: Center(
+        child: Markdown(
+          data: args['text'] as String,
+          controller: scrollController,
+          selectable: false,
+          styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
+            h1Align: WrapAlignment.center,
+          ),
+          onTapLink: (text, href, title) => launchUrl(Uri.parse(href!)),
+        ),
       ),
     );
   }

@@ -36,60 +36,57 @@ class _CalcBmiScreenState extends State<CalcBmiScreen> {
                 flex: 2,
                 child: Form(
                   key: _formKey,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 60.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextFormFieldDouble(
-                          tcWeight: tcWeight,
-                          labelText: S.of(context).bmiWeight,
-                          errorText: S.of(context).bmiWeightValidation,
-                        ),
-                        const SizedBox(height: 16),
-                        TextFormFieldDouble(
-                          tcWeight: tcHeight,
-                          labelText: S.of(context).bmiHeight,
-                          errorText: S.of(context).bmiHeightValidation,
-                        ),
-                        const SizedBox(height: 16),
-                        ElevatedButton(
-                          child: Text(S.of(context).calculate),
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              double weight = double.parse(tcWeight.text);
-                              double height = double.parse(tcHeight.text);
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextFormFieldDouble(
+                        tcWeight: tcWeight,
+                        labelText: S.of(context).bmiWeight,
+                        errorText: S.of(context).bmiWeightValidation,
+                      ),
+                      const SizedBox(height: 16),
+                      TextFormFieldDouble(
+                        tcWeight: tcHeight,
+                        labelText: S.of(context).bmiHeight,
+                        errorText: S.of(context).bmiHeightValidation,
+                      ),
+                      const SizedBox(height: 16),
+                      ElevatedButton(
+                        child: Text(S.of(context).calculate),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            double weight = double.parse(tcWeight.text);
+                            double height = double.parse(tcHeight.text);
 
-                              if (isUS) {
-                                weight = lbsToKg(weight);
-                                height = inchToCm(height);
-                              }
+                            if (isUS) {
+                              weight = lbsToKg(weight);
+                              height = inchToCm(height);
+                            }
 
-                              CalculatorBmi calc = CalculatorBmi(
-                                  context: context,
-                                  weightAthlete: weight,
-                                  heightAthleteCm: height);
+                            CalculatorBmi calc = CalculatorBmi(
+                                context: context,
+                                weightAthlete: weight,
+                                heightAthleteCm: height);
 
-                              bmi = calc.bmi();
-                              result = calc.bmiInterpretation();
+                            bmi = calc.bmi();
+                            result = calc.bmiInterpretation();
 
-                              String res = '''
+                            String res = '''
 # **${S.of(context).bmi}:** ${bmi.toStringAsFixed(3)}
 $result''';
 
-                              Navigator.pushNamed(
-                                context,
-                                '/result',
-                                arguments: {
-                                  'header': S.of(context).bmi,
-                                  'text': res,
-                                },
-                              );
-                            }
-                          },
-                        ),
-                      ],
-                    ),
+                            Navigator.pushNamed(
+                              context,
+                              '/result',
+                              arguments: {
+                                'header': S.of(context).bmi,
+                                'text': res,
+                              },
+                            );
+                          }
+                        },
+                      ),
+                    ],
                   ),
                 ),
               ),
