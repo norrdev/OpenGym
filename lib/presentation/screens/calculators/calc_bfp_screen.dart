@@ -2,24 +2,21 @@ import 'package:flutter/material.dart';
 
 import '../../../generated/l10n.dart';
 import '../../../logic/calculators/calc.dart';
-import '../../../logic/calculators/calc_absi.dart';
+import '../../../logic/calculators/calc_bfp.dart';
 import '../../../widgets/text_form_fields.dart';
 
-class CalcAbsiScreen extends StatefulWidget {
-  const CalcAbsiScreen({super.key});
+class BfpScreen extends StatefulWidget {
+  const BfpScreen({super.key});
 
   @override
-  State<CalcAbsiScreen> createState() => _CalcAbsiScreenState();
+  State<BfpScreen> createState() => _BfpScreenState();
 }
 
-class _CalcAbsiScreenState extends State<CalcAbsiScreen> {
+class _BfpScreenState extends State<BfpScreen> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController tcWeight = TextEditingController();
   TextEditingController tcHeight = TextEditingController();
-  TextEditingController tcWaistCircumference = TextEditingController();
   TextEditingController tcAge = TextEditingController();
-
-  double absi = 0;
   Sex sex = Sex.female;
   bool isUS = false;
 
@@ -27,7 +24,7 @@ class _CalcAbsiScreenState extends State<CalcAbsiScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).absiPageTitle),
+        title: Text(S.of(context).bfpPageTitle),
       ),
       body: SafeArea(
         child: Padding(
@@ -47,12 +44,6 @@ class _CalcAbsiScreenState extends State<CalcAbsiScreen> {
                   tcWeight: tcHeight,
                   labelText: S.of(context).bmiHeight,
                   errorText: S.of(context).bmiHeightValidation,
-                ),
-                const SizedBox(height: 16),
-                TextFormFieldDouble(
-                  tcWeight: tcWaistCircumference,
-                  labelText: S.of(context).absiWaistCircumference,
-                  errorText: S.of(context).absiWaistCircumferenceValidation,
                 ),
                 const SizedBox(height: 16),
                 TextFormFieldDouble(
@@ -98,45 +89,34 @@ class _CalcAbsiScreenState extends State<CalcAbsiScreen> {
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton(
-                  child: Text(S.of(context).calculate),
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      double weight = double.parse(tcWeight.text);
-                      double height = double.parse(tcHeight.text);
-                      double waistCircumference =
-                          double.parse(tcWaistCircumference.text);
-                      int age = int.parse(tcAge.text);
+                    double weight = double.parse(tcWeight.text);
+                    double height = double.parse(tcHeight.text);
 
-                      if (isUS) {
-                        weight = lbsToKg(weight);
-                        height = inchToCm(height);
-                        waistCircumference = inchToCm(waistCircumference);
-                      }
+                    int age = int.parse(tcAge.text);
 
-                      CalcABSI calc = CalcABSI(
-                          context: context,
-                          weightAthlete: weight,
-                          heightAthleteCm: height,
-                          waistCircumferenceCm: waistCircumference,
-                          gender: sex,
-                          age: age);
-
-                      absi = calc.absi;
-
-                      String res = '''
-# **ABSI:** ${absi.toStringAsFixed(5)}
-
-**${S.of(context).absiMean}**: ${calc.absiMean.toStringAsFixed(5)}
-
-**${S.of(context).absiRisk}**: ${calc.absiRisk}
-'''; //
-
-                      Navigator.pushNamed(context, '/result', arguments: {
-                        'header': S.of(context).absiPageTitle,
-                        'text': res,
-                      });
+                    if (isUS) {
+                      weight = lbsToKg(weight);
+                      height = inchToCm(height);
                     }
+                    double bfp = calcBFP(
+                      weightAthlete: weight,
+                      heightAthleteCm: height,
+                      gender: sex,
+                      age: age,
+                    );
+
+                    String res = '''
+# ${bfp.toStringAsFixed(2)}%
+
+**${S.of(context).bfpCategory}:** ${bodyFat(context: context, persent: bfp, gender: sex)}
+''';
+                    Navigator.pushNamed(context, '/result', arguments: {
+                      'header': S.of(context).bfpPageTitle,
+                      'text': res,
+                    });
                   },
+                  child: Text(S.of(context).calculate),
                 ),
               ],
             ),

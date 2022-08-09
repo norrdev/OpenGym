@@ -5,7 +5,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:npng/generated/l10n.dart';
 
 class AboutScreen extends StatelessWidget {
-  static String id = '/about';
   final String? about;
   final String? history;
   final String? version;

@@ -25,6 +25,11 @@ class CalcMainScreen extends StatelessWidget {
             asset: 'assets/icons/icons8-dead-man-in-a-coffin-96.png',
             title: S.of(context).absiPageTitle,
           ),
+          CalcButton(
+            route: '/bfp',
+            asset: 'assets/icons/icons8-fat-man-cry-96.png',
+            title: S.of(context).bfpPageTitle,
+          ),
           // MaterialButton(
           //   padding: const EdgeInsets.all(8.0),
           //   onPressed: () {

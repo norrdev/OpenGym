@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:npng/presentation/screens/calculators/calc_bfp_screen.dart';
 
 import '../screens/calculators/calc_absi_screen.dart';
 import '../screens/calculators/calc_bmi_screen.dart';
@@ -13,14 +14,14 @@ import '../screens/workout/workout_03_timer_screen.dart';
 const kInitialRoute = '/';
 
 /// Route map
-// TODO: Add  all routes here
 final Map<String, Widget Function(BuildContext)> appRoutes = {
   '/': (context) => MainScreen(),
-  WorkoutSetScreen.id: (context) => const WorkoutSetScreen(),
-  TimerScreen.id: (context) => const TimerScreen(),
-  AboutScreen.id: (context) => AboutScreen(),
-  ExercisesScreen.id: (context) => const ExercisesScreen(),
+  '/set': (context) => const WorkoutSetScreen(),
+  '/timer': (context) => const TimerScreen(),
+  '/about': (context) => AboutScreen(),
+  '/exercises': (context) => const ExercisesScreen(),
   '/bmi': (_) => const CalcBmiScreen(),
   '/absi': (_) => const CalcAbsiScreen(),
+  '/bfp': (_) => const BfpScreen(),
   '/result': (_) => const ResultScreen(),
 };
