@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 
 import '../../../generated/l10n.dart';
 import '../../../logic/calculators/calc.dart';
-import '../../../logic/calculators/calc_bfp.dart';
+import '../../../logic/calculators/calc_rfm.dart';
 import '../../../widgets/text_form_fields.dart';
 
-class CalcBfpScreen extends StatefulWidget {
-  const CalcBfpScreen({super.key});
+class CalcRfmScreen extends StatefulWidget {
+  const CalcRfmScreen({super.key});
 
   @override
-  State<CalcBfpScreen> createState() => _CalcBfpScreenState();
+  State<CalcRfmScreen> createState() => _CalcRfmScreenState();
 }
 
-class _CalcBfpScreenState extends State<CalcBfpScreen> {
+class _CalcRfmScreenState extends State<CalcRfmScreen> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController tcWeight = TextEditingController();
   TextEditingController tcHeight = TextEditingController();
-  TextEditingController tcAge = TextEditingController();
+  TextEditingController tcWaistCircumference = TextEditingController();
   Sex sex = Sex.female;
   bool isUS = false;
 
@@ -24,7 +23,7 @@ class _CalcBfpScreenState extends State<CalcBfpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).bfpPageTitle),
+        title: Text(S.of(context).rfmPageTitle),
       ),
       body: SafeArea(
         child: Padding(
@@ -34,11 +33,7 @@ class _CalcBfpScreenState extends State<CalcBfpScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextFormFieldDouble(
-                  tcWeight: tcWeight,
-                  labelText: S.of(context).bmiWeight,
-                  errorText: S.of(context).bmiWeightValidation,
-                ),
+                Text(S.of(context).rfmPageDescription),
                 const SizedBox(height: 16),
                 TextFormFieldDouble(
                   tcWeight: tcHeight,
@@ -47,9 +42,9 @@ class _CalcBfpScreenState extends State<CalcBfpScreen> {
                 ),
                 const SizedBox(height: 16),
                 TextFormFieldDouble(
-                  tcWeight: tcAge,
-                  labelText: S.of(context).age,
-                  errorText: S.of(context).ageValidation,
+                  tcWeight: tcWaistCircumference,
+                  labelText: S.of(context).absiWaistCircumference,
+                  errorText: S.of(context).absiWaistCircumferenceValidation,
                 ),
                 const SizedBox(height: 16),
                 ListTile(
@@ -91,29 +86,26 @@ class _CalcBfpScreenState extends State<CalcBfpScreen> {
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      double weight = double.parse(tcWeight.text);
                       double height = double.parse(tcHeight.text);
-
-                      int age = int.parse(tcAge.text);
+                      double waistCircumference =
+                          double.parse(tcWaistCircumference.text);
 
                       if (isUS) {
-                        weight = lbsToKg(weight);
+                        waistCircumference = lbsToKg(waistCircumference);
                         height = inchToCm(height);
                       }
-                      double bfp = calcBFP(
-                        weightAthlete: weight,
-                        heightAthleteCm: height,
-                        gender: sex,
-                        age: age,
-                      );
+                      double rfm = calcRFM(
+                          heightAthleteCm: height,
+                          gender: sex,
+                          waistCircumferenceCm: waistCircumference);
 
                       String res = '''
-# ${bfp.toStringAsFixed(2)}%
+**${S.of(context).rfmPageTitle}**: ${rfm.toStringAsFixed(1)}%
 
-**${S.of(context).bfpCategory}:** ${bodyFat(context: context, persent: bfp, gender: sex)}
-''';
+**${S.of(context).bfpCategory}:** ${bodyFat(context: context, persent: rfm, gender: sex)}
+'''; //
                       Navigator.pushNamed(context, '/result', arguments: {
-                        'header': S.of(context).bfpPageTitle,
+                        'header': S.of(context).rfmPageTitle,
                         'text': res,
                       });
                     }
