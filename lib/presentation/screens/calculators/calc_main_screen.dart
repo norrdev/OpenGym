@@ -36,6 +36,11 @@ class CalcMainScreen extends StatelessWidget {
             asset: 'assets/icons/icons8-sumo-96.png',
             title: S.of(context).rfmPageTitle,
           ),
+          CalcButton(
+            route: '/lbm',
+            asset: 'assets/icons/icons8-thriller-96.png',
+            title: S.of(context).lbmPageTitle,
+          ),
         ],
       ),
     );
