@@ -46,6 +46,11 @@ class CalcMainScreen extends StatelessWidget {
             asset: 'assets/icons/icons8-torso-96.png',
             title: S.of(context).mcPageTitle,
           ),
+          CalcButton(
+            route: '/mcrobert',
+            asset: 'assets/icons/icons8-torso-96.png',
+            title: S.of(context).mcrobertPageTitle,
+          ),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:npng/presentation/screens/calculators/calc_bfp_screen.dart';
+import 'package:npng/presentation/screens/calculators/calc_mcrobert_screen.dart';
 
 import '../screens/calculators/calc_absi_screen.dart';
 import '../screens/calculators/calc_bmi_screen.dart';
@@ -29,5 +30,6 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   '/rfm': (_) => const CalcRfmScreen(),
   '/lbm': (_) => const CalcLbmScreen(),
   '/mccallum': (_) => const CalcMcCallumScreen(),
+  '/mcrobert': (_) => const CalcMcRobertScreen(),
   '/result': (_) => const ResultScreen(),
 };

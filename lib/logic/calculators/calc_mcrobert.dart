@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:npng/generated/l10n.dart';
+
+import '../../generated/l10n.dart';
 
 ///  MacRobert fomula of body proportions.
 ///  Part, minimum size and maximum size.
