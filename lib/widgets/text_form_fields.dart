@@ -5,19 +5,19 @@ import 'package:npng/constants/numbers.dart';
 class TextFormFieldDouble extends StatelessWidget {
   const TextFormFieldDouble({
     super.key,
-    required this.tcWeight,
+    required this.tcValue,
     required this.labelText,
     required this.errorText,
   });
 
-  final TextEditingController tcWeight;
+  final TextEditingController tcValue;
   final String labelText;
   final String errorText;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: tcWeight,
+      controller: tcValue,
       decoration: InputDecoration(
         labelText: labelText,
         border: const OutlineInputBorder(

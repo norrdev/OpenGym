@@ -35,19 +35,19 @@ class _CalcBfpScreenState extends State<CalcBfpScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextFormFieldDouble(
-                  tcWeight: tcWeight,
+                  tcValue: tcWeight,
                   labelText: S.of(context).bmiWeight,
                   errorText: S.of(context).bmiWeightValidation,
                 ),
                 const SizedBox(height: 16),
                 TextFormFieldDouble(
-                  tcWeight: tcHeight,
+                  tcValue: tcHeight,
                   labelText: S.of(context).bmiHeight,
                   errorText: S.of(context).bmiHeightValidation,
                 ),
                 const SizedBox(height: 16),
                 TextFormFieldDouble(
-                  tcWeight: tcAge,
+                  tcValue: tcAge,
                   labelText: S.of(context).age,
                   errorText: S.of(context).ageValidation,
                 ),

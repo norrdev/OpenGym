@@ -36,13 +36,13 @@ class _CalcRfmScreenState extends State<CalcRfmScreen> {
                 Text(S.of(context).rfmPageDescription),
                 const SizedBox(height: 16),
                 TextFormFieldDouble(
-                  tcWeight: tcHeight,
+                  tcValue: tcHeight,
                   labelText: S.of(context).bmiHeight,
                   errorText: S.of(context).bmiHeightValidation,
                 ),
                 const SizedBox(height: 16),
                 TextFormFieldDouble(
-                  tcWeight: tcWaistCircumference,
+                  tcValue: tcWaistCircumference,
                   labelText: S.of(context).absiWaistCircumference,
                   errorText: S.of(context).absiWaistCircumferenceValidation,
                 ),

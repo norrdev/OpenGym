@@ -4,6 +4,7 @@ import 'package:npng/presentation/screens/calculators/calc_bfp_screen.dart';
 import '../screens/calculators/calc_absi_screen.dart';
 import '../screens/calculators/calc_bmi_screen.dart';
 import '../screens/calculators/calc_lbm_screen.dart';
+import '../screens/calculators/calc_mccallum_screen.dart';
 import '../screens/calculators/calc_rfm_screen.dart';
 import '../screens/exercises/exercises_screen.dart';
 import '../screens/main_screen.dart';
@@ -27,5 +28,6 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   '/bfp': (_) => const CalcBfpScreen(),
   '/rfm': (_) => const CalcRfmScreen(),
   '/lbm': (_) => const CalcLbmScreen(),
+  '/mccallum': (_) => const CalcMcCallumScreen(),
   '/result': (_) => const ResultScreen(),
 };
