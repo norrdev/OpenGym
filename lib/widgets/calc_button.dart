@@ -23,7 +23,10 @@ class CalcButton extends StatelessWidget {
       },
       child: Column(
         children: [
-          ColorFiltered(colorFilter: kGrayscale, child: Image.asset(asset)),
+          ColorFiltered(
+            colorFilter: kGrayscale,
+            child: Image.asset(asset),
+          ),
           Text(
             title,
             textAlign: TextAlign.center,

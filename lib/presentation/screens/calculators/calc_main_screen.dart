@@ -12,8 +12,8 @@ class CalcMainScreen extends StatelessWidget {
       child: GridView.extent(
         primary: false,
         padding: const EdgeInsets.all(8),
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
         maxCrossAxisExtent: 200.0,
         children: <Widget>[
           CalcButton(
@@ -50,6 +50,11 @@ class CalcMainScreen extends StatelessWidget {
             route: '/mcrobert',
             asset: 'assets/icons/icons8-torso-96.png',
             title: S.of(context).mcrobertPageTitle,
+          ),
+          CalcButton(
+            route: '/rm',
+            asset: 'assets/icons/icons8-deadlift-96.png',
+            title: S.of(context).rmPageTitle,
           ),
         ],
       ),
