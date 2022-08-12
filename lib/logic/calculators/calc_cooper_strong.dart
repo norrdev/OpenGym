@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:npng/generated/l10n.dart';
+
+import '../../generated/l10n.dart';
 
 String cooperStrong({required BuildContext context, required int minutes}) {
   if (minutes < 3) {

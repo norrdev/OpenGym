@@ -61,6 +61,11 @@ class CalcMainScreen extends StatelessWidget {
             asset: 'assets/icons/icons8-running-96.png',
             title: S.of(context).cooperPageTitle,
           ),
+          CalcButton(
+            route: '/army',
+            asset: 'assets/icons/icons8-pushups-96.png',
+            title: S.of(context).cooperStrongPageTitle,
+          ),
         ],
       ),
     );

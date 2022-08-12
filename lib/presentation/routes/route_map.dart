@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:npng/presentation/screens/calculators/calc_cooper_army_test.dart';
 
 import '../screens/calculators/calc_absi_screen.dart';
 import '../screens/calculators/calc_bfp_screen.dart';
@@ -35,5 +36,6 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   '/mcrobert': (_) => const CalcMcRobertScreen(),
   '/rm': (_) => const CalcRmScreen(),
   '/vomax': (_) => const CooperVomaxScreen(),
+  '/army': (_) => const CooperArmyTestScreen(),
   '/result': (_) => const ResultScreen(),
 };
