@@ -37,3 +37,39 @@ class TextFormFieldDouble extends StatelessWidget {
     );
   }
 }
+
+class TextFormFieldInt extends StatelessWidget {
+  const TextFormFieldInt({
+    super.key,
+    required this.tcValue,
+    required this.labelText,
+    required this.errorText,
+  });
+
+  final TextEditingController tcValue;
+  final String labelText;
+  final String errorText;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: tcValue,
+      decoration: InputDecoration(
+        labelText: labelText,
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(),
+        ),
+      ),
+      keyboardType: TextInputType.number,
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+      ],
+      validator: (value) {
+        if (double.tryParse(value!) == null) {
+          return errorText;
+        }
+        return null;
+      },
+    );
+  }
+}

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../../../generated/l10n.dart';
 import '../../../logic/calculators/calc.dart';
@@ -49,25 +48,10 @@ class _CalcRmScreenState extends State<CalcRmScreen> {
                   errorText: S.of(context).rmBarebellWeightValidation,
                 ),
                 const SizedBox(height: 16),
-                TextFormField(
-                  controller: tcRepeat,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: S.of(context).rmRepeats,
-                    //errorText: S.of(context).rmRepeatValidation,
-                    border: const OutlineInputBorder(
-                      borderSide: BorderSide(),
-                    ),
-                  ),
-                  inputFormatters: [
-                    FilteringTextInputFormatter.digitsOnly,
-                  ],
-                  validator: (value) {
-                    if (int.tryParse(value!) == null) {
-                      return S.of(context).rmRepeatValidation;
-                    }
-                    return null;
-                  },
+                TextFormFieldInt(
+                  tcValue: tcRepeat,
+                  labelText: S.of(context).rmRepeats,
+                  errorText: S.of(context).rmRepeatValidation,
                 ),
                 const SizedBox(height: 16),
                 ListTile(

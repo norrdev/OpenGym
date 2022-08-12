@@ -14,7 +14,7 @@ class CalcMainScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
-        maxCrossAxisExtent: 200.0,
+        maxCrossAxisExtent: 170.0,
         children: <Widget>[
           CalcButton(
             route: '/bmi',
@@ -55,6 +55,11 @@ class CalcMainScreen extends StatelessWidget {
             route: '/rm',
             asset: 'assets/icons/icons8-deadlift-96.png',
             title: S.of(context).rmPageTitle,
+          ),
+          CalcButton(
+            route: '/vomax',
+            asset: 'assets/icons/icons8-running-96.png',
+            title: S.of(context).cooperPageTitle,
           ),
         ],
       ),

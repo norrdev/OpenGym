@@ -1,13 +1,14 @@
 import 'package:flutter/widgets.dart';
-import 'package:npng/presentation/screens/calculators/calc_bfp_screen.dart';
-import 'package:npng/presentation/screens/calculators/calc_mcrobert_screen.dart';
-import 'package:npng/presentation/screens/calculators/calc_rm_screen.dart';
 
 import '../screens/calculators/calc_absi_screen.dart';
+import '../screens/calculators/calc_bfp_screen.dart';
 import '../screens/calculators/calc_bmi_screen.dart';
+import '../screens/calculators/calc_cooper_vomax_screen.dart';
 import '../screens/calculators/calc_lbm_screen.dart';
 import '../screens/calculators/calc_mccallum_screen.dart';
+import '../screens/calculators/calc_mcrobert_screen.dart';
 import '../screens/calculators/calc_rfm_screen.dart';
+import '../screens/calculators/calc_rm_screen.dart';
 import '../screens/exercises/exercises_screen.dart';
 import '../screens/main_screen.dart';
 import '../screens/settings/about_screen.dart';
@@ -33,5 +34,6 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   '/mccallum': (_) => const CalcMcCallumScreen(),
   '/mcrobert': (_) => const CalcMcRobertScreen(),
   '/rm': (_) => const CalcRmScreen(),
+  '/vomax': (_) => const CooperVomaxScreen(),
   '/result': (_) => const ResultScreen(),
 };
