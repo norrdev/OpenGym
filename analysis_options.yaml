@@ -16,6 +16,7 @@ analyzer:
     - lib/generated_plugin_registrant.dart
   language:
     strict-raw-types: true
+    strict-casts: true
   strong-mode:
     implicit-casts: false
 
@@ -37,6 +38,9 @@ linter:
     prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
     # avoid_empty_else: true
     avoid_print: true
+    strict-casts: true
+    strict-raw-types: true
+
     # always_use_package_imports: true
     # avoid_relative_lib_imports: true
     # avoid_types_as_parameter_names: true
@@ -64,6 +68,11 @@ linter:
 
 
 # analyzer:
+#   strong-mode:
+#     implicit-casts: false
+#   language:
+#     strict-casts: true
+#     strict-raw-types: true
 #   plugins:
 #     - dart_code_metrics
 

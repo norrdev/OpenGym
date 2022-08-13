@@ -62,6 +62,7 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      //locale: const Locale('ru', 'RU'),
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,

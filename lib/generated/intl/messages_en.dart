@@ -22,12 +22,99 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Brzycki": MessageLookupByLibrary.simpleMessage("Brzycki"),
+        "Epley": MessageLookupByLibrary.simpleMessage("Epley"),
+        "Lander": MessageLookupByLibrary.simpleMessage("Lander"),
+        "Lombardi": MessageLookupByLibrary.simpleMessage("Lombardi"),
+        "Mayhew": MessageLookupByLibrary.simpleMessage("Mayhew"),
+        "OConner": MessageLookupByLibrary.simpleMessage("O`Conner"),
+        "Wathan": MessageLookupByLibrary.simpleMessage("Wathan"),
+        "Wilks": MessageLookupByLibrary.simpleMessage("Wilks"),
         "about": MessageLookupByLibrary.simpleMessage("About"),
+        "absiAgeValidation": MessageLookupByLibrary.simpleMessage(
+            "Please, enter you age. ABSI calculator is only for people 2 or much years old."),
+        "absiMean": MessageLookupByLibrary.simpleMessage(
+            "Averange ABSI of people in your age and same gender"),
+        "absiPageDesc": MessageLookupByLibrary.simpleMessage(
+            "A body shape index and mortality risk calculator."),
+        "absiPageTitle":
+            MessageLookupByLibrary.simpleMessage("A body shape index (ABSI)"),
+        "absiRisk":
+            MessageLookupByLibrary.simpleMessage("Premature mortality risk"),
+        "absiRisk1": MessageLookupByLibrary.simpleMessage("Very Low"),
+        "absiRisk2": MessageLookupByLibrary.simpleMessage("Low"),
+        "absiRisk3": MessageLookupByLibrary.simpleMessage("Averange"),
+        "absiRisk4": MessageLookupByLibrary.simpleMessage("High"),
+        "absiRisk5": MessageLookupByLibrary.simpleMessage("Very High"),
+        "absiWaistCircumference":
+            MessageLookupByLibrary.simpleMessage("Waist circumference"),
+        "absiWaistCircumferenceValidation":
+            MessageLookupByLibrary.simpleMessage(
+                "Please enter your waist circumference in cantimeters."),
         "add": MessageLookupByLibrary.simpleMessage("Add"),
         "addEx": MessageLookupByLibrary.simpleMessage("Exercise added."),
+        "age": MessageLookupByLibrary.simpleMessage("Age"),
+        "ageValidation":
+            MessageLookupByLibrary.simpleMessage("Please, enter you age."),
         "backup": MessageLookupByLibrary.simpleMessage("Backup database"),
+        "bfpAthletes": MessageLookupByLibrary.simpleMessage("Athletes"),
+        "bfpAverage": MessageLookupByLibrary.simpleMessage("Average"),
+        "bfpCategory": MessageLookupByLibrary.simpleMessage("Category"),
+        "bfpEssential": MessageLookupByLibrary.simpleMessage("Essential fat"),
+        "bfpFitness": MessageLookupByLibrary.simpleMessage("Fitness"),
+        "bfpObese": MessageLookupByLibrary.simpleMessage("Obese"),
+        "bfpPageTitle":
+            MessageLookupByLibrary.simpleMessage("Body fat percentage (BFP)"),
+        "bmi": MessageLookupByLibrary.simpleMessage("BMI"),
+        "bmi15":
+            MessageLookupByLibrary.simpleMessage("Very severely underweight."),
+        "bmi15_16":
+            MessageLookupByLibrary.simpleMessage("Severely underweight."),
+        "bmi16_18": MessageLookupByLibrary.simpleMessage("Underweight."),
+        "bmi18_25":
+            MessageLookupByLibrary.simpleMessage("Normal (healthy weight)."),
+        "bmi25_30": MessageLookupByLibrary.simpleMessage("Overweight."),
+        "bmi30_35": MessageLookupByLibrary.simpleMessage(
+            "Obese Class I (Moderately obese)."),
+        "bmi35_40": MessageLookupByLibrary.simpleMessage(
+            "Obese Class II (Severely obese)."),
+        "bmi40": MessageLookupByLibrary.simpleMessage(
+            "Obese Class III (Very severely obese)."),
+        "bmiHeight": MessageLookupByLibrary.simpleMessage("Your height"),
+        "bmiHeightValidation":
+            MessageLookupByLibrary.simpleMessage("Please enter your height."),
+        "bmiPageDesc": MessageLookupByLibrary.simpleMessage(
+            "Calculate your Body Mass Index (WHO)."),
+        "bmiPageTitle":
+            MessageLookupByLibrary.simpleMessage("Body Mass Index (BMI)"),
+        "bmiWeight": MessageLookupByLibrary.simpleMessage("Your weight"),
+        "bmiWeightValidation":
+            MessageLookupByLibrary.simpleMessage("Please enter your weight."),
+        "calculate": MessageLookupByLibrary.simpleMessage("Calculate"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "ccontinue": MessageLookupByLibrary.simpleMessage("Continue"),
+        "cm": MessageLookupByLibrary.simpleMessage("cm"),
+        "cooperAverage": MessageLookupByLibrary.simpleMessage("Average"),
+        "cooperBad": MessageLookupByLibrary.simpleMessage("Bad"),
+        "cooperDistanse": MessageLookupByLibrary.simpleMessage("Distanse"),
+        "cooperDistanseValidation":
+            MessageLookupByLibrary.simpleMessage("Please, enter the distanse."),
+        "cooperExcellent": MessageLookupByLibrary.simpleMessage("Excellent"),
+        "cooperGood": MessageLookupByLibrary.simpleMessage("Good"),
+        "cooperMark": MessageLookupByLibrary.simpleMessage("Mark"),
+        "cooperPageDesc": MessageLookupByLibrary.simpleMessage(
+            "Run 12 minutes as fast, as you can. And enter the distanse in the field below. You can do it on stadium, or using fitness tracker with GPS."),
+        "cooperPageTitle":
+            MessageLookupByLibrary.simpleMessage("Cooper test + VO max"),
+        "cooperStrongMinutes": MessageLookupByLibrary.simpleMessage(
+            "The number of whole minutes to complete 4 cycles"),
+        "cooperStrongMinutesValidation":
+            MessageLookupByLibrary.simpleMessage("Please, enter number."),
+        "cooperStrongPageDesc": MessageLookupByLibrary.simpleMessage(
+            "Another type of Cooper\'s strength endurance test, also no less common (originally created for the US military, but also used by sportsmen and military personnel of other countries, including the Russian Federation), includes 4 repetitions of the following set of exercises:\n\n - do 10 push-ups and stay in support lying;\n - leaning on our hands with a jump, we bring our legs to our hands, squatting and then back 10 times;\n - we turn on our back and put our legs behind our heads 10 times (the exercise is performed lying on our back);\n - 10 jumps with a change of legs and touching the knee to the ground."),
+        "cooperStrongPageTitle":
+            MessageLookupByLibrary.simpleMessage("Cooper army test"),
+        "cooperTerrible": MessageLookupByLibrary.simpleMessage("Terrible"),
         "copyright": MessageLookupByLibrary.simpleMessage("© Denis Filonov"),
         "currentWorkout":
             MessageLookupByLibrary.simpleMessage("Current workout"),
@@ -41,13 +128,58 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter some text"),
         "exDesc": MessageLookupByLibrary.simpleMessage("Exercise description"),
         "exName": MessageLookupByLibrary.simpleMessage("Exercise name"),
+        "female": MessageLookupByLibrary.simpleMessage("Female"),
         "finish": MessageLookupByLibrary.simpleMessage("Finish"),
         "from": MessageLookupByLibrary.simpleMessage(" from "),
+        "gender": MessageLookupByLibrary.simpleMessage("Gender"),
+        "homePageBody": MessageLookupByLibrary.simpleMessage("Body form"),
+        "homePageFood": MessageLookupByLibrary.simpleMessage("Food"),
+        "homePagePower":
+            MessageLookupByLibrary.simpleMessage("Strength and endurance"),
+        "homePageProportions":
+            MessageLookupByLibrary.simpleMessage("Body proportions"),
+        "ifp3Lift": MessageLookupByLibrary.simpleMessage("3-Lift"),
+        "ifpBench": MessageLookupByLibrary.simpleMessage("Bench"),
+        "ifpPageDescription":
+            MessageLookupByLibrary.simpleMessage("IFP Goodlift Calculator."),
+        "ifpPageTitle": MessageLookupByLibrary.simpleMessage("IPF Points"),
+        "ifpRaw": MessageLookupByLibrary.simpleMessage("Raw"),
+        "ifpSingleply": MessageLookupByLibrary.simpleMessage("Single-ply"),
+        "ifpTotalWeight": MessageLookupByLibrary.simpleMessage("Total weight"),
         "import": MessageLookupByLibrary.simpleMessage("Import database"),
         "importWarning": MessageLookupByLibrary.simpleMessage(
             "This option will overwrite all data with imports and exit the application. Make a backup!"),
+        "inch": MessageLookupByLibrary.simpleMessage("in"),
+        "isAthlete": MessageLookupByLibrary.simpleMessage(
+            "Are you professional athlete?"),
+        "lbmPageDescription":
+            MessageLookupByLibrary.simpleMessage("Fat-free body mass."),
+        "lbmPageTitle": MessageLookupByLibrary.simpleMessage("Lean Body Mass"),
         "licenses": MessageLookupByLibrary.simpleMessage("Licenses"),
         "log": MessageLookupByLibrary.simpleMessage("Log"),
+        "male": MessageLookupByLibrary.simpleMessage("Male"),
+        "mcBicep": MessageLookupByLibrary.simpleMessage("Bicep girth"),
+        "mcButt": MessageLookupByLibrary.simpleMessage("Girth of the buttocks"),
+        "mcCalf": MessageLookupByLibrary.simpleMessage("Calf circumference"),
+        "mcChest": MessageLookupByLibrary.simpleMessage("Chest girth"),
+        "mcForearm": MessageLookupByLibrary.simpleMessage("Forearm girth"),
+        "mcNeck": MessageLookupByLibrary.simpleMessage("Neck girth"),
+        "mcPageDesc": MessageLookupByLibrary.simpleMessage(
+            "Ideal Body Proportions Formula For the Natural Athlete (McCallum)."),
+        "mcPageTitle":
+            MessageLookupByLibrary.simpleMessage("Body proportions (McCallum)"),
+        "mcPart": MessageLookupByLibrary.simpleMessage("Body part"),
+        "mcThigh": MessageLookupByLibrary.simpleMessage("Thigh girth"),
+        "mcWaist": MessageLookupByLibrary.simpleMessage("Waist"),
+        "mcWrist": MessageLookupByLibrary.simpleMessage("Wrist girth"),
+        "mcWristValidation": MessageLookupByLibrary.simpleMessage(
+            "Enter your wrist circumference."),
+        "mcrobertMax": MessageLookupByLibrary.simpleMessage("Maximum"),
+        "mcrobertMin": MessageLookupByLibrary.simpleMessage("Minimum"),
+        "mcrobertPageDesc": MessageLookupByLibrary.simpleMessage(
+            "Ideal Body Proportions Formula For the Natural Athlete (McRobert)."),
+        "mcrobertPageTitle":
+            MessageLookupByLibrary.simpleMessage("Body proportions (McRobert)"),
         "min": MessageLookupByLibrary.simpleMessage("min."),
         "muscles": MessageLookupByLibrary.simpleMessage("Muscles"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
@@ -67,6 +199,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "rest": MessageLookupByLibrary.simpleMessage("Rest time (sec)"),
         "restButton": MessageLookupByLibrary.simpleMessage("Save & rest"),
         "restore": MessageLookupByLibrary.simpleMessage("Restore from backup"),
+        "rfmPageDescription": MessageLookupByLibrary.simpleMessage(
+            "Relative fat mass in % calculation."),
+        "rfmPageTitle":
+            MessageLookupByLibrary.simpleMessage("Relative fat mass (RFM)"),
+        "rmBarebellWeight":
+            MessageLookupByLibrary.simpleMessage("Weight of barebell"),
+        "rmBarebellWeightValidation": MessageLookupByLibrary.simpleMessage(
+            "Please, enter weight of barebell."),
+        "rmMethod": MessageLookupByLibrary.simpleMessage("Method"),
+        "rmPageDesc": MessageLookupByLibrary.simpleMessage(
+            "1 RM calculation by different methods."),
+        "rmPageTitle": MessageLookupByLibrary.simpleMessage("1 RM calculation"),
+        "rmRepeatValidation":
+            MessageLookupByLibrary.simpleMessage("Enter repeats."),
+        "rmRepeats": MessageLookupByLibrary.simpleMessage("Repeats"),
+        "rmResult": MessageLookupByLibrary.simpleMessage("Result"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "saveToFile":
             MessageLookupByLibrary.simpleMessage("Save database to file"),
@@ -86,6 +234,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "timer": MessageLookupByLibrary.simpleMessage("Timer"),
         "title": MessageLookupByLibrary.simpleMessage("NpNg"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),
+        "useImperialUS": MessageLookupByLibrary.simpleMessage(
+            "Use Imperial/US system (lbs, in, miles)?"),
         "weight": MessageLookupByLibrary.simpleMessage("Weight"),
         "workoutFinished":
             MessageLookupByLibrary.simpleMessage("Workout finished"),

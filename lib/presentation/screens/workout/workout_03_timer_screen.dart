@@ -11,8 +11,6 @@ import 'package:npng/theme.dart';
 class TimerScreen extends StatelessWidget {
   const TimerScreen({super.key});
 
-  static const String id = '/timer';
-
   void playSound() {
     final player = AudioPlayer();
     try {

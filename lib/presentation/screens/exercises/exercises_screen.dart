@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:npng/constants/colors.dart';
 import 'package:npng/presentation/screens/exercises/exercises_by_muscle_screen.dart';
 import 'package:npng/theme.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +13,6 @@ import 'package:npng/generated/l10n.dart';
 /// Muscle list screen. Read-only from database, doesn't need any state.
 class ExercisesScreen extends StatelessWidget {
   const ExercisesScreen({super.key});
-  static String id = '/exercises';
 
   @override
   Widget build(BuildContext context) {
@@ -53,30 +53,7 @@ class ExercisesScreen extends StatelessWidget {
                   child: ListTile(
                     leading: (item.icon != null)
                         ? ColorFiltered(
-                            colorFilter: const ColorFilter.matrix(
-                              <double>[
-                                0.2126,
-                                0.7152,
-                                0.0722,
-                                0,
-                                0,
-                                0.2126,
-                                0.7152,
-                                0.0722,
-                                0,
-                                0,
-                                0.2126,
-                                0.7152,
-                                0.0722,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                1,
-                                0,
-                              ],
-                            ),
+                            colorFilter: kGrayscale,
                             child: Image.memory(
                               item.icon as Uint8List,
                               width: 96,

@@ -5,12 +5,9 @@ import 'package:npng/widgets/change_double_field_extended.dart';
 import 'package:npng/widgets/change_int_field.dart';
 
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/presentation/screens/workout/workout_03_timer_screen.dart';
 import 'package:steps_indicator/steps_indicator.dart';
 
 class WorkoutSetScreen extends StatelessWidget {
-  static const String id = '/set';
-
   const WorkoutSetScreen({super.key});
 
   @override
@@ -28,7 +25,7 @@ class WorkoutSetScreen extends StatelessWidget {
           child: ElevatedButton(
             child: Text(S.of(context).restButton),
             onPressed: () {
-              Navigator.pushNamed(context, TimerScreen.id);
+              Navigator.pushNamed(context, '/timer');
             },
           ),
         )
