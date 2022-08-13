@@ -57,6 +57,11 @@ class CalcMainScreen extends StatelessWidget {
             title: S.of(context).rmPageTitle,
           ),
           CalcButton(
+            route: '/ifp',
+            asset: 'assets/icons/icons8-deadlift-96.png',
+            title: S.of(context).ifpPageTitle,
+          ),
+          CalcButton(
             route: '/vomax',
             asset: 'assets/icons/icons8-running-96.png',
             title: S.of(context).cooperPageTitle,
