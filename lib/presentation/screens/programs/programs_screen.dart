@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:npng/data/models/models.dart';
-import 'package:npng/data/repository.dart';
-import 'package:npng/generated/l10n.dart';
-import 'package:npng/logic/cubit/default_program_cubit.dart';
-import 'package:npng/presentation/screens/programs/program_days_screen.dart';
-import 'package:npng/presentation/screens/programs/program_edit_screen.dart';
-import 'package:npng/presentation/screens/programs/program_new_screen.dart';
-import 'package:npng/theme.dart';
+
+import '../../../data/models/models.dart';
+import '../../../data/repository.dart';
+import '../../../generated/l10n.dart';
+import '../../../logic/cubit/default_program_cubit.dart';
+import '../../../theme.dart';
+import 'program_days_screen.dart';
+import 'program_edit_screen.dart';
+import 'program_new_screen.dart';
 
 class ProgramsScreen extends StatefulWidget {
   const ProgramsScreen({super.key});

@@ -22,6 +22,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
           currentSet: 0,
           lastUpdate:
               DateTime.now(), //! TODO: remove this field, then fix the bug.
+          //! Solution: convert from cubit into bloc, add events
         ));
 
   //Snapshot of workouts
