@@ -1,14 +1,27 @@
 import 'package:equatable/equatable.dart';
 
 class WorkoutSet extends Equatable {
-  int repeats = 0;
-  double weight = 0;
-  bool completed = false;
+  final int repeats;
+  final double weight;
+
+  const WorkoutSet({
+    required this.repeats,
+    required this.weight,
+  });
 
   @override
   List<Object?> get props => [
         repeats,
         weight,
-        completed,
       ];
+
+  WorkoutSet copyWith({
+    int? repeats,
+    double? weight,
+  }) {
+    return WorkoutSet(
+      repeats: repeats ?? this.repeats,
+      weight: weight ?? this.weight,
+    );
+  }
 }

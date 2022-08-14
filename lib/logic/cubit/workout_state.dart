@@ -56,7 +56,7 @@ class WorkoutState extends Equatable {
     required this.exercises,
     required this.currentExcersise,
     required this.currentSet,
-    required this.lastUpdate, //!
+    required this.lastUpdate, //!  TODO: remove this field, then fix the bug.
   });
 
   @override
@@ -85,7 +85,7 @@ class WorkoutState extends Equatable {
     List<WorkoutExercise>? exercises,
     int? currentExcersise,
     int? currentSet,
-    DateTime? lastUpdate,
+    DateTime? lastUpdate, //! TODO: remove this field, then fix the bug.
   }) {
     return WorkoutState(
       active: active ?? this.active,

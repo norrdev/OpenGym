@@ -11,7 +11,7 @@ class ProgramDayAddExercise extends StatefulWidget {
   final Day day;
 
   @override
-  _ProgramDayAddExerciseState createState() => _ProgramDayAddExerciseState();
+  State<ProgramDayAddExercise> createState() => _ProgramDayAddExerciseState();
 }
 
 class _ProgramDayAddExerciseState extends State<ProgramDayAddExercise> {

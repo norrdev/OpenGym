@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:npng/logic/cubit/workout_cubit.dart';
@@ -104,7 +105,6 @@ class CurrentSetWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WorkoutCubit workoutCubit = context.read<WorkoutCubit>();
-    int setNumber = workoutCubit.state.currentSet;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -112,21 +112,26 @@ class CurrentSetWidget extends StatelessWidget {
         Text(S.of(context).weight),
         BlocBuilder<WorkoutCubit, WorkoutState>(
           builder: (_, state) {
+            if (kDebugMode) {
+              print('${state.exercises[state.currentExcersise].sets} '
+                  'Ex : ${state.currentExcersise} '
+                  'Set: ${state.currentSet}');
+            }
             return ChangeDoubleFieldExtended(
-              value: state
-                  .exercises[state.currentExcersise].sets[setNumber].weight,
+              value: state.exercises[state.currentExcersise]
+                  .sets[state.currentSet].weight,
               increaseCallback: () => workoutCubit.incWeight025(
                   excersiseNumber: state.currentExcersise,
-                  setNumber: setNumber),
+                  setNumber: state.currentSet),
               decreaseCallback: () => workoutCubit.decWeight025(
                   excersiseNumber: state.currentExcersise,
-                  setNumber: setNumber),
+                  setNumber: state.currentSet),
               increaseCallbackFast: () => workoutCubit.incWeight5(
                   excersiseNumber: state.currentExcersise,
-                  setNumber: setNumber),
+                  setNumber: state.currentSet),
               decreaseCallbackFast: () => workoutCubit.decWeight5(
                   excersiseNumber: state.currentExcersise,
-                  setNumber: setNumber),
+                  setNumber: state.currentSet),
             );
           },
         ),
@@ -137,14 +142,14 @@ class CurrentSetWidget extends StatelessWidget {
               value: workoutCubit
                   .state
                   .exercises[workoutCubit.state.currentExcersise]
-                  .sets[setNumber]
+                  .sets[state.currentSet]
                   .repeats,
               decreaseCallback: () => workoutCubit.decRepeats(
                   excersiseNumber: workoutCubit.state.currentExcersise,
-                  setNumber: setNumber),
+                  setNumber: state.currentSet),
               increaseCallback: () => workoutCubit.incRepeats(
                   excersiseNumber: workoutCubit.state.currentExcersise,
-                  setNumber: setNumber),
+                  setNumber: state.currentSet),
             );
           },
         ),
