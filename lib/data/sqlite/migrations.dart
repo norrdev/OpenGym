@@ -94,3 +94,22 @@ void _upgradeTableUserV1toV2(Batch batch) {
   batch.execute('DROP TABLE sqlitestudio_temp_table');
   batch.execute('PRAGMA foreign_keys = 1');
 }
+
+// --------------------- v3 ---------------------
+void _updateTableExercisesV2toV3(Batch batch) {
+  batch.execute('UPDATE exercises SET en_name = "Barbell Shrug" WHERE id = 3');
+  batch.execute('UPDATE exercises SET en_name = "Pull-Ups" WHERE id = 19');
+  batch.execute('UPDATE exercises SET en_name = "Squats" WHERE id = 51');
+  batch.execute(
+      'UPDATE exercises SET en_name = "Rubber Band Squats" WHERE id = 50');
+  batch
+      .execute('UPDATE exercises SET en_name = "Barbell Squats" WHERE id = 49');
+  batch
+      .execute('UPDATE exercises SET en_name = "Hyperextension" WHERE id = 48');
+  batch.execute(
+      'UPDATE exercises SET en_name = "Diamond Push-Ups" WHERE id = 33');
+  batch.execute(
+      'UPDATE exercises SET en_name = "Hummer Curl With Rubber Band" WHERE id = 24');
+  batch.execute(
+      'UPDATE exercises SET en_name = "Triceps Extensions With Dumbbell" WHERE id = 28');
+}

@@ -14,7 +14,7 @@ class CalcMainScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
-        maxCrossAxisExtent: 170.0,
+        maxCrossAxisExtent: 200.0,
         children: <Widget>[
           CalcButton(
             route: '/bmi',

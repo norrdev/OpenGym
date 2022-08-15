@@ -14,7 +14,7 @@ String kLocale = Intl.getCurrentLocale();
 
 class DatabaseHelper {
   static const _databaseName = 'npng.db';
-  static const _databaseVersion = 2;
+  static const _databaseVersion = 3;
 
   static const String muscleTable = 'muscles';
   static const String exerciseTable = 'exercises';
@@ -42,6 +42,8 @@ class DatabaseHelper {
     final documentsDirectory = await getApplicationDocumentsDirectory();
     final String path = join(documentsDirectory.path, _databaseName);
     final bool exists = await databaseExists(path);
+
+    // Extract db from asset if it doesn't exist
     if (!exists) {
       try {
         await Directory(dirname(path)).create(recursive: true);
@@ -52,6 +54,7 @@ class DatabaseHelper {
       await File(path).writeAsBytes(bytes, flush: true);
     }
 
+    // Sqlite debug mode/logging
     if (kDebugMode) {
       Sqflite.setDebugModeOn(true);
     } else {
@@ -62,15 +65,29 @@ class DatabaseHelper {
       path,
       version: _databaseVersion,
       onUpgrade: (db, oldVersion, newVersion) async {
-        // print('→ oldVersion: $oldVersion');
-        // print('→ newVersion: $newVersion');
+        if (kDebugMode) {
+          print('→ oldVersion: $oldVersion');
+          print('→ newVersion: $newVersion');
+        }
+        // If database exists, migrate it
+        //if (exists) {
         Batch batch = db.batch();
         if (oldVersion == 1) {
           _upgradeTableMuscleV1toV2(batch);
           _upgradeTableDaysV1toV2(batch);
           _upgradeTableUserV1toV2(batch);
+          if (kDebugMode) {
+            print('→ Database migrated from v1 to v2.');
+          }
+        }
+        if (oldVersion == 2) {
+          _updateTableExercisesV2toV3(batch);
+          if (kDebugMode) {
+            print('→ Database migrated from v2 to v3.');
+          }
         }
         await batch.commit();
+        //}
       },
     );
 

@@ -13,8 +13,9 @@ class Exercise extends Equatable {
 
   factory Exercise.fromJson(Map<String, dynamic> json) => Exercise(
         id: json['id'] as int,
-        name: json['name'] as String,
-        description: json['description'] as String,
+        name: json['name'] == null ? '' : json['name'] as String,
+        description:
+            json['description'] == null ? '' : json['description'] as String,
       );
 
   Map<String, dynamic> toJson() => {

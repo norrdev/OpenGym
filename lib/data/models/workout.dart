@@ -27,8 +27,9 @@ class Workout extends Equatable {
   factory Workout.fromJson(Map<String, dynamic> json) {
     return Workout(
       id: json['id'] as int,
-      name: json['name'] as String,
-      description: json['description'] as String,
+      name: json['name'] == null ? '' : json['name'] as String,
+      description:
+          json['description'] == null ? '' : json['description'] as String,
       ord: json['ord'] as int,
       sets: json['sets'] as int,
       repeats: json['repeats'] as int,

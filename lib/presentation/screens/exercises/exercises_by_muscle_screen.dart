@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 import 'package:npng/generated/l10n.dart';
 
 class ExercisesByMuscleScreen extends StatefulWidget {
-  static String id = '/exersises-by-muscle';
   final int musclesId;
   final String pageTitle;
 

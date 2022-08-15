@@ -40,4 +40,5 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   '/army': (_) => const CooperArmyTestScreen(),
   '/ifp': (_) => const CalcIfpScreen(),
   '/result': (_) => const ResultScreen(),
+  '/exersises-by-muscle': (context) => const ExercisesScreen(),
 };

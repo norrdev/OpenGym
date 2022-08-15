@@ -12,8 +12,9 @@ class Day extends Equatable {
   factory Day.fromJson(Map<String, dynamic> json) => Day(
         id: json['id'] as int,
         ord: json['ord'] as int,
-        name: json['name'] as String,
-        description: json['description'] as String,
+        name: json['name'] == null ? '' : json['name'] as String,
+        description:
+            json['description'] == null ? '' : json['description'] as String,
       );
 
   Map<String, dynamic> toJson() => {

@@ -94,8 +94,8 @@ class DaysListWidget extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final item = days[index];
                   return ListTile(
-                    title: Text(item.name as String),
-                    subtitle: Text(item.description as String),
+                    title: Text(item.name ?? ''),
+                    subtitle: Text(item.description ?? ''),
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(

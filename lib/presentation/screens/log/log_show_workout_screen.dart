@@ -12,7 +12,7 @@ class LogWorkoutScreen extends StatefulWidget {
   final LogDay logday;
 
   @override
-  _LogWorkoutScreenState createState() => _LogWorkoutScreenState();
+  State<LogWorkoutScreen> createState() => _LogWorkoutScreenState();
 }
 
 class _LogWorkoutScreenState extends State<LogWorkoutScreen> {
