@@ -34,7 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "absiAgeValidation": MessageLookupByLibrary.simpleMessage(
             "Please, enter you age. ABSI calculator is only for people 2 or much years old."),
         "absiMean": MessageLookupByLibrary.simpleMessage(
-            "Averange ABSI of people in your age and same gender"),
+            "Average ABSI of people in your age and same gender"),
         "absiPageDesc": MessageLookupByLibrary.simpleMessage(
             "A body shape index and mortality risk calculator."),
         "absiPageTitle":
@@ -43,14 +43,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Premature mortality risk"),
         "absiRisk1": MessageLookupByLibrary.simpleMessage("Very Low"),
         "absiRisk2": MessageLookupByLibrary.simpleMessage("Low"),
-        "absiRisk3": MessageLookupByLibrary.simpleMessage("Averange"),
+        "absiRisk3": MessageLookupByLibrary.simpleMessage("Average"),
         "absiRisk4": MessageLookupByLibrary.simpleMessage("High"),
         "absiRisk5": MessageLookupByLibrary.simpleMessage("Very High"),
         "absiWaistCircumference":
             MessageLookupByLibrary.simpleMessage("Waist circumference"),
         "absiWaistCircumferenceValidation":
             MessageLookupByLibrary.simpleMessage(
-                "Please enter your waist circumference in cantimeters."),
+                "Please enter your waist circumference in centimeters."),
         "add": MessageLookupByLibrary.simpleMessage("Add"),
         "addEx": MessageLookupByLibrary.simpleMessage("Exercise added."),
         "age": MessageLookupByLibrary.simpleMessage("Age"),
@@ -98,12 +98,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "cooperBad": MessageLookupByLibrary.simpleMessage("Bad"),
         "cooperDistanse": MessageLookupByLibrary.simpleMessage("Distanse"),
         "cooperDistanseValidation":
-            MessageLookupByLibrary.simpleMessage("Please, enter the distanse."),
+            MessageLookupByLibrary.simpleMessage("Please, enter the distance."),
         "cooperExcellent": MessageLookupByLibrary.simpleMessage("Excellent"),
         "cooperGood": MessageLookupByLibrary.simpleMessage("Good"),
         "cooperMark": MessageLookupByLibrary.simpleMessage("Mark"),
         "cooperPageDesc": MessageLookupByLibrary.simpleMessage(
-            "Run 12 minutes as fast, as you can. And enter the distanse in the field below. You can do it on stadium, or using fitness tracker with GPS."),
+            "Run 12 minutes as fast, as you can. And enter the distance in the field below. You can do it in a stadium, or using a fitness tracker with GPS."),
         "cooperPageTitle":
             MessageLookupByLibrary.simpleMessage("Cooper test + VO max"),
         "cooperStrongMinutes": MessageLookupByLibrary.simpleMessage(
@@ -111,7 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cooperStrongMinutesValidation":
             MessageLookupByLibrary.simpleMessage("Please, enter number."),
         "cooperStrongPageDesc": MessageLookupByLibrary.simpleMessage(
-            "Another type of Cooper\'s strength endurance test, also no less common (originally created for the US military, but also used by sportsmen and military personnel of other countries, including the Russian Federation), includes 4 repetitions of the following set of exercises:\n\n - do 10 push-ups and stay in support lying;\n - leaning on our hands with a jump, we bring our legs to our hands, squatting and then back 10 times;\n - we turn on our back and put our legs behind our heads 10 times (the exercise is performed lying on our back);\n - 10 jumps with a change of legs and touching the knee to the ground."),
+            "Another type of Cooper\'s strength endurance test, also no less common (created for the US military, but also used by sportsmen and military personnel of other countries), includes 4 repetitions of the following set of exercises:\n\n - do 10 push-ups and stay in support lying;\n - leaning on our hands with a jump, we bring our legs to our hands, squatting and then back 10 times;\n - we turn on our back and put our legs behind our heads 10 times (the exercise is performed lying on our back);\n - 10 jumps with a change of legs and touching the knee to the ground."),
         "cooperStrongPageTitle":
             MessageLookupByLibrary.simpleMessage("Cooper army test"),
         "cooperTerrible": MessageLookupByLibrary.simpleMessage("Terrible"),
@@ -151,7 +151,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "This option will overwrite all data with imports and exit the application. Make a backup!"),
         "inch": MessageLookupByLibrary.simpleMessage("in"),
         "isAthlete": MessageLookupByLibrary.simpleMessage(
-            "Are you professional athlete?"),
+            "Are you a professional athlete?"),
         "lbmPageDescription":
             MessageLookupByLibrary.simpleMessage("Fat-free body mass."),
         "lbmPageTitle": MessageLookupByLibrary.simpleMessage("Lean Body Mass"),
@@ -185,7 +185,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "noDesc": MessageLookupByLibrary.simpleMessage("No description."),
         "noex":
-            MessageLookupByLibrary.simpleMessage("No excersises on this day."),
+            MessageLookupByLibrary.simpleMessage("No exercises on this day."),
         "nothingSelected":
             MessageLookupByLibrary.simpleMessage("Nothing selected"),
         "pageAddEx": MessageLookupByLibrary.simpleMessage("Add exercise"),
@@ -206,7 +206,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "rmBarebellWeight":
             MessageLookupByLibrary.simpleMessage("Weight of barebell"),
         "rmBarebellWeightValidation": MessageLookupByLibrary.simpleMessage(
-            "Please, enter weight of barebell."),
+            "Please, enter weight of barbell."),
         "rmMethod": MessageLookupByLibrary.simpleMessage("Method"),
         "rmPageDesc": MessageLookupByLibrary.simpleMessage(
             "1 RM calculation by different methods."),
@@ -223,12 +223,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Select or create program first"),
         "sets": MessageLookupByLibrary.simpleMessage("Sets"),
         "setsText": MessageLookupByLibrary.simpleMessage(
-            "Perfom the set, and when you\'re done, press the button."),
+            "Perform the set, and when you\'re done, press the button."),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "share": MessageLookupByLibrary.simpleMessage("Share database"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "skipDialog": MessageLookupByLibrary.simpleMessage(
-            "Are you really want to skip this excersise today?"),
+            "Are you really want to skip this exercise today?"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
         "stopRest": MessageLookupByLibrary.simpleMessage("Stop the rest"),
         "timer": MessageLookupByLibrary.simpleMessage("Timer"),

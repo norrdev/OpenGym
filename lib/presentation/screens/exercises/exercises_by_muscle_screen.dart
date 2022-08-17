@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:npng/data/models/models.dart';
-import 'package:npng/data/repository.dart';
-import 'package:npng/presentation/screens/exercises/exercise_edit_screen.dart';
-import 'package:npng/presentation/screens/exercises/exercise_new_screen.dart';
-import 'package:npng/presentation/screens/exercises/exercise_view_screen.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:npng/theme.dart';
 import 'package:provider/provider.dart';
-import 'package:npng/generated/l10n.dart';
+
+import '../../../data/models/models.dart';
+import '../../../data/repository.dart';
+import '../../../generated/l10n.dart';
+import '../../../theme.dart';
+import 'exercise_edit_screen.dart';
+import 'exercise_new_screen.dart';
+import 'exercise_view_screen.dart';
 
 class ExercisesByMuscleScreen extends StatefulWidget {
   final int musclesId;
@@ -53,7 +54,7 @@ class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
                 final item = exes[index];
                 return Slidable(
                   key: ValueKey(item),
-                  endActionPane: ActionPane(
+                  startActionPane: ActionPane(
                     motion: const ScrollMotion(),
                     children: [
                       SlidableAction(
@@ -67,6 +68,7 @@ class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
                             },
                           ),
                         ).then((value) {
+                          // TODO change to bloc event
                           setState(() {});
                         }),
                         backgroundColor: kActionColorEdit,

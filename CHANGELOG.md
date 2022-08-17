@@ -1,20 +1,21 @@
 ## 3.0.0
 - Core refactoring.
 - Improved performance.
-- Merged programs and workout screens.
+- Spell checking.
+- Added equipment, limbs and load parameters to exercises.
 - Total training volume on the finish and log screen.
 
 ## 2.1.0
 - Same design in all operating systems.
 - Exercises checkbox on workout screen.
-- Programs selector moved to the Workout screen.
+- The programs selector moved to the Workout screen.
 - Removed window header in macOS.
 - Improved work with small screens.
 - Improved performance.
 
 ## 2.0.1
 - Fixed permissions.
-- Name of the day in the calendar.
+- Name of the day in the log.
 
 ## 2.0.0
 - Full core refactoring.
@@ -29,7 +30,7 @@
 - Changed place for weight and repeats.
 - Added system splash screen on start.
 - Added stop button to rest timer.
-- Added ability to increase/decrease amount of sets during a workout.
+- Added ability to increase/decrease the number of sets during a workout.
 
 ## 1.1.4
 - Improved DB import.
@@ -40,7 +41,7 @@
 ## 1.1.2
 - Fixed bug with adding exercises.
 - Add message after adding exercises.
-- Fixed message colour on dark theme.
+- Fixed message color on dark theme.
 
 ## 1.1.1
 - Performance and interface fixes.

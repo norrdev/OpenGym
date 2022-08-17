@@ -53,7 +53,7 @@ class ExercisesScreen extends StatelessWidget {
                   child: ListTile(
                     leading: (item.icon != null)
                         ? ColorFiltered(
-                            colorFilter: kGrayscale,
+                            colorFilter: kGrayscaleColorFilter,
                             child: Image.memory(
                               item.icon as Uint8List,
                               width: 96,

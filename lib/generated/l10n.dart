@@ -70,10 +70,10 @@ class S {
     );
   }
 
-  /// `Averange ABSI of people in your age and same gender`
+  /// `Average ABSI of people in your age and same gender`
   String get absiMean {
     return Intl.message(
-      'Averange ABSI of people in your age and same gender',
+      'Average ABSI of people in your age and same gender',
       name: 'absiMean',
       desc: '',
       args: [],
@@ -130,10 +130,10 @@ class S {
     );
   }
 
-  /// `Averange`
+  /// `Average`
   String get absiRisk3 {
     return Intl.message(
-      'Averange',
+      'Average',
       name: 'absiRisk3',
       desc: '',
       args: [],
@@ -170,10 +170,10 @@ class S {
     );
   }
 
-  /// `Please enter your waist circumference in cantimeters.`
+  /// `Please enter your waist circumference in centimeters.`
   String get absiWaistCircumferenceValidation {
     return Intl.message(
-      'Please enter your waist circumference in cantimeters.',
+      'Please enter your waist circumference in centimeters.',
       name: 'absiWaistCircumferenceValidation',
       desc: '',
       args: [],
@@ -530,10 +530,10 @@ class S {
     );
   }
 
-  /// `Please, enter the distanse.`
+  /// `Please, enter the distance.`
   String get cooperDistanseValidation {
     return Intl.message(
-      'Please, enter the distanse.',
+      'Please, enter the distance.',
       name: 'cooperDistanseValidation',
       desc: '',
       args: [],
@@ -570,10 +570,10 @@ class S {
     );
   }
 
-  /// `Run 12 minutes as fast, as you can. And enter the distanse in the field below. You can do it on stadium, or using fitness tracker with GPS.`
+  /// `Run 12 minutes as fast, as you can. And enter the distance in the field below. You can do it in a stadium, or using a fitness tracker with GPS.`
   String get cooperPageDesc {
     return Intl.message(
-      'Run 12 minutes as fast, as you can. And enter the distanse in the field below. You can do it on stadium, or using fitness tracker with GPS.',
+      'Run 12 minutes as fast, as you can. And enter the distance in the field below. You can do it in a stadium, or using a fitness tracker with GPS.',
       name: 'cooperPageDesc',
       desc: '',
       args: [],
@@ -610,10 +610,10 @@ class S {
     );
   }
 
-  /// `Another type of Cooper's strength endurance test, also no less common (originally created for the US military, but also used by sportsmen and military personnel of other countries, including the Russian Federation), includes 4 repetitions of the following set of exercises:\n\n - do 10 push-ups and stay in support lying;\n - leaning on our hands with a jump, we bring our legs to our hands, squatting and then back 10 times;\n - we turn on our back and put our legs behind our heads 10 times (the exercise is performed lying on our back);\n - 10 jumps with a change of legs and touching the knee to the ground.`
+  /// `Another type of Cooper's strength endurance test, also no less common (created for the US military, but also used by sportsmen and military personnel of other countries), includes 4 repetitions of the following set of exercises:\n\n - do 10 push-ups and stay in support lying;\n - leaning on our hands with a jump, we bring our legs to our hands, squatting and then back 10 times;\n - we turn on our back and put our legs behind our heads 10 times (the exercise is performed lying on our back);\n - 10 jumps with a change of legs and touching the knee to the ground.`
   String get cooperStrongPageDesc {
     return Intl.message(
-      'Another type of Cooper\'s strength endurance test, also no less common (originally created for the US military, but also used by sportsmen and military personnel of other countries, including the Russian Federation), includes 4 repetitions of the following set of exercises:\n\n - do 10 push-ups and stay in support lying;\n - leaning on our hands with a jump, we bring our legs to our hands, squatting and then back 10 times;\n - we turn on our back and put our legs behind our heads 10 times (the exercise is performed lying on our back);\n - 10 jumps with a change of legs and touching the knee to the ground.',
+      'Another type of Cooper\'s strength endurance test, also no less common (created for the US military, but also used by sportsmen and military personnel of other countries), includes 4 repetitions of the following set of exercises:\n\n - do 10 push-ups and stay in support lying;\n - leaning on our hands with a jump, we bring our legs to our hands, squatting and then back 10 times;\n - we turn on our back and put our legs behind our heads 10 times (the exercise is performed lying on our back);\n - 10 jumps with a change of legs and touching the knee to the ground.',
       name: 'cooperStrongPageDesc',
       desc: '',
       args: [],
@@ -930,10 +930,10 @@ class S {
     );
   }
 
-  /// `Are you professional athlete?`
+  /// `Are you a professional athlete?`
   String get isAthlete {
     return Intl.message(
-      'Are you professional athlete?',
+      'Are you a professional athlete?',
       name: 'isAthlete',
       desc: '',
       args: [],
@@ -1230,10 +1230,10 @@ class S {
     );
   }
 
-  /// `No excersises on this day.`
+  /// `No exercises on this day.`
   String get noex {
     return Intl.message(
-      'No excersises on this day.',
+      'No exercises on this day.',
       name: 'noex',
       desc: '',
       args: [],
@@ -1400,10 +1400,10 @@ class S {
     );
   }
 
-  /// `Please, enter weight of barebell.`
+  /// `Please, enter weight of barbell.`
   String get rmBarebellWeightValidation {
     return Intl.message(
-      'Please, enter weight of barebell.',
+      'Please, enter weight of barbell.',
       name: 'rmBarebellWeightValidation',
       desc: '',
       args: [],
@@ -1520,10 +1520,10 @@ class S {
     );
   }
 
-  /// `Perfom the set, and when you're done, press the button.`
+  /// `Perform the set, and when you're done, press the button.`
   String get setsText {
     return Intl.message(
-      'Perfom the set, and when you\'re done, press the button.',
+      'Perform the set, and when you\'re done, press the button.',
       name: 'setsText',
       desc: '',
       args: [],
@@ -1560,10 +1560,10 @@ class S {
     );
   }
 
-  /// `Are you really want to skip this excersise today?`
+  /// `Are you really want to skip this exercise today?`
   String get skipDialog {
     return Intl.message(
-      'Are you really want to skip this excersise today?',
+      'Are you really want to skip this exercise today?',
       name: 'skipDialog',
       desc: '',
       args: [],

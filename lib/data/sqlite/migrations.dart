@@ -1,7 +1,8 @@
 part of 'database_helper.dart';
 
-/// Migration script v2
-void _upgradeTableMuscleV1toV2(Batch batch) {
+/// Migration script v2 (PRAGMA user_version = 2).
+/// Version 1 comes from assets.
+void _upgradeV1toV2(Batch batch) {
   batch.execute('PRAGMA foreign_keys = 0');
   batch.execute(''' 
     CREATE TABLE muscles (
@@ -24,9 +25,7 @@ void _upgradeTableMuscleV1toV2(Batch batch) {
                       FROM musсles''');
   batch.execute('DROP TABLE musсles');
   batch.execute('PRAGMA foreign_keys = 1');
-}
 
-void _upgradeTableDaysV1toV2(Batch batch) {
   batch.execute('PRAGMA foreign_keys = 0');
   batch.execute('CREATE TABLE sqlitestudio_temp_table AS SELECT * FROM days');
   batch.execute('UPDATE sqlitestudio_temp_table SET ord = 0 WHERE ord IS NULL');
@@ -64,9 +63,7 @@ void _upgradeTableDaysV1toV2(Batch batch) {
                    FROM sqlitestudio_temp_table''');
   batch.execute('DROP TABLE sqlitestudio_temp_table');
   batch.execute('PRAGMA foreign_keys = 1');
-}
 
-void _upgradeTableUserV1toV2(Batch batch) {
   batch.execute('PRAGMA foreign_keys = 0');
   batch.execute('CREATE TABLE sqlitestudio_temp_table AS SELECT * FROM user');
   batch.execute('DROP TABLE user');
@@ -95,8 +92,13 @@ void _upgradeTableUserV1toV2(Batch batch) {
   batch.execute('PRAGMA foreign_keys = 1');
 }
 
-// --------------------- v3 ---------------------
-void _updateTableExercisesV2toV3(Batch batch) {
+/// Migration script v3 (PRAGMA user_version = 3).
+void _updateV2toV3(Batch batch) {
+  batch.execute('PRAGMA foreign_keys = 0');
+  batch.execute('ALTER TABLE load RENAME TO exercises_muscles');
+  batch.execute('PRAGMA foreign_keys = 1');
+
+  // Typo fixes.
   batch.execute('UPDATE exercises SET en_name = "Barbell Shrug" WHERE id = 3');
   batch.execute('UPDATE exercises SET en_name = "Pull-Ups" WHERE id = 19');
   batch.execute('UPDATE exercises SET en_name = "Squats" WHERE id = 51');
@@ -112,4 +114,120 @@ void _updateTableExercisesV2toV3(Batch batch) {
       'UPDATE exercises SET en_name = "Hummer Curl With Rubber Band" WHERE id = 24');
   batch.execute(
       'UPDATE exercises SET en_name = "Triceps Extensions With Dumbbell" WHERE id = 28');
+
+  batch.execute('PRAGMA foreign_keys = 0');
+  batch.execute(
+      'CREATE TABLE sqlitestudio_temp_table AS SELECT * FROM exercises');
+
+  batch.execute('DROP TABLE exercises');
+
+  batch.execute('''
+CREATE TABLE exercises (
+    id             INTEGER PRIMARY KEY
+                           UNIQUE,
+    en_name        STRING,
+    ru_name        STRING,
+    en_description STRING,
+    ru_description STRING,
+    equipment_id   INTEGER,
+    preinstalled   BOOLEAN,
+    bars        INTEGER,
+    load_id        INTEGER
+)''');
+  batch.execute('''
+INSERT INTO exercises (
+                          id,
+                          en_name,
+                          ru_name,
+                          en_description,
+                          ru_description,
+                          equipment_id
+                      )
+                      SELECT id,
+                             en_name,
+                             ru_name,
+                             en_description,
+                             ru_description,
+                             equipment_id
+                        FROM sqlitestudio_temp_table''');
+
+  batch.execute('DROP TABLE sqlitestudio_temp_table');
+
+  batch.execute('PRAGMA foreign_keys = 1');
+
+  batch.execute('ALTER TABLE exercises ADD limbs INTEGER');
+
+  // Preload flag.
+  batch.execute('UPDATE exercises SET preinstalled = 1 WHERE id <= 60');
+
+  // Update bars.
+  batch.execute('''
+UPDATE exercises SET bars = 1 WHERE id in 
+( 1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15, 16, 18, 19, 20, 23, 25, 26, 27, 28, 
+29, 32, 33, 34, 35, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 
+54, 55, 57, 58, 60)''');
+  batch.execute('''
+UPDATE exercises SET bars = 2 WHERE id in 
+( 4, 8, 12, 17, 21, 22, 24, 30, 31, 36, 37, 53, 56, 59)''');
+
+  // Update load_id.
+  batch.execute('''
+UPDATE exercises SET load_id = 1 WHERE id in ( 1, 2, 6, 10, 14, 15, 19, 25, 32, 
+33, 40, 41, 42, 43, 46, 48, 51, 54, 58)''');
+  batch.execute('''
+UPDATE exercises SET load_id = 2 WHERE id in ( 3, 4, 5, 7, 8, 9, 11, 12, 13, 16, 
+17, 18, 20, 21, 22, 23, 24, 26, 27, 28, 29, 30, 31, 34, 35, 36, 37, 38, 39, 44, 
+45, 47, 49, 50, 52, 53, 55, 56, 57, 59, 60)''');
+
+  // Limbs update.
+  batch.execute('''
+UPDATE exercises SET limbs = 1 WHERE id in ( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 
+12, 13, 14, 15, 16, 18, 19, 20, 23, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 
+38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 54, 55, 56, 57, 58, 
+59, 60)''');
+  // Limbs update.
+  batch.execute('UPDATE exercises SET limbs = 1 WHERE id in '
+      '(  17, 21, 22, 24, 36, 37, 53 )');
+
+  // Equipment_id update.
+  batch.execute('''
+UPDATE exercises SET equipment_id = 1 WHERE id in ( 1, 2, 6, 10, 14, 15, 19, 25, 
+32, 33, 40, 41, 42, 43, 48, 51, 58 )''');
+  batch.execute('''
+UPDATE exercises SET equipment_id = 2 WHERE id in ( 5, 9, 13, 18, 23, 24, 29, 
+31, 38, 39, 44, 46, 50, 57, 60)''');
+  batch.execute('''
+UPDATE exercises SET equipment_id = 3 WHERE id in ( 3, 7, 11, 16, 20, 26, 27, 
+34, 35, 45, 47, 49, 52, 55 )''');
+  batch.execute('''
+UPDATE exercises SET equipment_id = 4 WHERE id in ( 4, 8, 12, 17, 21, 22, 28, 
+30, 36, 37, 53, 56, 59 )''');
+  batch.execute('UPDATE exercises SET equipment_id = 6 WHERE id = 54');
+
+  // Equipment spellcheck.
+  batch.execute('UPDATE equipment SET en_name = "Body weight" WHERE id = 1');
+  batch.execute('UPDATE equipment SET en_name = "Dumbbells" WHERE id = 4');
+  batch.execute('UPDATE equipment SET en_name = "Gym equipment" WHERE id = 6');
+  batch.execute('ALTER TABLE equipment ADD preinstalled BOOLEAN');
+  batch.execute('UPDATE equipment SET preinstalled = 1 WHERE id <= 6');
+
+  // New load table.
+  batch.execute('''
+CREATE TABLE load (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT
+                         NOT NULL
+                         UNIQUE,
+    en_name      STRING,
+    ru_name      STRING,
+    preinstalled BOOLEAN
+)
+''');
+  batch.execute(
+      'INSERT INTO load (en_name, ru_name, preinstalled) VALUES ("Body weight", "Собственный вес", 1)');
+  batch.execute(
+      'INSERT INTO load (en_name, ru_name, preinstalled) VALUES ("Weight", "Вес", 1)');
+  batch.execute(
+      'INSERT INTO load (en_name, ru_name, preinstalled) VALUES ("Time", "Время", 1)');
+  batch.execute(
+      'INSERT INTO load (en_name, ru_name, preinstalled) VALUES ("Distance", "Расстояние", 1)');
 }

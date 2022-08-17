@@ -1,14 +1,17 @@
 import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:npng/data/models/workout_exercise.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqlbrite/sqlbrite.dart';
 import 'package:synchronized/synchronized.dart';
-import 'package:npng/data/models/models.dart';
-part 'package:npng/data/sqlite/migrations.dart';
+
+import '../models/models.dart';
+import '../models/workout_exercise.dart';
+
+part 'migrations.dart';
 
 String kLocale = Intl.getCurrentLocale();
 
@@ -19,7 +22,7 @@ class DatabaseHelper {
   static const String muscleTable = 'muscles';
   static const String exerciseTable = 'exercises';
   static const String programsTable = 'programs';
-  static const String loadTable = 'load';
+  static const String exercisesMusclesTable = 'exercises_muscles';
   static const String userTable = 'user';
   static const String daysTable = 'days';
   static const String workoutsTable = 'workouts';
@@ -41,18 +44,18 @@ class DatabaseHelper {
   Future<Database> _initDatabase() async {
     final documentsDirectory = await getApplicationDocumentsDirectory();
     final String path = join(documentsDirectory.path, _databaseName);
-    final bool exists = await databaseExists(path);
+    // final bool exists = await databaseExists(path);
 
     // Extract db from asset if it doesn't exist
-    if (!exists) {
-      try {
-        await Directory(dirname(path)).create(recursive: true);
-      } catch (_) {}
-      ByteData data = await rootBundle.load(join('assets/db', 'npng.db'));
-      List<int> bytes =
-          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-      await File(path).writeAsBytes(bytes, flush: true);
-    }
+    // if (!exists) {
+    //   try {
+    //     await Directory(dirname(path)).create(recursive: true);
+    //   } catch (_) {}
+    //   ByteData data = await rootBundle.load(join('assets/db', 'npng.db'));
+    //   List<int> bytes =
+    //       data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+    //   await File(path).writeAsBytes(bytes, flush: true);
+    // }
 
     // Sqlite debug mode/logging
     if (kDebugMode) {
@@ -64,6 +67,19 @@ class DatabaseHelper {
     Database db = await openDatabase(
       path,
       version: _databaseVersion,
+      onCreate: (db, version) async {
+        // ! Here always created a new database from an asset with the current version.
+        // ! If you want to upgrade the database, first you need to do it
+        // ! manually in assets/db/npng.db then create the migration.
+        // ! After modifying the database, you need to update the version number in the PRAGMA user_version = 5
+        try {
+          await Directory(dirname(path)).create(recursive: true);
+        } catch (_) {}
+        ByteData data = await rootBundle.load(join('assets/db', 'npng.db'));
+        List<int> bytes =
+            data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+        await File(path).writeAsBytes(bytes, flush: true);
+      },
       onUpgrade: (db, oldVersion, newVersion) async {
         if (kDebugMode) {
           print('→ oldVersion: $oldVersion');
@@ -73,15 +89,13 @@ class DatabaseHelper {
         //if (exists) {
         Batch batch = db.batch();
         if (oldVersion == 1) {
-          _upgradeTableMuscleV1toV2(batch);
-          _upgradeTableDaysV1toV2(batch);
-          _upgradeTableUserV1toV2(batch);
+          _upgradeV1toV2(batch);
           if (kDebugMode) {
             print('→ Database migrated from v1 to v2.');
           }
         }
         if (oldVersion == 2) {
-          _updateTableExercisesV2toV3(batch);
+          _updateV2toV3(batch);
           if (kDebugMode) {
             print('→ Database migrated from v2 to v3.');
           }
@@ -180,12 +194,12 @@ class DatabaseHelper {
     String sql =
         '''SELECT exercises.id AS id, exercises.${kLocale}_name AS name, 
            ${kLocale}_description AS description, equipment_id
-           FROM $loadTable  
+           FROM $exercisesMusclesTable  
            JOIN $exerciseTable ON exercises_id = exercises.id 
            WHERE muscles_id = $id''';
 
-    yield* db.createRawQuery(
-        [loadTable], sql).mapToList((row) => Exercise.fromJson(row));
+    yield* db.createRawQuery([exercisesMusclesTable], sql).mapToList(
+        (row) => Exercise.fromJson(row));
   }
 
   Future<Exercise> findExerciseById(id) async {
@@ -218,7 +232,7 @@ class DatabaseHelper {
         '${kLocale}_name': exercise.name,
         '${kLocale}_description': exercise.description,
       });
-      await txn.insert(loadTable, {
+      await txn.insert(exercisesMusclesTable, {
         'exercises_id': id,
         'muscles_id': muscleId,
       });
@@ -231,7 +245,7 @@ class DatabaseHelper {
     await db.transaction((txn) async {
       await txn
           .delete(exerciseTable, where: 'id = ?', whereArgs: [exercise.id]);
-      await txn.delete(loadTable,
+      await txn.delete(exercisesMusclesTable,
           where: 'exercises_id = ?', whereArgs: [exercise.id]);
     });
     return Future.value();
