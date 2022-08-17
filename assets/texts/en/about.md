@@ -1,6 +1,6 @@
 # NpNg %version%
 
-No resistration. No personal data needed. No tracking and telemetry. Simple interface. No remote backend.
+No registration. No personal data is needed. No tracking and telemetry. Simple interface. No remote backend.
 
 © 2021 [Denis Filonov](https://filonov.pro).
 

@@ -7,5 +7,21 @@
             "name": "NpNg",
             "group": "flutter"
         }
+    ],
+    "grammarly.selectors": [
+        {
+            "language": "dart",
+            "scheme": "file",
+            "pattern": "lib/data/sqlite/database_helper.dart"
+        },
+        {
+            "language": "markdown",
+            "scheme": "file"
+        },
+        {
+            "language": "json",
+            "scheme": "file",
+            "pattern": "lib/l10n/intl_en.arb"
+        }
     ]
 }
