@@ -50,6 +50,8 @@ abstract class Repository {
 
   Future<List<LogWorkout>> findLogWorkoutByDay(int logDayId);
 
+  Stream<List<Equipment>> watchAllEquipment();
+
   Future<void> insertLog({
     required DateTime startTime,
     required DateTime finishTime,

@@ -28,6 +28,7 @@ class DatabaseHelper {
   static const String workoutsTable = 'workouts';
   static const String logDaysTable = 'log_days';
   static const String logWorkoutsTable = 'log_ex';
+  static const String equipmentTable = 'equipment';
 
   static late BriteDatabase _streamDatabase;
 
@@ -422,6 +423,22 @@ class DatabaseHelper {
       },
     );
     return Future.value();
+  }
+
+  // Equipment
+
+  /// Watch all equipment.
+  /// Return equipment as a stream.
+  Stream<List<Equipment>> watchAllEquipment() async* {
+    final db = await instance.streamDatabase;
+    yield* db.createQuery(
+      equipmentTable,
+      columns: [
+        'id',
+        '${kLocale}_name AS name',
+        'preinstalled',
+      ],
+    ).mapToList((row) => Equipment.fromJson(row));
   }
 
   // Log

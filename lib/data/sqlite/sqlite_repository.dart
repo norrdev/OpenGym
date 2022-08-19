@@ -164,4 +164,9 @@ class SqliteRepository extends Repository {
     dbHelper.importDataBase(filePath);
     return Future.value();
   }
+
+  @override
+  Stream<List<Equipment>> watchAllEquipment() {
+    return dbHelper.watchAllEquipment();
+  }
 }
