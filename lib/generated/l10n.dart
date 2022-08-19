@@ -750,6 +750,16 @@ class S {
     );
   }
 
+  /// `Equipment`
+  String get equipment {
+    return Intl.message(
+      'Equipment',
+      name: 'equipment',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Female`
   String get female {
     return Intl.message(

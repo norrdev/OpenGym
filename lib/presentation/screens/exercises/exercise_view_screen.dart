@@ -14,12 +14,16 @@ class ExerciseViewScreen extends StatelessWidget {
         title: Text(exercise.name.toString()),
       ),
       body: SafeArea(
-        child: (desc.isNotEmpty)
-            ? Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(exercise.description.toString()),
-              )
-            : Center(child: Text(S.of(context).noDesc)),
+        child: Column(
+          children: [
+            (desc.isNotEmpty)
+                ? Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(exercise.description.toString()),
+                  )
+                : Center(child: Text(S.of(context).noDesc)),
+          ],
+        ),
       ),
     );
   }

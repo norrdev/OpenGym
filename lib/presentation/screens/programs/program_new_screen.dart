@@ -25,6 +25,11 @@ class ProgramNewScreen extends StatelessWidget {
                 Exercise newProgram = Exercise(
                   name: tcName.text,
                   description: tcDesc.text,
+                  // TODO: add parameters
+                  bars: null,
+                  equipmentId: null,
+                  limbs: null,
+                  loadId: null,
                 );
                 repository.insertProgram(newProgram);
                 Navigator.pop(context);

@@ -171,13 +171,9 @@ UPDATE exercises SET bars = 2 WHERE id in
 ( 4, 8, 12, 17, 21, 22, 24, 30, 31, 36, 37, 53, 56, 59)''');
 
   // Update load_id.
-  batch.execute('''
-UPDATE exercises SET load_id = 1 WHERE id in ( 1, 2, 6, 10, 14, 15, 19, 25, 32, 
-33, 40, 41, 42, 43, 46, 48, 51, 54, 58)''');
-  batch.execute('''
-UPDATE exercises SET load_id = 2 WHERE id in ( 3, 4, 5, 7, 8, 9, 11, 12, 13, 16, 
-17, 18, 20, 21, 22, 23, 24, 26, 27, 28, 29, 30, 31, 34, 35, 36, 37, 38, 39, 44, 
-45, 47, 49, 50, 52, 53, 55, 56, 57, 59, 60)''');
+  // ! Weight = 1, Time = 2, Distance = 3
+  batch.execute('UPDATE exercises SET load_id = 1 WHERE id BETWEEN 1 AND 60');
+  batch.execute('UPDATE exercises SET load_id = 2 WHERE id in ( 42, 43, 44)');
 
   // Limbs update.
   batch.execute('''
@@ -222,8 +218,6 @@ CREATE TABLE load (
     preinstalled BOOLEAN
 )
 ''');
-  batch.execute(
-      'INSERT INTO load (en_name, ru_name, preinstalled) VALUES ("Body weight", "Собственный вес", 1)');
   batch.execute(
       'INSERT INTO load (en_name, ru_name, preinstalled) VALUES ("Weight", "Вес", 1)');
   batch.execute(

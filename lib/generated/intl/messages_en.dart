@@ -126,6 +126,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "enterText":
             MessageLookupByLibrary.simpleMessage("Please enter some text"),
+        "equipment": MessageLookupByLibrary.simpleMessage("Equipment"),
         "exDesc": MessageLookupByLibrary.simpleMessage("Exercise description"),
         "exName": MessageLookupByLibrary.simpleMessage("Exercise name"),
         "female": MessageLookupByLibrary.simpleMessage("Female"),

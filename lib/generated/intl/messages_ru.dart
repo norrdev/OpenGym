@@ -128,6 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "desc": MessageLookupByLibrary.simpleMessage("Описание"),
         "edit": MessageLookupByLibrary.simpleMessage("Правка"),
         "enterText": MessageLookupByLibrary.simpleMessage("Введите текст"),
+        "equipment": MessageLookupByLibrary.simpleMessage("Оборудование"),
         "exDesc": MessageLookupByLibrary.simpleMessage("Описание упражнения"),
         "exName": MessageLookupByLibrary.simpleMessage("Название упражнения"),
         "female": MessageLookupByLibrary.simpleMessage("Женский"),

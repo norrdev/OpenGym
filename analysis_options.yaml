@@ -12,8 +12,10 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   exclude: 
     - lib/generated/**
-    - build/**, 
+    - build/**
     - lib/generated_plugin_registrant.dart
+    - lib/data/models/*.freezed.dart
+    - lib/data/models/*.g.dart
   language:
     strict-raw-types: true
     strict-casts: true

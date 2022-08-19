@@ -29,6 +29,10 @@ class ExerciseEditScreen extends StatelessWidget {
                   id: exercise.id,
                   name: tcName.text,
                   description: tcDesc.text,
+                  bars: null,
+                  equipmentId: null,
+                  limbs: null,
+                  loadId: null,
                 );
                 repository.updateExercise(newExe);
                 Navigator.pop(context);
