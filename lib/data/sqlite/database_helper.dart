@@ -29,6 +29,7 @@ class DatabaseHelper {
   static const String logDaysTable = 'log_days';
   static const String logWorkoutsTable = 'log_ex';
   static const String equipmentTable = 'equipment';
+  static const String loadTable = 'load';
 
   static late BriteDatabase _streamDatabase;
 
@@ -211,6 +212,10 @@ class DatabaseHelper {
         'id',
         '${kLocale}_name as name',
         '${kLocale}_description as description',
+        'equipment_id',
+        'preinstalled',
+        'bars',
+        'load_id',
       ],
       where: 'id = $id',
       limit: 1,
@@ -219,11 +224,26 @@ class DatabaseHelper {
     return exe;
   }
 
+  /// Update exercise.
   Future<int> updateExercise(Exercise exe) async {
     final db = await instance.streamDatabase;
-    return db.rawUpdate(
-        'UPDATE $exerciseTable SET ${kLocale}_name = ?, ${kLocale}_description = ? WHERE id = ${exe.id}',
-        [exe.name, exe.description, exe.id]);
+    return db.rawUpdate('''
+        UPDATE $exerciseTable SET 
+          ${kLocale}_name = ?,
+          ${kLocale}_description = ? 
+          equipment_id = ?,
+          bars = ?,
+          load_id = ?,
+          limbs = ?,
+        WHERE id = ${exe.id}''', [
+      exe.name,
+      exe.description,
+      exe.equipmentId,
+      exe.bars,
+      exe.loadId,
+      exe.limbs,
+      exe.id,
+    ]);
   }
 
   Future<void> insertExercise(int muscleId, Exercise exercise) async {
@@ -232,6 +252,11 @@ class DatabaseHelper {
       int id = await txn.insert(exerciseTable, {
         '${kLocale}_name': exercise.name,
         '${kLocale}_description': exercise.description,
+        'equipment_id': exercise.equipmentId,
+        'preinstalled': exercise.preinstalled,
+        'bars': exercise.bars,
+        'load_id': exercise.loadId,
+        'limbs': exercise.limbs,
       });
       await txn.insert(exercisesMusclesTable, {
         'exercises_id': id,
@@ -439,6 +464,22 @@ class DatabaseHelper {
         'preinstalled',
       ],
     ).mapToList((row) => Equipment.fromJson(row));
+  }
+
+  // Load
+
+  /// Watch all load.
+// Return load as a stream.
+  Stream<List<Load>> watchAllLoad() async* {
+    final db = await instance.streamDatabase;
+    yield* db.createQuery(
+      loadTable,
+      columns: [
+        'id',
+        '${kLocale}_name AS name',
+        'preinstalled',
+      ],
+    ).mapToList((row) => Load.fromJson(row));
   }
 
   // Log

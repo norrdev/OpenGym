@@ -1010,6 +1010,16 @@ class S {
     );
   }
 
+  /// `Load`
+  String get loadStr {
+    return Intl.message(
+      'Load',
+      name: 'loadStr',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Male`
   String get male {
     return Intl.message(

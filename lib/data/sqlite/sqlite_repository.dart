@@ -169,4 +169,9 @@ class SqliteRepository extends Repository {
   Stream<List<Equipment>> watchAllEquipment() {
     return dbHelper.watchAllEquipment();
   }
+
+  @override
+  Stream<List<Load>> watchAllLoad() {
+    return dbHelper.watchAllLoad();
+  }
 }

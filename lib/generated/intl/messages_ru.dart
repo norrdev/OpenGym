@@ -160,6 +160,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Масса тела без учёта жира."),
         "lbmPageTitle": MessageLookupByLibrary.simpleMessage("Мышечная масса"),
         "licenses": MessageLookupByLibrary.simpleMessage("Лицензии"),
+        "loadStr": MessageLookupByLibrary.simpleMessage("Вид нагрузки"),
         "log": MessageLookupByLibrary.simpleMessage("Дневник"),
         "male": MessageLookupByLibrary.simpleMessage("Мужской"),
         "mcBicep": MessageLookupByLibrary.simpleMessage("Обхват бицепса"),

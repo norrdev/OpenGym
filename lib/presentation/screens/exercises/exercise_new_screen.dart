@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:npng/data/models/exercise.dart';
+import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +19,8 @@ class _ExerciseNewScreenState extends State<ExerciseNewScreen> {
   final formKey = GlobalKey<FormState>();
   int limb = 1;
   int equipment = 1;
+  int load = 1;
+  int bars = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +36,10 @@ class _ExerciseNewScreenState extends State<ExerciseNewScreen> {
                 Exercise newExe = Exercise(
                   name: tcName.text,
                   description: tcDesc.text,
-                  bars: null,
-                  equipmentId: null,
-                  limbs: null,
-                  loadId: null,
+                  bars: bars,
+                  equipmentId: equipment,
+                  limbs: limb,
+                  loadId: load,
                 );
                 repository.insertExercise(widget.muscleId, newExe);
                 Navigator.pop(context);
@@ -69,37 +71,103 @@ class _ExerciseNewScreenState extends State<ExerciseNewScreen> {
                   ),
                 ),
                 const SizedBox(height: 16.0),
-                // TODO: link with a database of equipment
-                DropdownButtonFormField<int>(
-                  decoration: InputDecoration(
-                    labelText: S.of(context).equipment,
-                    border: const OutlineInputBorder(
-                      borderSide: BorderSide(),
-                    ),
-                  ),
-                  borderRadius: BorderRadius.circular(5),
-                  //isExpanded: true,
-                  alignment: Alignment.center,
-                  items: const [
-                    DropdownMenuItem(
-                      value: 1,
-                      child: Text('fsdf'),
-                    ),
-                    DropdownMenuItem(
-                      value: 2,
-                      child: Text('fsdf'),
-                    ),
-                    DropdownMenuItem(
-                      value: 3,
-                      child: Text('dsfsd'),
-                    ),
-                  ],
-                  onChanged: (value) {
-                    setState(() {
-                      equipment = value ?? 0;
-                    });
+                StreamBuilder<List<Load>>(
+                  stream: repository.watchAllLoad(),
+                  builder: (context, AsyncSnapshot<List<Load>> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.active) {
+                      final List<Load> loads = snapshot.data ?? [];
+                      return DropdownButtonFormField<int>(
+                        value: load,
+                        decoration: InputDecoration(
+                          labelText: S.of(context).loadStr,
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide(),
+                          ),
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                        items: loads.map((e) {
+                          return DropdownMenuItem(
+                            value: e.id,
+                            child: Text(e.name ?? ''),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            load = value ?? 1;
+                          });
+                        },
+                      );
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
                   },
-                  value: limb,
+                ),
+                const SizedBox(height: 16.0),
+                Row(
+                  children: [
+                    Radio<int>(
+                        value: 1,
+                        groupValue: bars,
+                        onChanged: (int? value) {
+                          setState(() {
+                            bars = value ?? 1;
+                          });
+                        }),
+                    const Flexible(
+                        // TODO Move to localizarion file
+                        child: Text('Один гриф или нет грифа')),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Radio<int>(
+                        value: 2,
+                        groupValue: bars,
+                        onChanged: (int? value) {
+                          setState(() {
+                            bars = value ?? 2;
+                          });
+                        }),
+                    const Flexible(
+                        // TODO Move to localizarion file
+                        child: Text('Два грифа')),
+                  ],
+                ),
+                const SizedBox(height: 16.0),
+                StreamBuilder<List<Equipment>>(
+                  stream: repository.watchAllEquipment(),
+                  builder: (context, AsyncSnapshot<List<Equipment>> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.active) {
+                      final List<Equipment> equipments = snapshot.data ?? [];
+                      return DropdownButtonFormField<int>(
+                        value: equipment,
+                        decoration: InputDecoration(
+                          labelText: S.of(context).equipment,
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide(),
+                          ),
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                        items: equipments.map((e) {
+                          return DropdownMenuItem(
+                            value: e.id,
+                            child: Text(e.name ?? ''),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            equipment = value ?? 1;
+                          });
+                        },
+                      );
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  },
                 ),
                 const SizedBox(height: 16.0),
                 Row(

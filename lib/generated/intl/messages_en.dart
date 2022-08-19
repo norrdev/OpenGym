@@ -157,6 +157,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Fat-free body mass."),
         "lbmPageTitle": MessageLookupByLibrary.simpleMessage("Lean Body Mass"),
         "licenses": MessageLookupByLibrary.simpleMessage("Licenses"),
+        "loadStr": MessageLookupByLibrary.simpleMessage("Load"),
         "log": MessageLookupByLibrary.simpleMessage("Log"),
         "male": MessageLookupByLibrary.simpleMessage("Male"),
         "mcBicep": MessageLookupByLibrary.simpleMessage("Bicep girth"),

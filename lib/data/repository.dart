@@ -52,6 +52,8 @@ abstract class Repository {
 
   Stream<List<Equipment>> watchAllEquipment();
 
+  Stream<List<Load>> watchAllLoad();
+
   Future<void> insertLog({
     required DateTime startTime,
     required DateTime finishTime,
