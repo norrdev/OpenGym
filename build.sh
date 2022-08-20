@@ -13,6 +13,9 @@
 # echo Changelog sync...
 # cp CHANGELOG.md ../npng-site/
 
+echo Generate frezeed and other...
+flutter pub run build_runner build --delete-conflicting-outputs
+
 echo SplashScreen creating...
 flutter pub run flutter_native_splash:create
 

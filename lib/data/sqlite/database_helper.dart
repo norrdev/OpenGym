@@ -28,6 +28,8 @@ class DatabaseHelper {
   static const String workoutsTable = 'workouts';
   static const String logDaysTable = 'log_days';
   static const String logWorkoutsTable = 'log_ex';
+  static const String equipmentTable = 'equipment';
+  static const String loadTable = 'load';
 
   static late BriteDatabase _streamDatabase;
 
@@ -191,12 +193,18 @@ class DatabaseHelper {
 
   Stream<List<Exercise>> findExcersisesByMuscle(int id) async* {
     final db = await instance.streamDatabase;
-    String sql =
-        '''SELECT exercises.id AS id, exercises.${kLocale}_name AS name, 
-           ${kLocale}_description AS description, equipment_id
+    String sql = '''SELECT 
+            $exerciseTable.id AS id, 
+            ${kLocale}_name AS name, 
+            ${kLocale}_description AS description, 
+            equipmentId,
+            preinstalled,
+            bars,
+            loadId,
+            limbs
            FROM $exercisesMusclesTable  
-           JOIN $exerciseTable ON exercises_id = exercises.id 
-           WHERE muscles_id = $id''';
+           JOIN $exerciseTable ON exerciseId = exercises.id 
+           WHERE muscleId = $id''';
 
     yield* db.createRawQuery([exercisesMusclesTable], sql).mapToList(
         (row) => Exercise.fromJson(row));
@@ -210,6 +218,11 @@ class DatabaseHelper {
         'id',
         '${kLocale}_name as name',
         '${kLocale}_description as description',
+        'equipmentId',
+        'preinstalled',
+        'bars',
+        'loadId',
+        'limbs',
       ],
       where: 'id = $id',
       limit: 1,
@@ -218,11 +231,26 @@ class DatabaseHelper {
     return exe;
   }
 
+  /// Update exercise.
   Future<int> updateExercise(Exercise exe) async {
     final db = await instance.streamDatabase;
-    return db.rawUpdate(
-        'UPDATE $exerciseTable SET ${kLocale}_name = ?, ${kLocale}_description = ? WHERE id = ${exe.id}',
-        [exe.name, exe.description, exe.id]);
+    return db.rawUpdate('''
+        UPDATE $exerciseTable SET 
+          ${kLocale}_name = ?,
+          ${kLocale}_description = ?, 
+          equipmentId = ?,
+          bars = ?,
+          loadId = ?,
+          limbs = ?
+        WHERE id = ${exe.id}''', [
+      exe.name,
+      exe.description,
+      exe.equipmentId,
+      exe.bars,
+      exe.loadId,
+      exe.limbs,
+      exe.id,
+    ]);
   }
 
   Future<void> insertExercise(int muscleId, Exercise exercise) async {
@@ -231,10 +259,15 @@ class DatabaseHelper {
       int id = await txn.insert(exerciseTable, {
         '${kLocale}_name': exercise.name,
         '${kLocale}_description': exercise.description,
+        'equipmentId': exercise.equipmentId,
+        'preinstalled': exercise.preinstalled,
+        'bars': exercise.bars,
+        'loadId': exercise.loadId,
+        'limbs': exercise.limbs,
       });
       await txn.insert(exercisesMusclesTable, {
-        'exercises_id': id,
-        'muscles_id': muscleId,
+        'exerciseId': id,
+        'muscleId': muscleId,
       });
     });
     return Future.value();
@@ -246,7 +279,7 @@ class DatabaseHelper {
       await txn
           .delete(exerciseTable, where: 'id = ?', whereArgs: [exercise.id]);
       await txn.delete(exercisesMusclesTable,
-          where: 'exercises_id = ?', whereArgs: [exercise.id]);
+          where: 'exerciseId = ?', whereArgs: [exercise.id]);
     });
     return Future.value();
   }
@@ -353,8 +386,8 @@ class DatabaseHelper {
       workouts.id AS id, 
       exercises.${kLocale}_name AS name, 
       exercises.${kLocale}_description as description, 
-      sets, ord, repeats, rest, exercises_id, weight FROM workouts 
-    JOIN exercises on workouts.exercises_id = exercises.id 
+      sets, ord, repeats, rest, exerciseId, weight FROM workouts 
+    JOIN exercises on workouts.exerciseId = exercises.id 
     WHERE days_id = $dayId ORDER BY ord;
       ''';
     yield* db.createRawQuery(
@@ -417,11 +450,74 @@ class DatabaseHelper {
       workoutsTable,
       {
         'ord': ++maxOrd,
-        'exercises_id': exersiseId,
+        'exerciseId': exersiseId,
         'days_id': dayId,
       },
     );
     return Future.value();
+  }
+
+  // Equipment
+
+  /// Watch all equipment.
+  /// Return equipment as a stream.
+  Stream<List<Equipment>> watchAllEquipment() async* {
+    final db = await instance.streamDatabase;
+    yield* db.createQuery(
+      equipmentTable,
+      columns: [
+        'id',
+        '${kLocale}_name AS name',
+        'preinstalled',
+      ],
+    ).mapToList((row) => Equipment.fromJson(row));
+  }
+
+  /// Find equipment by id.
+  Future<Equipment> findEquipmentById(int id) async {
+    final db = await instance.streamDatabase;
+    final queryResult = await db.query(
+      equipmentTable,
+      columns: [
+        'id',
+        '${kLocale}_name AS name',
+        'preinstalled',
+      ],
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+    return Equipment.fromJson(queryResult.first);
+  }
+
+  // Load
+
+  /// Watch all load.
+  Stream<List<Load>> watchAllLoad() async* {
+    final db = await instance.streamDatabase;
+    yield* db.createQuery(
+      loadTable,
+      columns: [
+        'id',
+        '${kLocale}_name AS name',
+        'preinstalled',
+      ],
+    ).mapToList((row) => Load.fromJson(row));
+  }
+
+  /// Find load by id.
+  Future<Load> findLoadById(int id) async {
+    final db = await instance.streamDatabase;
+    final queryResult = await db.query(
+      loadTable,
+      columns: [
+        'id',
+        '${kLocale}_name AS name',
+        'preinstalled',
+      ],
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+    return Load.fromJson(queryResult.first);
   }
 
   // Log
@@ -454,13 +550,13 @@ class DatabaseHelper {
   Future<List<LogWorkout>> findLogWorkoutByDay(int logDayId) async {
     final db = await instance.streamDatabase;
     final String sql = '''
-    SELECT $logWorkoutsTable.exercises_id AS id,
+    SELECT $logWorkoutsTable.exerciseId AS id,
               repeat,
               weight,
               $exerciseTable.${kLocale}_name AS name
         FROM $logWorkoutsTable
               JOIN
-              $exerciseTable ON $logWorkoutsTable.exercises_id = $exerciseTable.id
+              $exerciseTable ON $logWorkoutsTable.exerciseId = $exerciseTable.id
         WHERE $logWorkoutsTable.log_days_id = $logDayId
         ORDER BY $logWorkoutsTable.id;
     ''';
@@ -491,7 +587,7 @@ class DatabaseHelper {
         for (int i = 0; i < item.sets.length; i++) {
           await txn.insert(logWorkoutsTable, {
             'log_days_id': logDaysId,
-            'exercises_id': item.id,
+            'exerciseId': item.id,
             'repeat': item.sets[i].repeats,
             'weight': item.sets[i].weight,
           });

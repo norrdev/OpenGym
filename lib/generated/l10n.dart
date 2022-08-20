@@ -220,6 +220,16 @@ class S {
     );
   }
 
+  /// `Allow changes?`
+  String get allowChanges {
+    return Intl.message(
+      'Allow changes?',
+      name: 'allowChanges',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Backup database`
   String get backup {
     return Intl.message(
@@ -750,6 +760,16 @@ class S {
     );
   }
 
+  /// `Equipment`
+  String get equipment {
+    return Intl.message(
+      'Equipment',
+      name: 'equipment',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Female`
   String get female {
     return Intl.message(
@@ -1000,6 +1020,16 @@ class S {
     );
   }
 
+  /// `Load`
+  String get loadStr {
+    return Intl.message(
+      'Load',
+      name: 'loadStr',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Male`
   String get male {
     return Intl.message(
@@ -1220,6 +1250,16 @@ class S {
     );
   }
 
+  /// `No`
+  String get no {
+    return Intl.message(
+      'No',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `No description.`
   String get noDesc {
     return Intl.message(
@@ -1315,6 +1355,16 @@ class S {
     return Intl.message(
       'Add program',
       name: 'programAdd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preinstalled exercise`
+  String get preinstalledEx {
+    return Intl.message(
+      'Preinstalled exercise',
+      name: 'preinstalledEx',
       desc: '',
       args: [],
     );
@@ -1715,6 +1765,56 @@ class S {
     return Intl.message(
       'Training volume',
       name: 'wrkTrainingVolume',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `One bar or no bar`
+  String get oneBarOrNoBar {
+    return Intl.message(
+      'One bar or no bar',
+      name: 'oneBarOrNoBar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Two bars`
+  String get twoBars {
+    return Intl.message(
+      'Two bars',
+      name: 'twoBars',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Both limbs work simultaneously or one muscle group works`
+  String get twoLimbsWorksTogether {
+    return Intl.message(
+      'Both limbs work simultaneously or one muscle group works',
+      name: 'twoLimbsWorksTogether',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Limbs work alternately or separately`
+  String get limbsWorkAlt {
+    return Intl.message(
+      'Limbs work alternately or separately',
+      name: 'limbsWorkAlt',
       desc: '',
       args: [],
     );

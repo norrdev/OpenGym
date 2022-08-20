@@ -56,6 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "age": MessageLookupByLibrary.simpleMessage("Age"),
         "ageValidation":
             MessageLookupByLibrary.simpleMessage("Please, enter you age."),
+        "allowChanges": MessageLookupByLibrary.simpleMessage("Allow changes?"),
         "backup": MessageLookupByLibrary.simpleMessage("Backup database"),
         "bfpAthletes": MessageLookupByLibrary.simpleMessage("Athletes"),
         "bfpAverage": MessageLookupByLibrary.simpleMessage("Average"),
@@ -126,6 +127,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "enterText":
             MessageLookupByLibrary.simpleMessage("Please enter some text"),
+        "equipment": MessageLookupByLibrary.simpleMessage("Equipment"),
         "exDesc": MessageLookupByLibrary.simpleMessage("Exercise description"),
         "exName": MessageLookupByLibrary.simpleMessage("Exercise name"),
         "female": MessageLookupByLibrary.simpleMessage("Female"),
@@ -156,6 +158,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Fat-free body mass."),
         "lbmPageTitle": MessageLookupByLibrary.simpleMessage("Lean Body Mass"),
         "licenses": MessageLookupByLibrary.simpleMessage("Licenses"),
+        "limbsWorkAlt": MessageLookupByLibrary.simpleMessage(
+            "Limbs work alternately or separately"),
+        "loadStr": MessageLookupByLibrary.simpleMessage("Load"),
         "log": MessageLookupByLibrary.simpleMessage("Log"),
         "male": MessageLookupByLibrary.simpleMessage("Male"),
         "mcBicep": MessageLookupByLibrary.simpleMessage("Bicep girth"),
@@ -183,16 +188,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "min": MessageLookupByLibrary.simpleMessage("min."),
         "muscles": MessageLookupByLibrary.simpleMessage("Muscles"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "noDesc": MessageLookupByLibrary.simpleMessage("No description."),
         "noex":
             MessageLookupByLibrary.simpleMessage("No exercises on this day."),
         "nothingSelected":
             MessageLookupByLibrary.simpleMessage("Nothing selected"),
+        "oneBarOrNoBar":
+            MessageLookupByLibrary.simpleMessage("One bar or no bar"),
         "pageAddEx": MessageLookupByLibrary.simpleMessage("Add exercise"),
         "pageDaysTitle": MessageLookupByLibrary.simpleMessage("Days"),
         "pageExerciseTitle": MessageLookupByLibrary.simpleMessage("Exercises"),
         "pageProgramsTitle": MessageLookupByLibrary.simpleMessage("Programs"),
         "pageWorkout": MessageLookupByLibrary.simpleMessage("Workout"),
+        "preinstalledEx":
+            MessageLookupByLibrary.simpleMessage("Preinstalled exercise"),
         "programAdd": MessageLookupByLibrary.simpleMessage("Add program"),
         "rename": MessageLookupByLibrary.simpleMessage("Rename"),
         "repeats": MessageLookupByLibrary.simpleMessage("Repeats"),
@@ -234,6 +244,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "timer": MessageLookupByLibrary.simpleMessage("Timer"),
         "title": MessageLookupByLibrary.simpleMessage("NpNg"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),
+        "twoBars": MessageLookupByLibrary.simpleMessage("Two bars"),
+        "twoLimbsWorksTogether": MessageLookupByLibrary.simpleMessage(
+            "Both limbs work simultaneously or one muscle group works"),
         "useImperialUS": MessageLookupByLibrary.simpleMessage(
             "Use Imperial/US system (lbs, in, miles)?"),
         "weight": MessageLookupByLibrary.simpleMessage("Weight"),
@@ -245,6 +258,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "wrkDuration": MessageLookupByLibrary.simpleMessage("Workout duration"),
         "wrkEnd": MessageLookupByLibrary.simpleMessage("Workout end"),
         "wrkTrainingVolume":
-            MessageLookupByLibrary.simpleMessage("Training volume")
+            MessageLookupByLibrary.simpleMessage("Training volume"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

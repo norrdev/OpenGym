@@ -5,3 +5,5 @@ export 'day.dart';
 export 'workout.dart';
 export 'log_day.dart';
 export 'log_workout.dart';
+export 'equipment.dart';
+export 'load.dart';
