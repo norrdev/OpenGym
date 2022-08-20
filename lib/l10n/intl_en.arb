@@ -16,6 +16,7 @@
     "addEx": "Exercise added.",
     "age": "Age",
     "ageValidation": "Please, enter you age.",
+    "allowChanges": "Allow changes?",
     "backup": "Backup database",
     "bfpAthletes": "Athletes",
     "bfpAverage": "Average",
@@ -118,6 +119,7 @@
     "min": "min.",
     "muscles": "Muscles",
     "name": "Name",
+    "no": "No",
     "noDesc": "No description.",
     "noex": "No exercises on this day.",
     "nothingSelected": "Nothing selected",
@@ -128,6 +130,7 @@
     "pageProgramsTitle": "Programs",
     "pageWorkout": "Workout",
     "programAdd": "Add program",
+    "preinstalledEx": "Preinstalled exercise",
     "rename": "Rename",
     "repeats": "Repeats",
     "rest": "Rest time (sec)",
@@ -167,5 +170,10 @@
     "wrkBegin": "Workout begin",
     "wrkDuration": "Workout duration",
     "wrkEnd": "Workout end",
-    "wrkTrainingVolume": "Training volume"
+    "wrkTrainingVolume": "Training volume",
+    "yes": "Yes",
+    "oneBarOrNoBar": "One bar or no bar",
+    "twoBars": "Two bars",
+    "twoLimbsWorksTogether": "Both limbs work simultaneously or one muscle group works",
+    "limbsWorkAlt": "Limbs work alternately or separately"
 }

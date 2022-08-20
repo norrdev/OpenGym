@@ -174,4 +174,14 @@ class SqliteRepository extends Repository {
   Stream<List<Load>> watchAllLoad() {
     return dbHelper.watchAllLoad();
   }
+
+  @override
+  Future<Load> findLoadById(int id) {
+    return dbHelper.findLoadById(id);
+  }
+
+  @override
+  Future<Equipment> findEquipmentById(int id) async {
+    return dbHelper.findEquipmentById(id);
+  }
 }

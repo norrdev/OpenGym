@@ -4,6 +4,8 @@ import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
+import '../../../widgets/widgets.dart';
+
 class ExerciseNewScreen extends StatefulWidget {
   final int muscleId;
 
@@ -105,35 +107,12 @@ class _ExerciseNewScreenState extends State<ExerciseNewScreen> {
                   },
                 ),
                 const SizedBox(height: 16.0),
-                Row(
-                  children: [
-                    Radio<int>(
-                        value: 1,
-                        groupValue: bars,
-                        onChanged: (int? value) {
-                          setState(() {
-                            bars = value ?? 1;
-                          });
-                        }),
-                    const Flexible(
-                        // TODO Move to localizarion file
-                        child: Text('Один гриф или нет грифа')),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Radio<int>(
-                        value: 2,
-                        groupValue: bars,
-                        onChanged: (int? value) {
-                          setState(() {
-                            bars = value ?? 2;
-                          });
-                        }),
-                    const Flexible(
-                        // TODO Move to localizarion file
-                        child: Text('Два грифа')),
-                  ],
+                RadioGroup(
+                  initialValue: bars,
+                  titles: [S.of(context).oneBarOrNoBar, S.of(context).twoBars],
+                  onChanged: (int value) {
+                    bars = value;
+                  },
                 ),
                 const SizedBox(height: 16.0),
                 StreamBuilder<List<Equipment>>(
@@ -170,39 +149,15 @@ class _ExerciseNewScreenState extends State<ExerciseNewScreen> {
                   },
                 ),
                 const SizedBox(height: 16.0),
-                Row(
-                  children: [
-                    Radio(
-                        value: 1,
-                        groupValue: limb,
-                        onChanged: (int? value) {
-                          setState(() {
-                            limb = value!;
-                          });
-                        }),
-                    const Flexible(
-                      // TODO Move to localizarion file
-                      child: Text(
-                        'Обе конечности работают одновременно или работает одна мышечная группа',
-                      ),
-                    ),
+                RadioGroup(
+                  initialValue: limb,
+                  titles: [
+                    S.of(context).twoLimbsWorksTogether,
+                    S.of(context).limbsWorkAlt
                   ],
-                ),
-                const SizedBox(width: 16.0),
-                Row(
-                  children: [
-                    Radio(
-                        value: 2,
-                        groupValue: limb,
-                        onChanged: (int? value) {
-                          setState(() {
-                            limb = value!;
-                          });
-                        }),
-                    const Flexible(
-                        // TODO Move to localizarion file
-                        child: Text('Конечности работают попеременно')),
-                  ],
+                  onChanged: (int value) {
+                    limb = value;
+                  },
                 ),
                 const SizedBox(height: 16.0),
                 TextFormField(

@@ -52,7 +52,11 @@ abstract class Repository {
 
   Stream<List<Equipment>> watchAllEquipment();
 
+  Future<Equipment> findEquipmentById(int id);
+
   Stream<List<Load>> watchAllLoad();
+
+  Future<Load> findLoadById(int id);
 
   Future<void> insertLog({
     required DateTime startTime,

@@ -56,6 +56,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "age": MessageLookupByLibrary.simpleMessage("Возраст"),
         "ageValidation": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, введите возраст."),
+        "allowChanges":
+            MessageLookupByLibrary.simpleMessage("Разрешить изменения?"),
         "backup":
             MessageLookupByLibrary.simpleMessage("Создать резервную копию БД"),
         "bfpAthletes": MessageLookupByLibrary.simpleMessage("Атлеты"),
@@ -160,6 +162,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Масса тела без учёта жира."),
         "lbmPageTitle": MessageLookupByLibrary.simpleMessage("Мышечная масса"),
         "licenses": MessageLookupByLibrary.simpleMessage("Лицензии"),
+        "limbsWorkAlt": MessageLookupByLibrary.simpleMessage(
+            "Конечности работают попеременно или раздельно"),
         "loadStr": MessageLookupByLibrary.simpleMessage("Вид нагрузки"),
         "log": MessageLookupByLibrary.simpleMessage("Дневник"),
         "male": MessageLookupByLibrary.simpleMessage("Мужской"),
@@ -188,17 +192,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "min": MessageLookupByLibrary.simpleMessage("мин."),
         "muscles": MessageLookupByLibrary.simpleMessage("Мышцы"),
         "name": MessageLookupByLibrary.simpleMessage("Название"),
+        "no": MessageLookupByLibrary.simpleMessage("Нет"),
         "noDesc": MessageLookupByLibrary.simpleMessage("Нет описания."),
         "noex":
             MessageLookupByLibrary.simpleMessage("В этом дне нет упражнений."),
         "nothingSelected":
             MessageLookupByLibrary.simpleMessage("Ничего не выбрано"),
+        "oneBarOrNoBar":
+            MessageLookupByLibrary.simpleMessage("Один гриф или нет грифа"),
         "pageAddEx":
             MessageLookupByLibrary.simpleMessage("Добавить упражнение"),
         "pageDaysTitle": MessageLookupByLibrary.simpleMessage("Дни"),
         "pageExerciseTitle": MessageLookupByLibrary.simpleMessage("Упражнения"),
         "pageProgramsTitle": MessageLookupByLibrary.simpleMessage("Программы"),
         "pageWorkout": MessageLookupByLibrary.simpleMessage("Тренировка"),
+        "preinstalledEx": MessageLookupByLibrary.simpleMessage(
+            "Предустановленное упражнение"),
         "programAdd":
             MessageLookupByLibrary.simpleMessage("Добавить программу"),
         "rename": MessageLookupByLibrary.simpleMessage("Переименовать"),
@@ -245,6 +254,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "timer": MessageLookupByLibrary.simpleMessage("Таймер"),
         "title": MessageLookupByLibrary.simpleMessage("NpNg"),
         "total": MessageLookupByLibrary.simpleMessage("Всего"),
+        "twoBars": MessageLookupByLibrary.simpleMessage("Два грифа"),
+        "twoLimbsWorksTogether": MessageLookupByLibrary.simpleMessage(
+            "Обе конечности работают одновременно или работает одна мышечная группа"),
         "useImperialUS": MessageLookupByLibrary.simpleMessage(
             "Использовать английскую систему мер (фунты, дюймы, мили)?"),
         "weight": MessageLookupByLibrary.simpleMessage("Вес"),
@@ -257,6 +269,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Продолжительность тренировки"),
         "wrkEnd": MessageLookupByLibrary.simpleMessage("Конец тренировки"),
         "wrkTrainingVolume":
-            MessageLookupByLibrary.simpleMessage("Объём тренировки")
+            MessageLookupByLibrary.simpleMessage("Объём тренировки"),
+        "yes": MessageLookupByLibrary.simpleMessage("Да")
       };
 }

@@ -96,6 +96,11 @@ void _upgradeV1toV2(Batch batch) {
 void _updateV2toV3(Batch batch) {
   batch.execute('PRAGMA foreign_keys = 0');
   batch.execute('ALTER TABLE load RENAME TO exercises_muscles');
+  batch.execute(
+      'ALTER TABLE exercises_muscles RENAME COLUMN muscles_id TO muscleId');
+  batch.execute(
+      'ALTER TABLE exercises_muscles RENAME COLUMN exercises_id TO exerciseId');
+
   batch.execute('PRAGMA foreign_keys = 1');
 
   // Typo fixes.
@@ -129,10 +134,10 @@ CREATE TABLE exercises (
     ru_name        STRING,
     en_description STRING,
     ru_description STRING,
-    equipment_id   INTEGER,
+    equipmentId   INTEGER,
     preinstalled   BOOLEAN,
     bars        INTEGER,
-    load_id        INTEGER
+    loadId        INTEGER
 )''');
   batch.execute('''
 INSERT INTO exercises (
@@ -141,7 +146,7 @@ INSERT INTO exercises (
                           ru_name,
                           en_description,
                           ru_description,
-                          equipment_id
+                          equipmentId
                       )
                       SELECT id,
                              en_name,
@@ -172,8 +177,8 @@ UPDATE exercises SET bars = 2 WHERE id in
 
   // Update load_id.
   // ! Weight = 1, Time = 2, Distance = 3
-  batch.execute('UPDATE exercises SET load_id = 1 WHERE id BETWEEN 1 AND 60');
-  batch.execute('UPDATE exercises SET load_id = 2 WHERE id in ( 42, 43, 44)');
+  batch.execute('UPDATE exercises SET loadId = 1 WHERE id BETWEEN 1 AND 60');
+  batch.execute('UPDATE exercises SET loadId = 2 WHERE id in ( 42, 43, 44)');
 
   // Limbs update.
   batch.execute('''
@@ -187,18 +192,18 @@ UPDATE exercises SET limbs = 1 WHERE id in ( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
 
   // Equipment_id update.
   batch.execute('''
-UPDATE exercises SET equipment_id = 1 WHERE id in ( 1, 2, 6, 10, 14, 15, 19, 25, 
+UPDATE exercises SET equipmentId = 1 WHERE id in ( 1, 2, 6, 10, 14, 15, 19, 25, 
 32, 33, 40, 41, 42, 43, 48, 51, 58 )''');
   batch.execute('''
-UPDATE exercises SET equipment_id = 2 WHERE id in ( 5, 9, 13, 18, 23, 24, 29, 
+UPDATE exercises SET equipmentId = 2 WHERE id in ( 5, 9, 13, 18, 23, 24, 29, 
 31, 38, 39, 44, 46, 50, 57, 60)''');
   batch.execute('''
-UPDATE exercises SET equipment_id = 3 WHERE id in ( 3, 7, 11, 16, 20, 26, 27, 
+UPDATE exercises SET equipmentId = 3 WHERE id in ( 3, 7, 11, 16, 20, 26, 27, 
 34, 35, 45, 47, 49, 52, 55 )''');
   batch.execute('''
-UPDATE exercises SET equipment_id = 4 WHERE id in ( 4, 8, 12, 17, 21, 22, 28, 
+UPDATE exercises SET equipmentId = 4 WHERE id in ( 4, 8, 12, 17, 21, 22, 28, 
 30, 36, 37, 53, 56, 59 )''');
-  batch.execute('UPDATE exercises SET equipment_id = 6 WHERE id = 54');
+  batch.execute('UPDATE exercises SET equipmentId = 6 WHERE id = 54');
 
   // Equipment spellcheck.
   batch.execute('UPDATE equipment SET en_name = "Body weight" WHERE id = 1');
