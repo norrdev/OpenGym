@@ -46,7 +46,10 @@ abstract class Repository {
 
   Future<void> insertWorkout(int dayId, int exerciseId);
 
-  Future<List<LogDay>> wathchAllLogDays();
+  Future<List<LogDay>> watchAllLogDays();
+
+  Future<List<LogDay>> findMounthLogDaysBetweenDates(
+      DateTime start, DateTime finish);
 
   Future<List<LogWorkout>> findLogWorkoutByDay(int logDayId);
 

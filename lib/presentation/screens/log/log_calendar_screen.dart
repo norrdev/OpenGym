@@ -20,21 +20,26 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
 
   @override
   void initState() {
-    _refresh();
+    DateTime today = DateTime.now();
+    DateTime mounthAgo = today.add(-const Duration(days: 30));
+    _refreshOnPageChange(mounthAgo, DateTime.now());
     super.initState();
   }
 
-  void _refresh() async {
-    logDays = await context.read<Repository>().wathchAllLogDays();
-    for (LogDay item in logDays) {
+  void _refreshOnPageChange(DateTime start, DateTime finish) async {
+    logDays = await context
+        .read<Repository>()
+        .findMounthLogDaysBetweenDates(start, finish);
+    days.clear();
+    for (var e in logDays) {
       days.add(CalendarEvent(
-        //eventBackgroundColor: Theme.of(context).primaryColor,
         eventBackgroundColor: AppTheme.light.primaryColor,
-        eventName: item.daysName as String,
-        eventDate: DateTime.parse(item.start as String),
-        eventID: item.logDaysId.toString(),
+        eventName: e.daysName as String,
+        eventDate: DateTime.parse(e.start as String),
+        eventID: e.logDayId.toString(),
       ));
     }
+
     setState(() {});
   }
 
@@ -47,6 +52,9 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
         todayTextColor: AppTheme.dark.primaryColor,
         cellCalendarPageController: cellCalendarPageController,
         events: days,
+        onPageChanged: (firstDate, lastDate) {
+          _refreshOnPageChange(firstDate, lastDate);
+        },
         onCellTapped: (date) {
           final List<CalendarEvent> eventsOnTheDate = days.where((event) {
             final eventDate = event.eventDate;
