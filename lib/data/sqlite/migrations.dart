@@ -229,4 +229,11 @@ CREATE TABLE load (
       'INSERT INTO load (en_name, ru_name, preinstalled) VALUES ("Time", "Время", 1)');
   batch.execute(
       'INSERT INTO load (en_name, ru_name, preinstalled) VALUES ("Distance", "Расстояние", 1)');
+
+  // Log days
+  batch.execute('PRAGMA foreign_keys = 0');
+  batch.execute('ALTER TABLE log_days RENAME COLUMN days_id TO daysId');
+  batch.execute('ALTER TABLE log_ex RENAME COLUMN log_days_id TO logDaysId');
+  batch.execute('ALTER TABLE log_ex RENAME COLUMN exercises_id TO exercisesId');
+  batch.execute('PRAGMA foreign_keys = 1');
 }

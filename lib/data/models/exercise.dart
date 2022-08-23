@@ -20,39 +20,3 @@ class Exercise with _$Exercise {
   factory Exercise.fromJson(Map<String, Object?> json) =>
       _$ExerciseFromJson(json);
 }
-
-// import 'package:equatable/equatable.dart';
-
-// /// Exercise model.
-// class Exercise extends Equatable {
-//   final int? id;
-//   final String? name;
-//   final String? description;
-//   final int? equipmentId;
-//   final bool? preinstalled;
-
-//   const Exercise(
-//       {this.id,
-//       this.name,
-//       this.description,
-//       this.equipmentId,
-//       this.preinstalled});
-
-//   @override
-//   List<Object?> get props => [id, name, description];
-
-//   factory Exercise.fromMap(Map<String, dynamic> map) => Exercise(
-//         id: map['id'] as int,
-//         name: map['name'] == null ? '' : map['name'] as String,
-//         description:
-//             map['description'] == null ? '' : map['description'] as String,
-//         equipmentId: map['equipmentId'] as int,
-//       );
-
-//   Map<String, dynamic> toMap() => {
-//         'id': id,
-//         'name': name,
-//         'description': description,
-//         'eqipment_id': equipmentId,
-//       };
-// }

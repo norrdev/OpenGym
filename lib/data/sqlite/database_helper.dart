@@ -528,13 +528,13 @@ class DatabaseHelper {
     final String sql = '''
     select 
       $logDaysTable.id AS logDaysId, 
-      $logDaysTable.days_id AS daysId, 
+      $logDaysTable.daysId AS daysId, 
       start, 
       finish,
       $daysTable.${kLocale}_name AS daysName,
       $programsTable.${kLocale}_name as programsName
     from $logDaysTable
-    join $daysTable on $logDaysTable.days_id = $daysTable.id 
+    join $daysTable on $logDaysTable.daysId = $daysTable.id 
     join $programsTable on $daysTable.programs_id = $programsTable.id
     ORDER BY logDaysId
     ''';
@@ -557,7 +557,7 @@ class DatabaseHelper {
         FROM $logWorkoutsTable
               JOIN
               $exerciseTable ON $logWorkoutsTable.exerciseId = $exerciseTable.id
-        WHERE $logWorkoutsTable.log_days_id = $logDayId
+        WHERE $logWorkoutsTable.logDaysId = $logDayId
         ORDER BY $logWorkoutsTable.id;
     ''';
     final List<Map<String, dynamic>> list = await db.rawQuery(sql);
