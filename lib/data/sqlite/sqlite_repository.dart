@@ -129,8 +129,14 @@ class SqliteRepository extends Repository {
   }
 
   @override
-  Future<List<LogDay>> wathchAllLogDays() {
-    return dbHelper.wathchAllLogDays();
+  Future<List<LogDay>> watchAllLogDays() {
+    return dbHelper.watchAllLogDays();
+  }
+
+  @override
+  Future<List<LogDay>> findMounthLogDaysBetweenDates(
+      DateTime start, DateTime finish) {
+    return dbHelper.findMounthLogDaysBetweenDates(start, finish);
   }
 
   @override

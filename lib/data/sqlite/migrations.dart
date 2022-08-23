@@ -163,7 +163,7 @@ INSERT INTO exercises (
   batch.execute('ALTER TABLE exercises ADD limbs INTEGER');
 
   // Preload flag.
-  batch.execute('UPDATE exercises SET preinstalled = 1 WHERE id <= 60');
+  batch.execute('UPDATE exercises SET preinstalled = id WHERE id <= 60');
 
   // Update bars.
   batch.execute('''
@@ -210,7 +210,7 @@ UPDATE exercises SET equipmentId = 4 WHERE id in ( 4, 8, 12, 17, 21, 22, 28,
   batch.execute('UPDATE equipment SET en_name = "Dumbbells" WHERE id = 4');
   batch.execute('UPDATE equipment SET en_name = "Gym equipment" WHERE id = 6');
   batch.execute('ALTER TABLE equipment ADD preinstalled BOOLEAN');
-  batch.execute('UPDATE equipment SET preinstalled = 1 WHERE id <= 6');
+  batch.execute('UPDATE equipment SET preinstalled = id WHERE id <= 6');
 
   // New load table.
   batch.execute('''
@@ -226,14 +226,21 @@ CREATE TABLE load (
   batch.execute(
       'INSERT INTO load (en_name, ru_name, preinstalled) VALUES ("Weight", "Вес", 1)');
   batch.execute(
-      'INSERT INTO load (en_name, ru_name, preinstalled) VALUES ("Time", "Время", 1)');
+      'INSERT INTO load (en_name, ru_name, preinstalled) VALUES ("Time", "Время", 2)');
   batch.execute(
-      'INSERT INTO load (en_name, ru_name, preinstalled) VALUES ("Distance", "Расстояние", 1)');
+      'INSERT INTO load (en_name, ru_name, preinstalled) VALUES ("Distance", "Расстояние", 3)');
+  batch.execute(
+      'INSERT INTO load (en_name, ru_name, preinstalled) VALUES ("Repeats", "Повторы", 4)');
 
-  // Log days
+  // Log_days & Log_ex
+  // TODO: move loads to different tables
   batch.execute('PRAGMA foreign_keys = 0');
-  batch.execute('ALTER TABLE log_days RENAME COLUMN days_id TO daysId');
-  batch.execute('ALTER TABLE log_ex RENAME COLUMN log_days_id TO logDaysId');
-  batch.execute('ALTER TABLE log_ex RENAME COLUMN exercises_id TO exercisesId');
+  batch.execute('ALTER TABLE log_days RENAME COLUMN days_id TO dayId');
+  batch.execute('ALTER TABLE log_ex RENAME COLUMN log_days_id TO logDayId');
+  batch.execute('ALTER TABLE log_ex RENAME COLUMN exercises_id TO exerciseId');
+  batch.execute('ALTER TABLE log_ex ADD repeatLeft INTEGER');
+  batch.execute('ALTER TABLE log_ex ADD weightLeft REAL');
+  batch.execute('ALTER TABLE log_ex ADD distance REAL');
+  batch.execute('ALTER TABLE log_ex ADD timeLoad INTEGER');
   batch.execute('PRAGMA foreign_keys = 1');
 }

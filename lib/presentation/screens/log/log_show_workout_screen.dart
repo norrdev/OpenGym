@@ -27,7 +27,7 @@ class _LogWorkoutScreenState extends State<LogWorkoutScreen> {
   void _refresh() async {
     workouts = await context
         .read<Repository>()
-        .findLogWorkoutByDay(widget.logday.logDaysId as int);
+        .findLogWorkoutByDay(widget.logday.logDayId as int);
     setState(() {});
   }
 

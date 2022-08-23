@@ -9,7 +9,11 @@ class LogWorkout with _$LogWorkout {
   const factory LogWorkout({
     int? id,
     int? repeat,
+    int? repeatLeft,
     double? weight,
+    double? weightLeft,
+    double? distance,
+    int? timeLoad,
     String? name,
   }) = _LogWorkout;
 

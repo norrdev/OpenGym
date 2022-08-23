@@ -7,8 +7,8 @@ part of 'log_day.dart';
 // **************************************************************************
 
 _$_LogDay _$$_LogDayFromJson(Map<String, dynamic> json) => _$_LogDay(
-      logDaysId: json['logDaysId'] as int?,
-      daysId: json['daysId'] as int?,
+      logDayId: json['logDayId'] as int?,
+      dayId: json['dayId'] as int?,
       start: json['start'] as String?,
       finish: json['finish'] as String?,
       daysName: json['daysName'] as String?,
@@ -16,8 +16,8 @@ _$_LogDay _$$_LogDayFromJson(Map<String, dynamic> json) => _$_LogDay(
     );
 
 Map<String, dynamic> _$$_LogDayToJson(_$_LogDay instance) => <String, dynamic>{
-      'logDaysId': instance.logDaysId,
-      'daysId': instance.daysId,
+      'logDayId': instance.logDayId,
+      'dayId': instance.dayId,
       'start': instance.start,
       'finish': instance.finish,
       'daysName': instance.daysName,

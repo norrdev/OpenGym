@@ -7,8 +7,8 @@ part 'log_day.g.dart';
 @freezed
 class LogDay with _$LogDay {
   factory LogDay({
-    int? logDaysId,
-    int? daysId,
+    int? logDayId,
+    int? dayId,
     String? start,
     String? finish,
     String? daysName,

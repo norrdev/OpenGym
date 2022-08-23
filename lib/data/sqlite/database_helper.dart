@@ -388,7 +388,7 @@ class DatabaseHelper {
       exercises.${kLocale}_description as description, 
       sets, ord, repeats, rest, exerciseId, weight FROM workouts 
     JOIN exercises on workouts.exerciseId = exercises.id 
-    WHERE days_id = $dayId ORDER BY ord;
+    WHERE dayId = $dayId ORDER BY ord;
       ''';
     yield* db.createRawQuery(
         [workoutsTable], sql).mapToList((row) => Workout.fromJson(row));
@@ -439,7 +439,7 @@ class DatabaseHelper {
     final queryResult = await db.query(
       workoutsTable,
       columns: ['MAX(ord) AS maxOrd'],
-      where: 'days_id = ?',
+      where: 'dayId = ?',
       whereArgs: [dayId],
     );
     int maxOrd = (queryResult.first['maxOrd'] != null)
@@ -451,7 +451,7 @@ class DatabaseHelper {
       {
         'ord': ++maxOrd,
         'exerciseId': exersiseId,
-        'days_id': dayId,
+        'dayId': dayId,
       },
     );
     return Future.value();
@@ -523,20 +523,46 @@ class DatabaseHelper {
   // Log
 
   /// All log days.
-  Future<List<LogDay>> wathchAllLogDays() async {
+  Future<List<LogDay>> watchAllLogDays() async {
     final db = await instance.streamDatabase;
     final String sql = '''
     select 
-      $logDaysTable.id AS logDaysId, 
-      $logDaysTable.daysId AS daysId, 
+      $logDaysTable.id AS logDayId, 
+      $logDaysTable.dayId AS dayId, 
       start, 
       finish,
       $daysTable.${kLocale}_name AS daysName,
       $programsTable.${kLocale}_name as programsName
     from $logDaysTable
-    join $daysTable on $logDaysTable.daysId = $daysTable.id 
+    join $daysTable on $logDaysTable.dayId = $daysTable.id 
     join $programsTable on $daysTable.programs_id = $programsTable.id
-    ORDER BY logDaysId
+    ORDER BY logDayId
+    ''';
+    final List<Map<String, dynamic>> list = await db.rawQuery(sql);
+    List<LogDay> result = [];
+    for (Map<String, dynamic> item in list) {
+      result.add(LogDay.fromJson(item));
+    }
+    return result;
+  }
+
+  /// All log days.
+  Future<List<LogDay>> findMounthLogDaysBetweenDates(
+      DateTime start, DateTime finish) async {
+    final db = await instance.streamDatabase;
+    final String sql = '''
+    select 
+      $logDaysTable.id AS logDayId, 
+      $logDaysTable.dayId AS dayId, 
+      start, 
+      finish,
+      $daysTable.${kLocale}_name AS daysName,
+      $programsTable.${kLocale}_name as programsName
+    from $logDaysTable
+    join $daysTable on $logDaysTable.dayId = $daysTable.id 
+    join $programsTable on $daysTable.programs_id = $programsTable.id
+    WHERE start > date('${start.toLocal()}') AND start < date('${finish.toLocal()}', '+1 day')
+    ORDER BY start
     ''';
     final List<Map<String, dynamic>> list = await db.rawQuery(sql);
     List<LogDay> result = [];
@@ -557,7 +583,7 @@ class DatabaseHelper {
         FROM $logWorkoutsTable
               JOIN
               $exerciseTable ON $logWorkoutsTable.exerciseId = $exerciseTable.id
-        WHERE $logWorkoutsTable.logDaysId = $logDayId
+        WHERE $logWorkoutsTable.logDayId = $logDayId
         ORDER BY $logWorkoutsTable.id;
     ''';
     final List<Map<String, dynamic>> list = await db.rawQuery(sql);
@@ -576,17 +602,17 @@ class DatabaseHelper {
   }) async {
     final db = await instance.streamDatabase;
 
-    int logDaysId = await db.insert(logDaysTable, {
+    int logDayId = await db.insert(logDaysTable, {
       'start': startTime.toLocal().toString(),
       'finish': finishTime.toLocal().toString(),
-      'days_id': dayId,
+      'dayId': dayId,
     });
 
     await db.transaction((txn) async {
       for (WorkoutExercise item in exercises) {
         for (int i = 0; i < item.sets.length; i++) {
           await txn.insert(logWorkoutsTable, {
-            'log_days_id': logDaysId,
+            'logDayId': logDayId,
             'exerciseId': item.id,
             'repeat': item.sets[i].repeats,
             'weight': item.sets[i].weight,
