@@ -9,7 +9,6 @@ import '../../../logic/cubit/default_program_cubit.dart';
 import '../../../theme.dart';
 import 'program_days_screen.dart';
 import 'program_edit_screen.dart';
-import 'program_new_screen.dart';
 
 class ProgramsScreen extends StatefulWidget {
   const ProgramsScreen({super.key});
@@ -25,20 +24,16 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
     final repository = context.watch<Repository>();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(S.of(context).pageProgramsTitle),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ProgramNewScreen(),
-              ),
-            ),
-          ),
-        ],
-      ),
+      // TODO: Use BottomSheet for help.
+      // bottomSheet: BottomSheet(
+      //   onClosing: () {},
+      //   builder: (BuildContext context) {
+      //     return const SizedBox(
+      //       height: 40,
+      //       child: Text('tap or swipe right to edit'),
+      //     );
+      //   },
+      // ),
       body: StreamBuilder<List<Program>>(
         stream: repository.watchAllPrograms(),
         builder: (context, AsyncSnapshot<List<Program>> snapshot) {
@@ -63,6 +58,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                                 );
                               },
                             ),
+                            // TODO: Create BLoC or cubit for state
                           ).whenComplete(() => setState(() {})),
                           backgroundColor: kActionColorEdit,
                           foregroundColor: kActionColorIcon,
