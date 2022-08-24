@@ -101,8 +101,6 @@ void _updateV2toV3(Batch batch) {
   batch.execute(
       'ALTER TABLE exercises_muscles RENAME COLUMN exercises_id TO exerciseId');
 
-  batch.execute('PRAGMA foreign_keys = 1');
-
   // Typo fixes.
   batch.execute('UPDATE exercises SET en_name = "Barbell Shrug" WHERE id = 3');
   batch.execute('UPDATE exercises SET en_name = "Pull-Ups" WHERE id = 19');
@@ -120,7 +118,6 @@ void _updateV2toV3(Batch batch) {
   batch.execute(
       'UPDATE exercises SET en_name = "Triceps Extensions With Dumbbell" WHERE id = 28');
 
-  batch.execute('PRAGMA foreign_keys = 0');
   batch.execute(
       'CREATE TABLE sqlitestudio_temp_table AS SELECT * FROM exercises');
 
@@ -158,8 +155,6 @@ INSERT INTO exercises (
 
   batch.execute('DROP TABLE sqlitestudio_temp_table');
 
-  batch.execute('PRAGMA foreign_keys = 1');
-
   batch.execute('ALTER TABLE exercises ADD limbs INTEGER');
 
   // Preload flag.
@@ -176,7 +171,7 @@ UPDATE exercises SET bars = 2 WHERE id in
 ( 4, 8, 12, 17, 21, 22, 24, 30, 31, 36, 37, 53, 56, 59)''');
 
   // Update load_id.
-  // ! Weight = 1, Time = 2, Distance = 3
+  // * Weight = 1, Time = 2, Distance = 3
   batch.execute('UPDATE exercises SET loadId = 1 WHERE id BETWEEN 1 AND 60');
   batch.execute('UPDATE exercises SET loadId = 2 WHERE id in ( 42, 43, 44)');
 
@@ -233,8 +228,6 @@ CREATE TABLE load (
       'INSERT INTO load (en_name, ru_name, preinstalled) VALUES ("Repeats", "Повторы", 4)');
 
   // Log_days & Log_ex
-  // TODO: move loads to different tables
-  batch.execute('PRAGMA foreign_keys = 0');
   batch.execute('ALTER TABLE log_days RENAME COLUMN days_id TO dayId');
   batch.execute('ALTER TABLE log_ex RENAME COLUMN log_days_id TO logDayId');
   batch.execute('ALTER TABLE log_ex RENAME COLUMN exercises_id TO exerciseId');
@@ -242,5 +235,11 @@ CREATE TABLE load (
   batch.execute('ALTER TABLE log_ex ADD weightLeft REAL');
   batch.execute('ALTER TABLE log_ex ADD distance REAL');
   batch.execute('ALTER TABLE log_ex ADD timeLoad INTEGER');
+
+  // Alter table workouts
+  batch.execute('ALTER TABLE workouts RENAME COLUMN days_id TO dayId');
+  batch
+      .execute('ALTER TABLE workouts RENAME COLUMN exercises_id TO exerciseId');
+
   batch.execute('PRAGMA foreign_keys = 1');
 }
