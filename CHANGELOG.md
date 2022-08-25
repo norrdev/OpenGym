@@ -1,9 +1,18 @@
 ## 3.0.0
+Big update and big planes. First of all, application is opensource now. Contributors and translators are welcome.
+
 - Core refactoring.
+- Updated preinstalled exercises catalog.
 - Improved performance.
 - Spell checking.
 - Added equipment, limbs and load parameters to exercises.
+- Editable fields with sets, weight etc...
+- Added different types of loads (repeats, time, distance).
+- Added bars number for correct training volume calculation.
 - Total training volume on the finish and log screen.
+- Fixed memory leak in Log.
+- Added calculators: BMI, ABSI, BFP, RFM, LBM, body proportions, 1 RM, IFP, VO max, Cooper test.
+- Swedish translation.
 
 ## 2.1.0
 - Same design in all operating systems.

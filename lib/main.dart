@@ -44,13 +44,17 @@ void main() async {
         ),
         BlocProvider<WorkoutCubit>(create: (context) => WorkoutCubit()),
       ],
-      child: MultiProvider(providers: [
-        Provider<Repository>(
-          lazy: false,
-          create: (_) => repository,
-          dispose: (_, Repository repository) => repository.close(),
-        ),
-      ], child: Application(repository: repository)),
+      child: MultiProvider(
+        providers: [
+          // TODO: Move to cubit or bloc
+          Provider<Repository>(
+            lazy: false,
+            create: (_) => repository,
+            dispose: (_, Repository repository) => repository.close(),
+          ),
+        ],
+        child: Application(repository: repository),
+      ),
     ),
   );
 }

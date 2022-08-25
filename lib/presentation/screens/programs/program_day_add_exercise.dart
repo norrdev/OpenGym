@@ -31,7 +31,7 @@ class _ProgramDayAddExerciseState extends State<ProgramDayAddExercise> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Flexible(
-              flex: 1,
+              //flex: 1,
               child: StreamBuilder<List<Muscle>>(
                 stream: repository.watchAllMuscles(),
                 builder: (context, AsyncSnapshot<List<Muscle>> snapshot) {
@@ -39,10 +39,11 @@ class _ProgramDayAddExerciseState extends State<ProgramDayAddExercise> {
                   final List<Muscle> muscles =
                       snapshot.hasData ? [...snapshot.data!] : [];
                   return Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(6.0),
                     child: Wrap(
-                      spacing: 4.0,
-                      runSpacing: 4.0,
+                      clipBehavior: Clip.antiAlias,
+                      spacing: 2.0,
+                      runSpacing: 2.0,
                       children:
                           List<Widget>.generate(muscles.length, (int index) {
                         final item = muscles[index];
@@ -60,8 +61,9 @@ class _ProgramDayAddExerciseState extends State<ProgramDayAddExercise> {
                 },
               ),
             ),
+            const Divider(),
             Flexible(
-              flex: 2,
+              //flex: 2,
               child: StreamBuilder(
                 stream: repository.findExcersisesByMuscle(selectedMuscle),
                 builder: (context, AsyncSnapshot<List<Exercise>> snapshotEx) {

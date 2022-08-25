@@ -35,18 +35,18 @@ class WorkoutCubit extends Cubit<WorkoutState> {
     List<WorkoutExercise> exercises = [];
     for (Workout item in _workoutsSnapshot) {
       List<WorkoutSet> sets = [];
-      for (int i = 0; i < (item.sets as int); i++) {
+      for (int i = 0; i < (item.sets ?? 0); i++) {
         WorkoutSet oneset = WorkoutSet(
-          repeats: item.repeats as int,
-          weight: item.weight as double,
+          repeats: item.repeats ?? 0,
+          weight: item.weight ?? 0,
         );
         sets.add(oneset);
       }
       WorkoutExercise ex = WorkoutExercise(
-        id: item.exercisesId as int,
-        name: item.name as String,
-        maxSets: item.sets as int,
-        restTime: item.rest as int,
+        id: item.exerciseId ?? 0,
+        name: item.name ?? '',
+        maxSets: item.sets ?? 0,
+        restTime: item.rest ?? 0,
         sets: sets,
         completed: false,
       );
@@ -124,7 +124,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
     exercises[excersiseNumber].sets[setNumber] = exercises[excersiseNumber]
         .sets[setNumber]
         .copyWith(
-            repeats: exercises[excersiseNumber].sets[setNumber].repeats + 1);
+            repeats: exercises[excersiseNumber].sets[setNumber].repeats! + 1);
 
     emit(state.copyWith(exercises: exercises));
   }
@@ -132,11 +132,11 @@ class WorkoutCubit extends Cubit<WorkoutState> {
   /// Decrease repeats in set
   void decRepeats({required int excersiseNumber, required int setNumber}) {
     List<WorkoutExercise> exercises = [...state.exercises];
-    if (exercises[excersiseNumber].sets[setNumber].repeats > 1) {
+    if (exercises[excersiseNumber].sets[setNumber].repeats! > 1) {
       exercises[excersiseNumber].sets[setNumber] = exercises[excersiseNumber]
           .sets[setNumber]
           .copyWith(
-              repeats: exercises[excersiseNumber].sets[setNumber].repeats - 1);
+              repeats: exercises[excersiseNumber].sets[setNumber].repeats! - 1);
 
       emit(state.copyWith(exercises: exercises));
     }
@@ -148,7 +148,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
     exercises[excersiseNumber].sets[setNumber] = exercises[excersiseNumber]
         .sets[setNumber]
         .copyWith(
-            weight: exercises[excersiseNumber].sets[setNumber].weight + 0.25);
+            weight: exercises[excersiseNumber].sets[setNumber].weight! + 0.25);
 
     emit(state.copyWith(exercises: exercises));
   }
@@ -159,7 +159,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
     exercises[excersiseNumber].sets[setNumber] = exercises[excersiseNumber]
         .sets[setNumber]
         .copyWith(
-            weight: exercises[excersiseNumber].sets[setNumber].weight + 5);
+            weight: exercises[excersiseNumber].sets[setNumber].weight! + 5);
 
     emit(state.copyWith(exercises: exercises));
   }
@@ -167,11 +167,12 @@ class WorkoutCubit extends Cubit<WorkoutState> {
   /// Decrease weight in set
   void decWeight025({required int excersiseNumber, required int setNumber}) {
     List<WorkoutExercise> exercises = [...state.exercises];
-    if (exercises[excersiseNumber].sets[setNumber].weight > 0) {
+    if (exercises[excersiseNumber].sets[setNumber].weight! > 0) {
       exercises[excersiseNumber].sets[setNumber] = exercises[excersiseNumber]
           .sets[setNumber]
           .copyWith(
-              weight: exercises[excersiseNumber].sets[setNumber].weight - 0.25);
+              weight:
+                  exercises[excersiseNumber].sets[setNumber].weight! - 0.25);
 
       emit(state.copyWith(exercises: exercises));
     }
@@ -180,11 +181,11 @@ class WorkoutCubit extends Cubit<WorkoutState> {
   ///Decrease weight in set in 5
   void decWeight5({required int excersiseNumber, required int setNumber}) {
     List<WorkoutExercise> exercises = [...state.exercises];
-    if (exercises[excersiseNumber].sets[setNumber].weight > 5) {
+    if (exercises[excersiseNumber].sets[setNumber].weight! > 5) {
       exercises[excersiseNumber].sets[setNumber] = exercises[excersiseNumber]
           .sets[setNumber]
           .copyWith(
-              weight: exercises[excersiseNumber].sets[setNumber].weight - 5);
+              weight: exercises[excersiseNumber].sets[setNumber].weight! - 5);
 
       emit(state.copyWith(exercises: exercises));
     }

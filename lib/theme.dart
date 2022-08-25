@@ -7,6 +7,7 @@ const Color kActionColorDelete = Colors.black;
 class AppTheme {
   /// Material light theme
   static ThemeData light = ThemeData(
+    //useMaterial3: true,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     brightness: Brightness.light,
     primaryColor: Colors.black,
@@ -55,6 +56,7 @@ class AppTheme {
 
   /// Material dark theme
   static ThemeData dark = ThemeData(
+    //useMaterial3: true,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     brightness: Brightness.dark,
     primaryColor: Colors.white,

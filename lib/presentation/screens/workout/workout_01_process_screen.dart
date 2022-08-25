@@ -93,7 +93,7 @@ class InitListView extends StatelessWidget {
                     iconColor: Theme.of(context).primaryColor,
                     collapsedIconColor: Theme.of(context).primaryColor,
                     subtitle: Text(
-                      item.description as String,
+                      item.description ?? '',
                       style: TextStyle(
                           color: Theme.of(context)
                               .bottomNavigationBarTheme
@@ -104,15 +104,15 @@ class InitListView extends StatelessWidget {
                         children: [
                           Text(S.of(context).sets),
                           ChangeIntField(
-                            value: item.sets as int,
+                            value: item.sets ?? 0,
                             decreaseCallback: () {
                               if (item.sets as int > 1) {
-                                repository.updateWorkoutSetsRepeatsRest(
+                                repository.updateWorkout(
                                     item.copyWith(sets: item.sets! - 1));
                               }
                             },
                             increaseCallback: () {
-                              repository.updateWorkoutSetsRepeatsRest(
+                              repository.updateWorkout(
                                   item.copyWith(sets: item.sets! + 1));
                             },
                           ),
@@ -122,15 +122,15 @@ class InitListView extends StatelessWidget {
                         children: [
                           Text(S.of(context).repeats),
                           ChangeIntField(
-                            value: item.repeats as int,
+                            value: item.repeats ?? 0,
                             decreaseCallback: () {
                               if (item.repeats as int > 1) {
-                                repository.updateWorkoutSetsRepeatsRest(
+                                repository.updateWorkout(
                                     item.copyWith(repeats: item.repeats! - 1));
                               }
                             },
                             increaseCallback: () {
-                              repository.updateWorkoutSetsRepeatsRest(
+                              repository.updateWorkout(
                                   item.copyWith(repeats: item.repeats! + 1));
                             },
                           ),
@@ -140,15 +140,15 @@ class InitListView extends StatelessWidget {
                         children: [
                           Text(S.of(context).rest),
                           ChangeIntField(
-                            value: item.rest as int,
+                            value: item.rest ?? 0,
                             decreaseCallback: () {
                               if (item.rest as int > 5) {
-                                repository.updateWorkoutSetsRepeatsRest(
+                                repository.updateWorkout(
                                     item.copyWith(rest: item.rest! - 5));
                               }
                             },
                             increaseCallback: () {
-                              repository.updateWorkoutSetsRepeatsRest(
+                              repository.updateWorkout(
                                   item.copyWith(rest: item.rest! + 5));
                             },
                           ),

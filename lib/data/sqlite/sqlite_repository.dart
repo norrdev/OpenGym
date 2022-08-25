@@ -111,8 +111,8 @@ class SqliteRepository extends Repository {
   }
 
   @override
-  Future<void> updateWorkoutSetsRepeatsRest(Workout workout) {
-    dbHelper.updateWorkoutSetsRepeatsRest(workout);
+  Future<void> updateWorkout(Workout workout) {
+    dbHelper.updateWorkout(workout);
     return Future.value();
   }
 

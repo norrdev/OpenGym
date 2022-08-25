@@ -82,8 +82,8 @@ class _ProgramDaysScreenState extends State<ProgramDaysScreen> {
                       ],
                     ),
                     child: ListTile(
-                      title: Text(item.name as String),
-                      subtitle: Text(item.description as String),
+                      title: Text(item.name ?? ''),
+                      subtitle: Text(item.description ?? ''),
                       onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(

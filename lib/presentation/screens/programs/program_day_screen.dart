@@ -1,16 +1,148 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:npng/data/models/models.dart';
-import 'package:npng/data/repository.dart';
-import 'package:npng/presentation/screens/programs/program_day_add_exercise.dart';
-import 'package:npng/theme.dart';
-import 'package:npng/widgets/change_int_field.dart';
 import 'package:provider/provider.dart';
-import 'package:npng/generated/l10n.dart';
+
+import '../../../data/models/models.dart';
+import '../../../data/repository.dart';
+import '../../../generated/l10n.dart';
+import '../../../theme.dart';
+import '../../../widgets/spin_edit.dart';
+import 'program_day_add_exercise.dart';
+
+class ExerciseSettingWidget extends StatelessWidget {
+  final int index;
+
+  final Map<int, bool> expanded;
+  final Workout item;
+  final Repository repository;
+  const ExerciseSettingWidget({
+    super.key,
+    required this.expanded,
+    required this.item,
+    required this.repository,
+    required this.index,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (kDebugMode) {
+      print(item);
+    }
+    return ExpansionTile(
+      onExpansionChanged: (value) => expanded[index] = value,
+      key: Key(index.toString()),
+      initiallyExpanded: expanded[index] ?? false,
+      tilePadding: const EdgeInsets.only(right: 30.0, left: 16.0),
+      title: Text(
+        item.name ?? '',
+        style: TextStyle(color: Theme.of(context).primaryColor),
+      ),
+      iconColor: Theme.of(context).primaryColor,
+      collapsedIconColor: Theme.of(context).primaryColor,
+      subtitle: Text(
+        item.description ?? '',
+        style: TextStyle(
+            color:
+                Theme.of(context).bottomNavigationBarTheme.unselectedItemColor),
+      ),
+      children: [
+        // TODO: move limbs and load to constants
+        SpinEditInt(
+            label: S.of(context).sets,
+            initialValue: item.sets ?? 0,
+            onChange: (newValue) {
+              repository.updateWorkout(item.copyWith(sets: newValue.toInt()));
+            }),
+
+        if (item.limbs == 1 && item.loadId != 2 && item.loadId != 3)
+          SpinEditInt(
+            label: S.of(context).repeats,
+            initialValue: item.repeats ?? 0,
+            onChange: (newValue) => repository
+                .updateWorkout(item.copyWith(repeats: newValue.toInt())),
+          ),
+
+        if (item.limbs == 2 && item.loadId != 2 && item.loadId != 3)
+          Column(
+            children: [
+              SpinEditInt(
+                // TODO: Move L&R to localization
+                label: '${S.of(context).repeats} L',
+                initialValue: item.repeatsLeft ?? 0,
+                onChange: (newValue) {
+                  repository.updateWorkout(
+                      item.copyWith(repeatsLeft: newValue.toInt()));
+                },
+              ),
+              SpinEditInt(
+                // TODO: Move L&R to localization
+                label: '${S.of(context).repeats} R',
+                initialValue: item.repeats ?? 0,
+                onChange: (newValue) => repository
+                    .updateWorkout(item.copyWith(repeats: newValue.toInt())),
+              ),
+            ],
+          ),
+
+        if (item.bars == 1 && item.loadId == 1)
+          SpinEditDouble(
+            label: S.of(context).weight,
+            initialValue: item.weight ?? 0,
+            onChange: (newValue) => repository
+                .updateWorkout(item.copyWith(weight: newValue.toDouble())),
+          ),
+
+        if (item.bars == 2 && item.loadId == 1)
+          Column(
+            children: [
+              SpinEditDouble(
+                // TODO: Move L&R to localization
+                label: '${S.of(context).weight} L',
+                initialValue: item.weightLeft ?? 0,
+                onChange: (newValue) => repository.updateWorkout(
+                    item.copyWith(weightLeft: newValue.toDouble())),
+              ),
+              SpinEditDouble(
+                label: '${S.of(context).weight} R',
+                initialValue: item.weight ?? 0,
+                onChange: (newValue) => repository
+                    .updateWorkout(item.copyWith(weight: newValue.toDouble())),
+              ),
+            ],
+          ),
+
+        if (item.loadId == 2)
+          SpinEditInt(
+            initialValue: item.timeLoad ?? 0,
+            onChange: (val) =>
+                repository.updateWorkout(item.copyWith(timeLoad: val.toInt())),
+            label: S.of(context).time,
+          ),
+
+        if (item.loadId == 3)
+          SpinEditDouble(
+            initialValue: item.distance ?? 0,
+            onChange: (val) => repository
+                .updateWorkout(item.copyWith(distance: val.toDouble())),
+            label: S.of(context).cooperDistanse,
+          ),
+
+        SpinEditInt(
+          label: S.of(context).rest,
+          initialValue: item.rest ?? 0,
+          onChange: (newValue) =>
+              repository.updateWorkout(item.copyWith(rest: newValue.toInt())),
+        ),
+        const SizedBox(height: 16),
+      ],
+    );
+  }
+}
 
 class ProgramDayScreen extends StatefulWidget {
-  const ProgramDayScreen({super.key, required this.day});
   final Day day;
+  const ProgramDayScreen({super.key, required this.day});
 
   @override
   State<ProgramDayScreen> createState() => _ProgramDayScreenState();
@@ -67,94 +199,11 @@ class _ProgramDayScreenState extends State<ProgramDayScreen> {
                       ],
                     ),
                     key: ValueKey(item),
-                    child: Column(
-                      children: [
-                        ExpansionTile(
-                          onExpansionChanged: (value) =>
-                              expanded[index] = value,
-                          key: Key(index.toString()),
-                          initiallyExpanded: expanded[index] ?? false,
-                          tilePadding:
-                              const EdgeInsets.only(right: 30.0, left: 16.0),
-                          title: Text(
-                            item.name as String,
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor),
-                          ),
-                          iconColor: Theme.of(context).primaryColor,
-                          collapsedIconColor: Theme.of(context).primaryColor,
-                          subtitle: Text(
-                            item.description as String,
-                            style: TextStyle(
-                                color: Theme.of(context)
-                                    .bottomNavigationBarTheme
-                                    .unselectedItemColor),
-                          ),
-                          children: [
-                            Column(
-                              children: [
-                                Text(S.of(context).sets),
-                                ChangeIntField(
-                                  value: item.sets as int,
-                                  decreaseCallback: () {
-                                    if (item.sets as int > 1) {
-                                      repository.updateWorkoutSetsRepeatsRest(
-                                          item.copyWith(sets: item.sets! - 1));
-                                    }
-                                  },
-                                  increaseCallback: () {
-                                    repository.updateWorkoutSetsRepeatsRest(
-                                        item.copyWith(sets: item.sets! + 1));
-                                  },
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text(S.of(context).repeats),
-                                ChangeIntField(
-                                  value: item.repeats as int,
-                                  decreaseCallback: () {
-                                    if (item.repeats as int > 1) {
-                                      repository.updateWorkoutSetsRepeatsRest(
-                                          item.copyWith(
-                                              repeats: item.repeats! - 1));
-                                    }
-                                  },
-                                  increaseCallback: () {
-                                    repository.updateWorkoutSetsRepeatsRest(
-                                        item.copyWith(
-                                      repeats: item.repeats! + 1,
-                                    ));
-                                  },
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text(S.of(context).rest),
-                                ChangeIntField(
-                                  value: item.rest as int,
-                                  decreaseCallback: () {
-                                    if (item.rest as int > 5) {
-                                      repository.updateWorkoutSetsRepeatsRest(
-                                          item.copyWith(rest: item.rest! - 5));
-                                    }
-                                  },
-                                  increaseCallback: () {
-                                    repository.updateWorkoutSetsRepeatsRest(
-                                        item.copyWith(rest: item.rest! + 5));
-                                  },
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 16.0,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                    child: ExerciseSettingWidget(
+                        index: index,
+                        expanded: expanded,
+                        item: item,
+                        repository: repository),
                   );
                 },
                 onReorder: (int oldIndex, int newIndex) {
