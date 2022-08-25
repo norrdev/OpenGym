@@ -241,6 +241,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you really want to skip this exercise today?"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
         "stopRest": MessageLookupByLibrary.simpleMessage("Stop the rest"),
+        "time": MessageLookupByLibrary.simpleMessage("Time"),
         "timer": MessageLookupByLibrary.simpleMessage("Timer"),
         "title": MessageLookupByLibrary.simpleMessage("NpNg"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),

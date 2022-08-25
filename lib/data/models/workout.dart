@@ -13,9 +13,17 @@ class Workout with _$Workout {
     int? ord,
     int? sets,
     int? repeats,
+    int? repeatsLeft,
     int? rest,
-    int? exercisesId,
+    int? exerciseId,
     double? weight,
+    double? weightLeft,
+    double? distance,
+    int? timeLoad,
+    int? equipmentId,
+    int? bars,
+    int? loadId,
+    int? limbs,
   }) = _Workout;
 
   factory Workout.fromJson(Map<String, Object?> json) =>

@@ -1670,6 +1670,16 @@ class S {
     );
   }
 
+  /// `Time`
+  String get time {
+    return Intl.message(
+      'Time',
+      name: 'time',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Use Imperial/US system (lbs, in, miles)?`
   String get useImperialUS {
     return Intl.message(

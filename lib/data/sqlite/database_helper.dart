@@ -17,7 +17,7 @@ String kLocale = Intl.getCurrentLocale();
 
 class DatabaseHelper {
   static const _databaseName = 'npng.db';
-  static const _databaseVersion = 3;
+  static const _databaseVersion = 3; // !
 
   static const String muscleTable = 'muscles';
   static const String exerciseTable = 'exercises';
@@ -46,49 +46,40 @@ class DatabaseHelper {
   Future<Database> _initDatabase() async {
     final documentsDirectory = await getApplicationDocumentsDirectory();
     final String path = join(documentsDirectory.path, _databaseName);
-    // final bool exists = await databaseExists(path);
+    final bool exists = await databaseExists(path);
 
     // Extract db from asset if it doesn't exist
-    // if (!exists) {
-    //   try {
-    //     await Directory(dirname(path)).create(recursive: true);
-    //   } catch (_) {}
-    //   ByteData data = await rootBundle.load(join('assets/db', 'npng.db'));
-    //   List<int> bytes =
-    //       data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-    //   await File(path).writeAsBytes(bytes, flush: true);
-    // }
+    // ! Here always created a new database from an asset with the current version.
+    // ! If you want to upgrade the database, first you need to do it
+    // ! manually in assets/db/npng.db then create the migration.
+    // ! After modifying the database, you need to update the version number in the PRAGMA user_version = 5
+    if (!exists) {
+      try {
+        await Directory(dirname(path)).create(recursive: true);
+      } catch (_) {}
+      ByteData data = await rootBundle.load(join('assets/db', 'npng.db'));
+      List<int> bytes =
+          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+      await File(path).writeAsBytes(bytes, flush: true);
+    }
 
     // Sqlite debug mode/logging
     if (kDebugMode) {
       Sqflite.setDebugModeOn(true);
+      print(path);
     } else {
       Sqflite.setDebugModeOn(false);
     }
 
+    // Opening DB. Note: do not use onCreate, if db comes from asset.
     Database db = await openDatabase(
       path,
       version: _databaseVersion,
-      onCreate: (db, version) async {
-        // ! Here always created a new database from an asset with the current version.
-        // ! If you want to upgrade the database, first you need to do it
-        // ! manually in assets/db/npng.db then create the migration.
-        // ! After modifying the database, you need to update the version number in the PRAGMA user_version = 5
-        try {
-          await Directory(dirname(path)).create(recursive: true);
-        } catch (_) {}
-        ByteData data = await rootBundle.load(join('assets/db', 'npng.db'));
-        List<int> bytes =
-            data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-        await File(path).writeAsBytes(bytes, flush: true);
-      },
       onUpgrade: (db, oldVersion, newVersion) async {
         if (kDebugMode) {
           print('→ oldVersion: $oldVersion');
           print('→ newVersion: $newVersion');
         }
-        // If database exists, migrate it
-        //if (exists) {
         Batch batch = db.batch();
         if (oldVersion == 1) {
           _upgradeV1toV2(batch);
@@ -103,7 +94,6 @@ class DatabaseHelper {
           }
         }
         await batch.commit();
-        //}
       },
     );
 
@@ -386,7 +376,10 @@ class DatabaseHelper {
       workouts.id AS id, 
       exercises.${kLocale}_name AS name, 
       exercises.${kLocale}_description as description, 
-      sets, ord, repeats, rest, exerciseId, weight FROM workouts 
+      sets, ord, repeats, rest, exerciseId, weight,  
+      equipmentId, bars, loadId, limbs, repeatsLeft,
+      weightLeft, distance, timeLoad
+    FROM workouts 
     JOIN exercises on workouts.exerciseId = exercises.id 
     WHERE dayId = $dayId ORDER BY ord;
       ''';
@@ -409,14 +402,19 @@ class DatabaseHelper {
     return Future.value();
   }
 
-  Future<void> updateWorkoutSetsRepeatsRest(Workout workout) async {
+  Future<void> updateWorkout(Workout workout) async {
     final db = await instance.streamDatabase;
     await db.update(
       workoutsTable,
       {
         'sets': workout.sets,
         'repeats': workout.repeats,
+        'repeatsLeft': workout.repeatsLeft,
         'rest': workout.rest,
+        'weight': workout.weight,
+        'weightLeft': workout.weightLeft,
+        'distance': workout.distance,
+        'timeLoad': workout.timeLoad,
       },
       where: 'id = ?',
       whereArgs: [workout.id],

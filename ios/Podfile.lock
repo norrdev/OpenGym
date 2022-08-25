@@ -1,5 +1,5 @@
 PODS:
-  - audioplayers (0.0.1):
+  - audioplayers_darwin (0.0.1):
     - Flutter
   - DKImagePickerController/Core (4.3.2):
     - DKImagePickerController/ImageDataManager
@@ -62,7 +62,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
+  - audioplayers_darwin (from `.symlinks/plugins/audioplayers_darwin/ios`)
   - DKImagePickerController/PhotoGallery (from `https://github.com/miguelpruivo/DKImagePickerController.git`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Flutter (from `Flutter`)
@@ -83,8 +83,8 @@ SPEC REPOS:
     - SwiftyGif
 
 EXTERNAL SOURCES:
-  audioplayers:
-    :path: ".symlinks/plugins/audioplayers/ios"
+  audioplayers_darwin:
+    :path: ".symlinks/plugins/audioplayers_darwin/ios"
   DKImagePickerController:
     :git: https://github.com/miguelpruivo/DKImagePickerController.git
   file_picker:
@@ -114,10 +114,10 @@ CHECKOUT OPTIONS:
     :git: https://github.com/miguelpruivo/DKImagePickerController.git
 
 SPEC CHECKSUMS:
-  audioplayers: 455322b54050b30ea4b1af7cd9e9d105f74efa8c
+  audioplayers_darwin: 387322cb364026a1782298c982693b1b6aa9fa1b
   DKImagePickerController: b5eb7f7a388e4643264105d648d01f727110fc3d
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
-  file_picker: 3e6c3790de664ccf9b882732d9db5eaf6b8d4eb1
+  file_picker: 817ab1d8cd2da9d2da412a417162deee3500fc95
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
@@ -133,4 +133,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 941957836d28f9516948cacc9c728a936ae2ddaf
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

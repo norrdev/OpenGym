@@ -29,7 +29,7 @@ class WorkoutFinishScreen extends StatelessWidget {
       for (int i = 0; i < item.sets.length; i++) {
         output +=
             '\n\r ${i + 1}. ${item.sets[i].weight} kg X ${item.sets[i].repeats}';
-        exTrainingVolume += item.sets[i].weight * item.sets[i].repeats;
+        exTrainingVolume += item.sets[i].weight! * item.sets[i].repeats!;
       }
       output +=
           '\n\r *${S.of(context).total}: ${exTrainingVolume.toStringAsFixed(2)} kg* \n\r';
