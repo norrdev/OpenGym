@@ -8,7 +8,12 @@ part 'workout_set.g.dart';
 class WorkoutSet with _$WorkoutSet {
   const factory WorkoutSet({
     int? repeats,
+    int? repeatsLeft,
     double? weight,
+    double? weightLeft,
+    int? timeLoad,
+    int? rest,
+    double? distance,
   }) = _WorkoutSet;
 
   factory WorkoutSet.fromJson(Map<String, Object?> json) =>

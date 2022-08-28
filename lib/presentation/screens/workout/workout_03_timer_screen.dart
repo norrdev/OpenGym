@@ -23,7 +23,7 @@ class TimerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int duration = context.read<WorkoutCubit>().state.currentRest;
+    int duration = context.read<WorkoutCubit>().state.currentSetRestTime;
     CountDownController controller = CountDownController();
 
     return Scaffold(

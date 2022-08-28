@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:npng/constants/workout.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -11,6 +12,64 @@ import 'package:npng/presentation/screens/main_screen.dart';
 class WorkoutFinishScreen extends StatelessWidget {
   const WorkoutFinishScreen({super.key});
 
+  String exerciseBasedOnWeight(BuildContext context, WorkoutExercise item) {
+    String output = '';
+    double exTrainingVolume = 0;
+
+    if (item.limbs == 1 && item.bars == 1) {
+      for (int i = 0; i < item.sets.length; i++) {
+        output +=
+            '\n\r ${i + 1}. ${item.sets[i].weight} kg X ${item.sets[i].repeats}';
+        exTrainingVolume +=
+            (item.sets[i].weight ?? 0) * (item.sets[i].repeats ?? 0);
+      }
+    }
+
+    if (item.limbs == 2 && item.bars == 2) {
+      for (int i = 0; i < item.sets.length; i++) {
+        output +=
+            '\n\r ${i + 1}. L ${item.sets[i].weightLeft} kg X ${item.sets[i].repeatsLeft} R ${item.sets[i].weight} kg X ${item.sets[i].repeats}';
+        exTrainingVolume +=
+            (item.sets[i].weightLeft ?? 0) * (item.sets[i].repeatsLeft ?? 0) +
+                (item.sets[i].weight ?? 0) * (item.sets[i].repeats ?? 0);
+      }
+    }
+
+    output +=
+        '\n\r *${S.of(context).total}: ${exTrainingVolume.toStringAsFixed(2)} kg* \n\r';
+
+    return output;
+  }
+
+  String exerciseBasedOnRepeats(BuildContext context, WorkoutExercise item) {
+    String output = '';
+
+    int totalRepeats = 0;
+
+    for (int i = 0; i < item.sets.length; i++) {
+      output += '\n\r ${i + 1}. ${item.sets[i].repeats}';
+      totalRepeats += item.sets[i].repeats ?? 0;
+    }
+    output +=
+        '\n\r *${S.of(context).total}: $totalRepeats ${S.of(context).repeats}* \n\r';
+
+    return output;
+  }
+
+  String exerciseBasedOnTime(BuildContext context, WorkoutExercise item) {
+    String output = '';
+    int totalTime = 0;
+
+    for (int i = 0; i < item.sets.length; i++) {
+      output += '\n\r ${i + 1}. ${item.sets[i].timeLoad} s';
+      totalTime += item.sets[i].timeLoad ?? 0;
+    }
+
+    output += '\n\r *${S.of(context).total}: $totalTime s* \n\r';
+
+    return output;
+  }
+
   @override
   Widget build(BuildContext context) {
     final controller = ScrollController();
@@ -18,29 +77,42 @@ class WorkoutFinishScreen extends StatelessWidget {
     DateTime? start = wp.state.startTime;
     DateTime? finish = wp.state.finishTime;
     double trainingVolume = 0.0;
-    double exTrainingVolume = 0.0;
+    //double exTrainingVolume = 0.0;
 
     String duration = finish!.difference(start!).inMinutes.toString();
     String output =
         '${S.of(context).wrkDuration}: $duration ${S.of(context).min}';
 
     for (WorkoutExercise item in wp.state.exercises) {
-      output += '\n\r**${item.name}**';
-      for (int i = 0; i < item.sets.length; i++) {
-        output +=
-            '\n\r ${i + 1}. ${item.sets[i].weight} kg X ${item.sets[i].repeats}';
-        exTrainingVolume += item.sets[i].weight! * item.sets[i].repeats!;
+      output += '\n\r## ${item.name}';
+
+      switch (item.loadId) {
+        case kLoadWeight:
+          output += exerciseBasedOnWeight(context, item);
+          break;
+        case kLoadRepeats:
+          output += exerciseBasedOnRepeats(context, item);
+          break;
+        case kLoadTime:
+          output += exerciseBasedOnTime(context, item);
+          break;
+        default:
       }
-      output +=
-          '\n\r *${S.of(context).total}: ${exTrainingVolume.toStringAsFixed(2)} kg* \n\r';
-      trainingVolume += exTrainingVolume;
-      exTrainingVolume = 0.0;
+
+      // for (int i = 0; i < item.sets.length; i++) {
+      //   output +=
+      //       '\n\r ${i + 1}. ${item.sets[i].weight} kg X ${item.sets[i].repeats}';
+      //   exTrainingVolume +=
+      //       (item.sets[i].weight ?? 0) * (item.sets[i].repeats ?? 0);
+      // }
+      // output +=
+      //     '\n\r *${S.of(context).total}: ${exTrainingVolume.toStringAsFixed(2)} kg* \n\r';
+      // trainingVolume += exTrainingVolume;
+      //exTrainingVolume = 0.0;
+
     }
 
-    output +=
-        '\n\r **${S.of(context).wrkTrainingVolume}**: $trainingVolume kg\n\r';
-
-    MarkdownStyleSheet style = MarkdownStyleSheet.fromTheme(Theme.of(context));
+    output += '**${S.of(context).wrkTrainingVolume}**: $trainingVolume kg';
 
     return Scaffold(
       appBar: AppBar(
@@ -50,8 +122,8 @@ class WorkoutFinishScreen extends StatelessWidget {
         child: Markdown(
           data: output,
           controller: controller,
-          selectable: false,
-          styleSheet: style,
+          selectable: true,
+          styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)),
           onTapLink: (text, href, title) => launchUrlString(href!),
         ),
       ),

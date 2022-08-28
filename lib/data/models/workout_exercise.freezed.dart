@@ -26,6 +26,9 @@ mixin _$WorkoutExercise {
   int get restTime => throw _privateConstructorUsedError;
   List<WorkoutSet> get sets => throw _privateConstructorUsedError;
   bool get completed => throw _privateConstructorUsedError;
+  int get limbs => throw _privateConstructorUsedError;
+  int get bars => throw _privateConstructorUsedError;
+  int get loadId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +47,10 @@ abstract class $WorkoutExerciseCopyWith<$Res> {
       int maxSets,
       int restTime,
       List<WorkoutSet> sets,
-      bool completed});
+      bool completed,
+      int limbs,
+      int bars,
+      int loadId});
 }
 
 /// @nodoc
@@ -64,6 +70,9 @@ class _$WorkoutExerciseCopyWithImpl<$Res>
     Object? restTime = freezed,
     Object? sets = freezed,
     Object? completed = freezed,
+    Object? limbs = freezed,
+    Object? bars = freezed,
+    Object? loadId = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -90,6 +99,18 @@ class _$WorkoutExerciseCopyWithImpl<$Res>
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
               as bool,
+      limbs: limbs == freezed
+          ? _value.limbs
+          : limbs // ignore: cast_nullable_to_non_nullable
+              as int,
+      bars: bars == freezed
+          ? _value.bars
+          : bars // ignore: cast_nullable_to_non_nullable
+              as int,
+      loadId: loadId == freezed
+          ? _value.loadId
+          : loadId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -107,7 +128,10 @@ abstract class _$$_WorkoutExerciseCopyWith<$Res>
       int maxSets,
       int restTime,
       List<WorkoutSet> sets,
-      bool completed});
+      bool completed,
+      int limbs,
+      int bars,
+      int loadId});
 }
 
 /// @nodoc
@@ -129,6 +153,9 @@ class __$$_WorkoutExerciseCopyWithImpl<$Res>
     Object? restTime = freezed,
     Object? sets = freezed,
     Object? completed = freezed,
+    Object? limbs = freezed,
+    Object? bars = freezed,
+    Object? loadId = freezed,
   }) {
     return _then(_$_WorkoutExercise(
       id: id == freezed
@@ -155,6 +182,18 @@ class __$$_WorkoutExerciseCopyWithImpl<$Res>
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
               as bool,
+      limbs: limbs == freezed
+          ? _value.limbs
+          : limbs // ignore: cast_nullable_to_non_nullable
+              as int,
+      bars: bars == freezed
+          ? _value.bars
+          : bars // ignore: cast_nullable_to_non_nullable
+              as int,
+      loadId: loadId == freezed
+          ? _value.loadId
+          : loadId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -168,7 +207,10 @@ class _$_WorkoutExercise implements _WorkoutExercise {
       required this.maxSets,
       required this.restTime,
       required final List<WorkoutSet> sets,
-      required this.completed})
+      required this.completed,
+      required this.limbs,
+      required this.bars,
+      required this.loadId})
       : _sets = sets;
 
   factory _$_WorkoutExercise.fromJson(Map<String, dynamic> json) =>
@@ -191,10 +233,16 @@ class _$_WorkoutExercise implements _WorkoutExercise {
 
   @override
   final bool completed;
+  @override
+  final int limbs;
+  @override
+  final int bars;
+  @override
+  final int loadId;
 
   @override
   String toString() {
-    return 'WorkoutExercise(id: $id, name: $name, maxSets: $maxSets, restTime: $restTime, sets: $sets, completed: $completed)';
+    return 'WorkoutExercise(id: $id, name: $name, maxSets: $maxSets, restTime: $restTime, sets: $sets, completed: $completed, limbs: $limbs, bars: $bars, loadId: $loadId)';
   }
 
   @override
@@ -207,7 +255,10 @@ class _$_WorkoutExercise implements _WorkoutExercise {
             const DeepCollectionEquality().equals(other.maxSets, maxSets) &&
             const DeepCollectionEquality().equals(other.restTime, restTime) &&
             const DeepCollectionEquality().equals(other._sets, _sets) &&
-            const DeepCollectionEquality().equals(other.completed, completed));
+            const DeepCollectionEquality().equals(other.completed, completed) &&
+            const DeepCollectionEquality().equals(other.limbs, limbs) &&
+            const DeepCollectionEquality().equals(other.bars, bars) &&
+            const DeepCollectionEquality().equals(other.loadId, loadId));
   }
 
   @JsonKey(ignore: true)
@@ -219,7 +270,10 @@ class _$_WorkoutExercise implements _WorkoutExercise {
       const DeepCollectionEquality().hash(maxSets),
       const DeepCollectionEquality().hash(restTime),
       const DeepCollectionEquality().hash(_sets),
-      const DeepCollectionEquality().hash(completed));
+      const DeepCollectionEquality().hash(completed),
+      const DeepCollectionEquality().hash(limbs),
+      const DeepCollectionEquality().hash(bars),
+      const DeepCollectionEquality().hash(loadId));
 
   @JsonKey(ignore: true)
   @override
@@ -241,7 +295,10 @@ abstract class _WorkoutExercise implements WorkoutExercise {
       required final int maxSets,
       required final int restTime,
       required final List<WorkoutSet> sets,
-      required final bool completed}) = _$_WorkoutExercise;
+      required final bool completed,
+      required final int limbs,
+      required final int bars,
+      required final int loadId}) = _$_WorkoutExercise;
 
   factory _WorkoutExercise.fromJson(Map<String, dynamic> json) =
       _$_WorkoutExercise.fromJson;
@@ -258,6 +315,12 @@ abstract class _WorkoutExercise implements WorkoutExercise {
   List<WorkoutSet> get sets;
   @override
   bool get completed;
+  @override
+  int get limbs;
+  @override
+  int get bars;
+  @override
+  int get loadId;
   @override
   @JsonKey(ignore: true)
   _$$_WorkoutExerciseCopyWith<_$_WorkoutExercise> get copyWith =>

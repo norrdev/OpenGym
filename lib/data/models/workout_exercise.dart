@@ -15,6 +15,9 @@ class WorkoutExercise with _$WorkoutExercise {
     required int restTime,
     required List<WorkoutSet> sets,
     required bool completed,
+    required int limbs,
+    required int bars,
+    required int loadId,
   }) = _WorkoutExercise;
 
   factory WorkoutExercise.fromJson(Map<String, Object?> json) =>

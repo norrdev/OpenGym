@@ -14,7 +14,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
       : super(WorkoutState(
           active: false,
           finished: false,
-          dayID: 0,
+          dayId: 0,
           startTime: null,
           finishTime: null,
           exercises: const [],
@@ -35,27 +35,38 @@ class WorkoutCubit extends Cubit<WorkoutState> {
     List<WorkoutExercise> exercises = [];
     for (Workout item in _workoutsSnapshot) {
       List<WorkoutSet> sets = [];
-      for (int i = 0; i < (item.sets ?? 0); i++) {
+      int numberOfSets = item.sets ?? 1;
+
+      for (int i = 0; i < (numberOfSets); i++) {
         WorkoutSet oneset = WorkoutSet(
           repeats: item.repeats ?? 0,
+          repeatsLeft: item.repeatsLeft ?? 0,
           weight: item.weight ?? 0,
+          weightLeft: item.weightLeft ?? 0,
+          rest: item.rest ?? 0,
+          distance: item.distance ?? 0,
+          timeLoad: item.timeLoad ?? 0,
         );
         sets.add(oneset);
       }
+
       WorkoutExercise ex = WorkoutExercise(
         id: item.exerciseId ?? 0,
         name: item.name ?? '',
-        maxSets: item.sets ?? 0,
+        maxSets: numberOfSets,
         restTime: item.rest ?? 0,
         sets: sets,
         completed: false,
+        limbs: item.limbs ?? 0,
+        bars: item.bars ?? 0,
+        loadId: item.loadId ?? 0,
       );
       exercises.add(ex);
     }
     emit(state.copyWith(
       active: false,
       finished: false,
-      dayID: 0,
+      dayId: 0,
       currentExcersise: 0,
       currentSet: 0,
       startTime: null,
@@ -67,7 +78,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
   void startWorkout(int dayId) {
     emit(state.copyWith(
       active: true,
-      dayID: dayId,
+      dayId: dayId,
       startTime: DateTime.now(),
     ));
   }
@@ -77,7 +88,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
     await repository.insertLog(
       startTime: state.startTime!,
       finishTime: DateTime.now(),
-      dayId: state.dayID,
+      dayId: state.dayId,
       exercises: state.exercises,
     );
     emit(state.copyWith(active: false, finished: true));
@@ -117,106 +128,138 @@ class WorkoutCubit extends Cubit<WorkoutState> {
     }
   }
 
-  /// Increase repeats in set
-  void incRepeats({required int excersiseNumber, required int setNumber}) {
-    List<WorkoutExercise> exercises = [...state.exercises];
+  void setRepeats(
+      {required int excersiseNumber,
+      required int setNumber,
+      required int repeats}) {
+    WorkoutSet newSet = state.exercises[excersiseNumber].sets[setNumber]
+        .copyWith(repeats: repeats);
 
-    exercises[excersiseNumber].sets[setNumber] = exercises[excersiseNumber]
-        .sets[setNumber]
-        .copyWith(
-            repeats: exercises[excersiseNumber].sets[setNumber].repeats! + 1);
-
-    emit(state.copyWith(exercises: exercises));
+    _setSetsSettings(
+        excersiseNumber: excersiseNumber, setNumber: setNumber, newSet: newSet);
   }
 
-  /// Decrease repeats in set
-  void decRepeats({required int excersiseNumber, required int setNumber}) {
-    List<WorkoutExercise> exercises = [...state.exercises];
-    if (exercises[excersiseNumber].sets[setNumber].repeats! > 1) {
-      exercises[excersiseNumber].sets[setNumber] = exercises[excersiseNumber]
-          .sets[setNumber]
-          .copyWith(
-              repeats: exercises[excersiseNumber].sets[setNumber].repeats! - 1);
+  void setRepeatsLeft(
+      {required int excersiseNumber,
+      required int setNumber,
+      required int repeatsLeft}) {
+    WorkoutSet newSet = state.exercises[excersiseNumber].sets[setNumber]
+        .copyWith(repeatsLeft: repeatsLeft);
 
-      emit(state.copyWith(exercises: exercises));
-    }
+    _setSetsSettings(
+        excersiseNumber: excersiseNumber, setNumber: setNumber, newSet: newSet);
   }
 
-  /// Increase weight in set by 0.25
-  void incWeight025({required int excersiseNumber, required int setNumber}) {
-    List<WorkoutExercise> exercises = [...state.exercises];
-    exercises[excersiseNumber].sets[setNumber] = exercises[excersiseNumber]
-        .sets[setNumber]
-        .copyWith(
-            weight: exercises[excersiseNumber].sets[setNumber].weight! + 0.25);
+  void setWeight(
+      {required int excersiseNumber,
+      required int setNumber,
+      required double weight}) {
+    WorkoutSet newSet = state.exercises[excersiseNumber].sets[setNumber]
+        .copyWith(weight: weight);
 
-    emit(state.copyWith(exercises: exercises));
+    _setSetsSettings(
+        excersiseNumber: excersiseNumber, setNumber: setNumber, newSet: newSet);
   }
 
-  /// Increase weight in set by 5
-  void incWeight5({required int excersiseNumber, required int setNumber}) {
-    List<WorkoutExercise> exercises = [...state.exercises];
-    exercises[excersiseNumber].sets[setNumber] = exercises[excersiseNumber]
-        .sets[setNumber]
-        .copyWith(
-            weight: exercises[excersiseNumber].sets[setNumber].weight! + 5);
+  void setWeightLeft(
+      {required int excersiseNumber,
+      required int setNumber,
+      required double weightLeft}) {
+    WorkoutSet newSet = state.exercises[excersiseNumber].sets[setNumber]
+        .copyWith(weightLeft: weightLeft);
 
-    emit(state.copyWith(exercises: exercises));
+    _setSetsSettings(
+        excersiseNumber: excersiseNumber, setNumber: setNumber, newSet: newSet);
   }
 
-  /// Decrease weight in set
-  void decWeight025({required int excersiseNumber, required int setNumber}) {
-    List<WorkoutExercise> exercises = [...state.exercises];
-    if (exercises[excersiseNumber].sets[setNumber].weight! > 0) {
-      exercises[excersiseNumber].sets[setNumber] = exercises[excersiseNumber]
-          .sets[setNumber]
-          .copyWith(
-              weight:
-                  exercises[excersiseNumber].sets[setNumber].weight! - 0.25);
+  void setTimeLoad(
+      {required int excersiseNumber,
+      required int setNumber,
+      required int timeLoad}) {
+    WorkoutSet newSet = state.exercises[excersiseNumber].sets[setNumber]
+        .copyWith(timeLoad: timeLoad);
 
-      emit(state.copyWith(exercises: exercises));
-    }
+    _setSetsSettings(
+        excersiseNumber: excersiseNumber, setNumber: setNumber, newSet: newSet);
   }
 
-  ///Decrease weight in set in 5
-  void decWeight5({required int excersiseNumber, required int setNumber}) {
-    List<WorkoutExercise> exercises = [...state.exercises];
-    if (exercises[excersiseNumber].sets[setNumber].weight! > 5) {
-      exercises[excersiseNumber].sets[setNumber] = exercises[excersiseNumber]
-          .sets[setNumber]
-          .copyWith(
-              weight: exercises[excersiseNumber].sets[setNumber].weight! - 5);
+  void setDistance(
+      {required int excersiseNumber,
+      required int setNumber,
+      required double distance}) {
+    WorkoutSet newSet = state.exercises[excersiseNumber].sets[setNumber]
+        .copyWith(distance: distance);
 
-      emit(state.copyWith(exercises: exercises));
-    }
+    _setSetsSettings(
+        excersiseNumber: excersiseNumber, setNumber: setNumber, newSet: newSet);
+  }
+
+  /// Setting rest time for current set, not exercise!
+  void setRestForSet(
+      {required int excersiseNumber,
+      required int setNumber,
+      required int rest}) {
+    WorkoutSet newSet =
+        state.exercises[excersiseNumber].sets[setNumber].copyWith(rest: rest);
+
+    _setSetsSettings(
+        excersiseNumber: excersiseNumber, setNumber: setNumber, newSet: newSet);
+  }
+
+  void _setSetsSettings(
+      {required int excersiseNumber,
+      required int setNumber,
+      required WorkoutSet newSet}) {
+    List<WorkoutSet> newSets = [...state.exercises[excersiseNumber].sets];
+    newSets[setNumber] = newSet;
+
+    List<WorkoutExercise> newExercises = [...state.exercises];
+    WorkoutExercise newCurentExercise =
+        state.exercises[excersiseNumber].copyWith(sets: newSets);
+
+    newExercises[excersiseNumber] = newCurentExercise;
+
+    emit(state.copyWith(exercises: newExercises));
   }
 
   /// +1 set Button
   void manualAddOneSet() {
-    List<WorkoutExercise> exercises = [...state.exercises];
-    exercises[state.currentExcersise].sets.add(exercises[state.currentExcersise]
-        .sets[exercises[state.currentExcersise].sets.length - 1]);
+    List<WorkoutSet> newSets = [
+      ...state.exercises[state.currentExcersise].sets
+    ];
 
-    exercises[state.currentExcersise] =
-        exercises[state.currentExcersise].copyWith(
-      sets: exercises[state.currentExcersise].sets,
-      maxSets: exercises[state.currentExcersise].maxSets + 1,
-    );
+    newSets.add(state.exercises[state.currentExcersise]
+        .sets[state.exercises[state.currentExcersise].sets.length - 1]);
+
+    List<WorkoutExercise> exercises = [...state.exercises];
+
+    WorkoutExercise newCurentExercise = state.exercises[state.currentExcersise]
+        .copyWith(
+            sets: newSets,
+            maxSets: state.exercises[state.currentExcersise].maxSets + 1);
+
+    exercises[state.currentExcersise] = newCurentExercise;
+
     emit(state.copyWith(exercises: exercises));
   }
 
   /// -1 set Button
   void manualRemoveOneSet() {
-    List<WorkoutExercise> exercises = [...state.exercises];
-    if (exercises[state.currentExcersise].sets.length > state.currentSet + 1) {
-      exercises[state.currentExcersise].sets.removeLast();
+    List<WorkoutSet> newSets = [
+      ...state.exercises[state.currentExcersise].sets
+    ];
 
-      exercises[state.currentExcersise] =
-          exercises[state.currentExcersise].copyWith(
-        sets: exercises[state.currentExcersise].sets,
-        maxSets: exercises[state.currentExcersise].maxSets - 1,
-      );
-      emit(state.copyWith(exercises: exercises));
-    }
+    newSets.removeLast();
+
+    List<WorkoutExercise> exercises = [...state.exercises];
+
+    WorkoutExercise newCurentExercise = state.exercises[state.currentExcersise]
+        .copyWith(
+            sets: newSets,
+            maxSets: state.exercises[state.currentExcersise].maxSets - 1);
+
+    exercises[state.currentExcersise] = newCurentExercise;
+
+    emit(state.copyWith(exercises: exercises));
   }
 }

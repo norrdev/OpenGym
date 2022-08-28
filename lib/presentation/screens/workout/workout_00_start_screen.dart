@@ -3,12 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/logic/cubit/default_program_cubit.dart';
 import 'package:npng/logic/cubit/workout_cubit.dart';
-import 'package:npng/presentation/screens/programs/programs_screen.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/presentation/screens/workout/workout_01_process_screen.dart';
 
-/// This is the first screen of the workout.
+import '../../../logic/cubit/current_tab_cubit.dart';
+
+/// This is the first screen of the workout (with days list).
 class WorkoutStartScreen extends StatelessWidget {
   const WorkoutStartScreen({super.key});
 
@@ -44,47 +45,21 @@ class DaysListWidget extends StatelessWidget {
               final List<Day> days =
                   (snapshot.hasData) ? [...snapshot.data!] : [];
               if (days.isEmpty) {
-                return Container(
-                  constraints: const BoxConstraints.expand(),
-                  child: Flex(
-                    direction: Axis.vertical,
-                    children: [
-                      Flexible(
-                        flex: 1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: const [
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(Icons.arrow_upward_rounded),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Flexible(
-                        flex: 16,
-                        child: Center(
-                          child: ElevatedButton(
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(S.of(context).selectProgram),
-                                const SizedBox(width: 8),
-                                const Icon(Icons.checklist_rounded),
-                              ],
-                            ),
-                            onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ProgramsScreen(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                return Center(
+                  child: ElevatedButton(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(S.of(context).selectProgram),
+                        const SizedBox(width: 8),
+                        const Icon(Icons.checklist_rounded),
+                      ],
+                    ),
+                    onPressed: () =>
+                        // TODO Fix 2 constants
+                        context.read<CurrentTabCubit>().saveCurrentIndex(1),
                   ),
                 );
               }

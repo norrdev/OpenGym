@@ -1,14 +1,5 @@
 part of 'workout_cubit.dart';
 
-class EquatableDateTime with EquatableMixin {
-  DateTime dateTime;
-
-  EquatableDateTime(this.dateTime);
-
-  @override
-  List<Object> get props => [dateTime];
-}
-
 class WorkoutState extends Equatable {
   /// Active workout flag.
   final bool active;
@@ -17,7 +8,7 @@ class WorkoutState extends Equatable {
   final bool finished;
 
   /// Workout day from DB.days.
-  final int dayID;
+  final int dayId;
 
   /// Workout start time.
   final DateTime? startTime;
@@ -34,9 +25,11 @@ class WorkoutState extends Equatable {
   /// Current set counter.
   final int currentSet;
 
-  //! TODO: unique field. Added to the state to re-rendering of the widget, cause of bug.
-  //! I do not know, why states is not unique. May be exercises is unique for compare.
-  final DateTime lastUpdate;
+  /// Current rest time default for exercise
+  int get currentRestTime => exercises[currentExcersise].restTime;
+
+  int get currentSetRestTime =>
+      exercises[currentExcersise].sets[currentSet].rest ?? 60;
 
   /// Max exervise.
   int get maxExcersise => exercises.length - 1;
@@ -44,13 +37,14 @@ class WorkoutState extends Equatable {
   /// Quantity of sets in current excersise
   int get maxSet => exercises[currentExcersise].maxSets - 1;
 
-  /// Current rest
-  int get currentRest => exercises[currentExcersise].restTime;
+  //! TODO: unique field. Added to the state to re-rendering of the widget, cause of bug.
+  // I do not know, why states is not unique. May be exercises is unique for compare.
+  final DateTime lastUpdate;
 
   const WorkoutState({
     required this.active,
     required this.finished,
-    required this.dayID,
+    required this.dayId,
     this.startTime,
     this.finishTime,
     required this.exercises,
@@ -63,7 +57,7 @@ class WorkoutState extends Equatable {
   List<Object?> get props => [
         active,
         finished,
-        dayID,
+        dayId,
         startTime,
         finishTime,
         exercises,
@@ -79,7 +73,7 @@ class WorkoutState extends Equatable {
   WorkoutState copyWith({
     bool? active,
     bool? finished,
-    int? dayID,
+    int? dayId,
     DateTime? startTime,
     DateTime? finishTime,
     List<WorkoutExercise>? exercises,
@@ -90,7 +84,7 @@ class WorkoutState extends Equatable {
     return WorkoutState(
       active: active ?? this.active,
       finished: finished ?? this.finished,
-      dayID: dayID ?? this.dayID,
+      dayId: dayId ?? this.dayId,
       startTime: startTime ?? this.startTime,
       finishTime: finishTime ?? this.finishTime,
       exercises: exercises ?? this.exercises,

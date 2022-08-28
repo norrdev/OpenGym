@@ -226,20 +226,21 @@ void _updateV2toV3(Batch batch) {
   batch.execute('DROP TABLE workouts');
   batch.execute('''
     CREATE TABLE workouts (
-        id          INTEGER PRIMARY KEY
-                            UNIQUE,
-        ord         INTEGER DEFAULT (0) 
-                            NOT NULL,
-        dayId       INTEGER REFERENCES days (id),
-        exerciseId  INTEGER REFERENCES exercises (id),
-        sets        INTEGER,
-        repeats     INTEGER,
-        rest        INTEGER,
-        weight      DOUBLE,
-        weightLeft  DOUBLE,
-        repeatsLeft INTEGER,
-        distance    DOUBLE,
-        timeLoad    INTEGER
+      id          INTEGER PRIMARY KEY
+                          UNIQUE,
+      ord         INTEGER DEFAULT (0) 
+                          NOT NULL,
+      dayId       INTEGER REFERENCES days (id),
+      exerciseId  INTEGER REFERENCES exercises (id),
+      sets        INTEGER NOT NULL
+                          DEFAULT (1),
+      repeats     INTEGER DEFAULT (8),
+      rest        INTEGER DEFAULT (90),
+      weight      DOUBLE  DEFAULT (10),
+      weightLeft  DOUBLE  DEFAULT (8),
+      repeatsLeft INTEGER DEFAULT (8),
+      distance    DOUBLE  DEFAULT (100),
+      timeLoad    INTEGER DEFAULT (60) 
     )''');
   batch.execute('''
     INSERT INTO workouts (
@@ -264,10 +265,10 @@ void _updateV2toV3(Batch batch) {
                                 repeats,
                                 rest,
                                 weight,
-                                weightLeft,
-                                repeatsLeft,
-                                distance,
-                                timeLoad
+                                weight,
+                                repeats,
+                                100,
+                                60
                           FROM sqlitestudio_temp_table''');
   batch.execute('DROP TABLE sqlitestudio_temp_table');
 
