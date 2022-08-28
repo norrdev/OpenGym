@@ -1,5 +1,4 @@
-import 'package:npng/data/models/models.dart';
-import 'package:npng/data/models/workout_exercise.dart';
+import 'models/models.dart';
 
 abstract class Repository {
   Future<void> init();

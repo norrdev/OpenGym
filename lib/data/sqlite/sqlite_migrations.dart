@@ -1,4 +1,4 @@
-part of 'database_helper.dart';
+part of 'sqlite_helper.dart';
 
 /// Migration script v2 (PRAGMA user_version = 2).
 /// Version 1 comes from assets.

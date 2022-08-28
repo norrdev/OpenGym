@@ -1,147 +1,147 @@
 import 'dart:async';
-import 'package:npng/data/models/workout_exercise.dart';
-import 'package:npng/data/repository.dart';
-import 'package:npng/data/sqlite/database_helper.dart';
-import 'package:npng/data/models/models.dart';
+import '../models/workout_exercise.dart';
+import '../repository.dart';
+import 'sqlite_helper.dart';
+import '../models/models.dart';
 
 class SqliteRepository extends Repository {
-  final dbHelper = DatabaseHelper.instance;
+  final sqliteHelper = SqliteHelper.instance;
 
   @override
   Future<void> init() async {
-    await dbHelper.database;
+    await sqliteHelper.database;
     return Future.value();
   }
 
   @override
   void close() {
-    dbHelper.close();
+    sqliteHelper.close();
   }
 
   @override
   Stream<List<Muscle>> watchAllMuscles() {
-    return dbHelper.watchAllMuscles();
+    return sqliteHelper.watchAllMuscles();
   }
 
   @override
   Stream<List<Exercise>> findExcersisesByMuscle(int id) {
-    return dbHelper.findExcersisesByMuscle(id);
+    return sqliteHelper.findExcersisesByMuscle(id);
   }
 
   @override
   Future<Exercise> findExerciseById(int id) {
-    return dbHelper.findExerciseById(id);
+    return sqliteHelper.findExerciseById(id);
   }
 
   @override
   Future<int> updateExercise(Exercise exe) {
-    return dbHelper.updateExercise(exe);
+    return sqliteHelper.updateExercise(exe);
   }
 
   @override
   Future<void> insertExercise(int muscleId, Exercise exercise) {
-    dbHelper.insertExercise(muscleId, exercise);
+    sqliteHelper.insertExercise(muscleId, exercise);
     return Future.value();
   }
 
   @override
   Future<void> deleteExercise(Exercise exercise) {
-    dbHelper.deleteExercise(exercise);
+    sqliteHelper.deleteExercise(exercise);
     return Future.value();
   }
 
   @override
   Stream<List<Program>> watchAllPrograms() {
-    return dbHelper.watchAllPrograms();
+    return sqliteHelper.watchAllPrograms();
   }
 
   @override
   Future<int> getCurrentProgram() {
-    return dbHelper.getCurrentProgram();
+    return sqliteHelper.getCurrentProgram();
   }
 
   @override
   Future<void> setCurrentProgram(int id) {
-    dbHelper.setCurrentProgram(id);
+    sqliteHelper.setCurrentProgram(id);
     return Future.value();
   }
 
   @override
   Future<void> insertProgram(Exercise program) {
-    dbHelper.insertProgram(program);
+    sqliteHelper.insertProgram(program);
     return Future.value();
   }
 
   @override
   Future<int> updateProgram(Program program) {
-    return dbHelper.updateProgram(program);
+    return sqliteHelper.updateProgram(program);
   }
 
   @override
   Stream<List<Day>> findDaysByProgram(int id) {
-    return dbHelper.findDaysByProgram(id);
+    return sqliteHelper.findDaysByProgram(id);
   }
 
   @override
   Future<void> reorderDays(List<Day> days) {
-    dbHelper.reorderDays(days);
+    sqliteHelper.reorderDays(days);
     return Future.value();
   }
 
   @override
   Future<void> reorderWorkouts(List<Workout> workouts) {
-    dbHelper.reorderWorkouts(workouts);
+    sqliteHelper.reorderWorkouts(workouts);
     return Future.value();
   }
 
   @override
   Future<void> insertDay(int programId, Day day) {
-    dbHelper.insertDay(programId, day);
+    sqliteHelper.insertDay(programId, day);
     return Future.value();
   }
 
   @override
   Future<int> updateDay(Day day) {
-    return dbHelper.updateDay(day);
+    return sqliteHelper.updateDay(day);
   }
 
   @override
   Stream<List<Workout>> findWorkoutByDay(int dayId) {
-    return dbHelper.findWorkoutByDay(dayId);
+    return sqliteHelper.findWorkoutByDay(dayId);
   }
 
   @override
   Future<void> updateWorkout(Workout workout) {
-    dbHelper.updateWorkout(workout);
+    sqliteHelper.updateWorkout(workout);
     return Future.value();
   }
 
   @override
   Future<void> deleteWorkout(Workout workout) {
-    dbHelper.deleteWorkout(workout);
+    sqliteHelper.deleteWorkout(workout);
     return Future.value();
   }
 
   @override
   Future<void> insertWorkout(int dayId, int exerciseId) {
-    dbHelper.insertWorkout(dayId, exerciseId);
+    sqliteHelper.insertWorkout(dayId, exerciseId);
     return Future.value();
   }
 
   @override
   Future<List<LogDay>> watchAllLogDays() {
-    return dbHelper.watchAllLogDays();
+    return sqliteHelper.watchAllLogDays();
   }
 
   @override
   Future<List<LogDay>> findMounthLogDaysBetweenDates(
       DateTime start, DateTime finish) {
-    return dbHelper.findMounthLogDaysBetweenDates(start, finish);
+    return sqliteHelper.findMounthLogDaysBetweenDates(start, finish);
   }
 
   @override
   Future<List<LogWorkout>> findLogWorkoutByDay(int logDayId) {
-    return dbHelper.findLogWorkoutByDay(logDayId);
+    return sqliteHelper.findLogWorkoutByDay(logDayId);
   }
 
   @override
@@ -151,7 +151,7 @@ class SqliteRepository extends Repository {
     required int dayId,
     required List<WorkoutExercise> exercises,
   }) {
-    dbHelper.insertLog(
+    sqliteHelper.insertLog(
       startTime: startTime,
       finishTime: finishTime,
       dayId: dayId,
@@ -162,32 +162,32 @@ class SqliteRepository extends Repository {
 
   @override
   Future<String> backupDatabase() {
-    return dbHelper.backupDatabase();
+    return sqliteHelper.backupDatabase();
   }
 
   @override
   Future<void> importDataBase(String filePath) {
-    dbHelper.importDataBase(filePath);
+    sqliteHelper.importDataBase(filePath);
     return Future.value();
   }
 
   @override
   Stream<List<Equipment>> watchAllEquipment() {
-    return dbHelper.watchAllEquipment();
+    return sqliteHelper.watchAllEquipment();
   }
 
   @override
   Stream<List<Load>> watchAllLoad() {
-    return dbHelper.watchAllLoad();
+    return sqliteHelper.watchAllLoad();
   }
 
   @override
   Future<Load> findLoadById(int id) {
-    return dbHelper.findLoadById(id);
+    return sqliteHelper.findLoadById(id);
   }
 
   @override
   Future<Equipment> findEquipmentById(int id) async {
-    return dbHelper.findEquipmentById(id);
+    return sqliteHelper.findEquipmentById(id);
   }
 }

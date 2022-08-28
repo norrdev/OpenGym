@@ -11,11 +11,11 @@ import 'package:synchronized/synchronized.dart';
 import '../models/models.dart';
 import '../models/workout_exercise.dart';
 
-part 'migrations.dart';
+part 'sqlite_migrations.dart';
 
 String kLocale = Intl.getCurrentLocale();
 
-class DatabaseHelper {
+class SqliteHelper {
   static const _databaseName = 'npng.db';
   static const _databaseVersion = 3; // !
 
@@ -33,14 +33,14 @@ class DatabaseHelper {
 
   static late BriteDatabase _streamDatabase;
 
-  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
+  static final SqliteHelper instance = SqliteHelper._privateConstructor();
   static var lock = Lock();
 
   // only have a single app-wide reference to the database
   static Database? _database;
 
   // make this a singleton class
-  DatabaseHelper._privateConstructor();
+  SqliteHelper._privateConstructor();
 
   /// Stream database getter.
   Future<Database> get database async {
