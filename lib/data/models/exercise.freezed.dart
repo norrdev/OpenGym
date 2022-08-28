@@ -25,7 +25,6 @@ mixin _$Exercise {
   String? get description => throw _privateConstructorUsedError;
   int? get equipmentId => throw _privateConstructorUsedError;
   int? get preinstalled => throw _privateConstructorUsedError;
-  int? get bars => throw _privateConstructorUsedError;
   int? get loadId => throw _privateConstructorUsedError;
   int? get limbs => throw _privateConstructorUsedError;
 
@@ -45,7 +44,6 @@ abstract class $ExerciseCopyWith<$Res> {
       String? description,
       int? equipmentId,
       int? preinstalled,
-      int? bars,
       int? loadId,
       int? limbs});
 }
@@ -65,7 +63,6 @@ class _$ExerciseCopyWithImpl<$Res> implements $ExerciseCopyWith<$Res> {
     Object? description = freezed,
     Object? equipmentId = freezed,
     Object? preinstalled = freezed,
-    Object? bars = freezed,
     Object? loadId = freezed,
     Object? limbs = freezed,
   }) {
@@ -89,10 +86,6 @@ class _$ExerciseCopyWithImpl<$Res> implements $ExerciseCopyWith<$Res> {
       preinstalled: preinstalled == freezed
           ? _value.preinstalled
           : preinstalled // ignore: cast_nullable_to_non_nullable
-              as int?,
-      bars: bars == freezed
-          ? _value.bars
-          : bars // ignore: cast_nullable_to_non_nullable
               as int?,
       loadId: loadId == freezed
           ? _value.loadId
@@ -118,7 +111,6 @@ abstract class _$$_ExerciseCopyWith<$Res> implements $ExerciseCopyWith<$Res> {
       String? description,
       int? equipmentId,
       int? preinstalled,
-      int? bars,
       int? loadId,
       int? limbs});
 }
@@ -140,7 +132,6 @@ class __$$_ExerciseCopyWithImpl<$Res> extends _$ExerciseCopyWithImpl<$Res>
     Object? description = freezed,
     Object? equipmentId = freezed,
     Object? preinstalled = freezed,
-    Object? bars = freezed,
     Object? loadId = freezed,
     Object? limbs = freezed,
   }) {
@@ -165,10 +156,6 @@ class __$$_ExerciseCopyWithImpl<$Res> extends _$ExerciseCopyWithImpl<$Res>
           ? _value.preinstalled
           : preinstalled // ignore: cast_nullable_to_non_nullable
               as int?,
-      bars: bars == freezed
-          ? _value.bars
-          : bars // ignore: cast_nullable_to_non_nullable
-              as int?,
       loadId: loadId == freezed
           ? _value.loadId
           : loadId // ignore: cast_nullable_to_non_nullable
@@ -190,7 +177,6 @@ class _$_Exercise implements _Exercise {
       this.description,
       required this.equipmentId,
       this.preinstalled,
-      required this.bars,
       required this.loadId,
       required this.limbs});
 
@@ -208,15 +194,13 @@ class _$_Exercise implements _Exercise {
   @override
   final int? preinstalled;
   @override
-  final int? bars;
-  @override
   final int? loadId;
   @override
   final int? limbs;
 
   @override
   String toString() {
-    return 'Exercise(id: $id, name: $name, description: $description, equipmentId: $equipmentId, preinstalled: $preinstalled, bars: $bars, loadId: $loadId, limbs: $limbs)';
+    return 'Exercise(id: $id, name: $name, description: $description, equipmentId: $equipmentId, preinstalled: $preinstalled, loadId: $loadId, limbs: $limbs)';
   }
 
   @override
@@ -232,7 +216,6 @@ class _$_Exercise implements _Exercise {
                 .equals(other.equipmentId, equipmentId) &&
             const DeepCollectionEquality()
                 .equals(other.preinstalled, preinstalled) &&
-            const DeepCollectionEquality().equals(other.bars, bars) &&
             const DeepCollectionEquality().equals(other.loadId, loadId) &&
             const DeepCollectionEquality().equals(other.limbs, limbs));
   }
@@ -246,7 +229,6 @@ class _$_Exercise implements _Exercise {
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(equipmentId),
       const DeepCollectionEquality().hash(preinstalled),
-      const DeepCollectionEquality().hash(bars),
       const DeepCollectionEquality().hash(loadId),
       const DeepCollectionEquality().hash(limbs));
 
@@ -270,7 +252,6 @@ abstract class _Exercise implements Exercise {
       final String? description,
       required final int? equipmentId,
       final int? preinstalled,
-      required final int? bars,
       required final int? loadId,
       required final int? limbs}) = _$_Exercise;
 
@@ -286,8 +267,6 @@ abstract class _Exercise implements Exercise {
   int? get equipmentId;
   @override
   int? get preinstalled;
-  @override
-  int? get bars;
   @override
   int? get loadId;
   @override

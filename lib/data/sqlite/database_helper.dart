@@ -156,7 +156,6 @@ class DatabaseHelper {
             ${kLocale}_description AS description, 
             equipmentId,
             preinstalled,
-            bars,
             loadId,
             limbs
            FROM $exercisesMusclesTable  
@@ -177,7 +176,6 @@ class DatabaseHelper {
         '${kLocale}_description as description',
         'equipmentId',
         'preinstalled',
-        'bars',
         'loadId',
         'limbs',
       ],
@@ -261,7 +259,7 @@ class DatabaseHelper {
       exercises.${kLocale}_name AS name, 
       exercises.${kLocale}_description as description, 
       sets, ord, repeats, rest, exerciseId, weight,  
-      equipmentId, bars, loadId, limbs, repeatsLeft,
+      equipmentId, loadId, limbs, repeatsLeft,
       weightLeft, distance, timeLoad
     FROM workouts 
     JOIN exercises on workouts.exerciseId = exercises.id 
@@ -318,7 +316,6 @@ class DatabaseHelper {
         '${kLocale}_description': exercise.description,
         'equipmentId': exercise.equipmentId,
         'preinstalled': exercise.preinstalled,
-        'bars': exercise.bars,
         'loadId': exercise.loadId,
         'limbs': exercise.limbs,
       });
@@ -449,14 +446,12 @@ class DatabaseHelper {
           ${kLocale}_name = ?,
           ${kLocale}_description = ?, 
           equipmentId = ?,
-          bars = ?,
           loadId = ?,
           limbs = ?
         WHERE id = ${exe.id}''', [
       exe.name,
       exe.description,
       exe.equipmentId,
-      exe.bars,
       exe.loadId,
       exe.limbs,
       exe.id,
