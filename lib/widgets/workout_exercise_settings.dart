@@ -94,7 +94,7 @@ class WorkoutExerciseSettings extends StatelessWidget {
               ),
             ],
           ),
-        if (item.bars == 1 && item.loadId == kLoadWeight)
+        if (item.limbs == 1 && item.loadId == kLoadWeight)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 48),
             child: SpinEditDouble(
@@ -104,7 +104,7 @@ class WorkoutExerciseSettings extends StatelessWidget {
                   .updateWorkout(item.copyWith(weight: newValue.toDouble())),
             ),
           ),
-        if (item.bars == 2 && item.loadId == kLoadWeight)
+        if (item.limbs == 2 && item.loadId == kLoadWeight)
           Column(
             children: [
               Padding(

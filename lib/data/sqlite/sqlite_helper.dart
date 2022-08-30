@@ -9,7 +9,6 @@ import 'package:sqlbrite/sqlbrite.dart';
 import 'package:synchronized/synchronized.dart';
 
 import '../models/models.dart';
-import '../models/workout_exercise.dart';
 
 part 'sqlite_migrations.dart';
 
@@ -27,7 +26,7 @@ class SqliteHelper {
   static const String daysTable = 'days';
   static const String workoutsTable = 'workouts';
   static const String logDaysTable = 'log_days';
-  static const String logWorkoutsTable = 'log_ex';
+  static const String logWorkoutsTable = 'log_sets';
   static const String equipmentTable = 'equipment';
   static const String loadTable = 'load';
 
@@ -347,8 +346,12 @@ class SqliteHelper {
           await txn.insert(logWorkoutsTable, {
             'logDayId': logDayId,
             'exerciseId': item.id,
-            'repeat': item.sets[i].repeats,
+            'repeats': item.sets[i].repeats,
             'weight': item.sets[i].weight,
+            'repeatsLeft': item.sets[i].repeatsLeft,
+            'weightLeft': item.sets[i].weightLeft,
+            'distance': item.sets[i].distance,
+            'timeload': item.sets[i].timeLoad,
           });
         }
       }

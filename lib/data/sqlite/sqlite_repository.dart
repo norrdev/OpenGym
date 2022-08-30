@@ -1,5 +1,4 @@
 import 'dart:async';
-import '../models/workout_exercise.dart';
 import '../repository.dart';
 import 'sqlite_helper.dart';
 import '../models/models.dart';
@@ -149,13 +148,13 @@ class SqliteRepository extends Repository {
     required DateTime startTime,
     required DateTime finishTime,
     required int dayId,
-    required List<WorkoutExercise> exercises,
+    required List<WorkoutExercise> workoutExercises,
   }) {
     sqliteHelper.insertLog(
       startTime: startTime,
       finishTime: finishTime,
       dayId: dayId,
-      exercises: exercises,
+      exercises: workoutExercises,
     );
     return Future.value();
   }

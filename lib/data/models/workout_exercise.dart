@@ -16,7 +16,6 @@ class WorkoutExercise with _$WorkoutExercise {
     required List<WorkoutSet> sets,
     required bool completed,
     required int limbs,
-    required int bars,
     required int loadId,
   }) = _WorkoutExercise;
 

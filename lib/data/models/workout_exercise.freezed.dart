@@ -27,7 +27,6 @@ mixin _$WorkoutExercise {
   List<WorkoutSet> get sets => throw _privateConstructorUsedError;
   bool get completed => throw _privateConstructorUsedError;
   int get limbs => throw _privateConstructorUsedError;
-  int get bars => throw _privateConstructorUsedError;
   int get loadId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,7 +48,6 @@ abstract class $WorkoutExerciseCopyWith<$Res> {
       List<WorkoutSet> sets,
       bool completed,
       int limbs,
-      int bars,
       int loadId});
 }
 
@@ -71,7 +69,6 @@ class _$WorkoutExerciseCopyWithImpl<$Res>
     Object? sets = freezed,
     Object? completed = freezed,
     Object? limbs = freezed,
-    Object? bars = freezed,
     Object? loadId = freezed,
   }) {
     return _then(_value.copyWith(
@@ -103,10 +100,6 @@ class _$WorkoutExerciseCopyWithImpl<$Res>
           ? _value.limbs
           : limbs // ignore: cast_nullable_to_non_nullable
               as int,
-      bars: bars == freezed
-          ? _value.bars
-          : bars // ignore: cast_nullable_to_non_nullable
-              as int,
       loadId: loadId == freezed
           ? _value.loadId
           : loadId // ignore: cast_nullable_to_non_nullable
@@ -130,7 +123,6 @@ abstract class _$$_WorkoutExerciseCopyWith<$Res>
       List<WorkoutSet> sets,
       bool completed,
       int limbs,
-      int bars,
       int loadId});
 }
 
@@ -154,7 +146,6 @@ class __$$_WorkoutExerciseCopyWithImpl<$Res>
     Object? sets = freezed,
     Object? completed = freezed,
     Object? limbs = freezed,
-    Object? bars = freezed,
     Object? loadId = freezed,
   }) {
     return _then(_$_WorkoutExercise(
@@ -186,10 +177,6 @@ class __$$_WorkoutExerciseCopyWithImpl<$Res>
           ? _value.limbs
           : limbs // ignore: cast_nullable_to_non_nullable
               as int,
-      bars: bars == freezed
-          ? _value.bars
-          : bars // ignore: cast_nullable_to_non_nullable
-              as int,
       loadId: loadId == freezed
           ? _value.loadId
           : loadId // ignore: cast_nullable_to_non_nullable
@@ -209,7 +196,6 @@ class _$_WorkoutExercise implements _WorkoutExercise {
       required final List<WorkoutSet> sets,
       required this.completed,
       required this.limbs,
-      required this.bars,
       required this.loadId})
       : _sets = sets;
 
@@ -236,13 +222,11 @@ class _$_WorkoutExercise implements _WorkoutExercise {
   @override
   final int limbs;
   @override
-  final int bars;
-  @override
   final int loadId;
 
   @override
   String toString() {
-    return 'WorkoutExercise(id: $id, name: $name, maxSets: $maxSets, restTime: $restTime, sets: $sets, completed: $completed, limbs: $limbs, bars: $bars, loadId: $loadId)';
+    return 'WorkoutExercise(id: $id, name: $name, maxSets: $maxSets, restTime: $restTime, sets: $sets, completed: $completed, limbs: $limbs, loadId: $loadId)';
   }
 
   @override
@@ -257,7 +241,6 @@ class _$_WorkoutExercise implements _WorkoutExercise {
             const DeepCollectionEquality().equals(other._sets, _sets) &&
             const DeepCollectionEquality().equals(other.completed, completed) &&
             const DeepCollectionEquality().equals(other.limbs, limbs) &&
-            const DeepCollectionEquality().equals(other.bars, bars) &&
             const DeepCollectionEquality().equals(other.loadId, loadId));
   }
 
@@ -272,7 +255,6 @@ class _$_WorkoutExercise implements _WorkoutExercise {
       const DeepCollectionEquality().hash(_sets),
       const DeepCollectionEquality().hash(completed),
       const DeepCollectionEquality().hash(limbs),
-      const DeepCollectionEquality().hash(bars),
       const DeepCollectionEquality().hash(loadId));
 
   @JsonKey(ignore: true)
@@ -297,7 +279,6 @@ abstract class _WorkoutExercise implements WorkoutExercise {
       required final List<WorkoutSet> sets,
       required final bool completed,
       required final int limbs,
-      required final int bars,
       required final int loadId}) = _$_WorkoutExercise;
 
   factory _WorkoutExercise.fromJson(Map<String, dynamic> json) =
@@ -317,8 +298,6 @@ abstract class _WorkoutExercise implements WorkoutExercise {
   bool get completed;
   @override
   int get limbs;
-  @override
-  int get bars;
   @override
   int get loadId;
   @override

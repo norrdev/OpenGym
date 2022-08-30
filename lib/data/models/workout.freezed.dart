@@ -34,7 +34,6 @@ mixin _$Workout {
   double? get distance => throw _privateConstructorUsedError;
   int? get timeLoad => throw _privateConstructorUsedError;
   int? get equipmentId => throw _privateConstructorUsedError;
-  int? get bars => throw _privateConstructorUsedError;
   int? get loadId => throw _privateConstructorUsedError;
   int? get limbs => throw _privateConstructorUsedError;
 
@@ -62,7 +61,6 @@ abstract class $WorkoutCopyWith<$Res> {
       double? distance,
       int? timeLoad,
       int? equipmentId,
-      int? bars,
       int? loadId,
       int? limbs});
 }
@@ -91,7 +89,6 @@ class _$WorkoutCopyWithImpl<$Res> implements $WorkoutCopyWith<$Res> {
     Object? distance = freezed,
     Object? timeLoad = freezed,
     Object? equipmentId = freezed,
-    Object? bars = freezed,
     Object? loadId = freezed,
     Object? limbs = freezed,
   }) {
@@ -152,10 +149,6 @@ class _$WorkoutCopyWithImpl<$Res> implements $WorkoutCopyWith<$Res> {
           ? _value.equipmentId
           : equipmentId // ignore: cast_nullable_to_non_nullable
               as int?,
-      bars: bars == freezed
-          ? _value.bars
-          : bars // ignore: cast_nullable_to_non_nullable
-              as int?,
       loadId: loadId == freezed
           ? _value.loadId
           : loadId // ignore: cast_nullable_to_non_nullable
@@ -189,7 +182,6 @@ abstract class _$$_WorkoutCopyWith<$Res> implements $WorkoutCopyWith<$Res> {
       double? distance,
       int? timeLoad,
       int? equipmentId,
-      int? bars,
       int? loadId,
       int? limbs});
 }
@@ -219,7 +211,6 @@ class __$$_WorkoutCopyWithImpl<$Res> extends _$WorkoutCopyWithImpl<$Res>
     Object? distance = freezed,
     Object? timeLoad = freezed,
     Object? equipmentId = freezed,
-    Object? bars = freezed,
     Object? loadId = freezed,
     Object? limbs = freezed,
   }) {
@@ -280,10 +271,6 @@ class __$$_WorkoutCopyWithImpl<$Res> extends _$WorkoutCopyWithImpl<$Res>
           ? _value.equipmentId
           : equipmentId // ignore: cast_nullable_to_non_nullable
               as int?,
-      bars: bars == freezed
-          ? _value.bars
-          : bars // ignore: cast_nullable_to_non_nullable
-              as int?,
       loadId: loadId == freezed
           ? _value.loadId
           : loadId // ignore: cast_nullable_to_non_nullable
@@ -314,7 +301,6 @@ class _$_Workout implements _Workout {
       this.distance,
       this.timeLoad,
       this.equipmentId,
-      this.bars,
       this.loadId,
       this.limbs});
 
@@ -350,15 +336,13 @@ class _$_Workout implements _Workout {
   @override
   final int? equipmentId;
   @override
-  final int? bars;
-  @override
   final int? loadId;
   @override
   final int? limbs;
 
   @override
   String toString() {
-    return 'Workout(id: $id, name: $name, description: $description, ord: $ord, sets: $sets, repeats: $repeats, repeatsLeft: $repeatsLeft, rest: $rest, exerciseId: $exerciseId, weight: $weight, weightLeft: $weightLeft, distance: $distance, timeLoad: $timeLoad, equipmentId: $equipmentId, bars: $bars, loadId: $loadId, limbs: $limbs)';
+    return 'Workout(id: $id, name: $name, description: $description, ord: $ord, sets: $sets, repeats: $repeats, repeatsLeft: $repeatsLeft, rest: $rest, exerciseId: $exerciseId, weight: $weight, weightLeft: $weightLeft, distance: $distance, timeLoad: $timeLoad, equipmentId: $equipmentId, loadId: $loadId, limbs: $limbs)';
   }
 
   @override
@@ -385,7 +369,6 @@ class _$_Workout implements _Workout {
             const DeepCollectionEquality().equals(other.timeLoad, timeLoad) &&
             const DeepCollectionEquality()
                 .equals(other.equipmentId, equipmentId) &&
-            const DeepCollectionEquality().equals(other.bars, bars) &&
             const DeepCollectionEquality().equals(other.loadId, loadId) &&
             const DeepCollectionEquality().equals(other.limbs, limbs));
   }
@@ -408,7 +391,6 @@ class _$_Workout implements _Workout {
       const DeepCollectionEquality().hash(distance),
       const DeepCollectionEquality().hash(timeLoad),
       const DeepCollectionEquality().hash(equipmentId),
-      const DeepCollectionEquality().hash(bars),
       const DeepCollectionEquality().hash(loadId),
       const DeepCollectionEquality().hash(limbs));
 
@@ -441,7 +423,6 @@ abstract class _Workout implements Workout {
       final double? distance,
       final int? timeLoad,
       final int? equipmentId,
-      final int? bars,
       final int? loadId,
       final int? limbs}) = _$_Workout;
 
@@ -475,8 +456,6 @@ abstract class _Workout implements Workout {
   int? get timeLoad;
   @override
   int? get equipmentId;
-  @override
-  int? get bars;
   @override
   int? get loadId;
   @override

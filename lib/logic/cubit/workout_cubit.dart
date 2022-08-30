@@ -2,8 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/data/models/models.dart';
-import 'package:npng/data/models/workout_exercise.dart';
-import 'package:npng/data/models/workout_set.dart';
 import 'package:npng/data/repository.dart';
 import 'package:provider/provider.dart';
 
@@ -58,7 +56,6 @@ class WorkoutCubit extends Cubit<WorkoutState> {
         sets: sets,
         completed: false,
         limbs: item.limbs ?? 0,
-        bars: item.bars ?? 0,
         loadId: item.loadId ?? 0,
       );
       exercises.add(ex);
@@ -89,7 +86,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
       startTime: state.startTime!,
       finishTime: DateTime.now(),
       dayId: state.dayId,
-      exercises: state.exercises,
+      workoutExercises: state.exercises,
     );
     emit(state.copyWith(active: false, finished: true));
   }

@@ -64,7 +64,7 @@ abstract class Repository {
     required DateTime startTime,
     required DateTime finishTime,
     required int dayId,
-    required List<WorkoutExercise> exercises,
+    required List<WorkoutExercise> workoutExercises,
   });
 
   Future<String> backupDatabase();
