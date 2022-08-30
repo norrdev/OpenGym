@@ -8,8 +8,8 @@ part 'log_workout.g.dart';
 class LogWorkout with _$LogWorkout {
   const factory LogWorkout({
     int? id,
-    int? repeat,
-    int? repeatLeft,
+    int? repeats,
+    int? repeatsLeft,
     double? weight,
     double? weightLeft,
     double? distance,

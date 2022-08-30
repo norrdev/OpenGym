@@ -21,8 +21,8 @@ LogWorkout _$LogWorkoutFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$LogWorkout {
   int? get id => throw _privateConstructorUsedError;
-  int? get repeat => throw _privateConstructorUsedError;
-  int? get repeatLeft => throw _privateConstructorUsedError;
+  int? get repeats => throw _privateConstructorUsedError;
+  int? get repeatsLeft => throw _privateConstructorUsedError;
   double? get weight => throw _privateConstructorUsedError;
   double? get weightLeft => throw _privateConstructorUsedError;
   double? get distance => throw _privateConstructorUsedError;
@@ -42,8 +42,8 @@ abstract class $LogWorkoutCopyWith<$Res> {
       _$LogWorkoutCopyWithImpl<$Res>;
   $Res call(
       {int? id,
-      int? repeat,
-      int? repeatLeft,
+      int? repeats,
+      int? repeatsLeft,
       double? weight,
       double? weightLeft,
       double? distance,
@@ -62,8 +62,8 @@ class _$LogWorkoutCopyWithImpl<$Res> implements $LogWorkoutCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? repeat = freezed,
-    Object? repeatLeft = freezed,
+    Object? repeats = freezed,
+    Object? repeatsLeft = freezed,
     Object? weight = freezed,
     Object? weightLeft = freezed,
     Object? distance = freezed,
@@ -75,13 +75,13 @@ class _$LogWorkoutCopyWithImpl<$Res> implements $LogWorkoutCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      repeat: repeat == freezed
-          ? _value.repeat
-          : repeat // ignore: cast_nullable_to_non_nullable
+      repeats: repeats == freezed
+          ? _value.repeats
+          : repeats // ignore: cast_nullable_to_non_nullable
               as int?,
-      repeatLeft: repeatLeft == freezed
-          ? _value.repeatLeft
-          : repeatLeft // ignore: cast_nullable_to_non_nullable
+      repeatsLeft: repeatsLeft == freezed
+          ? _value.repeatsLeft
+          : repeatsLeft // ignore: cast_nullable_to_non_nullable
               as int?,
       weight: weight == freezed
           ? _value.weight
@@ -116,8 +116,8 @@ abstract class _$$_LogWorkoutCopyWith<$Res>
   @override
   $Res call(
       {int? id,
-      int? repeat,
-      int? repeatLeft,
+      int? repeats,
+      int? repeatsLeft,
       double? weight,
       double? weightLeft,
       double? distance,
@@ -138,8 +138,8 @@ class __$$_LogWorkoutCopyWithImpl<$Res> extends _$LogWorkoutCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? repeat = freezed,
-    Object? repeatLeft = freezed,
+    Object? repeats = freezed,
+    Object? repeatsLeft = freezed,
     Object? weight = freezed,
     Object? weightLeft = freezed,
     Object? distance = freezed,
@@ -151,13 +151,13 @@ class __$$_LogWorkoutCopyWithImpl<$Res> extends _$LogWorkoutCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      repeat: repeat == freezed
-          ? _value.repeat
-          : repeat // ignore: cast_nullable_to_non_nullable
+      repeats: repeats == freezed
+          ? _value.repeats
+          : repeats // ignore: cast_nullable_to_non_nullable
               as int?,
-      repeatLeft: repeatLeft == freezed
-          ? _value.repeatLeft
-          : repeatLeft // ignore: cast_nullable_to_non_nullable
+      repeatsLeft: repeatsLeft == freezed
+          ? _value.repeatsLeft
+          : repeatsLeft // ignore: cast_nullable_to_non_nullable
               as int?,
       weight: weight == freezed
           ? _value.weight
@@ -188,8 +188,8 @@ class __$$_LogWorkoutCopyWithImpl<$Res> extends _$LogWorkoutCopyWithImpl<$Res>
 class _$_LogWorkout implements _LogWorkout {
   const _$_LogWorkout(
       {this.id,
-      this.repeat,
-      this.repeatLeft,
+      this.repeats,
+      this.repeatsLeft,
       this.weight,
       this.weightLeft,
       this.distance,
@@ -202,9 +202,9 @@ class _$_LogWorkout implements _LogWorkout {
   @override
   final int? id;
   @override
-  final int? repeat;
+  final int? repeats;
   @override
-  final int? repeatLeft;
+  final int? repeatsLeft;
   @override
   final double? weight;
   @override
@@ -218,7 +218,7 @@ class _$_LogWorkout implements _LogWorkout {
 
   @override
   String toString() {
-    return 'LogWorkout(id: $id, repeat: $repeat, repeatLeft: $repeatLeft, weight: $weight, weightLeft: $weightLeft, distance: $distance, timeLoad: $timeLoad, name: $name)';
+    return 'LogWorkout(id: $id, repeats: $repeats, repeatsLeft: $repeatsLeft, weight: $weight, weightLeft: $weightLeft, distance: $distance, timeLoad: $timeLoad, name: $name)';
   }
 
   @override
@@ -227,9 +227,9 @@ class _$_LogWorkout implements _LogWorkout {
         (other.runtimeType == runtimeType &&
             other is _$_LogWorkout &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.repeat, repeat) &&
+            const DeepCollectionEquality().equals(other.repeats, repeats) &&
             const DeepCollectionEquality()
-                .equals(other.repeatLeft, repeatLeft) &&
+                .equals(other.repeatsLeft, repeatsLeft) &&
             const DeepCollectionEquality().equals(other.weight, weight) &&
             const DeepCollectionEquality()
                 .equals(other.weightLeft, weightLeft) &&
@@ -243,8 +243,8 @@ class _$_LogWorkout implements _LogWorkout {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(repeat),
-      const DeepCollectionEquality().hash(repeatLeft),
+      const DeepCollectionEquality().hash(repeats),
+      const DeepCollectionEquality().hash(repeatsLeft),
       const DeepCollectionEquality().hash(weight),
       const DeepCollectionEquality().hash(weightLeft),
       const DeepCollectionEquality().hash(distance),
@@ -267,8 +267,8 @@ class _$_LogWorkout implements _LogWorkout {
 abstract class _LogWorkout implements LogWorkout {
   const factory _LogWorkout(
       {final int? id,
-      final int? repeat,
-      final int? repeatLeft,
+      final int? repeats,
+      final int? repeatsLeft,
       final double? weight,
       final double? weightLeft,
       final double? distance,
@@ -281,9 +281,9 @@ abstract class _LogWorkout implements LogWorkout {
   @override
   int? get id;
   @override
-  int? get repeat;
+  int? get repeats;
   @override
-  int? get repeatLeft;
+  int? get repeatsLeft;
   @override
   double? get weight;
   @override

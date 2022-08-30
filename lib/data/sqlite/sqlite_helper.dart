@@ -206,8 +206,12 @@ class SqliteHelper {
     final db = await instance.streamDatabase;
     final String sql = '''
     SELECT $logWorkoutsTable.exerciseId AS id,
-              repeat,
+              repeats,
+              repeatsLeft,
               weight,
+              weightLeft,
+              distance,
+              timeLoad,
               $exerciseTable.${kLocale}_name AS name
         FROM $logWorkoutsTable
               JOIN

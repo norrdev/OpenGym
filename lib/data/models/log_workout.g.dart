@@ -9,8 +9,8 @@ part of 'log_workout.dart';
 _$_LogWorkout _$$_LogWorkoutFromJson(Map<String, dynamic> json) =>
     _$_LogWorkout(
       id: json['id'] as int?,
-      repeat: json['repeat'] as int?,
-      repeatLeft: json['repeatLeft'] as int?,
+      repeats: json['repeats'] as int?,
+      repeatsLeft: json['repeatsLeft'] as int?,
       weight: (json['weight'] as num?)?.toDouble(),
       weightLeft: (json['weightLeft'] as num?)?.toDouble(),
       distance: (json['distance'] as num?)?.toDouble(),
@@ -21,8 +21,8 @@ _$_LogWorkout _$$_LogWorkoutFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_LogWorkoutToJson(_$_LogWorkout instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'repeat': instance.repeat,
-      'repeatLeft': instance.repeatLeft,
+      'repeats': instance.repeats,
+      'repeatsLeft': instance.repeatsLeft,
       'weight': instance.weight,
       'weightLeft': instance.weightLeft,
       'distance': instance.distance,
