@@ -1,4 +1,4 @@
-part of 'database_helper.dart';
+part of 'sqlite_helper.dart';
 
 /// Migration script v2 (PRAGMA user_version = 2).
 /// Version 1 comes from assets.
@@ -101,7 +101,6 @@ void _updateV2toV3(Batch batch) {
   batch.execute(
       'ALTER TABLE exercises RENAME COLUMN equipment_id TO equipmentId');
   batch.execute('ALTER TABLE exercises ADD preinstalled INTEGER');
-  batch.execute('ALTER TABLE exercises ADD bars INTEGER');
   batch.execute('ALTER TABLE exercises ADD loadId INTEGER');
   batch.execute('ALTER TABLE exercises ADD limbs INTEGER');
 
@@ -128,34 +127,24 @@ void _updateV2toV3(Batch batch) {
   batch.execute(
       'UPDATE exercises SET en_name = "Triceps Extensions With Dumbbell" WHERE preinstalled = 28');
 
-  // Update bars.
+  // Update limbs.
   batch.execute('''
-    UPDATE exercises SET bars = 1 WHERE preinstalled in 
+    UPDATE exercises SET limbs = 1 WHERE preinstalled in 
     ( 1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15, 16, 18, 19, 20, 23, 25, 26, 27, 28, 
     29, 32, 33, 34, 35, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 
     54, 55, 57, 58, 60)''');
   batch.execute('''
-    UPDATE exercises SET bars = 2 WHERE preinstalled in 
+    UPDATE exercises SET limbs = 2 WHERE preinstalled in 
     ( 4, 8, 12, 17, 21, 22, 24, 30, 31, 36, 37, 53, 56, 59)''');
 
   // Update load_id.
-  // * Weight = 1, Time = 2, Distance = 3
+  // Weight = 1, Time = 2, Distance = 3
   batch.execute(
       'UPDATE exercises SET loadId = 1 WHERE preinstalled BETWEEN 1 AND 60');
   batch.execute(
       'UPDATE exercises SET loadId = 2 WHERE preinstalled in ( 42, 43, 44)');
   batch.execute(
       'UPDATE exercises SET loadId = 4 WHERE preinstalled in ( 1,2,6,10,14,15,19,25,32,33,40,41,48,51,58)');
-
-  // Limbs update.
-  batch.execute('''
-    UPDATE exercises SET limbs = 1 WHERE preinstalled in ( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 
-    12, 13, 14, 15, 16, 18, 19, 20, 23, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 
-    38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 54, 55, 56, 57, 58, 
-    59, 60)''');
-  // Limbs update.
-  batch.execute('UPDATE exercises SET limbs = 2 WHERE preinstalled in '
-      '(  17, 21, 22, 24, 36, 37, 53 )');
 
   // Equipment_id update.
   batch.execute('''
@@ -203,7 +192,8 @@ void _updateV2toV3(Batch batch) {
   batch.execute('ALTER TABLE log_days RENAME COLUMN days_id TO dayId');
   batch.execute('ALTER TABLE log_ex RENAME COLUMN log_days_id TO logDayId');
   batch.execute('ALTER TABLE log_ex RENAME COLUMN exercises_id TO exerciseId');
-  batch.execute('ALTER TABLE log_ex ADD repeatLeft INTEGER');
+  batch.execute('ALTER TABLE log_ex RENAME COLUMN repeat TO repeats');
+  batch.execute('ALTER TABLE log_ex ADD repeatsLeft INTEGER');
   batch.execute('ALTER TABLE log_ex ADD weightLeft DOUBLE');
   batch.execute('ALTER TABLE log_ex ADD distance DOUBLE');
   batch.execute('ALTER TABLE log_ex ADD timeLoad INTEGER');
@@ -226,20 +216,21 @@ void _updateV2toV3(Batch batch) {
   batch.execute('DROP TABLE workouts');
   batch.execute('''
     CREATE TABLE workouts (
-        id          INTEGER PRIMARY KEY
-                            UNIQUE,
-        ord         INTEGER DEFAULT (0) 
-                            NOT NULL,
-        dayId       INTEGER REFERENCES days (id),
-        exerciseId  INTEGER REFERENCES exercises (id),
-        sets        INTEGER,
-        repeats     INTEGER,
-        rest        INTEGER,
-        weight      DOUBLE,
-        weightLeft  DOUBLE,
-        repeatsLeft INTEGER,
-        distance    DOUBLE,
-        timeLoad    INTEGER
+      id          INTEGER PRIMARY KEY
+                          UNIQUE,
+      ord         INTEGER DEFAULT (0) 
+                          NOT NULL,
+      dayId       INTEGER REFERENCES days (id),
+      exerciseId  INTEGER REFERENCES exercises (id),
+      sets        INTEGER NOT NULL
+                          DEFAULT (1),
+      repeats     INTEGER DEFAULT (8),
+      rest        INTEGER DEFAULT (90),
+      weight      DOUBLE  DEFAULT (10),
+      weightLeft  DOUBLE  DEFAULT (8),
+      repeatsLeft INTEGER DEFAULT (8),
+      distance    DOUBLE  DEFAULT (100),
+      timeLoad    INTEGER DEFAULT (60) 
     )''');
   batch.execute('''
     INSERT INTO workouts (
@@ -264,10 +255,10 @@ void _updateV2toV3(Batch batch) {
                                 repeats,
                                 rest,
                                 weight,
-                                weightLeft,
-                                repeatsLeft,
-                                distance,
-                                timeLoad
+                                weight,
+                                repeats,
+                                100,
+                                60
                           FROM sqlitestudio_temp_table''');
   batch.execute('DROP TABLE sqlitestudio_temp_table');
 

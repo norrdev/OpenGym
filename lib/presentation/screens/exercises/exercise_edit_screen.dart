@@ -18,10 +18,9 @@ class ExerciseEditScreen extends StatelessWidget {
     TextEditingController tcDesc =
         TextEditingController(text: exercise.description);
     final formKey = GlobalKey<FormState>();
-    int? limb = exercise.limbs;
+    int? limbs = exercise.limbs;
     int? equipment = exercise.equipmentId;
-    int? load = exercise.loadId;
-    int? bars = exercise.bars;
+    int? loadId = exercise.loadId;
     int? preinstalled = exercise.preinstalled;
 
     if (kDebugMode) {
@@ -58,10 +57,9 @@ class ExerciseEditScreen extends StatelessWidget {
                                   id: exercise.id,
                                   name: tcName.text,
                                   description: tcDesc.text,
-                                  bars: bars,
                                   equipmentId: equipment,
-                                  limbs: limb,
-                                  loadId: load,
+                                  limbs: limbs,
+                                  loadId: loadId,
                                   preinstalled: preinstalled,
                                 );
                                 repository.updateExercise(newExe);
@@ -77,10 +75,9 @@ class ExerciseEditScreen extends StatelessWidget {
                     id: exercise.id,
                     name: tcName.text,
                     description: tcDesc.text,
-                    bars: bars,
                     equipmentId: equipment,
-                    limbs: limb,
-                    loadId: load,
+                    limbs: limbs,
+                    loadId: loadId,
                     preinstalled: preinstalled,
                   );
                   repository.updateExercise(newExe);
@@ -127,7 +124,7 @@ class ExerciseEditScreen extends StatelessWidget {
                     if (snapshot.connectionState == ConnectionState.active) {
                       final List<Load> loads = snapshot.data ?? [];
                       return DropdownButtonFormField<int>(
-                        value: load,
+                        value: loadId,
                         decoration: InputDecoration(
                           labelText: S.of(context).loadStr,
                           border: const OutlineInputBorder(
@@ -142,7 +139,7 @@ class ExerciseEditScreen extends StatelessWidget {
                           );
                         }).toList(),
                         onChanged: (value) {
-                          load = value ?? 1;
+                          loadId = value ?? 1;
                         },
                       );
                     } else {
@@ -150,14 +147,6 @@ class ExerciseEditScreen extends StatelessWidget {
                         child: CircularProgressIndicator(),
                       );
                     }
-                  },
-                ),
-                const SizedBox(height: 16.0),
-                RadioGroup(
-                  initialValue: bars,
-                  titles: [S.of(context).oneBarOrNoBar, S.of(context).twoBars],
-                  onChanged: (int value) {
-                    bars = value;
                   },
                 ),
                 const SizedBox(height: 16.0),
@@ -196,13 +185,13 @@ class ExerciseEditScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16.0),
                 RadioGroup(
-                  initialValue: limb,
+                  initialValue: limbs,
                   titles: [
                     S.of(context).twoLimbsWorksTogether,
                     S.of(context).limbsWorkAlt
                   ],
                   onChanged: (int value) {
-                    limb = value;
+                    limbs = value;
                   },
                 ),
                 const SizedBox(height: 16.0),

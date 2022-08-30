@@ -19,10 +19,9 @@ class _ExerciseNewScreenState extends State<ExerciseNewScreen> {
   TextEditingController tcName = TextEditingController(text: '');
   TextEditingController tcDesc = TextEditingController(text: '');
   final formKey = GlobalKey<FormState>();
-  int limb = 1;
+  int limbs = 1;
   int equipment = 1;
-  int load = 1;
-  int bars = 1;
+  int loadId = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +37,9 @@ class _ExerciseNewScreenState extends State<ExerciseNewScreen> {
                 Exercise newExe = Exercise(
                   name: tcName.text,
                   description: tcDesc.text,
-                  bars: bars,
                   equipmentId: equipment,
-                  limbs: limb,
-                  loadId: load,
+                  limbs: limbs,
+                  loadId: loadId,
                 );
                 repository.insertExercise(widget.muscleId, newExe);
                 Navigator.pop(context);
@@ -79,7 +77,7 @@ class _ExerciseNewScreenState extends State<ExerciseNewScreen> {
                     if (snapshot.connectionState == ConnectionState.active) {
                       final List<Load> loads = snapshot.data ?? [];
                       return DropdownButtonFormField<int>(
-                        value: load,
+                        value: loadId,
                         decoration: InputDecoration(
                           labelText: S.of(context).loadStr,
                           border: const OutlineInputBorder(
@@ -95,7 +93,7 @@ class _ExerciseNewScreenState extends State<ExerciseNewScreen> {
                         }).toList(),
                         onChanged: (value) {
                           setState(() {
-                            load = value ?? 1;
+                            loadId = value ?? 1;
                           });
                         },
                       );
@@ -104,14 +102,6 @@ class _ExerciseNewScreenState extends State<ExerciseNewScreen> {
                         child: CircularProgressIndicator(),
                       );
                     }
-                  },
-                ),
-                const SizedBox(height: 16.0),
-                RadioGroup(
-                  initialValue: bars,
-                  titles: [S.of(context).oneBarOrNoBar, S.of(context).twoBars],
-                  onChanged: (int value) {
-                    bars = value;
                   },
                 ),
                 const SizedBox(height: 16.0),
@@ -150,13 +140,13 @@ class _ExerciseNewScreenState extends State<ExerciseNewScreen> {
                 ),
                 const SizedBox(height: 16.0),
                 RadioGroup(
-                  initialValue: limb,
+                  initialValue: limbs,
                   titles: [
                     S.of(context).twoLimbsWorksTogether,
                     S.of(context).limbsWorkAlt
                   ],
                   onChanged: (int value) {
-                    limb = value;
+                    limbs = value;
                   },
                 ),
                 const SizedBox(height: 16.0),

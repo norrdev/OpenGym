@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:npng/presentation/screens/calculators/calc_cooper_army_test.dart';
 import 'package:npng/presentation/screens/calculators/calc_ifp_screen.dart';
+import 'package:npng/presentation/screens/programs/programs_screen.dart';
 
 import '../screens/calculators/calc_absi_screen.dart';
 import '../screens/calculators/calc_bfp_screen.dart';
@@ -23,11 +24,12 @@ const kInitialRoute = '/';
 
 /// Route map
 final Map<String, Widget Function(BuildContext)> appRoutes = {
-  '/': (context) => MainScreen(),
-  '/set': (context) => const WorkoutSetScreen(),
-  '/timer': (context) => const TimerScreen(),
-  '/about': (context) => AboutScreen(),
-  '/exercises': (context) => const ExercisesScreen(),
+  '/': (_) => MainScreen(),
+  '/set': (_) => const WorkoutSetScreen(),
+  '/timer': (_) => const TimerScreen(),
+  '/about': (_) => AboutScreen(),
+  '/exercises': (_) => const ExercisesScreen(),
+  '/programs': (_) => const ProgramsScreen(),
   '/bmi': (_) => const CalcBmiScreen(),
   '/absi': (_) => const CalcAbsiScreen(),
   '/bfp': (_) => const CalcBfpScreen(),
@@ -40,5 +42,5 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   '/army': (_) => const CooperArmyTestScreen(),
   '/ifp': (_) => const CalcIfpScreen(),
   '/result': (_) => const ResultScreen(),
-  '/exersises-by-muscle': (context) => const ExercisesScreen(),
+  '/exersises-by-muscle': (_) => const ExercisesScreen(),
 };

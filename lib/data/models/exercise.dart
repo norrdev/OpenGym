@@ -12,7 +12,6 @@ class Exercise with _$Exercise {
     String? description,
     required int? equipmentId,
     int? preinstalled,
-    required int? bars,
     required int? loadId,
     required int? limbs,
   }) = _Exercise;

@@ -97,6 +97,7 @@
     "log": "Log",
     "Lombardi": "Lombardi",
     "loadStr": "Load",
+    "left": "left",
     "male": "Male",
     "Mayhew": "Mayhew",
     "mcBicep": "Bicep girth",
@@ -176,5 +177,6 @@
     "oneBarOrNoBar": "One bar or no bar",
     "twoBars": "Two bars",
     "twoLimbsWorksTogether": "Both limbs work simultaneously or one muscle group works",
-    "limbsWorkAlt": "Limbs work alternately or separately"
+    "limbsWorkAlt": "Limbs work alternately or separately",
+    "right": "right"
 }

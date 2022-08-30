@@ -157,6 +157,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbmPageDescription":
             MessageLookupByLibrary.simpleMessage("Fat-free body mass."),
         "lbmPageTitle": MessageLookupByLibrary.simpleMessage("Lean Body Mass"),
+        "left": MessageLookupByLibrary.simpleMessage("left"),
         "licenses": MessageLookupByLibrary.simpleMessage("Licenses"),
         "limbsWorkAlt": MessageLookupByLibrary.simpleMessage(
             "Limbs work alternately or separately"),
@@ -213,6 +214,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Relative fat mass in % calculation."),
         "rfmPageTitle":
             MessageLookupByLibrary.simpleMessage("Relative fat mass (RFM)"),
+        "right": MessageLookupByLibrary.simpleMessage("right"),
         "rmBarebellWeight":
             MessageLookupByLibrary.simpleMessage("Weight of barebell"),
         "rmBarebellWeightValidation": MessageLookupByLibrary.simpleMessage(

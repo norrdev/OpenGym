@@ -1030,6 +1030,16 @@ class S {
     );
   }
 
+  /// `left`
+  String get left {
+    return Intl.message(
+      'left',
+      name: 'left',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Male`
   String get male {
     return Intl.message(
@@ -1825,6 +1835,16 @@ class S {
     return Intl.message(
       'Limbs work alternately or separately',
       name: 'limbsWorkAlt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `right`
+  String get right {
+    return Intl.message(
+      'right',
+      name: 'right',
       desc: '',
       args: [],
     );

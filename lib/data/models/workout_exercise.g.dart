@@ -16,6 +16,8 @@ _$_WorkoutExercise _$$_WorkoutExerciseFromJson(Map<String, dynamic> json) =>
           .map((e) => WorkoutSet.fromJson(e as Map<String, dynamic>))
           .toList(),
       completed: json['completed'] as bool,
+      limbs: json['limbs'] as int,
+      loadId: json['loadId'] as int,
     );
 
 Map<String, dynamic> _$$_WorkoutExerciseToJson(_$_WorkoutExercise instance) =>
@@ -26,4 +28,6 @@ Map<String, dynamic> _$$_WorkoutExerciseToJson(_$_WorkoutExercise instance) =>
       'restTime': instance.restTime,
       'sets': instance.sets,
       'completed': instance.completed,
+      'limbs': instance.limbs,
+      'loadId': instance.loadId,
     };

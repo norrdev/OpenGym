@@ -24,7 +24,6 @@ class ExerciseViewScreen extends StatelessWidget {
           child: Column(
             children: <Widget>[
               LoadViewWidget(repository: repository, exercise: exercise),
-              BarsViewWidget(exercise: exercise),
               EquipmentViewWidget(exercise: exercise),
               const SizedBox(height: 16.0),
               if (exercise.preinstalled == 1)
@@ -61,38 +60,6 @@ class EquipmentViewWidget extends StatelessWidget {
                   Image.asset('assets/icons/icons8-workout-skin-type-2-96.png'),
             ),
             title: Text(S.of(context).limbsWorkAlt),
-          );
-  }
-}
-
-class BarsViewWidget extends StatelessWidget {
-  const BarsViewWidget({super.key, required this.exercise});
-
-  final Exercise exercise;
-
-  @override
-  Widget build(BuildContext context) {
-    return (exercise.bars == 1)
-        ? ListTile(
-            title: Row(
-              children: [
-                const Icon(Icons.fitness_center),
-                const SizedBox(width: 32.0),
-                Text(S.of(context).oneBarOrNoBar),
-              ],
-            ),
-            //leading: const Icon(Icons.looks_one),
-          )
-        : ListTile(
-            title: Row(
-              children: [
-                const Icon(Icons.fitness_center),
-                const Icon(Icons.fitness_center),
-                const SizedBox(width: 8.0),
-                Text(S.of(context).twoBars),
-              ],
-            ),
-            //leading: const Icon(Icons.looks_one),
           );
   }
 }

@@ -21,7 +21,6 @@ class Workout with _$Workout {
     double? distance,
     int? timeLoad,
     int? equipmentId,
-    int? bars,
     int? loadId,
     int? limbs,
   }) = _Workout;

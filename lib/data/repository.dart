@@ -1,5 +1,4 @@
-import 'package:npng/data/models/models.dart';
-import 'package:npng/data/models/workout_exercise.dart';
+import 'models/models.dart';
 
 abstract class Repository {
   Future<void> init();
@@ -65,7 +64,7 @@ abstract class Repository {
     required DateTime startTime,
     required DateTime finishTime,
     required int dayId,
-    required List<WorkoutExercise> exercises,
+    required List<WorkoutExercise> workoutExercises,
   });
 
   Future<String> backupDatabase();

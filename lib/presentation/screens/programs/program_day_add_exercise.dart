@@ -27,11 +27,8 @@ class _ProgramDayAddExerciseState extends State<ProgramDayAddExercise> {
       ),
       body: SafeArea(
         child: Column(
-          //scrollDirection: Axis.vertical,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Flexible(
-              //flex: 1,
               child: StreamBuilder<List<Muscle>>(
                 stream: repository.watchAllMuscles(),
                 builder: (context, AsyncSnapshot<List<Muscle>> snapshot) {
@@ -63,7 +60,6 @@ class _ProgramDayAddExerciseState extends State<ProgramDayAddExercise> {
             ),
             const Divider(),
             Flexible(
-              //flex: 2,
               child: StreamBuilder(
                 stream: repository.findExcersisesByMuscle(selectedMuscle),
                 builder: (context, AsyncSnapshot<List<Exercise>> snapshotEx) {

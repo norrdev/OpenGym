@@ -161,6 +161,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbmPageDescription":
             MessageLookupByLibrary.simpleMessage("Масса тела без учёта жира."),
         "lbmPageTitle": MessageLookupByLibrary.simpleMessage("Мышечная масса"),
+        "left": MessageLookupByLibrary.simpleMessage("левые"),
         "licenses": MessageLookupByLibrary.simpleMessage("Лицензии"),
         "limbsWorkAlt": MessageLookupByLibrary.simpleMessage(
             "Конечности работают попеременно или раздельно"),
@@ -221,6 +222,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Расчёт относительной массы жира в процентах."),
         "rfmPageTitle": MessageLookupByLibrary.simpleMessage(
             "Относительная масса жира (RFM)"),
+        "right": MessageLookupByLibrary.simpleMessage("правые"),
         "rmBarebellWeight": MessageLookupByLibrary.simpleMessage("Вес снаряда"),
         "rmBarebellWeightValidation":
             MessageLookupByLibrary.simpleMessage("Введите вес снаряда."),

@@ -8,9 +8,10 @@ import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/presentation/screens/workout/workout_02_set_screen.dart';
 import 'package:npng/presentation/screens/workout/workout_04_finish_screen.dart';
-import 'package:npng/widgets/change_int_field.dart';
 
-/// Shows current workout program day and sets.
+import '../../../widgets/workout_exercise_settings.dart';
+
+/// Shows current workout program day (with exercises).
 class WorkoutProcessScreen extends StatelessWidget {
   final Day? day;
 
@@ -78,89 +79,12 @@ class InitListView extends StatelessWidget {
             itemCount: workouts.length,
             itemBuilder: (context, index) {
               final item = workouts[index];
-              return Column(
-                key: ValueKey(item),
-                children: [
-                  ExpansionTile(
-                    onExpansionChanged: (value) => expanded[index] = value,
-                    key: Key(index.toString()),
-                    initiallyExpanded: expanded[index] ?? false,
-                    tilePadding: const EdgeInsets.only(right: 30.0, left: 16.0),
-                    title: Text(
-                      item.name as String,
-                      style: TextStyle(color: Theme.of(context).primaryColor),
-                    ),
-                    iconColor: Theme.of(context).primaryColor,
-                    collapsedIconColor: Theme.of(context).primaryColor,
-                    subtitle: Text(
-                      item.description ?? '',
-                      style: TextStyle(
-                          color: Theme.of(context)
-                              .bottomNavigationBarTheme
-                              .unselectedItemColor),
-                    ),
-                    children: [
-                      Column(
-                        children: [
-                          Text(S.of(context).sets),
-                          ChangeIntField(
-                            value: item.sets ?? 0,
-                            decreaseCallback: () {
-                              if (item.sets as int > 1) {
-                                repository.updateWorkout(
-                                    item.copyWith(sets: item.sets! - 1));
-                              }
-                            },
-                            increaseCallback: () {
-                              repository.updateWorkout(
-                                  item.copyWith(sets: item.sets! + 1));
-                            },
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(S.of(context).repeats),
-                          ChangeIntField(
-                            value: item.repeats ?? 0,
-                            decreaseCallback: () {
-                              if (item.repeats as int > 1) {
-                                repository.updateWorkout(
-                                    item.copyWith(repeats: item.repeats! - 1));
-                              }
-                            },
-                            increaseCallback: () {
-                              repository.updateWorkout(
-                                  item.copyWith(repeats: item.repeats! + 1));
-                            },
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(S.of(context).rest),
-                          ChangeIntField(
-                            value: item.rest ?? 0,
-                            decreaseCallback: () {
-                              if (item.rest as int > 5) {
-                                repository.updateWorkout(
-                                    item.copyWith(rest: item.rest! - 5));
-                              }
-                            },
-                            increaseCallback: () {
-                              repository.updateWorkout(
-                                  item.copyWith(rest: item.rest! + 5));
-                            },
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 16.0,
-                      ),
-                    ],
-                  ),
-                ],
-              );
+              return WorkoutExerciseSettings(
+                  key: ValueKey(item),
+                  index: index,
+                  expanded: expanded,
+                  item: item,
+                  repository: repository);
             },
             onReorder: (int oldIndex, int newIndex) {
               if (newIndex > oldIndex) newIndex -= 1;
@@ -179,7 +103,7 @@ class InitListView extends StatelessWidget {
   }
 }
 
-/// Shows active workout after start screen.
+/// Shows active workout after start (workout in process).
 class ActiveListView extends StatelessWidget {
   const ActiveListView({super.key});
 
