@@ -6,14 +6,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
-import 'package:npng/data/repository.dart';
-import 'package:npng/data/sqlite/sqlite_repository.dart';
-import 'package:npng/generated/l10n.dart';
-import 'package:npng/logic/cubit/current_tab_cubit.dart';
-import 'package:npng/logic/cubit/default_program_cubit.dart';
-import 'package:npng/logic/cubit/workout_cubit.dart';
-import 'package:npng/presentation/routes/route_map.dart';
-import 'package:npng/theme.dart';
+import 'data/repository.dart';
+import 'data/sqlite/sqlite_repository.dart';
+import 'generated/l10n.dart';
+import 'logic/cubit/current_tab_cubit.dart';
+import 'logic/cubit/default_program_cubit.dart';
+import 'logic/cubit/workout_cubit.dart';
+import 'presentation/routes/route_map.dart';
+import 'theme.dart';
 
 // final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
 // bool get isMobileDevice => !kIsWeb && (Platform.isIOS || Platform.isAndroid);

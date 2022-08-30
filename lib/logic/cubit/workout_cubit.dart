@@ -1,9 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:npng/data/models/models.dart';
-import 'package:npng/data/repository.dart';
 import 'package:provider/provider.dart';
+
+import '../../data/models/models.dart';
+import '../../data/repository.dart';
 
 part 'workout_state.dart';
 
@@ -217,6 +219,9 @@ class WorkoutCubit extends Cubit<WorkoutState> {
     newExercises[excersiseNumber] = newCurentExercise;
 
     emit(state.copyWith(exercises: newExercises));
+    if (kDebugMode) {
+      print('→→→→→→→→→→→→→→→→New state emmited');
+    }
   }
 
   /// +1 set Button

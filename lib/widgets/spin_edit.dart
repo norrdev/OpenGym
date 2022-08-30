@@ -17,6 +17,7 @@ class SpinEditInt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NumberInputWithIncrementDecrement(
+      key: key,
       widgetContainerDecoration: const BoxDecoration(),
       numberFieldDecoration: InputDecoration(
         labelText: label,
@@ -57,6 +58,7 @@ class SpinEditDouble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NumberInputWithIncrementDecrement(
+      key: key,
       widgetContainerDecoration: const BoxDecoration(),
       numberFieldDecoration: InputDecoration(
         labelText: label,
