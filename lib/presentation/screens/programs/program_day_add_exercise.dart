@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:npng/data/models/models.dart';
-import 'package:npng/data/repository.dart';
-import 'package:npng/generated/l10n.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../data/models/models.dart';
+import '../../../data/repository.dart';
+import '../../../generated/l10n.dart';
 
 /// Add exercise to workout day screen.
 /// [day]: day to add
 class ProgramDayAddExercise extends StatefulWidget {
-  const ProgramDayAddExercise({super.key, required this.day});
   final Day day;
+  const ProgramDayAddExercise({super.key, required this.day});
 
   @override
   State<ProgramDayAddExercise> createState() => _ProgramDayAddExerciseState();
@@ -20,7 +21,8 @@ class _ProgramDayAddExerciseState extends State<ProgramDayAddExercise> {
 
   @override
   Widget build(BuildContext context) {
-    final repository = Provider.of<Repository>(context, listen: false);
+    final repository =
+        RepositoryProvider.of<Repository>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).pageAddEx),

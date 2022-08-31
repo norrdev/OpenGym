@@ -1,8 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/models/models.dart';
 import '../../data/repository.dart';
@@ -83,7 +82,8 @@ class WorkoutCubit extends Cubit<WorkoutState> {
   }
 
   void finishWorkout(BuildContext context) async {
-    final repository = Provider.of<Repository>(context, listen: false);
+    final repository =
+        RepositoryProvider.of<Repository>(context, listen: false);
     await repository.insertLog(
       startTime: state.startTime!,
       finishTime: DateTime.now(),

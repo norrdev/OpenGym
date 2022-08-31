@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/models.dart';
 import '../../../data/repository.dart';
@@ -25,7 +25,8 @@ class ExercisesByMuscleScreen extends StatefulWidget {
 class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
   @override
   Widget build(BuildContext context) {
-    final repository = Provider.of<Repository>(context, listen: false);
+    final repository =
+        RepositoryProvider.of<Repository>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.pageTitle),

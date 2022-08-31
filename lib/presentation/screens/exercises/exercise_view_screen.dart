@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../constants/colors.dart';
 import '../../../data/models/models.dart';
@@ -12,7 +12,8 @@ class ExerciseViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final repository = Provider.of<Repository>(context, listen: false);
+    final repository =
+        RepositoryProvider.of<Repository>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(

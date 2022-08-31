@@ -4,8 +4,8 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import 'package:npng/main.dart';
@@ -61,7 +61,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   /// Preparing data for "Share" dialog.
   void _shareFile(BuildContext context) async {
-    final repository = Provider.of<Repository>(context, listen: false);
+    final repository =
+        RepositoryProvider.of<Repository>(context, listen: false);
     String path = await repository.backupDatabase();
     if (path.isNotEmpty) {
       final Size size = MediaQuery.of(context).size;
@@ -75,7 +76,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   /// Preparing data for "Save" dialog.
   void _saveFile(BuildContext context) async {
     final Repository repository =
-        Provider.of<Repository>(context, listen: false);
+        RepositoryProvider.of<Repository>(context, listen: false);
     String path = await repository.backupDatabase();
     final File file = File(path);
     String? result = await FilePicker.platform.saveFile(
@@ -88,7 +89,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   void _importFile(BuildContext context) async {
     final Repository repository =
-        Provider.of<Repository>(context, listen: false);
+        RepositoryProvider.of<Repository>(context, listen: false);
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.any,
     );

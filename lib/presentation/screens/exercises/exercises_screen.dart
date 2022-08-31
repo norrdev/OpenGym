@@ -1,10 +1,10 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/constants/colors.dart';
 import 'package:npng/presentation/screens/exercises/exercises_by_muscle_screen.dart';
 import 'package:npng/theme.dart';
-import 'package:provider/provider.dart';
 import 'package:npng/data/repository.dart';
 
 import 'package:npng/data/models/muscle.dart';
@@ -16,7 +16,8 @@ class ExercisesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final repository = Provider.of<Repository>(context, listen: false);
+    final repository =
+        RepositoryProvider.of<Repository>(context, listen: false);
     return StreamBuilder<List<Muscle>>(
       stream: repository.watchAllMuscles(),
       builder: (context, AsyncSnapshot<List<Muscle>> snapshot) {

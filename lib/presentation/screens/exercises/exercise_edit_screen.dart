@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:provider/provider.dart';
 
 import '../../../data/models/models.dart';
 import '../../../widgets/radio_group.dart';
@@ -13,7 +13,8 @@ class ExerciseEditScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final repository = Provider.of<Repository>(context, listen: false);
+    final repository =
+        RepositoryProvider.of<Repository>(context, listen: false);
     TextEditingController tcName = TextEditingController(text: exercise.name);
     TextEditingController tcDesc =
         TextEditingController(text: exercise.description);

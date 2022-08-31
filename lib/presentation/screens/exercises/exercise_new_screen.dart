@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:provider/provider.dart';
 
 import '../../../widgets/widgets.dart';
 
@@ -25,7 +25,8 @@ class _ExerciseNewScreenState extends State<ExerciseNewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final repository = Provider.of<Repository>(context, listen: false);
+    final repository =
+        RepositoryProvider.of<Repository>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).pageAddEx),

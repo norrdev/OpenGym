@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:provider/provider.dart';
 
 import 'data/repository.dart';
 import 'data/sqlite/sqlite_repository.dart';
@@ -44,24 +43,18 @@ void main() async {
         ),
         BlocProvider<WorkoutCubit>(create: (context) => WorkoutCubit()),
       ],
-      child: MultiProvider(
-        providers: [
-          // TODO: Move to cubit or bloc
-          Provider<Repository>(
-            lazy: false,
-            create: (_) => repository,
-            dispose: (_, Repository repository) => repository.close(),
-          ),
-        ],
-        child: Application(repository: repository),
+      child: RepositoryProvider<Repository>(
+        lazy: false,
+        create: (_) => repository,
+        child: const Application(),
       ),
     ),
   );
 }
 
 class Application extends StatelessWidget {
-  final Repository repository;
-  const Application({super.key, required this.repository});
+  const Application({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
