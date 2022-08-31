@@ -1,7 +1,7 @@
 # NpNg: Cross-platform Private Offline Workout Tracker
 
-No resistration. 
-No personal data needed. 
+No registration. 
+No personal data is needed. 
 No tracking and telemetry.
 
 - Exercises catalog
