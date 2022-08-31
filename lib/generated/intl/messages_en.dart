@@ -134,6 +134,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "finish": MessageLookupByLibrary.simpleMessage("Finish"),
         "from": MessageLookupByLibrary.simpleMessage(" from "),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
+        "hintWorkout": MessageLookupByLibrary.simpleMessage(
+            "This is your current workout program. Tap on the day in the list to begin training. Select another program you can on the Programs screen."),
+        "hintWorkoutProcess": MessageLookupByLibrary.simpleMessage(
+            "This is the list of current-day exercises. Tap on the exercise to change its parameters (sets, weights), and drag the exercise up or down to change order. Press Start to begin training."),
+        "hintWorkoutSets": MessageLookupByLibrary.simpleMessage(
+            "Run a set and enter its parameters. You can increase or decrease the number of sets. Press Save & rest to rest and to prepare for the next set."),
         "homePageBody": MessageLookupByLibrary.simpleMessage("Body form"),
         "homePageFood": MessageLookupByLibrary.simpleMessage("Food"),
         "homePagePower":

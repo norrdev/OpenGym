@@ -1849,6 +1849,36 @@ class S {
       args: [],
     );
   }
+
+  /// `This is your current workout program. Tap on the day in the list to begin training. Select another program you can on the Programs screen.`
+  String get hintWorkout {
+    return Intl.message(
+      'This is your current workout program. Tap on the day in the list to begin training. Select another program you can on the Programs screen.',
+      name: 'hintWorkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This is the list of current-day exercises. Tap on the exercise to change its parameters (sets, weights), and drag the exercise up or down to change order. Press Start to begin training.`
+  String get hintWorkoutProcess {
+    return Intl.message(
+      'This is the list of current-day exercises. Tap on the exercise to change its parameters (sets, weights), and drag the exercise up or down to change order. Press Start to begin training.',
+      name: 'hintWorkoutProcess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Run a set and enter its parameters. You can increase or decrease the number of sets. Press Save & rest to rest and to prepare for the next set.`
+  String get hintWorkoutSets {
+    return Intl.message(
+      'Run a set and enter its parameters. You can increase or decrease the number of sets. Press Save & rest to rest and to prepare for the next set.',
+      name: 'hintWorkoutSets',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

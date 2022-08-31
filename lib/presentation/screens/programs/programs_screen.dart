@@ -24,16 +24,6 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
     final repository = context.watch<Repository>();
 
     return Scaffold(
-      // TODO: Use BottomSheet for help.
-      // bottomSheet: BottomSheet(
-      //   onClosing: () {},
-      //   builder: (BuildContext context) {
-      //     return const SizedBox(
-      //       height: 40,
-      //       child: Text('tap or swipe right to edit'),
-      //     );
-      //   },
-      // ),
       body: StreamBuilder<List<Program>>(
         stream: repository.watchAllPrograms(),
         builder: (context, AsyncSnapshot<List<Program>> snapshot) {

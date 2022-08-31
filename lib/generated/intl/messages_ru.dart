@@ -137,6 +137,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "finish": MessageLookupByLibrary.simpleMessage("Закончить"),
         "from": MessageLookupByLibrary.simpleMessage(" из "),
         "gender": MessageLookupByLibrary.simpleMessage("Пол"),
+        "hintWorkout": MessageLookupByLibrary.simpleMessage(
+            "Это ваша текущая программа тренировок.\n\rНажмите на день в списке, чтобы начать тренировку.\n\rВыбрать другую программу вы можете на экране Программы."),
+        "hintWorkoutProcess": MessageLookupByLibrary.simpleMessage(
+            "Это список упражнений на текущий день.\n\rНажмите на упражнение, чтобы изменить его параметры (комплекты, веса), перетащите упражнение вверх или вниз, чтобы изменить порядок.\n\rНажмите Старт, чтобы начать тренировку."),
+        "hintWorkoutSets": MessageLookupByLibrary.simpleMessage(
+            "Выполните сет и введите его параметры. Вы можете увеличить или уменьшить количество сетов. Нажмите Сохранить & отдохнуть, чтобы отдохнуть и подготовиться к следующему сету"),
         "homePageBody":
             MessageLookupByLibrary.simpleMessage("Физическая форма"),
         "homePageFood": MessageLookupByLibrary.simpleMessage("Еда"),

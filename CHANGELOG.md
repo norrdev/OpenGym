@@ -12,7 +12,9 @@
 - Fixed memory leak in Log.
 - Added calculators: BMI, ABSI, BFP, RFM, LBM, body proportions, 1 RM, IFP, VO max, Cooper test.
 - Fixed desktop window header.
-- Swedish translation.
+- Small hints on every screen.
+
+Thanks 
 
 ## 2.1.0
 - Same design in all operating systems.
