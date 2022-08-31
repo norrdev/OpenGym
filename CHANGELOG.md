@@ -1,17 +1,17 @@
 ## 3.0.0
-Big update and big planes. First of all, application is opensource now. Contributors and translators are welcome.
 
 - Core refactoring.
 - Updated preinstalled exercises catalog.
 - Improved performance.
 - Spell checking.
 - Added equipment, limbs and load parameters to exercises.
-- Editable fields with sets, weight etc...
+- Editable fields with sets, weight, limbs etc...
 - Added different types of loads (repeats, time, distance).
-- Added bars number for correct training volume calculation.
+- Added limbs number for correct training volume calculation.
 - Total training volume on the finish and log screen.
 - Fixed memory leak in Log.
 - Added calculators: BMI, ABSI, BFP, RFM, LBM, body proportions, 1 RM, IFP, VO max, Cooper test.
+- Fixed desktop window header.
 - Swedish translation.
 
 ## 2.1.0
@@ -36,7 +36,7 @@ Big update and big planes. First of all, application is opensource now. Contribu
 - Prepared for big changes.
 
 ## 1.2.0
-- Changed place for weight and repeats.
+- Changed order for weight and repeats.
 - Added system splash screen on start.
 - Added stop button to rest timer.
 - Added ability to increase/decrease the number of sets during a workout.
@@ -49,7 +49,7 @@ Big update and big planes. First of all, application is opensource now. Contribu
  
 ## 1.1.2
 - Fixed bug with adding exercises.
-- Add message after adding exercises.
+- Added a message after adding exercises.
 - Fixed message color on dark theme.
 
 ## 1.1.1

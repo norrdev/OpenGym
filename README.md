@@ -1,7 +1,7 @@
 # NpNg: Cross-platform Workout
 Private digital trainer and workout journal.
 
-No resistration. No personal data needed. No tracking and telemetry.
+No registration. No personal data is needed. No tracking and telemetry.
 
 - Exercises catalog
 - Training programs constructor
