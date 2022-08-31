@@ -78,8 +78,12 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
                               MaterialPageRoute(
                                 builder: (context) {
                                   return LogWorkoutScreen(
-                                      logday: logDays[
-                                          int.parse(event.eventID!) - 1]);
+                                    // logDay: logDays[
+                                    //     int.parse(event.eventID ?? '0') - 1]
+                                    logDay: logDays.firstWhere((element) =>
+                                        element.logDayId ==
+                                        (int.parse(event.eventID ?? '0'))),
+                                  );
                                 },
                               ),
                             );

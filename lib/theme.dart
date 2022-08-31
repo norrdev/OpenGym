@@ -28,7 +28,7 @@ class AppTheme {
       unselectedItemColor: Colors.grey,
     ),
     textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(primary: Colors.black),
+      style: TextButton.styleFrom(foregroundColor: Colors.black),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
@@ -77,7 +77,7 @@ class AppTheme {
         unselectedItemColor: Colors.grey,
         backgroundColor: Colors.black),
     textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(primary: Colors.white),
+      style: TextButton.styleFrom(foregroundColor: Colors.white),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(

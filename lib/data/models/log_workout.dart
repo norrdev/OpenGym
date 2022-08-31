@@ -8,13 +8,15 @@ part 'log_workout.g.dart';
 class LogWorkout with _$LogWorkout {
   const factory LogWorkout({
     int? id,
-    int? repeat,
-    int? repeatLeft,
+    int? repeats,
+    int? repeatsLeft,
     double? weight,
     double? weightLeft,
     double? distance,
     int? timeLoad,
     String? name,
+    int? loadId,
+    int? limbs,
   }) = _LogWorkout;
 
   factory LogWorkout.fromJson(Map<String, Object?> json) =>
