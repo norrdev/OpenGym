@@ -29,8 +29,8 @@ class WorkoutFinishScreen extends StatelessWidget {
     DateTime? start = wp.state.startTime;
     DateTime? finish = wp.state.finishTime;
     TraningVolume trainingVolume = TraningVolume(0.0);
-    String duration =
-        finish?.difference(start ?? DateTime.now()).inMinutes.toString() ?? '';
+    // TODO remove (!)
+    String duration = finish!.difference(start!).inMinutes.toString();
 
     String output =
         '${S.of(context).wrkDuration}: $duration ${S.of(context).min}';
