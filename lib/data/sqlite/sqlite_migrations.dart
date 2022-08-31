@@ -198,6 +198,9 @@ void _updateV2toV3(Batch batch) {
   batch.execute('ALTER TABLE log_ex ADD distance DOUBLE');
   batch.execute('ALTER TABLE log_ex ADD timeLoad INTEGER');
   batch.execute('ALTER TABLE log_ex RENAME TO log_sets');
+  // Users data
+  batch.execute('UPDATE log_sets SET repeatsLeft = repeats');
+  batch.execute('UPDATE log_sets SET weightLeft = weight');
 
   // Alter table workouts
   batch.execute('ALTER TABLE workouts RENAME COLUMN days_id TO dayId');

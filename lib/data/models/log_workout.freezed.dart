@@ -28,6 +28,8 @@ mixin _$LogWorkout {
   double? get distance => throw _privateConstructorUsedError;
   int? get timeLoad => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  int? get loadId => throw _privateConstructorUsedError;
+  int? get limbs => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +50,9 @@ abstract class $LogWorkoutCopyWith<$Res> {
       double? weightLeft,
       double? distance,
       int? timeLoad,
-      String? name});
+      String? name,
+      int? loadId,
+      int? limbs});
 }
 
 /// @nodoc
@@ -69,6 +73,8 @@ class _$LogWorkoutCopyWithImpl<$Res> implements $LogWorkoutCopyWith<$Res> {
     Object? distance = freezed,
     Object? timeLoad = freezed,
     Object? name = freezed,
+    Object? loadId = freezed,
+    Object? limbs = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -103,6 +109,14 @@ class _$LogWorkoutCopyWithImpl<$Res> implements $LogWorkoutCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      loadId: loadId == freezed
+          ? _value.loadId
+          : loadId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      limbs: limbs == freezed
+          ? _value.limbs
+          : limbs // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -122,7 +136,9 @@ abstract class _$$_LogWorkoutCopyWith<$Res>
       double? weightLeft,
       double? distance,
       int? timeLoad,
-      String? name});
+      String? name,
+      int? loadId,
+      int? limbs});
 }
 
 /// @nodoc
@@ -145,6 +161,8 @@ class __$$_LogWorkoutCopyWithImpl<$Res> extends _$LogWorkoutCopyWithImpl<$Res>
     Object? distance = freezed,
     Object? timeLoad = freezed,
     Object? name = freezed,
+    Object? loadId = freezed,
+    Object? limbs = freezed,
   }) {
     return _then(_$_LogWorkout(
       id: id == freezed
@@ -179,6 +197,14 @@ class __$$_LogWorkoutCopyWithImpl<$Res> extends _$LogWorkoutCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      loadId: loadId == freezed
+          ? _value.loadId
+          : loadId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      limbs: limbs == freezed
+          ? _value.limbs
+          : limbs // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -194,7 +220,9 @@ class _$_LogWorkout implements _LogWorkout {
       this.weightLeft,
       this.distance,
       this.timeLoad,
-      this.name});
+      this.name,
+      this.loadId,
+      this.limbs});
 
   factory _$_LogWorkout.fromJson(Map<String, dynamic> json) =>
       _$$_LogWorkoutFromJson(json);
@@ -215,10 +243,14 @@ class _$_LogWorkout implements _LogWorkout {
   final int? timeLoad;
   @override
   final String? name;
+  @override
+  final int? loadId;
+  @override
+  final int? limbs;
 
   @override
   String toString() {
-    return 'LogWorkout(id: $id, repeats: $repeats, repeatsLeft: $repeatsLeft, weight: $weight, weightLeft: $weightLeft, distance: $distance, timeLoad: $timeLoad, name: $name)';
+    return 'LogWorkout(id: $id, repeats: $repeats, repeatsLeft: $repeatsLeft, weight: $weight, weightLeft: $weightLeft, distance: $distance, timeLoad: $timeLoad, name: $name, loadId: $loadId, limbs: $limbs)';
   }
 
   @override
@@ -235,7 +267,9 @@ class _$_LogWorkout implements _LogWorkout {
                 .equals(other.weightLeft, weightLeft) &&
             const DeepCollectionEquality().equals(other.distance, distance) &&
             const DeepCollectionEquality().equals(other.timeLoad, timeLoad) &&
-            const DeepCollectionEquality().equals(other.name, name));
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.loadId, loadId) &&
+            const DeepCollectionEquality().equals(other.limbs, limbs));
   }
 
   @JsonKey(ignore: true)
@@ -249,7 +283,9 @@ class _$_LogWorkout implements _LogWorkout {
       const DeepCollectionEquality().hash(weightLeft),
       const DeepCollectionEquality().hash(distance),
       const DeepCollectionEquality().hash(timeLoad),
-      const DeepCollectionEquality().hash(name));
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(loadId),
+      const DeepCollectionEquality().hash(limbs));
 
   @JsonKey(ignore: true)
   @override
@@ -273,7 +309,9 @@ abstract class _LogWorkout implements LogWorkout {
       final double? weightLeft,
       final double? distance,
       final int? timeLoad,
-      final String? name}) = _$_LogWorkout;
+      final String? name,
+      final int? loadId,
+      final int? limbs}) = _$_LogWorkout;
 
   factory _LogWorkout.fromJson(Map<String, dynamic> json) =
       _$_LogWorkout.fromJson;
@@ -294,6 +332,10 @@ abstract class _LogWorkout implements LogWorkout {
   int? get timeLoad;
   @override
   String? get name;
+  @override
+  int? get loadId;
+  @override
+  int? get limbs;
   @override
   @JsonKey(ignore: true)
   _$$_LogWorkoutCopyWith<_$_LogWorkout> get copyWith =>

@@ -16,6 +16,8 @@ _$_LogWorkout _$$_LogWorkoutFromJson(Map<String, dynamic> json) =>
       distance: (json['distance'] as num?)?.toDouble(),
       timeLoad: json['timeLoad'] as int?,
       name: json['name'] as String?,
+      loadId: json['loadId'] as int?,
+      limbs: json['limbs'] as int?,
     );
 
 Map<String, dynamic> _$$_LogWorkoutToJson(_$_LogWorkout instance) =>
@@ -28,4 +30,6 @@ Map<String, dynamic> _$$_LogWorkoutToJson(_$_LogWorkout instance) =>
       'distance': instance.distance,
       'timeLoad': instance.timeLoad,
       'name': instance.name,
+      'loadId': instance.loadId,
+      'limbs': instance.limbs,
     };

@@ -212,7 +212,9 @@ class SqliteHelper {
               weightLeft,
               distance,
               timeLoad,
-              $exerciseTable.${kLocale}_name AS name
+              $exerciseTable.${kLocale}_name AS name,
+              $exerciseTable.limbs AS limbs,
+              $exerciseTable.loadId AS loadId
         FROM $logWorkoutsTable
               JOIN
               $exerciseTable ON $logWorkoutsTable.exerciseId = $exerciseTable.id

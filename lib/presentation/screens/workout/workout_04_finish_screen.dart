@@ -29,9 +29,9 @@ class WorkoutFinishScreen extends StatelessWidget {
     DateTime? start = wp.state.startTime;
     DateTime? finish = wp.state.finishTime;
     TraningVolume trainingVolume = TraningVolume(0.0);
-
-    // TODO: Warning, not to do (!)
+    // TODO remove (!)
     String duration = finish!.difference(start!).inMinutes.toString();
+
     String output =
         '${S.of(context).wrkDuration}: $duration ${S.of(context).min}';
 
@@ -47,6 +47,9 @@ class WorkoutFinishScreen extends StatelessWidget {
           break;
         case kLoadTime:
           output += exerciseBasedOnTime(context, item);
+          break;
+        case kLoadDistance:
+          output += exerciseBasedOnDistance(context, item);
           break;
         default:
       }
@@ -113,6 +116,21 @@ class WorkoutFinishScreen extends StatelessWidget {
     }
 
     output += '\n\r *${S.of(context).total}: $totalTime s* \n\r';
+
+    return output;
+  }
+
+  String exerciseBasedOnDistance(BuildContext context, WorkoutExercise item) {
+    String output = '';
+    double totalDistance = 0.0;
+
+    for (int i = 0; i < item.sets.length; i++) {
+      output += '\n\r ${i + 1}. ${item.sets[i].distance}';
+      totalDistance += item.sets[i].distance ?? 0;
+    }
+
+    output +=
+        '\n\r *${S.of(context).total}: ${totalDistance.toStringAsFixed(3)}* \n\r';
 
     return output;
   }

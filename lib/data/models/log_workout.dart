@@ -15,6 +15,8 @@ class LogWorkout with _$LogWorkout {
     double? distance,
     int? timeLoad,
     String? name,
+    int? loadId,
+    int? limbs,
   }) = _LogWorkout;
 
   factory LogWorkout.fromJson(Map<String, Object?> json) =>
