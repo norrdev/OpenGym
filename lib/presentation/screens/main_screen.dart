@@ -134,6 +134,8 @@ class MainScreen extends StatelessWidget {
                   HelpIconButton(help: S.of(context).hintPrograms),
                 if ((state is CurrentTabLoaded ? state.selectedIndex : 0) == 2)
                   HelpIconButton(help: S.of(context).hintEx),
+                if ((state is CurrentTabLoaded ? state.selectedIndex : 0) == 3)
+                  HelpIconButton(help: S.of(context).hintLogCalendar),
               ],
             ),
             body: IndexedStack(

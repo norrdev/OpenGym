@@ -187,5 +187,6 @@
     "hintProgramsDays": "Days of the workout. Tap + button to add a new day. Swipe right to edit the day's name. Tap day to add or remove exercises.",
     "hintProgramsAddEx": "Select muscle group and tap + button in exercises list.",
     "hintEx": "Tap on the muscle group in the list to show exercises.",
-    "hintExByMuscle": "Tap + button to add a new exercise. Tap on exercise in the list to view parameters and description. Swipe right to edit exercise."
+    "hintExByMuscle": "Tap + button to add a new exercise. Tap on exercise in the list to view parameters and descriptions. Swipe right to edit exercise.",
+    "hintLogCalendar": "Tap on the date to see workouts. Tap on workout in the dialog to see its log. Swipe left or right to change the month."
 }

@@ -1930,11 +1930,21 @@ class S {
     );
   }
 
-  /// `Tap + button to add a new exercise. Tap on exercise in the list to view parameters and description. Swipe right to edit exercise.`
+  /// `Tap + button to add a new exercise. Tap on exercise in the list to view parameters and descriptions. Swipe right to edit exercise.`
   String get hintExByMuscle {
     return Intl.message(
-      'Tap + button to add a new exercise. Tap on exercise in the list to view parameters and description. Swipe right to edit exercise.',
+      'Tap + button to add a new exercise. Tap on exercise in the list to view parameters and descriptions. Swipe right to edit exercise.',
       name: 'hintExByMuscle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap on the date to see workouts. Tap on workout in the dialog to see its log. Swipe left or right to change the month.`
+  String get hintLogCalendar {
+    return Intl.message(
+      'Tap on the date to see workouts. Tap on workout in the dialog to see its log. Swipe left or right to change the month.',
+      name: 'hintLogCalendar',
       desc: '',
       args: [],
     );
