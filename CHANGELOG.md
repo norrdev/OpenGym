@@ -14,8 +14,6 @@
 - Fixed desktop window header.
 - Small hints on every screen.
 
-Thanks 
-
 ## 2.1.0
 - Same design in all operating systems.
 - Exercises checkbox on workout screen.
