@@ -131,15 +131,7 @@ class MainScreen extends StatelessWidget {
                     ),
                   ),
                 if ((state is CurrentTabLoaded ? state.selectedIndex : 0) == 1)
-                  IconButton(
-                    onPressed: () {
-                      const snackBar = SnackBar(
-                        content: Text(''),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    },
-                    icon: const Icon(Icons.help),
-                  ),
+                  HelpIconButton(help: S.of(context).hintPrograms),
               ],
             ),
             body: IndexedStack(

@@ -134,6 +134,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "finish": MessageLookupByLibrary.simpleMessage("Finish"),
         "from": MessageLookupByLibrary.simpleMessage(" from "),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
+        "hintPrograms": MessageLookupByLibrary.simpleMessage(
+            "Select radio to change the current workout. Swipe right to edit the name of the program. Tap the program to see program days. Tap + button on the navigation bar to create a new program."),
+        "hintProgramsAddEx": MessageLookupByLibrary.simpleMessage(
+            "Select muscle group and tap + button in exercises list."),
+        "hintProgramsDay": MessageLookupByLibrary.simpleMessage(
+            "This is the workout day plan. Drug exercises up or down to change order. Press + button to add a new exercise. Swipe right to edit say\'s name."),
+        "hintProgramsDays": MessageLookupByLibrary.simpleMessage(
+            "Days of the workout. Tap + button to add a new day. Swipe right to edit the day\'s name. Tap day to add or remove exercises."),
         "hintWorkout": MessageLookupByLibrary.simpleMessage(
             "This is your current workout program. Tap on the day in the list to begin training. Select another program you can on the Programs screen."),
         "hintWorkoutProcess": MessageLookupByLibrary.simpleMessage(

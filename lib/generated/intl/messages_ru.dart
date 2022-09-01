@@ -137,6 +137,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "finish": MessageLookupByLibrary.simpleMessage("Закончить"),
         "from": MessageLookupByLibrary.simpleMessage(" из "),
         "gender": MessageLookupByLibrary.simpleMessage("Пол"),
+        "hintPrograms": MessageLookupByLibrary.simpleMessage(
+            "Нажмите на селектор в левой колонке, чтобы изменить текущую тренировку. Проведите вправо, чтобы изменить название программы. Нажмите на программу, чтобы увидеть дни программы. Нажмите кнопку + на панели навигации, чтобы создать новую программу."),
+        "hintProgramsAddEx": MessageLookupByLibrary.simpleMessage(
+            "Выберите группу мышц и нажмите кнопку + в списке упражнений."),
+        "hintProgramsDay": MessageLookupByLibrary.simpleMessage(
+            "Это план дня тренировки. Перемещайте упражнения вверх или вниз, чтобы изменить порядок. Нажмите кнопку +, чтобы добавить новое упражнение. Проведите пальцем вправо, чтобы изменить название."),
+        "hintProgramsDays": MessageLookupByLibrary.simpleMessage(
+            "Дни тренировки. Нажмите кнопку +, чтобы добавить новый день. Проведите вправо, чтобы изменить название дня. Нажмите на день, чтобы добавить или удалить упражнения."),
         "hintWorkout": MessageLookupByLibrary.simpleMessage(
             "Это ваша текущая программа тренировок.\n\rНажмите на день в списке, чтобы начать тренировку.\n\rВыбрать другую программу вы можете на экране Программы."),
         "hintWorkoutProcess": MessageLookupByLibrary.simpleMessage(

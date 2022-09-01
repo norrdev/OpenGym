@@ -1879,6 +1879,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Select radio to change the current workout. Swipe right to edit the name of the program. Tap the program to see program days. Tap + button on the navigation bar to create a new program.`
+  String get hintPrograms {
+    return Intl.message(
+      'Select radio to change the current workout. Swipe right to edit the name of the program. Tap the program to see program days. Tap + button on the navigation bar to create a new program.',
+      name: 'hintPrograms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This is the workout day plan. Drug exercises up or down to change order. Press + button to add a new exercise. Swipe right to edit say's name.`
+  String get hintProgramsDay {
+    return Intl.message(
+      'This is the workout day plan. Drug exercises up or down to change order. Press + button to add a new exercise. Swipe right to edit say\'s name.',
+      name: 'hintProgramsDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Days of the workout. Tap + button to add a new day. Swipe right to edit the day's name. Tap day to add or remove exercises.`
+  String get hintProgramsDays {
+    return Intl.message(
+      'Days of the workout. Tap + button to add a new day. Swipe right to edit the day\'s name. Tap day to add or remove exercises.',
+      name: 'hintProgramsDays',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select muscle group and tap + button in exercises list.`
+  String get hintProgramsAddEx {
+    return Intl.message(
+      'Select muscle group and tap + button in exercises list.',
+      name: 'hintProgramsAddEx',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
