@@ -1919,6 +1919,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Tap on the muscle group in the list to show exercises.`
+  String get hintEx {
+    return Intl.message(
+      'Tap on the muscle group in the list to show exercises.',
+      name: 'hintEx',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap + button to add a new exercise. Tap on exercise in the list to view parameters and description. Swipe right to edit exercise.`
+  String get hintExByMuscle {
+    return Intl.message(
+      'Tap + button to add a new exercise. Tap on exercise in the list to view parameters and description. Swipe right to edit exercise.',
+      name: 'hintExByMuscle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

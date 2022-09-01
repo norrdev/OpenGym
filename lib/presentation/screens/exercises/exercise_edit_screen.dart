@@ -36,7 +36,7 @@ class ExerciseEditScreen extends StatelessWidget {
             icon: const Icon(Icons.save),
             onPressed: () {
               if (formKey.currentState!.validate()) {
-                if (preinstalled == 1) {
+                if ((preinstalled ?? 0) > 0) {
                   showDialog(
                       context: context,
                       builder: (context) {
@@ -96,7 +96,7 @@ class ExerciseEditScreen extends StatelessWidget {
             key: formKey,
             child: ListView(
               children: [
-                if (preinstalled == 1)
+                if ((preinstalled ?? 0) > 0)
                   Column(
                     children: [
                       Text(S.of(context).preinstalledEx),

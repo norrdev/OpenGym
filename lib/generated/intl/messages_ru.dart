@@ -137,6 +137,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "finish": MessageLookupByLibrary.simpleMessage("Закончить"),
         "from": MessageLookupByLibrary.simpleMessage(" из "),
         "gender": MessageLookupByLibrary.simpleMessage("Пол"),
+        "hintEx": MessageLookupByLibrary.simpleMessage(
+            "Нажмите на группу мышц в списке, чтобы показать упражнения."),
+        "hintExByMuscle": MessageLookupByLibrary.simpleMessage(
+            "Нажмите кнопку +, чтобы добавить новое упражнение. Нажмите на упражнение в списке, чтобы просмотреть параметры и описание. Проведите пальцем вправо, чтобы отредактировать упражнение."),
         "hintPrograms": MessageLookupByLibrary.simpleMessage(
             "Нажмите на селектор в левой колонке, чтобы изменить текущую тренировку. Проведите вправо, чтобы изменить название программы. Нажмите на программу, чтобы увидеть дни программы. Нажмите кнопку + на панели навигации, чтобы создать новую программу."),
         "hintProgramsAddEx": MessageLookupByLibrary.simpleMessage(
