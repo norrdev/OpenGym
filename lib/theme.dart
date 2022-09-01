@@ -53,18 +53,11 @@ class AppTheme {
       color: Colors.black,
     ),
     colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.black),
-    // chipTheme: const ChipThemeData(
-    //   backgroundColor: Colors.black45,
-    //   disabledColor: Color(0xaaF5E0C3),
-    //   //shape: StadiumBorder(),
-    //   brightness: Brightness.light,
-    //   labelPadding: EdgeInsets.all(8),
-    //   labelStyle: TextStyle(),
-    //   padding: EdgeInsets.all(8),
-    //   //secondaryLabelStyle: TextStyle(),
-    //   secondarySelectedColor: Colors.white38,
-    //   selectedColor: Colors.black,
-    // ),
+    chipTheme: ChipThemeData.fromDefaults(
+      brightness: Brightness.light,
+      secondaryColor: Colors.black,
+      labelStyle: const TextStyle(color: Colors.white),
+    ),
   );
 
   /// Material dark theme
@@ -113,18 +106,9 @@ class AppTheme {
     progressIndicatorTheme: const ProgressIndicatorThemeData(
       color: Colors.white,
     ),
-    //colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
-    // chipTheme: const ChipThemeData(
-    //   backgroundColor: Colors.black45,
-    //   disabledColor: Color(0xaaF5E0C3),
-    //   shape: StadiumBorder(),
-    //   brightness: Brightness.dark,
-    //   labelPadding: EdgeInsets.all(8),
-    //   labelStyle: TextStyle(),
-    //   padding: EdgeInsets.all(8),
-    //   secondaryLabelStyle: TextStyle(),
-    //   secondarySelectedColor: Colors.white38,
-    //   selectedColor: Colors.white38,
-    // ),
+    chipTheme: const ChipThemeData(
+      selectedColor: Colors.white38,
+      brightness: Brightness.dark,
+    ),
   );
 }
