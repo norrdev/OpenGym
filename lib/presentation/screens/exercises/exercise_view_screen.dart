@@ -27,7 +27,7 @@ class ExerciseViewScreen extends StatelessWidget {
               LoadViewWidget(repository: repository, exercise: exercise),
               EquipmentViewWidget(exercise: exercise),
               const SizedBox(height: 16.0),
-              if (exercise.preinstalled == 1)
+              if ((exercise.preinstalled ?? 0) > 0)
                 Text('${S.of(context).preinstalledEx}.'),
               const SizedBox(height: 16.0),
               Text(exercise.description ?? ''),

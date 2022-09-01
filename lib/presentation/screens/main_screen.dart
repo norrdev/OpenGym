@@ -10,6 +10,7 @@ import 'package:npng/presentation/screens/programs/programs_screen.dart';
 import 'package:npng/presentation/screens/settings/setings_screen.dart';
 import 'package:npng/presentation/screens/workout/workout_00_start_screen.dart';
 
+import '../../widgets/help_icon_button.dart';
 import 'programs/program_new_screen.dart';
 
 class MainScreen extends StatelessWidget {
@@ -26,7 +27,7 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String title = S.of(context).pageWorkout;
+    String title = '';
 
     return BlocListener<CurrentTabCubit, CurrentTabState>(
       listener: (context, state) {
@@ -57,35 +58,6 @@ class MainScreen extends StatelessWidget {
       child: BlocBuilder<CurrentTabCubit, CurrentTabState>(
         builder: (context, state) {
           return Scaffold(
-            // bottomNavigationBar: BottomNavigationBar(
-            //   type: BottomNavigationBarType.fixed,
-            //   items: [
-            //     BottomNavigationBarItem(
-            //       icon: const Icon(Icons.fitness_center_rounded),
-            //       label: S.of(context).pageWorkout,
-            //     ),
-            //     BottomNavigationBarItem(
-            //       icon: const Icon(Icons.directions_run_rounded),
-            //       label: S.of(context).pageExerciseTitle,
-            //     ),
-            //     BottomNavigationBarItem(
-            //       icon: const Icon(Icons.calendar_month_rounded),
-            //       label: S.of(context).log,
-            //     ),
-            //     BottomNavigationBarItem(
-            //       icon: const Icon(Icons.gas_meter_rounded),
-            //       label: S.of(context).calculate,
-            //     ),
-            //     BottomNavigationBarItem(
-            //       icon: const Icon(Icons.settings_rounded),
-            //       label: S.of(context).settings,
-            //     ),
-            //   ],
-            //   currentIndex: state is CurrentTabLoaded ? state.selectedIndex : 0,
-            //   onTap: (int index) {
-            //     context.read<CurrentTabCubit>().saveCurrentIndex(index);
-            //   },
-            // ),
             drawer: Drawer(
               child: ListView(
                 children: [
@@ -146,6 +118,8 @@ class MainScreen extends StatelessWidget {
             appBar: AppBar(
               title: Text(title),
               actions: <Widget>[
+                if ((state is CurrentTabLoaded ? state.selectedIndex : 0) == 0)
+                  HelpIconButton(help: S.of(context).hintWorkout),
                 if ((state is CurrentTabLoaded ? state.selectedIndex : 0) == 1)
                   IconButton(
                     icon: const Icon(Icons.add),
@@ -156,6 +130,12 @@ class MainScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                if ((state is CurrentTabLoaded ? state.selectedIndex : 0) == 1)
+                  HelpIconButton(help: S.of(context).hintPrograms),
+                if ((state is CurrentTabLoaded ? state.selectedIndex : 0) == 2)
+                  HelpIconButton(help: S.of(context).hintEx),
+                if ((state is CurrentTabLoaded ? state.selectedIndex : 0) == 3)
+                  HelpIconButton(help: S.of(context).hintLogCalendar),
               ],
             ),
             body: IndexedStack(

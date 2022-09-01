@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:npng/widgets/help_icon_button.dart';
 
 import '../../../data/models/models.dart';
 import '../../../data/repository.dart';
@@ -26,6 +27,9 @@ class _ProgramDayAddExerciseState extends State<ProgramDayAddExercise> {
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).pageAddEx),
+        actions: [
+          HelpIconButton(help: S.of(context).hintProgramsAddEx),
+        ],
       ),
       body: SafeArea(
         child: Column(

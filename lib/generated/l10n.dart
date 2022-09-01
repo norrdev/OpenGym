@@ -1849,6 +1849,106 @@ class S {
       args: [],
     );
   }
+
+  /// `This is your current workout program. Tap on the day in the list to begin training. Select another program you can on the Programs screen.`
+  String get hintWorkout {
+    return Intl.message(
+      'This is your current workout program. Tap on the day in the list to begin training. Select another program you can on the Programs screen.',
+      name: 'hintWorkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This is the list of current-day exercises. Tap on the exercise to change its parameters (sets, weights), and drag the exercise up or down to change order. Press Start to begin training.`
+  String get hintWorkoutProcess {
+    return Intl.message(
+      'This is the list of current-day exercises. Tap on the exercise to change its parameters (sets, weights), and drag the exercise up or down to change order. Press Start to begin training.',
+      name: 'hintWorkoutProcess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Run a set and enter its parameters. You can increase or decrease the number of sets. Press Save & rest to rest and to prepare for the next set.`
+  String get hintWorkoutSets {
+    return Intl.message(
+      'Run a set and enter its parameters. You can increase or decrease the number of sets. Press Save & rest to rest and to prepare for the next set.',
+      name: 'hintWorkoutSets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select radio to change the current workout. Swipe right to edit the name of the program. Tap the program to see program days. Tap + button on the navigation bar to create a new program.`
+  String get hintPrograms {
+    return Intl.message(
+      'Select radio to change the current workout. Swipe right to edit the name of the program. Tap the program to see program days. Tap + button on the navigation bar to create a new program.',
+      name: 'hintPrograms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This is the workout day plan. Drug exercises up or down to change order. Press + button to add a new exercise. Swipe right to edit say's name.`
+  String get hintProgramsDay {
+    return Intl.message(
+      'This is the workout day plan. Drug exercises up or down to change order. Press + button to add a new exercise. Swipe right to edit say\'s name.',
+      name: 'hintProgramsDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Days of the workout. Tap + button to add a new day. Swipe right to edit the day's name. Tap day to add or remove exercises.`
+  String get hintProgramsDays {
+    return Intl.message(
+      'Days of the workout. Tap + button to add a new day. Swipe right to edit the day\'s name. Tap day to add or remove exercises.',
+      name: 'hintProgramsDays',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select muscle group and tap + button in exercises list.`
+  String get hintProgramsAddEx {
+    return Intl.message(
+      'Select muscle group and tap + button in exercises list.',
+      name: 'hintProgramsAddEx',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap on the muscle group in the list to show exercises.`
+  String get hintEx {
+    return Intl.message(
+      'Tap on the muscle group in the list to show exercises.',
+      name: 'hintEx',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap + button to add a new exercise. Tap on exercise in the list to view parameters and descriptions. Swipe right to edit exercise.`
+  String get hintExByMuscle {
+    return Intl.message(
+      'Tap + button to add a new exercise. Tap on exercise in the list to view parameters and descriptions. Swipe right to edit exercise.',
+      name: 'hintExByMuscle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap on the date to see workouts. Tap on workout in the dialog to see its log. Swipe left or right to change the month.`
+  String get hintLogCalendar {
+    return Intl.message(
+      'Tap on the date to see workouts. Tap on workout in the dialog to see its log. Swipe left or right to change the month.',
+      name: 'hintLogCalendar',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

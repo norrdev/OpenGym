@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:npng/widgets/help_icon_button.dart';
 
 import '../../../data/models/models.dart';
 import '../../../data/repository.dart';
@@ -42,6 +43,7 @@ class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
               ),
             ).then((value) => setState(() {})),
           ),
+          HelpIconButton(help: S.of(context).hintExByMuscle),
         ],
       ),
       body: StreamBuilder<List<Exercise>>(

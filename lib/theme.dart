@@ -7,7 +7,7 @@ const Color kActionColorDelete = Colors.black;
 class AppTheme {
   /// Material light theme
   static ThemeData light = ThemeData(
-    //useMaterial3: true,
+    useMaterial3: true,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     brightness: Brightness.light,
     primaryColor: Colors.black,
@@ -32,6 +32,7 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
         backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
         minimumSize: MaterialStateProperty.all<Size>(const Size.square(50)),
       ),
@@ -52,11 +53,23 @@ class AppTheme {
       color: Colors.black,
     ),
     colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.black),
+    // chipTheme: const ChipThemeData(
+    //   backgroundColor: Colors.black45,
+    //   disabledColor: Color(0xaaF5E0C3),
+    //   //shape: StadiumBorder(),
+    //   brightness: Brightness.light,
+    //   labelPadding: EdgeInsets.all(8),
+    //   labelStyle: TextStyle(),
+    //   padding: EdgeInsets.all(8),
+    //   //secondaryLabelStyle: TextStyle(),
+    //   secondarySelectedColor: Colors.white38,
+    //   selectedColor: Colors.black,
+    // ),
   );
 
   /// Material dark theme
   static ThemeData dark = ThemeData(
-    //useMaterial3: true,
+    useMaterial3: true,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     brightness: Brightness.dark,
     primaryColor: Colors.white,
@@ -101,17 +114,17 @@ class AppTheme {
       color: Colors.white,
     ),
     //colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
-    chipTheme: const ChipThemeData(
-      backgroundColor: Colors.black45,
-      disabledColor: Color(0xaaF5E0C3),
-      shape: StadiumBorder(),
-      brightness: Brightness.dark,
-      labelPadding: EdgeInsets.all(8),
-      labelStyle: TextStyle(),
-      padding: EdgeInsets.all(8),
-      secondaryLabelStyle: TextStyle(),
-      secondarySelectedColor: Colors.white38,
-      selectedColor: Colors.white38,
-    ),
+    // chipTheme: const ChipThemeData(
+    //   backgroundColor: Colors.black45,
+    //   disabledColor: Color(0xaaF5E0C3),
+    //   shape: StadiumBorder(),
+    //   brightness: Brightness.dark,
+    //   labelPadding: EdgeInsets.all(8),
+    //   labelStyle: TextStyle(),
+    //   padding: EdgeInsets.all(8),
+    //   secondaryLabelStyle: TextStyle(),
+    //   secondarySelectedColor: Colors.white38,
+    //   selectedColor: Colors.white38,
+    // ),
   );
 }

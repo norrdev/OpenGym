@@ -137,6 +137,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "finish": MessageLookupByLibrary.simpleMessage("Закончить"),
         "from": MessageLookupByLibrary.simpleMessage(" из "),
         "gender": MessageLookupByLibrary.simpleMessage("Пол"),
+        "hintEx": MessageLookupByLibrary.simpleMessage(
+            "Нажмите на группу мышц в списке, чтобы показать упражнения."),
+        "hintExByMuscle": MessageLookupByLibrary.simpleMessage(
+            "Нажмите кнопку +, чтобы добавить новое упражнение. Нажмите на упражнение в списке, чтобы просмотреть параметры и описание. Проведите пальцем вправо, чтобы отредактировать упражнение."),
+        "hintLogCalendar": MessageLookupByLibrary.simpleMessage(
+            "Нажмите на дату, чтобы увидеть тренировки. Нажмите на тренировку в диалоге, чтобы просмотреть ее журнал. Проведите пальцем влево или вправо, чтобы изменить месяц."),
+        "hintPrograms": MessageLookupByLibrary.simpleMessage(
+            "Нажмите на селектор в левой колонке, чтобы изменить текущую тренировку. Проведите вправо, чтобы изменить название программы. Нажмите на программу, чтобы увидеть дни программы. Нажмите кнопку + на панели навигации, чтобы создать новую программу."),
+        "hintProgramsAddEx": MessageLookupByLibrary.simpleMessage(
+            "Выберите группу мышц и нажмите кнопку + в списке упражнений."),
+        "hintProgramsDay": MessageLookupByLibrary.simpleMessage(
+            "Это план дня тренировки. Перемещайте упражнения вверх или вниз, чтобы изменить порядок. Нажмите кнопку +, чтобы добавить новое упражнение. Проведите пальцем вправо, чтобы изменить название."),
+        "hintProgramsDays": MessageLookupByLibrary.simpleMessage(
+            "Дни тренировки. Нажмите кнопку +, чтобы добавить новый день. Проведите вправо, чтобы изменить название дня. Нажмите на день, чтобы добавить или удалить упражнения."),
+        "hintWorkout": MessageLookupByLibrary.simpleMessage(
+            "Это ваша текущая программа тренировок.\n\rНажмите на день в списке, чтобы начать тренировку.\n\rВыбрать другую программу вы можете на экране Программы."),
+        "hintWorkoutProcess": MessageLookupByLibrary.simpleMessage(
+            "Это список упражнений на текущий день.\n\rНажмите на упражнение, чтобы изменить его параметры (комплекты, веса), перетащите упражнение вверх или вниз, чтобы изменить порядок.\n\rНажмите Старт, чтобы начать тренировку."),
+        "hintWorkoutSets": MessageLookupByLibrary.simpleMessage(
+            "Выполните сет и введите его параметры. Вы можете увеличить или уменьшить количество сетов. Нажмите Сохранить & отдохнуть, чтобы отдохнуть и подготовиться к следующему сету"),
         "homePageBody":
             MessageLookupByLibrary.simpleMessage("Физическая форма"),
         "homePageFood": MessageLookupByLibrary.simpleMessage("Еда"),
