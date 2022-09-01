@@ -7,6 +7,7 @@ No registration. No personal data is needed. No tracking and telemetry.
 - Training programs constructor
 - Train mode with rest timer
 - Workout log
+- Calculators
   
 ## Download
 
