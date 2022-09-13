@@ -1,4 +1,4 @@
-Copyright (c) 2021 Denis Filonov
+Copyright 2021 Denis Filonov
 
 “Commons Clause” License Condition v1.0
 
