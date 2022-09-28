@@ -4,7 +4,7 @@ import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 
-import '../../../widgets/widgets.dart';
+import '../../widgets/widgets.dart';
 
 class ExerciseNewScreen extends StatefulWidget {
   final int muscleId;

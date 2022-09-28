@@ -2,9 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:npng/constants/workout.dart';
 
-import '../data/models/models.dart';
-import '../data/repository.dart';
-import '../generated/l10n.dart';
+import '../../data/models/models.dart';
+import '../../data/repository.dart';
+import '../../generated/l10n.dart';
 import 'spin_edit.dart';
 
 class WorkoutExerciseSettings extends StatelessWidget {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../generated/l10n.dart';
 import '../../../logic/calculators/calc.dart';
 import '../../../logic/calculators/calc_bfp.dart';
-import '../../../widgets/text_form_fields.dart';
+import '../../widgets/text_form_fields.dart';
 
 class CalcBfpScreen extends StatefulWidget {
   const CalcBfpScreen({super.key});

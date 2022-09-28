@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../generated/l10n.dart';
-import '../../../widgets/calc_button.dart';
+import '../../widgets/calc_button.dart';
 
 class CalcMainScreen extends StatelessWidget {
   const CalcMainScreen({super.key});

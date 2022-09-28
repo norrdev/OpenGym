@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../generated/l10n.dart';
 import '../../../logic/calculators/calc_cooper_strong.dart';
-import '../../../widgets/text_form_fields.dart';
+import '../../widgets/text_form_fields.dart';
 
 class CooperArmyTestScreen extends StatefulWidget {
   const CooperArmyTestScreen({super.key});

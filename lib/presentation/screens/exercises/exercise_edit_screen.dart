@@ -5,7 +5,7 @@ import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 
 import '../../../data/models/models.dart';
-import '../../../widgets/radio_group.dart';
+import '../../widgets/radio_group.dart';
 
 class ExerciseEditScreen extends StatelessWidget {
   final Exercise exercise;

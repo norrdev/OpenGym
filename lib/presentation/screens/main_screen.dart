@@ -10,7 +10,7 @@ import 'package:npng/presentation/screens/programs/programs_screen.dart';
 import 'package:npng/presentation/screens/settings/setings_screen.dart';
 import 'package:npng/presentation/screens/workout/workout_00_start_screen.dart';
 
-import '../../widgets/help_icon_button.dart';
+import '../widgets/help_icon_button.dart';
 import 'programs/program_new_screen.dart';
 
 class MainScreen extends StatelessWidget {

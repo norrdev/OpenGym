@@ -6,8 +6,8 @@ import 'package:steps_indicator/steps_indicator.dart';
 import '../../../constants/workout.dart';
 import '../../../generated/l10n.dart';
 import '../../../logic/cubit/workout_cubit.dart';
-import '../../../widgets/help_icon_button.dart';
-import '../../../widgets/widgets.dart';
+import '../../widgets/help_icon_button.dart';
+import '../../widgets/widgets.dart';
 
 class CurrentSetWidget extends StatelessWidget {
   const CurrentSetWidget({

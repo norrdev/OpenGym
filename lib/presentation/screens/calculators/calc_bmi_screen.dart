@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/logic/calculators/calc.dart';
 import 'package:npng/logic/calculators/calc_bmi.dart';
-import 'package:npng/widgets/text_form_fields.dart';
+import 'package:npng/presentation/widgets/text_form_fields.dart';
 
 class CalcBmiScreen extends StatefulWidget {
   const CalcBmiScreen({super.key});

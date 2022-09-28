@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:npng/widgets/help_icon_button.dart';
+import 'package:npng/presentation/widgets/help_icon_button.dart';
 
 import '../../../data/models/models.dart';
 import '../../../data/repository.dart';
 import '../../../generated/l10n.dart';
 import '../../../theme.dart';
-import '../../../widgets/workout_exercise_settings.dart';
+import '../../widgets/workout_exercise_settings.dart';
 import 'program_day_add_exercise.dart';
 
 class ProgramDayScreen extends StatefulWidget {

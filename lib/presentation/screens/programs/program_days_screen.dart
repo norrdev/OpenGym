@@ -9,7 +9,7 @@ import 'package:npng/presentation/screens/programs/program_day_screen.dart';
 import 'package:npng/presentation/screens/programs/program_edit_day_screen.dart';
 import 'package:npng/presentation/screens/programs/program_new_day_screen.dart';
 import 'package:npng/theme.dart';
-import 'package:npng/widgets/help_icon_button.dart';
+import 'package:npng/presentation/widgets/help_icon_button.dart';
 
 class ProgramDaysScreen extends StatefulWidget {
   static String id = 'program-days';

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../generated/l10n.dart';
 import '../../../logic/calculators/calc.dart';
 import '../../../logic/calculators/calc_rm.dart';
-import '../../../widgets/text_form_fields.dart';
+import '../../widgets/text_form_fields.dart';
 
 class CalcRmScreen extends StatefulWidget {
   const CalcRmScreen({super.key});

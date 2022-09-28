@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:npng/logic/cubit/workout_cubit.dart';
-import 'package:npng/widgets/help_icon_button.dart';
+import 'package:npng/presentation/widgets/help_icon_button.dart';
 import 'package:wakelock/wakelock.dart';
 
 import 'package:npng/data/models/models.dart';
@@ -10,7 +10,7 @@ import 'package:npng/generated/l10n.dart';
 import 'package:npng/presentation/screens/workout/workout_02_set_screen.dart';
 import 'package:npng/presentation/screens/workout/workout_04_finish_screen.dart';
 
-import '../../../widgets/workout_exercise_settings.dart';
+import '../../widgets/workout_exercise_settings.dart';
 
 /// Shows current workout program day (with exercises).
 class WorkoutProcessScreen extends StatelessWidget {
