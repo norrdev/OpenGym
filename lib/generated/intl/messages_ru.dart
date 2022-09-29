@@ -121,6 +121,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Тест Купера на силовую выносливость"),
         "cooperTerrible": MessageLookupByLibrary.simpleMessage("Ужасно"),
         "copyright": MessageLookupByLibrary.simpleMessage("© Denis Filonov"),
+        "currentProgram":
+            MessageLookupByLibrary.simpleMessage("Текущая программа"),
         "currentWorkout":
             MessageLookupByLibrary.simpleMessage("Текущая тренировка"),
         "dayAdd": MessageLookupByLibrary.simpleMessage("Добавить день"),

@@ -117,6 +117,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Cooper army test"),
         "cooperTerrible": MessageLookupByLibrary.simpleMessage("Terrible"),
         "copyright": MessageLookupByLibrary.simpleMessage("© Denis Filonov"),
+        "currentProgram":
+            MessageLookupByLibrary.simpleMessage("Current program"),
         "currentWorkout":
             MessageLookupByLibrary.simpleMessage("Current workout"),
         "dayAdd": MessageLookupByLibrary.simpleMessage("Add day"),
@@ -141,7 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hintLogCalendar": MessageLookupByLibrary.simpleMessage(
             "Tap on the date to see workouts. Tap on workout in the dialog to see its log. Swipe left or right to change the month."),
         "hintPrograms": MessageLookupByLibrary.simpleMessage(
-            "Select radio to change the current workout. Swipe right to edit the name of the program. Tap the program to see program days. Tap + button on the navigation bar to create a new program."),
+            "Select radio to change the current workout. Swipe right to edit the name of the program. Tap + button on the navigation bar to create a new program."),
         "hintProgramsAddEx": MessageLookupByLibrary.simpleMessage(
             "Select muscle group and tap + button in exercises list."),
         "hintProgramsDay": MessageLookupByLibrary.simpleMessage(

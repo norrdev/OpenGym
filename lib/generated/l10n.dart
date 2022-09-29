@@ -670,6 +670,16 @@ class S {
     );
   }
 
+  /// `Current program`
+  String get currentProgram {
+    return Intl.message(
+      'Current program',
+      name: 'currentProgram',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Add day`
   String get dayAdd {
     return Intl.message(
@@ -1880,10 +1890,10 @@ class S {
     );
   }
 
-  /// `Select radio to change the current workout. Swipe right to edit the name of the program. Tap the program to see program days. Tap + button on the navigation bar to create a new program.`
+  /// `Select radio to change the current workout. Swipe right to edit the name of the program. Tap + button on the navigation bar to create a new program.`
   String get hintPrograms {
     return Intl.message(
-      'Select radio to change the current workout. Swipe right to edit the name of the program. Tap the program to see program days. Tap + button on the navigation bar to create a new program.',
+      'Select radio to change the current workout. Swipe right to edit the name of the program. Tap + button on the navigation bar to create a new program.',
       name: 'hintPrograms',
       desc: '',
       args: [],
