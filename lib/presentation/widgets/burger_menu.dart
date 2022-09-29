@@ -27,15 +27,7 @@ class BurgerMenu extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.library_books),
-            title: Text(S.of(context).pageProgramsTitle),
-            onTap: () {
-              context.read<CurrentTabCubit>().saveCurrentIndex(kScreenPrograms);
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.directions_run_rounded),
+            leading: const Icon(Icons.sports_gymnastics),
             title: Text(S.of(context).pageExerciseTitle),
             onTap: () {
               context

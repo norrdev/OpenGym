@@ -5,7 +5,6 @@ import '../../logic/cubit/current_tab_cubit.dart';
 import 'calculators/calc_main_screen.dart';
 import 'exercises/exercises_screen.dart';
 import 'log/log_calendar_screen.dart';
-import 'programs/programs_screen.dart';
 import 'settings/setings_screen.dart';
 import 'workout/workout_00_current_program_screen.dart';
 
@@ -14,7 +13,6 @@ class MainScreen extends StatelessWidget {
 
   final List<Widget> pageList = <Widget>[
     const WorkoutCurrentProgramScreen(),
-    const ProgramsScreen(),
     const ExercisesScreen(),
     const LogCalendarScreen(),
     const CalcMainScreen(),

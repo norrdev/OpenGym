@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:npng/presentation/screens/programs/program_new_screen.dart';
-import 'package:npng/presentation/widgets/burger_menu.dart';
+import 'package:npng/presentation/screens/workout/program_new_screen.dart';
 import 'package:npng/presentation/widgets/help_icon_button.dart';
 
 import '../../../data/models/models.dart';
@@ -10,7 +9,7 @@ import '../../../data/repository.dart';
 import '../../../generated/l10n.dart';
 import '../../../logic/cubit/default_program_cubit.dart';
 import '../../../theme.dart';
-import 'program_edit_screen.dart';
+import '../programs/program_edit_screen.dart';
 
 class ProgramsScreen extends StatefulWidget {
   const ProgramsScreen({super.key});
@@ -26,7 +25,6 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
     final repository = context.watch<Repository>();
 
     return Scaffold(
-      drawer: const BurgerMenu(),
       appBar: AppBar(
         title: Text(S.of(context).pageProgramsTitle),
         actions: [

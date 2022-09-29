@@ -99,8 +99,6 @@ class SqliteHelper {
     return Future.value();
   }
 
-  // Muscles
-
   Future<void> deleteWorkout(Workout workout) async {
     final db = await instance.streamDatabase;
     await db.delete(

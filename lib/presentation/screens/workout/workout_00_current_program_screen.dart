@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:npng/presentation/widgets/burger_menu.dart';
 
-import '../../../constants/screens.dart';
 import '../../../data/models/models.dart';
 import '../../../data/repository.dart';
 import '../../../generated/l10n.dart';
-import '../../../logic/cubit/current_tab_cubit.dart';
 import '../../../logic/cubit/default_program_cubit.dart';
 import '../../../logic/cubit/workout_cubit.dart';
 import '../../../theme.dart';
+import '../../widgets/burger_menu.dart';
 import '../../widgets/help_icon_button.dart';
 import 'program_edit_day_screen.dart';
 import 'workout_01_process_screen.dart';
@@ -26,6 +24,22 @@ class WorkoutCurrentProgramScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(S.of(context).currentProgram),
         actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/');
+            },
+            icon: const Icon(
+              Icons.add,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/programs');
+            },
+            icon: const Icon(
+              Icons.folder_outlined,
+            ),
+          ),
           HelpIconButton(help: S.of(context).hintWorkout),
         ],
       ),
@@ -75,9 +89,7 @@ class _DaysListWidgetState extends State<DaysListWidget> {
                         const Icon(Icons.checklist_rounded),
                       ],
                     ),
-                    onPressed: () => context
-                        .read<CurrentTabCubit>()
-                        .saveCurrentIndex(kScreenPrograms),
+                    onPressed: () => Navigator.pushNamed(context, '/programs'),
                   ),
                 );
               }
@@ -97,6 +109,13 @@ class _DaysListWidgetState extends State<DaysListWidget> {
                     startActionPane: ActionPane(
                       motion: const ScrollMotion(),
                       children: [
+                        SlidableAction(
+                          onPressed: (context) {},
+                          backgroundColor: kActionColorDelete,
+                          foregroundColor: kActionColorIcon,
+                          icon: Icons.delete,
+                          label: S.of(context).delete,
+                        ),
                         SlidableAction(
                           onPressed: (context) => Navigator.push(
                             context,
