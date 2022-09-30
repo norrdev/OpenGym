@@ -85,7 +85,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                                 : null,
                             onChanged: (_) {
                               repository
-                                  .setCurrentProgram(item.id as int)
+                                  .setCurrentProgramId(item.id as int)
                                   .then((_) {
                                 context
                                     .read<DefaultProgramCubit>()

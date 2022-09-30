@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:npng/presentation/screens/programs/program_new_day_screen.dart';
 
 import '../../../data/models/models.dart';
 import '../../../data/repository.dart';
@@ -19,35 +20,55 @@ class WorkoutCurrentProgramScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const BurgerMenu(),
-      appBar: AppBar(
-        title: Text(S.of(context).currentProgram),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/');
-            },
-            icon: const Icon(
-              Icons.add,
-            ),
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/programs');
-            },
-            icon: const Icon(
-              Icons.folder_outlined,
-            ),
-          ),
-          HelpIconButton(help: S.of(context).hintWorkout),
-        ],
-      ),
-      body: SafeArea(
-        child: (context.watch<WorkoutCubit>().state.active)
-            ? const ArtiveWorkoutScreen()
-            : const DaysListWidget(),
-      ),
+    return BlocBuilder<DefaultProgramCubit, DefaultProgramState>(
+      builder: (context, state) {
+        final repository = context.read<Repository>();
+        final program = repository.findProgram(
+            state is DefaultProgramLoaded ? state.defaultProgram : 0);
+        return FutureBuilder<Program>(
+          future: program,
+          builder: (context, snapshot) {
+            return Scaffold(
+              drawer: const BurgerMenu(),
+              appBar: AppBar(
+                title: Text((snapshot.hasData)
+                    ? snapshot.data?.name as String
+                    : S.of(context).currentProgram),
+                actions: [
+                  IconButton(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => ProgramNewDayScreen(
+                          programId:
+                              (snapshot.hasData) ? snapshot.data?.id as int : 0,
+                        ),
+                      ),
+                    ),
+                    icon: const Icon(
+                      Icons.add,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/programs');
+                    },
+                    icon: const Icon(
+                      Icons.folder_outlined,
+                    ),
+                  ),
+                  HelpIconButton(help: S.of(context).hintWorkout),
+                ],
+              ),
+              body: SafeArea(
+                child: (context.watch<WorkoutCubit>().state.active)
+                    ? const ArtiveWorkoutScreen()
+                    : const DaysListWidget(),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }

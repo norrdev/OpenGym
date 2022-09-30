@@ -19,9 +19,11 @@ abstract class Repository {
 
   Stream<List<Program>> watchAllPrograms();
 
-  Future<int> getCurrentProgram();
+  Future<int> getCurrentProgramId();
 
-  Future<void> setCurrentProgram(int id);
+  Future<Program> findProgram(int id);
+
+  Future<void> setCurrentProgramId(int id);
 
   Future<void> insertProgram(Exercise program);
 
