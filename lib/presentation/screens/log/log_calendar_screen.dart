@@ -1,10 +1,13 @@
 import 'package:cell_calendar/cell_calendar.dart';
 import 'package:flutter/material.dart';
-import 'package:npng/data/models/models.dart';
-import 'package:npng/data/repository.dart';
-import 'package:npng/presentation/screens/log/log_show_workout_screen.dart';
-import 'package:npng/theme.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../data/models/models.dart';
+import '../../../data/repository.dart';
+import '../../../generated/l10n.dart';
+import '../../../theme.dart';
+import '../../widgets/burger_menu.dart';
+import 'log_show_workout_screen.dart';
 
 class LogCalendarScreen extends StatefulWidget {
   const LogCalendarScreen({super.key});
@@ -46,8 +49,10 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
   @override
   Widget build(BuildContext context) {
     final cellCalendarPageController = CellCalendarPageController();
-    return SafeArea(
-      child: CellCalendar(
+    return Scaffold(
+      drawer: const BurgerMenu(),
+      appBar: AppBar(title: Text(S.of(context).log)),
+      body: CellCalendar(
         todayMarkColor: AppTheme.light.primaryColor,
         todayTextColor: AppTheme.dark.primaryColor,
         cellCalendarPageController: cellCalendarPageController,

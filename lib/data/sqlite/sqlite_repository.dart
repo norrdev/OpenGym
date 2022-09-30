@@ -55,14 +55,19 @@ class SqliteRepository extends Repository {
   }
 
   @override
-  Future<int> getCurrentProgram() {
-    return sqliteHelper.getCurrentProgram();
+  Future<int> getCurrentProgramId() {
+    return sqliteHelper.getCurrentProgramId();
   }
 
   @override
-  Future<void> setCurrentProgram(int id) {
-    sqliteHelper.setCurrentProgram(id);
+  Future<void> setCurrentProgramId(int id) {
+    sqliteHelper.setCurrentProgramId(id);
     return Future.value();
+  }
+
+  @override
+  Future<Program> findProgram(int id) {
+    return sqliteHelper.findProgram(id);
   }
 
   @override

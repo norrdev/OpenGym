@@ -99,8 +99,6 @@ class SqliteHelper {
     return Future.value();
   }
 
-  // Muscles
-
   Future<void> deleteWorkout(Workout workout) async {
     final db = await instance.streamDatabase;
     await db.delete(
@@ -274,10 +272,24 @@ class SqliteHelper {
         [workoutsTable], sql).mapToList((row) => Workout.fromJson(row));
   }
 
-  Future<int> getCurrentProgram() async {
+  Future<int> getCurrentProgramId() async {
     final db = await instance.streamDatabase;
     final userList = await db.query(userTable, where: 'id = 1');
     return userList.first['programs_id'] as int;
+  }
+
+  Future<Program> findProgram(int id) async {
+    final db = await instance.streamDatabase;
+    final query = await db.query(
+      programsTable,
+      columns: [
+        'id',
+        '${kLocale}_name AS name',
+        '${kLocale}_description as description',
+      ],
+      where: 'id = $id',
+    );
+    return Program.fromJson(query.first);
   }
 
   /// Import DB.
@@ -432,7 +444,7 @@ class SqliteHelper {
     return Future.value();
   }
 
-  Future<void> setCurrentProgram(int id) async {
+  Future<void> setCurrentProgramId(int id) async {
     final db = await instance.streamDatabase;
     await db.update(userTable, {'programs_id': id}, where: 'id = 1');
     return Future.value();

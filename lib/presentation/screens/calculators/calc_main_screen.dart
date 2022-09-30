@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../generated/l10n.dart';
+import '../../widgets/burger_menu.dart';
 import '../../widgets/calc_button.dart';
 
 class CalcMainScreen extends StatelessWidget {
@@ -8,8 +9,10 @@ class CalcMainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: GridView.extent(
+    return Scaffold(
+      drawer: const BurgerMenu(),
+      appBar: AppBar(title: Text(S.of(context).calculate)),
+      body: GridView.extent(
         primary: false,
         padding: const EdgeInsets.all(8),
         crossAxisSpacing: 8,

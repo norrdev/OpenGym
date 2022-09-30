@@ -29,7 +29,7 @@ void main() async {
   late int defaultProgram;
 
   // Get default program.
-  defaultProgram = await repository.getCurrentProgram();
+  defaultProgram = await repository.getCurrentProgramId();
 
   runApp(
     MultiBlocProvider(

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:npng/presentation/screens/workout/program_new_screen.dart';
+import 'package:npng/presentation/widgets/help_icon_button.dart';
 
 import '../../../data/models/models.dart';
 import '../../../data/repository.dart';
 import '../../../generated/l10n.dart';
 import '../../../logic/cubit/default_program_cubit.dart';
 import '../../../theme.dart';
-import 'program_days_screen.dart';
-import 'program_edit_screen.dart';
+import '../programs/program_edit_screen.dart';
 
 class ProgramsScreen extends StatefulWidget {
   const ProgramsScreen({super.key});
@@ -24,6 +25,23 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
     final repository = context.watch<Repository>();
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text(S.of(context).pageProgramsTitle),
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return const ProgramNewScreen();
+                },
+              ),
+            ).whenComplete(() => setState(() {})),
+            icon: const Icon(Icons.add),
+          ),
+          HelpIconButton(help: S.of(context).hintPrograms),
+        ],
+      ),
       body: StreamBuilder<List<Program>>(
         stream: repository.watchAllPrograms(),
         builder: (context, AsyncSnapshot<List<Program>> snapshot) {
@@ -48,7 +66,6 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                                 );
                               },
                             ),
-                            // TODO: Create BLoC or cubit for state
                           ).whenComplete(() => setState(() {})),
                           backgroundColor: kActionColorEdit,
                           foregroundColor: kActionColorIcon,
@@ -67,9 +84,8 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                                 ? state.defaultProgram
                                 : null,
                             onChanged: (_) {
-                              // TODO Move to Cubit, after moving repository to it.
                               repository
-                                  .setCurrentProgram(item.id as int)
+                                  .setCurrentProgramId(item.id as int)
                                   .then((_) {
                                 context
                                     .read<DefaultProgramCubit>()
@@ -81,14 +97,6 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                       ),
                       title: Text(item.name as String),
                       subtitle: Text(item.description as String),
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ProgramDaysScreen(
-                            program: item,
-                          ),
-                        ),
-                      ),
                     ),
                   );
                 });

@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:npng/presentation/screens/calculators/calc_cooper_army_test.dart';
 import 'package:npng/presentation/screens/calculators/calc_ifp_screen.dart';
-import 'package:npng/presentation/screens/programs/programs_screen.dart';
+import 'package:npng/presentation/screens/workout/programs_screen.dart';
 
 import '../screens/calculators/calc_absi_screen.dart';
 import '../screens/calculators/calc_bfp_screen.dart';

@@ -16,7 +16,7 @@ class HelpIconButton extends StatelessWidget {
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       },
-      icon: const Icon(Icons.help),
+      icon: const Icon(Icons.help_outline),
     );
   }
 }

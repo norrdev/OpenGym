@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/logic/cubit/workout_cubit.dart';
 import 'package:npng/presentation/widgets/help_icon_button.dart';
 import 'package:wakelock/wakelock.dart';
@@ -10,7 +11,9 @@ import 'package:npng/generated/l10n.dart';
 import 'package:npng/presentation/screens/workout/workout_02_set_screen.dart';
 import 'package:npng/presentation/screens/workout/workout_04_finish_screen.dart';
 
+import '../../../theme.dart';
 import '../../widgets/workout_exercise_settings.dart';
+import '../programs/program_day_add_exercise.dart';
 
 /// Shows current workout program day (with exercises).
 class WorkoutProcessScreen extends StatelessWidget {
@@ -22,8 +25,21 @@ class WorkoutProcessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).currentWorkout),
-        actions: [HelpIconButton(help: S.of(context).hintWorkoutProcess)],
+        title: Text(day?.name as String),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProgramDayAddExercise(
+                  day: day!,
+                ),
+              ),
+            ),
+          ),
+          HelpIconButton(help: S.of(context).hintWorkoutProcess),
+        ],
       ),
       persistentFooterButtons: [
         Builder(
@@ -56,7 +72,7 @@ class WorkoutProcessScreen extends StatelessWidget {
 }
 
 /// Current workout before start.
-class InitListView extends StatelessWidget {
+class InitListView extends StatefulWidget {
   const InitListView({
     super.key,
     required this.day,
@@ -65,11 +81,16 @@ class InitListView extends StatelessWidget {
   final Day? day;
 
   @override
+  State<InitListView> createState() => _InitListViewState();
+}
+
+class _InitListViewState extends State<InitListView> {
+  @override
   Widget build(BuildContext context) {
     Map<int, bool> expanded = {};
     final repository = context.read<Repository>();
     return StreamBuilder<List<Workout>>(
-      stream: repository.findWorkoutByDay(day?.id as int),
+      stream: repository.findWorkoutByDay(widget.day?.id as int),
       builder: (context, AsyncSnapshot<List<Workout>> snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           final List<Workout> workouts =
@@ -81,12 +102,29 @@ class InitListView extends StatelessWidget {
             itemCount: workouts.length,
             itemBuilder: (context, index) {
               final item = workouts[index];
-              return WorkoutExerciseSettings(
-                  key: ValueKey(item),
-                  index: index,
-                  expanded: expanded,
-                  item: item,
-                  repository: repository);
+              return Slidable(
+                key: ValueKey(item),
+                startActionPane: ActionPane(
+                  motion: const ScrollMotion(),
+                  children: [
+                    SlidableAction(
+                      onPressed: (context) {
+                        repository.deleteWorkout(item);
+                        setState(() {});
+                      },
+                      backgroundColor: kActionColorDelete,
+                      foregroundColor: kActionColorIcon,
+                      icon: Icons.delete,
+                      label: S.of(context).delete,
+                    ),
+                  ],
+                ),
+                child: WorkoutExerciseSettings(
+                    index: index,
+                    expanded: expanded,
+                    item: item,
+                    repository: repository),
+              );
             },
             onReorder: (int oldIndex, int newIndex) {
               if (newIndex > oldIndex) newIndex -= 1;
