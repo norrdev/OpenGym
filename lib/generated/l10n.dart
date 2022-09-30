@@ -690,6 +690,16 @@ class S {
     );
   }
 
+  /// `You can only delete a programme day that has never been practised.`
+  String get canNotDelDay {
+    return Intl.message(
+      'You can only delete a programme day that has never been practised.',
+      name: 'canNotDelDay',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Database imported from`
   String get dbImportedFrom {
     return Intl.message(

@@ -131,7 +131,19 @@ class _DaysListWidgetState extends State<DaysListWidget> {
                       motion: const ScrollMotion(),
                       children: [
                         SlidableAction(
-                          onPressed: (context) {},
+                          onPressed: (context) {
+                            bool i = false;
+                            repository
+                                .deleteDay(item.id ?? 0)
+                                .then((value) => i = value);
+                            if (!i) {
+                              SnackBar snackBar = SnackBar(
+                                content: Text(S.of(context).canNotDelDay),
+                              );
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            }
+                          },
                           backgroundColor: kActionColorDelete,
                           foregroundColor: kActionColorIcon,
                           icon: Icons.delete,

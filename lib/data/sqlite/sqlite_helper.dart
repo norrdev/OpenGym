@@ -41,6 +41,62 @@ class SqliteHelper {
   // make this a singleton class
   SqliteHelper._privateConstructor();
 
+  /// Open the database or create it from asset.
+  Future<Database> _initDatabase() async {
+    final documentsDirectory = await getApplicationDocumentsDirectory();
+    final String path = join(documentsDirectory.path, _databaseName);
+    final bool exists = await databaseExists(path);
+
+    // ! Here always created a new database from an asset with the current version.
+    // ! If you want to upgrade the database, first you need to do it
+    // ! manually in assets/db/npng.db then create the migration.
+    // ! After modifying the database, you need to update the version number in the PRAGMA user_version = 5
+    if (!exists) {
+      try {
+        await Directory(dirname(path)).create(recursive: true);
+      } catch (_) {}
+      ByteData data = await rootBundle.load(join('assets/db', 'npng.db'));
+      List<int> bytes =
+          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+      await File(path).writeAsBytes(bytes, flush: true);
+    }
+
+    if (kDebugMode) {
+      Sqflite.setDebugModeOn(true);
+      print(path);
+    } else {
+      Sqflite.setDebugModeOn(false);
+    }
+
+    // Opening DB. Note: do not use onCreate, if db comes from asset.
+    Database db = await openDatabase(
+      path,
+      version: _databaseVersion,
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (kDebugMode) {
+          print('→ oldVersion: $oldVersion');
+          print('→ newVersion: $newVersion');
+        }
+        Batch batch = db.batch();
+        if (oldVersion == 1) {
+          _upgradeV1toV2(batch);
+          if (kDebugMode) {
+            print('→ Database migrated from v1 to v2.');
+          }
+        }
+        if (oldVersion == 2) {
+          _updateV2toV3(batch);
+          if (kDebugMode) {
+            print('→ Database migrated from v2 to v3.');
+          }
+        }
+        await batch.commit();
+      },
+    );
+
+    return db;
+  }
+
   /// Stream database getter.
   Future<Database> get database async {
     if (_database != null) return _database!;
@@ -60,6 +116,11 @@ class SqliteHelper {
     return _streamDatabase;
   }
 
+  /// Close database.
+  void close() {
+    _streamDatabase.close();
+  }
+
   /// Create backup file.
   Future<String> backupDatabase() async {
     final db = await instance.streamDatabase;
@@ -71,11 +132,6 @@ class SqliteHelper {
     } catch (e) {
       return '';
     }
-  }
-
-  /// Close database.
-  void close() {
-    _streamDatabase.close();
   }
 
   /// Delete backup file.
@@ -457,8 +513,6 @@ class SqliteHelper {
         [day.name, day.description, day.id]);
   }
 
-  // Equipment
-
   /// Update exercise.
   Future<int> updateExercise(Exercise exe) async {
     final db = await instance.streamDatabase;
@@ -485,8 +539,6 @@ class SqliteHelper {
         'UPDATE $programsTable SET ${kLocale}_name = ?, ${kLocale}_description = ? WHERE id = ?',
         [program.name, program.description, program.id]);
   }
-
-  // Load
 
   Future<void> updateWorkout(Workout workout) async {
     final db = await instance.streamDatabase;
@@ -521,8 +573,6 @@ class SqliteHelper {
       ],
     ).mapToList((row) => Equipment.fromJson(row));
   }
-
-  // Log
 
   /// Watch all load.
   Stream<List<Load>> watchAllLoad() async* {
@@ -587,61 +637,13 @@ class SqliteHelper {
     ).mapToList((row) => Program.fromJson(row));
   }
 
-  /// Open the database or create it from asset.
-  Future<Database> _initDatabase() async {
-    final documentsDirectory = await getApplicationDocumentsDirectory();
-    final String path = join(documentsDirectory.path, _databaseName);
-    final bool exists = await databaseExists(path);
-
-    // Extract db from asset if it doesn't exist
-    // ! Here always created a new database from an asset with the current version.
-    // ! If you want to upgrade the database, first you need to do it
-    // ! manually in assets/db/npng.db then create the migration.
-    // ! After modifying the database, you need to update the version number in the PRAGMA user_version = 5
-    if (!exists) {
-      try {
-        await Directory(dirname(path)).create(recursive: true);
-      } catch (_) {}
-      ByteData data = await rootBundle.load(join('assets/db', 'npng.db'));
-      List<int> bytes =
-          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-      await File(path).writeAsBytes(bytes, flush: true);
-    }
-
-    // Sqlite debug mode/logging
-    if (kDebugMode) {
-      Sqflite.setDebugModeOn(true);
-      print(path);
-    } else {
-      Sqflite.setDebugModeOn(false);
-    }
-
-    // Opening DB. Note: do not use onCreate, if db comes from asset.
-    Database db = await openDatabase(
-      path,
-      version: _databaseVersion,
-      onUpgrade: (db, oldVersion, newVersion) async {
-        if (kDebugMode) {
-          print('→ oldVersion: $oldVersion');
-          print('→ newVersion: $newVersion');
-        }
-        Batch batch = db.batch();
-        if (oldVersion == 1) {
-          _upgradeV1toV2(batch);
-          if (kDebugMode) {
-            print('→ Database migrated from v1 to v2.');
-          }
-        }
-        if (oldVersion == 2) {
-          _updateV2toV3(batch);
-          if (kDebugMode) {
-            print('→ Database migrated from v2 to v3.');
-          }
-        }
-        await batch.commit();
-      },
-    );
-
-    return db;
+  /// Deletes the day, if it was no used in Log table.
+  /// Returns true on sucsess.
+  Future<bool> deleteDay(int id) async {
+    final db = await instance.streamDatabase;
+    final isInLog = await db.query(logDaysTable, where: 'dayId = $id');
+    if (isInLog.isNotEmpty) return false;
+    db.delete(daysTable, where: 'id = $id');
+    return true;
   }
 }

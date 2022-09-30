@@ -63,6 +63,7 @@
     "currentWorkout": "Current workout",
     "currentProgram": "Current program",
     "dayAdd": "Add day",
+    "canNotDelDay": "You can only delete a programme day that has never been practised.",
     "dbImportedFrom": "Database imported from",
     "delete": "Delete",
     "desc": "Description",
