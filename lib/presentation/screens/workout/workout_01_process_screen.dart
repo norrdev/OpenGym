@@ -13,7 +13,7 @@ import 'package:npng/presentation/screens/workout/workout_04_finish_screen.dart'
 
 import '../../../theme.dart';
 import '../../widgets/workout_exercise_settings.dart';
-import '../programs/program_day_add_exercise.dart';
+import 'program_day_add_exercise.dart';
 
 /// Shows current workout program day (with exercises).
 class WorkoutProcessScreen extends StatelessWidget {

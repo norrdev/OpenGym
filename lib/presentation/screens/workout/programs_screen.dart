@@ -9,7 +9,7 @@ import '../../../data/repository.dart';
 import '../../../generated/l10n.dart';
 import '../../../logic/cubit/default_program_cubit.dart';
 import '../../../theme.dart';
-import '../programs/program_edit_screen.dart';
+import 'program_edit_screen.dart';
 
 class ProgramsScreen extends StatefulWidget {
   const ProgramsScreen({super.key});

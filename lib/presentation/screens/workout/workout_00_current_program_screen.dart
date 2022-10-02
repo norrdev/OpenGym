@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:npng/presentation/screens/programs/program_new_day_screen.dart';
+import 'package:npng/presentation/screens/workout/program_new_day_screen.dart';
 
 import '../../../data/models/models.dart';
 import '../../../data/repository.dart';
