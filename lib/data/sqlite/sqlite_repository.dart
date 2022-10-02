@@ -199,4 +199,9 @@ class SqliteRepository extends Repository {
   Future<bool> deleteDay(int id) {
     return sqliteHelper.deleteDay(id);
   }
+
+  @override
+  Future<bool> deleteProgram(int id) {
+    return sqliteHelper.deleteProgram(id);
+  }
 }

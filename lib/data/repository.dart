@@ -74,4 +74,6 @@ abstract class Repository {
   Future<void> importDataBase(String filePath);
 
   Future<bool> deleteDay(int id);
+
+  Future<bool> deleteProgram(int id);
 }

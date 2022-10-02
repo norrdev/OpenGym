@@ -646,4 +646,8 @@ class SqliteHelper {
     db.delete(daysTable, where: 'id = $id');
     return true;
   }
+
+  Future<bool> deleteProgram(int id) async {
+    return false;
+  }
 }
