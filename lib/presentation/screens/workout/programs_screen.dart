@@ -65,7 +65,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                             if (!i) {
                               // TODO: Change text
                               SnackBar snackBar = SnackBar(
-                                content: Text(S.of(context).canNotDelDay),
+                                content: Text(S.of(context).canNotDelProgram),
                               );
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);

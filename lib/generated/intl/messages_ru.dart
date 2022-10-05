@@ -97,6 +97,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "calculate": MessageLookupByLibrary.simpleMessage("Рассчитать"),
         "canNotDelDay": MessageLookupByLibrary.simpleMessage(
             "Можно удалить только тот день программы, по которому ни разу не занимались."),
+        "canNotDelProgram": MessageLookupByLibrary.simpleMessage(
+            "Программа использовалась, поэтому её нельзя удалить."),
         "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
         "ccontinue": MessageLookupByLibrary.simpleMessage("Продолжить"),
         "cm": MessageLookupByLibrary.simpleMessage("см"),

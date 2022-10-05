@@ -93,7 +93,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter your weight."),
         "calculate": MessageLookupByLibrary.simpleMessage("Calculate"),
         "canNotDelDay": MessageLookupByLibrary.simpleMessage(
-            "You can only delete a programme day that has never been practised."),
+            "You can only delete a program day that has never been practiced."),
+        "canNotDelProgram": MessageLookupByLibrary.simpleMessage(
+            "The programme has been in use so it cannot be deleted."),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "ccontinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "cm": MessageLookupByLibrary.simpleMessage("cm"),
