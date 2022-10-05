@@ -649,13 +649,17 @@ class SqliteHelper {
   /// Return true on sucsess.
   Future<bool> deleteProgram(int id) async {
     final db = await instance.streamDatabase;
+
     // If no days in program
     final programDays =
         await db.query(daysTable, columns: ['id'], where: 'programs_id = $id');
     if (programDays.isEmpty) {
-      db.delete(programsTable, where: 'id = $id');
+      await db.delete(programsTable, where: 'id = $id');
+      // final programs = await db.query(programsTable, columns: ['id']);
+      // setCurrentProgramId(programs.first['id'] as int);
       return true;
     }
+
     // If no program days in log_days
     final isInLog = await db.rawQuery('''
       SELECT * FROM $logDaysTable WHERE dayId IN (SELECT id FROM $daysTable WHERE programs_id = $id)
@@ -665,6 +669,8 @@ class SqliteHelper {
         txn.rawDelete('DELETE FROM $daysTable WHERE programs_id = $id');
         txn.delete(programsTable, where: 'id = $id');
       });
+      // final programs = await db.query(programsTable, columns: ['id']);
+      // setCurrentProgramId(programs.first['id'] as int);
       return true;
     }
     return false;

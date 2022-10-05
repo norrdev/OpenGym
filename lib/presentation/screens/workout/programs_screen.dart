@@ -58,18 +58,15 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                       children: [
                         SlidableAction(
                           onPressed: (_) {
-                            bool i = false;
-                            repository
-                                .deleteProgram(item.id!)
-                                .then((value) => i = value);
-                            if (!i) {
-                              // TODO: Change text
-                              SnackBar snackBar = SnackBar(
-                                content: Text(S.of(context).canNotDelProgram),
-                              );
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
-                            }
+                            repository.deleteProgram(item.id!).then((value) {
+                              if (value == false) {
+                                SnackBar snackBar = SnackBar(
+                                  content: Text(S.of(context).canNotDelProgram),
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              }
+                            });
                           },
                           backgroundColor: kActionColorDelete,
                           foregroundColor: kActionColorIcon,
