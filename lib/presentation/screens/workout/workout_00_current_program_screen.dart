@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:npng/presentation/screens/programs/program_new_day_screen.dart';
+import 'package:npng/presentation/screens/workout/program_new_day_screen.dart';
 
 import '../../../data/models/models.dart';
 import '../../../data/repository.dart';
@@ -131,7 +131,17 @@ class _DaysListWidgetState extends State<DaysListWidget> {
                       motion: const ScrollMotion(),
                       children: [
                         SlidableAction(
-                          onPressed: (context) {},
+                          onPressed: (context) {
+                            repository.deleteDay(item.id ?? 0).then((value) {
+                              if (value == false) {
+                                SnackBar snackBar = SnackBar(
+                                  content: Text(S.of(context).canNotDelDay),
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              }
+                            });
+                          },
                           backgroundColor: kActionColorDelete,
                           foregroundColor: kActionColorIcon,
                           icon: Icons.delete,

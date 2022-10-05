@@ -490,6 +490,16 @@ class S {
     );
   }
 
+  /// `You can only delete a program day that has never been practiced.`
+  String get canNotDelDay {
+    return Intl.message(
+      'You can only delete a program day that has never been practiced.',
+      name: 'canNotDelDay',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Continue`
   String get ccontinue {
     return Intl.message(
@@ -660,21 +670,21 @@ class S {
     );
   }
 
-  /// `Current workout`
-  String get currentWorkout {
-    return Intl.message(
-      'Current workout',
-      name: 'currentWorkout',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Current program`
   String get currentProgram {
     return Intl.message(
       'Current program',
       name: 'currentProgram',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current workout`
+  String get currentWorkout {
+    return Intl.message(
+      'Current workout',
+      name: 'currentWorkout',
       desc: '',
       args: [],
     );
@@ -750,6 +760,16 @@ class S {
     );
   }
 
+  /// `Equipment`
+  String get equipment {
+    return Intl.message(
+      'Equipment',
+      name: 'equipment',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Exercise description`
   String get exDesc {
     return Intl.message(
@@ -765,16 +785,6 @@ class S {
     return Intl.message(
       'Exercise name',
       name: 'exName',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Equipment`
-  String get equipment {
-    return Intl.message(
-      'Equipment',
-      name: 'equipment',
       desc: '',
       args: [],
     );
@@ -815,6 +825,106 @@ class S {
     return Intl.message(
       'Gender',
       name: 'gender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap on the muscle group in the list to show exercises.`
+  String get hintEx {
+    return Intl.message(
+      'Tap on the muscle group in the list to show exercises.',
+      name: 'hintEx',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap + button to add a new exercise. Tap on exercise in the list to view parameters and descriptions. Swipe right to edit exercise.`
+  String get hintExByMuscle {
+    return Intl.message(
+      'Tap + button to add a new exercise. Tap on exercise in the list to view parameters and descriptions. Swipe right to edit exercise.',
+      name: 'hintExByMuscle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap on the date to see workouts. Tap on workout in the dialog to see its log. Swipe left or right to change the month.`
+  String get hintLogCalendar {
+    return Intl.message(
+      'Tap on the date to see workouts. Tap on workout in the dialog to see its log. Swipe left or right to change the month.',
+      name: 'hintLogCalendar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select radio to change the current workout. Swipe right to edit the name of the program. Tap + button on the navigation bar to create a new program.`
+  String get hintPrograms {
+    return Intl.message(
+      'Select radio to change the current workout. Swipe right to edit the name of the program. Tap + button on the navigation bar to create a new program.',
+      name: 'hintPrograms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select muscle group and tap + button in exercises list.`
+  String get hintProgramsAddEx {
+    return Intl.message(
+      'Select muscle group and tap + button in exercises list.',
+      name: 'hintProgramsAddEx',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This is the workout day plan. Drug exercises up or down to change order. Press + button to add a new exercise. Swipe right to edit say's name.`
+  String get hintProgramsDay {
+    return Intl.message(
+      'This is the workout day plan. Drug exercises up or down to change order. Press + button to add a new exercise. Swipe right to edit say\'s name.',
+      name: 'hintProgramsDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Days of the workout. Tap + button to add a new day. Swipe right to edit the day's name. Tap day to add or remove exercises.`
+  String get hintProgramsDays {
+    return Intl.message(
+      'Days of the workout. Tap + button to add a new day. Swipe right to edit the day\'s name. Tap day to add or remove exercises.',
+      name: 'hintProgramsDays',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This is your current workout program. Tap on the day in the list to begin training. Select another program you can on the Programs screen.`
+  String get hintWorkout {
+    return Intl.message(
+      'This is your current workout program. Tap on the day in the list to begin training. Select another program you can on the Programs screen.',
+      name: 'hintWorkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This is the list of current-day exercises. Tap on the exercise to change its parameters (sets, weights), and drag the exercise up or down to change order. Press Start to begin training.`
+  String get hintWorkoutProcess {
+    return Intl.message(
+      'This is the list of current-day exercises. Tap on the exercise to change its parameters (sets, weights), and drag the exercise up or down to change order. Press Start to begin training.',
+      name: 'hintWorkoutProcess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Run a set and enter its parameters. You can increase or decrease the number of sets. Press Save & rest to rest and to prepare for the next set.`
+  String get hintWorkoutSets {
+    return Intl.message(
+      'Run a set and enter its parameters. You can increase or decrease the number of sets. Press Save & rest to rest and to prepare for the next set.',
+      name: 'hintWorkoutSets',
       desc: '',
       args: [],
     );
@@ -1000,11 +1110,41 @@ class S {
     );
   }
 
+  /// `left`
+  String get left {
+    return Intl.message(
+      'left',
+      name: 'left',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Licenses`
   String get licenses {
     return Intl.message(
       'Licenses',
       name: 'licenses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Limbs work alternately or separately`
+  String get limbsWorkAlt {
+    return Intl.message(
+      'Limbs work alternately or separately',
+      name: 'limbsWorkAlt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Load`
+  String get loadStr {
+    return Intl.message(
+      'Load',
+      name: 'loadStr',
       desc: '',
       args: [],
     );
@@ -1025,26 +1165,6 @@ class S {
     return Intl.message(
       'Lombardi',
       name: 'Lombardi',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Load`
-  String get loadStr {
-    return Intl.message(
-      'Load',
-      name: 'loadStr',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `left`
-  String get left {
-    return Intl.message(
-      'left',
-      name: 'left',
       desc: '',
       args: [],
     );
@@ -1320,6 +1440,16 @@ class S {
     );
   }
 
+  /// `One bar or no bar`
+  String get oneBarOrNoBar {
+    return Intl.message(
+      'One bar or no bar',
+      name: 'oneBarOrNoBar',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Add exercise`
   String get pageAddEx {
     return Intl.message(
@@ -1370,21 +1500,21 @@ class S {
     );
   }
 
-  /// `Add program`
-  String get programAdd {
-    return Intl.message(
-      'Add program',
-      name: 'programAdd',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Preinstalled exercise`
   String get preinstalledEx {
     return Intl.message(
       'Preinstalled exercise',
       name: 'preinstalledEx',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add program`
+  String get programAdd {
+    return Intl.message(
+      'Add program',
+      name: 'programAdd',
       desc: '',
       args: [],
     );
@@ -1455,6 +1585,16 @@ class S {
     return Intl.message(
       'Relative fat mass (RFM)',
       name: 'rfmPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `right`
+  String get right {
+    return Intl.message(
+      'right',
+      name: 'right',
       desc: '',
       args: [],
     );
@@ -1660,6 +1800,16 @@ class S {
     );
   }
 
+  /// `Time`
+  String get time {
+    return Intl.message(
+      'Time',
+      name: 'time',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Timer`
   String get timer {
     return Intl.message(
@@ -1690,11 +1840,21 @@ class S {
     );
   }
 
-  /// `Time`
-  String get time {
+  /// `Two bars`
+  String get twoBars {
     return Intl.message(
-      'Time',
-      name: 'time',
+      'Two bars',
+      name: 'twoBars',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Both limbs work simultaneously or one muscle group works`
+  String get twoLimbsWorksTogether {
+    return Intl.message(
+      'Both limbs work simultaneously or one muscle group works',
+      name: 'twoLimbsWorksTogether',
       desc: '',
       args: [],
     );
@@ -1810,151 +1970,11 @@ class S {
     );
   }
 
-  /// `One bar or no bar`
-  String get oneBarOrNoBar {
+  /// `The programme has been in use so it cannot be deleted.`
+  String get canNotDelProgram {
     return Intl.message(
-      'One bar or no bar',
-      name: 'oneBarOrNoBar',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Two bars`
-  String get twoBars {
-    return Intl.message(
-      'Two bars',
-      name: 'twoBars',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Both limbs work simultaneously or one muscle group works`
-  String get twoLimbsWorksTogether {
-    return Intl.message(
-      'Both limbs work simultaneously or one muscle group works',
-      name: 'twoLimbsWorksTogether',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Limbs work alternately or separately`
-  String get limbsWorkAlt {
-    return Intl.message(
-      'Limbs work alternately or separately',
-      name: 'limbsWorkAlt',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `right`
-  String get right {
-    return Intl.message(
-      'right',
-      name: 'right',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `This is your current workout program. Tap on the day in the list to begin training. Select another program you can on the Programs screen.`
-  String get hintWorkout {
-    return Intl.message(
-      'This is your current workout program. Tap on the day in the list to begin training. Select another program you can on the Programs screen.',
-      name: 'hintWorkout',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `This is the list of current-day exercises. Tap on the exercise to change its parameters (sets, weights), and drag the exercise up or down to change order. Press Start to begin training.`
-  String get hintWorkoutProcess {
-    return Intl.message(
-      'This is the list of current-day exercises. Tap on the exercise to change its parameters (sets, weights), and drag the exercise up or down to change order. Press Start to begin training.',
-      name: 'hintWorkoutProcess',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Run a set and enter its parameters. You can increase or decrease the number of sets. Press Save & rest to rest and to prepare for the next set.`
-  String get hintWorkoutSets {
-    return Intl.message(
-      'Run a set and enter its parameters. You can increase or decrease the number of sets. Press Save & rest to rest and to prepare for the next set.',
-      name: 'hintWorkoutSets',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Select radio to change the current workout. Swipe right to edit the name of the program. Tap + button on the navigation bar to create a new program.`
-  String get hintPrograms {
-    return Intl.message(
-      'Select radio to change the current workout. Swipe right to edit the name of the program. Tap + button on the navigation bar to create a new program.',
-      name: 'hintPrograms',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `This is the workout day plan. Drug exercises up or down to change order. Press + button to add a new exercise. Swipe right to edit say's name.`
-  String get hintProgramsDay {
-    return Intl.message(
-      'This is the workout day plan. Drug exercises up or down to change order. Press + button to add a new exercise. Swipe right to edit say\'s name.',
-      name: 'hintProgramsDay',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Days of the workout. Tap + button to add a new day. Swipe right to edit the day's name. Tap day to add or remove exercises.`
-  String get hintProgramsDays {
-    return Intl.message(
-      'Days of the workout. Tap + button to add a new day. Swipe right to edit the day\'s name. Tap day to add or remove exercises.',
-      name: 'hintProgramsDays',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Select muscle group and tap + button in exercises list.`
-  String get hintProgramsAddEx {
-    return Intl.message(
-      'Select muscle group and tap + button in exercises list.',
-      name: 'hintProgramsAddEx',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Tap on the muscle group in the list to show exercises.`
-  String get hintEx {
-    return Intl.message(
-      'Tap on the muscle group in the list to show exercises.',
-      name: 'hintEx',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Tap + button to add a new exercise. Tap on exercise in the list to view parameters and descriptions. Swipe right to edit exercise.`
-  String get hintExByMuscle {
-    return Intl.message(
-      'Tap + button to add a new exercise. Tap on exercise in the list to view parameters and descriptions. Swipe right to edit exercise.',
-      name: 'hintExByMuscle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Tap on the date to see workouts. Tap on workout in the dialog to see its log. Swipe left or right to change the month.`
-  String get hintLogCalendar {
-    return Intl.message(
-      'Tap on the date to see workouts. Tap on workout in the dialog to see its log. Swipe left or right to change the month.',
-      name: 'hintLogCalendar',
+      'The programme has been in use so it cannot be deleted.',
+      name: 'canNotDelProgram',
       desc: '',
       args: [],
     );

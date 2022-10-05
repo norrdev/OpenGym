@@ -194,4 +194,14 @@ class SqliteRepository extends Repository {
   Future<Equipment> findEquipmentById(int id) async {
     return sqliteHelper.findEquipmentById(id);
   }
+
+  @override
+  Future<bool> deleteDay(int id) {
+    return sqliteHelper.deleteDay(id);
+  }
+
+  @override
+  Future<bool> deleteProgram(int id) {
+    return sqliteHelper.deleteProgram(id);
+  }
 }

@@ -9,7 +9,7 @@ import '../../../data/repository.dart';
 import '../../../generated/l10n.dart';
 import '../../../logic/cubit/default_program_cubit.dart';
 import '../../../theme.dart';
-import '../programs/program_edit_screen.dart';
+import 'program_edit_screen.dart';
 
 class ProgramsScreen extends StatefulWidget {
   const ProgramsScreen({super.key});
@@ -56,6 +56,23 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                     startActionPane: ActionPane(
                       motion: const ScrollMotion(),
                       children: [
+                        SlidableAction(
+                          onPressed: (_) {
+                            repository.deleteProgram(item.id!).then((value) {
+                              if (value == false) {
+                                SnackBar snackBar = SnackBar(
+                                  content: Text(S.of(context).canNotDelProgram),
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              }
+                            });
+                          },
+                          backgroundColor: kActionColorDelete,
+                          foregroundColor: kActionColorIcon,
+                          icon: Icons.delete,
+                          label: S.of(context).delete,
+                        ),
                         SlidableAction(
                           onPressed: (context) => Navigator.push(
                             context,
