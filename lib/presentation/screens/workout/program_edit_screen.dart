@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:npng/data/models/models.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProgramEditScreen extends StatelessWidget {
   final Program program;
