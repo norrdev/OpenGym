@@ -1,5 +1,9 @@
-## 3.0.0
+## 3.1.0
+- Merged programs and workout screens.
+- Ability to delete day in the program.
+- Ability to delete program.
 
+## 3.0.0
 - Core refactoring.
 - Updated preinstalled exercises catalog.
 - Improved performance.
@@ -15,8 +19,8 @@
 - Small hints on every screen.
 
 ## 2.1.0
-- Same design in all operating systems.
-- Exercises checkbox on workout screen.
+- The same design is in all operating systems.
+- Exercises checkbox on the workout screen.
 - The programs selector moved to the Workout screen.
 - Removed window header in macOS.
 - Improved work with small screens.
@@ -54,7 +58,7 @@
 
 ## 1.1.1
 - Performance and interface fixes.
-- Replaced "Edit" name buttons to long tap. 
+- Replaced "Edit" name buttons with a long tap. 
 
 ## 1.1.0
 - Changed alarm sound.
