@@ -840,10 +840,10 @@ class S {
     );
   }
 
-  /// `Tap + button to add a new exercise. Tap on exercise in the list to view parameters and descriptions. Swipe right to edit exercise.`
+  /// `Tap + button to add a new exercise. Tap on the exercise in the list to view parameters and descriptions. Swipe right to edit exercise.`
   String get hintExByMuscle {
     return Intl.message(
-      'Tap + button to add a new exercise. Tap on exercise in the list to view parameters and descriptions. Swipe right to edit exercise.',
+      'Tap + button to add a new exercise. Tap on the exercise in the list to view parameters and descriptions. Swipe right to edit exercise.',
       name: 'hintExByMuscle',
       desc: '',
       args: [],
@@ -900,10 +900,10 @@ class S {
     );
   }
 
-  /// `This is your current workout program. Tap on the day in the list to begin training. Select another program you can on the Programs screen.`
+  /// `This is your current workout program. Tap on the day in the list to begin training. Press + button to add a day, press 📁 button to see programs list and select default program. Swipe right to edit and delete day.`
   String get hintWorkout {
     return Intl.message(
-      'This is your current workout program. Tap on the day in the list to begin training. Select another program you can on the Programs screen.',
+      'This is your current workout program. Tap on the day in the list to begin training. Press + button to add a day, press 📁 button to see programs list and select default program. Swipe right to edit and delete day.',
       name: 'hintWorkout',
       desc: '',
       args: [],

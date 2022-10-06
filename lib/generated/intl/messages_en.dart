@@ -143,7 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hintEx": MessageLookupByLibrary.simpleMessage(
             "Tap on the muscle group in the list to show exercises."),
         "hintExByMuscle": MessageLookupByLibrary.simpleMessage(
-            "Tap + button to add a new exercise. Tap on exercise in the list to view parameters and descriptions. Swipe right to edit exercise."),
+            "Tap + button to add a new exercise. Tap on the exercise in the list to view parameters and descriptions. Swipe right to edit exercise."),
         "hintLogCalendar": MessageLookupByLibrary.simpleMessage(
             "Tap on the date to see workouts. Tap on workout in the dialog to see its log. Swipe left or right to change the month."),
         "hintPrograms": MessageLookupByLibrary.simpleMessage(
@@ -155,7 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hintProgramsDays": MessageLookupByLibrary.simpleMessage(
             "Days of the workout. Tap + button to add a new day. Swipe right to edit the day\'s name. Tap day to add or remove exercises."),
         "hintWorkout": MessageLookupByLibrary.simpleMessage(
-            "This is your current workout program. Tap on the day in the list to begin training. Select another program you can on the Programs screen."),
+            "This is your current workout program. Tap on the day in the list to begin training. Press + button to add a day, press 📁 button to see programs list and select default program. Swipe right to edit and delete day."),
         "hintWorkoutProcess": MessageLookupByLibrary.simpleMessage(
             "This is the list of current-day exercises. Tap on the exercise to change its parameters (sets, weights), and drag the exercise up or down to change order. Press Start to begin training."),
         "hintWorkoutSets": MessageLookupByLibrary.simpleMessage(
