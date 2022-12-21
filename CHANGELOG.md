@@ -1,3 +1,6 @@
+## 3.1.1
+- Updated libraries.
+
 ## 3.1.0
 - Merged programs and workout screens.
 - Ability to delete day in the program.
