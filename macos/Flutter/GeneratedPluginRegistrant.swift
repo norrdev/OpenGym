@@ -6,9 +6,9 @@ import FlutterMacOS
 import Foundation
 
 import audioplayers_darwin
-import package_info_plus
+import package_info_plus_macos
 import path_provider_macos
-import share_plus
+import share_plus_macos
 import shared_preferences_macos
 import sqflite
 import url_launcher_macos
