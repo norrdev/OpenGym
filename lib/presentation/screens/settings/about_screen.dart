@@ -27,7 +27,8 @@ class AboutScreen extends StatelessWidget {
           controller: controller,
           selectable: false,
           styleSheet: style,
-          onTapLink: (text, href, title) => launchUrl(Uri.parse(href!)),
+          onTapLink: (text, href, title) =>
+              launch(href!), // launchUrl(Uri.parse(href!)),
         ),
       ),
     );

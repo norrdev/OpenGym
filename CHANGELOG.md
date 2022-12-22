@@ -1,3 +1,6 @@
+## 3.1.2
+- Bug fix.
+
 ## 3.1.1
 - Updated libraries.
 

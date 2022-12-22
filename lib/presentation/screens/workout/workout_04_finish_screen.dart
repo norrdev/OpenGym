@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../constants/workout.dart';
 import '../../../data/models/workout_exercise.dart';
@@ -69,7 +69,8 @@ class WorkoutFinishScreen extends StatelessWidget {
           controller: controller,
           selectable: false,
           styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)),
-          onTapLink: (text, href, title) => launchUrlString(href!),
+          onTapLink: (text, href, title) => launch(href!),
+          //launchUrlString(href!),
         ),
       ),
       persistentFooterButtons: [
