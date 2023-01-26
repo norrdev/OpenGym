@@ -40,8 +40,6 @@ linter:
     prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
     # avoid_empty_else: true
     avoid_print: true
-    strict-casts: true
-    strict-raw-types: true
 
     # always_use_package_imports: true
     # avoid_relative_lib_imports: true
