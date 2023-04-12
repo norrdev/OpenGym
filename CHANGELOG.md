@@ -1,3 +1,6 @@
+## 3.1.3
+- Default import path now is system downloads folder.
+
 ## 3.1.2
 - Bug fix.
 
@@ -19,7 +22,7 @@
 - Added different types of loads (repeats, time, distance).
 - Added limbs number for correct training volume calculation.
 - Total training volume on the finish and log screen.
-- Fixed memory leak in Log.
+- Fixed memory leak in Lo
 - Added calculators: BMI, ABSI, BFP, RFM, LBM, body proportions, 1 RM, IFP, VO max, Cooper test.
 - Fixed desktop window header.
 - Small hints on every screen.

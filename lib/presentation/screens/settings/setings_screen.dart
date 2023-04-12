@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:npng/presentation/widgets/burger_menu.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import 'package:npng/main.dart';
@@ -48,16 +49,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
     String about = await _loadAsset('assets/texts/$myLocale/about.md');
     about = about.replaceAll('%version%', version);
     String history = await _loadAsset('CHANGELOG.md');
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (BuildContext context) => AboutScreen(
-          about: about,
-          history: history,
-          version: version,
+    if (context.mounted) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => AboutScreen(
+            about: about,
+            history: history,
+            version: version,
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 
   /// Preparing data for "Share" dialog.
@@ -66,11 +69,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
         RepositoryProvider.of<Repository>(context, listen: false);
     String path = await repository.backupDatabase();
     if (path.isNotEmpty) {
-      final Size size = MediaQuery.of(context).size;
-      await Share.shareFiles(
-        [path],
-        sharePositionOrigin: Rect.fromLTWH(0, 0, size.width, size.height / 6),
-      );
+      if (context.mounted) {
+        final Size size = MediaQuery.of(context).size;
+
+        await Share.shareFiles(
+          [path],
+          sharePositionOrigin: Rect.fromLTWH(0, 0, size.width, size.height / 6),
+        );
+      }
     }
   }
 
@@ -91,26 +97,32 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void _importFile(BuildContext context) async {
     final Repository repository =
         RepositoryProvider.of<Repository>(context, listen: false);
+    final downloadsDirectory = await getApplicationDocumentsDirectory();
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.any,
+      initialDirectory: downloadsDirectory.path,
     );
     if (result != null) {
       await repository.importDataBase(result.files.single.path!);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-              '${S.of(context).dbImportedFrom} ${result.files.single.path}.'),
-        ),
-      );
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+                '${S.of(context).dbImportedFrom} ${result.files.single.path}.'),
+          ),
+        );
+      }
       Timer(const Duration(seconds: 3), () {
         exit(0);
       });
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(S.of(context).nothingSelected),
-        ),
-      );
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(S.of(context).nothingSelected),
+          ),
+        );
+      }
     }
   }
 
@@ -135,7 +147,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 style: const TextStyle(color: Colors.redAccent)),
             subtitle: Text(
               S.of(context).importWarning,
-              style: Theme.of(context).textTheme.caption,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
             onTap: () => _importFile(context),
           ),
