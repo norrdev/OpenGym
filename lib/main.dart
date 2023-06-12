@@ -1,5 +1,6 @@
 import 'dart:io' show Platform;
 
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +13,6 @@ import 'logic/cubit/current_tab_cubit.dart';
 import 'logic/cubit/default_program_cubit.dart';
 import 'logic/cubit/workout_cubit.dart';
 import 'presentation/routes/route_map.dart';
-import 'theme.dart';
 
 // final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
 // bool get isMobileDevice => !kIsWeb && (Platform.isIOS || Platform.isAndroid);
@@ -54,25 +54,36 @@ void main() async {
 
 class Application extends StatelessWidget {
   const Application({super.key});
+  static final _defaultLightColorScheme = ColorScheme.fromSwatch();
 
+  static final _defaultDarkColorScheme =
+      ColorScheme.fromSwatch(brightness: Brightness.dark);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      //locale: const Locale('ru', 'RU'),
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      onGenerateTitle: (BuildContext context) => S.of(context).title,
-      theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
-      themeMode: ThemeMode.system,
-      initialRoute: kInitialRoute,
-      routes: appRoutes,
-    );
+    return DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        //locale: const Locale('ru', 'RU'),
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        onGenerateTitle: (BuildContext context) => S.of(context).title,
+        theme: ThemeData(
+          colorScheme: lightColorScheme ?? _defaultLightColorScheme,
+          useMaterial3: true,
+        ),
+        darkTheme: ThemeData(
+          colorScheme: darkColorScheme ?? _defaultDarkColorScheme,
+          useMaterial3: true,
+        ),
+        themeMode: ThemeMode.system,
+        initialRoute: kInitialRoute,
+        routes: appRoutes,
+      );
+    });
   }
 }

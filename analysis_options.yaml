@@ -19,8 +19,6 @@ analyzer:
   language:
     strict-raw-types: true
     strict-casts: true
-  strong-mode:
-    implicit-casts: false
 
 linter:
   # The lint rules applied to this project can be customized in the
