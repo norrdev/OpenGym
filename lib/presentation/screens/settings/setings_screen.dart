@@ -7,12 +7,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:npng/presentation/widgets/burger_menu.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import 'package:npng/main.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
+import 'package:sqflite/sqflite.dart';
 
 import 'about_screen.dart';
 
@@ -97,10 +97,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void _importFile(BuildContext context) async {
     final Repository repository =
         RepositoryProvider.of<Repository>(context, listen: false);
-    final downloadsDirectory = await getApplicationDocumentsDirectory();
+    final downloadsDirectory = await getDatabasesPath();
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.any,
-      initialDirectory: downloadsDirectory.path,
+      initialDirectory: downloadsDirectory,
     );
     if (result != null) {
       await repository.importDataBase(result.files.single.path!);
@@ -112,7 +112,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         );
       }
-      Timer(const Duration(seconds: 3), () {
+      Timer(const Duration(seconds: 5), () {
         exit(0);
       });
     } else {

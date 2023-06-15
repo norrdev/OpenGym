@@ -1,3 +1,6 @@
+## 3.1.4
+- Fixed the file import bug on android devices.
+
 ## 3.1.3
 - Default import path now is system downloads folder.
 
@@ -9,8 +12,8 @@
 
 ## 3.1.0
 - Merged programs and workout screens.
-- Ability to delete day in the program.
-- Ability to delete program.
+- Ability to delete a day in the program.
+- Ability to delete a program.
 
 ## 3.0.0
 - Core refactoring.

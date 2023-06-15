@@ -133,7 +133,7 @@ class _LogWorkoutScreenState extends State<LogWorkoutScreen> {
             onTapLink: (text, href, title) => launch(href!),
             //launchUrl(Uri.parse(href ?? '')),
           ),
-        ));
+        ),);
   }
 
   @override

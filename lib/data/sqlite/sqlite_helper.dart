@@ -1,10 +1,10 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:sqlbrite/sqlbrite.dart';
 import 'package:synchronized/synchronized.dart';
 
@@ -43,8 +43,8 @@ class SqliteHelper {
 
   /// Open the database or create it from asset.
   Future<Database> _initDatabase() async {
-    final documentsDirectory = await getApplicationDocumentsDirectory();
-    final String path = join(documentsDirectory.path, _databaseName);
+    final appDbDirectory = await getDatabasesPath();
+    final String path = join(appDbDirectory, _databaseName);
     final bool exists = await databaseExists(path);
 
     // ! Here always created a new database from an asset with the current version.
@@ -55,15 +55,16 @@ class SqliteHelper {
       try {
         await Directory(dirname(path)).create(recursive: true);
       } catch (_) {}
-      ByteData data = await rootBundle.load(join('assets/db', 'npng.db'));
+      ByteData data = await rootBundle.load(join('assets', 'db', 'npng.db'));
       List<int> bytes =
           data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
       await File(path).writeAsBytes(bytes, flush: true);
+      log('New DB loaded from template.');
     }
 
     if (kDebugMode) {
       Sqflite.setDebugModeOn(true);
-      print(path);
+      log('Init DB, path to file: $path');
     } else {
       Sqflite.setDebugModeOn(false);
     }
@@ -73,22 +74,19 @@ class SqliteHelper {
       path,
       version: _databaseVersion,
       onUpgrade: (db, oldVersion, newVersion) async {
-        if (kDebugMode) {
-          print('→ oldVersion: $oldVersion');
-          print('→ newVersion: $newVersion');
-        }
+        log('→ oldVersion: $oldVersion');
+        log('→ newVersion: $newVersion');
+
         Batch batch = db.batch();
         if (oldVersion == 1) {
           _upgradeV1toV2(batch);
-          if (kDebugMode) {
-            print('→ Database migrated from v1 to v2.');
-          }
+
+          log('→ Database migrated from v1 to v2.');
         }
         if (oldVersion == 2) {
           _updateV2toV3(batch);
-          if (kDebugMode) {
-            print('→ Database migrated from v2 to v3.');
-          }
+
+          log('→ Database migrated from v2 to v3.');
         }
         await batch.commit();
       },
@@ -124,7 +122,8 @@ class SqliteHelper {
   /// Create backup file.
   Future<String> backupDatabase() async {
     final db = await instance.streamDatabase;
-    String path = '${await getDatabasesPath()}/npng-backup.db';
+    String dbPath = await getDatabasesPath();
+    String path = join(dbPath,'npng-backup.db');
     try {
       await deleteDbBackupFile(path);
       await db.rawQuery("VACUUM INTO '$path'");
@@ -136,7 +135,8 @@ class SqliteHelper {
 
   /// Delete backup file.
   Future<void> deleteDbBackupFile(String filePath) async {
-    if (filePath != '${await getDatabasesPath()}/npng.db') {
+    String dbPath = await getDatabasesPath();
+    if (filePath != join(dbPath,'npng.db')) {
       File fileToDel = File(filePath);
       if (await fileToDel.exists()) {
         fileToDel.delete();
@@ -350,10 +350,13 @@ class SqliteHelper {
   Future<void> importDataBase(String filePath) async {
     final db = await instance.streamDatabase;
     File file = File(filePath);
-    String pathToDb = '${await getDatabasesPath()}/npng.db';
+
+    String dbPath = await getDatabasesPath();
+    String pathToDbFile = join(dbPath, 'npng.db');
+    log('Import, path to DB: $pathToDbFile');
     await db.close();
-    _database = null;
-    file.copySync(pathToDb);
+    final copiedFile = file.copySync(pathToDbFile);
+    log('Import, copied file: ${copiedFile.path}');
     return Future.value();
   }
 
