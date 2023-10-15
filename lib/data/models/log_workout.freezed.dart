@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'log_workout.dart';
 
@@ -41,7 +41,8 @@ mixin _$LogWorkout {
 abstract class $LogWorkoutCopyWith<$Res> {
   factory $LogWorkoutCopyWith(
           LogWorkout value, $Res Function(LogWorkout) then) =
-      _$LogWorkoutCopyWithImpl<$Res>;
+      _$LogWorkoutCopyWithImpl<$Res, LogWorkout>;
+  @useResult
   $Res call(
       {int? id,
       int? repeats,
@@ -56,13 +57,16 @@ abstract class $LogWorkoutCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LogWorkoutCopyWithImpl<$Res> implements $LogWorkoutCopyWith<$Res> {
+class _$LogWorkoutCopyWithImpl<$Res, $Val extends LogWorkout>
+    implements $LogWorkoutCopyWith<$Res> {
   _$LogWorkoutCopyWithImpl(this._value, this._then);
 
-  final LogWorkout _value;
   // ignore: unused_field
-  final $Res Function(LogWorkout) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -77,57 +81,58 @@ class _$LogWorkoutCopyWithImpl<$Res> implements $LogWorkoutCopyWith<$Res> {
     Object? limbs = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      repeats: repeats == freezed
+      repeats: freezed == repeats
           ? _value.repeats
           : repeats // ignore: cast_nullable_to_non_nullable
               as int?,
-      repeatsLeft: repeatsLeft == freezed
+      repeatsLeft: freezed == repeatsLeft
           ? _value.repeatsLeft
           : repeatsLeft // ignore: cast_nullable_to_non_nullable
               as int?,
-      weight: weight == freezed
+      weight: freezed == weight
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as double?,
-      weightLeft: weightLeft == freezed
+      weightLeft: freezed == weightLeft
           ? _value.weightLeft
           : weightLeft // ignore: cast_nullable_to_non_nullable
               as double?,
-      distance: distance == freezed
+      distance: freezed == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
               as double?,
-      timeLoad: timeLoad == freezed
+      timeLoad: freezed == timeLoad
           ? _value.timeLoad
           : timeLoad // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      loadId: loadId == freezed
+      loadId: freezed == loadId
           ? _value.loadId
           : loadId // ignore: cast_nullable_to_non_nullable
               as int?,
-      limbs: limbs == freezed
+      limbs: freezed == limbs
           ? _value.limbs
           : limbs // ignore: cast_nullable_to_non_nullable
               as int?,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_LogWorkoutCopyWith<$Res>
+abstract class _$$LogWorkoutImplCopyWith<$Res>
     implements $LogWorkoutCopyWith<$Res> {
-  factory _$$_LogWorkoutCopyWith(
-          _$_LogWorkout value, $Res Function(_$_LogWorkout) then) =
-      __$$_LogWorkoutCopyWithImpl<$Res>;
+  factory _$$LogWorkoutImplCopyWith(
+          _$LogWorkoutImpl value, $Res Function(_$LogWorkoutImpl) then) =
+      __$$LogWorkoutImplCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int? id,
       int? repeats,
@@ -142,15 +147,14 @@ abstract class _$$_LogWorkoutCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LogWorkoutCopyWithImpl<$Res> extends _$LogWorkoutCopyWithImpl<$Res>
-    implements _$$_LogWorkoutCopyWith<$Res> {
-  __$$_LogWorkoutCopyWithImpl(
-      _$_LogWorkout _value, $Res Function(_$_LogWorkout) _then)
-      : super(_value, (v) => _then(v as _$_LogWorkout));
+class __$$LogWorkoutImplCopyWithImpl<$Res>
+    extends _$LogWorkoutCopyWithImpl<$Res, _$LogWorkoutImpl>
+    implements _$$LogWorkoutImplCopyWith<$Res> {
+  __$$LogWorkoutImplCopyWithImpl(
+      _$LogWorkoutImpl _value, $Res Function(_$LogWorkoutImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _$_LogWorkout get _value => super._value as _$_LogWorkout;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -164,44 +168,44 @@ class __$$_LogWorkoutCopyWithImpl<$Res> extends _$LogWorkoutCopyWithImpl<$Res>
     Object? loadId = freezed,
     Object? limbs = freezed,
   }) {
-    return _then(_$_LogWorkout(
-      id: id == freezed
+    return _then(_$LogWorkoutImpl(
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      repeats: repeats == freezed
+      repeats: freezed == repeats
           ? _value.repeats
           : repeats // ignore: cast_nullable_to_non_nullable
               as int?,
-      repeatsLeft: repeatsLeft == freezed
+      repeatsLeft: freezed == repeatsLeft
           ? _value.repeatsLeft
           : repeatsLeft // ignore: cast_nullable_to_non_nullable
               as int?,
-      weight: weight == freezed
+      weight: freezed == weight
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as double?,
-      weightLeft: weightLeft == freezed
+      weightLeft: freezed == weightLeft
           ? _value.weightLeft
           : weightLeft // ignore: cast_nullable_to_non_nullable
               as double?,
-      distance: distance == freezed
+      distance: freezed == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
               as double?,
-      timeLoad: timeLoad == freezed
+      timeLoad: freezed == timeLoad
           ? _value.timeLoad
           : timeLoad // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      loadId: loadId == freezed
+      loadId: freezed == loadId
           ? _value.loadId
           : loadId // ignore: cast_nullable_to_non_nullable
               as int?,
-      limbs: limbs == freezed
+      limbs: freezed == limbs
           ? _value.limbs
           : limbs // ignore: cast_nullable_to_non_nullable
               as int?,
@@ -211,8 +215,8 @@ class __$$_LogWorkoutCopyWithImpl<$Res> extends _$LogWorkoutCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_LogWorkout implements _LogWorkout {
-  const _$_LogWorkout(
+class _$LogWorkoutImpl implements _LogWorkout {
+  const _$LogWorkoutImpl(
       {this.id,
       this.repeats,
       this.repeatsLeft,
@@ -224,8 +228,8 @@ class _$_LogWorkout implements _LogWorkout {
       this.loadId,
       this.limbs});
 
-  factory _$_LogWorkout.fromJson(Map<String, dynamic> json) =>
-      _$$_LogWorkoutFromJson(json);
+  factory _$LogWorkoutImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LogWorkoutImplFromJson(json);
 
   @override
   final int? id;
@@ -257,44 +261,37 @@ class _$_LogWorkout implements _LogWorkout {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LogWorkout &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.repeats, repeats) &&
-            const DeepCollectionEquality()
-                .equals(other.repeatsLeft, repeatsLeft) &&
-            const DeepCollectionEquality().equals(other.weight, weight) &&
-            const DeepCollectionEquality()
-                .equals(other.weightLeft, weightLeft) &&
-            const DeepCollectionEquality().equals(other.distance, distance) &&
-            const DeepCollectionEquality().equals(other.timeLoad, timeLoad) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.loadId, loadId) &&
-            const DeepCollectionEquality().equals(other.limbs, limbs));
+            other is _$LogWorkoutImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.repeats, repeats) || other.repeats == repeats) &&
+            (identical(other.repeatsLeft, repeatsLeft) ||
+                other.repeatsLeft == repeatsLeft) &&
+            (identical(other.weight, weight) || other.weight == weight) &&
+            (identical(other.weightLeft, weightLeft) ||
+                other.weightLeft == weightLeft) &&
+            (identical(other.distance, distance) ||
+                other.distance == distance) &&
+            (identical(other.timeLoad, timeLoad) ||
+                other.timeLoad == timeLoad) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.loadId, loadId) || other.loadId == loadId) &&
+            (identical(other.limbs, limbs) || other.limbs == limbs));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(repeats),
-      const DeepCollectionEquality().hash(repeatsLeft),
-      const DeepCollectionEquality().hash(weight),
-      const DeepCollectionEquality().hash(weightLeft),
-      const DeepCollectionEquality().hash(distance),
-      const DeepCollectionEquality().hash(timeLoad),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(loadId),
-      const DeepCollectionEquality().hash(limbs));
+  int get hashCode => Object.hash(runtimeType, id, repeats, repeatsLeft, weight,
+      weightLeft, distance, timeLoad, name, loadId, limbs);
 
   @JsonKey(ignore: true)
   @override
-  _$$_LogWorkoutCopyWith<_$_LogWorkout> get copyWith =>
-      __$$_LogWorkoutCopyWithImpl<_$_LogWorkout>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$LogWorkoutImplCopyWith<_$LogWorkoutImpl> get copyWith =>
+      __$$LogWorkoutImplCopyWithImpl<_$LogWorkoutImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LogWorkoutToJson(
+    return _$$LogWorkoutImplToJson(
       this,
     );
   }
@@ -311,10 +308,10 @@ abstract class _LogWorkout implements LogWorkout {
       final int? timeLoad,
       final String? name,
       final int? loadId,
-      final int? limbs}) = _$_LogWorkout;
+      final int? limbs}) = _$LogWorkoutImpl;
 
   factory _LogWorkout.fromJson(Map<String, dynamic> json) =
-      _$_LogWorkout.fromJson;
+      _$LogWorkoutImpl.fromJson;
 
   @override
   int? get id;
@@ -338,6 +335,6 @@ abstract class _LogWorkout implements LogWorkout {
   int? get limbs;
   @override
   @JsonKey(ignore: true)
-  _$$_LogWorkoutCopyWith<_$_LogWorkout> get copyWith =>
+  _$$LogWorkoutImplCopyWith<_$LogWorkoutImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

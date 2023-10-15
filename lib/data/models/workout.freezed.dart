@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'workout.dart';
 
@@ -45,7 +45,8 @@ mixin _$Workout {
 /// @nodoc
 abstract class $WorkoutCopyWith<$Res> {
   factory $WorkoutCopyWith(Workout value, $Res Function(Workout) then) =
-      _$WorkoutCopyWithImpl<$Res>;
+      _$WorkoutCopyWithImpl<$Res, Workout>;
+  @useResult
   $Res call(
       {int? id,
       String? name,
@@ -66,13 +67,16 @@ abstract class $WorkoutCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$WorkoutCopyWithImpl<$Res> implements $WorkoutCopyWith<$Res> {
+class _$WorkoutCopyWithImpl<$Res, $Val extends Workout>
+    implements $WorkoutCopyWith<$Res> {
   _$WorkoutCopyWithImpl(this._value, this._then);
 
-  final Workout _value;
   // ignore: unused_field
-  final $Res Function(Workout) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -93,80 +97,81 @@ class _$WorkoutCopyWithImpl<$Res> implements $WorkoutCopyWith<$Res> {
     Object? limbs = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      ord: ord == freezed
+      ord: freezed == ord
           ? _value.ord
           : ord // ignore: cast_nullable_to_non_nullable
               as int?,
-      sets: sets == freezed
+      sets: freezed == sets
           ? _value.sets
           : sets // ignore: cast_nullable_to_non_nullable
               as int?,
-      repeats: repeats == freezed
+      repeats: freezed == repeats
           ? _value.repeats
           : repeats // ignore: cast_nullable_to_non_nullable
               as int?,
-      repeatsLeft: repeatsLeft == freezed
+      repeatsLeft: freezed == repeatsLeft
           ? _value.repeatsLeft
           : repeatsLeft // ignore: cast_nullable_to_non_nullable
               as int?,
-      rest: rest == freezed
+      rest: freezed == rest
           ? _value.rest
           : rest // ignore: cast_nullable_to_non_nullable
               as int?,
-      exerciseId: exerciseId == freezed
+      exerciseId: freezed == exerciseId
           ? _value.exerciseId
           : exerciseId // ignore: cast_nullable_to_non_nullable
               as int?,
-      weight: weight == freezed
+      weight: freezed == weight
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as double?,
-      weightLeft: weightLeft == freezed
+      weightLeft: freezed == weightLeft
           ? _value.weightLeft
           : weightLeft // ignore: cast_nullable_to_non_nullable
               as double?,
-      distance: distance == freezed
+      distance: freezed == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
               as double?,
-      timeLoad: timeLoad == freezed
+      timeLoad: freezed == timeLoad
           ? _value.timeLoad
           : timeLoad // ignore: cast_nullable_to_non_nullable
               as int?,
-      equipmentId: equipmentId == freezed
+      equipmentId: freezed == equipmentId
           ? _value.equipmentId
           : equipmentId // ignore: cast_nullable_to_non_nullable
               as int?,
-      loadId: loadId == freezed
+      loadId: freezed == loadId
           ? _value.loadId
           : loadId // ignore: cast_nullable_to_non_nullable
               as int?,
-      limbs: limbs == freezed
+      limbs: freezed == limbs
           ? _value.limbs
           : limbs // ignore: cast_nullable_to_non_nullable
               as int?,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_WorkoutCopyWith<$Res> implements $WorkoutCopyWith<$Res> {
-  factory _$$_WorkoutCopyWith(
-          _$_Workout value, $Res Function(_$_Workout) then) =
-      __$$_WorkoutCopyWithImpl<$Res>;
+abstract class _$$WorkoutImplCopyWith<$Res> implements $WorkoutCopyWith<$Res> {
+  factory _$$WorkoutImplCopyWith(
+          _$WorkoutImpl value, $Res Function(_$WorkoutImpl) then) =
+      __$$WorkoutImplCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int? id,
       String? name,
@@ -187,14 +192,14 @@ abstract class _$$_WorkoutCopyWith<$Res> implements $WorkoutCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_WorkoutCopyWithImpl<$Res> extends _$WorkoutCopyWithImpl<$Res>
-    implements _$$_WorkoutCopyWith<$Res> {
-  __$$_WorkoutCopyWithImpl(_$_Workout _value, $Res Function(_$_Workout) _then)
-      : super(_value, (v) => _then(v as _$_Workout));
+class __$$WorkoutImplCopyWithImpl<$Res>
+    extends _$WorkoutCopyWithImpl<$Res, _$WorkoutImpl>
+    implements _$$WorkoutImplCopyWith<$Res> {
+  __$$WorkoutImplCopyWithImpl(
+      _$WorkoutImpl _value, $Res Function(_$WorkoutImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _$_Workout get _value => super._value as _$_Workout;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -214,68 +219,68 @@ class __$$_WorkoutCopyWithImpl<$Res> extends _$WorkoutCopyWithImpl<$Res>
     Object? loadId = freezed,
     Object? limbs = freezed,
   }) {
-    return _then(_$_Workout(
-      id: id == freezed
+    return _then(_$WorkoutImpl(
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      ord: ord == freezed
+      ord: freezed == ord
           ? _value.ord
           : ord // ignore: cast_nullable_to_non_nullable
               as int?,
-      sets: sets == freezed
+      sets: freezed == sets
           ? _value.sets
           : sets // ignore: cast_nullable_to_non_nullable
               as int?,
-      repeats: repeats == freezed
+      repeats: freezed == repeats
           ? _value.repeats
           : repeats // ignore: cast_nullable_to_non_nullable
               as int?,
-      repeatsLeft: repeatsLeft == freezed
+      repeatsLeft: freezed == repeatsLeft
           ? _value.repeatsLeft
           : repeatsLeft // ignore: cast_nullable_to_non_nullable
               as int?,
-      rest: rest == freezed
+      rest: freezed == rest
           ? _value.rest
           : rest // ignore: cast_nullable_to_non_nullable
               as int?,
-      exerciseId: exerciseId == freezed
+      exerciseId: freezed == exerciseId
           ? _value.exerciseId
           : exerciseId // ignore: cast_nullable_to_non_nullable
               as int?,
-      weight: weight == freezed
+      weight: freezed == weight
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as double?,
-      weightLeft: weightLeft == freezed
+      weightLeft: freezed == weightLeft
           ? _value.weightLeft
           : weightLeft // ignore: cast_nullable_to_non_nullable
               as double?,
-      distance: distance == freezed
+      distance: freezed == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
               as double?,
-      timeLoad: timeLoad == freezed
+      timeLoad: freezed == timeLoad
           ? _value.timeLoad
           : timeLoad // ignore: cast_nullable_to_non_nullable
               as int?,
-      equipmentId: equipmentId == freezed
+      equipmentId: freezed == equipmentId
           ? _value.equipmentId
           : equipmentId // ignore: cast_nullable_to_non_nullable
               as int?,
-      loadId: loadId == freezed
+      loadId: freezed == loadId
           ? _value.loadId
           : loadId // ignore: cast_nullable_to_non_nullable
               as int?,
-      limbs: limbs == freezed
+      limbs: freezed == limbs
           ? _value.limbs
           : limbs // ignore: cast_nullable_to_non_nullable
               as int?,
@@ -285,8 +290,8 @@ class __$$_WorkoutCopyWithImpl<$Res> extends _$WorkoutCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Workout implements _Workout {
-  const _$_Workout(
+class _$WorkoutImpl implements _Workout {
+  const _$WorkoutImpl(
       {this.id,
       this.name,
       this.description,
@@ -304,8 +309,8 @@ class _$_Workout implements _Workout {
       this.loadId,
       this.limbs});
 
-  factory _$_Workout.fromJson(Map<String, dynamic> json) =>
-      _$$_WorkoutFromJson(json);
+  factory _$WorkoutImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WorkoutImplFromJson(json);
 
   @override
   final int? id;
@@ -349,59 +354,62 @@ class _$_Workout implements _Workout {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Workout &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.ord, ord) &&
-            const DeepCollectionEquality().equals(other.sets, sets) &&
-            const DeepCollectionEquality().equals(other.repeats, repeats) &&
-            const DeepCollectionEquality()
-                .equals(other.repeatsLeft, repeatsLeft) &&
-            const DeepCollectionEquality().equals(other.rest, rest) &&
-            const DeepCollectionEquality()
-                .equals(other.exerciseId, exerciseId) &&
-            const DeepCollectionEquality().equals(other.weight, weight) &&
-            const DeepCollectionEquality()
-                .equals(other.weightLeft, weightLeft) &&
-            const DeepCollectionEquality().equals(other.distance, distance) &&
-            const DeepCollectionEquality().equals(other.timeLoad, timeLoad) &&
-            const DeepCollectionEquality()
-                .equals(other.equipmentId, equipmentId) &&
-            const DeepCollectionEquality().equals(other.loadId, loadId) &&
-            const DeepCollectionEquality().equals(other.limbs, limbs));
+            other is _$WorkoutImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.ord, ord) || other.ord == ord) &&
+            (identical(other.sets, sets) || other.sets == sets) &&
+            (identical(other.repeats, repeats) || other.repeats == repeats) &&
+            (identical(other.repeatsLeft, repeatsLeft) ||
+                other.repeatsLeft == repeatsLeft) &&
+            (identical(other.rest, rest) || other.rest == rest) &&
+            (identical(other.exerciseId, exerciseId) ||
+                other.exerciseId == exerciseId) &&
+            (identical(other.weight, weight) || other.weight == weight) &&
+            (identical(other.weightLeft, weightLeft) ||
+                other.weightLeft == weightLeft) &&
+            (identical(other.distance, distance) ||
+                other.distance == distance) &&
+            (identical(other.timeLoad, timeLoad) ||
+                other.timeLoad == timeLoad) &&
+            (identical(other.equipmentId, equipmentId) ||
+                other.equipmentId == equipmentId) &&
+            (identical(other.loadId, loadId) || other.loadId == loadId) &&
+            (identical(other.limbs, limbs) || other.limbs == limbs));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(ord),
-      const DeepCollectionEquality().hash(sets),
-      const DeepCollectionEquality().hash(repeats),
-      const DeepCollectionEquality().hash(repeatsLeft),
-      const DeepCollectionEquality().hash(rest),
-      const DeepCollectionEquality().hash(exerciseId),
-      const DeepCollectionEquality().hash(weight),
-      const DeepCollectionEquality().hash(weightLeft),
-      const DeepCollectionEquality().hash(distance),
-      const DeepCollectionEquality().hash(timeLoad),
-      const DeepCollectionEquality().hash(equipmentId),
-      const DeepCollectionEquality().hash(loadId),
-      const DeepCollectionEquality().hash(limbs));
+      id,
+      name,
+      description,
+      ord,
+      sets,
+      repeats,
+      repeatsLeft,
+      rest,
+      exerciseId,
+      weight,
+      weightLeft,
+      distance,
+      timeLoad,
+      equipmentId,
+      loadId,
+      limbs);
 
   @JsonKey(ignore: true)
   @override
-  _$$_WorkoutCopyWith<_$_Workout> get copyWith =>
-      __$$_WorkoutCopyWithImpl<_$_Workout>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$WorkoutImplCopyWith<_$WorkoutImpl> get copyWith =>
+      __$$WorkoutImplCopyWithImpl<_$WorkoutImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_WorkoutToJson(
+    return _$$WorkoutImplToJson(
       this,
     );
   }
@@ -424,9 +432,9 @@ abstract class _Workout implements Workout {
       final int? timeLoad,
       final int? equipmentId,
       final int? loadId,
-      final int? limbs}) = _$_Workout;
+      final int? limbs}) = _$WorkoutImpl;
 
-  factory _Workout.fromJson(Map<String, dynamic> json) = _$_Workout.fromJson;
+  factory _Workout.fromJson(Map<String, dynamic> json) = _$WorkoutImpl.fromJson;
 
   @override
   int? get id;
@@ -462,6 +470,6 @@ abstract class _Workout implements Workout {
   int? get limbs;
   @override
   @JsonKey(ignore: true)
-  _$$_WorkoutCopyWith<_$_Workout> get copyWith =>
+  _$$WorkoutImplCopyWith<_$WorkoutImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

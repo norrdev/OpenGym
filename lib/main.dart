@@ -55,9 +55,9 @@ void main() async {
 class Application extends StatelessWidget {
   const Application({super.key});
   static final _defaultLightColorScheme = ColorScheme.fromSwatch();
-
   static final _defaultDarkColorScheme =
       ColorScheme.fromSwatch(brightness: Brightness.dark);
+
   @override
   Widget build(BuildContext context) {
     return DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme) {

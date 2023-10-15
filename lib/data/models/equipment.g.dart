@@ -6,13 +6,14 @@ part of 'equipment.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Equipment _$$_EquipmentFromJson(Map<String, dynamic> json) => _$_Equipment(
+_$EquipmentImpl _$$EquipmentImplFromJson(Map<String, dynamic> json) =>
+    _$EquipmentImpl(
       id: json['id'] as int?,
       name: json['name'] as String?,
       preinstalled: json['preinstalled'] as int?,
     );
 
-Map<String, dynamic> _$$_EquipmentToJson(_$_Equipment instance) =>
+Map<String, dynamic> _$$EquipmentImplToJson(_$EquipmentImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

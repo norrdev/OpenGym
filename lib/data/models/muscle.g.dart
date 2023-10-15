@@ -6,13 +6,14 @@ part of 'muscle.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Muscle _$$_MuscleFromJson(Map<String, dynamic> json) => _$_Muscle(
+_$MuscleImpl _$$MuscleImplFromJson(Map<String, dynamic> json) => _$MuscleImpl(
       id: json['id'] as int?,
       name: json['name'] as String?,
       icon: const Uint8ListConverter().fromJson(json['icon'] as List<int>?),
     );
 
-Map<String, dynamic> _$$_MuscleToJson(_$_Muscle instance) => <String, dynamic>{
+Map<String, dynamic> _$$MuscleImplToJson(_$MuscleImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'icon': const Uint8ListConverter().toJson(instance.icon),

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'equipment.dart';
 
@@ -33,18 +33,22 @@ mixin _$Equipment {
 /// @nodoc
 abstract class $EquipmentCopyWith<$Res> {
   factory $EquipmentCopyWith(Equipment value, $Res Function(Equipment) then) =
-      _$EquipmentCopyWithImpl<$Res>;
+      _$EquipmentCopyWithImpl<$Res, Equipment>;
+  @useResult
   $Res call({int? id, String? name, int? preinstalled});
 }
 
 /// @nodoc
-class _$EquipmentCopyWithImpl<$Res> implements $EquipmentCopyWith<$Res> {
+class _$EquipmentCopyWithImpl<$Res, $Val extends Equipment>
+    implements $EquipmentCopyWith<$Res> {
   _$EquipmentCopyWithImpl(this._value, this._then);
 
-  final Equipment _value;
   // ignore: unused_field
-  final $Res Function(Equipment) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -52,57 +56,58 @@ class _$EquipmentCopyWithImpl<$Res> implements $EquipmentCopyWith<$Res> {
     Object? preinstalled = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      preinstalled: preinstalled == freezed
+      preinstalled: freezed == preinstalled
           ? _value.preinstalled
           : preinstalled // ignore: cast_nullable_to_non_nullable
               as int?,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_EquipmentCopyWith<$Res> implements $EquipmentCopyWith<$Res> {
-  factory _$$_EquipmentCopyWith(
-          _$_Equipment value, $Res Function(_$_Equipment) then) =
-      __$$_EquipmentCopyWithImpl<$Res>;
+abstract class _$$EquipmentImplCopyWith<$Res>
+    implements $EquipmentCopyWith<$Res> {
+  factory _$$EquipmentImplCopyWith(
+          _$EquipmentImpl value, $Res Function(_$EquipmentImpl) then) =
+      __$$EquipmentImplCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int? id, String? name, int? preinstalled});
 }
 
 /// @nodoc
-class __$$_EquipmentCopyWithImpl<$Res> extends _$EquipmentCopyWithImpl<$Res>
-    implements _$$_EquipmentCopyWith<$Res> {
-  __$$_EquipmentCopyWithImpl(
-      _$_Equipment _value, $Res Function(_$_Equipment) _then)
-      : super(_value, (v) => _then(v as _$_Equipment));
+class __$$EquipmentImplCopyWithImpl<$Res>
+    extends _$EquipmentCopyWithImpl<$Res, _$EquipmentImpl>
+    implements _$$EquipmentImplCopyWith<$Res> {
+  __$$EquipmentImplCopyWithImpl(
+      _$EquipmentImpl _value, $Res Function(_$EquipmentImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _$_Equipment get _value => super._value as _$_Equipment;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
     Object? preinstalled = freezed,
   }) {
-    return _then(_$_Equipment(
-      id: id == freezed
+    return _then(_$EquipmentImpl(
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      preinstalled: preinstalled == freezed
+      preinstalled: freezed == preinstalled
           ? _value.preinstalled
           : preinstalled // ignore: cast_nullable_to_non_nullable
               as int?,
@@ -112,11 +117,11 @@ class __$$_EquipmentCopyWithImpl<$Res> extends _$EquipmentCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Equipment implements _Equipment {
-  const _$_Equipment({this.id, required this.name, this.preinstalled});
+class _$EquipmentImpl implements _Equipment {
+  const _$EquipmentImpl({this.id, required this.name, this.preinstalled});
 
-  factory _$_Equipment.fromJson(Map<String, dynamic> json) =>
-      _$$_EquipmentFromJson(json);
+  factory _$EquipmentImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EquipmentImplFromJson(json);
 
   @override
   final int? id;
@@ -134,29 +139,26 @@ class _$_Equipment implements _Equipment {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Equipment &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality()
-                .equals(other.preinstalled, preinstalled));
+            other is _$EquipmentImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.preinstalled, preinstalled) ||
+                other.preinstalled == preinstalled));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(preinstalled));
+  int get hashCode => Object.hash(runtimeType, id, name, preinstalled);
 
   @JsonKey(ignore: true)
   @override
-  _$$_EquipmentCopyWith<_$_Equipment> get copyWith =>
-      __$$_EquipmentCopyWithImpl<_$_Equipment>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$EquipmentImplCopyWith<_$EquipmentImpl> get copyWith =>
+      __$$EquipmentImplCopyWithImpl<_$EquipmentImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_EquipmentToJson(
+    return _$$EquipmentImplToJson(
       this,
     );
   }
@@ -166,10 +168,10 @@ abstract class _Equipment implements Equipment {
   const factory _Equipment(
       {final int? id,
       required final String? name,
-      final int? preinstalled}) = _$_Equipment;
+      final int? preinstalled}) = _$EquipmentImpl;
 
   factory _Equipment.fromJson(Map<String, dynamic> json) =
-      _$_Equipment.fromJson;
+      _$EquipmentImpl.fromJson;
 
   @override
   int? get id;
@@ -179,6 +181,6 @@ abstract class _Equipment implements Equipment {
   int? get preinstalled;
   @override
   @JsonKey(ignore: true)
-  _$$_EquipmentCopyWith<_$_Equipment> get copyWith =>
+  _$$EquipmentImplCopyWith<_$EquipmentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

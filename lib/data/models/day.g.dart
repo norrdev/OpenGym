@@ -6,14 +6,14 @@ part of 'day.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Day _$$_DayFromJson(Map<String, dynamic> json) => _$_Day(
+_$DayImpl _$$DayImplFromJson(Map<String, dynamic> json) => _$DayImpl(
       id: json['id'] as int?,
       ord: json['ord'] as int?,
       name: json['name'] as String?,
       description: json['description'] as String?,
     );
 
-Map<String, dynamic> _$$_DayToJson(_$_Day instance) => <String, dynamic>{
+Map<String, dynamic> _$$DayImplToJson(_$DayImpl instance) => <String, dynamic>{
       'id': instance.id,
       'ord': instance.ord,
       'name': instance.name,

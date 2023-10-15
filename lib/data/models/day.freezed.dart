@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'day.dart';
 
@@ -33,18 +33,21 @@ mixin _$Day {
 /// @nodoc
 abstract class $DayCopyWith<$Res> {
   factory $DayCopyWith(Day value, $Res Function(Day) then) =
-      _$DayCopyWithImpl<$Res>;
+      _$DayCopyWithImpl<$Res, Day>;
+  @useResult
   $Res call({int? id, int? ord, String? name, String? description});
 }
 
 /// @nodoc
-class _$DayCopyWithImpl<$Res> implements $DayCopyWith<$Res> {
+class _$DayCopyWithImpl<$Res, $Val extends Day> implements $DayCopyWith<$Res> {
   _$DayCopyWithImpl(this._value, this._then);
 
-  final Day _value;
   // ignore: unused_field
-  final $Res Function(Day) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -53,43 +56,42 @@ class _$DayCopyWithImpl<$Res> implements $DayCopyWith<$Res> {
     Object? description = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      ord: ord == freezed
+      ord: freezed == ord
           ? _value.ord
           : ord // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_DayCopyWith<$Res> implements $DayCopyWith<$Res> {
-  factory _$$_DayCopyWith(_$_Day value, $Res Function(_$_Day) then) =
-      __$$_DayCopyWithImpl<$Res>;
+abstract class _$$DayImplCopyWith<$Res> implements $DayCopyWith<$Res> {
+  factory _$$DayImplCopyWith(_$DayImpl value, $Res Function(_$DayImpl) then) =
+      __$$DayImplCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int? id, int? ord, String? name, String? description});
 }
 
 /// @nodoc
-class __$$_DayCopyWithImpl<$Res> extends _$DayCopyWithImpl<$Res>
-    implements _$$_DayCopyWith<$Res> {
-  __$$_DayCopyWithImpl(_$_Day _value, $Res Function(_$_Day) _then)
-      : super(_value, (v) => _then(v as _$_Day));
+class __$$DayImplCopyWithImpl<$Res> extends _$DayCopyWithImpl<$Res, _$DayImpl>
+    implements _$$DayImplCopyWith<$Res> {
+  __$$DayImplCopyWithImpl(_$DayImpl _value, $Res Function(_$DayImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _$_Day get _value => super._value as _$_Day;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -97,20 +99,20 @@ class __$$_DayCopyWithImpl<$Res> extends _$DayCopyWithImpl<$Res>
     Object? name = freezed,
     Object? description = freezed,
   }) {
-    return _then(_$_Day(
-      id: id == freezed
+    return _then(_$DayImpl(
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      ord: ord == freezed
+      ord: freezed == ord
           ? _value.ord
           : ord // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -120,10 +122,11 @@ class __$$_DayCopyWithImpl<$Res> extends _$DayCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Day implements _Day {
-  const _$_Day({this.id, this.ord, this.name, this.description});
+class _$DayImpl implements _Day {
+  const _$DayImpl({this.id, this.ord, this.name, this.description});
 
-  factory _$_Day.fromJson(Map<String, dynamic> json) => _$$_DayFromJson(json);
+  factory _$DayImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DayImplFromJson(json);
 
   @override
   final int? id;
@@ -143,31 +146,27 @@ class _$_Day implements _Day {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Day &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.ord, ord) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description));
+            other is _$DayImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.ord, ord) || other.ord == ord) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(ord),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(description));
+  int get hashCode => Object.hash(runtimeType, id, ord, name, description);
 
   @JsonKey(ignore: true)
   @override
-  _$$_DayCopyWith<_$_Day> get copyWith =>
-      __$$_DayCopyWithImpl<_$_Day>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$DayImplCopyWith<_$DayImpl> get copyWith =>
+      __$$DayImplCopyWithImpl<_$DayImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DayToJson(
+    return _$$DayImplToJson(
       this,
     );
   }
@@ -178,9 +177,9 @@ abstract class _Day implements Day {
       {final int? id,
       final int? ord,
       final String? name,
-      final String? description}) = _$_Day;
+      final String? description}) = _$DayImpl;
 
-  factory _Day.fromJson(Map<String, dynamic> json) = _$_Day.fromJson;
+  factory _Day.fromJson(Map<String, dynamic> json) = _$DayImpl.fromJson;
 
   @override
   int? get id;
@@ -192,5 +191,6 @@ abstract class _Day implements Day {
   String? get description;
   @override
   @JsonKey(ignore: true)
-  _$$_DayCopyWith<_$_Day> get copyWith => throw _privateConstructorUsedError;
+  _$$DayImplCopyWith<_$DayImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

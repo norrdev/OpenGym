@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'exercise.dart';
 
@@ -37,7 +37,8 @@ mixin _$Exercise {
 /// @nodoc
 abstract class $ExerciseCopyWith<$Res> {
   factory $ExerciseCopyWith(Exercise value, $Res Function(Exercise) then) =
-      _$ExerciseCopyWithImpl<$Res>;
+      _$ExerciseCopyWithImpl<$Res, Exercise>;
+  @useResult
   $Res call(
       {int? id,
       String? name,
@@ -49,13 +50,16 @@ abstract class $ExerciseCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ExerciseCopyWithImpl<$Res> implements $ExerciseCopyWith<$Res> {
+class _$ExerciseCopyWithImpl<$Res, $Val extends Exercise>
+    implements $ExerciseCopyWith<$Res> {
   _$ExerciseCopyWithImpl(this._value, this._then);
 
-  final Exercise _value;
   // ignore: unused_field
-  final $Res Function(Exercise) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -67,44 +71,46 @@ class _$ExerciseCopyWithImpl<$Res> implements $ExerciseCopyWith<$Res> {
     Object? limbs = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      equipmentId: equipmentId == freezed
+      equipmentId: freezed == equipmentId
           ? _value.equipmentId
           : equipmentId // ignore: cast_nullable_to_non_nullable
               as int?,
-      preinstalled: preinstalled == freezed
+      preinstalled: freezed == preinstalled
           ? _value.preinstalled
           : preinstalled // ignore: cast_nullable_to_non_nullable
               as int?,
-      loadId: loadId == freezed
+      loadId: freezed == loadId
           ? _value.loadId
           : loadId // ignore: cast_nullable_to_non_nullable
               as int?,
-      limbs: limbs == freezed
+      limbs: freezed == limbs
           ? _value.limbs
           : limbs // ignore: cast_nullable_to_non_nullable
               as int?,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_ExerciseCopyWith<$Res> implements $ExerciseCopyWith<$Res> {
-  factory _$$_ExerciseCopyWith(
-          _$_Exercise value, $Res Function(_$_Exercise) then) =
-      __$$_ExerciseCopyWithImpl<$Res>;
+abstract class _$$ExerciseImplCopyWith<$Res>
+    implements $ExerciseCopyWith<$Res> {
+  factory _$$ExerciseImplCopyWith(
+          _$ExerciseImpl value, $Res Function(_$ExerciseImpl) then) =
+      __$$ExerciseImplCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int? id,
       String? name,
@@ -116,15 +122,14 @@ abstract class _$$_ExerciseCopyWith<$Res> implements $ExerciseCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ExerciseCopyWithImpl<$Res> extends _$ExerciseCopyWithImpl<$Res>
-    implements _$$_ExerciseCopyWith<$Res> {
-  __$$_ExerciseCopyWithImpl(
-      _$_Exercise _value, $Res Function(_$_Exercise) _then)
-      : super(_value, (v) => _then(v as _$_Exercise));
+class __$$ExerciseImplCopyWithImpl<$Res>
+    extends _$ExerciseCopyWithImpl<$Res, _$ExerciseImpl>
+    implements _$$ExerciseImplCopyWith<$Res> {
+  __$$ExerciseImplCopyWithImpl(
+      _$ExerciseImpl _value, $Res Function(_$ExerciseImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _$_Exercise get _value => super._value as _$_Exercise;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -135,32 +140,32 @@ class __$$_ExerciseCopyWithImpl<$Res> extends _$ExerciseCopyWithImpl<$Res>
     Object? loadId = freezed,
     Object? limbs = freezed,
   }) {
-    return _then(_$_Exercise(
-      id: id == freezed
+    return _then(_$ExerciseImpl(
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      equipmentId: equipmentId == freezed
+      equipmentId: freezed == equipmentId
           ? _value.equipmentId
           : equipmentId // ignore: cast_nullable_to_non_nullable
               as int?,
-      preinstalled: preinstalled == freezed
+      preinstalled: freezed == preinstalled
           ? _value.preinstalled
           : preinstalled // ignore: cast_nullable_to_non_nullable
               as int?,
-      loadId: loadId == freezed
+      loadId: freezed == loadId
           ? _value.loadId
           : loadId // ignore: cast_nullable_to_non_nullable
               as int?,
-      limbs: limbs == freezed
+      limbs: freezed == limbs
           ? _value.limbs
           : limbs // ignore: cast_nullable_to_non_nullable
               as int?,
@@ -170,8 +175,8 @@ class __$$_ExerciseCopyWithImpl<$Res> extends _$ExerciseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Exercise implements _Exercise {
-  const _$_Exercise(
+class _$ExerciseImpl implements _Exercise {
+  const _$ExerciseImpl(
       {this.id,
       required this.name,
       this.description,
@@ -180,8 +185,8 @@ class _$_Exercise implements _Exercise {
       required this.loadId,
       required this.limbs});
 
-  factory _$_Exercise.fromJson(Map<String, dynamic> json) =>
-      _$$_ExerciseFromJson(json);
+  factory _$ExerciseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ExerciseImplFromJson(json);
 
   @override
   final int? id;
@@ -207,39 +212,33 @@ class _$_Exercise implements _Exercise {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Exercise &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
-            const DeepCollectionEquality()
-                .equals(other.equipmentId, equipmentId) &&
-            const DeepCollectionEquality()
-                .equals(other.preinstalled, preinstalled) &&
-            const DeepCollectionEquality().equals(other.loadId, loadId) &&
-            const DeepCollectionEquality().equals(other.limbs, limbs));
+            other is _$ExerciseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.equipmentId, equipmentId) ||
+                other.equipmentId == equipmentId) &&
+            (identical(other.preinstalled, preinstalled) ||
+                other.preinstalled == preinstalled) &&
+            (identical(other.loadId, loadId) || other.loadId == loadId) &&
+            (identical(other.limbs, limbs) || other.limbs == limbs));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(equipmentId),
-      const DeepCollectionEquality().hash(preinstalled),
-      const DeepCollectionEquality().hash(loadId),
-      const DeepCollectionEquality().hash(limbs));
+  int get hashCode => Object.hash(runtimeType, id, name, description,
+      equipmentId, preinstalled, loadId, limbs);
 
   @JsonKey(ignore: true)
   @override
-  _$$_ExerciseCopyWith<_$_Exercise> get copyWith =>
-      __$$_ExerciseCopyWithImpl<_$_Exercise>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$ExerciseImplCopyWith<_$ExerciseImpl> get copyWith =>
+      __$$ExerciseImplCopyWithImpl<_$ExerciseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ExerciseToJson(
+    return _$$ExerciseImplToJson(
       this,
     );
   }
@@ -253,9 +252,10 @@ abstract class _Exercise implements Exercise {
       required final int? equipmentId,
       final int? preinstalled,
       required final int? loadId,
-      required final int? limbs}) = _$_Exercise;
+      required final int? limbs}) = _$ExerciseImpl;
 
-  factory _Exercise.fromJson(Map<String, dynamic> json) = _$_Exercise.fromJson;
+  factory _Exercise.fromJson(Map<String, dynamic> json) =
+      _$ExerciseImpl.fromJson;
 
   @override
   int? get id;
@@ -273,6 +273,6 @@ abstract class _Exercise implements Exercise {
   int? get limbs;
   @override
   @JsonKey(ignore: true)
-  _$$_ExerciseCopyWith<_$_Exercise> get copyWith =>
+  _$$ExerciseImplCopyWith<_$ExerciseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

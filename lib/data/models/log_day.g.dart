@@ -6,7 +6,7 @@ part of 'log_day.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_LogDay _$$_LogDayFromJson(Map<String, dynamic> json) => _$_LogDay(
+_$LogDayImpl _$$LogDayImplFromJson(Map<String, dynamic> json) => _$LogDayImpl(
       logDayId: json['logDayId'] as int?,
       dayId: json['dayId'] as int?,
       start: json['start'] as String?,
@@ -15,7 +15,8 @@ _$_LogDay _$$_LogDayFromJson(Map<String, dynamic> json) => _$_LogDay(
       programsName: json['programsName'] as String?,
     );
 
-Map<String, dynamic> _$$_LogDayToJson(_$_LogDay instance) => <String, dynamic>{
+Map<String, dynamic> _$$LogDayImplToJson(_$LogDayImpl instance) =>
+    <String, dynamic>{
       'logDayId': instance.logDayId,
       'dayId': instance.dayId,
       'start': instance.start,

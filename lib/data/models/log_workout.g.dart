@@ -6,8 +6,8 @@ part of 'log_workout.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_LogWorkout _$$_LogWorkoutFromJson(Map<String, dynamic> json) =>
-    _$_LogWorkout(
+_$LogWorkoutImpl _$$LogWorkoutImplFromJson(Map<String, dynamic> json) =>
+    _$LogWorkoutImpl(
       id: json['id'] as int?,
       repeats: json['repeats'] as int?,
       repeatsLeft: json['repeatsLeft'] as int?,
@@ -20,7 +20,7 @@ _$_LogWorkout _$$_LogWorkoutFromJson(Map<String, dynamic> json) =>
       limbs: json['limbs'] as int?,
     );
 
-Map<String, dynamic> _$$_LogWorkoutToJson(_$_LogWorkout instance) =>
+Map<String, dynamic> _$$LogWorkoutImplToJson(_$LogWorkoutImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'repeats': instance.repeats,

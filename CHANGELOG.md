@@ -1,3 +1,6 @@
+## 3.1.5
+- Colors and icons are fixed on the workout screen with a dark theme.
+
 ## 3.1.4
 - Fixed the file import bug on android devices.
 

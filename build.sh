@@ -21,16 +21,16 @@
 
 echo 
 echo Build android app...
-flutter build apk --release
+# flutter build apk --release
 flutter build appbundle --release
 
-echo 
-echo Build iOS app...
-flutter build ios --release
+# echo 
+# echo Build iOS app...
+# flutter build ios --release
 
-echo 
-echo Build MacOS app...
-flutter build macos --release
+# echo 
+# echo Build MacOS app...
+# flutter build macos --release
 
 # echo Build web app...
 # flutter build web --release

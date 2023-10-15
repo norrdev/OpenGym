@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'log_day.dart';
 
@@ -35,7 +35,8 @@ mixin _$LogDay {
 /// @nodoc
 abstract class $LogDayCopyWith<$Res> {
   factory $LogDayCopyWith(LogDay value, $Res Function(LogDay) then) =
-      _$LogDayCopyWithImpl<$Res>;
+      _$LogDayCopyWithImpl<$Res, LogDay>;
+  @useResult
   $Res call(
       {int? logDayId,
       int? dayId,
@@ -46,13 +47,16 @@ abstract class $LogDayCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LogDayCopyWithImpl<$Res> implements $LogDayCopyWith<$Res> {
+class _$LogDayCopyWithImpl<$Res, $Val extends LogDay>
+    implements $LogDayCopyWith<$Res> {
   _$LogDayCopyWithImpl(this._value, this._then);
 
-  final LogDay _value;
   // ignore: unused_field
-  final $Res Function(LogDay) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? logDayId = freezed,
@@ -63,39 +67,41 @@ class _$LogDayCopyWithImpl<$Res> implements $LogDayCopyWith<$Res> {
     Object? programsName = freezed,
   }) {
     return _then(_value.copyWith(
-      logDayId: logDayId == freezed
+      logDayId: freezed == logDayId
           ? _value.logDayId
           : logDayId // ignore: cast_nullable_to_non_nullable
               as int?,
-      dayId: dayId == freezed
+      dayId: freezed == dayId
           ? _value.dayId
           : dayId // ignore: cast_nullable_to_non_nullable
               as int?,
-      start: start == freezed
+      start: freezed == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
               as String?,
-      finish: finish == freezed
+      finish: freezed == finish
           ? _value.finish
           : finish // ignore: cast_nullable_to_non_nullable
               as String?,
-      daysName: daysName == freezed
+      daysName: freezed == daysName
           ? _value.daysName
           : daysName // ignore: cast_nullable_to_non_nullable
               as String?,
-      programsName: programsName == freezed
+      programsName: freezed == programsName
           ? _value.programsName
           : programsName // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_LogDayCopyWith<$Res> implements $LogDayCopyWith<$Res> {
-  factory _$$_LogDayCopyWith(_$_LogDay value, $Res Function(_$_LogDay) then) =
-      __$$_LogDayCopyWithImpl<$Res>;
+abstract class _$$LogDayImplCopyWith<$Res> implements $LogDayCopyWith<$Res> {
+  factory _$$LogDayImplCopyWith(
+          _$LogDayImpl value, $Res Function(_$LogDayImpl) then) =
+      __$$LogDayImplCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int? logDayId,
       int? dayId,
@@ -106,14 +112,14 @@ abstract class _$$_LogDayCopyWith<$Res> implements $LogDayCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LogDayCopyWithImpl<$Res> extends _$LogDayCopyWithImpl<$Res>
-    implements _$$_LogDayCopyWith<$Res> {
-  __$$_LogDayCopyWithImpl(_$_LogDay _value, $Res Function(_$_LogDay) _then)
-      : super(_value, (v) => _then(v as _$_LogDay));
+class __$$LogDayImplCopyWithImpl<$Res>
+    extends _$LogDayCopyWithImpl<$Res, _$LogDayImpl>
+    implements _$$LogDayImplCopyWith<$Res> {
+  __$$LogDayImplCopyWithImpl(
+      _$LogDayImpl _value, $Res Function(_$LogDayImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _$_LogDay get _value => super._value as _$_LogDay;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? logDayId = freezed,
@@ -123,28 +129,28 @@ class __$$_LogDayCopyWithImpl<$Res> extends _$LogDayCopyWithImpl<$Res>
     Object? daysName = freezed,
     Object? programsName = freezed,
   }) {
-    return _then(_$_LogDay(
-      logDayId: logDayId == freezed
+    return _then(_$LogDayImpl(
+      logDayId: freezed == logDayId
           ? _value.logDayId
           : logDayId // ignore: cast_nullable_to_non_nullable
               as int?,
-      dayId: dayId == freezed
+      dayId: freezed == dayId
           ? _value.dayId
           : dayId // ignore: cast_nullable_to_non_nullable
               as int?,
-      start: start == freezed
+      start: freezed == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
               as String?,
-      finish: finish == freezed
+      finish: freezed == finish
           ? _value.finish
           : finish // ignore: cast_nullable_to_non_nullable
               as String?,
-      daysName: daysName == freezed
+      daysName: freezed == daysName
           ? _value.daysName
           : daysName // ignore: cast_nullable_to_non_nullable
               as String?,
-      programsName: programsName == freezed
+      programsName: freezed == programsName
           ? _value.programsName
           : programsName // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -154,8 +160,8 @@ class __$$_LogDayCopyWithImpl<$Res> extends _$LogDayCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_LogDay implements _LogDay {
-  _$_LogDay(
+class _$LogDayImpl implements _LogDay {
+  _$LogDayImpl(
       {this.logDayId,
       this.dayId,
       this.start,
@@ -163,8 +169,8 @@ class _$_LogDay implements _LogDay {
       this.daysName,
       this.programsName});
 
-  factory _$_LogDay.fromJson(Map<String, dynamic> json) =>
-      _$$_LogDayFromJson(json);
+  factory _$LogDayImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LogDayImplFromJson(json);
 
   @override
   final int? logDayId;
@@ -188,35 +194,32 @@ class _$_LogDay implements _LogDay {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LogDay &&
-            const DeepCollectionEquality().equals(other.logDayId, logDayId) &&
-            const DeepCollectionEquality().equals(other.dayId, dayId) &&
-            const DeepCollectionEquality().equals(other.start, start) &&
-            const DeepCollectionEquality().equals(other.finish, finish) &&
-            const DeepCollectionEquality().equals(other.daysName, daysName) &&
-            const DeepCollectionEquality()
-                .equals(other.programsName, programsName));
+            other is _$LogDayImpl &&
+            (identical(other.logDayId, logDayId) ||
+                other.logDayId == logDayId) &&
+            (identical(other.dayId, dayId) || other.dayId == dayId) &&
+            (identical(other.start, start) || other.start == start) &&
+            (identical(other.finish, finish) || other.finish == finish) &&
+            (identical(other.daysName, daysName) ||
+                other.daysName == daysName) &&
+            (identical(other.programsName, programsName) ||
+                other.programsName == programsName));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(logDayId),
-      const DeepCollectionEquality().hash(dayId),
-      const DeepCollectionEquality().hash(start),
-      const DeepCollectionEquality().hash(finish),
-      const DeepCollectionEquality().hash(daysName),
-      const DeepCollectionEquality().hash(programsName));
+      runtimeType, logDayId, dayId, start, finish, daysName, programsName);
 
   @JsonKey(ignore: true)
   @override
-  _$$_LogDayCopyWith<_$_LogDay> get copyWith =>
-      __$$_LogDayCopyWithImpl<_$_LogDay>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$LogDayImplCopyWith<_$LogDayImpl> get copyWith =>
+      __$$LogDayImplCopyWithImpl<_$LogDayImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LogDayToJson(
+    return _$$LogDayImplToJson(
       this,
     );
   }
@@ -229,9 +232,9 @@ abstract class _LogDay implements LogDay {
       final String? start,
       final String? finish,
       final String? daysName,
-      final String? programsName}) = _$_LogDay;
+      final String? programsName}) = _$LogDayImpl;
 
-  factory _LogDay.fromJson(Map<String, dynamic> json) = _$_LogDay.fromJson;
+  factory _LogDay.fromJson(Map<String, dynamic> json) = _$LogDayImpl.fromJson;
 
   @override
   int? get logDayId;
@@ -247,6 +250,6 @@ abstract class _LogDay implements LogDay {
   String? get programsName;
   @override
   @JsonKey(ignore: true)
-  _$$_LogDayCopyWith<_$_LogDay> get copyWith =>
+  _$$LogDayImplCopyWith<_$LogDayImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -6,8 +6,8 @@ part of 'workout_set.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_WorkoutSet _$$_WorkoutSetFromJson(Map<String, dynamic> json) =>
-    _$_WorkoutSet(
+_$WorkoutSetImpl _$$WorkoutSetImplFromJson(Map<String, dynamic> json) =>
+    _$WorkoutSetImpl(
       repeats: json['repeats'] as int?,
       repeatsLeft: json['repeatsLeft'] as int?,
       weight: (json['weight'] as num?)?.toDouble(),
@@ -17,7 +17,7 @@ _$_WorkoutSet _$$_WorkoutSetFromJson(Map<String, dynamic> json) =>
       distance: (json['distance'] as num?)?.toDouble(),
     );
 
-Map<String, dynamic> _$$_WorkoutSetToJson(_$_WorkoutSet instance) =>
+Map<String, dynamic> _$$WorkoutSetImplToJson(_$WorkoutSetImpl instance) =>
     <String, dynamic>{
       'repeats': instance.repeats,
       'repeatsLeft': instance.repeatsLeft,

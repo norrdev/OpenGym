@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'muscle.dart';
 
@@ -33,18 +33,22 @@ mixin _$Muscle {
 /// @nodoc
 abstract class $MuscleCopyWith<$Res> {
   factory $MuscleCopyWith(Muscle value, $Res Function(Muscle) then) =
-      _$MuscleCopyWithImpl<$Res>;
+      _$MuscleCopyWithImpl<$Res, Muscle>;
+  @useResult
   $Res call({int? id, String? name, @Uint8ListConverter() Uint8List? icon});
 }
 
 /// @nodoc
-class _$MuscleCopyWithImpl<$Res> implements $MuscleCopyWith<$Res> {
+class _$MuscleCopyWithImpl<$Res, $Val extends Muscle>
+    implements $MuscleCopyWith<$Res> {
   _$MuscleCopyWithImpl(this._value, this._then);
 
-  final Muscle _value;
   // ignore: unused_field
-  final $Res Function(Muscle) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -52,55 +56,57 @@ class _$MuscleCopyWithImpl<$Res> implements $MuscleCopyWith<$Res> {
     Object? icon = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      icon: icon == freezed
+      icon: freezed == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
               as Uint8List?,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_MuscleCopyWith<$Res> implements $MuscleCopyWith<$Res> {
-  factory _$$_MuscleCopyWith(_$_Muscle value, $Res Function(_$_Muscle) then) =
-      __$$_MuscleCopyWithImpl<$Res>;
+abstract class _$$MuscleImplCopyWith<$Res> implements $MuscleCopyWith<$Res> {
+  factory _$$MuscleImplCopyWith(
+          _$MuscleImpl value, $Res Function(_$MuscleImpl) then) =
+      __$$MuscleImplCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int? id, String? name, @Uint8ListConverter() Uint8List? icon});
 }
 
 /// @nodoc
-class __$$_MuscleCopyWithImpl<$Res> extends _$MuscleCopyWithImpl<$Res>
-    implements _$$_MuscleCopyWith<$Res> {
-  __$$_MuscleCopyWithImpl(_$_Muscle _value, $Res Function(_$_Muscle) _then)
-      : super(_value, (v) => _then(v as _$_Muscle));
+class __$$MuscleImplCopyWithImpl<$Res>
+    extends _$MuscleCopyWithImpl<$Res, _$MuscleImpl>
+    implements _$$MuscleImplCopyWith<$Res> {
+  __$$MuscleImplCopyWithImpl(
+      _$MuscleImpl _value, $Res Function(_$MuscleImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _$_Muscle get _value => super._value as _$_Muscle;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
     Object? icon = freezed,
   }) {
-    return _then(_$_Muscle(
-      id: id == freezed
+    return _then(_$MuscleImpl(
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      icon: icon == freezed
+      icon: freezed == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
               as Uint8List?,
@@ -110,12 +116,12 @@ class __$$_MuscleCopyWithImpl<$Res> extends _$MuscleCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Muscle implements _Muscle {
-  const _$_Muscle(
+class _$MuscleImpl implements _Muscle {
+  const _$MuscleImpl(
       {this.id, required this.name, @Uint8ListConverter() this.icon});
 
-  factory _$_Muscle.fromJson(Map<String, dynamic> json) =>
-      _$$_MuscleFromJson(json);
+  factory _$MuscleImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MuscleImplFromJson(json);
 
   @override
   final int? id;
@@ -134,28 +140,26 @@ class _$_Muscle implements _Muscle {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Muscle &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
+            other is _$MuscleImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other.icon, icon));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(icon));
+      runtimeType, id, name, const DeepCollectionEquality().hash(icon));
 
   @JsonKey(ignore: true)
   @override
-  _$$_MuscleCopyWith<_$_Muscle> get copyWith =>
-      __$$_MuscleCopyWithImpl<_$_Muscle>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$MuscleImplCopyWith<_$MuscleImpl> get copyWith =>
+      __$$MuscleImplCopyWithImpl<_$MuscleImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MuscleToJson(
+    return _$$MuscleImplToJson(
       this,
     );
   }
@@ -165,9 +169,9 @@ abstract class _Muscle implements Muscle {
   const factory _Muscle(
       {final int? id,
       required final String? name,
-      @Uint8ListConverter() final Uint8List? icon}) = _$_Muscle;
+      @Uint8ListConverter() final Uint8List? icon}) = _$MuscleImpl;
 
-  factory _Muscle.fromJson(Map<String, dynamic> json) = _$_Muscle.fromJson;
+  factory _Muscle.fromJson(Map<String, dynamic> json) = _$MuscleImpl.fromJson;
 
   @override
   int? get id;
@@ -178,6 +182,6 @@ abstract class _Muscle implements Muscle {
   Uint8List? get icon;
   @override
   @JsonKey(ignore: true)
-  _$$_MuscleCopyWith<_$_Muscle> get copyWith =>
+  _$$MuscleImplCopyWith<_$MuscleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

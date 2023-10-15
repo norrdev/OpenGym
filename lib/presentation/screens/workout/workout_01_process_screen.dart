@@ -25,7 +25,7 @@ class WorkoutProcessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(day?.name as String),
+        title: Text(day?.name ?? ''),
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
@@ -49,7 +49,7 @@ class WorkoutProcessScreen extends StatelessWidget {
             if (activeValue) {
               return const ActiveBottomBar();
             } else {
-              return InitBottomBar(dayId: day?.id as int);
+              return InitBottomBar(dayId: day?.id ?? 0);
             }
           },
         ),

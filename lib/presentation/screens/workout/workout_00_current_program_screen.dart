@@ -164,7 +164,10 @@ class _DaysListWidgetState extends State<DaysListWidget> {
                       ],
                     ),
                     child: ListTile(
-                      title: Text(item.name ?? ''),
+                      title: Text(
+                        item.name ?? '',
+                        style: const TextStyle(color: Colors.white),
+                      ),
                       subtitle: Text(item.description ?? ''),
                       onTap: () => Navigator.push(
                         context,

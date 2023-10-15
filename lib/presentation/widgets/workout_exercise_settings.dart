@@ -33,15 +33,11 @@ class WorkoutExerciseSettings extends StatelessWidget {
       tilePadding: const EdgeInsets.only(right: 30.0, left: 16.0),
       title: Text(
         item.name ?? '',
-        style: TextStyle(color: Theme.of(context).primaryColor),
       ),
       iconColor: Theme.of(context).primaryColor,
       collapsedIconColor: Theme.of(context).primaryColor,
       subtitle: Text(
-        item.description ?? '',
-        style: TextStyle(
-            color:
-                Theme.of(context).bottomNavigationBarTheme.unselectedItemColor),
+        item.description ?? '', // Colors.grey,
       ),
       children: [
         Padding(

@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/models/models.dart';
 import '../../../data/repository.dart';
 import '../../../generated/l10n.dart';
-import '../../../theme.dart';
 import '../../widgets/burger_menu.dart';
 import 'log_show_workout_screen.dart';
 
@@ -36,7 +35,7 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
     days.clear();
     for (var e in logDays) {
       days.add(CalendarEvent(
-        eventBackgroundColor: AppTheme.light.primaryColor,
+        eventBackgroundColor: Theme.of(context).primaryColor,
         eventName: e.daysName as String,
         eventDate: DateTime.parse(e.start as String),
         eventID: e.logDayId.toString(),
@@ -53,8 +52,8 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
       drawer: const BurgerMenu(),
       appBar: AppBar(title: Text(S.of(context).log)),
       body: CellCalendar(
-        todayMarkColor: AppTheme.light.primaryColor,
-        todayTextColor: AppTheme.dark.primaryColor,
+        todayMarkColor: Theme.of(context).primaryColor,
+        todayTextColor: Theme.of(context).colorScheme.background,
         cellCalendarPageController: cellCalendarPageController,
         events: days,
         onPageChanged: (firstDate, lastDate) {

@@ -6,8 +6,9 @@ part of 'workout_exercise.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_WorkoutExercise _$$_WorkoutExerciseFromJson(Map<String, dynamic> json) =>
-    _$_WorkoutExercise(
+_$WorkoutExerciseImpl _$$WorkoutExerciseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WorkoutExerciseImpl(
       id: json['id'] as int,
       name: json['name'] as String,
       maxSets: json['maxSets'] as int,
@@ -20,7 +21,8 @@ _$_WorkoutExercise _$$_WorkoutExerciseFromJson(Map<String, dynamic> json) =>
       loadId: json['loadId'] as int,
     );
 
-Map<String, dynamic> _$$_WorkoutExerciseToJson(_$_WorkoutExercise instance) =>
+Map<String, dynamic> _$$WorkoutExerciseImplToJson(
+        _$WorkoutExerciseImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

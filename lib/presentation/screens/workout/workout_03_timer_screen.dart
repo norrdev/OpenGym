@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/logic/cubit/workout_cubit.dart';
 import 'package:npng/presentation/screens/workout/workout_04_finish_screen.dart';
-import 'package:npng/theme.dart';
 
 class TimerScreen extends StatelessWidget {
   const TimerScreen({super.key});
@@ -73,7 +72,7 @@ class TimerScreen extends StatelessWidget {
                   ringColor: Colors.transparent,
 
                   // Filling Color for Countdown Timer
-                  fillColor: AppTheme.light.primaryColor,
+                  fillColor: Theme.of(context).indicatorColor,
 
                   // Background Color for Countdown Widget
                   backgroundColor: null,
@@ -84,7 +83,7 @@ class TimerScreen extends StatelessWidget {
                   // Text Style for Countdown Text
                   textStyle: TextStyle(
                     fontSize: MediaQuery.of(context).size.height / 12, //22.0,
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).indicatorColor,
                     //fontWeight: FontWeight.bold,
                   ),
 

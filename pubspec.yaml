@@ -1,7 +1,7 @@
 name: npng
 description: Crossplatform Workout Tracker.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 3.1.4+23 # Last AppStore ios 18/ macos 19 / Play 21
+version: 3.1.5+24 # Last AppStore ios 18/ macos 19 / Play 21
 homepage: https://npng.norr.dev
 
 environment:
