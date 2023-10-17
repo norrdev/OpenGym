@@ -1,3 +1,6 @@
+## 3.1.6
+- Updated libraries.
+
 ## 3.1.5
 - Colors and icons are fixed on the workout screen with a dark theme.
 

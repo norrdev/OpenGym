@@ -39,6 +39,8 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
         eventName: e.daysName as String,
         eventDate: DateTime.parse(e.start as String),
         eventID: e.logDayId.toString(),
+        eventTextStyle:
+            TextStyle(color: Theme.of(context).colorScheme.background),
       ));
     }
 
@@ -99,7 +101,8 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
                             color: event.eventBackgroundColor,
                             child: Text(
                               event.eventName,
-                              style: TextStyle(color: event.eventTextColor),
+                              style:
+                                  TextStyle(color: event.eventTextStyle.color),
                             ),
                           ),
                         ),

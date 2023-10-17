@@ -53,7 +53,7 @@ android {
 
     defaultConfig {
         applicationId "pro.filonov.npng"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion flutter.compileSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

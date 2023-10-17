@@ -121,19 +121,20 @@ class _LogWorkoutScreenState extends State<LogWorkoutScreen> {
         '\n\r **${S.of(context).wrkTrainingVolume}**: $trainingVolume kg\n\r';
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.logDay.daysName as String),
+      appBar: AppBar(
+        title: Text(widget.logDay.daysName as String),
+      ),
+      body: SafeArea(
+        child: Markdown(
+          data: output,
+          controller: controller,
+          selectable: false,
+          styleSheet: style,
+          onTapLink: (text, href, title) => launch(href!),
+          //launchUrl(Uri.parse(href ?? '')),
         ),
-        body: SafeArea(
-          child: Markdown(
-            data: output,
-            controller: controller,
-            selectable: false,
-            styleSheet: style,
-            onTapLink: (text, href, title) => launch(href!),
-            //launchUrl(Uri.parse(href ?? '')),
-          ),
-        ),);
+      ),
+    );
   }
 
   @override
