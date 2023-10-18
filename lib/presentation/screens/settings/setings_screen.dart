@@ -97,13 +97,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void _importFile(BuildContext context) async {
     final Repository repository =
         RepositoryProvider.of<Repository>(context, listen: false);
-    final downloadsDirectory = await getDatabasesPath();
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.any,
-      initialDirectory: downloadsDirectory,
-    );
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
     if (result != null) {
-      await repository.importDataBase(result.files.single.path!);
+      await repository.importDataBase(result.files.single.path ?? '');
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

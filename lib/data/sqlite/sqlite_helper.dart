@@ -123,7 +123,7 @@ class SqliteHelper {
   Future<String> backupDatabase() async {
     final db = await instance.streamDatabase;
     String dbPath = await getDatabasesPath();
-    String path = join(dbPath,'npng-backup.db');
+    String path = join(dbPath, 'npng-backup.db');
     try {
       await deleteDbBackupFile(path);
       await db.rawQuery("VACUUM INTO '$path'");
@@ -136,7 +136,7 @@ class SqliteHelper {
   /// Delete backup file.
   Future<void> deleteDbBackupFile(String filePath) async {
     String dbPath = await getDatabasesPath();
-    if (filePath != join(dbPath,'npng.db')) {
+    if (filePath != join(dbPath, 'npng.db')) {
       File fileToDel = File(filePath);
       if (await fileToDel.exists()) {
         fileToDel.delete();
@@ -348,14 +348,20 @@ class SqliteHelper {
 
   /// Import DB.
   Future<void> importDataBase(String filePath) async {
+    if (filePath == '') return Future.value();
+
     final db = await instance.streamDatabase;
+    await db.close();
+
     File file = File(filePath);
 
     String dbPath = await getDatabasesPath();
     String pathToDbFile = join(dbPath, 'npng.db');
+
     log('Import, path to DB: $pathToDbFile');
-    await db.close();
+
     final copiedFile = file.copySync(pathToDbFile);
+
     log('Import, copied file: ${copiedFile.path}');
     return Future.value();
   }

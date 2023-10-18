@@ -1,7 +1,7 @@
 name: npng
 description: Crossplatform Workout Tracker.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 3.1.6+25 # Last AppStore ios 18/ macos 19 / Play 21
+version: 3.1.7+26
 homepage: https://npng.norr.dev
 
 environment:
@@ -24,7 +24,6 @@ dependencies:
   flutter_markdown: ^0.6.18
   flutter_slidable: ^3.0.0
   freezed_annotation: ^2.4.1
-  # hydrated_bloc: ^9.0.0
   intl: ^0.18.1
   json_annotation: ^4.8.1
   number_inc_dec: ^0.8.0

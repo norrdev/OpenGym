@@ -1,3 +1,6 @@
+## 3.1.7
+- File import fix.
+
 ## 3.1.6
 - Updated libraries.
 
