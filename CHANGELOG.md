@@ -1,3 +1,6 @@
+## 3.1.8
+- Fixed the bug with the white text on the white background.
+
 ## 3.1.7
 - File import fix.
 

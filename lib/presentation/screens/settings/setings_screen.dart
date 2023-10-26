@@ -12,7 +12,6 @@ import 'package:share_plus/share_plus.dart';
 import 'package:npng/main.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:sqflite/sqflite.dart';
 
 import 'about_screen.dart';
 
@@ -97,7 +96,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void _importFile(BuildContext context) async {
     final Repository repository =
         RepositoryProvider.of<Repository>(context, listen: false);
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    FilePickerResult? result =
+        await FilePicker.platform.pickFiles(allowedExtensions: ['db']);
     if (result != null) {
       await repository.importDataBase(result.files.single.path ?? '');
       if (context.mounted) {

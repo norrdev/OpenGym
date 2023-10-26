@@ -22,7 +22,7 @@ PODS:
     - FMDB (>= 2.7.5)
   - url_launcher_macos (0.0.1):
     - FlutterMacOS
-  - wakelock_macos (0.0.1):
+  - wakelock_plus (0.0.1):
     - FlutterMacOS
 
 DEPENDENCIES:
@@ -35,7 +35,7 @@ DEPENDENCIES:
   - shared_preferences_foundation (from `Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sqflite (from `Flutter/ephemeral/.symlinks/plugins/sqflite/macos`)
   - url_launcher_macos (from `Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos`)
-  - wakelock_macos (from `Flutter/ephemeral/.symlinks/plugins/wakelock_macos/macos`)
+  - wakelock_plus (from `Flutter/ephemeral/.symlinks/plugins/wakelock_plus/macos`)
 
 SPEC REPOS:
   trunk:
@@ -60,8 +60,8 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/sqflite/macos
   url_launcher_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos
-  wakelock_macos:
-    :path: Flutter/ephemeral/.symlinks/plugins/wakelock_macos/macos
+  wakelock_plus:
+    :path: Flutter/ephemeral/.symlinks/plugins/wakelock_plus/macos
 
 SPEC CHECKSUMS:
   audioplayers_darwin: dcad41de4fbd0099cb3749f7ab3b0cb8f70b810c
@@ -74,7 +74,7 @@ SPEC CHECKSUMS:
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
   sqflite: a5789cceda41d54d23f31d6de539d65bb14100ea
   url_launcher_macos: 45af3d61de06997666568a7149c1be98b41c95d4
-  wakelock_macos: bc3f2a9bd8d2e6c89fee1e1822e7ddac3bd004a9
+  wakelock_plus: 4783562c9a43d209c458cb9b30692134af456269
 
 PODFILE CHECKSUM: defd7fe906fdc49155c2d81c4fec14064ea3f458
 
