@@ -40,7 +40,7 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
         eventDate: DateTime.parse(e.start as String),
         eventID: e.logDayId.toString(),
         eventTextStyle:
-            TextStyle(color: Theme.of(context).colorScheme.background),
+            TextStyle(color: Theme.of(context).colorScheme.surface),
       ));
     }
 
@@ -55,7 +55,7 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
       appBar: AppBar(title: Text(S.of(context).log)),
       body: CellCalendar(
         todayMarkColor: Theme.of(context).primaryColor,
-        todayTextColor: Theme.of(context).colorScheme.background,
+        todayTextColor: Theme.of(context).colorScheme.surface,
         cellCalendarPageController: cellCalendarPageController,
         events: days,
         onPageChanged: (firstDate, lastDate) {

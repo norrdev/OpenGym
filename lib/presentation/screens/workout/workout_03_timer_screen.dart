@@ -1,4 +1,4 @@
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,13 +11,13 @@ class TimerScreen extends StatelessWidget {
   const TimerScreen({super.key});
 
   void playSound() {
-    final player = AudioPlayer();
-    try {
-      player.play(AssetSource('sounds/545913__jose-danielms__alarm.wav'),
-          mode: PlayerMode.lowLatency);
-    } catch (e) {
-      //print(e);
-    }
+    // final player = AudioPlayer();
+    // try {
+    //   player.play(AssetSource('sounds/545913__jose-danielms__alarm.wav'),
+    //       mode: PlayerMode.lowLatency);
+    // } catch (e) {
+    //   //print(e);
+    // }
   }
 
   @override
