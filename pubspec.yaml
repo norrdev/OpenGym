@@ -2,7 +2,7 @@ name: npng
 description: Crossplatform Workout Tracker.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 3.1.10+29
-homepage: https://npng.norr.dev
+homepage: https://norrdev.github.io/OpenGym/
 
 environment:
   sdk: '>=3.0.0 <4.0.0'

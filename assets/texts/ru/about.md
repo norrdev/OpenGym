@@ -1,4 +1,4 @@
-# NpNg: Cross-platform Workout %version%
+# OpenGym: Cross-platform Workout %version%
 
 Дневник тренировок с заботой о приватности. Никакого отслеживания, никаких персональных данных, аналитики и телеметрии.
 

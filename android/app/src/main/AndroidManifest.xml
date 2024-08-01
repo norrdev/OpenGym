@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pro.filonov.npng">
    <application
-        android:label="No Pain, No Gain"
+        android:label="OpenGym"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"

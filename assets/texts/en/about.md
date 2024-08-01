@@ -1,4 +1,4 @@
-# NpNg: Cross-platform Workout %version%
+# OpenGym: Cross-platform Workout %version%
 
 No registration. No personal data is needed. No tracking and telemetry. Simple interface. No remote backend.
 
