@@ -271,7 +271,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "stopRest": MessageLookupByLibrary.simpleMessage("Stop the rest"),
         "time": MessageLookupByLibrary.simpleMessage("Time"),
         "timer": MessageLookupByLibrary.simpleMessage("Timer"),
-        "title": MessageLookupByLibrary.simpleMessage("NpNg"),
+        "title": MessageLookupByLibrary.simpleMessage("OpenGym"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "twoBars": MessageLookupByLibrary.simpleMessage("Two bars"),
         "twoLimbsWorksTogether": MessageLookupByLibrary.simpleMessage(

@@ -1820,10 +1820,10 @@ class S {
     );
   }
 
-  /// `NpNg`
+  /// `OpenGym`
   String get title {
     return Intl.message(
-      'NpNg',
+      'OpenGym',
       name: 'title',
       desc: '',
       args: [],
