@@ -24,12 +24,15 @@ final bool isDesktopDevice =
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   final repository = SqliteRepository();
   await repository.init();
   late int defaultProgram;
 
   // Get default program.
   defaultProgram = await repository.getCurrentProgramId();
+
+
 
   runApp(
     MultiBlocProvider(

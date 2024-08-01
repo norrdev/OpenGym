@@ -1,3 +1,9 @@
+## 3.1.9
+- License updated.
+- Sources opened.
+- API Level updated.
+- Updated libraries.
+
 ## 3.1.8
 - Fixed the bug with the white text on the white background.
 
