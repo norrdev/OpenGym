@@ -1,4 +1,4 @@
-# NpNg: Cross-platform Workout
+# OpenGym: Cross-platform Workout
 Private digital trainer and workout journal.
 
 No registration. No personal data is needed. No tracking and telemetry.
@@ -8,9 +8,6 @@ No registration. No personal data is needed. No tracking and telemetry.
 - Train mode with rest timer
 - Workout log
 - Calculators
-
-## License
-Source-available. BSD-3-Clause with “Commons Clause” License Condition v1.0. You can not sell this software without permissions. See LICENSE.md
 
 ## Download
 
