@@ -9,7 +9,7 @@ No registration. No personal data is needed. No tracking and telemetry.
 - Workout log
 - Calculators
 
-[GPL-3.0 license](LICENSE)
+[GPL-3.0 license](LICENSE.md)
 
 [Privacy Policy](PRIVACY.md)
 
