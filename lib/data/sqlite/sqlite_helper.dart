@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart' show databaseFactoryFfi;
 import 'package:sqlbrite/sqlbrite.dart';
 import 'package:synchronized/synchronized.dart';
 
@@ -43,6 +44,9 @@ class SqliteHelper {
 
   /// Open the database or create it from asset.
   Future<Database> _initDatabase() async {
+    if (Platform.isWindows || Platform.isLinux) {
+      databaseFactory = databaseFactoryFfi;
+    }
     final appDbDirectory = await getDatabasesPath();
     final String path = join(appDbDirectory, _databaseName);
     final bool exists = await databaseExists(path);
