@@ -1,16 +1,8 @@
-import 'dart:async';
-import 'dart:io';
-
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:npng/presentation/widgets/burger_menu.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:share_plus/share_plus.dart';
 
-import 'package:npng/main.dart';
-import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 
 import 'about_screen.dart';
@@ -62,66 +54,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     }
   }
 
-  /// Preparing data for "Share" dialog.
-  void _shareFile(BuildContext context) async {
-    final repository =
-        RepositoryProvider.of<Repository>(context, listen: false);
-    String path = await repository.backupDatabase();
-    if (path.isNotEmpty) {
-      if (context.mounted) {
-        final Size size = MediaQuery.of(context).size;
-
-        await Share.shareFiles(
-          [path],
-          sharePositionOrigin: Rect.fromLTWH(0, 0, size.width, size.height / 6),
-        );
-      }
-    }
-  }
-
-  /// Preparing data for "Save" dialog.
-  void _saveFile(BuildContext context) async {
-    final Repository repository =
-        RepositoryProvider.of<Repository>(context, listen: false);
-    String path = await repository.backupDatabase();
-    final File file = File(path);
-    String? result = await FilePicker.platform.saveFile(
-      dialogTitle: S.of(context).save,
-      fileName: 'npng-backup-v2.db',
-      lockParentWindow: true,
-    );
-    if (result != null) file.copySync(result);
-  }
-
-  void _importFile(BuildContext context) async {
-    final Repository repository =
-        RepositoryProvider.of<Repository>(context, listen: false);
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(allowedExtensions: ['db']);
-    if (result != null) {
-      await repository.importDataBase(result.files.single.path ?? '');
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-                '${S.of(context).dbImportedFrom} ${result.files.single.path}.'),
-          ),
-        );
-      }
-      Timer(const Duration(seconds: 5), () {
-        exit(0);
-      });
-    } else {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(S.of(context).nothingSelected),
-          ),
-        );
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,25 +61,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: AppBar(title: Text(S.of(context).settings)),
       body: ListView(
         children: [
-          if (isDesktopDevice)
-            ListTile(
-              title: Text(S.of(context).saveToFile),
-              onTap: () => _saveFile(context),
-            ),
-          ListTile(
-            title: Text(S.of(context).share),
-            onTap: () => _shareFile(context),
-          ),
-          ListTile(
-            title: Text(S.of(context).import,
-                style: const TextStyle(color: Colors.redAccent)),
-            subtitle: Text(
-              S.of(context).importWarning,
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            onTap: () => _importFile(context),
-          ),
-          const Divider(),
           ListTile(
             title: Text(S.of(context).about),
             onTap: () => _getAboutPage(context),

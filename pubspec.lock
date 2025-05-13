@@ -305,14 +305,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.4"
-  file_picker:
-    dependency: "direct main"
-    description:
-      name: file_picker
-      sha256: "1bbf65dd997458a08b531042ec3794112a6c39c07c37ff22113d2e7e4f81d4e4"
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.2.1"
   fixnum:
     dependency: transitive
     description:
@@ -379,14 +371,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.5"
-  flutter_plugin_android_lifecycle:
-    dependency: transitive
-    description:
-      name: flutter_plugin_android_lifecycle
-      sha256: "5a1e6fb2c0561958d7e4c33574674bda7b77caaca7a33b758876956f2902eea3"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.27"
   flutter_riverpod:
     dependency: transitive
     description:
@@ -821,54 +805,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.0"
-  share_plus:
-    dependency: "direct main"
-    description:
-      name: share_plus
-      sha256: ada59039dc2d580bc0f83f06f4c32a992098aefbdb5b6332be2be516fda71c8b
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.4"
-  share_plus_linux:
-    dependency: transitive
-    description:
-      name: share_plus_linux
-      sha256: c217d158bb0f2374dd8cf655160be13f8ace4d2555804cb2932a68141a315456
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.4"
-  share_plus_macos:
-    dependency: transitive
-    description:
-      name: share_plus_macos
-      sha256: "3f12572a41dc59116559c8759a31d3a34b8350ffebefc516206f8c128e114658"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.0"
-  share_plus_platform_interface:
-    dependency: transitive
-    description:
-      name: share_plus_platform_interface
-      sha256: a15bc981f3169a95a5c8b6c2646cfb31cf8452ecf86cb491da1a61a7cee5cec5
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.0"
-  share_plus_web:
-    dependency: transitive
-    description:
-      name: share_plus_web
-      sha256: b121451985255d61cfd30079fcfb25fd9c8a8e0222d25a7994e78175610f4357
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.4"
-  share_plus_windows:
-    dependency: transitive
-    description:
-      name: share_plus_windows
-      sha256: "42cdcbc99652eceae5257eed9b06a26566d36ffc0238026ab71cb34102e05ae3"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.3"
   shared_preferences:
     dependency: "direct main"
     description:

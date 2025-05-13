@@ -18,17 +18,20 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+    );
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name =
+        (locale.countryCode?.isEmpty ?? false)
+            ? locale.languageCode
+            : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -41,8 +44,10 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -52,12 +57,7 @@ class S {
 
   /// `About`
   String get about {
-    return Intl.message(
-      'About',
-      name: 'about',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('About', name: 'about', desc: '', args: []);
   }
 
   /// `Please, enter you age. ABSI calculator is only for people 2 or much years old.`
@@ -112,52 +112,27 @@ class S {
 
   /// `Very Low`
   String get absiRisk1 {
-    return Intl.message(
-      'Very Low',
-      name: 'absiRisk1',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Very Low', name: 'absiRisk1', desc: '', args: []);
   }
 
   /// `Low`
   String get absiRisk2 {
-    return Intl.message(
-      'Low',
-      name: 'absiRisk2',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Low', name: 'absiRisk2', desc: '', args: []);
   }
 
   /// `Average`
   String get absiRisk3 {
-    return Intl.message(
-      'Average',
-      name: 'absiRisk3',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Average', name: 'absiRisk3', desc: '', args: []);
   }
 
   /// `High`
   String get absiRisk4 {
-    return Intl.message(
-      'High',
-      name: 'absiRisk4',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('High', name: 'absiRisk4', desc: '', args: []);
   }
 
   /// `Very High`
   String get absiRisk5 {
-    return Intl.message(
-      'Very High',
-      name: 'absiRisk5',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Very High', name: 'absiRisk5', desc: '', args: []);
   }
 
   /// `Waist circumference`
@@ -182,32 +157,17 @@ class S {
 
   /// `Add`
   String get add {
-    return Intl.message(
-      'Add',
-      name: 'add',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Add', name: 'add', desc: '', args: []);
   }
 
   /// `Exercise added.`
   String get addEx {
-    return Intl.message(
-      'Exercise added.',
-      name: 'addEx',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Exercise added.', name: 'addEx', desc: '', args: []);
   }
 
   /// `Age`
   String get age {
-    return Intl.message(
-      'Age',
-      name: 'age',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Age', name: 'age', desc: '', args: []);
   }
 
   /// `Please, enter you age.`
@@ -232,42 +192,22 @@ class S {
 
   /// `Backup database`
   String get backup {
-    return Intl.message(
-      'Backup database',
-      name: 'backup',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Backup database', name: 'backup', desc: '', args: []);
   }
 
   /// `Athletes`
   String get bfpAthletes {
-    return Intl.message(
-      'Athletes',
-      name: 'bfpAthletes',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Athletes', name: 'bfpAthletes', desc: '', args: []);
   }
 
   /// `Average`
   String get bfpAverage {
-    return Intl.message(
-      'Average',
-      name: 'bfpAverage',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Average', name: 'bfpAverage', desc: '', args: []);
   }
 
   /// `Category`
   String get bfpCategory {
-    return Intl.message(
-      'Category',
-      name: 'bfpCategory',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Category', name: 'bfpCategory', desc: '', args: []);
   }
 
   /// `Essential fat`
@@ -282,22 +222,12 @@ class S {
 
   /// `Fitness`
   String get bfpFitness {
-    return Intl.message(
-      'Fitness',
-      name: 'bfpFitness',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Fitness', name: 'bfpFitness', desc: '', args: []);
   }
 
   /// `Obese`
   String get bfpObese {
-    return Intl.message(
-      'Obese',
-      name: 'bfpObese',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Obese', name: 'bfpObese', desc: '', args: []);
   }
 
   /// `Body fat percentage (BFP)`
@@ -312,12 +242,7 @@ class S {
 
   /// `BMI`
   String get bmi {
-    return Intl.message(
-      'BMI',
-      name: 'bmi',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('BMI', name: 'bmi', desc: '', args: []);
   }
 
   /// `Severely underweight.`
@@ -342,12 +267,7 @@ class S {
 
   /// `Underweight.`
   String get bmi16_18 {
-    return Intl.message(
-      'Underweight.',
-      name: 'bmi16_18',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Underweight.', name: 'bmi16_18', desc: '', args: []);
   }
 
   /// `Normal (healthy weight).`
@@ -362,12 +282,7 @@ class S {
 
   /// `Overweight.`
   String get bmi25_30 {
-    return Intl.message(
-      'Overweight.',
-      name: 'bmi25_30',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Overweight.', name: 'bmi25_30', desc: '', args: []);
   }
 
   /// `Obese Class I (Moderately obese).`
@@ -402,12 +317,7 @@ class S {
 
   /// `Your height`
   String get bmiHeight {
-    return Intl.message(
-      'Your height',
-      name: 'bmiHeight',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Your height', name: 'bmiHeight', desc: '', args: []);
   }
 
   /// `Please enter your height.`
@@ -442,12 +352,7 @@ class S {
 
   /// `Your weight`
   String get bmiWeight {
-    return Intl.message(
-      'Your weight',
-      name: 'bmiWeight',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Your weight', name: 'bmiWeight', desc: '', args: []);
   }
 
   /// `Please enter your weight.`
@@ -462,32 +367,17 @@ class S {
 
   /// `Brzycki`
   String get Brzycki {
-    return Intl.message(
-      'Brzycki',
-      name: 'Brzycki',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Brzycki', name: 'Brzycki', desc: '', args: []);
   }
 
   /// `Calculate`
   String get calculate {
-    return Intl.message(
-      'Calculate',
-      name: 'calculate',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Calculate', name: 'calculate', desc: '', args: []);
   }
 
   /// `Cancel`
   String get cancel {
-    return Intl.message(
-      'Cancel',
-      name: 'cancel',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
   }
 
   /// `You can only delete a program day that has never been practiced.`
@@ -502,52 +392,27 @@ class S {
 
   /// `Continue`
   String get ccontinue {
-    return Intl.message(
-      'Continue',
-      name: 'ccontinue',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Continue', name: 'ccontinue', desc: '', args: []);
   }
 
   /// `cm`
   String get cm {
-    return Intl.message(
-      'cm',
-      name: 'cm',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('cm', name: 'cm', desc: '', args: []);
   }
 
   /// `Average`
   String get cooperAverage {
-    return Intl.message(
-      'Average',
-      name: 'cooperAverage',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Average', name: 'cooperAverage', desc: '', args: []);
   }
 
   /// `Bad`
   String get cooperBad {
-    return Intl.message(
-      'Bad',
-      name: 'cooperBad',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Bad', name: 'cooperBad', desc: '', args: []);
   }
 
   /// `Distanse`
   String get cooperDistanse {
-    return Intl.message(
-      'Distanse',
-      name: 'cooperDistanse',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Distanse', name: 'cooperDistanse', desc: '', args: []);
   }
 
   /// `Please, enter the distance.`
@@ -572,22 +437,12 @@ class S {
 
   /// `Good`
   String get cooperGood {
-    return Intl.message(
-      'Good',
-      name: 'cooperGood',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Good', name: 'cooperGood', desc: '', args: []);
   }
 
   /// `Mark`
   String get cooperMark {
-    return Intl.message(
-      'Mark',
-      name: 'cooperMark',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Mark', name: 'cooperMark', desc: '', args: []);
   }
 
   /// `Run 12 minutes as fast, as you can. And enter the distance in the field below. You can do it in a stadium, or using a fitness tracker with GPS.`
@@ -652,12 +507,7 @@ class S {
 
   /// `Terrible`
   String get cooperTerrible {
-    return Intl.message(
-      'Terrible',
-      name: 'cooperTerrible',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Terrible', name: 'cooperTerrible', desc: '', args: []);
   }
 
   /// `© Denis Filonov`
@@ -692,12 +542,7 @@ class S {
 
   /// `Add day`
   String get dayAdd {
-    return Intl.message(
-      'Add day',
-      name: 'dayAdd',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Add day', name: 'dayAdd', desc: '', args: []);
   }
 
   /// `Database imported from`
@@ -712,32 +557,17 @@ class S {
 
   /// `Delete`
   String get delete {
-    return Intl.message(
-      'Delete',
-      name: 'delete',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Delete', name: 'delete', desc: '', args: []);
   }
 
   /// `Description`
   String get desc {
-    return Intl.message(
-      'Description',
-      name: 'desc',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Description', name: 'desc', desc: '', args: []);
   }
 
   /// `Edit`
   String get edit {
-    return Intl.message(
-      'Edit',
-      name: 'edit',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Edit', name: 'edit', desc: '', args: []);
   }
 
   /// `Please enter some text`
@@ -752,22 +582,12 @@ class S {
 
   /// `Epley`
   String get Epley {
-    return Intl.message(
-      'Epley',
-      name: 'Epley',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Epley', name: 'Epley', desc: '', args: []);
   }
 
   /// `Equipment`
   String get equipment {
-    return Intl.message(
-      'Equipment',
-      name: 'equipment',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Equipment', name: 'equipment', desc: '', args: []);
   }
 
   /// `Exercise description`
@@ -782,52 +602,27 @@ class S {
 
   /// `Exercise name`
   String get exName {
-    return Intl.message(
-      'Exercise name',
-      name: 'exName',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Exercise name', name: 'exName', desc: '', args: []);
   }
 
   /// `Female`
   String get female {
-    return Intl.message(
-      'Female',
-      name: 'female',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Female', name: 'female', desc: '', args: []);
   }
 
   /// `Finish`
   String get finish {
-    return Intl.message(
-      'Finish',
-      name: 'finish',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Finish', name: 'finish', desc: '', args: []);
   }
 
   /// ` from `
   String get from {
-    return Intl.message(
-      ' from ',
-      name: 'from',
-      desc: '',
-      args: [],
-    );
+    return Intl.message(' from ', name: 'from', desc: '', args: []);
   }
 
   /// `Gender`
   String get gender {
-    return Intl.message(
-      'Gender',
-      name: 'gender',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Gender', name: 'gender', desc: '', args: []);
   }
 
   /// `Tap on the muscle group in the list to show exercises.`
@@ -932,22 +727,12 @@ class S {
 
   /// `Body form`
   String get homePageBody {
-    return Intl.message(
-      'Body form',
-      name: 'homePageBody',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Body form', name: 'homePageBody', desc: '', args: []);
   }
 
   /// `Food`
   String get homePageFood {
-    return Intl.message(
-      'Food',
-      name: 'homePageFood',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Food', name: 'homePageFood', desc: '', args: []);
   }
 
   /// `Strength and endurance`
@@ -972,22 +757,12 @@ class S {
 
   /// `3-Lift`
   String get ifp3Lift {
-    return Intl.message(
-      '3-Lift',
-      name: 'ifp3Lift',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('3-Lift', name: 'ifp3Lift', desc: '', args: []);
   }
 
   /// `Bench`
   String get ifpBench {
-    return Intl.message(
-      'Bench',
-      name: 'ifpBench',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Bench', name: 'ifpBench', desc: '', args: []);
   }
 
   /// `IFP Goodlift Calculator.`
@@ -1002,32 +777,17 @@ class S {
 
   /// `IPF Points`
   String get ifpPageTitle {
-    return Intl.message(
-      'IPF Points',
-      name: 'ifpPageTitle',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('IPF Points', name: 'ifpPageTitle', desc: '', args: []);
   }
 
   /// `Raw`
   String get ifpRaw {
-    return Intl.message(
-      'Raw',
-      name: 'ifpRaw',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Raw', name: 'ifpRaw', desc: '', args: []);
   }
 
   /// `Single-ply`
   String get ifpSingleply {
-    return Intl.message(
-      'Single-ply',
-      name: 'ifpSingleply',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Single-ply', name: 'ifpSingleply', desc: '', args: []);
   }
 
   /// `Total weight`
@@ -1042,12 +802,7 @@ class S {
 
   /// `Import database`
   String get import {
-    return Intl.message(
-      'Import database',
-      name: 'import',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Import database', name: 'import', desc: '', args: []);
   }
 
   /// `This option will overwrite all data with imports and exit the application. Make a backup!`
@@ -1062,12 +817,7 @@ class S {
 
   /// `in`
   String get inch {
-    return Intl.message(
-      'in',
-      name: 'inch',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('in', name: 'inch', desc: '', args: []);
   }
 
   /// `Are you a professional athlete?`
@@ -1082,12 +832,7 @@ class S {
 
   /// `Lander`
   String get Lander {
-    return Intl.message(
-      'Lander',
-      name: 'Lander',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Lander', name: 'Lander', desc: '', args: []);
   }
 
   /// `Fat-free body mass.`
@@ -1112,22 +857,12 @@ class S {
 
   /// `left`
   String get left {
-    return Intl.message(
-      'left',
-      name: 'left',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('left', name: 'left', desc: '', args: []);
   }
 
   /// `Licenses`
   String get licenses {
-    return Intl.message(
-      'Licenses',
-      name: 'licenses',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Licenses', name: 'licenses', desc: '', args: []);
   }
 
   /// `Limbs work alternately or separately`
@@ -1142,62 +877,32 @@ class S {
 
   /// `Load`
   String get loadStr {
-    return Intl.message(
-      'Load',
-      name: 'loadStr',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Load', name: 'loadStr', desc: '', args: []);
   }
 
   /// `Log`
   String get log {
-    return Intl.message(
-      'Log',
-      name: 'log',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Log', name: 'log', desc: '', args: []);
   }
 
   /// `Lombardi`
   String get Lombardi {
-    return Intl.message(
-      'Lombardi',
-      name: 'Lombardi',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Lombardi', name: 'Lombardi', desc: '', args: []);
   }
 
   /// `Male`
   String get male {
-    return Intl.message(
-      'Male',
-      name: 'male',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Male', name: 'male', desc: '', args: []);
   }
 
   /// `Mayhew`
   String get Mayhew {
-    return Intl.message(
-      'Mayhew',
-      name: 'Mayhew',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Mayhew', name: 'Mayhew', desc: '', args: []);
   }
 
   /// `Bicep girth`
   String get mcBicep {
-    return Intl.message(
-      'Bicep girth',
-      name: 'mcBicep',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Bicep girth', name: 'mcBicep', desc: '', args: []);
   }
 
   /// `Girth of the buttocks`
@@ -1222,32 +927,17 @@ class S {
 
   /// `Chest girth`
   String get mcChest {
-    return Intl.message(
-      'Chest girth',
-      name: 'mcChest',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Chest girth', name: 'mcChest', desc: '', args: []);
   }
 
   /// `Forearm girth`
   String get mcForearm {
-    return Intl.message(
-      'Forearm girth',
-      name: 'mcForearm',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Forearm girth', name: 'mcForearm', desc: '', args: []);
   }
 
   /// `Neck girth`
   String get mcNeck {
-    return Intl.message(
-      'Neck girth',
-      name: 'mcNeck',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Neck girth', name: 'mcNeck', desc: '', args: []);
   }
 
   /// `Ideal Body Proportions Formula For the Natural Athlete (McCallum).`
@@ -1272,32 +962,17 @@ class S {
 
   /// `Body part`
   String get mcPart {
-    return Intl.message(
-      'Body part',
-      name: 'mcPart',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Body part', name: 'mcPart', desc: '', args: []);
   }
 
   /// `Maximum`
   String get mcrobertMax {
-    return Intl.message(
-      'Maximum',
-      name: 'mcrobertMax',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Maximum', name: 'mcrobertMax', desc: '', args: []);
   }
 
   /// `Minimum`
   String get mcrobertMin {
-    return Intl.message(
-      'Minimum',
-      name: 'mcrobertMin',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Minimum', name: 'mcrobertMin', desc: '', args: []);
   }
 
   /// `Ideal Body Proportions Formula For the Natural Athlete (McRobert).`
@@ -1322,32 +997,17 @@ class S {
 
   /// `Thigh girth`
   String get mcThigh {
-    return Intl.message(
-      'Thigh girth',
-      name: 'mcThigh',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Thigh girth', name: 'mcThigh', desc: '', args: []);
   }
 
   /// `Waist`
   String get mcWaist {
-    return Intl.message(
-      'Waist',
-      name: 'mcWaist',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Waist', name: 'mcWaist', desc: '', args: []);
   }
 
   /// `Wrist girth`
   String get mcWrist {
-    return Intl.message(
-      'Wrist girth',
-      name: 'mcWrist',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Wrist girth', name: 'mcWrist', desc: '', args: []);
   }
 
   /// `Enter your wrist circumference.`
@@ -1362,52 +1022,27 @@ class S {
 
   /// `min.`
   String get min {
-    return Intl.message(
-      'min.',
-      name: 'min',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('min.', name: 'min', desc: '', args: []);
   }
 
   /// `Muscles`
   String get muscles {
-    return Intl.message(
-      'Muscles',
-      name: 'muscles',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Muscles', name: 'muscles', desc: '', args: []);
   }
 
   /// `Name`
   String get name {
-    return Intl.message(
-      'Name',
-      name: 'name',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Name', name: 'name', desc: '', args: []);
   }
 
   /// `No`
   String get no {
-    return Intl.message(
-      'No',
-      name: 'no',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('No', name: 'no', desc: '', args: []);
   }
 
   /// `No description.`
   String get noDesc {
-    return Intl.message(
-      'No description.',
-      name: 'noDesc',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('No description.', name: 'noDesc', desc: '', args: []);
   }
 
   /// `No exercises on this day.`
@@ -1432,12 +1067,7 @@ class S {
 
   /// `O'Conner`
   String get OConner {
-    return Intl.message(
-      'O`Conner',
-      name: 'OConner',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('O`Conner', name: 'OConner', desc: '', args: []);
   }
 
   /// `One bar or no bar`
@@ -1452,22 +1082,12 @@ class S {
 
   /// `Add exercise`
   String get pageAddEx {
-    return Intl.message(
-      'Add exercise',
-      name: 'pageAddEx',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Add exercise', name: 'pageAddEx', desc: '', args: []);
   }
 
   /// `Days`
   String get pageDaysTitle {
-    return Intl.message(
-      'Days',
-      name: 'pageDaysTitle',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Days', name: 'pageDaysTitle', desc: '', args: []);
   }
 
   /// `Exercises`
@@ -1492,12 +1112,7 @@ class S {
 
   /// `Workout`
   String get pageWorkout {
-    return Intl.message(
-      'Workout',
-      name: 'pageWorkout',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Workout', name: 'pageWorkout', desc: '', args: []);
   }
 
   /// `Preinstalled exercise`
@@ -1512,52 +1127,27 @@ class S {
 
   /// `Add program`
   String get programAdd {
-    return Intl.message(
-      'Add program',
-      name: 'programAdd',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Add program', name: 'programAdd', desc: '', args: []);
   }
 
   /// `Rename`
   String get rename {
-    return Intl.message(
-      'Rename',
-      name: 'rename',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Rename', name: 'rename', desc: '', args: []);
   }
 
   /// `Repeats`
   String get repeats {
-    return Intl.message(
-      'Repeats',
-      name: 'repeats',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Repeats', name: 'repeats', desc: '', args: []);
   }
 
   /// `Rest time (sec)`
   String get rest {
-    return Intl.message(
-      'Rest time (sec)',
-      name: 'rest',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Rest time (sec)', name: 'rest', desc: '', args: []);
   }
 
   /// `Save & rest`
   String get restButton {
-    return Intl.message(
-      'Save & rest',
-      name: 'restButton',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Save & rest', name: 'restButton', desc: '', args: []);
   }
 
   /// `Restore from backup`
@@ -1592,12 +1182,7 @@ class S {
 
   /// `right`
   String get right {
-    return Intl.message(
-      'right',
-      name: 'right',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('right', name: 'right', desc: '', args: []);
   }
 
   /// `Weight of barebell`
@@ -1622,12 +1207,7 @@ class S {
 
   /// `Method`
   String get rmMethod {
-    return Intl.message(
-      'Method',
-      name: 'rmMethod',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Method', name: 'rmMethod', desc: '', args: []);
   }
 
   /// `1 RM calculation by different methods.`
@@ -1652,12 +1232,7 @@ class S {
 
   /// `Repeats`
   String get rmRepeats {
-    return Intl.message(
-      'Repeats',
-      name: 'rmRepeats',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Repeats', name: 'rmRepeats', desc: '', args: []);
   }
 
   /// `Enter repeats.`
@@ -1672,22 +1247,12 @@ class S {
 
   /// `Result`
   String get rmResult {
-    return Intl.message(
-      'Result',
-      name: 'rmResult',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Result', name: 'rmResult', desc: '', args: []);
   }
 
   /// `Save`
   String get save {
-    return Intl.message(
-      'Save',
-      name: 'save',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Save', name: 'save', desc: '', args: []);
   }
 
   /// `Save database to file`
@@ -1702,12 +1267,7 @@ class S {
 
   /// `Save to Log`
   String get saveToLog {
-    return Intl.message(
-      'Save to Log',
-      name: 'saveToLog',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Save to Log', name: 'saveToLog', desc: '', args: []);
   }
 
   /// `Select or create program first`
@@ -1722,12 +1282,7 @@ class S {
 
   /// `Sets`
   String get sets {
-    return Intl.message(
-      'Sets',
-      name: 'sets',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sets', name: 'sets', desc: '', args: []);
   }
 
   /// `Perform the set, and when you're done, press the button.`
@@ -1742,32 +1297,17 @@ class S {
 
   /// `Settings`
   String get settings {
-    return Intl.message(
-      'Settings',
-      name: 'settings',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Settings', name: 'settings', desc: '', args: []);
   }
 
   /// `Share database`
   String get share {
-    return Intl.message(
-      'Share database',
-      name: 'share',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Share database', name: 'share', desc: '', args: []);
   }
 
   /// `Skip`
   String get skip {
-    return Intl.message(
-      'Skip',
-      name: 'skip',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Skip', name: 'skip', desc: '', args: []);
   }
 
   /// `Are you really want to skip this exercise today?`
@@ -1782,72 +1322,37 @@ class S {
 
   /// `Start`
   String get start {
-    return Intl.message(
-      'Start',
-      name: 'start',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Start', name: 'start', desc: '', args: []);
   }
 
   /// `Stop the rest`
   String get stopRest {
-    return Intl.message(
-      'Stop the rest',
-      name: 'stopRest',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Stop the rest', name: 'stopRest', desc: '', args: []);
   }
 
   /// `Time`
   String get time {
-    return Intl.message(
-      'Time',
-      name: 'time',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Time', name: 'time', desc: '', args: []);
   }
 
   /// `Timer`
   String get timer {
-    return Intl.message(
-      'Timer',
-      name: 'timer',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Timer', name: 'timer', desc: '', args: []);
   }
 
   /// `OpenGym`
   String get title {
-    return Intl.message(
-      'OpenGym',
-      name: 'title',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('OpenGym', name: 'title', desc: '', args: []);
   }
 
   /// `Total`
   String get total {
-    return Intl.message(
-      'Total',
-      name: 'total',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Total', name: 'total', desc: '', args: []);
   }
 
   /// `Two bars`
   String get twoBars {
-    return Intl.message(
-      'Two bars',
-      name: 'twoBars',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Two bars', name: 'twoBars', desc: '', args: []);
   }
 
   /// `Both limbs work simultaneously or one muscle group works`
@@ -1872,32 +1377,17 @@ class S {
 
   /// `Wathan`
   String get Wathan {
-    return Intl.message(
-      'Wathan',
-      name: 'Wathan',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Wathan', name: 'Wathan', desc: '', args: []);
   }
 
   /// `Weight`
   String get weight {
-    return Intl.message(
-      'Weight',
-      name: 'weight',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Weight', name: 'weight', desc: '', args: []);
   }
 
   /// `Wilks`
   String get Wilks {
-    return Intl.message(
-      'Wilks',
-      name: 'Wilks',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Wilks', name: 'Wilks', desc: '', args: []);
   }
 
   /// `Workout finished`
@@ -1922,12 +1412,7 @@ class S {
 
   /// `Workout begin`
   String get wrkBegin {
-    return Intl.message(
-      'Workout begin',
-      name: 'wrkBegin',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Workout begin', name: 'wrkBegin', desc: '', args: []);
   }
 
   /// `Workout duration`
@@ -1942,12 +1427,7 @@ class S {
 
   /// `Workout end`
   String get wrkEnd {
-    return Intl.message(
-      'Workout end',
-      name: 'wrkEnd',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Workout end', name: 'wrkEnd', desc: '', args: []);
   }
 
   /// `Training volume`
@@ -1962,12 +1442,7 @@ class S {
 
   /// `Yes`
   String get yes {
-    return Intl.message(
-      'Yes',
-      name: 'yes',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Yes', name: 'yes', desc: '', args: []);
   }
 
   /// `The programme has been in use so it cannot be deleted.`
