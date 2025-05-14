@@ -69,8 +69,7 @@ class WorkoutFinishScreen extends StatelessWidget {
           controller: controller,
           selectable: false,
           styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)),
-          onTapLink: (text, href, title) => launch(href!),
-          //launchUrlString(href!),
+          onTapLink: (text, href, title) => launchUrl(Uri.parse(href!)),
         ),
       ),
       persistentFooterButtons: [

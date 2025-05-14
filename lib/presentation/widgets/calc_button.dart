@@ -30,7 +30,7 @@ class CalcButton extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.center,
-            textScaleFactor: 0.9,
+            textScaler: const TextScaler.linear(0.9),
           ),
         ],
       ),

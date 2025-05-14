@@ -17,7 +17,6 @@ double calcRFM(
       res = 64.0 -
           (20.0 * ((heightAthleteCm / 100.0) / (waistCircumferenceCm / 100.0)));
       break;
-    default:
   }
   return res;
 }

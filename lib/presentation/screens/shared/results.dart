@@ -23,8 +23,7 @@ class ResultScreen extends StatelessWidget {
           styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
             h1Align: WrapAlignment.center,
           ),
-          onTapLink: (text, href, title) =>
-              launch(href!), // launchUrl(Uri.parse(href!)),
+          onTapLink: (text, href, title) => launchUrl(Uri.parse(href!)),
         ),
       ),
     );

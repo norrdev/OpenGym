@@ -12,7 +12,6 @@ double calcLbmBoer(
     case Sex.male:
       res = (0.407 * weight) + (0.267 * heightCm) - 19.2;
       break;
-    default:
   }
   return res;
 }
@@ -29,7 +28,6 @@ double calcLbmHume(
     case Sex.male:
       res = (0.32810 * weight) + (0.33929 * heightCm) - 29.5336;
       break;
-    default:
   }
   return res;
 }

@@ -39,8 +39,11 @@ class _LogWorkoutScreenState extends State<LogWorkoutScreen> {
     DateTime finish = DateTime.parse(widget.logDay.finish as String);
     String duration = finish.difference(start).inMinutes.toString();
     double trainingVolume = 0.0;
+    // ignore: unused_local_variable
     double traningDistance = 0.0;
+    // ignore: unused_local_variable
     int traningRepeats = 0;
+    // ignore: unused_local_variable
     int traningTime = 0;
     double exTrainingVolume = 0.0;
     int exRepeats = 0;
@@ -130,8 +133,7 @@ class _LogWorkoutScreenState extends State<LogWorkoutScreen> {
           controller: controller,
           selectable: false,
           styleSheet: style,
-          onTapLink: (text, href, title) => launch(href!),
-          //launchUrl(Uri.parse(href ?? '')),
+          onTapLink: (text, href, title) => launchUrl(Uri.parse(href!)),
         ),
       ),
     );

@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
@@ -64,13 +63,6 @@ class SqliteHelper {
           data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
       await File(path).writeAsBytes(bytes, flush: true);
       log('New DB loaded from template.');
-    }
-
-    if (kDebugMode) {
-      Sqflite.setDebugModeOn(true);
-      log('Init DB, path to file: $path');
-    } else {
-      Sqflite.setDebugModeOn(false);
     }
 
     // Opening DB. Note: do not use onCreate, if db comes from asset.
