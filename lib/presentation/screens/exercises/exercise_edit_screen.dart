@@ -125,7 +125,7 @@ class ExerciseEditScreen extends StatelessWidget {
                     if (snapshot.connectionState == ConnectionState.active) {
                       final List<Load> loads = snapshot.data ?? [];
                       return DropdownButtonFormField<int>(
-                        value: loadId,
+                        initialValue: loadId,
                         decoration: InputDecoration(
                           labelText: S.of(context).loadStr,
                           border: const OutlineInputBorder(
@@ -157,7 +157,7 @@ class ExerciseEditScreen extends StatelessWidget {
                     if (snapshot.connectionState == ConnectionState.active) {
                       final List<Equipment> equipments = snapshot.data ?? [];
                       return DropdownButtonFormField<int>(
-                        value: equipment,
+                        initialValue: equipment,
                         decoration: InputDecoration(
                           labelText: S.of(context).equipment,
                           border: const OutlineInputBorder(
