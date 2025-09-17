@@ -122,7 +122,7 @@ class SqliteHelper {
     String path = join(dbPath, 'npng-backup.db');
     try {
       await deleteDbBackupFile(path);
-      await db.rawQuery("VACUUM INTO '$path'");
+      await db.rawQuery("VACUUM INTO '$path'", []);
       return path;
     } catch (e) {
       return '';
@@ -269,7 +269,7 @@ class SqliteHelper {
         WHERE $logWorkoutsTable.logDayId = $logDayId
         ORDER BY $logWorkoutsTable.id;
     ''';
-    final List<Map<String, dynamic>> list = await db.rawQuery(sql);
+    final List<Map<String, dynamic>> list = await db.rawQuery(sql, []);
     List<LogWorkout> result = [];
     for (Map<String, dynamic> item in list) {
       result.add(LogWorkout.fromJson(item));
@@ -295,7 +295,7 @@ class SqliteHelper {
     WHERE start > date('${start.toLocal()}') AND start < date('${finish.toLocal()}', '+1 day')
     ORDER BY start
     ''';
-    final List<Map<String, dynamic>> list = await db.rawQuery(sql);
+    final List<Map<String, dynamic>> list = await db.rawQuery(sql, []);
     List<LogDay> result = [];
     for (Map<String, dynamic> item in list) {
       result.add(LogDay.fromJson(item));
@@ -606,7 +606,7 @@ class SqliteHelper {
     join $programsTable on $daysTable.programs_id = $programsTable.id
     ORDER BY logDayId
     ''';
-    final List<Map<String, dynamic>> list = await db.rawQuery(sql);
+    final List<Map<String, dynamic>> list = await db.rawQuery(sql, []);
     List<LogDay> result = [];
     for (Map<String, dynamic> item in list) {
       result.add(LogDay.fromJson(item));
@@ -668,7 +668,7 @@ class SqliteHelper {
     // If no program days in log_days
     final isInLog = await db.rawQuery('''
       SELECT * FROM $logDaysTable WHERE dayId IN (SELECT id FROM $daysTable WHERE programs_id = $id)
-      ''');
+      ''', []);
     if (isInLog.isEmpty) {
       await db.transaction((txn) async {
         txn.rawDelete('DELETE FROM $daysTable WHERE programs_id = $id');

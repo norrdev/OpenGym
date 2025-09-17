@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide RadioGroup;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 
 import '../../../data/models/models.dart';
-import '../../widgets/radio_group.dart';
+import '../../widgets/widgets.dart';
 
 class ExerciseEditScreen extends StatelessWidget {
   final Exercise exercise;
