@@ -7,9 +7,9 @@ part of 'load.dart';
 // **************************************************************************
 
 _$LoadImpl _$$LoadImplFromJson(Map<String, dynamic> json) => _$LoadImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
-      preinstalled: json['preinstalled'] as int?,
+      preinstalled: (json['preinstalled'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$LoadImplToJson(_$LoadImpl instance) =>

@@ -9,16 +9,16 @@ part of 'workout_exercise.dart';
 _$WorkoutExerciseImpl _$$WorkoutExerciseImplFromJson(
         Map<String, dynamic> json) =>
     _$WorkoutExerciseImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
-      maxSets: json['maxSets'] as int,
-      restTime: json['restTime'] as int,
+      maxSets: (json['maxSets'] as num).toInt(),
+      restTime: (json['restTime'] as num).toInt(),
       sets: (json['sets'] as List<dynamic>)
           .map((e) => WorkoutSet.fromJson(e as Map<String, dynamic>))
           .toList(),
       completed: json['completed'] as bool,
-      limbs: json['limbs'] as int,
-      loadId: json['loadId'] as int,
+      limbs: (json['limbs'] as num).toInt(),
+      loadId: (json['loadId'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$WorkoutExerciseImplToJson(

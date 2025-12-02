@@ -12,7 +12,7 @@ part of 'day.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Day _$DayFromJson(Map<String, dynamic> json) {
   return _Day.fromJson(json);
@@ -25,8 +25,12 @@ mixin _$Day {
   String? get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
 
+  /// Serializes this Day to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Day
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DayCopyWith<Day> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -47,6 +51,8 @@ class _$DayCopyWithImpl<$Res, $Val extends Day> implements $DayCopyWith<$Res> {
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Day
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -91,6 +97,8 @@ class __$$DayImplCopyWithImpl<$Res> extends _$DayCopyWithImpl<$Res, _$DayImpl>
   __$$DayImplCopyWithImpl(_$DayImpl _value, $Res Function(_$DayImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Day
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -143,7 +151,7 @@ class _$DayImpl implements _Day {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DayImpl &&
@@ -154,11 +162,13 @@ class _$DayImpl implements _Day {
                 other.description == description));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, ord, name, description);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Day
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DayImplCopyWith<_$DayImpl> get copyWith =>
@@ -189,8 +199,11 @@ abstract class _Day implements Day {
   String? get name;
   @override
   String? get description;
+
+  /// Create a copy of Day
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DayImplCopyWith<_$DayImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -8,7 +8,7 @@ part of 'program.dart';
 
 _$ProgramImpl _$$ProgramImplFromJson(Map<String, dynamic> json) =>
     _$ProgramImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       description: json['description'] as String?,
     );

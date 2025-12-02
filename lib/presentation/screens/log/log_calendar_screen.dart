@@ -31,7 +31,7 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
   void _refreshOnPageChange(DateTime start, DateTime finish) async {
     logDays = await context
         .read<Repository>()
-        .findMounthLogDaysBetweenDates(start, finish);
+        .findMonthLogDaysBetweenDates(start, finish);
     days.clear();
     for (var e in logDays) {
       days.add(CalendarEvent(

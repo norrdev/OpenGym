@@ -8,22 +8,22 @@ part of 'workout.dart';
 
 _$WorkoutImpl _$$WorkoutImplFromJson(Map<String, dynamic> json) =>
     _$WorkoutImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       description: json['description'] as String?,
-      ord: json['ord'] as int?,
-      sets: json['sets'] as int?,
-      repeats: json['repeats'] as int?,
-      repeatsLeft: json['repeatsLeft'] as int?,
-      rest: json['rest'] as int?,
-      exerciseId: json['exerciseId'] as int?,
+      ord: (json['ord'] as num?)?.toInt(),
+      sets: (json['sets'] as num?)?.toInt(),
+      repeats: (json['repeats'] as num?)?.toInt(),
+      repeatsLeft: (json['repeatsLeft'] as num?)?.toInt(),
+      rest: (json['rest'] as num?)?.toInt(),
+      exerciseId: (json['exerciseId'] as num?)?.toInt(),
       weight: (json['weight'] as num?)?.toDouble(),
       weightLeft: (json['weightLeft'] as num?)?.toDouble(),
       distance: (json['distance'] as num?)?.toDouble(),
-      timeLoad: json['timeLoad'] as int?,
-      equipmentId: json['equipmentId'] as int?,
-      loadId: json['loadId'] as int?,
-      limbs: json['limbs'] as int?,
+      timeLoad: (json['timeLoad'] as num?)?.toInt(),
+      equipmentId: (json['equipmentId'] as num?)?.toInt(),
+      loadId: (json['loadId'] as num?)?.toInt(),
+      limbs: (json['limbs'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$WorkoutImplToJson(_$WorkoutImpl instance) =>

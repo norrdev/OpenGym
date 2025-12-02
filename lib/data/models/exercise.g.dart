@@ -8,13 +8,13 @@ part of 'exercise.dart';
 
 _$ExerciseImpl _$$ExerciseImplFromJson(Map<String, dynamic> json) =>
     _$ExerciseImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       description: json['description'] as String?,
-      equipmentId: json['equipmentId'] as int?,
-      preinstalled: json['preinstalled'] as int?,
-      loadId: json['loadId'] as int?,
-      limbs: json['limbs'] as int?,
+      equipmentId: (json['equipmentId'] as num?)?.toInt(),
+      preinstalled: (json['preinstalled'] as num?)?.toInt(),
+      loadId: (json['loadId'] as num?)?.toInt(),
+      limbs: (json['limbs'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$ExerciseImplToJson(_$ExerciseImpl instance) =>

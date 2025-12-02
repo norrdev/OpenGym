@@ -7,8 +7,8 @@ part of 'day.dart';
 // **************************************************************************
 
 _$DayImpl _$$DayImplFromJson(Map<String, dynamic> json) => _$DayImpl(
-      id: json['id'] as int?,
-      ord: json['ord'] as int?,
+      id: (json['id'] as num?)?.toInt(),
+      ord: (json['ord'] as num?)?.toInt(),
       name: json['name'] as String?,
       description: json['description'] as String?,
     );

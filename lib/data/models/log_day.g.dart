@@ -7,8 +7,8 @@ part of 'log_day.dart';
 // **************************************************************************
 
 _$LogDayImpl _$$LogDayImplFromJson(Map<String, dynamic> json) => _$LogDayImpl(
-      logDayId: json['logDayId'] as int?,
-      dayId: json['dayId'] as int?,
+      logDayId: (json['logDayId'] as num?)?.toInt(),
+      dayId: (json['dayId'] as num?)?.toInt(),
       start: json['start'] as String?,
       finish: json['finish'] as String?,
       daysName: json['daysName'] as String?,

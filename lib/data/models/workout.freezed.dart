@@ -12,7 +12,7 @@ part of 'workout.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Workout _$WorkoutFromJson(Map<String, dynamic> json) {
   return _Workout.fromJson(json);
@@ -37,8 +37,12 @@ mixin _$Workout {
   int? get loadId => throw _privateConstructorUsedError;
   int? get limbs => throw _privateConstructorUsedError;
 
+  /// Serializes this Workout to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Workout
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WorkoutCopyWith<Workout> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -76,6 +80,8 @@ class _$WorkoutCopyWithImpl<$Res, $Val extends Workout>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Workout
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -199,6 +205,8 @@ class __$$WorkoutImplCopyWithImpl<$Res>
       _$WorkoutImpl _value, $Res Function(_$WorkoutImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Workout
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -351,7 +359,7 @@ class _$WorkoutImpl implements _Workout {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WorkoutImpl &&
@@ -380,7 +388,7 @@ class _$WorkoutImpl implements _Workout {
             (identical(other.limbs, limbs) || other.limbs == limbs));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -401,7 +409,9 @@ class _$WorkoutImpl implements _Workout {
       loadId,
       limbs);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Workout
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WorkoutImplCopyWith<_$WorkoutImpl> get copyWith =>
@@ -468,8 +478,11 @@ abstract class _Workout implements Workout {
   int? get loadId;
   @override
   int? get limbs;
+
+  /// Create a copy of Workout
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WorkoutImplCopyWith<_$WorkoutImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

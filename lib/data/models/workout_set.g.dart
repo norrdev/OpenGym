@@ -8,12 +8,12 @@ part of 'workout_set.dart';
 
 _$WorkoutSetImpl _$$WorkoutSetImplFromJson(Map<String, dynamic> json) =>
     _$WorkoutSetImpl(
-      repeats: json['repeats'] as int?,
-      repeatsLeft: json['repeatsLeft'] as int?,
+      repeats: (json['repeats'] as num?)?.toInt(),
+      repeatsLeft: (json['repeatsLeft'] as num?)?.toInt(),
       weight: (json['weight'] as num?)?.toDouble(),
       weightLeft: (json['weightLeft'] as num?)?.toDouble(),
-      timeLoad: json['timeLoad'] as int?,
-      rest: json['rest'] as int?,
+      timeLoad: (json['timeLoad'] as num?)?.toInt(),
+      rest: (json['rest'] as num?)?.toInt(),
       distance: (json['distance'] as num?)?.toDouble(),
     );
 

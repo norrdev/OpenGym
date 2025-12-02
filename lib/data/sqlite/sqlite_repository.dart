@@ -23,7 +23,7 @@ class SqliteRepository extends Repository {
   }
 
   @override
-  Stream<List<Exercise>> findExcersisesByMuscle(int id) {
+  Stream<List<Exercise>> findExercisesByMuscle(int id) {
     return sqliteHelper.findExcersisesByMuscle(id);
   }
 
@@ -138,7 +138,7 @@ class SqliteRepository extends Repository {
   }
 
   @override
-  Future<List<LogDay>> findMounthLogDaysBetweenDates(
+  Future<List<LogDay>> findMonthLogDaysBetweenDates(
       DateTime start, DateTime finish) {
     return sqliteHelper.findMounthLogDaysBetweenDates(start, finish);
   }
