@@ -7,7 +7,7 @@ abstract class Repository {
 
   Stream<List<Muscle>> watchAllMuscles();
 
-  Stream<List<Exercise>> findExcersisesByMuscle(int id);
+  Stream<List<Exercise>> findExercisesByMuscle(int id);
 
   Future<Exercise> findExerciseById(int id);
 
@@ -49,7 +49,7 @@ abstract class Repository {
 
   Future<List<LogDay>> watchAllLogDays();
 
-  Future<List<LogDay>> findMounthLogDaysBetweenDates(
+  Future<List<LogDay>> findMonthLogDaysBetweenDates(
       DateTime start, DateTime finish);
 
   Future<List<LogWorkout>> findLogWorkoutByDay(int logDayId);

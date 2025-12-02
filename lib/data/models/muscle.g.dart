@@ -7,7 +7,7 @@ part of 'muscle.dart';
 // **************************************************************************
 
 _$MuscleImpl _$$MuscleImplFromJson(Map<String, dynamic> json) => _$MuscleImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       icon: const Uint8ListConverter().fromJson(json['icon'] as List<int>?),
     );

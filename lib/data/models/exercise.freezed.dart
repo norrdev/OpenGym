@@ -12,7 +12,7 @@ part of 'exercise.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Exercise _$ExerciseFromJson(Map<String, dynamic> json) {
   return _Exercise.fromJson(json);
@@ -28,8 +28,12 @@ mixin _$Exercise {
   int? get loadId => throw _privateConstructorUsedError;
   int? get limbs => throw _privateConstructorUsedError;
 
+  /// Serializes this Exercise to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Exercise
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ExerciseCopyWith<Exercise> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -59,6 +63,8 @@ class _$ExerciseCopyWithImpl<$Res, $Val extends Exercise>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Exercise
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -129,6 +135,8 @@ class __$$ExerciseImplCopyWithImpl<$Res>
       _$ExerciseImpl _value, $Res Function(_$ExerciseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Exercise
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -209,7 +217,7 @@ class _$ExerciseImpl implements _Exercise {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ExerciseImpl &&
@@ -225,12 +233,14 @@ class _$ExerciseImpl implements _Exercise {
             (identical(other.limbs, limbs) || other.limbs == limbs));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, description,
       equipmentId, preinstalled, loadId, limbs);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Exercise
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ExerciseImplCopyWith<_$ExerciseImpl> get copyWith =>
@@ -271,8 +281,11 @@ abstract class _Exercise implements Exercise {
   int? get loadId;
   @override
   int? get limbs;
+
+  /// Create a copy of Exercise
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ExerciseImplCopyWith<_$ExerciseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

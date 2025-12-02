@@ -8,16 +8,16 @@ part of 'log_workout.dart';
 
 _$LogWorkoutImpl _$$LogWorkoutImplFromJson(Map<String, dynamic> json) =>
     _$LogWorkoutImpl(
-      id: json['id'] as int?,
-      repeats: json['repeats'] as int?,
-      repeatsLeft: json['repeatsLeft'] as int?,
+      id: (json['id'] as num?)?.toInt(),
+      repeats: (json['repeats'] as num?)?.toInt(),
+      repeatsLeft: (json['repeatsLeft'] as num?)?.toInt(),
       weight: (json['weight'] as num?)?.toDouble(),
       weightLeft: (json['weightLeft'] as num?)?.toDouble(),
       distance: (json['distance'] as num?)?.toDouble(),
-      timeLoad: json['timeLoad'] as int?,
+      timeLoad: (json['timeLoad'] as num?)?.toInt(),
       name: json['name'] as String?,
-      loadId: json['loadId'] as int?,
-      limbs: json['limbs'] as int?,
+      loadId: (json['loadId'] as num?)?.toInt(),
+      limbs: (json['limbs'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$LogWorkoutImplToJson(_$LogWorkoutImpl instance) =>

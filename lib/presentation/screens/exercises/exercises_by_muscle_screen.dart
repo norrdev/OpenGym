@@ -47,7 +47,7 @@ class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
         ],
       ),
       body: StreamBuilder<List<Exercise>>(
-        stream: repository.findExcersisesByMuscle(widget.musclesId),
+        stream: repository.findExercisesByMuscle(widget.musclesId),
         builder: (context, AsyncSnapshot<List<Exercise>> snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
             final exes = snapshot.data ?? [];

@@ -67,7 +67,7 @@ class _ProgramDayAddExerciseState extends State<ProgramDayAddExercise> {
             const Divider(),
             Flexible(
               child: StreamBuilder(
-                stream: repository.findExcersisesByMuscle(selectedMuscle),
+                stream: repository.findExercisesByMuscle(selectedMuscle),
                 builder: (context, AsyncSnapshot<List<Exercise>> snapshotEx) {
                   final List<Exercise> exercises =
                       (snapshotEx.hasData) ? [...snapshotEx.data!] : [];
