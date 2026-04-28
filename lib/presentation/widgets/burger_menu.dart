@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../constants/screens.dart';
 import '../../generated/l10n.dart';
-import '../../logic/cubit/current_tab_cubit.dart';
+import '../../logic/providers/app_providers.dart';
 
-class BurgerMenu extends StatelessWidget {
+class BurgerMenu extends ConsumerWidget {
   const BurgerMenu({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Drawer(
       child: ListView(
         children: [
@@ -22,7 +22,9 @@ class BurgerMenu extends StatelessWidget {
             leading: const Icon(Icons.fitness_center_rounded),
             title: Text(S.of(context).pageWorkout),
             onTap: () {
-              context.read<CurrentTabCubit>().saveCurrentIndex(kScreenWorkout);
+              ref
+                  .read(currentTabProvider.notifier)
+                  .saveCurrentIndex(kScreenWorkout);
               Navigator.pop(context);
             },
           ),
@@ -30,8 +32,8 @@ class BurgerMenu extends StatelessWidget {
             leading: const Icon(Icons.sports_gymnastics),
             title: Text(S.of(context).pageExerciseTitle),
             onTap: () {
-              context
-                  .read<CurrentTabCubit>()
+              ref
+                  .read(currentTabProvider.notifier)
                   .saveCurrentIndex(kScreenExersises);
               Navigator.pop(context);
             },
@@ -40,7 +42,9 @@ class BurgerMenu extends StatelessWidget {
             leading: const Icon(Icons.calendar_month_rounded),
             title: Text(S.of(context).log),
             onTap: () {
-              context.read<CurrentTabCubit>().saveCurrentIndex(kScreenLog);
+              ref
+                  .read(currentTabProvider.notifier)
+                  .saveCurrentIndex(kScreenLog);
               Navigator.pop(context);
             },
           ),
@@ -48,7 +52,9 @@ class BurgerMenu extends StatelessWidget {
             leading: const Icon(Icons.gas_meter_rounded),
             title: Text(S.of(context).calculate),
             onTap: () {
-              context.read<CurrentTabCubit>().saveCurrentIndex(kScreenCalc);
+              ref
+                  .read(currentTabProvider.notifier)
+                  .saveCurrentIndex(kScreenCalc);
               Navigator.pop(context);
             },
           ),
@@ -56,7 +62,9 @@ class BurgerMenu extends StatelessWidget {
             leading: const Icon(Icons.settings_rounded),
             title: Text(S.of(context).settings),
             onTap: () {
-              context.read<CurrentTabCubit>().saveCurrentIndex(kScreenSettings);
+              ref
+                  .read(currentTabProvider.notifier)
+                  .saveCurrentIndex(kScreenSettings);
               Navigator.pop(context);
             },
           ),

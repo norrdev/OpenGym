@@ -1,13 +1,13 @@
 // import 'package:audioplayers/audioplayers.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:npng/generated/l10n.dart';
-import 'package:npng/logic/cubit/workout_cubit.dart';
+import 'package:npng/logic/providers/app_providers.dart';
 import 'package:npng/presentation/screens/workout/workout_04_finish_screen.dart';
 
-class TimerScreen extends StatelessWidget {
+class TimerScreen extends ConsumerWidget {
   const TimerScreen({super.key});
 
   void playSound() {
@@ -21,8 +21,8 @@ class TimerScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    int duration = context.read<WorkoutCubit>().state.currentSetRestTime;
+  Widget build(BuildContext context, WidgetRef ref) {
+    int duration = ref.read(workoutProvider).currentSetRestTime;
     CountDownController controller = CountDownController();
 
     return Scaffold(
@@ -32,8 +32,8 @@ class TimerScreen extends StatelessWidget {
             child: Text(S.of(context).stopRest),
             onPressed: () {
               controller.pause();
-              context.read<WorkoutCubit>().incCurrentSet();
-              if (!context.read<WorkoutCubit>().state.finished) {
+              ref.read(workoutProvider.notifier).incCurrentSet();
+              if (!ref.read(workoutProvider).finished) {
                 Navigator.pop(context);
               } else {
                 Navigator.pushAndRemoveUntil(
@@ -69,10 +69,10 @@ class TimerScreen extends StatelessWidget {
                   height: MediaQuery.of(context).size.height / 2,
 
                   // Default Color for Countdown Timer
-                  ringColor: Colors.transparent,
+                  ringColor: Theme.of(context).colorScheme.outlineVariant,
 
                   // Filling Color for Countdown Timer
-                  fillColor: Theme.of(context).indicatorColor,
+                  fillColor: Theme.of(context).colorScheme.primary,
 
                   // Background Color for Countdown Widget
                   backgroundColor: null,
@@ -83,7 +83,7 @@ class TimerScreen extends StatelessWidget {
                   // Text Style for Countdown Text
                   textStyle: TextStyle(
                     fontSize: MediaQuery.of(context).size.height / 12, //22.0,
-                    color: Theme.of(context).indicatorColor,
+                    color: Theme.of(context).colorScheme.onSurface,
                     //fontWeight: FontWeight.bold,
                   ),
 
@@ -99,8 +99,8 @@ class TimerScreen extends StatelessWidget {
                   // Function which will execute when the Countdown Ends
                   onComplete: () {
                     playSound();
-                    context.read<WorkoutCubit>().incCurrentSet();
-                    if (!context.read<WorkoutCubit>().state.finished) {
+                    ref.read(workoutProvider.notifier).incCurrentSet();
+                    if (!ref.read(workoutProvider).finished) {
                       Navigator.pop(context);
                     } else {
                       Navigator.pushAndRemoveUntil(

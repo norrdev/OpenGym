@@ -1,99 +1,129 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:steps_indicator/steps_indicator.dart';
 
 import '../../../constants/workout.dart';
 import '../../../generated/l10n.dart';
-import '../../../logic/cubit/workout_cubit.dart';
+import '../../../logic/providers/app_providers.dart';
 import '../../widgets/help_icon_button.dart';
 import '../../widgets/widgets.dart';
 
-class CurrentSetWidget extends StatelessWidget {
+class CurrentSetWidget extends ConsumerWidget {
   const CurrentSetWidget({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    WorkoutCubit workoutCubit = context.read<WorkoutCubit>();
-    return BlocBuilder<WorkoutCubit, WorkoutState>(
-      builder: (_, state) {
-        if (kDebugMode) {
-          print(
-              '${state.exercises[state.currentExcersise].sets[state.currentSet]} '
-              'Ex : ${state.currentExcersise} '
-              'Set: ${state.currentSet}');
-        }
-        return ListView(
-          children: [
-            const SizedBox(height: 8),
-            // Repeats
-            if (state.exercises[state.currentExcersise].limbs == 1 &&
-                state.exercises[state.currentExcersise].loadId != kLoadTime &&
-                state.exercises[state.currentExcersise].loadId != kLoadDistance)
+  Widget build(BuildContext context, WidgetRef ref) {
+    final workoutCubit = ref.read(workoutProvider.notifier);
+    final state = ref.watch(workoutProvider);
+    if (kDebugMode) {
+      print('${state.exercises[state.currentExcersise].sets[state.currentSet]} '
+          'Ex : ${state.currentExcersise} '
+          'Set: ${state.currentSet}');
+    }
+    return ListView(
+      children: [
+        const SizedBox(height: 8),
+        // Repeats
+        if (state.exercises[state.currentExcersise].limbs == 1 &&
+            state.exercises[state.currentExcersise].loadId != kLoadTime &&
+            state.exercises[state.currentExcersise].loadId != kLoadDistance)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+            child: SpinEditInt(
+              key: ValueKey(state.exercises[state.currentExcersise]
+                  .sets[state.currentSet].repeats),
+              label: S.of(context).repeats,
+              initialValue: state.exercises[state.currentExcersise]
+                      .sets[state.currentSet].repeats ??
+                  0,
+              onChange: (newValue) => workoutCubit.setRepeats(
+                  excersiseNumber: state.currentExcersise,
+                  setNumber: state.currentSet,
+                  repeats: newValue.toInt()),
+            ),
+          ),
+        if (state.exercises[state.currentExcersise].limbs == 2 &&
+            state.exercises[state.currentExcersise].loadId != kLoadTime &&
+            state.exercises[state.currentExcersise].loadId != kLoadDistance)
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+                child: SpinEditInt(
+                  key: ValueKey(state.exercises[state.currentExcersise]
+                      .sets[state.currentSet].repeatsLeft),
+                  label: '${S.of(context).repeats} ${S.of(context).left}',
+                  initialValue: state.exercises[state.currentExcersise]
+                          .sets[state.currentSet].repeatsLeft ??
+                      1,
+                  onChange: (newValue) => workoutCubit.setRepeatsLeft(
+                      excersiseNumber: state.currentExcersise,
+                      setNumber: state.currentSet,
+                      repeatsLeft: newValue.toInt()),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
                 child: SpinEditInt(
                   key: ValueKey(state.exercises[state.currentExcersise]
                       .sets[state.currentSet].repeats),
-                  label: S.of(context).repeats,
+                  label: '${S.of(context).repeats} ${S.of(context).right}',
                   initialValue: state.exercises[state.currentExcersise]
                           .sets[state.currentSet].repeats ??
-                      0,
+                      1,
                   onChange: (newValue) => workoutCubit.setRepeats(
                       excersiseNumber: state.currentExcersise,
                       setNumber: state.currentSet,
                       repeats: newValue.toInt()),
                 ),
               ),
-            if (state.exercises[state.currentExcersise].limbs == 2 &&
-                state.exercises[state.currentExcersise].loadId != kLoadTime &&
-                state.exercises[state.currentExcersise].loadId != kLoadDistance)
-              Column(
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-                    child: SpinEditInt(
-                      key: ValueKey(state.exercises[state.currentExcersise]
-                          .sets[state.currentSet].repeatsLeft),
-                      label: '${S.of(context).repeats} ${S.of(context).left}',
-                      initialValue: state.exercises[state.currentExcersise]
-                              .sets[state.currentSet].repeatsLeft ??
-                          1,
-                      onChange: (newValue) => workoutCubit.setRepeatsLeft(
-                          excersiseNumber: state.currentExcersise,
-                          setNumber: state.currentSet,
-                          repeatsLeft: newValue.toInt()),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-                    child: SpinEditInt(
-                      key: ValueKey(state.exercises[state.currentExcersise]
-                          .sets[state.currentSet].repeats),
-                      label: '${S.of(context).repeats} ${S.of(context).right}',
-                      initialValue: state.exercises[state.currentExcersise]
-                              .sets[state.currentSet].repeats ??
-                          1,
-                      onChange: (newValue) => workoutCubit.setRepeats(
-                          excersiseNumber: state.currentExcersise,
-                          setNumber: state.currentSet,
-                          repeats: newValue.toInt()),
-                    ),
-                  ),
-                ],
+            ],
+          ),
+        if (state.exercises[state.currentExcersise].limbs == 1 &&
+            state.exercises[state.currentExcersise].loadId == kLoadWeight)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+            child: SpinEditDouble(
+              key: ValueKey(state.exercises[state.currentExcersise]
+                  .sets[state.currentSet].weight),
+              label: S.of(context).weight,
+              initialValue: state.exercises[state.currentExcersise]
+                      .sets[state.currentSet].weight ??
+                  0,
+              onChange: (newValue) => workoutCubit.setWeight(
+                  excersiseNumber: state.currentExcersise,
+                  setNumber: state.currentSet,
+                  weight: newValue.toDouble()),
+            ),
+          ),
+        if (state.exercises[state.currentExcersise].limbs == 2 &&
+            state.exercises[state.currentExcersise].loadId == kLoadWeight)
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+                child: SpinEditDouble(
+                  key: ValueKey(state.exercises[state.currentExcersise]
+                      .sets[state.currentSet].weightLeft),
+                  label: '${S.of(context).weight} ${S.of(context).left}',
+                  initialValue: state.exercises[state.currentExcersise]
+                          .sets[state.currentSet].weightLeft ??
+                      0,
+                  onChange: (newValue) => workoutCubit.setWeightLeft(
+                      excersiseNumber: state.currentExcersise,
+                      setNumber: state.currentSet,
+                      weightLeft: newValue.toDouble()),
+                ),
               ),
-            if (state.exercises[state.currentExcersise].limbs == 1 &&
-                state.exercises[state.currentExcersise].loadId == kLoadWeight)
               Padding(
                 padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
                 child: SpinEditDouble(
                   key: ValueKey(state.exercises[state.currentExcersise]
                       .sets[state.currentSet].weight),
-                  label: S.of(context).weight,
+                  label: '${S.of(context).weight} ${S.of(context).right}',
                   initialValue: state.exercises[state.currentExcersise]
                           .sets[state.currentSet].weight ??
                       0,
@@ -103,105 +133,64 @@ class CurrentSetWidget extends StatelessWidget {
                       weight: newValue.toDouble()),
                 ),
               ),
-            if (state.exercises[state.currentExcersise].limbs == 2 &&
-                state.exercises[state.currentExcersise].loadId == kLoadWeight)
-              Column(
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-                    child: SpinEditDouble(
-                      key: ValueKey(state.exercises[state.currentExcersise]
-                          .sets[state.currentSet].weightLeft),
-                      label: '${S.of(context).weight} ${S.of(context).left}',
-                      initialValue: state.exercises[state.currentExcersise]
-                              .sets[state.currentSet].weightLeft ??
-                          0,
-                      onChange: (newValue) => workoutCubit.setWeightLeft(
-                          excersiseNumber: state.currentExcersise,
-                          setNumber: state.currentSet,
-                          weightLeft: newValue.toDouble()),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-                    child: SpinEditDouble(
-                      key: ValueKey(state.exercises[state.currentExcersise]
-                          .sets[state.currentSet].weight),
-                      label: '${S.of(context).weight} ${S.of(context).right}',
-                      initialValue: state.exercises[state.currentExcersise]
-                              .sets[state.currentSet].weight ??
-                          0,
-                      onChange: (newValue) => workoutCubit.setWeight(
-                          excersiseNumber: state.currentExcersise,
-                          setNumber: state.currentSet,
-                          weight: newValue.toDouble()),
-                    ),
-                  ),
-                ],
-              ),
-            if (state.exercises[state.currentExcersise].loadId == kLoadTime)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-                child: SpinEditInt(
-                  key: ValueKey(state.exercises[state.currentExcersise]
-                      .sets[state.currentSet].timeLoad),
-                  label: S.of(context).time,
-                  initialValue: state.exercises[state.currentExcersise]
-                          .sets[state.currentSet].timeLoad ??
-                      0,
-                  onChange: (newValue) => workoutCubit.setTimeLoad(
-                      excersiseNumber: state.currentExcersise,
-                      setNumber: state.currentSet,
-                      timeLoad: newValue.toInt()),
-                ),
-              ),
-            if (state.exercises[state.currentExcersise].loadId == kLoadDistance)
-              SpinEditDouble(
-                key: ValueKey(state.exercises[state.currentExcersise]
-                    .sets[state.currentSet].distance),
-                initialValue: state.exercises[state.currentExcersise]
-                        .sets[state.currentSet].distance ??
-                    0,
-                onChange: (newValue) => workoutCubit.setDistance(
-                    excersiseNumber: state.currentExcersise,
-                    setNumber: state.currentSet,
-                    distance: newValue.toDouble()),
-                label: S.of(context).cooperDistanse,
-              ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-              child: SpinEditInt(
-                key: ValueKey(state.currentSetRestTime),
-                label: S.of(context).rest,
-                initialValue: state.currentSetRestTime,
-                onChange: (newValue) => workoutCubit.setRestForSet(
-                    excersiseNumber: state.currentExcersise,
-                    setNumber: state.currentSet,
-                    rest: newValue.toInt()),
-              ),
+            ],
+          ),
+        if (state.exercises[state.currentExcersise].loadId == kLoadTime)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+            child: SpinEditInt(
+              key: ValueKey(state.exercises[state.currentExcersise]
+                  .sets[state.currentSet].timeLoad),
+              label: S.of(context).time,
+              initialValue: state.exercises[state.currentExcersise]
+                      .sets[state.currentSet].timeLoad ??
+                  0,
+              onChange: (newValue) => workoutCubit.setTimeLoad(
+                  excersiseNumber: state.currentExcersise,
+                  setNumber: state.currentSet,
+                  timeLoad: newValue.toInt()),
             ),
-            const SizedBox(height: 16),
-          ],
-        );
-      },
+          ),
+        if (state.exercises[state.currentExcersise].loadId == kLoadDistance)
+          SpinEditDouble(
+            key: ValueKey(state.exercises[state.currentExcersise]
+                .sets[state.currentSet].distance),
+            initialValue: state.exercises[state.currentExcersise]
+                    .sets[state.currentSet].distance ??
+                0,
+            onChange: (newValue) => workoutCubit.setDistance(
+                excersiseNumber: state.currentExcersise,
+                setNumber: state.currentSet,
+                distance: newValue.toDouble()),
+            label: S.of(context).cooperDistanse,
+          ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+          child: SpinEditInt(
+            key: ValueKey(state.currentSetRestTime),
+            label: S.of(context).rest,
+            initialValue: state.currentSetRestTime,
+            onChange: (newValue) => workoutCubit.setRestForSet(
+                excersiseNumber: state.currentExcersise,
+                setNumber: state.currentSet,
+                rest: newValue.toInt()),
+          ),
+        ),
+        const SizedBox(height: 16),
+      ],
     );
   }
 }
 
-class WorkoutSetScreen extends StatelessWidget {
+class WorkoutSetScreen extends ConsumerWidget {
   const WorkoutSetScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final workout = ref.watch(workoutProvider);
     return Scaffold(
       appBar: AppBar(
-        title: BlocBuilder<WorkoutCubit, WorkoutState>(
-          builder: (_, wk) {
-            return Text(wk.exercises[wk.currentExcersise].name);
-          },
-        ),
+        title: Text(workout.exercises[workout.currentExcersise].name),
         actions: [HelpIconButton(help: S.of(context).hintWorkoutSets)],
       ),
       persistentFooterButtons: [
@@ -223,8 +212,9 @@ class WorkoutSetScreen extends StatelessWidget {
             ),
             SizedBox(
               height: 80.0,
-              child: BlocBuilder<WorkoutCubit, WorkoutState>(
-                builder: (context, state) {
+              child: Builder(
+                builder: (context) {
+                  final state = ref.watch(workoutProvider);
                   final maxSet = state.maxSet;
                   final currentSet = state.currentSet;
                   int mSet = maxSet + 1;
@@ -247,7 +237,9 @@ class WorkoutSetScreen extends StatelessWidget {
                         icon: const Icon(Icons.arrow_back_ios_rounded),
                         onPressed: () {
                           if (maxSet > 0) {
-                            context.read<WorkoutCubit>().manualRemoveOneSet();
+                            ref
+                                .read(workoutProvider.notifier)
+                                .manualRemoveOneSet();
                           }
                         },
                       ),
@@ -266,7 +258,7 @@ class WorkoutSetScreen extends StatelessWidget {
                       IconButton(
                         icon: const Icon(Icons.arrow_forward_ios_rounded),
                         onPressed: () {
-                          context.read<WorkoutCubit>().manualAddOneSet();
+                          ref.read(workoutProvider.notifier).manualAddOneSet();
                         },
                       ),
                     ],

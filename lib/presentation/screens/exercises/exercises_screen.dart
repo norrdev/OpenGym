@@ -1,12 +1,11 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/constants/colors.dart';
 import 'package:npng/presentation/screens/exercises/exercises_by_muscle_screen.dart';
 import 'package:npng/presentation/widgets/burger_menu.dart';
 import 'package:npng/theme.dart';
-import 'package:npng/data/repository.dart';
+import 'package:npng/logic/providers/app_providers.dart';
 
 import 'package:npng/data/models/muscle.dart';
 import 'package:npng/generated/l10n.dart';
@@ -17,8 +16,7 @@ class ExercisesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final repository =
-        RepositoryProvider.of<Repository>(context, listen: false);
+    final repository = readRepository(context);
     return Scaffold(
       drawer: const BurgerMenu(),
       appBar: AppBar(title: Text(S.of(context).pageExerciseTitle)),

@@ -1,28 +1,36 @@
-import 'package:npng/logic/cubit/current_tab_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:npng/logic/providers/app_providers.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  group('CurrentTabCubit', () {
-    late CurrentTabCubit currentTabCubit;
+  group('CurrentTabNotifier', () {
+    late ProviderContainer container;
+    late CurrentTabNotifier notifier;
 
     setUp(() {
-      currentTabCubit = CurrentTabCubit();
+      SharedPreferences.setMockInitialValues({});
+      container = ProviderContainer();
+      notifier = container.read(currentTabProvider.notifier);
     });
 
     tearDown(() {
-      currentTabCubit.close();
+      container.dispose();
     });
 
-    test('initial state of CurrentTabCubit', () {
-      expect(currentTabCubit.state, CurrentTabInitial());
+    test('initial state is zero', () {
+      expect(notifier.state, 0);
     });
 
-    blocTest('read from systemPrefs',
-        build: () => currentTabCubit,
-        act: (CurrentTabCubit cubit) async {
-          cubit.loadCurrentIndex();
-        },
-        expect: () => [CurrentTabLoaded(0)]);
+    test('loads selected index from preferences', () async {
+      SharedPreferences.setMockInitialValues(
+        {CurrentTabNotifier.prefSelectedIndexKey: 3},
+      );
+      container.dispose();
+      container = ProviderContainer();
+      notifier = container.read(currentTabProvider.notifier);
+      await notifier.loadCurrentIndex();
+      expect(notifier.state, 3);
+    });
   });
 }

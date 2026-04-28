@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:npng/presentation/widgets/help_icon_button.dart';
 
 import '../../../data/models/models.dart';
-import '../../../data/repository.dart';
 import '../../../generated/l10n.dart';
+import '../../../logic/providers/app_providers.dart';
 import '../../../theme.dart';
 import 'exercise_edit_screen.dart';
 import 'exercise_new_screen.dart';
@@ -26,8 +25,7 @@ class ExercisesByMuscleScreen extends StatefulWidget {
 class _ExercisesByMuscleScreenState extends State<ExercisesByMuscleScreen> {
   @override
   Widget build(BuildContext context) {
-    final repository =
-        RepositoryProvider.of<Repository>(context, listen: false);
+    final repository = readRepository(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.pageTitle),

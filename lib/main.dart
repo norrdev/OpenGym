@@ -3,15 +3,12 @@ import 'dart:io' show Platform;
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'data/repository.dart';
 import 'data/sqlite/sqlite_repository.dart';
 import 'generated/l10n.dart';
-import 'logic/cubit/current_tab_cubit.dart';
-import 'logic/cubit/default_program_cubit.dart';
-import 'logic/cubit/workout_cubit.dart';
+import 'logic/providers/app_providers.dart';
 import 'presentation/routes/route_map.dart';
 
 // final bool isApple = !kIsWeb && (Platform.isMacOS || Platform.isIOS);
@@ -32,37 +29,25 @@ void main() async {
   // Get default program.
   defaultProgram = await repository.getCurrentProgramId();
 
-
-
   runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider<CurrentTabCubit>(
-          create: (context) => CurrentTabCubit(),
-        ),
-        BlocProvider<DefaultProgramCubit>(
-          create: (context) =>
-              DefaultProgramCubit(defaultProgram: defaultProgram),
-        ),
-        BlocProvider<WorkoutCubit>(create: (context) => WorkoutCubit()),
+    ProviderScope(
+      overrides: [
+        repositoryProvider.overrideWithValue(repository),
+        defaultProgramInitialProvider.overrideWithValue(defaultProgram),
       ],
-      child: RepositoryProvider<Repository>(
-        lazy: false,
-        create: (_) => repository,
-        child: const Application(),
-      ),
+      child: const Application(),
     ),
   );
 }
 
-class Application extends StatelessWidget {
+class Application extends ConsumerWidget {
   const Application({super.key});
   static final _defaultLightColorScheme = ColorScheme.fromSwatch();
   static final _defaultDarkColorScheme =
       ColorScheme.fromSwatch(brightness: Brightness.dark);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,

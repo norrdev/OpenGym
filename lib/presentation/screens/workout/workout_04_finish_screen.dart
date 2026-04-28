@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../constants/workout.dart';
 import '../../../data/models/workout_exercise.dart';
 import '../../../generated/l10n.dart';
-import '../../../logic/cubit/workout_cubit.dart';
+import '../../../logic/providers/app_providers.dart';
 import '../main_screen.dart';
 
 /// Traning volume wrapper
@@ -19,15 +19,15 @@ class TraningVolume {
   }
 }
 
-class WorkoutFinishScreen extends StatelessWidget {
+class WorkoutFinishScreen extends ConsumerWidget {
   const WorkoutFinishScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final controller = ScrollController();
-    final wp = context.read<WorkoutCubit>();
-    DateTime? start = wp.state.startTime;
-    DateTime? finish = wp.state.finishTime;
+    final wp = ref.read(workoutProvider);
+    DateTime? start = wp.startTime;
+    DateTime? finish = wp.finishTime;
     TraningVolume trainingVolume = TraningVolume(0.0);
     String duration =
         finish?.difference(start ?? DateTime.now()).inMinutes.toString() ?? '';
@@ -35,7 +35,7 @@ class WorkoutFinishScreen extends StatelessWidget {
     String output =
         '${S.of(context).wrkDuration}: $duration ${S.of(context).min}';
 
-    for (WorkoutExercise item in wp.state.exercises) {
+    for (WorkoutExercise item in wp.exercises) {
       output += '\n\r### ${item.name}';
 
       switch (item.loadId) {
@@ -78,7 +78,7 @@ class WorkoutFinishScreen extends StatelessWidget {
             child: Text(S.of(context).saveToLog),
             onPressed: () {
               // TODO move from here
-              wp.finishWorkout(context);
+              ref.read(workoutProvider.notifier).finishWorkout();
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => MainScreen()),
