@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../constants/workout.dart';
 import '../../../data/models/log_day.dart';
 import '../../../data/models/log_workout.dart';
-import '../../../data/repository.dart';
 import '../../../generated/l10n.dart';
+import '../../../logic/providers/app_providers.dart';
 
 /// Traning volume wrapper
 class TraningVolume {
@@ -146,8 +145,7 @@ class _LogWorkoutScreenState extends State<LogWorkoutScreen> {
   }
 
   void _refresh() async {
-    workouts = await context
-        .read<Repository>()
+    workouts = await readRepository(context)
         .findLogWorkoutByDay(widget.logDay.logDayId as int);
     setState(() {});
   }

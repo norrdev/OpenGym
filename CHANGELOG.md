@@ -1,3 +1,7 @@
+## 4.0.0
+
+- Core refactoring.
+
 ## 3.1.14
 
 - Updated libraries.

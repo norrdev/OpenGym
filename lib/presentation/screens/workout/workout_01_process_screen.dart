@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:npng/logic/cubit/workout_cubit.dart';
 import 'package:npng/presentation/widgets/help_icon_button.dart';
 
 import 'package:npng/data/models/models.dart';
-import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
 import 'package:npng/presentation/screens/workout/workout_02_set_screen.dart';
 import 'package:npng/presentation/screens/workout/workout_04_finish_screen.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 import '../../../theme.dart';
+import '../../../logic/providers/app_providers.dart';
 import '../../widgets/workout_exercise_settings.dart';
 import 'program_day_add_exercise.dart';
 
 /// Shows current workout program day (with exercises).
-class WorkoutProcessScreen extends StatelessWidget {
+class WorkoutProcessScreen extends ConsumerWidget {
   final Day? day;
 
   const WorkoutProcessScreen({super.key, this.day});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final activeValue = ref.watch(workoutProvider.select((v) => v.active));
     return Scaffold(
       appBar: AppBar(
         title: Text(day?.name ?? ''),
@@ -42,30 +42,12 @@ class WorkoutProcessScreen extends StatelessWidget {
         ],
       ),
       persistentFooterButtons: [
-        Builder(
-          builder: (context) {
-            final activeValue = context.select(
-                (WorkoutCubit workoutCubit) => workoutCubit.state.active);
-            if (activeValue) {
-              return const ActiveBottomBar();
-            } else {
-              return InitBottomBar(dayId: day?.id ?? 0);
-            }
-          },
-        ),
+        activeValue
+            ? const ActiveBottomBar()
+            : InitBottomBar(dayId: day?.id ?? 0),
       ],
       body: SafeArea(
-        child: Builder(
-          builder: (context) {
-            final activeValue = context.select(
-                (WorkoutCubit workoutCubit) => workoutCubit.state.active);
-            if (activeValue) {
-              return const ActiveListView();
-            } else {
-              return InitListView(day: day);
-            }
-          },
-        ),
+        child: activeValue ? const ActiveListView() : InitListView(day: day),
       ),
     );
   }
@@ -88,16 +70,13 @@ class _InitListViewState extends State<InitListView> {
   @override
   Widget build(BuildContext context) {
     Map<int, bool> expanded = {};
-    final repository = context.read<Repository>();
+    final repository = readRepository(context);
     return StreamBuilder<List<Workout>>(
       stream: repository.findWorkoutByDay(widget.day?.id as int),
       builder: (context, AsyncSnapshot<List<Workout>> snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           final List<Workout> workouts =
               (snapshot.hasData) ? [...snapshot.data!] : [];
-          if (workouts.isNotEmpty) {
-            context.read<WorkoutCubit>().workoutsSnapshot = workouts;
-          }
           return ReorderableListView.builder(
             itemCount: workouts.length,
             itemBuilder: (context, index) {
@@ -144,43 +123,47 @@ class _InitListViewState extends State<InitListView> {
 }
 
 /// Shows active workout after start (workout in process).
-class ActiveListView extends StatelessWidget {
+class ActiveListView extends ConsumerWidget {
   const ActiveListView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(workoutProvider);
     return ListView.builder(
-      itemCount: context.read<WorkoutCubit>().state.exercises.length,
+      itemCount: state.exercises.length,
       itemBuilder: (context, index) {
-        return BlocBuilder<WorkoutCubit, WorkoutState>(builder: (_, state) {
-          return ListTile(
-              leading: (state.exercises[index].completed)
-                  ? const Icon(
-                      Icons.done,
-                    )
-                  : null,
-              title: Text(state.exercises[index].name));
-        });
+        return ListTile(
+          leading: (state.exercises[index].completed)
+              ? const Icon(Icons.done)
+              : null,
+          title: Text(state.exercises[index].name),
+        );
       },
     );
   }
 }
 
 /// This bottom bar on workout init with start button.
-class InitBottomBar extends StatelessWidget {
+class InitBottomBar extends ConsumerWidget {
   final int dayId;
 
   const InitBottomBar({super.key, required this.dayId});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Center(
       // Start button
       child: ElevatedButton(
         child: Text(S.of(context).start),
-        onPressed: () {
-          context.read<WorkoutCubit>().startWorkout(dayId);
+        onPressed: () async {
+          final repository = ref.read(repositoryProvider);
+          final workouts = await repository.findWorkoutByDay(dayId).first;
+          if (workouts.isNotEmpty) {
+            ref.read(workoutProvider.notifier).workoutsSnapshot = workouts;
+          }
+          ref.read(workoutProvider.notifier).startWorkout(dayId);
           WakelockPlus.enable();
+          if (!context.mounted) return;
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -194,17 +177,18 @@ class InitBottomBar extends StatelessWidget {
 }
 
 /// This bottom bar for workout-in progress
-class ActiveBottomBar extends StatelessWidget {
+class ActiveBottomBar extends ConsumerWidget {
   const ActiveBottomBar({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final finished = ref.watch(workoutProvider.select((v) => v.finished));
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        if (!context.read<WorkoutCubit>().state.finished)
+        if (!finished)
           ElevatedButton(
             child: Text(S.of(context).ccontinue),
             onPressed: () {

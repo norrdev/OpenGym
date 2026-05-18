@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/models.dart';
-import '../../../data/repository.dart';
 import '../../../generated/l10n.dart';
+import '../../../logic/providers/app_providers.dart';
 
 class ProgramNewScreen extends StatelessWidget {
   const ProgramNewScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final repository =
-        RepositoryProvider.of<Repository>(context, listen: false);
+    final repository = readRepository(context);
     TextEditingController tcName = TextEditingController(text: '');
     TextEditingController tcDesc = TextEditingController(text: '');
     final formKey = GlobalKey<FormState>();

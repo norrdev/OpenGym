@@ -4,7 +4,7 @@ part of 'sqlite_helper.dart';
 /// Version 1 comes from assets.
 void _upgradeV1toV2(Batch batch) {
   batch.execute('PRAGMA foreign_keys = 0');
-  batch.execute(''' 
+  batch.execute('''
     CREATE TABLE muscles (
       id      INTEGER NOT NULL,
       en_name STRING,
@@ -41,7 +41,7 @@ void _upgradeV1toV2(Batch batch) {
       ru_description STRING,
       programs_id    INT
   )''');
-  batch.execute(''' 
+  batch.execute('''
   INSERT INTO days (
                      id,
                      ord,

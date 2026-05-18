@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:npng/presentation/widgets/help_icon_button.dart';
 
 import '../../../data/models/models.dart';
-import '../../../data/repository.dart';
 import '../../../generated/l10n.dart';
+import '../../../logic/providers/app_providers.dart';
 
 /// Add exercise to workout day screen.
 /// [day]: day to add
@@ -22,8 +21,7 @@ class _ProgramDayAddExerciseState extends State<ProgramDayAddExercise> {
 
   @override
   Widget build(BuildContext context) {
-    final repository =
-        RepositoryProvider.of<Repository>(context, listen: false);
+    final repository = readRepository(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).pageAddEx),

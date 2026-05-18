@@ -4,9 +4,6 @@ PODS:
   - FlutterMacOS (1.0.0)
   - package_info_plus (0.0.1):
     - FlutterMacOS
-  - path_provider_foundation (0.0.1):
-    - Flutter
-    - FlutterMacOS
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -22,7 +19,6 @@ DEPENDENCIES:
   - dynamic_color (from `Flutter/ephemeral/.symlinks/plugins/dynamic_color/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - package_info_plus (from `Flutter/ephemeral/.symlinks/plugins/package_info_plus/macos`)
-  - path_provider_foundation (from `Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/darwin`)
   - shared_preferences_foundation (from `Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sqflite_darwin (from `Flutter/ephemeral/.symlinks/plugins/sqflite_darwin/darwin`)
   - url_launcher_macos (from `Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos`)
@@ -35,8 +31,6 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral
   package_info_plus:
     :path: Flutter/ephemeral/.symlinks/plugins/package_info_plus/macos
-  path_provider_foundation:
-    :path: Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/darwin
   shared_preferences_foundation:
     :path: Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin
   sqflite_darwin:
@@ -49,12 +43,11 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   dynamic_color: cb7c2a300ee67ed3bd96c3e852df3af0300bf610
   FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
-  package_info_plus: 122abb51244f66eead59ce7c9c200d6b53111779
-  path_provider_foundation: bb55f6dbba17d0dccd6737fe6f7f34fbd0376880
+  package_info_plus: f0052d280d17aa382b932f399edf32507174e870
   shared_preferences_foundation: 7036424c3d8ec98dfe75ff1667cb0cd531ec82bb
   sqflite_darwin: 20b2a3a3b70e43edae938624ce550a3cbf66a3d0
   url_launcher_macos: f87a979182d112f911de6820aefddaf56ee9fbfd
-  wakelock_plus: 21ddc249ac4b8d018838dbdabd65c5976c308497
+  wakelock_plus: 917609be14d812ddd9e9528876538b2263aaa03b
 
 PODFILE CHECKSUM: 8962832c3e2baa094a7b228372139f2ea77f2fdf
 

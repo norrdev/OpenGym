@@ -1,10 +1,9 @@
 import 'package:cell_calendar/cell_calendar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/models.dart';
-import '../../../data/repository.dart';
 import '../../../generated/l10n.dart';
+import '../../../logic/providers/app_providers.dart';
 import '../../widgets/burger_menu.dart';
 import 'log_show_workout_screen.dart';
 
@@ -29,8 +28,7 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
   }
 
   void _refreshOnPageChange(DateTime start, DateTime finish) async {
-    logDays = await context
-        .read<Repository>()
+    logDays = await readRepository(context)
         .findMonthLogDaysBetweenDates(start, finish);
     days.clear();
     for (var e in logDays) {
@@ -39,8 +37,7 @@ class _LogCalendarScreenState extends State<LogCalendarScreen> {
         eventName: e.daysName as String,
         eventDate: DateTime.parse(e.start as String),
         eventID: e.logDayId.toString(),
-        eventTextStyle:
-            TextStyle(color: Theme.of(context).colorScheme.surface),
+        eventTextStyle: TextStyle(color: Theme.of(context).colorScheme.surface),
       ));
     }
 

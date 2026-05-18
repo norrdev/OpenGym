@@ -106,7 +106,7 @@ class _CalcRmScreenState extends State<CalcRmScreen> {
                           repeat: int.parse(tcRepeat.text),
                           gender: sex);
 
-                      String res = ''' 
+                      String res = '''
 |**${S.of(context).rmMethod}**|**${S.of(context).rmResult}**|
 |---|---|
 |${S.of(context).Brzycki}|${isUS ? kgToLbs(rm.oneRmBrzycki).toStringAsFixed(3) : rm.oneRmBrzycki.toStringAsFixed(3)}|

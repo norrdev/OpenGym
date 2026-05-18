@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:npng/data/models/models.dart';
-import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
+import 'package:npng/logic/providers/app_providers.dart';
 
 class ProgramEditDayScreen extends StatelessWidget {
   final Day day;
@@ -11,8 +10,7 @@ class ProgramEditDayScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final repository =
-        RepositoryProvider.of<Repository>(context, listen: false);
+    final repository = readRepository(context);
     TextEditingController tcName = TextEditingController(text: day.name);
     TextEditingController tcDesc = TextEditingController(text: day.description);
     final formKey = GlobalKey<FormState>();

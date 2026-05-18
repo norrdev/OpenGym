@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:npng/presentation/screens/workout/program_new_screen.dart';
 import 'package:npng/presentation/widgets/help_icon_button.dart';
 
 import '../../../data/models/models.dart';
-import '../../../data/repository.dart';
 import '../../../generated/l10n.dart';
-import '../../../logic/cubit/default_program_cubit.dart';
+import '../../../logic/providers/app_providers.dart';
 import '../../../theme.dart';
 import 'program_edit_screen.dart';
 
-class ProgramsScreen extends StatefulWidget {
+class ProgramsScreen extends ConsumerStatefulWidget {
   const ProgramsScreen({super.key});
   static String id = '/programs';
 
   @override
-  State<ProgramsScreen> createState() => _ProgramsScreenState();
+  ConsumerState<ProgramsScreen> createState() => _ProgramsScreenState();
 }
 
-class _ProgramsScreenState extends State<ProgramsScreen> {
+class _ProgramsScreenState extends ConsumerState<ProgramsScreen> {
   @override
   Widget build(BuildContext context) {
-    final repository = context.watch<Repository>();
+    final repository = ref.watch(repositoryProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -51,6 +50,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                 itemCount: programs.length,
                 itemBuilder: (BuildContext context, int index) {
                   final item = programs[index];
+                  final programId = item.id;
                   return Slidable(
                     key: ValueKey(item),
                     startActionPane: ActionPane(
@@ -58,7 +58,8 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                       children: [
                         SlidableAction(
                           onPressed: (_) {
-                            repository.deleteProgram(item.id!).then((value) {
+                            if (programId == null) return;
+                            repository.deleteProgram(programId).then((value) {
                               if (value == false) {
                                 SnackBar snackBar = SnackBar(
                                   content: Text(S.of(context).canNotDelProgram),
@@ -92,28 +93,25 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
                       ],
                     ),
                     child: ListTile(
-                      leading:
-                          BlocBuilder<DefaultProgramCubit, DefaultProgramState>(
-                        builder: (context, state) {
-                          return Radio<int>(
-                            value: item.id as int,
-                            groupValue: state is DefaultProgramLoaded
-                                ? state.defaultProgram
-                                : null,
-                            onChanged: (_) {
-                              repository
-                                  .setCurrentProgramId(item.id as int)
-                                  .then((_) {
-                                context
-                                    .read<DefaultProgramCubit>()
-                                    .setDefaultProgram(item.id as int);
-                              });
-                            },
-                          );
-                        },
-                      ),
-                      title: Text(item.name as String),
-                      subtitle: Text(item.description as String),
+                      leading: Consumer(builder: (context, ref, _) {
+                        final defaultProgram = ref.watch(defaultProgramProvider);
+                        if (programId == null) {
+                          return const SizedBox.shrink();
+                        }
+                        return Radio<int>(
+                          value: programId,
+                          groupValue: defaultProgram,
+                          onChanged: (_) {
+                            repository.setCurrentProgramId(programId).then((_) {
+                              ref
+                                  .read(defaultProgramProvider.notifier)
+                                  .setDefaultProgram(programId);
+                            });
+                          },
+                        );
+                      }),
+                      title: Text(item.name ?? ''),
+                      subtitle: Text(item.description ?? ''),
                     ),
                   );
                 });

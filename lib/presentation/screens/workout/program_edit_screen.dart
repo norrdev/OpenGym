@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:npng/data/models/models.dart';
-import 'package:npng/data/repository.dart';
 import 'package:npng/generated/l10n.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:npng/logic/providers/app_providers.dart';
 
 class ProgramEditScreen extends StatelessWidget {
   final Program program;
@@ -11,7 +10,7 @@ class ProgramEditScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final repository = context.read<Repository>();
+    final repository = readRepository(context);
     TextEditingController tcName = TextEditingController(text: program.name);
     TextEditingController tcDesc =
         TextEditingController(text: program.description);
